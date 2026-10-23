@@ -41,6 +41,17 @@ UP_BUILD_BACKEND=nvidia python setup.py build_ext --inplace
 沐曦经厂商 Torch 的 CUDAExtension 兼容入口使用 MACA 工具链，产物为独立 `_metax_ops`。
 这不是 NVIDIA 二进制。编译器、库路径仍需按厂商配置。
 
+2026-10-24 的 KITTI 指标修正要求重新执行对应厂商编译。旧扩展缺少 `kitti_geometry_version=2` 时会明确拒绝使用，
+不能只更新 Python 文件继续加载旧内核。语义变化和测试专用 Shapely 依赖见 [修复说明](KITTI_GEOMETRY_20261024.md)。
+
+## 沐曦显式数值控制
+
+当前 MACA 3.8.1.3 环境单独测试了 `MCDNN_USE_DETERMINISTIC_ALGO=1` 与 `MCDNN_STABLE_RESULT_MOD=1` 的组合，
+与 PyTorch 原生 deterministic、`CUBLAS_WORKSPACE_CONFIG=:4096:8` 一同在新进程启动前设置。
+平台不默认设置这些变量，也不声明它们是正式稳定 API；版本、适用模型、失败和复现见 [问题跟进](FOLLOWUP_20261024.md)。
+原版与路由对照必须使用完全相同的开关，不能把不同开关下的结果冒充结构等价验证。
+这个组合没有解决全部 Faster R-CNN 训练差异，本轮也未测量其性能代价。
+
 ## 可选工具链
 
 验证使用任务目录中的固定依赖源码，不修改共享虚拟环境的厂商包：

@@ -1,10 +1,13 @@
 # 真机验证与复现
 
-日期：2026-10-23。分支：`codex/up-platform-clean`。基线：UP `52aaeb9e`。
+初轮日期：2026-10-23；问题跟进：2026-10-24。分支：`codex/up-platform-clean`。基线：UP `52aaeb9e`。
 
 **结论：平台层和多项真机能力已实现，但本分支尚未达到 NVIDIA、沐曦“两家完整适配”。**
 不能把算子通过、模型执行成功、模型数值等价、数据集精度四种结论混用。
 未恢复旧多随机种子任务，未迁入 v1/v2/portable 数值策略，没有放宽容差。
+
+最新变化见 [问题跟进](FOLLOWUP_20261024.md)：依赖错误处理已修正；沐曦显式 DNN 控制下四个模型的短程对照通过，Faster R-CNN 训练仍失败。
+[KITTI 评估器](KITTI_GEOMETRY_20261024.md) 经用户单独授权纠正原版几何错误，两家真机通过；这是有意改变错误指标值，不冒充与原版数值等价。
 
 ## 验证协议
 
@@ -22,7 +25,7 @@
 
 | 范围 | NVIDIA | 沐曦 | 通过边界 |
 | --- | --- | --- | --- |
-| CPU 契约 | 22 项通过 | 22 项通过 | 隐藏 GPU；用途、注册、模板、梯度、状态恢复、延迟默认值 |
+| CPU 契约 | 42 项通过 | 42 项通过 | 隐藏 GPU；初轮 22 项，新增依赖/定位/几何边界回归 |
 | UP 专用算子 | 两种用途各 31 用例通过 | 两种用途各 31 用例通过 | 19 个操作的已列测试，不是全部 dtype/布局组合 |
 | 稀疏卷积 | 通过 | 通过 | SubM/Conv/Inverse、dense、反向、恢复 |
 | UP SparseBasicBlock | 执行通过 | 执行通过 | 两次实际 UP block 执行，不是原版 block 对照 |
@@ -32,7 +35,7 @@
 | MSBench Amba | 阻塞 | 阻塞 | 原配方依赖的 FakeSparse 未找到 |
 | 双卡 Torch 通信 | 通过 | 通过 | 集合通信、DDP、SyncBN、AMP/scaler、恢复；不是 linklink |
 | 专用操作 ONNX | 7 用例通过 | 7 用例通过 | 图拓扑、symbolic 属性、initializer；不是部署引擎执行 |
-| KITTI rotate_iou_eval | 使用原版 Numba 路径 | 未通过，入口明确拒绝 | 新编译候选的严格边界不等价，未启用 |
+| KITTI rotate_iou_eval | 修正后几何通过 | 修正后几何通过 | 训练/推理各验证；不与错误的旧参考宣称等价，见独立报告 |
 | spring.linklink / 三个融合优化器 | 阻塞 | 阻塞 | 缺真实 SDK，没有普通实现替代 |
 | 昇腾、寒武纪 | 模板 | 模板 | 没有真机验证，不标为支持 |
 
@@ -46,6 +49,9 @@
 - 沐曦：[算子训练](validation/20261023/metax/results/frozen-stage13/native-training.json)、[算子推理](validation/20261023/metax/results/frozen-stage13/native-inference.json)、[工具链](validation/20261023/metax/results/frozen-stage13/toolchains/summary.json)、[QDrop/Amba](validation/20261023/metax/results/extra-toolchains-01/summary.json)、[双卡](validation/20261023/metax/results/frozen-stage13/distributed/rank0.json)、[ONNX](validation/20261023/metax/results/exports-01/summary.json)。
 
 ## 模型兼容性
+
+下表保留 **2026-10-23 初轮原生配置** 的真实结果，不用后来的不同启动环境覆盖失败。
+2026-10-24 增加两个显式 MCDNN 控制开关后的对照在 [单独结果表](FOLLOWUP_20261024.md#显式-dnn-控制下的模型对照)。
 
 真实 UP `ModelHelper`、原配方网络、原损失和原优化器，batch=2、三次更新；每步训练内 eval，第二步后重建模型和优化器并恢复。
 独立推理使用新进程与同一份原版训练 checkpoint，避免把训练漂移混入推理对照。
@@ -80,11 +86,11 @@
 | 原版点云导入即触发 Open3D/Numba-CUDA | 对照脚本延迟未使用的 PCD 读取和 KITTI JIT | stage13 沐曦导入失败保留；调用评估器时仍执行原算法/报原依赖错误 |
 | MQBench/MSBench 现代 API 不匹配 | 固定源版本、兼容补丁、修改前后哈希 | 直接调用和路由调用使用同一依赖；不改策略 |
 | Amba 缺少 USE_LINKLINK 定义 | 显式选择其原有 Torch dist 分支 | 随后仍因 FakeSparse 缺失而失败，不冒充 linklink |
-| KITTI 编译候选无法匹配原版边界 | 沐曦公开接口仍拒绝，保留候选诊断 | [失败记录](validation/20261023/metax/results/kitti-01.json)；不是数值修复已完成 |
+| KITTI 编译候选无法匹配原版边界 | 当时沐曦公开接口拒绝，保留候选诊断；后获授权单独修正几何 | [旧失败](validation/20261023/metax/results/kitti-01.json) 与 [新指标验收](KITTI_GEOMETRY_20261024.md) 分开 |
 
-KITTI 候选在 NVIDIA 的诊断也失败，NVIDIA 公开调用仍使用未改算法的 Numba 实现。
+初轮 KITTI 候选在 NVIDIA 的诊断也失败，当时 NVIDIA 使用原版 Numba；当前两家公开调用均使用单独验证的修正实现，原版 Numba 留作历史对照。
 linklink 的公开库检索和所缺 API 单列在 [LINKLINK.md](LINKLINK.md)。
-完整工具链验收还需要解决 Amba、linklink、沐曦 KITTI，以及扩充尚未执行的变体；NART、PCD/Open3D、2:4 permutation 和部署引擎未验证。
+完整工具链验收还需要解决 Amba、linklink，以及扩充尚未执行的变体；模型训练差异仍未全部解决。NART、PCD/Open3D、2:4 permutation 和部署引擎未验证。
 原版显式 CPU voxel 预处理不是新增 GPU 回退；可选 cumm 分支未做真机用例验收。
 
 ## 复现

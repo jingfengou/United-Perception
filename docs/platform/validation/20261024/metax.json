@@ -1,0 +1,966 @@
+{
+  "collected_utc": "2026-10-23T16:32:22.495323+00:00",
+  "vendor": "metax",
+  "base_commit": "ad2bccac690384218ba2154a3e8f42b19f5b6536",
+  "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+  "torch": "2.10.0+metax3.8.1.0",
+  "source_sha256": "ae5434023c59e40ef5d9b76f6878a45e5a98424432de0e2c513f008afff04f50",
+  "source_note": "Final collection snapshot; initial source.tar and fixes.tar retain intermediate tools. UP model/configuration files and compare_platform_models.py did not change during this follow-up.",
+  "raw_evidence": {
+    "root": "/workspace/up-run/up-platform-clean-20261023/followup-01",
+    "index": "/workspace/up-run/up-platform-clean-20261023/followup-evidence-20261024/full-index.json",
+    "sha256": "34d0f4c8dd676de3097177fa02800ccb7a1ef8a57e85837662c3f18f09db7899",
+    "files": 1453,
+    "bytes": 24336866220
+  },
+  "packages": {
+    "torch": "2.10.0+metax3.8.1.0",
+    "torchvision": "0.25.0+metax3.8.1.0",
+    "numpy": "1.26.4",
+    "pytest": "8.4.1"
+  },
+  "native_dnn_control_runs": {
+    "folders": [
+      "resnet-native-controls-01",
+      "models-native-controls-01"
+    ],
+    "launch_environment": {
+      "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+      "MCDNN_STABLE_RESULT_MOD": "1",
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    },
+    "note": "Explicit diagnostic launch configuration, not defaults or a claim of a stable vendor API."
+  },
+  "reports": {
+    "conv-plain-replay-01.json": {
+      "sha256": "b9f29b15a22ea7bbfabe1b1e75cdd51d84eb92557538fb6a23e1d5556b947de0",
+      "data": {
+        "scope": "ATen replay without importing UP or up_platform",
+        "operation": "aten.convolution.default",
+        "capture_sha256": "f2c65872b745e6b1f9e0c4b82499c65612a0e3dd68213e9751b17f35ae24980a",
+        "torch": "2.10.0+metax3.8.1.0",
+        "device": "MetaX C500",
+        "repeats": 5,
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "input_signature": [
+          [
+            {
+              "shape": [
+                2,
+                256,
+                14,
+                14
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                50176,
+                1,
+                3584,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "978b138620fb1e70244fbae500625ad9bb7c2ac64cbc56a8c5b2ae869587b2c6"
+            },
+            {
+              "shape": [
+                256,
+                256,
+                3,
+                3
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                2304,
+                1,
+                768,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "af57101e35e969bb243c6748072e72e519b322f157e8bf34206fab68ce25b026"
+            },
+            "None",
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            "False",
+            [
+              "0",
+              "0"
+            ],
+            "1"
+          ],
+          {}
+        ],
+        "comparisons": [
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          }
+        ],
+        "bitwise_equal": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "capture_reference_comparison": {
+          "passed": true,
+          "tensor_count": 1,
+          "failures": []
+        },
+        "all_repeatable": true
+      }
+    },
+    "conv-plain-replay-controls-01.json": {
+      "sha256": "d4b791b26764bf152c1bb3f8fb60f9d29c3d69531890f30b3508cd4873b3a5fc",
+      "data": {
+        "scope": "ATen replay without importing UP or up_platform",
+        "operation": "aten.convolution.default",
+        "capture_sha256": "f2c65872b745e6b1f9e0c4b82499c65612a0e3dd68213e9751b17f35ae24980a",
+        "torch": "2.10.0+metax3.8.1.0",
+        "device": "MetaX C500",
+        "repeats": 5,
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "input_signature": [
+          [
+            {
+              "shape": [
+                2,
+                256,
+                14,
+                14
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                50176,
+                1,
+                3584,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "978b138620fb1e70244fbae500625ad9bb7c2ac64cbc56a8c5b2ae869587b2c6"
+            },
+            {
+              "shape": [
+                256,
+                256,
+                3,
+                3
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                2304,
+                1,
+                768,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "af57101e35e969bb243c6748072e72e519b322f157e8bf34206fab68ce25b026"
+            },
+            "None",
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            "False",
+            [
+              "0",
+              "0"
+            ],
+            "1"
+          ],
+          {}
+        ],
+        "comparisons": [
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          }
+        ],
+        "bitwise_equal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "capture_reference_comparison": {
+          "passed": true,
+          "tensor_count": 1,
+          "failures": []
+        },
+        "all_repeatable": true,
+        "controls": {
+          "torch": "2.10.0+metax3.8.1.0",
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "cudnn_benchmark": false,
+          "environment": {
+            "CUDA_VISIBLE_DEVICES": "2",
+            "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+            "PYTHONHASHSEED": "0",
+            "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+            "MCDNN_STABLE_RESULT_MOD": "1",
+            "MCDNN_POOLING_MAX_DETERMINISTIC": null
+          },
+          "tool_sha256": "f4d557407956257d1dcac592fc345a6dad0b58c09a58911586d39d29206a1002"
+        }
+      }
+    },
+    "conv-plain-replay-controls-final.json": {
+      "sha256": "529f5e94f10bc580093d0cdbc77135f49c78feba687b87954491b2b30f5dfa31",
+      "data": {
+        "scope": "ATen replay without importing UP or up_platform",
+        "operation": "aten.convolution.default",
+        "capture_sha256": "f2c65872b745e6b1f9e0c4b82499c65612a0e3dd68213e9751b17f35ae24980a",
+        "torch": "2.10.0+metax3.8.1.0",
+        "device": "MetaX C500",
+        "repeats": 5,
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "input_signature": [
+          [
+            {
+              "shape": [
+                2,
+                256,
+                14,
+                14
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                50176,
+                1,
+                3584,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "978b138620fb1e70244fbae500625ad9bb7c2ac64cbc56a8c5b2ae869587b2c6"
+            },
+            {
+              "shape": [
+                256,
+                256,
+                3,
+                3
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                2304,
+                1,
+                768,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "af57101e35e969bb243c6748072e72e519b322f157e8bf34206fab68ce25b026"
+            },
+            "None",
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            "False",
+            [
+              "0",
+              "0"
+            ],
+            "1"
+          ],
+          {}
+        ],
+        "comparisons": [
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          }
+        ],
+        "bitwise_equal": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "capture_reference_comparison": {
+          "passed": true,
+          "tensor_count": 1,
+          "failures": []
+        },
+        "all_repeatable": true,
+        "controls": {
+          "torch": "2.10.0+metax3.8.1.0",
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "cudnn_benchmark": false,
+          "environment": {
+            "CUDA_VISIBLE_DEVICES": "2",
+            "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+            "PYTHONHASHSEED": "0",
+            "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+            "MCDNN_STABLE_RESULT_MOD": "1",
+            "MCDNN_POOLING_MAX_DETERMINISTIC": null
+          },
+          "tool_sha256": "9fdb398d499703a4f90f6fa60cf6c6aaf1eb1ddd1c5ef9e88a3d71e428844b8c"
+        },
+        "up_imported": false,
+        "up_platform_imported": false
+      }
+    },
+    "conv-plain-replay-final.json": {
+      "sha256": "316b90ad4691905842e039007d1e08b442e359c1ddfe7cf78d156bbd326c7972",
+      "data": {
+        "scope": "ATen replay without importing UP or up_platform",
+        "operation": "aten.convolution.default",
+        "capture_sha256": "f2c65872b745e6b1f9e0c4b82499c65612a0e3dd68213e9751b17f35ae24980a",
+        "torch": "2.10.0+metax3.8.1.0",
+        "device": "MetaX C500",
+        "repeats": 5,
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "input_signature": [
+          [
+            {
+              "shape": [
+                2,
+                256,
+                14,
+                14
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                50176,
+                1,
+                3584,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "978b138620fb1e70244fbae500625ad9bb7c2ac64cbc56a8c5b2ae869587b2c6"
+            },
+            {
+              "shape": [
+                256,
+                256,
+                3,
+                3
+              ],
+              "dtype": "torch.float32",
+              "stride": [
+                2304,
+                1,
+                768,
+                256
+              ],
+              "device": "cuda:0",
+              "sha256": "af57101e35e969bb243c6748072e72e519b322f157e8bf34206fab68ce25b026"
+            },
+            "None",
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            "False",
+            [
+              "0",
+              "0"
+            ],
+            "1"
+          ],
+          {}
+        ],
+        "comparisons": [
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          },
+          {
+            "passed": true,
+            "tensor_count": 1,
+            "failures": []
+          }
+        ],
+        "bitwise_equal": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "capture_reference_comparison": {
+          "passed": true,
+          "tensor_count": 1,
+          "failures": []
+        },
+        "all_repeatable": true,
+        "controls": {
+          "torch": "2.10.0+metax3.8.1.0",
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "cudnn_benchmark": false,
+          "environment": {
+            "CUDA_VISIBLE_DEVICES": "2",
+            "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+            "PYTHONHASHSEED": "0",
+            "MCDNN_USE_DETERMINISTIC_ALGO": null,
+            "MCDNN_STABLE_RESULT_MOD": null,
+            "MCDNN_POOLING_MAX_DETERMINISTIC": null
+          },
+          "tool_sha256": "9fdb398d499703a4f90f6fa60cf6c6aaf1eb1ddd1c5ef9e88a3d71e428844b8c"
+        },
+        "up_imported": false,
+        "up_platform_imported": false
+      }
+    },
+    "models-native-controls-01/summary.json": {
+      "sha256": "2b0febee47be033a5f72942f1976940c4c148fe0c4985e57e0842bc27e3996df",
+      "data": {
+        "scope": "UP ModelHelper, actual losses, three updates with checkpoint restore; synthetic inputs, not full Runner or accuracy",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "records": [
+          {
+            "model": "yolov5s",
+            "purpose": "training",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 2098,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 2098,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "8b949cbdeeb73f712e941e4a70d495ba275891eb573185ff585de8fa212fd4c6",
+              "repeat": "d0b76f62c49f4d9ec688a0d4bd6142ad35c7b6a7d402ca01d4e539f67b9fcfa2",
+              "routed": "9d8b4d360348602030e7628aebe6e9c108e9d0c06240487bcaed543f18a66c12"
+            }
+          },
+          {
+            "model": "yolov5s",
+            "purpose": "inference",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 34,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 34,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "f58718c0c9b9d3f03af23e2d58c6c7cf539cb45f1d98b986e4952a7ceafc18ee",
+              "repeat": "03c539d63e819f8dbb431d3aeb899b37140c1f071910e923603956ad0225e043",
+              "routed": "a8e726b300ccd2d05b7213e1b6ba6bf87702ea4fa3fe24f68df36799abed51f1"
+            }
+          },
+          {
+            "model": "vit_b16",
+            "purpose": "training",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 1613,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 1613,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "a597077fcc0fffdfdb8a99815d81f7f867d430c7bb517c6fe95ac1fe74e55945",
+              "repeat": "68beed7b0cce22ab9b98eb21066c58781e2c2a94862a7e9e63a42fd22913fe10",
+              "routed": "368aca23c2f6d5e7182bae65f311c1883e0e0880cf58f352038b991349c3404a"
+            }
+          },
+          {
+            "model": "vit_b16",
+            "purpose": "inference",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 26,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 26,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "2e7fc5a041578b0f224da1b8f3ae02098c0eaa1baf75cfcb30c25252ba7c8cfc",
+              "repeat": "2d2c686a992c5bb7b18610489791895ed7a27d1d398212d14e0e0a7ecedbcf07",
+              "routed": "25e7ed09d52c1f8a048df89e76feab5a199d39ec4d7cf1744f73acef357f6230"
+            }
+          },
+          {
+            "model": "faster_rcnn",
+            "purpose": "training",
+            "original_repeat": {
+              "passed": false,
+              "tensor_count": 1947,
+              "failures": [
+                {
+                  "tensor": "/final/bbox_head.fc_rcnn_cls.weight",
+                  "max_abs": 2.701207995414734e-05
+                },
+                {
+                  "tensor": "/final/roi_head.conv_cls.bias",
+                  "max_abs": 2.8236245270818472e-05
+                },
+                {
+                  "tensor": "/final/roi_head.conv_cls.weight",
+                  "max_abs": 0.00010477378964424133
+                },
+                {
+                  "tensor": "/optimizer/state/0/momentum_buffer",
+                  "max_abs": 0.0010567381978034973
+                },
+                {
+                  "tensor": "/optimizer/state/1/momentum_buffer",
+                  "max_abs": 0.0005006333230994642
+                },
+                {
+                  "tensor": "/optimizer/state/10/momentum_buffer",
+                  "max_abs": 0.0008195792324841022
+                },
+                {
+                  "tensor": "/optimizer/state/100/momentum_buffer",
+                  "max_abs": 0.0001908784033730626
+                },
+                {
+                  "tensor": "/optimizer/state/101/momentum_buffer",
+                  "max_abs": 0.00016174325719475746
+                }
+              ],
+              "failure_count": 579
+            },
+            "routed": {
+              "passed": false,
+              "tensor_count": 1947,
+              "failures": [
+                {
+                  "tensor": "/final/bbox_head.fc_rcnn_cls.weight",
+                  "max_abs": 2.094358205795288e-05
+                },
+                {
+                  "tensor": "/final/roi_head.conv_cls.bias",
+                  "max_abs": 2.1374900825321674e-05
+                },
+                {
+                  "tensor": "/final/roi_head.conv_cls.weight",
+                  "max_abs": 0.000138208270072937
+                },
+                {
+                  "tensor": "/optimizer/state/0/momentum_buffer",
+                  "max_abs": 0.0011916384100914001
+                },
+                {
+                  "tensor": "/optimizer/state/1/momentum_buffer",
+                  "max_abs": 0.0003965639043599367
+                },
+                {
+                  "tensor": "/optimizer/state/10/momentum_buffer",
+                  "max_abs": 0.0007618535310029984
+                },
+                {
+                  "tensor": "/optimizer/state/100/momentum_buffer",
+                  "max_abs": 0.00037150783464312553
+                },
+                {
+                  "tensor": "/optimizer/state/101/momentum_buffer",
+                  "max_abs": 0.00016372837126255035
+                }
+              ],
+              "failure_count": 577
+            },
+            "artifact_sha256": {
+              "original": "7e639fea520be4aca11e1ec719ac61abcc3524efa2d1e220cc995ac08cf7a250",
+              "repeat": "7ad44ae51b8cb5eb4caedac615bad8a4b87c2bf7b0747da5896d027aca6fd3b9",
+              "routed": "d3ed3fe9709a5f1b15b15d52bcb8f31b13a7aca5c930321b2c1b12142b34fd68"
+            }
+          },
+          {
+            "model": "faster_rcnn",
+            "purpose": "inference",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 54,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 54,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "d1ac73a94f5bf01c6bed09b94c31f2a16bbdd1e7f574cd5c9c6e1443512801fb",
+              "repeat": "ac6b6a6d6288123a865988951840954541f1816d2063c08d5cd72379b32e81ce",
+              "routed": "d64d36492ca4e2b9e5f3d32d8a72bc2f5641763f4028cc39e10ffb5aa2fd4d49"
+            }
+          },
+          {
+            "model": "pointpillar",
+            "purpose": "training",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 891,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 891,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "05bd3f4b31e4dc1409ea8e34f93cbafea1de4846d140dd70639b09acbce09ae8",
+              "repeat": "556c2264829c7d875b8738c43860dcf597dd0840ae736b6587171f989dcf3a3d",
+              "routed": "c7a1b7c2dc76d9ff83321946b6e61962a0d7b8b278e7b86945876d88229ad959"
+            }
+          },
+          {
+            "model": "pointpillar",
+            "purpose": "inference",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 30,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 30,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "9657d39ab00d1cf40c15057e3cec55aa906dd1853bd90b32effe34e23ce0941d",
+              "repeat": "fd749cb18153da029f081016888f6428c2ff446f4552c2d69c34dd4c21893469",
+              "routed": "576cee25a55df495c72263e97804552eaaa3ea4c25e23bd30f744bd66d9f5beb"
+            }
+          }
+        ]
+      }
+    },
+    "pruning-01/summary.json": {
+      "sha256": "02b0beed85861b86dcacff0d20b15fb69de377ba2f5bd574eeb983daf547752b",
+      "data": {
+        "records": [
+          {
+            "case": "pruning",
+            "passed": true,
+            "tensor_count": 29,
+            "failures": []
+          },
+          {
+            "case": "amba",
+            "passed": false,
+            "execution_failures": [
+              "direct",
+              "routed"
+            ]
+          }
+        ],
+        "rtol": 0.0001,
+        "atol": 1e-05
+      }
+    },
+    "resnet-native-controls-01/summary.json": {
+      "sha256": "dd7b3a49f535e7401870c2d03cdb3d2eac05bf2c35c17ac0947206e21bb78dc2",
+      "data": {
+        "scope": "UP ModelHelper, actual losses, three updates with checkpoint restore; synthetic inputs, not full Runner or accuracy",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "records": [
+          {
+            "model": "resnet18",
+            "purpose": "training",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 706,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 706,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "c9164e2fa99a6b7c26d6ab79cfc2fbae21a8beb67dcaeaddbce2000f51a5badf",
+              "repeat": "46a970f0930e6b6d7b5ccbafd4ce49b99fa32bb30a27c5737c9836a49962425e",
+              "routed": "d38e0e1f333d5b61f61296932ff68f8f8c791f58126270d21dddbc9e62cdf638"
+            }
+          },
+          {
+            "model": "resnet18",
+            "purpose": "inference",
+            "original_repeat": {
+              "passed": true,
+              "tensor_count": 26,
+              "failures": [],
+              "failure_count": 0
+            },
+            "routed": {
+              "passed": true,
+              "tensor_count": 26,
+              "failures": [],
+              "failure_count": 0
+            },
+            "artifact_sha256": {
+              "original": "aca1f4beafe40a4bc3541ab4ff94dccd1e1807e86f94d6e510dff342d590d0b5",
+              "repeat": "4ade5aae91bac37bd57fb6302949da60d703775032e1f863e89332a7ac3bcf03",
+              "routed": "b6a2e8d09295b62121ea4feda22ee0e7e209b80febbb1aa2269feb8d7f8e0061"
+            }
+          }
+        ]
+      }
+    },
+    "resnet-original-01/trace.json": {
+      "sha256": "1ca2cabb904b2443b7a78b532f7d40158e3b20ca9e2ac8a77b6f6f5fb4cad1e7",
+      "data": {
+        "scope": "GPU ATen trace; instrumented execution, not accuracy or performance",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reference": null,
+        "limit": 500,
+        "limit_reached": false,
+        "matched_complete_trace": true,
+        "first_difference": null,
+        "valid_execution": false,
+        "execution_error": "Startup failed: container uid has no passwd entry; no LOGNAME was supplied."
+      }
+    },
+    "resnet-original-02/trace.json": {
+      "sha256": "46c85b68767f0d26ce34c34b02f85d6716dd8a8541a4ef12bef7fc3103c84de1",
+      "data": {
+        "scope": "GPU ATen trace; instrumented execution, not accuracy or performance",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reference": null,
+        "limit": 500,
+        "limit_reached": true,
+        "execution_error": null,
+        "matched_complete_trace": false,
+        "first_difference": null
+      }
+    },
+    "resnet-repeat-02/trace.json": {
+      "sha256": "848afbc42f3a57e932535da7c644634075b8eeb8db647424b22597b2022d0e79",
+      "data": {
+        "scope": "GPU ATen trace; instrumented execution, not accuracy or performance",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reference": "/workspace/up-run/up-platform-clean-20261023/followup-01/resnet-original-02",
+        "limit": 500,
+        "limit_reached": false,
+        "execution_error": null,
+        "matched_complete_trace": false,
+        "first_difference": {
+          "index": 56,
+          "operation": "aten.convolution.default",
+          "kind": "numeric",
+          "inputs_bitwise_equal": false,
+          "passed": false,
+          "tensor_count": 1,
+          "failures": [
+            {
+              "tensor": "",
+              "max_abs": 3.62396240234375e-05
+            }
+          ]
+        }
+      }
+    },
+    "resnet-repeat-03/trace.json": {
+      "sha256": "251f6ce0eea270ff22bdbb05ab018f6edbcefb32dfac573651da8ae968632247",
+      "data": {
+        "scope": "GPU ATen trace; instrumented execution, not accuracy or performance",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reference": "/workspace/up-run/up-platform-clean-20261023/followup-01/resnet-original-02",
+        "limit": 500,
+        "limit_reached": false,
+        "execution_error": null,
+        "matched_complete_trace": false,
+        "first_difference": {
+          "index": 56,
+          "operation": "aten.convolution.default",
+          "kind": "numeric",
+          "inputs_bitwise_equal": false,
+          "passed": false,
+          "tensor_count": 1,
+          "failures": [
+            {
+              "tensor": "",
+              "max_abs": 3.62396240234375e-05
+            }
+          ]
+        },
+        "first_bitwise_difference": {
+          "index": 48,
+          "operation": "aten.convolution.default",
+          "inputs_bitwise_equal": true,
+          "within_tolerance": true
+        }
+      }
+    },
+    "resnet-routed-03/trace.json": {
+      "sha256": "7fad7ecf4977dc4392a7055b0f88d24af12837936dd1d9630b5ded158f0bf860",
+      "data": {
+        "scope": "GPU ATen trace; instrumented execution, not accuracy or performance",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reference": "/workspace/up-run/up-platform-clean-20261023/followup-01/resnet-original-02",
+        "limit": 500,
+        "limit_reached": false,
+        "execution_error": null,
+        "matched_complete_trace": false,
+        "first_difference": {
+          "index": 56,
+          "operation": "aten.convolution.default",
+          "kind": "numeric",
+          "inputs_bitwise_equal": false,
+          "passed": false,
+          "tensor_count": 1,
+          "failures": [
+            {
+              "tensor": "",
+              "max_abs": 0.0001513957977294922
+            }
+          ]
+        },
+        "first_bitwise_difference": {
+          "index": 48,
+          "operation": "aten.convolution.default",
+          "inputs_bitwise_equal": true,
+          "within_tolerance": true
+        },
+        "controls": {
+          "torch": "2.10.0+metax3.8.1.0",
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "cudnn_benchmark": false,
+          "environment": {
+            "CUDA_VISIBLE_DEVICES": "2",
+            "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+            "PYTHONHASHSEED": "0",
+            "MCDNN_USE_DETERMINISTIC_ALGO": null,
+            "MCDNN_STABLE_RESULT_MOD": null,
+            "MCDNN_POOLING_MAX_DETERMINISTIC": null
+          },
+          "tool_sha256": "f4d557407956257d1dcac592fc345a6dad0b58c09a58911586d39d29206a1002"
+        },
+        "model": "resnet18",
+        "variant": "routed"
+      }
+    }
+  }
+}
