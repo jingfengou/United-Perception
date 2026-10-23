@@ -1,0 +1,14 @@
+{
+  "upstream": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "lightx2v_reference": "19c19614b067f1746ac24350dfd097e1c0b48591",
+  "branch": "codex/up-platform-clean",
+  "preserved_history_branch": "main",
+  "numerics": "native",
+  "multi_seed_experiments": "paused",
+  "comparison": {"rtol": 0.0001, "atol": 0.00001},
+  "candidate_environments": {
+    "nvidia": {"torch": "2.10.0+cu126", "torchvision": "0.25.0+cu126"},
+    "metax": {"torch": "2.10.0+metax3.8.1.0", "torchvision": "0.25.0+metax3.8.1.0", "spconv": "2.1.0+metax3.8.1.0torch2.10"}
+  },
+  "complete_adaptation": false
+}
