@@ -1,15 +1,12 @@
 """metax pointcloud: own compiled binary, original UP algorithm."""
 from .base import PointcloudOps
-from up_platform.contracts import UnsupportedOperation
 
 
 class MetaxPointcloudOps(PointcloudOps):
     @staticmethod
     def rotate_iou_eval(boxes, query_boxes, criterion=-1, device_id=0):
-        raise UnsupportedOperation("metax", "common", "pointcloud.rotate_iou_eval",
-                                   "KITTI port has not passed original Numba exact-edge cases; see docs/platform/VALIDATION.md")
-
-    rotate_iou_eval.__func__.unsupported_reason = "KITTI original exact-edge compatibility gate failed; GPU candidate is not enabled"
+        from ._kitti_gpu import rotate_iou_eval
+        return rotate_iou_eval(boxes, query_boxes, criterion, device_id, vendor="metax")
 
     dependencies = ("up_platform.backends._metax_ops",)
     @staticmethod

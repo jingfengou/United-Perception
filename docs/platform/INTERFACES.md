@@ -2201,7 +2201,7 @@ Definition: [up_platform/ops/pointcloud/base.py:55](../../up_platform/ops/pointc
 pointcloud.rotate_iou_eval(boxes, query_boxes, criterion=-1, device_id=0)
 ```
 
-criterion=-1 IoU; 0 divide query area; 1 divide box area; otherwise intersection.
+criterion=-1 IoU; 0/query area; 1/box area; otherwise intersection. Corrected closed-edge geometry; zero-area boxes yield 0.
 
 Definition: [up_platform/ops/pointcloud/base.py:7](../../up_platform/ops/pointcloud/base.py#L7)
 
@@ -2210,7 +2210,7 @@ Definition: [up_platform/ops/pointcloud/base.py:7](../../up_platform/ops/pointcl
 - **gradients**: Not differentiable; evaluation metric.
 - **state**: Select device_id; no model state changes.
 - **device**: Explicit host arrays in/out; geometry executes on selected accelerator.
-- **dtype**: Cast host inputs to float32 as in upstream.
+- **dtype**: Cast finite host inputs to float32; nonnegative dimensions; GPU double geometry, float32 output.
 - **layout**: Contiguous [N,5]; center_x, center_y, width, height, clockwise angle.
 - **empty**: Return zeros[N,K] if N or K is zero.
 - **export**: Metric only, not part of model export.

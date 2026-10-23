@@ -9,14 +9,14 @@ class PointcloudOps(ABC):
                output="NumPy float32[N,K] overlap for boxes[N,5], query_boxes[K,5]; clockwise angle.",
                gradients="Not differentiable; evaluation metric.",
                device="Explicit host arrays in/out; geometry executes on selected accelerator.",
-               dtype="Cast host inputs to float32 as in upstream.",
+               dtype="Cast finite host inputs to float32; nonnegative dimensions; GPU double geometry, float32 output.",
                layout="Contiguous [N,5]; center_x, center_y, width, height, clockwise angle.",
                empty="Return zeros[N,K] if N or K is zero.",
                state="Select device_id; no model state changes.",
                export="Metric only, not part of model export.")
     @abstractmethod
     def rotate_iou_eval(boxes, query_boxes, criterion=-1, device_id=0):
-        """criterion=-1 IoU; 0 divide query area; 1 divide box area; otherwise intersection."""
+        """criterion=-1 IoU; 0/query area; 1/box area; otherwise intersection. Corrected closed-edge geometry; zero-area boxes yield 0."""
         raise NotImplementedError
 
     @staticmethod

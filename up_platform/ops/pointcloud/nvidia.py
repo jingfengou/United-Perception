@@ -5,10 +5,8 @@ from .base import PointcloudOps
 class NvidiaPointcloudOps(PointcloudOps):
     @staticmethod
     def rotate_iou_eval(boxes, query_boxes, criterion=-1, device_id=0):
-        from ._kitti_numba import rotate_iou_gpu_eval
-        return rotate_iou_gpu_eval(boxes, query_boxes, criterion, device_id)
-
-    rotate_iou_eval.__func__.dependencies = ('numba.cuda',)
+        from ._kitti_gpu import rotate_iou_eval
+        return rotate_iou_eval(boxes, query_boxes, criterion, device_id, vendor="nvidia")
 
     dependencies = ("up_platform.backends._nvidia_ops",)
     @staticmethod

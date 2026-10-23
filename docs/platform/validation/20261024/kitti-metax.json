@@ -1,0 +1,6253 @@
+{
+  "vendor": "metax",
+  "source_sha256": "efa09357d1dab0e2721b6370b279a643e9fca342aa78da863a852b8e8f19c2bf",
+  "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+  "packages": {
+    "coloredlogs": "15.0.1",
+    "flatbuffers": "25.9.23",
+    "humanfriendly": "10.0",
+    "lark": "1.3.1",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2",
+    "ml_dtypes": "0.5.3",
+    "onnxruntime": "1.19.2",
+    "onnxsim": "0.8.1",
+    "rich": "15.0.0",
+    "cloudpickle": "3.1.2",
+    "contourpy": "1.3.3",
+    "cycler": "0.12.1",
+    "Cython": "3.3.0",
+    "easydict": "1.13",
+    "fonttools": "4.67.0",
+    "ImageIO": "2.38.1",
+    "joblib": "1.6.0",
+    "kiwisolver": "1.5.1",
+    "lazy-loader": "0.6",
+    "llvmlite": "0.42.0",
+    "lvis": "0.5.3",
+    "matplotlib": "3.10.3",
+    "numba": "0.59.1",
+    "onnx": "1.17.0",
+    "opencv-python": "4.11.0.86",
+    "pandas": "3.0.3",
+    "pip": "24.3.1",
+    "prettytable": "3.16.0",
+    "protobuf": "7.36.2",
+    "psutil": "7.0.0",
+    "pycocotools": "2.0.10",
+    "pyparsing": "3.3.3",
+    "pytz": "2026.5",
+    "scikit-image": "0.25.2",
+    "scikit-learn": "1.6.1",
+    "tensorboardX": "2.6.4",
+    "threadpoolctl": "3.7.0",
+    "tifffile": "2026.3.3",
+    "tzdata": "2026.5",
+    "wcwidth": "0.9.3",
+    "UP": "0.3.0",
+    "hf-xet": "1.5.1",
+    "libmambapy": "1.5.12",
+    "mpmath": "1.3.0",
+    "backports.cached-property": "1.0.2",
+    "coverage": "7.15.0",
+    "click": "8.4.2",
+    "tqdm": "4.67.1",
+    "colorama": "0.4.6",
+    "hstu_attn": "1.0+metax3.8.1.0torch2.10",
+    "boltons": "24.0.0",
+    "flash_attn": "2.6.3+metax3.8.1.0torch2.10",
+    "tokenizers": "0.22.2",
+    "packaging": "26.2",
+    "cachetools": "7.1.4",
+    "pillow": "11.2.1",
+    "truststore": "0.10.0",
+    "networkx": "3.5",
+    "flash_prefill": "1.0+metax3.8.1.0torch2.10",
+    "xformers": "0.0.22+metax3.8.1.0torch2.10",
+    "mamba": "1.5.12",
+    "hpack": "4.0.0",
+    "maca-tile": "1.0.1+metax3.8.1.0",
+    "attrs": "26.1.0",
+    "pycparser": "2.22",
+    "six": "1.17.0",
+    "requests": "2.32.3",
+    "tomli": "2.2.1",
+    "yarl": "1.24.2",
+    "rotary_emb": "0.1+metax3.8.1.0torch2.10",
+    "torch": "2.10.0+metax3.8.1.0",
+    "rootpath": "0.1.1",
+    "pyproject-api": "1.10.1",
+    "spconv": "2.1.0+metax3.8.1.0torch2.10",
+    "flash_mla": "1.0.1+metax3.8.1.0torch2.10",
+    "dropout_layer_norm": "0.1+metax3.8.1.0torch2.10",
+    "zstandard": "0.23.0",
+    "aiosignal": "1.4.0",
+    "archspec": "0.2.5",
+    "jsonpointer": "3.0.0",
+    "spargeattention": "2.0.1+metax3.8.1.0torch2.10",
+    "pytest": "8.4.1",
+    "python-dateutil": "2.9.0.post0",
+    "distro": "1.9.0",
+    "propcache": "0.5.2",
+    "httpx": "0.28.1",
+    "deepdiff": "9.1.0",
+    "filelock": "3.29.7",
+    "multiprocess": "0.70.19",
+    "python-discovery": "1.4.4",
+    "virtualenv": "21.6.1",
+    "orderly-set": "5.5.0",
+    "aiohttp": "3.14.1",
+    "fsspec": "2025.5.1",
+    "PyYAML": "6.0.3",
+    "jsonpatch": "1.33",
+    "torchaudio": "2.4.1+metax3.8.1.0",
+    "scipy": "1.16.0",
+    "conda": "24.11.3",
+    "numpy": "1.26.4",
+    "xxhash": "3.8.1",
+    "colour-runner": "0.1.1",
+    "sageattention": "2.0.1+metax3.8.1.0torch2.10",
+    "menuinst": "2.2.0",
+    "platformdirs": "4.10.0",
+    "Pygments": "2.19.2",
+    "cffi": "1.17.1",
+    "triton": "3.6.0+metax3.8.1.0",
+    "flashinfer": "0.2.6+metax3.8.1.0torch2.10",
+    "mamba_ssm": "2.2.4+metax3.8.1.0torch2.10",
+    "typing_extensions": "4.14.0",
+    "codecov": "2.1.13",
+    "huggingface_hub": "1.23.0",
+    "PySocks": "1.7.1",
+    "datasets": "5.0.0",
+    "fused_dense_lib": "2.6.3+metax3.8.1.0torch2.10",
+    "termcolor": "3.3.0",
+    "ruamel.yaml": "0.18.10",
+    "frozendict": "2.4.6",
+    "block_sparse_attn": "0.0.2+metax3.8.1.0",
+    "httpcore": "1.0.9",
+    "hyperframe": "6.0.1",
+    "pycosat": "0.6.6",
+    "tox": "4.56.4",
+    "frozenlist": "1.8.0",
+    "urllib3": "2.3.0",
+    "distlib": "0.4.3",
+    "flash_moba": "2.0.0+metax3.8.1.0",
+    "safetensors": "0.8.0",
+    "torchcodec": "0.6.0+metax3.8.1.0",
+    "certifi": "2026.6.17",
+    "conda_package_streaming": "0.11.0",
+    "annotated-doc": "0.0.4",
+    "h11": "0.16.0",
+    "apex": "0.1+metax3.8.1.0",
+    "wheel": "0.45.1",
+    "pymxsml": "2.3.4",
+    "typer": "0.26.8",
+    "mctlassEx": "0.1.1+metax3.8.1.0torch2.10",
+    "aiohappyeyeballs": "2.7.1",
+    "MarkupSafe": "3.0.2",
+    "idna": "3.10",
+    "anyio": "4.14.1",
+    "dill": "0.4.1",
+    "einops": "0.8.1",
+    "transformers": "5.13.0",
+    "pluggy": "1.6.0",
+    "pyarrow": "25.0.0",
+    "Jinja2": "3.1.6",
+    "exceptiongroup": "1.3.0",
+    "ruamel.yaml.clib": "0.2.8",
+    "ninja": "1.11.1.4",
+    "conda-package-handling": "2.4.0",
+    "cachebox": "5.2.3",
+    "setuptools": "69.5.1",
+    "conda-libmamba-solver": "24.9.0",
+    "flash-linear-attention": "0.5.0+metax3.8.1.0torch2.10",
+    "causal_conv1d": "1.5.4+metax3.8.1.0torch2.10",
+    "xentropy_cuda_lib": "0.1+metax3.8.1.0torch2.10",
+    "shellingham": "1.5.4",
+    "blessings": "1.7",
+    "multidict": "6.7.1",
+    "sympy": "1.14.0",
+    "iniconfig": "2.1.0",
+    "torchvision": "0.25.0+metax3.8.1.0",
+    "regex": "2026.7.10",
+    "Brotli": "1.1.0",
+    "charset-normalizer": "3.4.1",
+    "h2": "4.1.0",
+    "tomli_w": "1.2.0"
+  },
+  "devices": [
+    {
+      "name": "MetaX C500",
+      "total_memory": 68283269120
+    }
+  ],
+  "raw_root": "/workspace/up-run/up-platform-clean-20261023/kitti-fix-01",
+  "raw_index": "/workspace/up-run/up-platform-clean-20261023/kitti-evidence-20261024.tar.index.json",
+  "raw_index_sha256": "69319d8cb1dd6a93b4516f85da90f1d7f7a1ed9fcb32c7057654c7fd680122e4",
+  "artifacts": [
+    {
+      "path": "results/build.log",
+      "bytes": 154932,
+      "sha256": "9e430c7b0726136e58875d7074ab02647d72494af0c5bdaeb2f83365ea786f40"
+    },
+    {
+      "path": "results/cpu.log",
+      "bytes": 198,
+      "sha256": "b030cc1051f3902940957703a1a55a4b2db49aba0d525e443e7a064595d70911"
+    },
+    {
+      "path": "results/cpu.xml",
+      "bytes": 5821,
+      "sha256": "ed67b05507a43fde2aa83dc5cf71dc4d4b28561a79c5fef6859ef8b693497ba7"
+    },
+    {
+      "path": "results/kitti-inference/source.json",
+      "bytes": 96062,
+      "sha256": "29a389a311b0ef296471ece011ad203948344504803321a357f211b10acb6ee5"
+    },
+    {
+      "path": "results/kitti-inference/summary.json",
+      "bytes": 31452,
+      "sha256": "31a6c226e5a3d9f358e4753b12bd9caf643ba8b75e5de7f042b087e124b267e7"
+    },
+    {
+      "path": "results/kitti-inference/values.npz",
+      "bytes": 176649,
+      "sha256": "b1936d05ff2593ff68bb7b963c668621bf2497ebe1e61ae3efae24100348e56a"
+    },
+    {
+      "path": "results/kitti-inference.log",
+      "bytes": 5154,
+      "sha256": "6f2afdf9f817e874f0a7093cdaf12a2c2ec2826ce123d9552eb031b6741c16cd"
+    },
+    {
+      "path": "results/kitti-training/source.json",
+      "bytes": 96062,
+      "sha256": "29a389a311b0ef296471ece011ad203948344504803321a357f211b10acb6ee5"
+    },
+    {
+      "path": "results/kitti-training/summary.json",
+      "bytes": 31451,
+      "sha256": "ef9386eff88702f276f2ae952946dec6aaf808a36c43257120559d4500bdee3a"
+    },
+    {
+      "path": "results/kitti-training/values.npz",
+      "bytes": 176649,
+      "sha256": "b1936d05ff2593ff68bb7b963c668621bf2497ebe1e61ae3efae24100348e56a"
+    },
+    {
+      "path": "results/kitti-training.log",
+      "bytes": 5153,
+      "sha256": "2e095c7721e917bb8b880ef3db156d8c4eadb08a8e58df95fcf24a9e33b2dc30"
+    },
+    {
+      "path": "results/native-inference.json",
+      "bytes": 22789,
+      "sha256": "7b420c94b9371883099b3562e03d38dee9d6321d30d716b0b7b5b66df3915566"
+    },
+    {
+      "path": "results/native-inference.log",
+      "bytes": 11146,
+      "sha256": "e77c1fb09594224488de9a5983368638ea01ac261ea785441cb1fa6637826ed4"
+    },
+    {
+      "path": "results/native-inference.pt",
+      "bytes": 37483,
+      "sha256": "7e3412ef15564a3cf97bd4039a3187761918ad054c1f0a14582769b75388fa14"
+    },
+    {
+      "path": "results/native-training.json",
+      "bytes": 31396,
+      "sha256": "7747be34db10e6e1c7f63effe05f8e9dbc72a823afed9be8b27c3414271fc8b6"
+    },
+    {
+      "path": "results/native-training.log",
+      "bytes": 15180,
+      "sha256": "61d215b3d62eadffb99342b1624d7e930971a65c22c48ec3ea6be29269e116bd"
+    },
+    {
+      "path": "results/native-training.pt",
+      "bytes": 110533,
+      "sha256": "b788bd2e9c573dadc04f018d4b64f1179fb2c67ea3b32cf46054b05e187df733"
+    },
+    {
+      "path": "results/shapely-install-pypi.log",
+      "bytes": 571,
+      "sha256": "eaf9d0406d63b0d45617f5faca995bd30d9b20eab98c9cee098dfc8cd8dd616b"
+    },
+    {
+      "path": "up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+      "bytes": 2139488,
+      "sha256": "81047df37156536da3f6062c9f6b07a58185f344a96a29434a3e3a74fc465ecf"
+    }
+  ],
+  "cpu": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "42",
+    "time": "31.858",
+    "timestamp": "2026-10-23T16:35:23.461729+00:00",
+    "hostname": "ed0db0d48661"
+  },
+  "reports": {
+    "results/kitti-inference/summary.json": {
+      "scope": "Corrected GPU evaluation geometry, intentionally not upstream numerical equivalence",
+      "vendor": "metax",
+      "purpose": "inference",
+      "rtol": 0.0001,
+      "atol": 1e-05,
+      "environment": {
+        "vendor": "metax",
+        "device_type": "cuda",
+        "torch": "2.10.0+metax3.8.1.0",
+        "cuda_api_version": "11.6"
+      },
+      "torch": "2.10.0+metax3.8.1.0",
+      "oracle": {
+        "shapely": "2.1.2",
+        "geos": "3.13.1",
+        "precision": "double, grid_size=0; test-only CPU reference"
+      },
+      "source_sha256": "efa09357d1dab0e2721b6370b279a643e9fca342aa78da863a852b8e8f19c2bf",
+      "binary_sha256": "81047df37156536da3f6062c9f6b07a58185f344a96a29434a3e3a74fc465ecf",
+      "reference_sha256": "b1bace744f0f8f21037b4c55e7bd8c457d09163d835195f4a335e7157bd54bb3",
+      "values_sha256": "b1936d05ff2593ff68bb7b963c668621bf2497ebe1e61ae3efae24100348e56a",
+      "legacy_changes": [
+        {
+          "criterion": -1,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 1.0,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 0.3333333730697632,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 0.3333333730697632,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 0.33333343267440796,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.33333346247673035,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.33333343267440796,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 0.3333333730697632,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 4.013735455110634e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.333333283662796,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 0.3333333432674408,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 2.1837869290664003e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 9.711440540627336e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 4.1050816079746255e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 1.768219171083274e-08,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 4.779098006224558e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 0.3333333432674408,
+              "actual": 1.0
+            }
+          ]
+        },
+        {
+          "criterion": 0,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 1.0,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.5000001788139343,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 8.027470910221268e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.4999999403953552,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 4.3675738581328005e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 1.9422881081254673e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 8.210163215949251e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 3.536438342166548e-08,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 9.558196012449116e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            }
+          ]
+        },
+        {
+          "criterion": 1,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 1.0,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.5000001788139343,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 8.027470910221268e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.4999999403953552,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 4.3675738581328005e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 1.9422881081254673e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 8.210163215949251e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 3.536438342166548e-08,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 9.558196012449116e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            }
+          ]
+        },
+        {
+          "criterion": 2,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 13.394339561462402,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 4.609184265136719,
+              "actual": 9.218367576599121
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 1.26552152633667,
+              "actual": 2.5310428142547607
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 1.6248646974563599,
+              "actual": 3.2497286796569824
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.5826143026351929,
+              "actual": 1.165228247642517
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.3491494655609131,
+              "actual": 0.6982987523078918
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 3.9692084789276123,
+              "actual": 7.938416481018066
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 3.2846685371623607e-09,
+              "actual": 4.091784954071045
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.5419160723686218,
+              "actual": 1.0838322639465332
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 2.3249099254608154,
+              "actual": 4.649819850921631
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 4.554908628051635e-08,
+              "actual": 10.428921699523926
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 5.283421993255615
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 6.938396523992196e-09,
+              "actual": 3.572279691696167
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 9.816551482799696e-08,
+              "actual": 11.956584930419922
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 4.960125465913734e-08,
+              "actual": 1.4025765657424927
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 7.609850172229926e-08,
+              "actual": 7.961596488952637
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 1.0773429870605469,
+              "actual": 2.1546859741210938
+            }
+          ]
+        }
+      ],
+      "records": [
+        {
+          "case": "original_reference_inputs",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 71,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 10,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 125,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 9.313225746154785e-10,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 9.5367431640625e-07,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 125,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 125,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 0,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "empty": [
+            0,
+            3
+          ],
+          "passed": true
+        },
+        {
+          "empty": [
+            3,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "empty": [
+            0,
+            0
+          ],
+          "passed": true
+        }
+      ],
+      "analytic": [
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            0
+          ],
+          "expected": 1.0,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            1
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            2
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            3
+          ],
+          "expected": 0.3333333333333333,
+          "actual": 0.3333333432674408,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 0.25,
+          "actual": 0.25,
+          "passed": true
+        },
+        {
+          "criterion": 0,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 1.0,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "criterion": 1,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 0.25,
+          "actual": 0.25,
+          "passed": true
+        },
+        {
+          "criterion": 2,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 1.0,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            5
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            6,
+            6
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "results/kitti-training/summary.json": {
+      "scope": "Corrected GPU evaluation geometry, intentionally not upstream numerical equivalence",
+      "vendor": "metax",
+      "purpose": "training",
+      "rtol": 0.0001,
+      "atol": 1e-05,
+      "environment": {
+        "vendor": "metax",
+        "device_type": "cuda",
+        "torch": "2.10.0+metax3.8.1.0",
+        "cuda_api_version": "11.6"
+      },
+      "torch": "2.10.0+metax3.8.1.0",
+      "oracle": {
+        "shapely": "2.1.2",
+        "geos": "3.13.1",
+        "precision": "double, grid_size=0; test-only CPU reference"
+      },
+      "source_sha256": "efa09357d1dab0e2721b6370b279a643e9fca342aa78da863a852b8e8f19c2bf",
+      "binary_sha256": "81047df37156536da3f6062c9f6b07a58185f344a96a29434a3e3a74fc465ecf",
+      "reference_sha256": "b1bace744f0f8f21037b4c55e7bd8c457d09163d835195f4a335e7157bd54bb3",
+      "values_sha256": "b1936d05ff2593ff68bb7b963c668621bf2497ebe1e61ae3efae24100348e56a",
+      "legacy_changes": [
+        {
+          "criterion": -1,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 1.0,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 0.3333333730697632,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 0.3333333730697632,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 0.33333343267440796,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.33333346247673035,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.33333343267440796,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 0.3333333730697632,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 4.013735455110634e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.333333283662796,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 0.3333333432674408,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 2.1837869290664003e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 9.711440540627336e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 4.1050816079746255e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 1.768219171083274e-08,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 4.779098006224558e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 0.3333333432674408,
+              "actual": 1.0
+            }
+          ]
+        },
+        {
+          "criterion": 0,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 1.0,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.5000001788139343,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 8.027470910221268e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.4999999403953552,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 4.3675738581328005e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 1.9422881081254673e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 8.210163215949251e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 3.536438342166548e-08,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 9.558196012449116e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            }
+          ]
+        },
+        {
+          "criterion": 1,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 1.0,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.5000001788139343,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.5000001192092896,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 0.5000000596046448,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 8.027470910221268e-10,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.4999999403953552,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 4.3675738581328005e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 1.9422881081254673e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 8.210163215949251e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 3.536438342166548e-08,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 9.558196012449116e-09,
+              "actual": 1.0
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 0.5,
+              "actual": 1.0
+            }
+          ]
+        },
+        {
+          "criterion": 2,
+          "passed": false,
+          "expected_shape": [
+            100,
+            71
+          ],
+          "actual_shape": [
+            100,
+            71
+          ],
+          "failed_pairs": 64,
+          "max_abs": 13.394339561462402,
+          "examples": [
+            {
+              "index": [
+                4,
+                4
+              ],
+              "expected": 4.609184265136719,
+              "actual": 9.218367576599121
+            },
+            {
+              "index": [
+                5,
+                5
+              ],
+              "expected": 1.26552152633667,
+              "actual": 2.5310428142547607
+            },
+            {
+              "index": [
+                6,
+                6
+              ],
+              "expected": 1.6248646974563599,
+              "actual": 3.2497286796569824
+            },
+            {
+              "index": [
+                7,
+                7
+              ],
+              "expected": 0.5826143026351929,
+              "actual": 1.165228247642517
+            },
+            {
+              "index": [
+                8,
+                8
+              ],
+              "expected": 0.3491494655609131,
+              "actual": 0.6982987523078918
+            },
+            {
+              "index": [
+                9,
+                9
+              ],
+              "expected": 3.9692084789276123,
+              "actual": 7.938416481018066
+            },
+            {
+              "index": [
+                10,
+                10
+              ],
+              "expected": 3.2846685371623607e-09,
+              "actual": 4.091784954071045
+            },
+            {
+              "index": [
+                11,
+                11
+              ],
+              "expected": 0.5419160723686218,
+              "actual": 1.0838322639465332
+            },
+            {
+              "index": [
+                12,
+                12
+              ],
+              "expected": 2.3249099254608154,
+              "actual": 4.649819850921631
+            },
+            {
+              "index": [
+                13,
+                13
+              ],
+              "expected": 4.554908628051635e-08,
+              "actual": 10.428921699523926
+            },
+            {
+              "index": [
+                14,
+                14
+              ],
+              "expected": 0.0,
+              "actual": 5.283421993255615
+            },
+            {
+              "index": [
+                15,
+                15
+              ],
+              "expected": 6.938396523992196e-09,
+              "actual": 3.572279691696167
+            },
+            {
+              "index": [
+                17,
+                17
+              ],
+              "expected": 9.816551482799696e-08,
+              "actual": 11.956584930419922
+            },
+            {
+              "index": [
+                18,
+                18
+              ],
+              "expected": 4.960125465913734e-08,
+              "actual": 1.4025765657424927
+            },
+            {
+              "index": [
+                19,
+                19
+              ],
+              "expected": 7.609850172229926e-08,
+              "actual": 7.961596488952637
+            },
+            {
+              "index": [
+                20,
+                20
+              ],
+              "expected": 1.0773429870605469,
+              "actual": 2.1546859741210938
+            }
+          ]
+        }
+      ],
+      "records": [
+        {
+          "case": "original_reference_inputs",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              100,
+              71
+            ],
+            "actual_shape": [
+              100,
+              71
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "original_reference_inputs",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 71,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              12,
+              12
+            ],
+            "actual_shape": [
+              12,
+              12
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "closed_edges_and_degenerate",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 10,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "random_rotations",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 125,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 9.313225746154785e-10,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 9.5367431640625e-07,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "large_centers",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 125,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              150,
+              125
+            ],
+            "actual_shape": [
+              150,
+              125
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "thin_rectangles",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 125,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": -1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": 0,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": 1,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "criterion": 2,
+          "oracle": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "symmetry": {
+            "passed": true,
+            "expected_shape": [
+              75,
+              75
+            ],
+            "actual_shape": [
+              75,
+              75
+            ],
+            "failed_pairs": 0,
+            "max_abs": 0.0,
+            "examples": []
+          },
+          "bitwise_repeats": [
+            true,
+            true
+          ],
+          "passed": true
+        },
+        {
+          "case": "noncontiguous",
+          "self_overlap": {
+            "scope": "Diagnostic geometry invariant, not a replacement reference or relaxed gate",
+            "identical_box_pairs": 0,
+            "non_unit_self_iou": 0,
+            "examples": []
+          },
+          "passed": true
+        },
+        {
+          "empty": [
+            0,
+            3
+          ],
+          "passed": true
+        },
+        {
+          "empty": [
+            3,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "empty": [
+            0,
+            0
+          ],
+          "passed": true
+        }
+      ],
+      "analytic": [
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            0
+          ],
+          "expected": 1.0,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            1
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            2
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            3
+          ],
+          "expected": 0.3333333333333333,
+          "actual": 0.3333333432674408,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 0.25,
+          "actual": 0.25,
+          "passed": true
+        },
+        {
+          "criterion": 0,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 1.0,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "criterion": 1,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 0.25,
+          "actual": 0.25,
+          "passed": true
+        },
+        {
+          "criterion": 2,
+          "index": [
+            0,
+            4
+          ],
+          "expected": 1.0,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            0,
+            5
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "criterion": -1,
+          "index": [
+            6,
+            6
+          ],
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "results/native-inference.json": {
+      "vendor": "metax",
+      "purpose": "inference",
+      "numerics": "native",
+      "rtol": 0.0001,
+      "atol": 1e-05,
+      "scope": "same-vendor routing/autograd; shared upstream native source; not full acceptance",
+      "reference_adaptations": [
+        "PSRoIPool integer workspace .cuda().contiguous()"
+      ],
+      "environment": {
+        "vendor": "metax",
+        "device_type": "cuda",
+        "torch": "2.10.0+metax3.8.1.0",
+        "cuda_api_version": "11.6"
+      },
+      "device": "MetaX C500",
+      "raw_sha256": "7e3412ef15564a3cf97bd4039a3187761918ad054c1f0a14582769b75388fa14",
+      "passed": true,
+      "records": [
+        {
+          "operation": "detection.roi_align/0",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.roi_align/1",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.roi_align/2",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.roi_align/3",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.psroi_align/4",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.psroi_pool/5",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "deformable.deform_conv/6",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  2,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  2,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.sigmoid_focal_loss/7",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.cross_sigmoid_focal_loss/8",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.sigmoid_focal_loss/9",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.cross_sigmoid_focal_loss/10",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.softmax_focal_loss/11",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/12",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/13",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/14",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/15",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.softer_nms/16",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  9
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  9
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/17",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/18",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/19",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/20",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.points_in_boxes_cpu/21",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.points_in_boxes_gpu/22",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.roiaware_pool3d/23",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.roiaware_pool3d/24",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.roipoint_pool3d/25",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3,
+                  8,
+                  6
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3,
+                  8,
+                  6
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.boxes_bev_iou_cpu/26",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.boxes_iou_bev/27",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.boxes_iou3d/28",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.nms3d/29",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.nms3d_normal/30",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "results/native-training.json": {
+      "vendor": "metax",
+      "purpose": "training",
+      "numerics": "native",
+      "rtol": 0.0001,
+      "atol": 1e-05,
+      "scope": "same-vendor routing/autograd; shared upstream native source; not full acceptance",
+      "reference_adaptations": [
+        "PSRoIPool integer workspace .cuda().contiguous()"
+      ],
+      "environment": {
+        "vendor": "metax",
+        "device_type": "cuda",
+        "torch": "2.10.0+metax3.8.1.0",
+        "cuda_api_version": "11.6"
+      },
+      "device": "MetaX C500",
+      "raw_sha256": "b788bd2e9c573dadc04f018d4b64f1179fb2c67ea3b32cf46054b05e187df733",
+      "passed": true,
+      "records": [
+        {
+          "operation": "detection.roi_align/0",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.roi_align/1",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.roi_align/2",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.roi_align/3",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0,
+                  4,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  4,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.psroi_align/4",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  8,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  8,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.psroi_pool/5",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  8,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  2,
+                  2
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  8,
+                  8,
+                  8
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "deformable.deform_conv/6",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  2,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 7.152557373046875e-07,
+                "shape": [
+                  1,
+                  2,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  18,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  2,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 9.5367431640625e-07,
+                "shape": [
+                  1,
+                  2,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  18,
+                  5,
+                  5
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  2,
+                  2,
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.sigmoid_focal_loss/7",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.cross_sigmoid_focal_loss/8",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.sigmoid_focal_loss/9",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.cross_sigmoid_focal_loss/10",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "focal.softmax_focal_loss/11",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  4
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  6,
+                  4
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/12",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/13",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/14",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.naive_nms/15",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.softer_nms/16",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  9
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  9
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/17",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/18",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/19",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "detection.iou_overlap/20",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  0
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.points_in_boxes_cpu/21",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.points_in_boxes_gpu/22",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  16
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.roiaware_pool3d/23",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  16,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  16,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.roiaware_pool3d/24",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  16,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  16,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.roipoint_pool3d/25",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3,
+                  8,
+                  6
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3,
+                  8,
+                  6
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  1,
+                  3
+                ],
+                "dtype": "torch.int32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.boxes_bev_iou_cpu/26",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.boxes_iou_bev/27",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.boxes_iou3d/28",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  7
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  7
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  3
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  7
+                ],
+                "dtype": "torch.float32"
+              },
+              {
+                "passed": true,
+                "kind": "gradient",
+                "abs_max": 0.0,
+                "shape": [
+                  3,
+                  7
+                ],
+                "dtype": "torch.float32"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.nms3d/29",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        },
+        {
+          "operation": "pointcloud.nms3d_normal/30",
+          "reference_repeat": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          },
+          "routed": {
+            "passed": true,
+            "comparisons": [
+              {
+                "passed": true,
+                "kind": "output",
+                "abs_max": 0.0,
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int64"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "scope": "Corrected evaluation metric, not legacy numerical equivalence, dataset AP or training accuracy"
+}
