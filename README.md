@@ -7,9 +7,13 @@
 
 **当前分支：`codex/up-platform-clean`。阶段性实现，尚未达到“两家完整适配”验收。**
 NVIDIA 与沐曦已有真机记录；失败、缺口和复现步骤见 [验证报告](docs/platform/VALIDATION.md)。
-旧 `main`、Release 和历史证据保持原样。本分支不包含旧数值修复或多随机种子任务。
+本仓库是 UP 的正式 fork，`main` 保留原版 UP；平台改造位于本分支。
+[旧实验仓库](https://github.com/jingfengou/United-Perception-Hardware) 的 `main`、Release 和历史证据保持原样。
+本分支不包含旧数值修复或多随机种子任务。
 
 [架构](docs/platform/README.md) · [完整接口](docs/platform/INTERFACES.md) · [接入厂商](docs/platform/ADDING_VENDOR.md) · [环境](docs/platform/ENVIRONMENT.md) · [验证](docs/platform/VALIDATION.md)
+
+按责任拆分的提交及与已测试版本的对应关系见 [提交说明](docs/platform/HISTORY.md)。
 
 ## 如何调用
 
@@ -32,8 +36,8 @@ ops/<类别>/nvidia.py 或 metax.py 的显式绑定
 详细版本与可选依赖见 [环境说明](docs/platform/ENVIRONMENT.md)。原版 `requirements.txt` 是历史清单，不是现代环境锁文件。
 
 ```bash
-git clone --branch codex/up-platform-clean https://github.com/jingfengou/United-Perception-Hardware.git
-cd United-Perception-Hardware
+git clone --branch codex/up-platform-clean https://github.com/jingfengou/United-Perception.git
+cd United-Perception
 python -m pip install --no-deps -e .
 
 # 仅在匹配的厂商环境中编译专用扩展，二选一：

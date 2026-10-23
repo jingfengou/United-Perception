@@ -1,6 +1,7 @@
 # 相对原版 UP 的变更
 
-基线和约束见 [baseline.json](baseline.json)。本分支不是复制旧 `main` 后删目录。
+基线和约束见 [baseline.json](baseline.json)。本分支不是复制旧实验仓库 `main` 后删目录。
+正式 fork、原子提交拆分与已测试版本的对应关系见 [HISTORY.md](HISTORY.md)。
 
 | 增删改 | 目的 | 保持不变 |
 | --- | --- | --- |

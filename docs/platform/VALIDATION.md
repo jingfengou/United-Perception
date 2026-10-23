@@ -93,7 +93,7 @@ linklink 的公开库检索和所缺 API 单列在 [LINKLINK.md](LINKLINK.md)。
 把原版归档到独立目录，不能用当前重构版作“原版”：
 
 ```bash
-ROOT=/absolute/path/to/United-Perception-Hardware
+ROOT=/absolute/path/to/United-Perception
 BASE=/absolute/path/to/up-original
 mkdir -p "$BASE"
 git -C "$ROOT" archive 52aaeb9ed27a490820696d7754d19f98cd6ecd11 up configs | tar -x -C "$BASE"

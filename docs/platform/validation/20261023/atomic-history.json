@@ -1,0 +1,281 @@
+{
+  "purpose": "atomic commit CPU contracts, not additional hardware validation",
+  "python": "3.12.3",
+  "torch": "2.10.0+cu126",
+  "gpu_hidden": true,
+  "commits": [
+    {
+      "commit": "4ca5a4c1a7b7f9e7840b27a756436fb114d19d58",
+      "title": "feat(platform): define explicit device and operation contracts",
+      "archive": "4ca5a4c1a7.tar.gz",
+      "archive_sha256": "02de54bcf237bd11be056022df6bdabd9a7e8fc286aa1c41f6640d5da1bc8fc5",
+      "python_files_parsed": 452,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "9a4a9cd2a2b38bff6681429f1955a28f6bd5874f4eeb947d1aad7d106754c414"
+    },
+    {
+      "commit": "7ae6512d786a24c9d2f152e5b034859adecb9b36",
+      "title": "feat(platform): add shared PyTorch runtime and CPU reference",
+      "archive": "7ae6512d78.tar.gz",
+      "archive_sha256": "a712004d0f9ffb30f5d4fdeee756e22352b1df5797a63cc6bed2ab3d214b4c49",
+      "python_files_parsed": 486,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "4eee2e1aa786e556549c54e67f94ebaa1d07c061dfd691fd5f26339f6fc23845"
+    },
+    {
+      "commit": "8463d432dbd0c189f193bd5ce4a38c4f95f71372",
+      "title": "feat(ops): preserve UP native autograd and export implementations",
+      "archive": "8463d432db.tar.gz",
+      "archive_sha256": "422fed8a1cfc5ceb89d8994103074bbeda9d1ddd67744d761e9f1a2c3742667b",
+      "python_files_parsed": 502,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "04da606237b354633501283e2a643334e672c412ad764e9b787f58989ede573c"
+    },
+    {
+      "commit": "ec7b0677aa3455b4e08de085e9f72608e24ac58a",
+      "title": "feat(nvidia): bind device training inference and operation providers",
+      "archive": "ec7b0677aa.tar.gz",
+      "archive_sha256": "4e3690dd8713dffef5351259e91b36e9cd74af875ed71761cf123b34a32e2447",
+      "python_files_parsed": 520,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "f3678074dc9ae0ee276e712228c0fead19ebeb16e8b53f7423ae29678597e282"
+    },
+    {
+      "commit": "281622825407f1cb49a3e74bb17b24a674f1fb1f",
+      "title": "feat(metax): bind native providers and vendor layout differences",
+      "archive": "2816228254.tar.gz",
+      "archive_sha256": "4788e31c6a84a0ba516e596fe9a4e7eb33250c7d4a9112ceb42c04e9f8e9c7b9",
+      "python_files_parsed": 539,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "94e6ac46c745467481c5812e41552562cbaf16ae54499fa90b91f97e3bd71966"
+    },
+    {
+      "commit": "8c5b8cfcac264c318cbe9f3b8a57cc5c6790d7aa",
+      "title": "feat(platform): provide vendor templates and SDK autograd example",
+      "archive": "8c5b8cfcac.tar.gz",
+      "archive_sha256": "2edffb7e51e9ddea5359003121d8ce5a1d6a88fdf002787d40fed229669c131e",
+      "python_files_parsed": 575,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "8787621f82b95c0919a3bacac8ae5fe110e79bb1b9f7c698adb9c39e504af434"
+    },
+    {
+      "commit": "a006fb94e76834dd2b557cfcc6ab22b91ecba5f3",
+      "title": "refactor(runtime): select platform at UP execution entry points",
+      "archive": "a006fb94e7.tar.gz",
+      "archive_sha256": "df6fb51bb544468ddee7ccbe8d97f70370ed4dafec99dd40a7b74622e3b1afb9",
+      "python_files_parsed": 577,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "7a78926ab43792027b87b23db4e8fdd876936eb120197602f984226e737f83cc"
+    },
+    {
+      "commit": "415fecde0ac74e0a75334368b35cdd32fc0aba23",
+      "title": "build(platform): move native sources behind explicit vendor builds",
+      "archive": "415fecde0a.tar.gz",
+      "archive_sha256": "116afe7773200c36a050813be6e3cacb32e84a3afb2318cec9634d5c4abfa3b0",
+      "python_files_parsed": 578,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "f55d30c76c4804cfc67b36f90ac39adabc012a152a2fe4701ebdca14110d70b3"
+    },
+    {
+      "commit": "3a5dbdf66a7f6a1aa31e061dc7aec08a598754d2",
+      "title": "refactor(models): route shared backbones and layer utilities",
+      "archive": "3a5dbdf66a.tar.gz",
+      "archive_sha256": "5525cd8f245604b87d94d0d1939965532c6e190b7f51c2e6f0564203357aa28e",
+      "python_files_parsed": 578,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "aab1907bf76d7c777a8f39faf464267e3b0e5e07e060878b100422b563014e13"
+    },
+    {
+      "commit": "b7d9daffb1d973f030a11e500b046407b16a58c6",
+      "title": "refactor(cls): route classification distillation and SSL operations",
+      "archive": "b7d9daffb1.tar.gz",
+      "archive_sha256": "1d471f0e37f230db0377986c1eebfed34e3f4297d3497f6188f495953d6bb4c1",
+      "python_files_parsed": 578,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "8d1cfa53a20e9358d09ba51307e168f3f0f082b875df07a86a271e41057db90c"
+    },
+    {
+      "commit": "2f74b52c11c5ee3ccd0a0edc67ea0bdf9e69d426",
+      "title": "refactor(det): route detection operations without changing recipes",
+      "archive": "2f74b52c11.tar.gz",
+      "archive_sha256": "f0bcdcf2cc3251d7c720951cc0f8b7bb00e55ea8d9cf35c483be883a2175e78d",
+      "python_files_parsed": 578,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "4866fba6833d0a7a8fdb3333e4ad9f934bdcce3d0e8b2a2c4ffce3224c9158ae"
+    },
+    {
+      "commit": "9932ef42a44241341f2e18628e62b878dec10a71",
+      "title": "refactor(pointcloud): route sparse tensors and 3D operations",
+      "archive": "9932ef42a4.tar.gz",
+      "archive_sha256": "afcd0378e1a54b45054e685672a71c6fcc2a7100302e38fd7080cfc39c546f89",
+      "python_files_parsed": 578,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "00b0599b11eb11a3055ec8fd695b7fc39333e2aa3648b8e0e9a7ac045a87f71f"
+    },
+    {
+      "commit": "780f2f6a3e2c7bac5cacc3bdc03cf1018f963f8a",
+      "title": "refactor(tasks): route segmentation NAS and optional toolchains",
+      "archive": "780f2f6a3e.tar.gz",
+      "archive_sha256": "5d3c1dfcdd4b85008b97574789f71c7ea51b6aa9024aa8d7948c628b979f0d75",
+      "python_files_parsed": 578,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "0d1d518655493dcf0ee06334eb4015293ee93472155e719fb5fd8328a2a6dd93"
+    },
+    {
+      "commit": "ddd06b42e0e14d1cec7849c6cb3518395d0ac2e4",
+      "title": "test(platform): add boundary and real-device reproduction tools",
+      "archive": "ddd06b42e0.tar.gz",
+      "archive_sha256": "c34cfa255d1fa005b2e97ae92d9d5e0c4876f647dffbb2c4e070ab5b05033689",
+      "python_files_parsed": 596,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "aaa65f7fa82ad660b6189e5e67d3d0b5860617e49efa1b67aa4865289eeeeed2"
+    },
+    {
+      "commit": "c7123d252150df215eae66587167e999d015f6b8",
+      "title": "test(nvidia): retain source-hashed hardware evidence and failures",
+      "archive": "c7123d2521.tar.gz",
+      "archive_sha256": "a6c95d66265075f24698a5c4c47d4cc1e7d9cfd37e6aa5d3dd156a7b9a38858c",
+      "python_files_parsed": 596,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "1548565fe4037528e5fcc80c9cb0429a41c38739d330f99f33d11ec28cac21ae"
+    },
+    {
+      "commit": "c2e4b9795809984c21a82517129378b57509d052",
+      "title": "test(metax): retain source-hashed hardware evidence and failures",
+      "archive": "c2e4b97958.tar.gz",
+      "archive_sha256": "ed89b077685998e324a69af90d72973c70649dd07afdfc93c917b7fd2f47a63c",
+      "python_files_parsed": 596,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "fffdb89446053fbfa85eb3f32e3b8d2368ad93e8eccf8a1d3a3390cb43e23ece"
+    },
+    {
+      "commit": "78f0db6f8e922b3f7d44334c281175430c138459",
+      "title": "docs(platform): publish contracts validation limits and CPU CI",
+      "archive": "78f0db6f8e.tar.gz",
+      "archive_sha256": "36f628f60963d2da10cf55acf66ef675e15508e74eed41494a2a80424d30aa41",
+      "python_files_parsed": 596,
+      "pytest_exit_code": 0,
+      "stats": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": true,
+      "log_sha256": "f9ac462a990185cbed8343d2063eda0c3b6a25f38fd326cc4304badd48533ef5"
+    }
+  ],
+  "passed": true
+}
