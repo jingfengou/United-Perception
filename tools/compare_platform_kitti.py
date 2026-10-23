@@ -11,6 +11,28 @@ from up_platform import configure_platform
 from up_platform.ops._native.loader import load_native
 
 
+def comparison_record(expected, actual):
+    record = {'passed': False, 'expected_shape': list(expected.shape), 'actual_shape': list(actual.shape)}
+    if actual.shape != expected.shape or actual.dtype != expected.dtype:
+        record['reason'] = 'shape/dtype mismatch'
+        return record
+    bad = np.argwhere(~np.isclose(actual, expected, rtol=1e-4, atol=1e-5))
+    record.update(passed=not len(bad), failed_pairs=len(bad),
+                  max_abs=float(np.max(np.abs(expected-actual))) if actual.size else 0.,
+                  examples=[{'index': [int(i), int(j)], 'expected': float(expected[i, j]),
+                             'actual': float(actual[i, j])} for i, j in bad[:16]])
+    return record
+
+
+def self_overlap_sanity(boxes, queries, iou):
+    pairs = [(i, j) for i, box in enumerate(boxes) for j, query in enumerate(queries)
+             if np.array_equal(box, query) and np.isfinite(box).all() and (box[2:4] > 0).all()]
+    bad = [(i, j) for i, j in pairs if not np.isclose(iou[i, j], 1., rtol=1e-4, atol=1e-5)]
+    return {'scope': 'Diagnostic geometry invariant, not a replacement reference or relaxed gate',
+            'identical_box_pairs': len(pairs), 'non_unit_self_iou': len(bad),
+            'examples': [{'index': [i, j], 'box': boxes[i].tolist(), 'iou': float(iou[i, j])} for i, j in bad[:16]]}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--vendor', required=True)
@@ -48,15 +70,14 @@ def main():
         for name, actual in (('routed', routed), ('compiled_port', port)):
             if actual is None:
                 continue
-            passed = actual.dtype == expected.dtype and np.allclose(actual, expected, rtol=1e-4, atol=1e-5)
-            records.append({'criterion': criterion, 'implementation': name, 'passed': bool(passed),
-                            'max_abs': float(np.max(np.abs(expected-actual)))})
+            records.append({'criterion': criterion, 'implementation': name, **comparison_record(expected, actual)})
     for n, k in ((0, 3), (3, 0), (0, 0)):
         from up_platform.ops.pointcloud._kitti_gpu import rotate_iou_eval
         value = rotate_iou_eval(boxes[:n], queries[:k], vendor=args.vendor)
         records.append({'empty': [n, k], 'passed': value.shape == (n, k) and value.dtype == np.float32})
     args.output.write_text(json.dumps({'reference_sha256': hashlib.sha256(args.reference.read_bytes()).hexdigest(),
                                       'reference': 'Original upstream Numba CUDA, no numerical edits',
+                                      'reference_self_overlap': self_overlap_sanity(boxes, queries, reference['-1']),
                                       'environment': p.device.environment(), 'rtol': 1e-4, 'atol': 1e-5,
                                       'records': records}, indent=2))
     print(json.dumps(records))
