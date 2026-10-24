@@ -173,7 +173,8 @@ def inference(args, runner, platform, batches):
     def frozen_batch(split='test'):
         if split != 'test':
             raise ValueError('Only held-out inputs may be used for inference')
-        runner.local_eval_iter(step=1)
+        cur_iter = runner.local_eval_iter(step=1)
+        runner._hooks('before_data', cur_iter)
         return runner.batch2device(copy.deepcopy(next(iterator)))
     runner.get_batch = frozen_batch
     before = state_hash(runner.model.state_dict())
