@@ -50,7 +50,9 @@ UP_BUILD_BACKEND=nvidia python setup.py build_ext --inplace
 与 PyTorch 原生 deterministic、`CUBLAS_WORKSPACE_CONFIG=:4096:8` 一同在新进程启动前设置。
 平台不默认设置这些变量，也不声明它们是正式稳定 API；版本、适用模型、失败和复现见 [问题跟进](FOLLOWUP_20261024.md)。
 原版与路由对照必须使用完全相同的开关，不能把不同开关下的结果冒充结构等价验证。
-这个组合没有解决全部 Faster R-CNN 训练差异，本轮也未测量其性能代价。
+单用这个组合没有解决 Faster R-CNN 的 RoIAlign 原子反向差异；还需重编译本分支扩展并显式开启
+`torch.use_deterministic_algorithms(True)`，详见 [独立修复与局部性能](FRCNN_DETERMINISM_20261024.md)。
+这次 RoIAlign 对照没有重新测量两个 MCDNN 开关本身的性能代价。
 
 ## 可选工具链
 
