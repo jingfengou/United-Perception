@@ -1,0 +1,48 @@
+{
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "device": 2,
+  "main_protocol_sha256": "5b37009b504fa11ac44e7fb7ab9bfb4f53964c3e2c1326fe1d3ae03a8b79ef24",
+  "new_optimizer_updates": 0,
+  "pci": "0000:0e:00.0",
+  "policy": "Same strict native FP32 switches as main cohort; separate process and phase, after full training completes",
+  "reason": "Investigate the observed ViT final accuracy gap without changing or rerunning training",
+  "runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "selection": "Final new-01 NVIDIA checkpoints for both models; all original/new NVIDIA replicates already agree; no best selection",
+  "stage": "Post-hoc final NVIDIA checkpoint inference on C500",
+  "weights": {
+    "vit_b16": {
+      "bytes": 342720847,
+      "filename": "vit_b16.pt",
+      "model_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+      "original_checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+      "original_final_metrics": {
+        "top1": 25.75,
+        "top5": 79.25
+      },
+      "original_report_sha256": "8f8773e8397993ec7dbb6fec798bafc389b4d97bc29de7347cff5dd00250f2ab",
+      "sha256": "1d8da70271fde57ebbbc245b2253d6cf463845b9c7735f36195399d713fa8796"
+    },
+    "yolov5s": {
+      "bytes": 29228935,
+      "filename": "yolov5s.pt",
+      "model_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+      "original_checkpoint_sha256": "2f78a15c7df5f70cb8eb2603f8e1c0aedc9004d2486b933c8e6ee102cbaf9af7",
+      "original_final_metrics": {
+        "bbox.AP": 0.27423611431992984,
+        "bbox.AP.5": 0.5565714753726084,
+        "bbox.AP.75": 0.2304570393892731,
+        "bbox.AP_L": 0.3268274472374338,
+        "bbox.AP_M": 0.132140198961841,
+        "bbox.AP_S": 0.13465346534653463,
+        "bbox.AR": 0.5676691729323308,
+        "bbox.AR_1": 0.11353383458646615,
+        "bbox.AR_10": 0.5353383458646617,
+        "bbox.AR_L": 0.5975206611570247,
+        "bbox.AR_M": 0.3111111111111111,
+        "bbox.AR_S": 0.13333333333333333
+      },
+      "original_report_sha256": "c4b1a0df61062023082c6d0c897b46d36d632c5e7532fa155a157e467e5454be",
+      "sha256": "b102416430285cc90874c3a5bc8f973511dbf56ee479c4cf484d63ace4346b7f"
+    }
+  }
+}

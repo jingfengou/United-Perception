@@ -1,6 +1,7 @@
 """Matched complete C500 budgets against the pinned NVIDIA deterministic cohort."""
 import argparse
 import csv
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -19,8 +20,10 @@ def loss_comparison(reference, actual):
         raise ValueError('Non-finite loss trace')
     differences = [abs(a-b) for a,b in zip(reference, actual)]
     failures = [i+1 for i,(a,b) in enumerate(zip(reference, actual)) if abs(a-b) > 1e-5+1e-4*abs(a)]
+    first = next((i for i,d in enumerate(differences) if d), None)
     return {'steps':len(reference), 'values_equal':reference == actual,
-        'first_difference_step':next((i+1 for i,d in enumerate(differences) if d), None),
+        'first_difference_step':None if first is None else first+1,
+        'first_difference_values':None if first is None else {'nvidia':reference[first],'metax':actual[first]},
         'first_exceeding_tolerance_step':next(iter(failures), None),
         'exceeding_tolerance_steps':len(failures), 'maximum_abs_difference':max(differences),
         'rtol':1e-4, 'atol':1e-5}
@@ -77,6 +80,13 @@ def summarize(metax, reference, protocol):
             or {j['model'] for j in execution['jobs']} != set(protocol['models'])
             or any(j['exit_code'] or j['metric_audit_exit_code'] or j['inference_exit_code'] for j in execution['jobs'])):
         raise ValueError('All two complete training, metric and inference jobs are required')
+    cross_controller = json.loads((metax/'cross-controller.json').read_text())
+    cross_protocol = json.loads((metax/'cross-weight-protocol.json').read_text())
+    if (not cross_controller['completed'] or len(cross_controller['commands']) != 2
+            or cross_controller['optimizer_updates'] != 0
+            or cross_protocol['main_protocol_sha256'] != digest(metax/'plan.json')
+            or protocol != json.loads((metax/'plan.json').read_text())):
+        raise ValueError('Post-hoc checkpoint inference or its frozen protocol is incomplete')
     rows = []
     for model,expected in protocol['models'].items():
         nvidia = {}
@@ -93,16 +103,48 @@ def summarize(metax, reference, protocol):
         m = read_run(directory, expected, protocol, metax=True)
         if m['learning_rates'] != n['learning_rates'] or m['first_batch_sha256'] != n['first_batch_sha256']:
             raise ValueError('Cross-vendor inputs/LR schedule differ')
+        if m['final_metrics'].keys() != n['final_metrics'].keys():
+            raise ValueError('Cross-vendor metric names differ')
         metric_deltas = {key: delta_pp(value, m['final_metrics'][key], unit='ratio' if key.startswith('bbox.') else 'percent')
                          for key,value in n['final_metrics'].items()}
         primary = BUDGETS[model]['metric']
+        if ([r['after_steps'] for r in n['epoch_metrics']] != [r['after_steps'] for r in m['epoch_metrics']]):
+            raise ValueError('Evaluation schedules differ')
+        evaluations = [{'after_steps':a['after_steps'],
+            'nvidia_percent':a['metrics'][primary]*BUDGETS[model]['scale'],
+            'metax_percent':b['metrics'][primary]*BUDGETS[model]['scale']}
+            for a,b in zip(n['epoch_metrics'],m['epoch_metrics'])]
+        cross_directory = metax/'cross-reference'/model
+        cross_path = cross_directory/'inference-report.json'
+        cross_inference = json.loads(cross_path.read_text())
+        cross_audit = json.loads((cross_directory/'metric-audit.json').read_text())
+        weight = cross_protocol['weights'][model]
+        if (weight['model_state_sha256'] != n['final_state_sha256']
+                or weight['original_checkpoint_sha256'] != n['checkpoint_sha256']
+                or weight['original_report_sha256'] != expected['reference_report_sha256']['new-01']
+                or cross_inference['checkpoint_sha256'] != weight['sha256']
+                or cross_inference['lane'] != 'new_metax' or cross_inference['purpose'] != 'inference'
+                or cross_inference['numerics'] != 'native_deterministic' or not cross_inference['weights_exact']
+                or cross_inference['status'] != 'completed' or not cross_audit['passed']
+                or cross_audit['inference_report_sha256'] != digest(cross_path)
+                or cross_audit['metrics'] != cross_inference['metrics']
+                or cross_audit['predictions_sha256'] != digest(cross_directory/'predictions/results.txt')):
+            raise ValueError('Invalid/stale final NVIDIA checkpoint inference on C500')
+        cross_value = cross_inference['metrics'][primary]*BUDGETS[model]['scale']
         rows.append({'model':model,'primary_metric':primary,'values_percent':{
             'original_nvidia':nvidia['original-01']['final_metrics'][primary]*BUDGETS[model]['scale'],
             'new_nvidia':n['final_metrics'][primary]*BUDGETS[model]['scale'],
             'new_metax':m['final_metrics'][primary]*BUDGETS[model]['scale']},
             'metax_minus_nvidia_pp':metric_deltas[primary], 'all_metric_deltas_pp':metric_deltas,
+            'nvidia_final_weights_on_metax':{'metrics':cross_inference['metrics'],
+                'primary_metric_percent':cross_value, 'all_metrics_equal_to_nvidia':cross_inference['metrics']==n['final_metrics'],
+                'delta_from_nvidia_pp':cross_value-n['final_metrics'][primary]*BUDGETS[model]['scale'],
+                'metax_trained_minus_nvidia_trained_same_eval_device_pp':m['final_metrics'][primary]*BUDGETS[model]['scale']-cross_value,
+                'model_state_sha256':weight['model_state_sha256'],'inference_report_sha256':digest(cross_path)},
             'matched_conditions':{key:m[key] for key in ('data_sha256','initial_file_sha256','initial_state_sha256',
                 'algorithm_config_sha256','driver_sha256','first_batch_sha256','all_batches_sha256')},
+            'learning_rates_sha256':hashlib.sha256(json.dumps(m['learning_rates']).encode()).hexdigest(),
+            'evaluation_comparison':evaluations,
             'loss_comparison':loss_comparison(n['losses'],m['losses']),
             'final_model_states_bitwise_equal':n['final_state_sha256'] == m['final_state_sha256'],
             'nvidia_replicates':{v:{'report_sha256':expected['reference_report_sha256'][v],
@@ -111,10 +153,10 @@ def summarize(metax, reference, protocol):
                 'training_wall_seconds','peak_allocated_bytes','peak_reserved_bytes','checkpoint_sha256','final_state_sha256','epoch_metrics')},
             'metax_report_sha256':digest(directory/'report.json')})
     return {'records':rows,'new_complete_runs':2,'new_optimizer_updates':sum(r['metax']['training_steps'] for r in rows),
-        'reference_complete_runs':8,'seed':protocol['seed'],'accuracy_threshold':None,
+        'reference_complete_runs':8,'new_extra_inference_runs':2,'seed':protocol['seed'],'accuracy_threshold':None,
         'scope':'One C500 run per model vs frozen same-seed NVIDIA original/new repeats; fixed CIFAR-10/PennFudan budgets, not population equivalence or ImageNet/COCO convergence',
         'determinism':'Strict native switches enabled; not proof that every vendor kernel or full training is repeatable',
-        'controller':controller, 'execution_jobs':execution['jobs']}
+        'controller':controller, 'execution_jobs':execution['jobs'],'cross_weight_controller':cross_controller}
 
 
 if __name__ == '__main__':
