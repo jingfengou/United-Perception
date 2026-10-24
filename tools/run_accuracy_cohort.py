@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--device', type=int, required=True)
     parser.add_argument('--models', choices=BUDGETS, nargs='+', default=list(BUDGETS))
     parser.add_argument('--probe-steps', type=int)
+    parser.add_argument('--deterministic', action='store_true')
     args = parser.parse_args()
     args.source = args.source.resolve()
     args.output.mkdir(parents=True, exist_ok=False)
@@ -41,6 +42,8 @@ def main():
             MKL_NUM_THREADS='2', PYTHONHASHSEED='0', DEFAULT_TASKS='cls:det')
         for key in CONTROLS:
             environment.pop(key, None)
+        if args.deterministic:
+            environment['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
         # Dependency paths may follow the selected source; it must take precedence.
         environment['PYTHONPATH'] = str(args.source)+os.pathsep+environment.get('PYTHONPATH', '')
         for model in args.models:
@@ -50,6 +53,8 @@ def main():
                 '--lane', args.lane, '--model', model]
             if args.probe_steps:
                 command += ['--probe-steps', str(args.probe_steps)]
+            if args.deterministic:
+                command += ['--deterministic']
             job = {'model': model, 'command': command, 'initial_file_sha256': digest(initial), 'status': 'running'}
             manifest['jobs'].append(job)
             save()

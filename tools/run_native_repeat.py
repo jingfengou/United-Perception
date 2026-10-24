@@ -1,7 +1,8 @@
-"""Same physical NVIDIA GPU: repeated native traces, full budgets and inference.
+"""Same physical NVIDIA GPU: repeated native budgets and inference.
 
 An outer GPU lock is held for the entire experiment. The original accuracy
 worker and original/new runtime trees stay immutable; no retries or seed search.
+--deterministic uses an explicitly staged tools/ directory, without tracing.
 """
 import argparse
 from datetime import datetime, timezone
@@ -27,6 +28,7 @@ def main():
     parser.add_argument('--base', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--launch', action='store_true')
+    parser.add_argument('--deterministic', action='store_true')
     args = parser.parse_args()
     root, base = args.output.resolve(), args.base.resolve()
     if args.launch:
@@ -34,17 +36,24 @@ def main():
         if receipt.exists():
             raise FileExistsError(receipt)
         with (root/'controller.log').open('x') as stream:
-            process = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), '--base', str(base),
-                                        '--output', str(root)], stdout=stream, stderr=subprocess.STDOUT,
+            command = [sys.executable, str(Path(__file__).resolve()), '--base', str(base), '--output', str(root)]
+            if args.deterministic:
+                command += ['--deterministic']
+            process = subprocess.Popen(command, stdout=stream, stderr=subprocess.STDOUT,
                                        start_new_session=True)
         save(receipt, {'pid': process.pid, 'created_utc': datetime.now(timezone.utc).isoformat(),
                        'physical_device': 1, 'uuid': UUID})
         print(receipt.read_text())
         return
+    if (root/'controller.json').exists():
+        raise FileExistsError(root/'controller.json')
     sys.path.insert(0, str(base/'source-03/tools'))
     from accuracy_data import digest, verify
     from run_platform_validation import source_manifest
     plan = json.loads((base/'plan.json').read_text())
+    worker_tools = root/'tools' if args.deterministic else base/'source-03/tools'
+    if not (worker_tools/'accuracy_train.py').is_file():
+        raise FileNotFoundError(worker_tools/'accuracy_train.py')
     with Path('/data2/oujingfeng/up-rearchitecture-gpu-1.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         uuid = subprocess.check_output(['nvidia-smi', '-i', '1', '--query-gpu=uuid', '--format=csv,noheader'], text=True).strip()
@@ -59,12 +68,16 @@ def main():
                            PYTHONHASHSEED='0', DEFAULT_TASKS='cls:det')
         for key in CONTROLS:
             environment.pop(key, None)
+        if args.deterministic:
+            environment['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
         state = {'pid': os.getpid(), 'physical_device': 1, 'uuid': uuid, 'seed': 131,
-                 'started_utc': datetime.now(timezone.utc).isoformat(), 'mode': 'native',
+                 'started_utc': datetime.now(timezone.utc).isoformat(),
+                 'mode': 'native_deterministic' if args.deterministic else 'native',
                  'source_stage': str(base/'source-03'), 'source_sha256': plan['new_source_sha256'],
                  'original_sha256': plan['original_source_sha256'], 'data_sha256': plan['data_sha256'],
                  'data_verification': verification, 'commands': [], 'completed': False,
-                 'observer_sha256': digest(root/'trace_native_training.py'),
+                 'observer_sha256': None if args.deterministic else digest(root/'trace_native_training.py'),
+                 'worker_tools': {p.name: digest(p) for p in sorted(worker_tools.glob('*.py'))},
                  'controller_sha256': digest(Path(__file__)),
                  'full_runs': 8, 'full_optimizer_updates': 14960,
                  'scope': 'Two repeats per source/model; not a multi-seed experiment or statistical equivalence proof'}
@@ -83,7 +96,7 @@ def main():
             save(root/'controller.json', state)
             print(label, result.returncode, flush=True)
         order = ('original-01', 'new-01', 'new-02', 'original-02')
-        for model in ('yolov5s', 'vit_b16'):
+        for model in (() if args.deterministic else ('yolov5s', 'vit_b16')):
             for variant in order:
                 lane = 'original_nvidia' if variant.startswith('original') else 'new_nvidia'
                 source = base/('original' if lane == 'original_nvidia' else 'source-03')
@@ -94,9 +107,10 @@ def main():
             for variant in order:
                 lane = 'original_nvidia' if variant.startswith('original') else 'new_nvidia'
                 source = base/('original' if lane == 'original_nvidia' else 'source-03')
-                run('full-'+model+'-'+variant, [sys.executable, base/'source-03/tools/run_accuracy_cohort.py', '--source', source,
+                run('full-'+model+'-'+variant, [sys.executable, worker_tools/'run_accuracy_cohort.py', '--source', source,
                     '--data', base/'data/data.json', '--initial', base/'initial', '--output', root/'full'/model/variant,
-                    '--lock', root/'worker.lock', '--lane', lane, '--device', '1', '--models', model])
+                    '--lock', root/'worker.lock', '--lane', lane, '--device', '1', '--models', model,
+                    *(['--deterministic'] if args.deterministic else [])])
         for model in ('yolov5s', 'vit_b16'):
             for trained, runtime in (('original', 'new'), ('new', 'original')):
                 checkpoint = root/'full'/model/(trained+'-01')/model/'final.pt'
@@ -106,10 +120,10 @@ def main():
                     continue
                 lane = 'original_nvidia' if runtime == 'original' else 'new_nvidia'
                 source = base/('original' if runtime == 'original' else 'source-03')
-                run('cross-'+model+'-'+trained+'-to-'+runtime, [sys.executable, base/'source-03/tools/accuracy_train.py',
+                run('cross-'+model+'-'+trained+'-to-'+runtime, [sys.executable, worker_tools/'accuracy_train.py',
                     '--source', source, '--data', base/'data/data.json', '--initial', checkpoint,
                     '--output', root/'cross-inference'/model/(trained+'-to-'+runtime), '--lane', lane, '--model', model,
-                    '--mode', 'inference'])
+                    '--mode', 'inference', *(['--deterministic'] if args.deterministic else [])])
         state.update(finished_utc=datetime.now(timezone.utc).isoformat(),
                      completed=all(row['status'] == 'completed' for row in state['commands']),
                      post_training_data=verify(json.loads((base/'data/data.json').read_text())))

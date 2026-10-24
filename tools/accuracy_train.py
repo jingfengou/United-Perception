@@ -1,4 +1,4 @@
-"""One real UP Runner run: fixed budget, common initial tensors, native numerics."""
+"""One real UP Runner run: fixed budget, common tensors and explicit native policy."""
 import argparse
 import collections
 import collections.abc
@@ -74,6 +74,22 @@ def finite(value):
     return not isinstance(value, float) or math.isfinite(value)
 
 
+def configure_numerics(deterministic=False):
+    """Select native Torch algorithms; never replace model operations."""
+    expected = {key: None for key in CONTROLS}
+    if deterministic:
+        expected['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
+    for key, value in expected.items():
+        if os.environ.get(key) != value:
+            raise ValueError('Unexpected numerics control: '+key)
+    torch.set_num_threads(2)
+    torch.use_deterministic_algorithms(deterministic, warn_only=False)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = deterministic
+    torch.backends.cudnn.allow_tf32 = False
+    torch.backends.cuda.matmul.allow_tf32 = False
+
+
 def run(args):
     args.source = args.source.resolve()
     args.output.mkdir(parents=True, exist_ok=False)
@@ -84,15 +100,8 @@ def run(args):
     collections.Iterable = collections.abc.Iterable
     np.float, np.int, np.bool = float, int, bool
     os.environ['DEFAULT_TASKS'] = 'cls:det'
-    for key in CONTROLS:
-        if os.environ.get(key) is not None:
-            raise ValueError('Native controller must remove inherited control: '+key)
-    torch.set_num_threads(2)
-    torch.use_deterministic_algorithms(False)
-    torch.backends.cudnn.benchmark = False
-    torch.backends.cudnn.deterministic = False
-    torch.backends.cudnn.allow_tf32 = False
-    torch.backends.cuda.matmul.allow_tf32 = False
+    deterministic = getattr(args, 'deterministic', False)
+    configure_numerics(deterministic)
     torch.cuda.set_device(0)
     sys.path.insert(0, str(args.source))
     vendor = 'metax' if args.lane == 'new_metax' else 'nvidia'
@@ -120,8 +129,10 @@ def run(args):
     runner = BaseRunner(config, work_dir=str(args.output), training=args.mode != 'inference')
     if args.mode != 'inference' and runner.max_iter != BUDGETS[args.model]['steps']:
         raise ValueError('Runner budget differs from the frozen plan: '+str(runner.max_iter))
-    if torch.are_deterministic_algorithms_enabled() or torch.backends.cudnn.deterministic:
-        raise ValueError('Native run unexpectedly enabled deterministic algorithms')
+    if (torch.are_deterministic_algorithms_enabled() != deterministic
+            or torch.backends.cudnn.deterministic != deterministic
+            or torch.is_deterministic_algorithms_warn_only_enabled()):
+        raise ValueError('Runner changed the requested determinism policy')
     if args.mode == 'inference':
         # Hash-pinned output of this task's own worker; UP schedulers retain NumPy scalars.
         saved = torch.load(args.initial, map_location='cpu', weights_only=False)
@@ -134,7 +145,8 @@ def run(args):
         write(args.output/'inference-report.json', {'status': 'completed', 'model': args.model, 'lane': args.lane,
             'purpose': platform.purpose if platform else 'original UP standalone inference', 'metrics': result,
             'checkpoint_sha256': digest(args.initial), 'weights_exact': True,
-            'elapsed_seconds': time.monotonic()-started, 'source': source_manifest(args.source)})
+            'elapsed_seconds': time.monotonic()-started, 'source': source_manifest(args.source),
+            'numerics': 'native_deterministic' if deterministic else 'native'})
         print(json.dumps({'mode': 'standalone-inference', 'model': args.model, 'metrics': result}), flush=True)
         return
     if args.mode == 'initialize':
@@ -210,7 +222,8 @@ def run(args):
     packages = {name: metadata.version(name) for name in ('torch', 'torchvision', 'numpy', 'scipy',
                                                            'pycocotools', 'Pillow', 'opencv-python')}
     report = {'status': 'probe_completed' if args.probe_steps else 'completed', 'model': args.model,
-        'lane': args.lane, 'seed': 131, 'mode': 'native', 'epochs': BUDGETS[args.model]['epochs'],
+        'lane': args.lane, 'seed': 131, 'mode': 'native_deterministic' if deterministic else 'native',
+        'epochs': BUDGETS[args.model]['epochs'],
         'expected_steps': BUDGETS[args.model]['steps'], 'training_steps': len(recorder.losses),
         'initial_file_sha256': digest(args.initial), 'initial_state_sha256': initial_sha,
         'final_state_sha256': state_hash(saved['model']), 'checkpoint_sha256': digest(args.output/'final.pt'),
@@ -227,6 +240,8 @@ def run(args):
         'peak_allocated_bytes': torch.cuda.max_memory_allocated(), 'peak_reserved_bytes': torch.cuda.max_memory_reserved(),
         'environment': {'python': sys.version, 'packages': packages, 'gpu': torch.cuda.get_device_name(),
             'visible_devices': os.environ.get('CUDA_VISIBLE_DEVICES'), 'deterministic': torch.are_deterministic_algorithms_enabled(),
+            'deterministic_warn_only': torch.is_deterministic_algorithms_warn_only_enabled(),
+            'fill_uninitialized_memory': torch.utils.deterministic.fill_uninitialized_memory,
             'cudnn_deterministic': torch.backends.cudnn.deterministic, 'cudnn_benchmark': torch.backends.cudnn.benchmark,
             'matmul_tf32': torch.backends.cuda.matmul.allow_tf32, 'cudnn_tf32': torch.backends.cudnn.allow_tf32,
             'controls': {key: os.environ.get(key) for key in CONTROLS}},
@@ -248,4 +263,6 @@ if __name__ == '__main__':
     parser.add_argument('--model', choices=BUDGETS, required=True)
     parser.add_argument('--mode', choices=('initialize', 'train', 'inference'), default='train')
     parser.add_argument('--probe-steps', type=int)
+    parser.add_argument('--deterministic', action='store_true',
+                        help='Strict native Torch/cuDNN determinism; requires CUBLAS_WORKSPACE_CONFIG=:4096:8')
     run(parser.parse_args())
