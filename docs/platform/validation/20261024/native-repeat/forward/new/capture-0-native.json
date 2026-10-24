@@ -1,0 +1,221 @@
+{
+  "atol": 1e-05,
+  "capture_sha256": "36a5c53abe4c98dd307169fcf786e69095f0d049ecd9988eab8a4ef60b222ad0",
+  "deterministic": false,
+  "input_tensor_hashes": [
+    {
+      "dtype": "torch.float32",
+      "sha256": "76a1c568b15e359b6c16c8c88bd738763554d80256dc44c41a81658636720d26",
+      "shape": [
+        56,
+        3,
+        20,
+        20,
+        4
+      ],
+      "stride": [
+        4800,
+        1600,
+        80,
+        4,
+        1
+      ]
+    },
+    {
+      "dtype": "torch.int64",
+      "sha256": "bf5f57042df4c061d7dfae1fb04a222a65faaec51f224d5a0c7c660f3e82a272",
+      "shape": [
+        1967
+      ],
+      "stride": [
+        1
+      ]
+    },
+    {
+      "dtype": "torch.int64",
+      "sha256": "a16d998d76ada8149e51711b976cf734a20d15df6ea5ded22aaeef77b014ebb1",
+      "shape": [
+        1967
+      ],
+      "stride": [
+        1
+      ]
+    },
+    {
+      "dtype": "torch.int64",
+      "sha256": "efd9878847ed2009668319400a11d1f56bb4b450a5733c766171bf64874f52a9",
+      "shape": [
+        1967
+      ],
+      "stride": [
+        1
+      ]
+    },
+    {
+      "dtype": "torch.int64",
+      "sha256": "b50a79a90b3037422d4d6704925e6588d67c085dc8769d0388ae168185d02b3a",
+      "shape": [
+        1967
+      ],
+      "stride": [
+        1
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "sha256": "c9cc0bc40008f1b2aa01e3b57e7776624d8bd59a43e43ead815ac70f4de81a4f",
+      "shape": [
+        1967,
+        4
+      ],
+      "stride": [
+        4,
+        1
+      ]
+    }
+  ],
+  "mutates_first": true,
+  "operator": "aten.index_put_.default",
+  "repeats": [
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.6806001663208008,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ],
+    [
+      {
+        "bitwise_equal": false,
+        "dtype": "torch.float32",
+        "max_abs": 1.4130535125732422,
+        "shape": [
+          56,
+          3,
+          20,
+          20,
+          4
+        ],
+        "within_tolerance": false
+      }
+    ]
+  ],
+  "reset_mutable_target_each_trial": true,
+  "rtol": 0.0001,
+  "trials": 10,
+  "up_imported": false,
+  "up_platform_imported": false
+}
