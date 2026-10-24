@@ -1,0 +1,87 @@
+{
+  "findings": [
+    {
+      "capture": "capture-0.pt",
+      "occurrence": 1,
+      "operator": "aten.convolution_backward.default",
+      "outputs": [
+        {
+          "bitwise_equal": true,
+          "dtype": "torch.float32",
+          "max_abs": 0.0,
+          "shape": [
+            64,
+            512,
+            10,
+            10
+          ],
+          "within_tolerance": true
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "max_abs": 4.470348358154297e-08,
+          "shape": [
+            3,
+            512,
+            1,
+            1
+          ],
+          "within_tolerance": true
+        },
+        {
+          "bitwise_equal": true,
+          "dtype": "torch.float32",
+          "max_abs": 0.0,
+          "shape": [
+            3
+          ],
+          "within_tolerance": true
+        }
+      ],
+      "schema": "aten::convolution_backward(Tensor grad_output, Tensor input, Tensor weight, SymInt[]? bias_sizes, SymInt[] stride, SymInt[] padding, SymInt[] dilation, bool transposed, SymInt[] output_padding, SymInt groups, bool[3] output_mask) -> (Tensor, Tensor, Tensor)"
+    }
+  ],
+  "observer_sha256": "9977679db954ec7e6e9dc2d3f65225e5b9430ed050509c0db0a9ec9db4770da5",
+  "operator_counts": {
+    "aten._local_scalar_dense.default": 1,
+    "aten._unsafe_view.default": 3,
+    "aten.add.Scalar": 3,
+    "aten.add.Tensor": 105,
+    "aten.clone.default": 3,
+    "aten.convolution_backward.default": 73,
+    "aten.cudnn_batch_norm_backward.default": 59,
+    "aten.detach.default": 204,
+    "aten.div.Scalar": 15,
+    "aten.div.Tensor": 36,
+    "aten.eq.Tensor": 12,
+    "aten.expand.default": 6,
+    "aten.ge.Scalar": 9,
+    "aten.gt.Tensor": 6,
+    "aten.index_put.default": 3,
+    "aten.lt.Tensor": 6,
+    "aten.masked_fill_.Scalar": 12,
+    "aten.max_pool2d_with_indices_backward.default": 3,
+    "aten.mul.Scalar": 18,
+    "aten.mul.Tensor": 86,
+    "aten.neg.default": 57,
+    "aten.new_zeros.default": 3,
+    "aten.ones_like.default": 1,
+    "aten.permute.default": 6,
+    "aten.pow.Tensor_Scalar": 18,
+    "aten.scalar_tensor.default": 9,
+    "aten.select.int": 12,
+    "aten.select_backward.default": 60,
+    "aten.sigmoid.default": 3,
+    "aten.sigmoid_backward.default": 6,
+    "aten.silu_backward.default": 59,
+    "aten.slice.Tensor": 34,
+    "aten.slice_backward.default": 18,
+    "aten.sub.Tensor": 3,
+    "aten.sum.default": 6,
+    "aten.upsample_nearest2d_backward.default": 2,
+    "aten.view.default": 9,
+    "aten.where.self": 21
+  },
+  "scope": "Repeated pure operations on identical arguments; original first result returned unchanged"
+}

@@ -1,0 +1,64 @@
+{
+  "findings": [
+    {
+      "capture": "capture-0.pt",
+      "occurrence": 157,
+      "operator": "aten.convolution_backward.default",
+      "outputs": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "max_abs": 2.9103830456733704e-11,
+          "shape": [
+            768,
+            3,
+            16,
+            16
+          ],
+          "within_tolerance": true
+        },
+        {
+          "bitwise_equal": true,
+          "dtype": "torch.float32",
+          "max_abs": 0.0,
+          "shape": [
+            768
+          ],
+          "within_tolerance": true
+        }
+      ],
+      "schema": "aten::convolution_backward(Tensor grad_output, Tensor input, Tensor weight, SymInt[]? bias_sizes, SymInt[] stride, SymInt[] padding, SymInt[] dilation, bool transposed, SymInt[] output_padding, SymInt groups, bool[3] output_mask) -> (Tensor, Tensor, Tensor)"
+    }
+  ],
+  "observer_sha256": "9977679db954ec7e6e9dc2d3f65225e5b9430ed050509c0db0a9ec9db4770da5",
+  "operator_counts": {
+    "aten._local_scalar_dense.default": 200,
+    "aten._log_softmax_backward_data.default": 200,
+    "aten._softmax_backward_data.default": 2400,
+    "aten._unsafe_view.default": 4800,
+    "aten.add.Tensor": 14400,
+    "aten.bmm.default": 9600,
+    "aten.clone.default": 4800,
+    "aten.convolution_backward.default": 200,
+    "aten.detach.default": 35600,
+    "aten.div.Tensor": 5000,
+    "aten.expand.default": 200,
+    "aten.mm.default": 19600,
+    "aten.mul.Scalar": 2400,
+    "aten.mul.Tensor": 22000,
+    "aten.native_dropout_backward.default": 9800,
+    "aten.native_layer_norm_backward.default": 5000,
+    "aten.neg.default": 200,
+    "aten.ones_like.default": 200,
+    "aten.permute.default": 2400,
+    "aten.pow.Tensor_Scalar": 2400,
+    "aten.select_backward.default": 7400,
+    "aten.slice.Tensor": 400,
+    "aten.sum.dim_IntList": 10200,
+    "aten.t.default": 39200,
+    "aten.tanh_backward.default": 2400,
+    "aten.transpose.int": 14600,
+    "aten.view.default": 43600
+  },
+  "scope": "Repeated pure operations on identical arguments; original first result returned unchanged"
+}

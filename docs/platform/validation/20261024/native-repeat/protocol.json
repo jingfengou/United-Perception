@@ -1,0 +1,48 @@
+{
+  "accuracy_threshold": null,
+  "atol": 1e-05,
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "device": 1,
+  "diagnostics": "Separate three-step gradient traces, 1/200-step operator capture and standalone raw ATen replay. Deterministic replay is control only.",
+  "expected_full_optimizer_updates": 14960,
+  "expected_full_runs": 8,
+  "full_model_order": [
+    "vit_b16",
+    "yolov5s"
+  ],
+  "gpu_uuid": "GPU-a11f730c-a975-2bf0-b765-3c24d83b7104",
+  "id": "nvidia-same-card-native-repeat-20261024",
+  "initialization": "Exactly the same initial/<model>/initial.pt as prior cohort; strict load and hash checks",
+  "models": {
+    "vit_b16": {
+      "epochs": 20,
+      "steps": 3140
+    },
+    "yolov5s": {
+      "epochs": 300,
+      "steps": 600
+    }
+  },
+  "new_runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "order_per_model": [
+    "original-01",
+    "new-01",
+    "new-02",
+    "original-02"
+  ],
+  "original_ref": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "original_source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "precision": "FP32 native; TF32 off; benchmark off; deterministic flags off",
+  "rtol": 0.0001,
+  "runtime_ref": "b137c68a1988e99b3cb19ac3307796b9ab70a984",
+  "seed": 131,
+  "selection": "All repeats, final epoch only; no retry or best selection",
+  "state": "Frozen before full completion; see report and final summary for actual status",
+  "tools": {
+    "compare_native_traces.py": "87f9f7b0d22ef795962dad78eb39895bdf74e224a059ccd1cb0c19d25018c9d1",
+    "probe_native_operators.py": "9977679db954ec7e6e9dc2d3f65225e5b9430ed050509c0db0a9ec9db4770da5",
+    "run_native_repeat.py": "725c003ce91d04ad890213aa841202a48e546d621a4bfd2d26c82edf879dd535",
+    "summarize_native_repeat.py": "5a775ca9e942b1e3a96a4b8d4e44006079023559998aaf3d1151fbca87448c52",
+    "trace_native_training.py": "a85800e508cefdc8bc945edff83d5f4ceb8218eb07878bf9a929e4ea0a725a87"
+  }
+}
