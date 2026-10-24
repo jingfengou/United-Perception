@@ -1,0 +1,13 @@
+{
+  "baseline_files": 618,
+  "baseline_revision": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "new_runtime_changed_from_local": [],
+  "new_runtime_files": 781,
+  "new_runtime_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
+  "normalization": "CRLF to LF only",
+  "original_added": [],
+  "original_changed": [],
+  "original_files": 618,
+  "original_missing": [],
+  "original_runtime_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e"
+}

@@ -1,0 +1,83 @@
+{
+  "baseline_revision": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "common_initials": {
+    "detr": {
+      "initial_sha256": "d1bbbc4743374aac78477322863a9c0af412598002e96a32546874b30bc0bc95",
+      "initial_state_sha256": "575e806bbfcf1423a6e9d8d0d32b4969d88660bf8a2c9ebef9dc86edcdc6ba54"
+    },
+    "resnet50": {
+      "initial_sha256": "028395c695e80e5119dbbb6cc389bb74cfc58506828ea3e528abda74b82806e6",
+      "initial_state_sha256": "165aca64cdae5851d5bdb5cde93d41c0bbc6dde5d8e55edf787d0838913df6f4"
+    },
+    "vit_b16": {
+      "initial_sha256": "32ec9a93c359073f03a4013b9afa381637a1b98365a0db153745422233e0c526",
+      "initial_state_sha256": "f609e98f496aeb48467186067db6cda3620a8be6c15494ec8b5b7e98ab02e4d7"
+    },
+    "yolov5s": {
+      "initial_sha256": "b1bf49f96f118ffc3a4d897fa9775b27113baade86bb3debd44a38312b09cf62",
+      "initial_state_sha256": "7f7e04e84843afb524a292e4256c48043acb048f82add11c3f4255a370432f03"
+    }
+  },
+  "cpu_source_archive_sha256": "8aa794cced405dac2e159f87152933d8238ae900bffbd7890f76cd9f5ef35fef",
+  "cpu_source_files_sha256": "97ad9a9137c5bffdac3a80dbe6d052aa5f3b04059439c677fabcff453a421cb0",
+  "cpu_tests": {
+    "metax": {
+      "sha256": "1866831cfb79c4071306bfee80d7a31c3eefe6e643559f11f69327df410d195c",
+      "suites": [
+        {
+          "errors": "0",
+          "failures": "0",
+          "hostname": "99f0fbb80f6d",
+          "name": "pytest",
+          "skipped": "0",
+          "tests": "102",
+          "time": "33.111",
+          "timestamp": "2026-10-24T19:24:07.750622+00:00"
+        }
+      ]
+    },
+    "nvidia": {
+      "sha256": "79d29d6a069ffea5879f98d5e4868e86648f331aad7acc696e40eed4ce35d42f",
+      "suites": [
+        {
+          "errors": "0",
+          "failures": "0",
+          "hostname": "ubuntu-Precision-7920-Tower",
+          "name": "pytest",
+          "skipped": "0",
+          "tests": "102",
+          "time": "11.372",
+          "timestamp": "2026-10-25T03:19:26.006228"
+        }
+      ]
+    }
+  },
+  "frozen_tool_bytes_sha256": {
+    "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+    "accuracy_detr.py": "adcabe3aa7d716581f115dae170689e52c4a218a6945c2796ed884130c20915b",
+    "accuracy_recipe.py": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6",
+    "accuracy_train.py": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+    "compare_platform_models.py": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472",
+    "full_accuracy_bind.py": "c390b13270b399c20df6139636264ca607cb85f9dae662146c873095f622c73e",
+    "full_accuracy_data.py": "e4ed34106739821f4ac4dee3425ecf7f9d288cf78a32c8c3f01ea516513933d6",
+    "full_accuracy_detr.py": "7f5a20ebba09e57b90a886f48f6b966c73f84ac2e53029abd59959220a3bf616",
+    "full_accuracy_recipe.py": "5b67bf4d3e46aa5f7f5fbdd9cc2c0a0b2ba47d3a0cff3b954117a8cdf773fb4f",
+    "full_accuracy_train.py": "6ac8e9336ce5f984ab48b81ced36f683ea49f13d5caf514ef176cd75476747c1",
+    "prepare_coco2017.py": "89428f3aceefb3209314a455383e142f06a84e772073b0da270c3363628d7945",
+    "prepare_imagenet_parquet.py": "ba11f5f2afcda6d871521db2aaf7194089b4fc9ee05cf1bef33a191ea40eeb0d",
+    "run_platform_validation.py": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5"
+  },
+  "full_training_complete": false,
+  "preflight_data_scope": "512 train/64 validation ImageNet, 128 train/64 validation COCO; complete class counts only",
+  "preflight_data_tar_sha256": "9cd5a064db44c27731cfb148041ecacd8776904a14fdb395e9fdcd4593791c9a",
+  "preflight_plan_sha256": "7d7812084e0d3ee6470a16bf08cdd1e802525ea0058f78bb105c6301b8d6a3ce",
+  "preflight_stage": "preflight-08, frozen helpers training-07",
+  "runtime_component_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
+  "sampler_resume_before_fix": {
+    "expected_failure": "test_resumed_aspect_grouping_discards_cached_epoch_zero",
+    "failures": 1,
+    "tests": 102,
+    "xml_sha256": "79eea7dfbaec6e6169c61eb781fd7023c6a8c200f68d5fbc5b00c50873556b7d"
+  },
+  "scope": "data preparation and preflight; no complete full-data training result"
+}
