@@ -127,6 +127,7 @@ def worker(args):
     from up_platform import configure_platform
     from up_platform.ops._native.loader import load_native
     platform = configure_platform({'backend': args.vendor}, purpose=args.purpose)
+    extension = load_native(args.vendor)
     platform.device.set_device(0)
     if args.deterministic:
         torch.use_deterministic_algorithms(True)
@@ -137,7 +138,7 @@ def worker(args):
         # Removed NumPy aliases were exactly the Python builtins, not float32.
         np.float, np.int, np.bool = float, int, bool
         sys.path.insert(0, str(args.baseline))
-        sys.modules['up.extensions._C'] = load_native(args.vendor)
+        sys.modules['up.extensions._C'] = extension
         if args.model == 'pointpillar':
             sys.meta_path.insert(0, LazyOptionalReader(args.baseline))
             if args.reference_defer_kitti:
@@ -231,7 +232,15 @@ def worker(args):
                                       'tasks': os.environ.get('DEFAULT_TASKS'),
                                       'config': MODELS[args.model], 'seed': 131, 'numerics': 'native',
                                       'deterministic_algorithms': args.deterministic,
+                                      'native_extension': {'path': str(extension.__file__),
+                                          'sha256': hashlib.sha256(Path(extension.__file__).read_bytes()).hexdigest(),
+                                          'roi_align_deterministic_backward_version': getattr(extension.roi_align, 'deterministic_backward_version', None)},
+                                      'launch_environment': {key: os.environ.get(key) for key in (
+                                          'CUBLAS_WORKSPACE_CONFIG', 'MCDNN_USE_DETERMINISTIC_ALGO', 'MCDNN_STABLE_RESULT_MOD',
+                                          'CUDA_VISIBLE_DEVICES', 'PYTHONHASHSEED', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS')},
                                       'reference_adaptations': ['collections.Iterable Python 3.12 alias', 'NumPy removed float/int/bool builtin aliases'] +
+                                          (['same vendor extension with fixed-order RoIAlign backward selected by Torch deterministic flag']
+                                           if args.deterministic and getattr(extension.roi_align, 'deterministic_backward_version', None) == 1 else []) +
                                           (['defer unused Open3D PCD reader import'] if args.model == 'pointpillar' else []) +
                                           (['defer unused KITTI Numba CUDA JIT import; original calculation unchanged if called']
                                            if args.model == 'pointpillar' and args.reference_defer_kitti else []),

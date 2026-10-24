@@ -1,7 +1,8 @@
 """Compare original UP Python/autograd bodies with explicit vendor bindings.
 
 The reference is extracted from the pinned upstream, not the old hardware main.
-Both paths use the same vendor-compiled, byte-identical upstream kernel source.
+Both paths use the same vendor-compiled extension and numerical selectors.
+Kernel corrections require separate correctness evidence, not this routing check.
 This isolates routing/autograd migration, not cross-vendor numerical equivalence.
 """
 import argparse
