@@ -1,0 +1,86 @@
+{
+  "atol": 1e-05,
+  "common_packages": {
+    "Pillow": "11.2.1",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "scipy": "1.16.0"
+  },
+  "controls": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "MCDNN_STABLE_RESULT_MOD": null,
+    "MCDNN_USE_DETERMINISTIC_ALGO": null,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic": true,
+    "tf32": false,
+    "warn_only": false
+  },
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "models": {
+    "vit_b16": {
+      "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+      "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+      "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+      "epochs": 20,
+      "expected_steps": 3140,
+      "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+      "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+      "reference_final_metrics": {
+        "top1": 25.75,
+        "top5": 79.25
+      },
+      "reference_report_sha256": {
+        "new-01": "8f8773e8397993ec7dbb6fec798bafc389b4d97bc29de7347cff5dd00250f2ab",
+        "new-02": "4dd39b40f8bbac52862a78fdd15a4470d2fedaaa7becb22d1932b113705c1856",
+        "original-01": "038dbc569daf20542ce82405acf599bf29b1cc3b9cb0ea3059e1c8ec86e30f2d",
+        "original-02": "74c2aa934fcfefa4e0b18534f13619d649f5e44d9abeda69a841ad249c51e37f"
+      }
+    },
+    "yolov5s": {
+      "algorithm_config_sha256": "53d7cf3889a6953faaa9ac0205d1220b385ba878c34265dd56ed1e551f91f3dd",
+      "all_batches_sha256": "6a98d209f260003e1a685c3e487a1f203e98869de55ab62cb43915f1d5e39aef",
+      "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+      "epochs": 300,
+      "expected_steps": 600,
+      "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+      "initial_state_sha256": "6b1cadc0a4478f58cbc6874b281c45f1a49225937611802f8a77a7144430206d",
+      "reference_final_metrics": {
+        "bbox.AP": 0.27423611431992984,
+        "bbox.AP.5": 0.5565714753726084,
+        "bbox.AP.75": 0.2304570393892731,
+        "bbox.AP_L": 0.3268274472374338,
+        "bbox.AP_M": 0.132140198961841,
+        "bbox.AP_S": 0.13465346534653463,
+        "bbox.AR": 0.5676691729323308,
+        "bbox.AR_1": 0.11353383458646615,
+        "bbox.AR_10": 0.5353383458646617,
+        "bbox.AR_L": 0.5975206611570247,
+        "bbox.AR_M": 0.3111111111111111,
+        "bbox.AR_S": 0.13333333333333333
+      },
+      "reference_report_sha256": {
+        "new-01": "c4b1a0df61062023082c6d0c897b46d36d632c5e7532fa155a157e467e5454be",
+        "new-02": "004e7b3aca661a72281e6ae58f27230bb18c48e25197924631d8df627ceda5df",
+        "original-01": "193143ec7fbb0ba51969f361cc6112be98b60b36b6477451f6d685d97ae8965e",
+        "original-02": "96daeff442084ebdbf7e224c135df28c3eac3240cb2c5246076a827266a1e9a2"
+      }
+    }
+  },
+  "pythonhashseed": "0",
+  "reference_tools": {
+    "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+    "accuracy_metrics.py": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+    "accuracy_recipe.py": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6",
+    "accuracy_train.py": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+    "compare_platform_models.py": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472",
+    "run_accuracy_cohort.py": "c5ae333ed466f9420b5651ffa0c6b8aa3c207db571d98894b2aad52ef03c4af4",
+    "run_platform_validation.py": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5"
+  },
+  "rtol": 0.0001,
+  "runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "seed": 131,
+  "selection": "One run per model, seed131, final epoch only, no retry/best selection",
+  "total_optimizer_updates": 3740
+}
