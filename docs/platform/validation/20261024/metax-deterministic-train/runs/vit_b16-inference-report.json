@@ -1,0 +1,16 @@
+{
+  "checkpoint_sha256": "b9427d541fcc05836d068495192c59a60aac180fdf503bd2498b9959638f638b",
+  "elapsed_seconds": 34.25956014171243,
+  "lane": "new_metax",
+  "metrics": {
+    "top1": 19.350000381469727,
+    "top5": 74.70000457763672
+  },
+  "model": "vit_b16",
+  "numerics": "native_deterministic",
+  "purpose": "inference",
+  "raw_report_sha256": "d809e94aa30eaf42134569800b25dd51f117136943552cedd2e96a4696101111",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "weights_exact": true
+}

@@ -1,0 +1,80 @@
+{
+  "adapter_sha256": null,
+  "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+  "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+  "checkpoint_all_states_finite": true,
+  "checkpoint_sha256": "b9427d541fcc05836d068495192c59a60aac180fdf503bd2498b9959638f638b",
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+  "environment": {
+    "controls": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "MCDNN_STABLE_RESULT_MOD": null,
+      "MCDNN_USE_DETERMINISTIC_ALGO": null,
+      "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic": true,
+    "deterministic_warn_only": false,
+    "fill_uninitialized_memory": true,
+    "gpu": "MetaX C500",
+    "matmul_tf32": false,
+    "packages": {
+      "Pillow": "11.2.1",
+      "numpy": "1.26.4",
+      "opencv-python": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "torch": "2.10.0+metax3.8.1.0",
+      "torchvision": "0.25.0+metax3.8.1.0"
+    },
+    "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+    "visible_devices": "2"
+  },
+  "epochs": 20,
+  "expected_steps": 3140,
+  "final_metrics": {
+    "top1": 19.350000381469727,
+    "top5": 74.70000457763672
+  },
+  "final_state_sha256": "a262fa4f6ac2d4ce261abf6e0a021c2b57ad86cd3ee34615fd4ffa5398e22a21",
+  "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+  "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+  "initial_metrics": {
+    "top1": 9.65000057220459,
+    "top5": 48.29999923706055
+  },
+  "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+  "lane": "new_metax",
+  "mode": "native_deterministic",
+  "model": "vit_b16",
+  "model_provenance": "native UP model",
+  "peak_allocated_bytes": 3591604736,
+  "peak_reserved_bytes": 4246732800,
+  "report_sha256": "35238a4a8fc668a4824fd1aa287e7bce686814566018bf26fa7768a486d72195",
+  "restore_weights_exact": true,
+  "restored_metric_delta": {
+    "top1": 0.0,
+    "top5": 0.0
+  },
+  "restored_metrics": {
+    "top1": 19.350000381469727,
+    "top5": 74.70000457763672
+  },
+  "scope": "Complete fixed small-data budget; one seed; no statistical equivalence claim. Official DETR adapter is external to UP.",
+  "seed": 131,
+  "selection": "final epoch only; no best checkpoint or rerun selection",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "total_worker_seconds": 640.9477920373902,
+  "training_steps": 3140,
+  "training_wall_seconds": 594.7848968366161,
+  "trajectory_counts": {
+    "epoch_metrics": 23,
+    "learning_rates": 3140,
+    "losses": 3140
+  }
+}

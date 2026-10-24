@@ -1,0 +1,9 @@
+{
+  "archive_bytes": 1236107,
+  "archive_sha256": "f78cd3826fd855f1481624ec0445a900e2aafff64c5e5744a3fdb539de15e21f",
+  "complete_runs": 2,
+  "large_artifacts": "Weights/checkpoints stay in the original task root; no dataset copies or weights in the archive",
+  "optimizer_updates": 3740,
+  "raw_bytes": 3636118270,
+  "raw_files": 155
+}

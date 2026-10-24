@@ -1,0 +1,10 @@
+{
+  "inference_report_sha256": "9c962dc16a221be5555359710db9e35e59c3efca2f2600727ab375332d28ac8c",
+  "labels_sha256": "4f330becf565813b86d87c9f848ac354303da175d1ae2eb101ec44bdbd4c6a4d",
+  "metrics": {
+    "top1": 25.75,
+    "top5": 79.25
+  },
+  "passed": true,
+  "predictions_sha256": "0366e1222fbcd1f4c3de61d19b46320984fa05a574674d960d8c64fbca6ca49d"
+}

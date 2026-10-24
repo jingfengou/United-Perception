@@ -1,0 +1,3 @@
+model,metric,original_nvidia_percent,new_nvidia_percent,new_metax_percent,metax_minus_nvidia_pp
+vit_b16,top1,25.75,25.75,19.350000381469727,-6.399999618530273
+yolov5s,bbox.AP,27.423611431992985,27.423611431992985,44.906118980483726,17.482507548490737

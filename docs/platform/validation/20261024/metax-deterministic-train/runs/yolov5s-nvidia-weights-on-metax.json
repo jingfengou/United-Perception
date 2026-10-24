@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "b102416430285cc90874c3a5bc8f973511dbf56ee479c4cf484d63ace4346b7f",
+  "elapsed_seconds": 23.92566990852356,
+  "lane": "new_metax",
+  "metrics": {
+    "bbox.AP": 0.27423611431992984,
+    "bbox.AP.5": 0.5565714753726084,
+    "bbox.AP.75": 0.2304570393892731,
+    "bbox.AP_L": 0.3268274472374338,
+    "bbox.AP_M": 0.132140198961841,
+    "bbox.AP_S": 0.13465346534653463,
+    "bbox.AR": 0.5676691729323308,
+    "bbox.AR_1": 0.11353383458646615,
+    "bbox.AR_10": 0.5353383458646617,
+    "bbox.AR_L": 0.5975206611570247,
+    "bbox.AR_M": 0.3111111111111111,
+    "bbox.AR_S": 0.13333333333333333
+  },
+  "model": "yolov5s",
+  "numerics": "native_deterministic",
+  "purpose": "inference",
+  "raw_report_sha256": "c78bf9994525c1ebda8f694d503ede60740b06ae07c1079be8925ec03424001f",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "weights_exact": true
+}

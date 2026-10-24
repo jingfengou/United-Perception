@@ -1,0 +1,41 @@
+{
+  "data_verification": {
+    "cifar10/test": {
+      "count": 2000,
+      "sha256": "dd6e672d9adbbfb4e63ac002f8aa236993494beeaf448660c0b371bbc7c3e96e"
+    },
+    "cifar10/train": {
+      "count": 10000,
+      "sha256": "b519c71152a778a5d201fdeec9b1f6b54ecf7b8a28b1fa836748a2180671ad6c"
+    },
+    "detr": "0bec6e1e5aeb57e452879341c3f68fff7e60272bdfdba250eaf9423704963ecd",
+    "detr_source": "954c6297faa72af4b59719a42c850d769d8276fcd99a7c704cb5e34f5e5eb5fb",
+    "pennfudan/test": {
+      "count": 50,
+      "sha256": "e683b4351fe438ca743c83e876b4c26a3d95cd3d646754cc98f448c0129d12d3"
+    },
+    "pennfudan/train": {
+      "count": 120,
+      "sha256": "fd3a94934e1d47aa53bd78dde623b6c96ef3434254fa4199f010e81ff77df693"
+    },
+    "resnet50_weights": "b77eecd6bb0a9d7ce8747d13a23f67fb014fb7ed586994cb849e8a9dfcb08cc8",
+    "yolov5_anchors": "0bbfb6aa570aeedf08142e10cd460157aab588e5a395f0771ce4c10cec9b09cd"
+  },
+  "initial_files": {
+    "vit_b16": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+    "yolov5s": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4"
+  },
+  "lease_available": true,
+  "packages": {
+    "Pillow": "11.2.1",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "scipy": "1.16.0",
+    "torch": "2.10.0+metax3.8.1.0",
+    "torchvision": "0.25.0+metax3.8.1.0"
+  },
+  "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "vendor": "metax"
+}

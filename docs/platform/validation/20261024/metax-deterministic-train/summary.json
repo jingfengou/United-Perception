@@ -1,0 +1,1632 @@
+{
+  "accuracy_threshold": null,
+  "controller": {
+    "command": [
+      "/workspace/up-run/venv/bin/python",
+      "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/run_accuracy_cohort.py",
+      "--source",
+      "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+      "--data",
+      "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+      "--initial",
+      "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/initial",
+      "--output",
+      "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results",
+      "--lock",
+      "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/worker.lock",
+      "--lane",
+      "new_metax",
+      "--device",
+      "2",
+      "--models",
+      "vit_b16",
+      "yolov5s",
+      "--deterministic"
+    ],
+    "completed": true,
+    "controller_sha256": "edba984c490cc84d866f3c0570b1166f9124bf2c88e26206c2b34bd2aded46c2",
+    "device": 2,
+    "exit_code": 0,
+    "finished_utc": "2026-10-24T14:19:04.371615+00:00",
+    "hardware": "mx-smi  version: 2.3.4\n\n=================== MetaX System Management Interface Log ===================\nTimestamp                                         : Sat Oct 24 13:38:20 2026\n\nAttached GPUs                                     : 8\n+---------------------------------------------------------------------------------+\n| MX-SMI 2.3.4                       Kernel Mode Driver Version: 3.6.11           |\n| MACA Version: 3.8.1.3              BIOS Version: 1.29.1.0                       |\n|------------------+-----------------+---------------------+----------------------|\n| Board       Name | GPU   Persist-M | Bus-id              | GPU-Util      sGPU-M |\n| Pwr:Usage/Cap    | Temp       Perf | Memory-Usage        | GPU-State            |\n|==================+=================+=====================+======================|\n| 2     MetaX C500 | 2           Off | 0000:0e:00.0        | 0%          Disabled |\n| 56W / 350W       | 37C          P0 | 858/65536 MiB       | Available            |\n+------------------+-----------------+---------------------+----------------------+\n\n+---------------------------------------------------------------------------------+\n| Process:                                                                        |\n|  GPU                    PID         Process Name                 GPU Memory     |\n|                                                                  Usage(MiB)     |\n|=================================================================================|\n|  no process found                                                               |\n+---------------------------------------------------------------------------------+\n\nEnd of Log\n",
+    "pci": "0000:0e:00.0",
+    "pid": 318155,
+    "plan_sha256": "5b37009b504fa11ac44e7fb7ab9bfb4f53964c3e2c1326fe1d3ae03a8b79ef24",
+    "seed": 131,
+    "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+    "started_utc": "2026-10-24T13:38:20.889125+00:00",
+    "status": "completed",
+    "tools": {
+      "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+      "accuracy_detr.py": "adcabe3aa7d716581f115dae170689e52c4a218a6945c2796ed884130c20915b",
+      "accuracy_metrics.py": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+      "accuracy_recipe.py": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6",
+      "accuracy_train.py": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+      "audit_model_verify.py": "c1153d8807daba4f7669f419a3345c36b0f7559931e3be03f8698d3700c0ad5b",
+      "audit_platform_publication.py": "39a40788d5373d7f3bc5e6c4265f5434048b654970ddcb33b8e65e7918b4ddd9",
+      "benchmark_roi_align.py": "0d50051f1e25910caf08a299d21d671a2b842003c90dd4de16d8d4cc5c4f9385",
+      "build_platform_extension.py": "8877bdc7cf91a76fef1dc99d90114036f00404ef1366b933c994e69ef657360b",
+      "capture_roi_align_cases.py": "ebf738809abe44ef3d32088ae64ee3b3ca7a8d0f09c09deee3ada2248f52d4be",
+      "check_platform_boundaries.py": "e5f034fe09dabe3a286d2d9278b88509a83be8223b49352e986438c18b6801ce",
+      "check_platform_docs.py": "e0f2eef64d3e10fc05a5a3ff32751c6ce9fde2a25b8e8de6711525a2d6cbab4b",
+      "check_platform_import.py": "a550372654464552978842edcc778bdde969c0be6937c6d3bba4392f9541f79d",
+      "collect_platform_evidence.py": "93a1e798f24959226173b46225d06c9e5cabdca6b37aed01cdb1f79c1a6f3e86",
+      "compare_native_traces.py": "87f9f7b0d22ef795962dad78eb39895bdf74e224a059ccd1cb0c19d25018c9d1",
+      "compare_platform_exports.py": "0df00bd48bc4c3ff06c4e814be014e712591b0f6e9d346621e283d68c2a4f76e",
+      "compare_platform_kitti.py": "a5aae8b14a41a11f05bf600a446ae7c8ad6ec3dc0d6094da8cb76ae60d91721a",
+      "compare_platform_models.py": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472",
+      "compare_platform_native.py": "751a61e32b41dd127e184b50e3019de13107fb6a58d69e8a31b89e0cf0a66d1d",
+      "compare_platform_toolchains.py": "ee941f08a21e2c1b7697ffafdba76cbd82771ca9a5e7e1f36b81d035c1da20bb",
+      "compare_roi_align_models.py": "7866533bb5cb2e4180751304f8e5abc406cffcc6aa850bc2f4b05b9d385684ac",
+      "diagnose_platform_operator.py": "8737f15b6edd85b216afa08419a082744d854accf9c63e4223775040a8cc56d1",
+      "new_platform_vendor.py": "05c055641371fbceb325e798e73bef7435bc7c1032095bb02784f0fb1de463ec",
+      "package_native_repeat.py": "12837b05246d726a109b9766d759b023291db6e6f0c25597af2521f77b625a73",
+      "platform_call_sites.py": "811eb30704234f8a5bd9638891296b9a295bdb1bad062afe6cdb6248023ce599",
+      "platform_contracts.py": "33dab126743faf190c64d9264bea211c3ed8953c316aeb23c0a1eadd0939ec48",
+      "platform_inventory.py": "e4165c7cb69bcd7cd46145841d7a87af471b70844b6bc193692add7b38f1b208",
+      "prepare_platform_dependencies.py": "d19e1091d8195d572a4c534f25e919062a52b4c5b3077117b75b982441b7a08a",
+      "prepare_roi_align_cases.py": "c7b33b9f625a9a135cae33b8cb8394db6032c8f5f9619d7d607327c5ec4453a7",
+      "probe_native_operators.py": "9977679db954ec7e6e9dc2d3f65225e5b9430ed050509c0db0a9ec9db4770da5",
+      "probe_platform_environment.py": "b105778ee0a4e390f399d646af63804b1ea5bb274ef3281043e5066a141b7bd8",
+      "probe_psroi_layout.py": "2992371b9857f2a9fdee7042c79c5d24b120308dd0873d34b6e8f1895c167d06",
+      "probe_yolo_targets.py": "82026eef488b147aed82ef279bd030196c7df8086c3cde37c4c5257dddfbff34",
+      "run_accuracy_cohort.py": "c5ae333ed466f9420b5651ffa0c6b8aa3c207db571d98894b2aad52ef03c4af4",
+      "run_native_repeat.py": "e4a641bb888eda0cf2afa876a13074f8ea00c5e9c59ff92361243487d2ca3e9c",
+      "run_platform_validation.py": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5",
+      "summarize_accuracy_cohort.py": "e14aaa524c6e9352b82ee55d047e29fec7d781798ba2ceb25930740769f2abf6",
+      "summarize_checkpoint_protocol.py": "1d113e572a99163cfe7cb3ff98a7e0d54f4e838241f2811c6d60af862bd09ee5",
+      "summarize_native_repeat.py": "8dbd3f7b28fe1efd016fd2e2695eebc4340899ad3c19f73e5d165a5b1f61b455",
+      "trace_native_training.py": "a85800e508cefdc8bc945edff83d5f4ceb8218eb07878bf9a929e4ea0a725a87",
+      "validate_platform_distributed.py": "0e303de2cf830ff9346ce4e0933f02258c0e8a757c50be2fab13b1832c925e90",
+      "validate_platform_kitti.py": "8785ea1a62929d3beec1f31d923426de95990ae488799297032a86ecb298cf63",
+      "validate_platform_roi_align.py": "27dfb14a66aaa6dd956613a1c0559cd0e8fc08a2490ce51fd2501d5b9b57503c",
+      "validate_platform_startup.py": "b5a7b3d6a93bde6ae3fd4f3cc7cef01e52402f3e62e0c972766e9276618a8ab3",
+      "verify_checkpoint_protocol.py": "0ef694b363559326e93a2713a7ab1d5f833bfca8e444299d9ba61cd47b20e8d9"
+    }
+  },
+  "cross_weight_controller": {
+    "commands": [
+      {
+        "command": [
+          "/workspace/up-run/venv/bin/python",
+          "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_train.py",
+          "--source",
+          "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+          "--data",
+          "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+          "--initial",
+          "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/reference-weights/vit_b16.pt",
+          "--output",
+          "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/cross-reference/vit_b16",
+          "--lane",
+          "new_metax",
+          "--model",
+          "vit_b16",
+          "--mode",
+          "inference",
+          "--deterministic"
+        ],
+        "exit_code": 0,
+        "model": "vit_b16",
+        "status": "completed"
+      },
+      {
+        "command": [
+          "/workspace/up-run/venv/bin/python",
+          "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_train.py",
+          "--source",
+          "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+          "--data",
+          "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+          "--initial",
+          "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/reference-weights/yolov5s.pt",
+          "--output",
+          "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/cross-reference/yolov5s",
+          "--lane",
+          "new_metax",
+          "--model",
+          "yolov5s",
+          "--mode",
+          "inference",
+          "--deterministic"
+        ],
+        "exit_code": 0,
+        "model": "yolov5s",
+        "status": "completed"
+      }
+    ],
+    "completed": true,
+    "controller_sha256": "96453b6311ca4ad3cdaba021eefbb8bcb13202e943f3d7a047f2131069a22ddb",
+    "created_utc": "2026-10-24T14:20:15.631810+00:00",
+    "finished_utc": "2026-10-24T14:21:38.818708+00:00",
+    "hardware": "mx-smi  version: 2.3.4\n\n=================== MetaX System Management Interface Log ===================\nTimestamp                                         : Sat Oct 24 14:20:15 2026\n\nAttached GPUs                                     : 8\n+---------------------------------------------------------------------------------+\n| MX-SMI 2.3.4                       Kernel Mode Driver Version: 3.6.11           |\n| MACA Version: 3.8.1.3              BIOS Version: 1.29.1.0                       |\n|------------------+-----------------+---------------------+----------------------|\n| Board       Name | GPU   Persist-M | Bus-id              | GPU-Util      sGPU-M |\n| Pwr:Usage/Cap    | Temp       Perf | Memory-Usage        | GPU-State            |\n|==================+=================+=====================+======================|\n| 2     MetaX C500 | 2           Off | 0000:0e:00.0        | 0%          Disabled |\n| 56W / 350W       | 37C          P0 | 858/65536 MiB       | Available            |\n+------------------+-----------------+---------------------+----------------------+\n\n+---------------------------------------------------------------------------------+\n| Process:                                                                        |\n|  GPU                    PID         Process Name                 GPU Memory     |\n|                                                                  Usage(MiB)     |\n|=================================================================================|\n|  no process found                                                               |\n+---------------------------------------------------------------------------------+\n\nEnd of Log\n",
+    "optimizer_updates": 0,
+    "pid": 318522,
+    "protocol_sha256": "58834a6894b445d6b15c6a8212b3c34cdfc9c50aa33834871fb8339039890173"
+  },
+  "determinism": "Strict native switches enabled; not proof that every vendor kernel or full training is repeatable",
+  "execution_jobs": [
+    {
+      "command": [
+        "/workspace/up-run/venv/bin/python",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_train.py",
+        "--source",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--data",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--output",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/vit_b16",
+        "--initial",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/initial/vit_b16/initial.pt",
+        "--lane",
+        "new_metax",
+        "--model",
+        "vit_b16",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "inference_command": [
+        "/workspace/up-run/venv/bin/python",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_train.py",
+        "--source",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--data",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--output",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/vit_b16/standalone-inference",
+        "--initial",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/vit_b16/final.pt",
+        "--lane",
+        "new_metax",
+        "--model",
+        "vit_b16",
+        "--deterministic",
+        "--mode",
+        "inference"
+      ],
+      "inference_exit_code": 0,
+      "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+      "metric_audit_command": [
+        "/workspace/up-run/venv/bin/python",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_metrics.py",
+        "--data",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--runs",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/vit_b16"
+      ],
+      "metric_audit_exit_code": 0,
+      "model": "vit_b16",
+      "report_sha256": "35238a4a8fc668a4824fd1aa287e7bce686814566018bf26fa7768a486d72195",
+      "status": "completed"
+    },
+    {
+      "command": [
+        "/workspace/up-run/venv/bin/python",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_train.py",
+        "--source",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--data",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--output",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/yolov5s",
+        "--initial",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/initial/yolov5s/initial.pt",
+        "--lane",
+        "new_metax",
+        "--model",
+        "yolov5s",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "inference_command": [
+        "/workspace/up-run/venv/bin/python",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_train.py",
+        "--source",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--data",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--output",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/yolov5s/standalone-inference",
+        "--initial",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/yolov5s/final.pt",
+        "--lane",
+        "new_metax",
+        "--model",
+        "yolov5s",
+        "--deterministic",
+        "--mode",
+        "inference"
+      ],
+      "inference_exit_code": 0,
+      "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+      "metric_audit_command": [
+        "/workspace/up-run/venv/bin/python",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/tools/accuracy_metrics.py",
+        "--data",
+        "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--runs",
+        "/workspace/up-run/up-platform-clean-20261023/metax-deterministic-train-20261024/results/yolov5s"
+      ],
+      "metric_audit_exit_code": 0,
+      "model": "yolov5s",
+      "report_sha256": "b6b76816e3e2bb1319c9cf8a6226bfed2101bb7df36323e13481670228a1a44b",
+      "status": "completed"
+    }
+  ],
+  "new_complete_runs": 2,
+  "new_extra_inference_runs": 2,
+  "new_optimizer_updates": 3740,
+  "records": [
+    {
+      "all_metric_deltas_pp": {
+        "top1": -6.399999618530273,
+        "top5": -4.549995422363281
+      },
+      "evaluation_comparison": [
+        {
+          "after_steps": 0,
+          "metax_percent": 9.65000057220459,
+          "nvidia_percent": 9.65000057220459
+        },
+        {
+          "after_steps": 157,
+          "metax_percent": 16.700000762939453,
+          "nvidia_percent": 19.05000114440918
+        },
+        {
+          "after_steps": 314,
+          "metax_percent": 20.850000381469727,
+          "nvidia_percent": 21.0
+        },
+        {
+          "after_steps": 471,
+          "metax_percent": 13.40000057220459,
+          "nvidia_percent": 18.200000762939453
+        },
+        {
+          "after_steps": 628,
+          "metax_percent": 14.25,
+          "nvidia_percent": 18.30000114440918
+        },
+        {
+          "after_steps": 785,
+          "metax_percent": 14.40000057220459,
+          "nvidia_percent": 18.850000381469727
+        },
+        {
+          "after_steps": 942,
+          "metax_percent": 9.65000057220459,
+          "nvidia_percent": 19.149999618530273
+        },
+        {
+          "after_steps": 1099,
+          "metax_percent": 14.300000190734863,
+          "nvidia_percent": 23.399999618530273
+        },
+        {
+          "after_steps": 1256,
+          "metax_percent": 16.0,
+          "nvidia_percent": 19.200000762939453
+        },
+        {
+          "after_steps": 1413,
+          "metax_percent": 14.90000057220459,
+          "nvidia_percent": 20.30000114440918
+        },
+        {
+          "after_steps": 1570,
+          "metax_percent": 17.850000381469727,
+          "nvidia_percent": 23.350000381469727
+        },
+        {
+          "after_steps": 1727,
+          "metax_percent": 19.25,
+          "nvidia_percent": 22.200000762939453
+        },
+        {
+          "after_steps": 1884,
+          "metax_percent": 19.399999618530273,
+          "nvidia_percent": 24.55000114440918
+        },
+        {
+          "after_steps": 2041,
+          "metax_percent": 15.75,
+          "nvidia_percent": 22.600000381469727
+        },
+        {
+          "after_steps": 2198,
+          "metax_percent": 15.40000057220459,
+          "nvidia_percent": 24.350000381469727
+        },
+        {
+          "after_steps": 2355,
+          "metax_percent": 14.600000381469727,
+          "nvidia_percent": 23.399999618530273
+        },
+        {
+          "after_steps": 2512,
+          "metax_percent": 18.200000762939453,
+          "nvidia_percent": 23.450000762939453
+        },
+        {
+          "after_steps": 2669,
+          "metax_percent": 19.75,
+          "nvidia_percent": 25.850000381469727
+        },
+        {
+          "after_steps": 2826,
+          "metax_percent": 17.899999618530273,
+          "nvidia_percent": 24.100000381469727
+        },
+        {
+          "after_steps": 2983,
+          "metax_percent": 19.450000762939453,
+          "nvidia_percent": 24.350000381469727
+        },
+        {
+          "after_steps": 3140,
+          "metax_percent": 19.350000381469727,
+          "nvidia_percent": 25.75
+        },
+        {
+          "after_steps": 3140,
+          "metax_percent": 19.350000381469727,
+          "nvidia_percent": 25.75
+        },
+        {
+          "after_steps": 3140,
+          "metax_percent": 19.350000381469727,
+          "nvidia_percent": 25.75
+        }
+      ],
+      "final_model_states_bitwise_equal": false,
+      "learning_rates_sha256": "e9611411d3a05892a9896941659094169385db25fd39eecd535324f0c07967e6",
+      "loss_comparison": {
+        "atol": 1e-05,
+        "exceeding_tolerance_steps": 3121,
+        "first_difference_step": 1,
+        "first_difference_values": {
+          "metax": 2.3060355186462402,
+          "nvidia": 2.3273837566375732
+        },
+        "first_exceeding_tolerance_step": 1,
+        "maximum_abs_difference": 0.14299964904785156,
+        "rtol": 0.0001,
+        "steps": 3140,
+        "values_equal": false
+      },
+      "matched_conditions": {
+        "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+        "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+        "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+        "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+        "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+        "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+        "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567"
+      },
+      "metax": {
+        "checkpoint_sha256": "b9427d541fcc05836d068495192c59a60aac180fdf503bd2498b9959638f638b",
+        "environment": {
+          "controls": {
+            "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+            "MCDNN_STABLE_RESULT_MOD": null,
+            "MCDNN_USE_DETERMINISTIC_ALGO": null,
+            "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+            "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+          },
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "cudnn_tf32": false,
+          "deterministic": true,
+          "deterministic_warn_only": false,
+          "fill_uninitialized_memory": true,
+          "gpu": "MetaX C500",
+          "matmul_tf32": false,
+          "packages": {
+            "Pillow": "11.2.1",
+            "numpy": "1.26.4",
+            "opencv-python": "4.11.0.86",
+            "pycocotools": "2.0.10",
+            "scipy": "1.16.0",
+            "torch": "2.10.0+metax3.8.1.0",
+            "torchvision": "0.25.0+metax3.8.1.0"
+          },
+          "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+          "visible_devices": "2"
+        },
+        "epoch_metrics": [
+          {
+            "after_steps": 0,
+            "metrics": {
+              "top1": 9.65000057220459,
+              "top5": 48.29999923706055
+            }
+          },
+          {
+            "after_steps": 157,
+            "metrics": {
+              "top1": 16.700000762939453,
+              "top5": 64.4000015258789
+            }
+          },
+          {
+            "after_steps": 314,
+            "metrics": {
+              "top1": 20.850000381469727,
+              "top5": 71.4000015258789
+            }
+          },
+          {
+            "after_steps": 471,
+            "metrics": {
+              "top1": 13.40000057220459,
+              "top5": 62.5
+            }
+          },
+          {
+            "after_steps": 628,
+            "metrics": {
+              "top1": 14.25,
+              "top5": 55.0
+            }
+          },
+          {
+            "after_steps": 785,
+            "metrics": {
+              "top1": 14.40000057220459,
+              "top5": 50.5
+            }
+          },
+          {
+            "after_steps": 942,
+            "metrics": {
+              "top1": 9.65000057220459,
+              "top5": 59.150001525878906
+            }
+          },
+          {
+            "after_steps": 1099,
+            "metrics": {
+              "top1": 14.300000190734863,
+              "top5": 62.60000228881836
+            }
+          },
+          {
+            "after_steps": 1256,
+            "metrics": {
+              "top1": 16.0,
+              "top5": 64.0
+            }
+          },
+          {
+            "after_steps": 1413,
+            "metrics": {
+              "top1": 14.90000057220459,
+              "top5": 64.80000305175781
+            }
+          },
+          {
+            "after_steps": 1570,
+            "metrics": {
+              "top1": 17.850000381469727,
+              "top5": 71.4000015258789
+            }
+          },
+          {
+            "after_steps": 1727,
+            "metrics": {
+              "top1": 19.25,
+              "top5": 70.05000305175781
+            }
+          },
+          {
+            "after_steps": 1884,
+            "metrics": {
+              "top1": 19.399999618530273,
+              "top5": 69.70000457763672
+            }
+          },
+          {
+            "after_steps": 2041,
+            "metrics": {
+              "top1": 15.75,
+              "top5": 70.20000457763672
+            }
+          },
+          {
+            "after_steps": 2198,
+            "metrics": {
+              "top1": 15.40000057220459,
+              "top5": 70.25
+            }
+          },
+          {
+            "after_steps": 2355,
+            "metrics": {
+              "top1": 14.600000381469727,
+              "top5": 70.1500015258789
+            }
+          },
+          {
+            "after_steps": 2512,
+            "metrics": {
+              "top1": 18.200000762939453,
+              "top5": 67.8499984741211
+            }
+          },
+          {
+            "after_steps": 2669,
+            "metrics": {
+              "top1": 19.75,
+              "top5": 72.30000305175781
+            }
+          },
+          {
+            "after_steps": 2826,
+            "metrics": {
+              "top1": 17.899999618530273,
+              "top5": 71.70000457763672
+            }
+          },
+          {
+            "after_steps": 2983,
+            "metrics": {
+              "top1": 19.450000762939453,
+              "top5": 73.05000305175781
+            }
+          },
+          {
+            "after_steps": 3140,
+            "metrics": {
+              "top1": 19.350000381469727,
+              "top5": 74.70000457763672
+            }
+          },
+          {
+            "after_steps": 3140,
+            "metrics": {
+              "top1": 19.350000381469727,
+              "top5": 74.70000457763672
+            }
+          },
+          {
+            "after_steps": 3140,
+            "metrics": {
+              "top1": 19.350000381469727,
+              "top5": 74.70000457763672
+            }
+          }
+        ],
+        "final_metrics": {
+          "top1": 19.350000381469727,
+          "top5": 74.70000457763672
+        },
+        "final_state_sha256": "a262fa4f6ac2d4ce261abf6e0a021c2b57ad86cd3ee34615fd4ffa5398e22a21",
+        "initial_metrics": {
+          "top1": 9.65000057220459,
+          "top5": 48.29999923706055
+        },
+        "peak_allocated_bytes": 3591604736,
+        "peak_reserved_bytes": 4246732800,
+        "restored_metrics": {
+          "top1": 19.350000381469727,
+          "top5": 74.70000457763672
+        },
+        "training_steps": 3140,
+        "training_wall_seconds": 594.7848968366161
+      },
+      "metax_minus_nvidia_pp": -6.399999618530273,
+      "metax_report_sha256": "35238a4a8fc668a4824fd1aa287e7bce686814566018bf26fa7768a486d72195",
+      "model": "vit_b16",
+      "nvidia_final_weights_on_metax": {
+        "all_metrics_equal_to_nvidia": true,
+        "delta_from_nvidia_pp": 0.0,
+        "inference_report_sha256": "9c962dc16a221be5555359710db9e35e59c3efca2f2600727ab375332d28ac8c",
+        "metax_trained_minus_nvidia_trained_same_eval_device_pp": -6.399999618530273,
+        "metrics": {
+          "top1": 25.75,
+          "top5": 79.25
+        },
+        "model_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+        "primary_metric_percent": 25.75
+      },
+      "nvidia_replicates": {
+        "new-01": {
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "report_sha256": "8f8773e8397993ec7dbb6fec798bafc389b4d97bc29de7347cff5dd00250f2ab"
+        },
+        "new-02": {
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "report_sha256": "4dd39b40f8bbac52862a78fdd15a4470d2fedaaa7becb22d1932b113705c1856"
+        },
+        "original-01": {
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "report_sha256": "038dbc569daf20542ce82405acf599bf29b1cc3b9cb0ea3059e1c8ec86e30f2d"
+        },
+        "original-02": {
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "report_sha256": "74c2aa934fcfefa4e0b18534f13619d649f5e44d9abeda69a841ad249c51e37f"
+        }
+      },
+      "primary_metric": "top1",
+      "values_percent": {
+        "new_metax": 19.350000381469727,
+        "new_nvidia": 25.75,
+        "original_nvidia": 25.75
+      }
+    },
+    {
+      "all_metric_deltas_pp": {
+        "bbox.AP": 17.482507548490737,
+        "bbox.AP.5": 27.6264710077187,
+        "bbox.AP.75": 18.964525251202403,
+        "bbox.AP_L": 15.546098206032093,
+        "bbox.AP_M": 6.907657315660409,
+        "bbox.AP_S": -13.465346534653463,
+        "bbox.AR": 1.8045112781954864,
+        "bbox.AR_1": 10.526315789473678,
+        "bbox.AR_10": 0.9774436090225547,
+        "bbox.AR_L": 1.6528925619834767,
+        "bbox.AR_M": 8.888888888888891,
+        "bbox.AR_S": -13.333333333333334
+      },
+      "evaluation_comparison": [
+        {
+          "after_steps": 0,
+          "metax_percent": 0.0,
+          "nvidia_percent": 0.0
+        },
+        {
+          "after_steps": 20,
+          "metax_percent": 0.0011028663526331767,
+          "nvidia_percent": 0.0
+        },
+        {
+          "after_steps": 40,
+          "metax_percent": 0.1458404622968501,
+          "nvidia_percent": 0.2613381140984086
+        },
+        {
+          "after_steps": 60,
+          "metax_percent": 0.2598225239214167,
+          "nvidia_percent": 0.1123860360111623
+        },
+        {
+          "after_steps": 80,
+          "metax_percent": 0.25128128451572856,
+          "nvidia_percent": 0.3147087588296924
+        },
+        {
+          "after_steps": 100,
+          "metax_percent": 0.6079175183506029,
+          "nvidia_percent": 0.341482523375945
+        },
+        {
+          "after_steps": 120,
+          "metax_percent": 2.344533012402927,
+          "nvidia_percent": 3.397100011110822
+        },
+        {
+          "after_steps": 140,
+          "metax_percent": 0.4881273571630827,
+          "nvidia_percent": 6.235436908282688
+        },
+        {
+          "after_steps": 160,
+          "metax_percent": 8.527836554842615,
+          "nvidia_percent": 5.827506556158165
+        },
+        {
+          "after_steps": 180,
+          "metax_percent": 9.548728785496879,
+          "nvidia_percent": 10.604859489491645
+        },
+        {
+          "after_steps": 200,
+          "metax_percent": 6.581990221073973,
+          "nvidia_percent": 16.41492977449253
+        },
+        {
+          "after_steps": 220,
+          "metax_percent": 9.577712128049356,
+          "nvidia_percent": 9.600361556376383
+        },
+        {
+          "after_steps": 240,
+          "metax_percent": 21.31677077762359,
+          "nvidia_percent": 22.638062462122335
+        },
+        {
+          "after_steps": 260,
+          "metax_percent": 18.24137844098136,
+          "nvidia_percent": 18.558081355165946
+        },
+        {
+          "after_steps": 280,
+          "metax_percent": 22.55324208676693,
+          "nvidia_percent": 24.09435491771794
+        },
+        {
+          "after_steps": 300,
+          "metax_percent": 32.17661695696206,
+          "nvidia_percent": 21.610621171619737
+        },
+        {
+          "after_steps": 320,
+          "metax_percent": 24.38468069894938,
+          "nvidia_percent": 21.721084139776643
+        },
+        {
+          "after_steps": 340,
+          "metax_percent": 33.921682794575304,
+          "nvidia_percent": 24.645241687800258
+        },
+        {
+          "after_steps": 360,
+          "metax_percent": 33.826610777890124,
+          "nvidia_percent": 17.879453813750143
+        },
+        {
+          "after_steps": 380,
+          "metax_percent": 27.733499745841694,
+          "nvidia_percent": 19.322045033320205
+        },
+        {
+          "after_steps": 400,
+          "metax_percent": 35.386794665777856,
+          "nvidia_percent": 26.60510324219253
+        },
+        {
+          "after_steps": 420,
+          "metax_percent": 34.33115958682285,
+          "nvidia_percent": 30.46763289058513
+        },
+        {
+          "after_steps": 440,
+          "metax_percent": 37.77914624701751,
+          "nvidia_percent": 24.46986868319287
+        },
+        {
+          "after_steps": 460,
+          "metax_percent": 37.90653849015189,
+          "nvidia_percent": 27.38469825907457
+        },
+        {
+          "after_steps": 480,
+          "metax_percent": 30.333349725685473,
+          "nvidia_percent": 31.586190305612522
+        },
+        {
+          "after_steps": 500,
+          "metax_percent": 39.658588462835276,
+          "nvidia_percent": 32.9167706565388
+        },
+        {
+          "after_steps": 520,
+          "metax_percent": 40.409543862155495,
+          "nvidia_percent": 30.46333717651315
+        },
+        {
+          "after_steps": 540,
+          "metax_percent": 41.82923136156737,
+          "nvidia_percent": 30.84515673404558
+        },
+        {
+          "after_steps": 560,
+          "metax_percent": 37.863676379990515,
+          "nvidia_percent": 27.17294226018353
+        },
+        {
+          "after_steps": 580,
+          "metax_percent": 41.583847789448726,
+          "nvidia_percent": 32.19392336752014
+        },
+        {
+          "after_steps": 600,
+          "metax_percent": 44.906118980483726,
+          "nvidia_percent": 27.423611431992985
+        },
+        {
+          "after_steps": 600,
+          "metax_percent": 44.906118980483726,
+          "nvidia_percent": 27.423611431992985
+        },
+        {
+          "after_steps": 600,
+          "metax_percent": 44.906118980483726,
+          "nvidia_percent": 27.423611431992985
+        }
+      ],
+      "final_model_states_bitwise_equal": false,
+      "learning_rates_sha256": "c1d5eb4d53c0725e442dc420854aa9cb0978074c685e895a1ba1afaba9e40f83",
+      "loss_comparison": {
+        "atol": 1e-05,
+        "exceeding_tolerance_steps": 592,
+        "first_difference_step": 1,
+        "first_difference_values": {
+          "metax": 13.515100479125977,
+          "nvidia": 13.51510238647461
+        },
+        "first_exceeding_tolerance_step": 4,
+        "maximum_abs_difference": 0.8775835037231445,
+        "rtol": 0.0001,
+        "steps": 600,
+        "values_equal": false
+      },
+      "matched_conditions": {
+        "algorithm_config_sha256": "53d7cf3889a6953faaa9ac0205d1220b385ba878c34265dd56ed1e551f91f3dd",
+        "all_batches_sha256": "6a98d209f260003e1a685c3e487a1f203e98869de55ab62cb43915f1d5e39aef",
+        "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+        "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+        "first_batch_sha256": "40cd5106f1f315145aa8f9c6cc5ce72f31ce99c76d6ae923d9937d026c65e526",
+        "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+        "initial_state_sha256": "6b1cadc0a4478f58cbc6874b281c45f1a49225937611802f8a77a7144430206d"
+      },
+      "metax": {
+        "checkpoint_sha256": "b8c57171a662c5c81536a56cc0f8b1640132066181eea4672f4790eff72a8c61",
+        "environment": {
+          "controls": {
+            "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+            "MCDNN_STABLE_RESULT_MOD": null,
+            "MCDNN_USE_DETERMINISTIC_ALGO": null,
+            "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+            "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+          },
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "cudnn_tf32": false,
+          "deterministic": true,
+          "deterministic_warn_only": false,
+          "fill_uninitialized_memory": true,
+          "gpu": "MetaX C500",
+          "matmul_tf32": false,
+          "packages": {
+            "Pillow": "11.2.1",
+            "numpy": "1.26.4",
+            "opencv-python": "4.11.0.86",
+            "pycocotools": "2.0.10",
+            "scipy": "1.16.0",
+            "torch": "2.10.0+metax3.8.1.0",
+            "torchvision": "0.25.0+metax3.8.1.0"
+          },
+          "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+          "visible_devices": "2"
+        },
+        "epoch_metrics": [
+          {
+            "after_steps": 0,
+            "metrics": {
+              "bbox.AP": 0.0,
+              "bbox.AP.5": 0.0,
+              "bbox.AP.75": 0.0,
+              "bbox.AP_L": 0.0,
+              "bbox.AP_M": 0.0,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.0,
+              "bbox.AR_1": 0.0,
+              "bbox.AR_10": 0.0,
+              "bbox.AR_L": 0.0,
+              "bbox.AR_M": 0.0,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 20,
+            "metrics": {
+              "bbox.AP": 1.1028663526331768e-05,
+              "bbox.AP.5": 4.967882638740542e-05,
+              "bbox.AP.75": 2.4458967635894023e-06,
+              "bbox.AP_L": 0.0003933533797842196,
+              "bbox.AP_M": 0.0,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.011278195488721804,
+              "bbox.AR_1": 0.0,
+              "bbox.AR_10": 0.0,
+              "bbox.AR_L": 0.012396694214876033,
+              "bbox.AR_M": 0.0,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 40,
+            "metrics": {
+              "bbox.AP": 0.001458404622968501,
+              "bbox.AP.5": 0.0070401283659670515,
+              "bbox.AP.75": 2.7005959455538185e-05,
+              "bbox.AP_L": 0.001607795008168557,
+              "bbox.AP_M": 0.0,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.10676691729323307,
+              "bbox.AR_1": 0.0,
+              "bbox.AR_10": 0.02330827067669173,
+              "bbox.AR_L": 0.11735537190082646,
+              "bbox.AR_M": 0.0,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 60,
+            "metrics": {
+              "bbox.AP": 0.002598225239214167,
+              "bbox.AP.5": 0.010079661454821573,
+              "bbox.AP.75": 0.0007508400643057442,
+              "bbox.AP_L": 0.003699875636485575,
+              "bbox.AP_M": 0.0,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.14210526315789473,
+              "bbox.AR_1": 0.005263157894736842,
+              "bbox.AR_10": 0.03759398496240601,
+              "bbox.AR_L": 0.15619834710743802,
+              "bbox.AR_M": 0.0,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 80,
+            "metrics": {
+              "bbox.AP": 0.002512812845157286,
+              "bbox.AP.5": 0.016236021505211244,
+              "bbox.AP.75": 2.2128209624008485e-05,
+              "bbox.AP_L": 0.004821935978537845,
+              "bbox.AP_M": 0.00012080783675184493,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.11428571428571428,
+              "bbox.AR_1": 0.004511278195488721,
+              "bbox.AR_10": 0.035338345864661655,
+              "bbox.AR_L": 0.12231404958677686,
+              "bbox.AR_M": 0.04444444444444444,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 100,
+            "metrics": {
+              "bbox.AP": 0.006079175183506029,
+              "bbox.AP.5": 0.029120501463321048,
+              "bbox.AP.75": 0.0002934134261263166,
+              "bbox.AP_L": 0.014061007188370793,
+              "bbox.AP_M": 5.01040203030204e-05,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.2037593984962406,
+              "bbox.AR_1": 0.005263157894736842,
+              "bbox.AR_10": 0.06240601503759398,
+              "bbox.AR_L": 0.2223140495867769,
+              "bbox.AR_M": 0.02222222222222222,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 120,
+            "metrics": {
+              "bbox.AP": 0.02344533012402927,
+              "bbox.AP.5": 0.08421604464300192,
+              "bbox.AP.75": 0.007251816039103846,
+              "bbox.AP_L": 0.03484723048121203,
+              "bbox.AP_M": 0.0013271178995903148,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.23609022556390977,
+              "bbox.AR_1": 0.02781954887218045,
+              "bbox.AR_10": 0.08345864661654134,
+              "bbox.AR_L": 0.25041322314049586,
+              "bbox.AR_M": 0.12222222222222223,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 140,
+            "metrics": {
+              "bbox.AP": 0.004881273571630827,
+              "bbox.AP.5": 0.02140256826297058,
+              "bbox.AP.75": 0.0004860541804748305,
+              "bbox.AP_L": 0.010456999008762648,
+              "bbox.AP_M": 0.0012864635411971178,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.08496240601503759,
+              "bbox.AR_1": 0.008270676691729323,
+              "bbox.AR_10": 0.04586466165413534,
+              "bbox.AR_L": 0.07768595041322315,
+              "bbox.AR_M": 0.2111111111111111,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 160,
+            "metrics": {
+              "bbox.AP": 0.08527836554842616,
+              "bbox.AP.5": 0.22729276323688924,
+              "bbox.AP.75": 0.031188843947748176,
+              "bbox.AP_L": 0.13944644579584772,
+              "bbox.AP_M": 0.003774227949908692,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.3872180451127819,
+              "bbox.AR_1": 0.05789473684210526,
+              "bbox.AR_10": 0.262406015037594,
+              "bbox.AR_L": 0.40826446280991735,
+              "bbox.AR_M": 0.23333333333333334,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 180,
+            "metrics": {
+              "bbox.AP": 0.09548728785496878,
+              "bbox.AP.5": 0.2634965889225619,
+              "bbox.AP.75": 0.03582449757734357,
+              "bbox.AP_L": 0.11479379149942459,
+              "bbox.AP_M": 0.0015795535102087232,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.4022556390977443,
+              "bbox.AR_1": 0.07443609022556391,
+              "bbox.AR_10": 0.2834586466165413,
+              "bbox.AR_L": 0.4305785123966942,
+              "bbox.AR_M": 0.15555555555555556,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 200,
+            "metrics": {
+              "bbox.AP": 0.06581990221073973,
+              "bbox.AP.5": 0.22915798166744702,
+              "bbox.AP.75": 0.012748962086589028,
+              "bbox.AP_L": 0.07519864493827602,
+              "bbox.AP_M": 0.0015550907024140226,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.39248120300751876,
+              "bbox.AR_1": 0.05939849624060149,
+              "bbox.AR_10": 0.22481203007518796,
+              "bbox.AR_L": 0.4256198347107437,
+              "bbox.AR_M": 0.07777777777777777,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 220,
+            "metrics": {
+              "bbox.AP": 0.09577712128049357,
+              "bbox.AP.5": 0.2812505390769786,
+              "bbox.AP.75": 0.04136984728654762,
+              "bbox.AP_L": 0.11441985223829763,
+              "bbox.AP_M": 0.0005971759942590027,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.4714285714285714,
+              "bbox.AR_1": 0.06390977443609022,
+              "bbox.AR_10": 0.30676691729323313,
+              "bbox.AR_L": 0.5074380165289256,
+              "bbox.AR_M": 0.14444444444444443,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 240,
+            "metrics": {
+              "bbox.AP": 0.2131677077762359,
+              "bbox.AP.5": 0.5031470436451154,
+              "bbox.AP.75": 0.12863094929938848,
+              "bbox.AP_L": 0.23844672757232194,
+              "bbox.AP_M": 0.014766300652339217,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.4571428571428572,
+              "bbox.AR_1": 0.11353383458646618,
+              "bbox.AR_10": 0.39097744360902253,
+              "bbox.AR_L": 0.4942148760330579,
+              "bbox.AR_M": 0.11111111111111109,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 260,
+            "metrics": {
+              "bbox.AP": 0.1824137844098136,
+              "bbox.AP.5": 0.4343542009703223,
+              "bbox.AP.75": 0.10607074533655471,
+              "bbox.AP_L": 0.20210209412842028,
+              "bbox.AP_M": 0.011606337351121251,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.4924812030075188,
+              "bbox.AR_1": 0.1037593984962406,
+              "bbox.AR_10": 0.36165413533834584,
+              "bbox.AR_L": 0.5148760330578512,
+              "bbox.AR_M": 0.3555555555555556,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 280,
+            "metrics": {
+              "bbox.AP": 0.22553242086766928,
+              "bbox.AP.5": 0.49463036437560187,
+              "bbox.AP.75": 0.14344703529920838,
+              "bbox.AP_L": 0.2464855185577271,
+              "bbox.AP_M": 0.010890688521561267,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.47443609022556393,
+              "bbox.AR_1": 0.16165413533834588,
+              "bbox.AR_10": 0.36691729323308275,
+              "bbox.AR_L": 0.5024793388429752,
+              "bbox.AR_M": 0.2555555555555556,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 300,
+            "metrics": {
+              "bbox.AP": 0.32176616956962056,
+              "bbox.AP.5": 0.701237861171329,
+              "bbox.AP.75": 0.26875666520836267,
+              "bbox.AP_L": 0.3576730993776124,
+              "bbox.AP_M": 0.11712191662734772,
+              "bbox.AP_S": 0.0024045261669024044,
+              "bbox.AR": 0.5646616541353383,
+              "bbox.AR_1": 0.18195488721804512,
+              "bbox.AR_10": 0.47969924812030074,
+              "bbox.AR_L": 0.5793388429752067,
+              "bbox.AR_M": 0.4888888888888888,
+              "bbox.AR_S": 0.2
+            }
+          },
+          {
+            "after_steps": 320,
+            "metrics": {
+              "bbox.AP": 0.24384680698949382,
+              "bbox.AP.5": 0.61005447648023,
+              "bbox.AP.75": 0.1121004467615865,
+              "bbox.AP_L": 0.2688350683930892,
+              "bbox.AP_M": 0.08604299078874761,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.49924812030075183,
+              "bbox.AR_1": 0.1406015037593985,
+              "bbox.AR_10": 0.4007518796992481,
+              "bbox.AR_L": 0.5247933884297521,
+              "bbox.AR_M": 0.32222222222222224,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 340,
+            "metrics": {
+              "bbox.AP": 0.33921682794575303,
+              "bbox.AP.5": 0.7094549159759974,
+              "bbox.AP.75": 0.2493339722908751,
+              "bbox.AP_L": 0.3858536543494647,
+              "bbox.AP_M": 0.05068483444467661,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5541353383458646,
+              "bbox.AR_1": 0.15939849624060148,
+              "bbox.AR_10": 0.48345864661654137,
+              "bbox.AR_L": 0.5834710743801652,
+              "bbox.AR_M": 0.34444444444444444,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 360,
+            "metrics": {
+              "bbox.AP": 0.33826610777890126,
+              "bbox.AP.5": 0.7524173523978871,
+              "bbox.AP.75": 0.18978255700323415,
+              "bbox.AP_L": 0.3682582372889533,
+              "bbox.AP_M": 0.09948843006279601,
+              "bbox.AP_S": 0.024168570703224167,
+              "bbox.AR": 0.5345864661654135,
+              "bbox.AR_1": 0.1586466165413534,
+              "bbox.AR_10": 0.46616541353383456,
+              "bbox.AR_L": 0.5553719008264463,
+              "bbox.AR_M": 0.36666666666666664,
+              "bbox.AR_S": 0.2
+            }
+          },
+          {
+            "after_steps": 380,
+            "metrics": {
+              "bbox.AP": 0.27733499745841694,
+              "bbox.AP.5": 0.6332375834776807,
+              "bbox.AP.75": 0.139002149898876,
+              "bbox.AP_L": 0.2977945073028564,
+              "bbox.AP_M": 0.11683715486803242,
+              "bbox.AP_S": 0.028052805280528056,
+              "bbox.AR": 0.5488721804511278,
+              "bbox.AR_1": 0.15112781954887217,
+              "bbox.AR_10": 0.47593984962406016,
+              "bbox.AR_L": 0.5694214876033057,
+              "bbox.AR_M": 0.4333333333333334,
+              "bbox.AR_S": 0.06666666666666667
+            }
+          },
+          {
+            "after_steps": 400,
+            "metrics": {
+              "bbox.AP": 0.35386794665777854,
+              "bbox.AP.5": 0.7269037594227655,
+              "bbox.AP.75": 0.24639037916233927,
+              "bbox.AP_L": 0.37710005690933807,
+              "bbox.AP_M": 0.19430985330365907,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5338345864661653,
+              "bbox.AR_1": 0.18421052631578946,
+              "bbox.AR_10": 0.47894736842105257,
+              "bbox.AR_L": 0.5603305785123968,
+              "bbox.AR_M": 0.35555555555555557,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 420,
+            "metrics": {
+              "bbox.AP": 0.34331159586822846,
+              "bbox.AP.5": 0.7380459552699954,
+              "bbox.AP.75": 0.2252247721938681,
+              "bbox.AP_L": 0.3822795413156267,
+              "bbox.AP_M": 0.08302608718710626,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5654135338345865,
+              "bbox.AR_1": 0.16917293233082709,
+              "bbox.AR_10": 0.5022556390977444,
+              "bbox.AR_L": 0.5925619834710744,
+              "bbox.AR_M": 0.38888888888888884,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 440,
+            "metrics": {
+              "bbox.AP": 0.3777914624701751,
+              "bbox.AP.5": 0.7793548689987937,
+              "bbox.AP.75": 0.2755261228126516,
+              "bbox.AP_L": 0.405467247047003,
+              "bbox.AP_M": 0.20934566253115894,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5669172932330826,
+              "bbox.AR_1": 0.18872180451127818,
+              "bbox.AR_10": 0.5135338345864662,
+              "bbox.AR_L": 0.590909090909091,
+              "bbox.AR_M": 0.4333333333333333,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 460,
+            "metrics": {
+              "bbox.AP": 0.37906538490151886,
+              "bbox.AP.5": 0.7687751800366988,
+              "bbox.AP.75": 0.24895646791795126,
+              "bbox.AP_L": 0.4165317847247751,
+              "bbox.AP_M": 0.09667265614089703,
+              "bbox.AP_S": 0.012623762376237625,
+              "bbox.AR": 0.5624060150375939,
+              "bbox.AR_1": 0.19097744360902255,
+              "bbox.AR_10": 0.5105263157894737,
+              "bbox.AR_L": 0.5801652892561984,
+              "bbox.AR_M": 0.47777777777777775,
+              "bbox.AR_S": 0.1
+            }
+          },
+          {
+            "after_steps": 480,
+            "metrics": {
+              "bbox.AP": 0.3033334972568547,
+              "bbox.AP.5": 0.6167233980899052,
+              "bbox.AP.75": 0.24391396531394033,
+              "bbox.AP_L": 0.3449942101728231,
+              "bbox.AP_M": 0.07158133818572082,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5631578947368421,
+              "bbox.AR_1": 0.1571428571428571,
+              "bbox.AR_10": 0.525563909774436,
+              "bbox.AR_L": 0.5917355371900828,
+              "bbox.AR_M": 0.36666666666666664,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 500,
+            "metrics": {
+              "bbox.AP": 0.39658588462835276,
+              "bbox.AP.5": 0.7454971586858019,
+              "bbox.AP.75": 0.33910471970127776,
+              "bbox.AP_L": 0.4296596040358829,
+              "bbox.AP_M": 0.14100847813181003,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5812030075187969,
+              "bbox.AR_1": 0.19774436090225564,
+              "bbox.AR_10": 0.5218045112781955,
+              "bbox.AR_L": 0.6132231404958678,
+              "bbox.AR_M": 0.34444444444444444,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 520,
+            "metrics": {
+              "bbox.AP": 0.40409543862155495,
+              "bbox.AP.5": 0.7782664156100159,
+              "bbox.AP.75": 0.3529371118886599,
+              "bbox.AP_L": 0.436422779708459,
+              "bbox.AP_M": 0.17514147177429604,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5796992481203007,
+              "bbox.AR_1": 0.18421052631578946,
+              "bbox.AR_10": 0.5233082706766916,
+              "bbox.AR_L": 0.6107438016528927,
+              "bbox.AR_M": 0.3555555555555555,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 540,
+            "metrics": {
+              "bbox.AP": 0.41829231361567376,
+              "bbox.AP.5": 0.8128156225052298,
+              "bbox.AP.75": 0.29671827071279533,
+              "bbox.AP_L": 0.4498288807735807,
+              "bbox.AP_M": 0.13812431926436858,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5766917293233083,
+              "bbox.AR_1": 0.18646616541353384,
+              "bbox.AR_10": 0.5293233082706766,
+              "bbox.AR_L": 0.5983471074380166,
+              "bbox.AR_M": 0.47777777777777775,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 560,
+            "metrics": {
+              "bbox.AP": 0.3786367637999052,
+              "bbox.AP.5": 0.76649208440974,
+              "bbox.AP.75": 0.31903160064184244,
+              "bbox.AP_L": 0.40731352424865963,
+              "bbox.AP_M": 0.12544561925963027,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5428571428571429,
+              "bbox.AR_1": 0.1894736842105263,
+              "bbox.AR_10": 0.5,
+              "bbox.AR_L": 0.5669421487603306,
+              "bbox.AR_M": 0.4,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 580,
+            "metrics": {
+              "bbox.AP": 0.41583847789448725,
+              "bbox.AP.5": 0.8073190358522757,
+              "bbox.AP.75": 0.38216108319487924,
+              "bbox.AP_L": 0.44926924615547903,
+              "bbox.AP_M": 0.1588647234078402,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5631578947368421,
+              "bbox.AR_1": 0.20676691729323302,
+              "bbox.AR_10": 0.5240601503759399,
+              "bbox.AR_L": 0.5867768595041322,
+              "bbox.AR_M": 0.4333333333333334,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 600,
+            "metrics": {
+              "bbox.AP": 0.4490611898048372,
+              "bbox.AP.5": 0.8328361854497954,
+              "bbox.AP.75": 0.4201022919012971,
+              "bbox.AP_L": 0.48228842929775473,
+              "bbox.AP_M": 0.2012167721184451,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5857142857142856,
+              "bbox.AR_1": 0.21879699248120293,
+              "bbox.AR_10": 0.5451127819548872,
+              "bbox.AR_L": 0.6140495867768595,
+              "bbox.AR_M": 0.4,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 600,
+            "metrics": {
+              "bbox.AP": 0.4490611898048372,
+              "bbox.AP.5": 0.8328361854497954,
+              "bbox.AP.75": 0.4201022919012971,
+              "bbox.AP_L": 0.48228842929775473,
+              "bbox.AP_M": 0.2012167721184451,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5857142857142856,
+              "bbox.AR_1": 0.21879699248120293,
+              "bbox.AR_10": 0.5451127819548872,
+              "bbox.AR_L": 0.6140495867768595,
+              "bbox.AR_M": 0.4,
+              "bbox.AR_S": 0.0
+            }
+          },
+          {
+            "after_steps": 600,
+            "metrics": {
+              "bbox.AP": 0.4490611898048372,
+              "bbox.AP.5": 0.8328361854497954,
+              "bbox.AP.75": 0.4201022919012971,
+              "bbox.AP_L": 0.48228842929775473,
+              "bbox.AP_M": 0.2012167721184451,
+              "bbox.AP_S": 0.0,
+              "bbox.AR": 0.5857142857142856,
+              "bbox.AR_1": 0.21879699248120293,
+              "bbox.AR_10": 0.5451127819548872,
+              "bbox.AR_L": 0.6140495867768595,
+              "bbox.AR_M": 0.4,
+              "bbox.AR_S": 0.0
+            }
+          }
+        ],
+        "final_metrics": {
+          "bbox.AP": 0.4490611898048372,
+          "bbox.AP.5": 0.8328361854497954,
+          "bbox.AP.75": 0.4201022919012971,
+          "bbox.AP_L": 0.48228842929775473,
+          "bbox.AP_M": 0.2012167721184451,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.5857142857142856,
+          "bbox.AR_1": 0.21879699248120293,
+          "bbox.AR_10": 0.5451127819548872,
+          "bbox.AR_L": 0.6140495867768595,
+          "bbox.AR_M": 0.4,
+          "bbox.AR_S": 0.0
+        },
+        "final_state_sha256": "bb6a9c0cc4c14c3fb4765875eeb6d91e19947f3700a063bbc8eea98e6a22f49e",
+        "initial_metrics": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "peak_allocated_bytes": 6061424640,
+        "peak_reserved_bytes": 6517948416,
+        "restored_metrics": {
+          "bbox.AP": 0.4490611898048372,
+          "bbox.AP.5": 0.8328361854497954,
+          "bbox.AP.75": 0.4201022919012971,
+          "bbox.AP_L": 0.48228842929775473,
+          "bbox.AP_M": 0.2012167721184451,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.5857142857142856,
+          "bbox.AR_1": 0.21879699248120293,
+          "bbox.AR_10": 0.5451127819548872,
+          "bbox.AR_L": 0.6140495867768595,
+          "bbox.AR_M": 0.4,
+          "bbox.AR_S": 0.0
+        },
+        "training_steps": 600,
+        "training_wall_seconds": 1638.7139678401873
+      },
+      "metax_minus_nvidia_pp": 17.482507548490737,
+      "metax_report_sha256": "b6b76816e3e2bb1319c9cf8a6226bfed2101bb7df36323e13481670228a1a44b",
+      "model": "yolov5s",
+      "nvidia_final_weights_on_metax": {
+        "all_metrics_equal_to_nvidia": true,
+        "delta_from_nvidia_pp": 0.0,
+        "inference_report_sha256": "c78bf9994525c1ebda8f694d503ede60740b06ae07c1079be8925ec03424001f",
+        "metax_trained_minus_nvidia_trained_same_eval_device_pp": 17.48250754849074,
+        "metrics": {
+          "bbox.AP": 0.27423611431992984,
+          "bbox.AP.5": 0.5565714753726084,
+          "bbox.AP.75": 0.2304570393892731,
+          "bbox.AP_L": 0.3268274472374338,
+          "bbox.AP_M": 0.132140198961841,
+          "bbox.AP_S": 0.13465346534653463,
+          "bbox.AR": 0.5676691729323308,
+          "bbox.AR_1": 0.11353383458646615,
+          "bbox.AR_10": 0.5353383458646617,
+          "bbox.AR_L": 0.5975206611570247,
+          "bbox.AR_M": 0.3111111111111111,
+          "bbox.AR_S": 0.13333333333333333
+        },
+        "model_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+        "primary_metric_percent": 27.423611431992985
+      },
+      "nvidia_replicates": {
+        "new-01": {
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "report_sha256": "c4b1a0df61062023082c6d0c897b46d36d632c5e7532fa155a157e467e5454be"
+        },
+        "new-02": {
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "report_sha256": "004e7b3aca661a72281e6ae58f27230bb18c48e25197924631d8df627ceda5df"
+        },
+        "original-01": {
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "report_sha256": "193143ec7fbb0ba51969f361cc6112be98b60b36b6477451f6d685d97ae8965e"
+        },
+        "original-02": {
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "report_sha256": "96daeff442084ebdbf7e224c135df28c3eac3240cb2c5246076a827266a1e9a2"
+        }
+      },
+      "primary_metric": "bbox.AP",
+      "values_percent": {
+        "new_metax": 44.906118980483726,
+        "new_nvidia": 27.423611431992985,
+        "original_nvidia": 27.423611431992985
+      }
+    }
+  ],
+  "reference_complete_runs": 8,
+  "scope": "One C500 run per model vs frozen same-seed NVIDIA original/new repeats; fixed CIFAR-10/PennFudan budgets, not population equivalence or ImageNet/COCO convergence",
+  "seed": 131
+}
