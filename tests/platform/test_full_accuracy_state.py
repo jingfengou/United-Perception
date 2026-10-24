@@ -1,5 +1,6 @@
 """CPU contracts for the external long-run driver; no UP or vendor SDK needed."""
 import importlib.util
+import ast
 import copy
 import json
 from pathlib import Path
@@ -21,6 +22,36 @@ if HAS_TORCH:
 
 @unittest.skipUnless(HAS_TORCH, 'CPU PyTorch required')
 class TestFullTrainingState(unittest.TestCase):
+    def test_resumed_aspect_grouping_discards_cached_epoch_zero(self):
+        # Execute the real upstream sampler without importing the UP package.
+        # Its length query caches epoch-zero batches before resume sets epoch.
+        path = Path(__file__).resolve().parents[2]/'up/data/samplers/batch_sampler.py'
+        tree = ast.parse(path.read_text())
+        tree.body = [node for node in tree.body if not (
+            isinstance(node, ast.ImportFrom) and node.module == 'up.utils.general.registry_factory')]
+        namespace = {'BATCH_SAMPLER_REGISTRY': SimpleNamespace(register=lambda *_: lambda value: value)}
+        exec(compile(tree, str(path), 'exec'), namespace)
+        class Dataset:
+            aspect_ratios = [.5]*6+[2.]*6
+            def __len__(self):
+                return 12
+            def __getitem__(self, index):
+                return index
+        dataset = Dataset()
+        def grouped(epoch):
+            sampler = torch.utils.data.DistributedSampler(dataset, num_replicas=1, rank=0)
+            sampler.set_epoch(epoch)
+            return namespace['AspectRatioGroupedBatchSampler'](sampler, 2, [1.])
+        expected = list(grouped(3))[2]
+        cached = grouped(0)
+        size = len(cached)
+        self.assertTrue(cached._can_reuse_batches)
+        loader = torch.utils.data.DataLoader(dataset, batch_sampler=namespace['InfiniteBatchSampler'](cached))
+        loader.get_epoch_size = lambda: size
+        runner = SimpleNamespace(data_loaders={'train': loader})
+        training.iterator(runner, 'train', seed=131, rank=0, epoch=3, skip=2)
+        self.assertEqual(next(runner.data_iterators['train']).tolist(), expected)
+
     def runner(self):
         model = torch.nn.Sequential(torch.nn.BatchNorm1d(3), torch.nn.Linear(3, 2))
         optimizer = torch.optim.AdamW(model.parameters(), lr=.01)

@@ -81,6 +81,12 @@ def iterator(runner, split, *, seed, rank, epoch, skip=0):
     loader.generator = torch.Generator().manual_seed(seed+1000003*epoch+1009*rank+(0 if split == 'train' else 500000001))
     loader.worker_init_fn = worker_seed
     loader.batch_sampler.set_start_iter(epoch*loader.get_epoch_size())
+    # UP's aspect-ratio sampler can cache epoch-zero batches during its length
+    # query at construction. A new resume iterator must prepare this epoch's
+    # batches after InfiniteBatchSampler sets the underlying sampler's epoch.
+    grouped = loader.batch_sampler.batch_sampler
+    if hasattr(grouped, '_can_reuse_batches'):
+        grouped._can_reuse_batches = False
     if hasattr(runner, 'data_iterators'):
         runner.data_iterators.pop(split, None)
     else:
@@ -364,7 +370,7 @@ def run(args):
                 # Image roots differ by host; compare tensors/labels/IDs rather
                 # than embedding local absolute paths in the tensor digest.
                 input_hash = batch_hash({key: child for key, child in batch.items()
-                    if key not in ('filenames', 'filename')}) if index < 3 else None
+                    if key not in ('filenames', 'filename')}) if args.probe_steps or index < 3 else None
                 loss = runner.forward_train(batch)
                 runner.backward(loss)
                 runner.update()
