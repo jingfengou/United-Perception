@@ -6,7 +6,7 @@ from up_platform.contracts import operation
 class DetectionOps(ABC):
     @staticmethod
     @operation(source="up/extensions/python/roi_align.py:15", output="features[N,C,H,W], rois[R,5] -> [R,C,pooled_h,pooled_w]; aligned coordinates explicit.",
-               gradients="features only; save features/rois/aligned", dtype="Float16/32/64 matching features/rois, contiguous.",
+               gradients="features only; save features/rois/aligned; fixed-order GPU backward when Torch deterministic algorithms are enabled", dtype="Float16/32/64 matching features/rois, contiguous.",
                empty="Empty ROI -> zero-sized output and zero feature gradient.", export="Original RoiAlign symbol/attributes. Upstream binds AVG only, not MAX.",
                state="Original autograd buffers retained; no extra numerical policy.",
                device="Original device contract; no new CPU fallback.")

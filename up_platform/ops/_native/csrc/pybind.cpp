@@ -37,6 +37,7 @@ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
     // pybind ROIAlignPooling
     pybind11::module ra = m.def_submodule("roi_align",
                                           "roi alignment pooling");
+    ra.attr("deterministic_backward_version") = 1;
     ra.def("forward_avg_cuda", &roi_align_avg_forward_cuda, "roi_align avg forward (CUDA)");
     ra.def("backward_avg_cuda", &roi_align_avg_backward_cuda, "roi_align avg backward (CUDA)");
     // ra.def("forward_max_cuda", &roi_align_max_forward_cuda, "roi_align max forward (CUDA)");

@@ -51,6 +51,8 @@ class RoIAlignFunction(Function):
         assert grad_output.is_contiguous()
         assert rois.is_contiguous()
         if self.pooled_mode == 'AVG':
+            if torch.are_deterministic_algorithms_enabled() and getattr(self._roi_align, 'deterministic_backward_version', None) != 1:
+                raise RuntimeError('Rebuild the vendor extension for deterministic RoIAlign backward')
             backward_fn = self._roi_align.backward_avg_cuda
             backward_fn(self.aligned, self.pooled_h, self.pooled_w, self.spatial_scale, self.sampling_ratio, grad_output, rois, grad_input)
         elif self.pooled_mode == 'MAX':

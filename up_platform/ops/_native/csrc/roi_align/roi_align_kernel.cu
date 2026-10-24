@@ -2,6 +2,7 @@
 #include <ATen/ATen.h>
 #include <ATen/cuda/CUDAContext.h>
 #include <c10/cuda/CUDAGuard.h>
+#include <c10/cuda/CUDAException.h>
 #include <ATen/cuda/CUDAApplyUtils.cuh>
 
 using at::Tensor;
@@ -129,12 +130,14 @@ using at::Tensor;
     int ROIAlignAvgForwardLaucher(const bool aligned, Tensor bottom_data, const float spatial_scale, const int num_rois, const int height, const int width,
                                const int channels, const int aligned_height, const int aligned_width,  const int sampling_ratio,
                                Tensor bottom_rois, Tensor top_data) {
-        const int kThreadsPerBlock = 1024;
+        const int kThreadsPerBlock = bottom_data.scalar_type() == at::kDouble ? 256 : 1024;
         const int output_size = num_rois * aligned_height * aligned_width * channels;
         cudaError_t err;
+        const c10::cuda::CUDAGuard guard(bottom_data.device());
+        const auto stream = at::cuda::getCurrentCUDAStream();
 
         AT_DISPATCH_FLOATING_TYPES_AND_HALF(bottom_data.scalar_type(), "roi_align_forward_cuda", ([&] {
-            ROIAlignAvgForward<scalar_t><<<(output_size + kThreadsPerBlock - 1) / kThreadsPerBlock, kThreadsPerBlock>>>(
+            ROIAlignAvgForward<scalar_t><<<(output_size + kThreadsPerBlock - 1) / kThreadsPerBlock, kThreadsPerBlock, 0, stream>>>(
               aligned, output_size, 
               bottom_data.data_ptr<scalar_t>(), 
               (scalar_t)spatial_scale, height, width, 
@@ -280,14 +283,93 @@ using at::Tensor;
         } // CUDA_1D_KERNEL_LOOP
     } // RoIAlignBackward
 
+    // Each input pixel has one writer. RoIs, bins, samples and the four bilinear
+    // contributions are accumulated in a fixed order, using the original dtype.
+    template <typename scalar_t>
+    __global__ void ROIAlignAvgBackwardDeterministic(
+        const bool aligned, const int nthreads, const scalar_t* top_diff,
+        const scalar_t spatial_scale, const int num_rois, const int height,
+        const int width, const int channels, const int pooled_h, const int pooled_w,
+        const int sampling_ratio, scalar_t* bottom_diff, const scalar_t* rois) {
+        CUDA_1D_KERNEL_LOOP(index, nthreads) {
+            const int px = index % width, py = (index / width) % height;
+            const int channel = (index / width / height) % channels;
+            const int batch = index / width / height / channels;
+            scalar_t total = bottom_diff[index];
+            for (int n = 0; n < num_rois; ++n) {
+                const scalar_t* roi = rois + n * 5;
+                if (static_cast<int>(roi[0]) != batch) continue;
+                const scalar_t offset = aligned ? scalar_t(.5) : scalar_t(0);
+                const scalar_t start_x = roi[1] * spatial_scale - offset;
+                const scalar_t start_y = roi[2] * spatial_scale - offset;
+                scalar_t roi_w = roi[3] * spatial_scale - offset - start_x;
+                scalar_t roi_h = roi[4] * spatial_scale - offset - start_y;
+                if (!aligned) {
+                    roi_w = fmaxf(roi_w, scalar_t(1));
+                    roi_h = fmaxf(roi_h, scalar_t(1));
+                }
+                const scalar_t bin_h = roi_h / pooled_h, bin_w = roi_w / pooled_w;
+                const int grid_h = sampling_ratio > 0 ? sampling_ratio : ceil(roi_h / pooled_h);
+                const int grid_w = sampling_ratio > 0 ? sampling_ratio : ceil(roi_w / pooled_w);
+                if (grid_h <= 0 || grid_w <= 0) continue;
+                const scalar_t count = max(grid_h * grid_w, 1);
+                int first_h = 0, last_h = pooled_h - 1, first_w = 0, last_w = pooled_w - 1;
+                // A bilinear sample can affect only its adjacent pixels. Padding
+                // the bin bounds retains exact-boundary samples after rounding.
+                if (bin_h > scalar_t(0)) {
+                    first_h = int(fminf(float(pooled_h), fmaxf(0.f, floorf(float((scalar_t(py - 1) - start_y) / bin_h)) - 1)));
+                    last_h = int(fmaxf(-1.f, fminf(float(last_h), floorf(float((scalar_t(py + 1) - start_y) / bin_h)) + 1)));
+                }
+                if (bin_w > scalar_t(0)) {
+                    first_w = int(fminf(float(pooled_w), fmaxf(0.f, floorf(float((scalar_t(px - 1) - start_x) / bin_w)) - 1)));
+                    last_w = int(fmaxf(-1.f, fminf(float(last_w), floorf(float((scalar_t(px + 1) - start_x) / bin_w)) + 1)));
+                }
+                for (int ph = first_h; ph <= last_h; ++ph) {
+                    for (int pw = first_w; pw <= last_w; ++pw) {
+                        const scalar_t grad = top_diff[((n * channels + channel) * pooled_h + ph) * pooled_w + pw];
+                        for (int iy = 0; iy < grid_h; ++iy) {
+                            const scalar_t y = start_y + ph * bin_h + (iy + .5f) * bin_h / grid_h;
+                            for (int ix = 0; ix < grid_w; ++ix) {
+                                const scalar_t x = start_x + pw * bin_w + (ix + .5f) * bin_w / grid_w;
+                                scalar_t w1, w2, w3, w4;
+                                int xl, xh, yl, yh;
+                                bilinear_interpolate_gradient(height, width, y, x, w1, w2, w3, w4, xl, xh, yl, yh, index);
+                                if (xl < 0 || xh < 0 || yl < 0 || yh < 0) continue;
+                                if (px == xl && py == yl) total += grad * w1 / count;
+                                if (px == xh && py == yl) total += grad * w2 / count;
+                                if (px == xl && py == yh) total += grad * w3 / count;
+                                if (px == xh && py == yh) total += grad * w4 / count;
+                            }
+                        }
+                    }
+                }
+            }
+            bottom_diff[index] = total;
+        }
+    }
+
     int ROIAlignAvgBackwardLaucher(const bool aligned, Tensor top_diff, const float spatial_scale, const int batch_size, const int num_rois, const int height, const int width,
                                 const int channels, const int aligned_height, const int aligned_width, const int sampling_ratio,
                                 Tensor bottom_rois, Tensor bottom_diff) {
-        const int kThreadsPerBlock = 1024;
+        const int kThreadsPerBlock = top_diff.scalar_type() == at::kDouble ? 256 : 1024;
         const int output_size = num_rois * aligned_height * aligned_width * channels;
         cudaError_t err;
+        const c10::cuda::CUDAGuard guard(top_diff.device());
+        const auto stream = at::cuda::getCurrentCUDAStream();
+        if (at::globalContext().deterministicAlgorithms()) {
+            const int input_size = bottom_diff.numel();
+            if (!input_size) return 1;
+            AT_DISPATCH_FLOATING_TYPES_AND_HALF(top_diff.scalar_type(), "roi_align_backward_deterministic", ([&] {
+                ROIAlignAvgBackwardDeterministic<scalar_t><<<(input_size + 255) / 256, 256, 0, stream>>>(
+                    aligned, input_size, top_diff.data_ptr<scalar_t>(), scalar_t(spatial_scale),
+                    num_rois, height, width, channels, aligned_height, aligned_width, sampling_ratio,
+                    bottom_diff.data_ptr<scalar_t>(), bottom_rois.data_ptr<scalar_t>());
+            }));
+            C10_CUDA_KERNEL_LAUNCH_CHECK();
+            return 1;
+        }
         AT_DISPATCH_FLOATING_TYPES_AND_HALF(top_diff.scalar_type(), "roi_align_forward_cuda", ([&] {
-            ROIAlignAvgBackward<scalar_t><<<(output_size + kThreadsPerBlock - 1) / kThreadsPerBlock, kThreadsPerBlock>>>(
+            ROIAlignAvgBackward<scalar_t><<<(output_size + kThreadsPerBlock - 1) / kThreadsPerBlock, kThreadsPerBlock, 0, stream>>>(
               aligned, output_size, 
               top_diff.data_ptr<scalar_t>(), (scalar_t)spatial_scale, height, width, channels,
               aligned_height, aligned_width,  sampling_ratio, 
