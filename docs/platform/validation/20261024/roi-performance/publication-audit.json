@@ -1,0 +1,51 @@
+{
+  "normalization": "CRLF to LF only for source; raw bytes for artifacts",
+  "tested_source_sha256": "667282988afa399a19f14f5776e5dee7962395d98dddfa975463e217031572d8",
+  "published_source_sha256": "cee19fddc8b4622ab7a4476e3e7bbcd8370e16233c77673204de0625d7d66481",
+  "runtime_change_since_baseline": "up_platform/ops/_native/csrc/roi_align/roi_align_kernel.cu only",
+  "vendors": {
+    "nvidia": {
+      "report_sha256": "9484f354668f07465fd868c7057081992ed021ff711313fed10cfb923799b84d",
+      "index_sha256": "44823651398a657405b25ce62f64a5bc75d1ce7bf611a1c368af95cc448f84cc",
+      "runtime_files_matched": 781,
+      "baseline_matches_git_commit_4b8a2a8": true,
+      "published_runtime_matches_hardware_trial": true,
+      "binary_sha256": {
+        "baseline": "aec7a4a918049ead35d0fdb61ff98af21ea6b29b484af269efd7c98f033f9869",
+        "candidate": "ac30ea811dd4999890dbb4eee285327d9627bf78507847cac0fcedc5a7fadd0a"
+      }
+    },
+    "metax": {
+      "report_sha256": "c36554dc231a82f93425e7ae849d9ff4954d5a7873a14faedc71cc2845cc8290",
+      "index_sha256": "7f0142d3a33cda2adeca14eb6ef0aff4ac8ec36325ebbcb3c7f93a04ceb1ed04",
+      "runtime_files_matched": 781,
+      "baseline_matches_git_commit_4b8a2a8": true,
+      "published_runtime_matches_hardware_trial": true,
+      "binary_sha256": {
+        "baseline": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+        "candidate": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317"
+      }
+    }
+  },
+  "cross_vendor_input_hashes_match": true,
+  "post_trial_tools": {
+    "tools/benchmark_roi_align.py": "Replace Python 3.11 file_digest with streaming SHA256 for Python 3.10 CI; checksum semantics unchanged.",
+    "tools/prepare_roi_align_cases.py": "Publish CPU fixture generator; recreated identical eight capture hashes without GPU model reruns."
+  },
+  "fixture_reproduction": {
+    "generator_sha256": "c7b33b9f625a9a135cae33b8cb8394db6032c8f5f9619d7d607327c5ec4453a7",
+    "manifest_sha256": "62ecc400ac81c7d5e64574cdadf46bd1ac9af2e968bee6af57460072b1850463",
+    "raw_manifest": "/data2/oujingfeng/up-platform-clean-20261023/roi-perf-20261024/reproduced-cases/cases.json",
+    "captures": {
+      "case-00.pt": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+      "case-01.pt": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+      "case-02.pt": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+      "case-03.pt": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+      "case-04.pt": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+      "case-05.pt": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+      "case-06.pt": "6669609ff4e1f7b9c6661c9c1e5a3f314e690f72af3563b8b068c3d2f451a437",
+      "case-07.pt": "f57f2ee323422eb31f282de7234d37637958916a98a98e39ec0d06c6e97826ae"
+    }
+  },
+  "passed": true
+}

@@ -44,6 +44,9 @@ UP_BUILD_BACKEND=nvidia python setup.py build_ext --inplace
 2026-10-24 的 KITTI 指标修正要求重新执行对应厂商编译。旧扩展缺少 `kitti_geometry_version=2` 时会明确拒绝使用，
 不能只更新 Python 文件继续加载旧内核。语义变化和测试专用 Shapely 依赖见 [修复说明](KITTI_GEOMETRY_20261024.md)。
 
+RoIAlign 确定性反向的线程映射提速也需要重新编译；契约版本仍为 1，是否已获得本次优化应核对实际二进制 SHA256。
+新旧结果、耗时及复现见 [性能报告](ROI_ALIGN_PERFORMANCE_20261024.md)。
+
 ## 沐曦显式数值控制
 
 当前 MACA 3.8.1.3 环境单独测试了 `MCDNN_USE_DETERMINISTIC_ALGO=1` 与 `MCDNN_STABLE_RESULT_MOD=1` 的组合，

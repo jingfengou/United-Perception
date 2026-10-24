@@ -1,0 +1,6163 @@
+{
+  "vendor": "metax",
+  "baseline_commit": "4b8a2a8024754c36ea406b3a2a7d0314a9e6224f",
+  "source_sha256": {
+    "baseline": "83da8ac6317d7b85402db5e428483eb818cd44f55cf23f42733bcb45be892610",
+    "optimized": "667282988afa399a19f14f5776e5dee7962395d98dddfa975463e217031572d8"
+  },
+  "source_changes": {
+    "up_platform/ops/_native/csrc/roi_align/roi_align_kernel.cu": {
+      "before": "efcdb6f492e172c059dde2b59445c8df9f39f6bb342b540826d620a3e1fd924b",
+      "after": "327d08eb00614aabb29b7d61d5290695ebdc66350aa179874c9af3eadda8dc1a"
+    }
+  },
+  "raw_root": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024",
+  "raw_index": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/evidence/full-index.json",
+  "raw_index_sha256": "7f0142d3a33cda2adeca14eb6ef0aff4ac8ec36325ebbcb3c7f93a04ceb1ed04",
+  "raw_files": 1782,
+  "raw_bytes": 10833242854,
+  "operational_failures_retained": {
+    "common-cases / probe-01-results": "Archive was extracted before SCP completed. Truncated input, not a numerical failure. Original files/logs retained; verified SHA256 and re-extracted to common-cases-verified. Valid probe-01-verified and final-operator passed."
+  },
+  "scope": "Same-vendor deterministic AVG backward; identical eight captures across vendors. Three-update Faster R-CNN synthetic compatibility, not dataset accuracy or long-run throughput.",
+  "selected_probe": "Channel-fast logical thread mapping, 256 threads; unchanged arithmetic and accumulation order.",
+  "rejected_probes": {
+    "02": "Explicit float ceil specialization: no consistent extra gain.",
+    "03": "128 threads: no consistent extra gain."
+  },
+  "cpu": {
+    "sha256": "1faa493007d32840021f421568d293b56a0c9e8242e35b7dd2b53f9e10876866",
+    "data": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "49",
+      "time": "32.201",
+      "timestamp": "2026-10-24T02:56:33.583391+00:00",
+      "hostname": "ed0db0d48661"
+    }
+  },
+  "reports": {
+    "final-operator/summary.json": {
+      "sha256": "958683449e831b9f15cdf58963062128f684bdd08dda67154a32f53c7f50cbbf",
+      "data": {
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reports": {
+          "baseline": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+            "raw_sha256": "46ca594d5632d62393dcd378df3b17491a9f1762924d660ef0694ef3fbac9cfb",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.1872256088256836,
+                  0.18793472290039062,
+                  0.18769407272338867,
+                  0.18712575912475585,
+                  0.1879680061340332
+                ],
+                "median_ms": 0.18769407272338867,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.82099609375,
+                  172.82130126953126,
+                  172.8226806640625,
+                  172.8227294921875,
+                  172.82396240234374
+                ],
+                "median_ms": 172.8226806640625,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.6386918258666993,
+                  0.639180793762207,
+                  0.6390681457519531,
+                  0.6390169525146484,
+                  0.6393241500854492
+                ],
+                "median_ms": 0.6390681457519531,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  171.2943603515625,
+                  171.292724609375,
+                  171.29241943359375,
+                  171.29256591796874,
+                  171.2958984375
+                ],
+                "median_ms": 171.292724609375,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.400447998046875,
+                  0.40077823638916016,
+                  0.4008652877807617,
+                  0.4009267044067383,
+                  0.40095489501953124
+                ],
+                "median_ms": 0.4008652877807617,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.66524658203124,
+                  172.66749267578126,
+                  172.66595458984375,
+                  172.666015625,
+                  172.66754150390625
+                ],
+                "median_ms": 172.666015625,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-06.pt",
+                "capture_sha256": "6669609ff4e1f7b9c6661c9c1e5a3f314e690f72af3563b8b068c3d2f451a437",
+                "parameters": [
+                  true,
+                  2,
+                  3,
+                  1.0,
+                  2
+                ],
+                "top_shape": [
+                  4,
+                  17,
+                  2,
+                  3
+                ],
+                "bottom_shape": [
+                  2,
+                  17,
+                  7,
+                  8
+                ],
+                "dtype": "torch.float16",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.09773056030273437,
+                  0.09809408187866211,
+                  0.09757184028625489,
+                  0.09798399925231933,
+                  0.09768704414367675
+                ],
+                "median_ms": 0.09773056030273437,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-07.pt",
+                "capture_sha256": "f57f2ee323422eb31f282de7234d37637958916a98a98e39ec0d06c6e97826ae",
+                "parameters": [
+                  false,
+                  2,
+                  3,
+                  1.0,
+                  0
+                ],
+                "top_shape": [
+                  4,
+                  3,
+                  2,
+                  3
+                ],
+                "bottom_shape": [
+                  2,
+                  3,
+                  7,
+                  8
+                ],
+                "dtype": "torch.float64",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.3727590560913086,
+                  0.3731020736694336,
+                  0.37320449829101565,
+                  0.37281280517578125,
+                  0.3730508804321289
+                ],
+                "median_ms": 0.3730508804321289,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          },
+          "candidate": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317",
+            "raw_sha256": "46ca594d5632d62393dcd378df3b17491a9f1762924d660ef0694ef3fbac9cfb",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.13701120376586914,
+                  0.1373363208770752,
+                  0.1374950408935547,
+                  0.13760000228881836,
+                  0.13758463859558107
+                ],
+                "median_ms": 0.1374950408935547,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  44.23234558105469,
+                  44.36935729980469,
+                  44.31211547851562,
+                  44.37862548828125,
+                  44.383847045898435
+                ],
+                "median_ms": 44.36935729980469,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.5210931015014648,
+                  0.5213619232177734,
+                  0.5214438247680664,
+                  0.5214131164550782,
+                  0.5214976119995117
+                ],
+                "median_ms": 0.5214131164550782,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  45.47988586425781,
+                  45.54547119140625,
+                  45.65396423339844,
+                  45.46293640136719,
+                  45.47000427246094
+                ],
+                "median_ms": 45.47988586425781,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.34793983459472655,
+                  0.3482726287841797,
+                  0.34777854919433593,
+                  0.34836223602294925,
+                  0.34802688598632814
+                ],
+                "median_ms": 0.34802688598632814,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  46.41279907226563,
+                  46.43778686523437,
+                  46.37818908691406,
+                  46.47080993652344,
+                  46.47756652832031
+                ],
+                "median_ms": 46.43778686523437,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-06.pt",
+                "capture_sha256": "6669609ff4e1f7b9c6661c9c1e5a3f314e690f72af3563b8b068c3d2f451a437",
+                "parameters": [
+                  true,
+                  2,
+                  3,
+                  1.0,
+                  2
+                ],
+                "top_shape": [
+                  4,
+                  17,
+                  2,
+                  3
+                ],
+                "bottom_shape": [
+                  2,
+                  17,
+                  7,
+                  8
+                ],
+                "dtype": "torch.float16",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.08508671760559082,
+                  0.08548352241516113,
+                  0.08544768333435059,
+                  0.08540672302246094,
+                  0.08556287765502929
+                ],
+                "median_ms": 0.08544768333435059,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-07.pt",
+                "capture_sha256": "f57f2ee323422eb31f282de7234d37637958916a98a98e39ec0d06c6e97826ae",
+                "parameters": [
+                  false,
+                  2,
+                  3,
+                  1.0,
+                  0
+                ],
+                "top_shape": [
+                  4,
+                  3,
+                  2,
+                  3
+                ],
+                "bottom_shape": [
+                  2,
+                  3,
+                  7,
+                  8
+                ],
+                "dtype": "torch.float64",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.37169662475585935,
+                  0.3730329513549805,
+                  0.37200897216796874,
+                  0.3731097412109375,
+                  0.37203968048095704
+                ],
+                "median_ms": 0.37203968048095704,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          }
+        },
+        "records": [
+          {
+            "case": "case-00.pt",
+            "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.18769407272338867,
+            "candidate_ms": 0.1374950408935547,
+            "speedup": 1.3650970355265166,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-01.pt",
+            "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.8226806640625,
+            "candidate_ms": 44.36935729980469,
+            "speedup": 3.8950909181824738,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-02.pt",
+            "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.6390681457519531,
+            "candidate_ms": 0.5214131164550782,
+            "speedup": 1.225646470301273,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-03.pt",
+            "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 171.292724609375,
+            "candidate_ms": 45.47988586425781,
+            "speedup": 3.7663402480961863,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-04.pt",
+            "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.4008652877807617,
+            "candidate_ms": 0.34802688598632814,
+            "speedup": 1.1518227583041076,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-05.pt",
+            "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.666015625,
+            "candidate_ms": 46.43778686523437,
+            "speedup": 3.7182223202429645,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-06.pt",
+            "capture_sha256": "6669609ff4e1f7b9c6661c9c1e5a3f314e690f72af3563b8b068c3d2f451a437",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.09773056030273437,
+            "candidate_ms": 0.08544768333435059,
+            "speedup": 1.143747337424255,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-07.pt",
+            "capture_sha256": "f57f2ee323422eb31f282de7234d37637958916a98a98e39ec0d06c6e97826ae",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.3730508804321289,
+            "candidate_ms": 0.37203968048095704,
+            "speedup": 1.0027179895162384,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    "final-models/summary.json": {
+      "sha256": "676539eefe07658895b4c390bc56ef788c886add9fab3970b592fd9eb28e2c6c",
+      "data": {
+        "vendor": "metax",
+        "scope": "same seed 131, batch 2, three updates, eval each step, restore after step 2; synthetic inputs",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "common_inference_checkpoint_sha256": "f21c72679e8ac30dce89659375c2ff12832182e811a5c40dcc8ec52a1a8f43e4",
+        "source": {
+          "baseline": {
+            "sha256": "83da8ac6317d7b85402db5e428483eb818cd44f55cf23f42733bcb45be892610"
+          },
+          "candidate": {
+            "sha256": "667282988afa399a19f14f5776e5dee7962395d98dddfa975463e217031572d8"
+          }
+        },
+        "records": [
+          {
+            "comparison": [
+              "baseline-training",
+              "candidate-training"
+            ],
+            "passed": true,
+            "tensor_count": 1947,
+            "failures": [],
+            "bitwise_equal": true
+          },
+          {
+            "comparison": [
+              "candidate-training",
+              "candidate-repeat"
+            ],
+            "passed": true,
+            "tensor_count": 1947,
+            "failures": [],
+            "bitwise_equal": true
+          },
+          {
+            "comparison": [
+              "baseline-inference",
+              "candidate-inference"
+            ],
+            "passed": true,
+            "tensor_count": 54,
+            "failures": [],
+            "bitwise_equal": true
+          }
+        ],
+        "timings": {
+          "baseline-training": {
+            "scope": "CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies",
+            "forward_backward_ms": [
+              3954.273681640625,
+              234.61273193359375,
+              224.47283935546875
+            ]
+          },
+          "candidate-training": {
+            "scope": "CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies",
+            "forward_backward_ms": [
+              4480.1494140625,
+              111.06098937988281,
+              97.35935974121094
+            ]
+          },
+          "candidate-repeat": {
+            "scope": "CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies",
+            "forward_backward_ms": [
+              3823.648193359375,
+              103.71737670898438,
+              98.15654754638672
+            ]
+          },
+          "baseline-inference": null,
+          "candidate-inference": null
+        },
+        "executions": [
+          {
+            "label": "baseline-training",
+            "command": [
+              "/workspace/up-run/venv/bin/python",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/tools/compare_platform_models.py",
+              "--worker",
+              "--root",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline",
+              "--baseline",
+              "/workspace/up-run/up-platform-clean-20261023/baseline",
+              "--vendor",
+              "metax",
+              "--model",
+              "faster_rcnn",
+              "--variant",
+              "routed",
+              "--purpose",
+              "training",
+              "--deterministic",
+              "--output",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/final-models/baseline-training/model.json",
+              "--measure-time"
+            ],
+            "exit_code": 0
+          },
+          {
+            "label": "candidate-training",
+            "command": [
+              "/workspace/up-run/venv/bin/python",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/tools/compare_platform_models.py",
+              "--worker",
+              "--root",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized",
+              "--baseline",
+              "/workspace/up-run/up-platform-clean-20261023/baseline",
+              "--vendor",
+              "metax",
+              "--model",
+              "faster_rcnn",
+              "--variant",
+              "routed",
+              "--purpose",
+              "training",
+              "--deterministic",
+              "--output",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/final-models/candidate-training/model.json",
+              "--measure-time"
+            ],
+            "exit_code": 0
+          },
+          {
+            "label": "candidate-repeat",
+            "command": [
+              "/workspace/up-run/venv/bin/python",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/tools/compare_platform_models.py",
+              "--worker",
+              "--root",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized",
+              "--baseline",
+              "/workspace/up-run/up-platform-clean-20261023/baseline",
+              "--vendor",
+              "metax",
+              "--model",
+              "faster_rcnn",
+              "--variant",
+              "routed",
+              "--purpose",
+              "training",
+              "--deterministic",
+              "--output",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/final-models/candidate-repeat/model.json",
+              "--measure-time"
+            ],
+            "exit_code": 0
+          },
+          {
+            "label": "baseline-inference",
+            "command": [
+              "/workspace/up-run/venv/bin/python",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/tools/compare_platform_models.py",
+              "--worker",
+              "--root",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline",
+              "--baseline",
+              "/workspace/up-run/up-platform-clean-20261023/baseline",
+              "--vendor",
+              "metax",
+              "--model",
+              "faster_rcnn",
+              "--variant",
+              "routed",
+              "--purpose",
+              "inference",
+              "--deterministic",
+              "--output",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/final-models/baseline-inference/model.json"
+            ],
+            "exit_code": 0
+          },
+          {
+            "label": "candidate-inference",
+            "command": [
+              "/workspace/up-run/venv/bin/python",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/tools/compare_platform_models.py",
+              "--worker",
+              "--root",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized",
+              "--baseline",
+              "/workspace/up-run/up-platform-clean-20261023/baseline",
+              "--vendor",
+              "metax",
+              "--model",
+              "faster_rcnn",
+              "--variant",
+              "routed",
+              "--purpose",
+              "inference",
+              "--deterministic",
+              "--output",
+              "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/final-models/candidate-inference/model.json"
+            ],
+            "exit_code": 0
+          }
+        ],
+        "artifacts": {
+          "baseline-training": {
+            "metadata_sha256": "156289f62cbd26acf8aa796e26dafa0e4132898b9f5c8ccb58eeed14018d0361",
+            "values_sha256": "97474c5c12b1a4c23eef5c7f7766c2ce2c0ac586ce2c92f7cf00fb8c3bf0e284"
+          },
+          "candidate-training": {
+            "metadata_sha256": "52274a989bf14855d5c931348c76919f1236616499c0778876531e63b8286019",
+            "values_sha256": "97474c5c12b1a4c23eef5c7f7766c2ce2c0ac586ce2c92f7cf00fb8c3bf0e284"
+          },
+          "candidate-repeat": {
+            "metadata_sha256": "b3a822be0a62e843e6ba7122cbb515ec0ff9505f5228a4e5b24fd3081aa982a5",
+            "values_sha256": "97474c5c12b1a4c23eef5c7f7766c2ce2c0ac586ce2c92f7cf00fb8c3bf0e284"
+          },
+          "baseline-inference": {
+            "metadata_sha256": "a8d65797fdf1fc8889d0ed8cb245095414ae06fbe91e481dbf9f7a74850ca210",
+            "values_sha256": "3fb880cc3a79f703d6ed5aea766be20e6c9e6c5310daa98b4abf27f26eb43851"
+          },
+          "candidate-inference": {
+            "metadata_sha256": "eeb74cf07fa454bd41450dd3c6af0a02a4f866ef4edc6c7c0a1404867c905866",
+            "values_sha256": "3fb880cc3a79f703d6ed5aea766be20e6c9e6c5310daa98b4abf27f26eb43851"
+          }
+        },
+        "passed": true
+      }
+    },
+    "optimized/results/oracle/summary.json": {
+      "sha256": "14b8a198d1fe923abc0664f65dea3d55cdb25ac8f7ea98293446458ac95e32fb",
+      "data": {
+        "vendor": "metax",
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        },
+        "scope": "FP32/FP64 AVG GPU forward/backward, fixed-order reduction; AMP/FP16 not validated",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "gradcheck": true,
+        "source_sha256": "667282988afa399a19f14f5776e5dee7962395d98dddfa975463e217031572d8",
+        "binary_sha256": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317",
+        "raw_sha256": "81d0b669f343db3b7570f261e6c1a5d9075815efcbbf3be6742827c17cd231b9",
+        "records": [
+          {
+            "case": "torch.float32/False/0",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float32/False/2",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float32/True/0",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float32/True/2",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float64/False/0",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float64/False/2",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float64/True/0",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "torch.float64/True/2",
+            "checks": {
+              "oracle": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "atomic": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "stream": {
+                "passed": true,
+                "tensor_count": 2,
+                "failures": []
+              },
+              "existing_gradient_buffer": {
+                "passed": true,
+                "tensor_count": 1,
+                "failures": []
+              }
+            },
+            "bitwise_repeats": [
+              true,
+              true
+            ],
+            "passed": true
+          },
+          {
+            "case": "empty_rois",
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    "optimized/results/native-training.json": {
+      "sha256": "5fac89730a8a288929c754430d11e8c518db7fdcaf6f74bb4c7e00371e745f13",
+      "data": {
+        "vendor": "metax",
+        "purpose": "training",
+        "numerics": "native",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "scope": "same-vendor routing/autograd; shared upstream native source; not full acceptance",
+        "reference_adaptations": [
+          "PSRoIPool integer workspace .cuda().contiguous()"
+        ],
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        },
+        "device": "MetaX C500",
+        "raw_sha256": "9dac170870ebc66d33e349e0582ea5fc2f6062ac127d95c7d075f3ae5d966c4a",
+        "passed": true,
+        "records": [
+          {
+            "operation": "detection.roi_align/0",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.roi_align/1",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.roi_align/2",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.roi_align/3",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.psroi_align/4",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    8,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    8,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.psroi_pool/5",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    8,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    8,
+                    8,
+                    8
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "deformable.deform_conv/6",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    2,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 9.5367431640625e-07,
+                  "shape": [
+                    1,
+                    2,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    18,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    2,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 9.5367431640625e-07,
+                  "shape": [
+                    1,
+                    2,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    18,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.sigmoid_focal_loss/7",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.cross_sigmoid_focal_loss/8",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.sigmoid_focal_loss/9",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.cross_sigmoid_focal_loss/10",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.softmax_focal_loss/11",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    4
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    4
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/12",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/13",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/14",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/15",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.softer_nms/16",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    9
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    9
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/17",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/18",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/19",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/20",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.points_in_boxes_cpu/21",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.points_in_boxes_gpu/22",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.roiaware_pool3d/23",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    16,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    16,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.roiaware_pool3d/24",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    16,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    16,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.roipoint_pool3d/25",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3,
+                    8,
+                    6
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3,
+                    8,
+                    6
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.boxes_bev_iou_cpu/26",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.boxes_iou_bev/27",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.boxes_iou3d/28",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    7
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    7
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    7
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "gradient",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    7
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.nms3d/29",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.nms3d_normal/30",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "optimized/results/native-inference.json": {
+      "sha256": "2f54e15d5b4d01c888b8877ffda92e65ab223110af3fd307b67db97d65511eba",
+      "data": {
+        "vendor": "metax",
+        "purpose": "inference",
+        "numerics": "native",
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "scope": "same-vendor routing/autograd; shared upstream native source; not full acceptance",
+        "reference_adaptations": [
+          "PSRoIPool integer workspace .cuda().contiguous()"
+        ],
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        },
+        "device": "MetaX C500",
+        "raw_sha256": "6345d8f50d605fdef00d5be6476a7d36d41d3b2bad4de2bed5f960cbdde69923",
+        "passed": true,
+        "records": [
+          {
+            "operation": "detection.roi_align/0",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.roi_align/1",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.roi_align/2",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.roi_align/3",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0,
+                    4,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.psroi_align/4",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.psroi_pool/5",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2,
+                    2,
+                    2,
+                    2
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "deformable.deform_conv/6",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    2,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    2,
+                    5,
+                    5
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.sigmoid_focal_loss/7",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.cross_sigmoid_focal_loss/8",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.sigmoid_focal_loss/9",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    6,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.cross_sigmoid_focal_loss/10",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "focal.softmax_focal_loss/11",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/12",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/13",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/14",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.naive_nms/15",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    2
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.softer_nms/16",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    9
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    9
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/17",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/18",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/19",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "detection.iou_overlap/20",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    0
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.points_in_boxes_cpu/21",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.points_in_boxes_gpu/22",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    16
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.roiaware_pool3d/23",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.roiaware_pool3d/24",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    2,
+                    2,
+                    2,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.roipoint_pool3d/25",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3,
+                    8,
+                    6
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3,
+                    8,
+                    6
+                  ],
+                  "dtype": "torch.float32"
+                },
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    1,
+                    3
+                  ],
+                  "dtype": "torch.int32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.boxes_bev_iou_cpu/26",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.boxes_iou_bev/27",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.boxes_iou3d/28",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3,
+                    3
+                  ],
+                  "dtype": "torch.float32"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.nms3d/29",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          },
+          {
+            "operation": "pointcloud.nms3d_normal/30",
+            "reference_repeat": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            },
+            "routed": {
+              "passed": true,
+              "comparisons": [
+                {
+                  "passed": true,
+                  "kind": "output",
+                  "abs_max": 0.0,
+                  "shape": [
+                    3
+                  ],
+                  "dtype": "torch.int64"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "validation-cases/cases.json": {
+      "sha256": "5f8e5bf75bb8c71eea5442b75bac98c74dd006c8f51fa5170b8cd5dcd4669725",
+      "data": {
+        "vendor": "nvidia",
+        "seed": 131,
+        "protocol": "unchanged three-update UP compatibility worker",
+        "source": {
+          "sha256": "785e55720376d15b0461cd51cbb7769128118e387d1445f9cb6ccbc6f1497577"
+        },
+        "calls": [
+          {
+            "call": 0,
+            "case": "case-00.pt",
+            "first_seen": true,
+            "parameters": [
+              false,
+              7,
+              7,
+              0.125,
+              0
+            ],
+            "top_shape": [
+              1,
+              256,
+              7,
+              7
+            ],
+            "roi_shape": [
+              1,
+              5
+            ],
+            "bottom_shape": [
+              2,
+              256,
+              16,
+              16
+            ],
+            "dtype": "torch.float32"
+          },
+          {
+            "call": 1,
+            "case": "case-01.pt",
+            "first_seen": true,
+            "parameters": [
+              false,
+              7,
+              7,
+              0.25,
+              0
+            ],
+            "top_shape": [
+              1023,
+              256,
+              7,
+              7
+            ],
+            "roi_shape": [
+              1023,
+              5
+            ],
+            "bottom_shape": [
+              2,
+              256,
+              32,
+              32
+            ],
+            "dtype": "torch.float32"
+          },
+          {
+            "call": 2,
+            "case": "case-02.pt",
+            "first_seen": true,
+            "parameters": [
+              false,
+              7,
+              7,
+              0.125,
+              0
+            ],
+            "top_shape": [
+              3,
+              256,
+              7,
+              7
+            ],
+            "roi_shape": [
+              3,
+              5
+            ],
+            "bottom_shape": [
+              2,
+              256,
+              16,
+              16
+            ],
+            "dtype": "torch.float32"
+          },
+          {
+            "call": 3,
+            "case": "case-03.pt",
+            "first_seen": true,
+            "parameters": [
+              false,
+              7,
+              7,
+              0.25,
+              0
+            ],
+            "top_shape": [
+              1021,
+              256,
+              7,
+              7
+            ],
+            "roi_shape": [
+              1021,
+              5
+            ],
+            "bottom_shape": [
+              2,
+              256,
+              32,
+              32
+            ],
+            "dtype": "torch.float32"
+          },
+          {
+            "call": 4,
+            "case": "case-04.pt",
+            "first_seen": true,
+            "parameters": [
+              false,
+              7,
+              7,
+              0.125,
+              0
+            ],
+            "top_shape": [
+              2,
+              256,
+              7,
+              7
+            ],
+            "roi_shape": [
+              2,
+              5
+            ],
+            "bottom_shape": [
+              2,
+              256,
+              16,
+              16
+            ],
+            "dtype": "torch.float32"
+          },
+          {
+            "call": 5,
+            "case": "case-05.pt",
+            "first_seen": true,
+            "parameters": [
+              false,
+              7,
+              7,
+              0.25,
+              0
+            ],
+            "top_shape": [
+              1022,
+              256,
+              7,
+              7
+            ],
+            "roi_shape": [
+              1022,
+              5
+            ],
+            "bottom_shape": [
+              2,
+              256,
+              32,
+              32
+            ],
+            "dtype": "torch.float32"
+          }
+        ],
+        "binary_sha256": "aec7a4a918049ead35d0fdb61ff98af21ea6b29b484af269efd7c98f033f9869",
+        "captures": {
+          "case-00.pt": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+          "case-01.pt": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+          "case-02.pt": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+          "case-03.pt": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+          "case-04.pt": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+          "case-05.pt": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+          "case-06.pt": "6669609ff4e1f7b9c6661c9c1e5a3f314e690f72af3563b8b068c3d2f451a437",
+          "case-07.pt": "f57f2ee323422eb31f282de7234d37637958916a98a98e39ec0d06c6e97826ae"
+        },
+        "environment": {
+          "CUDA_VISIBLE_DEVICES": "1",
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2",
+          "PYTHONHASHSEED": "0",
+          "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+          "MCDNN_USE_DETERMINISTIC_ALGO": null,
+          "MCDNN_STABLE_RESULT_MOD": null
+        },
+        "fixture_kinds": {
+          "case-00.pt": "real Faster R-CNN capture",
+          "case-01.pt": "real Faster R-CNN capture",
+          "case-02.pt": "real Faster R-CNN capture",
+          "case-03.pt": "real Faster R-CNN capture",
+          "case-04.pt": "real Faster R-CNN capture",
+          "case-05.pt": "real Faster R-CNN capture",
+          "case-06.pt": "constructed dtype/channel-tail/existing-buffer parity fixture; not AMP training",
+          "case-07.pt": "constructed dtype/channel-tail/existing-buffer parity fixture; not AMP training"
+        },
+        "fixture_generator_sha256": "22f9a15021fafee536fe7b3d7c6f479ef11e65c58b4141da168bd935f654cab9"
+      }
+    },
+    "final-models/baseline-inference/model.json": {
+      "sha256": "a8d65797fdf1fc8889d0ed8cb245095414ae06fbe91e481dbf9f7a74850ca210",
+      "data": {
+        "vendor": "metax",
+        "variant": "routed",
+        "model": "faster_rcnn",
+        "purpose": "inference",
+        "passed_execution": true,
+        "tasks": "cls:det",
+        "config": "configs/det/faster_rcnn/faster_rcnn_r50_fpn_1x.yaml",
+        "seed": 131,
+        "numerics": "native",
+        "deterministic_algorithms": true,
+        "timing": null,
+        "native_extension": {
+          "path": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+          "roi_align_deterministic_backward_version": 1
+        },
+        "launch_environment": {
+          "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+          "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+          "MCDNN_STABLE_RESULT_MOD": "1",
+          "CUDA_VISIBLE_DEVICES": "2",
+          "PYTHONHASHSEED": "0",
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2"
+        },
+        "reference_adaptations": [
+          "collections.Iterable Python 3.12 alias",
+          "NumPy removed float/int/bool builtin aliases",
+          "same vendor extension with fixed-order RoIAlign backward selected by Torch deterministic flag"
+        ],
+        "source": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up/__init__.py",
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        }
+      }
+    },
+    "final-models/baseline-training/model.json": {
+      "sha256": "156289f62cbd26acf8aa796e26dafa0e4132898b9f5c8ccb58eeed14018d0361",
+      "data": {
+        "vendor": "metax",
+        "variant": "routed",
+        "model": "faster_rcnn",
+        "purpose": "training",
+        "passed_execution": true,
+        "tasks": "cls:det",
+        "config": "configs/det/faster_rcnn/faster_rcnn_r50_fpn_1x.yaml",
+        "seed": 131,
+        "numerics": "native",
+        "deterministic_algorithms": true,
+        "timing": {
+          "scope": "CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies",
+          "forward_backward_ms": [
+            3954.273681640625,
+            234.61273193359375,
+            224.47283935546875
+          ]
+        },
+        "native_extension": {
+          "path": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+          "roi_align_deterministic_backward_version": 1
+        },
+        "launch_environment": {
+          "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+          "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+          "MCDNN_STABLE_RESULT_MOD": "1",
+          "CUDA_VISIBLE_DEVICES": "2",
+          "PYTHONHASHSEED": "0",
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2"
+        },
+        "reference_adaptations": [
+          "collections.Iterable Python 3.12 alias",
+          "NumPy removed float/int/bool builtin aliases",
+          "same vendor extension with fixed-order RoIAlign backward selected by Torch deterministic flag"
+        ],
+        "source": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up/__init__.py",
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        }
+      }
+    },
+    "final-models/candidate-inference/model.json": {
+      "sha256": "eeb74cf07fa454bd41450dd3c6af0a02a4f866ef4edc6c7c0a1404867c905866",
+      "data": {
+        "vendor": "metax",
+        "variant": "routed",
+        "model": "faster_rcnn",
+        "purpose": "inference",
+        "passed_execution": true,
+        "tasks": "cls:det",
+        "config": "configs/det/faster_rcnn/faster_rcnn_r50_fpn_1x.yaml",
+        "seed": 131,
+        "numerics": "native",
+        "deterministic_algorithms": true,
+        "timing": null,
+        "native_extension": {
+          "path": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317",
+          "roi_align_deterministic_backward_version": 1
+        },
+        "launch_environment": {
+          "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+          "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+          "MCDNN_STABLE_RESULT_MOD": "1",
+          "CUDA_VISIBLE_DEVICES": "2",
+          "PYTHONHASHSEED": "0",
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2"
+        },
+        "reference_adaptations": [
+          "collections.Iterable Python 3.12 alias",
+          "NumPy removed float/int/bool builtin aliases",
+          "same vendor extension with fixed-order RoIAlign backward selected by Torch deterministic flag"
+        ],
+        "source": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up/__init__.py",
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        }
+      }
+    },
+    "final-models/candidate-repeat/model.json": {
+      "sha256": "b3a822be0a62e843e6ba7122cbb515ec0ff9505f5228a4e5b24fd3081aa982a5",
+      "data": {
+        "vendor": "metax",
+        "variant": "routed",
+        "model": "faster_rcnn",
+        "purpose": "training",
+        "passed_execution": true,
+        "tasks": "cls:det",
+        "config": "configs/det/faster_rcnn/faster_rcnn_r50_fpn_1x.yaml",
+        "seed": 131,
+        "numerics": "native",
+        "deterministic_algorithms": true,
+        "timing": {
+          "scope": "CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies",
+          "forward_backward_ms": [
+            3823.648193359375,
+            103.71737670898438,
+            98.15654754638672
+          ]
+        },
+        "native_extension": {
+          "path": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317",
+          "roi_align_deterministic_backward_version": 1
+        },
+        "launch_environment": {
+          "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+          "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+          "MCDNN_STABLE_RESULT_MOD": "1",
+          "CUDA_VISIBLE_DEVICES": "2",
+          "PYTHONHASHSEED": "0",
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2"
+        },
+        "reference_adaptations": [
+          "collections.Iterable Python 3.12 alias",
+          "NumPy removed float/int/bool builtin aliases",
+          "same vendor extension with fixed-order RoIAlign backward selected by Torch deterministic flag"
+        ],
+        "source": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up/__init__.py",
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        }
+      }
+    },
+    "final-models/candidate-training/model.json": {
+      "sha256": "52274a989bf14855d5c931348c76919f1236616499c0778876531e63b8286019",
+      "data": {
+        "vendor": "metax",
+        "variant": "routed",
+        "model": "faster_rcnn",
+        "purpose": "training",
+        "passed_execution": true,
+        "tasks": "cls:det",
+        "config": "configs/det/faster_rcnn/faster_rcnn_r50_fpn_1x.yaml",
+        "seed": 131,
+        "numerics": "native",
+        "deterministic_algorithms": true,
+        "timing": {
+          "scope": "CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies",
+          "forward_backward_ms": [
+            4480.1494140625,
+            111.06098937988281,
+            97.35935974121094
+          ]
+        },
+        "native_extension": {
+          "path": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317",
+          "roi_align_deterministic_backward_version": 1
+        },
+        "launch_environment": {
+          "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+          "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+          "MCDNN_STABLE_RESULT_MOD": "1",
+          "CUDA_VISIBLE_DEVICES": "2",
+          "PYTHONHASHSEED": "0",
+          "OMP_NUM_THREADS": "2",
+          "MKL_NUM_THREADS": "2"
+        },
+        "reference_adaptations": [
+          "collections.Iterable Python 3.12 alias",
+          "NumPy removed float/int/bool builtin aliases",
+          "same vendor extension with fixed-order RoIAlign backward selected by Torch deterministic flag"
+        ],
+        "source": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/optimized/up/__init__.py",
+        "environment": {
+          "vendor": "metax",
+          "device_type": "cuda",
+          "torch": "2.10.0+metax3.8.1.0",
+          "cuda_api_version": "11.6"
+        }
+      }
+    },
+    "probe-01-verified/summary.json": {
+      "sha256": "95a234c02249041aca1ede904774d0579fc6b760edfd576066f599334f2a86f9",
+      "data": {
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reports": {
+          "baseline": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+            "raw_sha256": "07df0420e2437044a84a51292bacde1e6e0e5ec12573570382b4f5bce2b71f4c",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.18738431930541993,
+                  0.18796543121337891,
+                  0.1878860855102539,
+                  0.18776063919067382,
+                  0.18735359191894532
+                ],
+                "median_ms": 0.18776063919067382,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.82314453125,
+                  172.824169921875,
+                  172.82391357421875,
+                  172.82615966796874,
+                  172.82401123046876
+                ],
+                "median_ms": 172.82401123046876,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.6388249588012695,
+                  0.6393062210083008,
+                  0.6392959976196289,
+                  0.6390911865234375,
+                  0.6391731262207031
+                ],
+                "median_ms": 0.6391731262207031,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  171.2927734375,
+                  171.29205322265625,
+                  171.29134521484374,
+                  171.29261474609376,
+                  171.29400634765625
+                ],
+                "median_ms": 171.29261474609376,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.39922176361083983,
+                  0.3992166519165039,
+                  0.39944961547851565,
+                  0.39923969268798826,
+                  0.39915775299072265
+                ],
+                "median_ms": 0.39922176361083983,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.66683349609374,
+                  172.66734619140624,
+                  172.66749267578126,
+                  172.668212890625,
+                  172.66697998046874
+                ],
+                "median_ms": 172.66734619140624,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          },
+          "candidate": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/_roi_probe_01.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "3f23558f23bb302531afb52c4404eb0bff53606b6da9178e6548f325351c5304",
+            "raw_sha256": "07df0420e2437044a84a51292bacde1e6e0e5ec12573570382b4f5bce2b71f4c",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.13658368110656738,
+                  0.13735936164855958,
+                  0.13784576416015626,
+                  0.13668095588684082,
+                  0.13766655921936036
+                ],
+                "median_ms": 0.13735936164855958,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  44.466329956054686,
+                  44.2181640625,
+                  44.34288635253906,
+                  44.32814025878906,
+                  44.317388916015624
+                ],
+                "median_ms": 44.32814025878906,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.520263671875,
+                  0.5204991912841797,
+                  0.5210521697998047,
+                  0.5206681442260742,
+                  0.5207065582275391
+                ],
+                "median_ms": 0.5206681442260742,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  45.46739196777344,
+                  45.620172119140626,
+                  45.27022094726563,
+                  45.3154296875,
+                  45.61976318359375
+                ],
+                "median_ms": 45.46739196777344,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.3482163238525391,
+                  0.34854400634765625,
+                  0.348771858215332,
+                  0.3486617660522461,
+                  0.3484159851074219
+                ],
+                "median_ms": 0.34854400634765625,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  46.47285766601563,
+                  46.45596008300781,
+                  46.423858642578125,
+                  46.355712890625,
+                  46.25244140625
+                ],
+                "median_ms": 46.423858642578125,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          }
+        },
+        "records": [
+          {
+            "case": "case-00.pt",
+            "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.18776063919067382,
+            "candidate_ms": 0.13735936164855958,
+            "speedup": 1.3669300507603428,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-01.pt",
+            "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.82401123046876,
+            "candidate_ms": 44.32814025878906,
+            "speedup": 3.89874265470008,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-02.pt",
+            "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.6391731262207031,
+            "candidate_ms": 0.5206681442260742,
+            "speedup": 1.227601752303813,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-03.pt",
+            "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 171.29261474609376,
+            "candidate_ms": 45.46739196777344,
+            "speedup": 3.76737277712131,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-04.pt",
+            "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.39922176361083983,
+            "candidate_ms": 0.34854400634765625,
+            "speedup": 1.145398447083422,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-05.pt",
+            "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.66734619140624,
+            "candidate_ms": 46.423858642578125,
+            "speedup": 3.719366533505739,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    "probe-02-results/summary.json": {
+      "sha256": "b68857ccac2a179ad28156dcc7f747a615d5a1d88dfbf73670d8a212200fed49",
+      "data": {
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reports": {
+          "baseline": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+            "raw_sha256": "07df0420e2437044a84a51292bacde1e6e0e5ec12573570382b4f5bce2b71f4c",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.18722816467285155,
+                  0.18769664764404298,
+                  0.1877734375,
+                  0.1877555274963379,
+                  0.18725887298583985
+                ],
+                "median_ms": 0.18769664764404298,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.82391357421875,
+                  172.82513427734375,
+                  172.82283935546874,
+                  172.82340087890626,
+                  172.82191162109376
+                ],
+                "median_ms": 172.82340087890626,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.6386713409423828,
+                  0.639096336364746,
+                  0.639180793762207,
+                  0.6390886306762695,
+                  0.6391731262207031
+                ],
+                "median_ms": 0.639096336364746,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  171.29083251953125,
+                  171.29415283203124,
+                  171.291650390625,
+                  171.29559326171875,
+                  171.29764404296876
+                ],
+                "median_ms": 171.29415283203124,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.4004326248168945,
+                  0.40104190826416014,
+                  0.4008268737792969,
+                  0.4008448028564453,
+                  0.4008396911621094
+                ],
+                "median_ms": 0.4008396911621094,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.6666259765625,
+                  172.6662109375,
+                  172.666259765625,
+                  172.6656982421875,
+                  172.667236328125
+                ],
+                "median_ms": 172.666259765625,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          },
+          "candidate": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/_roi_probe_02.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "642a9f02495f96caf714d693d44f9c1fb3bbc55f0c190911bb188c160c5de560",
+            "raw_sha256": "07df0420e2437044a84a51292bacde1e6e0e5ec12573570382b4f5bce2b71f4c",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.13661696434020995,
+                  0.1370751953125,
+                  0.13722880363464354,
+                  0.13723135948181153,
+                  0.13751808166503907
+                ],
+                "median_ms": 0.13722880363464354,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  44.322662353515625,
+                  44.30018615722656,
+                  44.30894165039062,
+                  44.24954833984375,
+                  44.4632568359375
+                ],
+                "median_ms": 44.30894165039062,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.520519676208496,
+                  0.5207782363891602,
+                  0.5210649490356445,
+                  0.5208243179321289,
+                  0.5206860733032227
+                ],
+                "median_ms": 0.5207782363891602,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  45.45628051757812,
+                  45.55228271484375,
+                  45.71504516601563,
+                  45.448446655273436,
+                  45.423614501953125
+                ],
+                "median_ms": 45.45628051757812,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.34787841796875,
+                  0.3485542297363281,
+                  0.3486259078979492,
+                  0.348223991394043,
+                  0.34838016510009767
+                ],
+                "median_ms": 0.34838016510009767,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  46.21803588867188,
+                  46.35284423828125,
+                  46.40614318847656,
+                  46.288946533203124,
+                  46.353152465820315
+                ],
+                "median_ms": 46.35284423828125,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          }
+        },
+        "records": [
+          {
+            "case": "case-00.pt",
+            "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.18769664764404298,
+            "candidate_ms": 0.13722880363464354,
+            "speedup": 1.3677642205769314,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-01.pt",
+            "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.82340087890626,
+            "candidate_ms": 44.30894165039062,
+            "speedup": 3.900418164860019,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-02.pt",
+            "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.639096336364746,
+            "candidate_ms": 0.5207782363891602,
+            "speedup": 1.227194786010932,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-03.pt",
+            "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 171.29415283203124,
+            "candidate_ms": 45.45628051757812,
+            "speedup": 3.768327520017638,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-04.pt",
+            "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.4008396911621094,
+            "candidate_ms": 0.34838016510009767,
+            "speedup": 1.1505812652879903,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-05.pt",
+            "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.666259765625,
+            "candidate_ms": 46.35284423828125,
+            "speedup": 3.7250413130641453,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    "probe-03-results/summary.json": {
+      "sha256": "5dca7c0d6b08e6ece870841dc858db4c1ba95e2495df36d0237d0e313076b52a",
+      "data": {
+        "rtol": 0.0001,
+        "atol": 1e-05,
+        "reports": {
+          "baseline": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/baseline/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "ad90d516639e87be520ba8f7c6c7684c119ffb40a81eb70289563f969266738c",
+            "raw_sha256": "07df0420e2437044a84a51292bacde1e6e0e5ec12573570382b4f5bce2b71f4c",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.18714624404907226,
+                  0.18763776779174804,
+                  0.18763776779174804,
+                  0.18711807250976562,
+                  0.18791168212890624
+                ],
+                "median_ms": 0.18763776779174804,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.82559814453126,
+                  172.82554931640624,
+                  172.827392578125,
+                  172.8269287109375,
+                  172.82559814453126
+                ],
+                "median_ms": 172.82559814453126,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.6386892700195312,
+                  0.6392985534667969,
+                  0.6392166519165039,
+                  0.6391705703735352,
+                  0.6395852661132813
+                ],
+                "median_ms": 0.6392166519165039,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  171.293896484375,
+                  171.29415283203124,
+                  171.2933837890625,
+                  171.29349365234376,
+                  171.29522705078125
+                ],
+                "median_ms": 171.293896484375,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.40035072326660154,
+                  0.40115455627441404,
+                  0.4009932708740234,
+                  0.4007321548461914,
+                  0.40102142333984375
+                ],
+                "median_ms": 0.4009932708740234,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  172.66826171875,
+                  172.6671875,
+                  172.66800537109376,
+                  172.6688720703125,
+                  172.671484375
+                ],
+                "median_ms": 172.66826171875,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          },
+          "candidate": {
+            "binary": "/workspace/up-run/up-platform-clean-20261023/roi-perf-20261024/_roi_probe_03.cpython-312-x86_64-linux-gnu.so",
+            "binary_sha256": "55f424352f95729c9ca87967e2326b87d673ae15b6195204fd3765bf97048eda",
+            "raw_sha256": "07df0420e2437044a84a51292bacde1e6e0e5ec12573570382b4f5bce2b71f4c",
+            "torch": "2.10.0+metax3.8.1.0",
+            "device": "MetaX C500",
+            "controls": {
+              "CUDA_VISIBLE_DEVICES": "2",
+              "PYTHONHASHSEED": "0",
+              "OMP_NUM_THREADS": "2",
+              "MKL_NUM_THREADS": "2",
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+              "MCDNN_STABLE_RESULT_MOD": "1"
+            },
+            "scope": "Hot GPU backward including identical gradient-buffer reset, not end-to-end model throughput",
+            "records": [
+              {
+                "case": "case-00.pt",
+                "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  1,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.13687552452087404,
+                  0.13735936164855958,
+                  0.13732607841491698,
+                  0.13715200424194335,
+                  0.13743871688842774
+                ],
+                "median_ms": 0.13732607841491698,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-01.pt",
+                "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1023,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  44.080078125,
+                  44.027288818359374,
+                  44.022885131835935,
+                  44.07669677734375,
+                  43.990170288085935
+                ],
+                "median_ms": 44.027288818359374,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-02.pt",
+                "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  3,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.5189017486572266,
+                  0.5193753433227539,
+                  0.5198617553710938,
+                  0.5179059219360351,
+                  0.5166745758056641
+                ],
+                "median_ms": 0.5189017486572266,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-03.pt",
+                "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1021,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  46.293862915039064,
+                  46.17415771484375,
+                  46.047079467773436,
+                  46.263858032226565,
+                  46.17676696777344
+                ],
+                "median_ms": 46.17676696777344,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-04.pt",
+                "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.125,
+                  0
+                ],
+                "top_shape": [
+                  2,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  16,
+                  16
+                ],
+                "dtype": "torch.float32",
+                "iterations": 100,
+                "warmup": 20,
+                "milliseconds": [
+                  0.3504256057739258,
+                  0.3509043121337891,
+                  0.35108097076416017,
+                  0.3508992004394531,
+                  0.3511475372314453
+                ],
+                "median_ms": 0.3509043121337891,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              },
+              {
+                "case": "case-05.pt",
+                "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+                "parameters": [
+                  false,
+                  7,
+                  7,
+                  0.25,
+                  0
+                ],
+                "top_shape": [
+                  1022,
+                  256,
+                  7,
+                  7
+                ],
+                "bottom_shape": [
+                  2,
+                  256,
+                  32,
+                  32
+                ],
+                "dtype": "torch.float32",
+                "iterations": 5,
+                "warmup": 3,
+                "milliseconds": [
+                  46.30415344238281,
+                  46.29447631835937,
+                  46.287411499023435,
+                  46.12684936523438,
+                  46.16007690429687
+                ],
+                "median_ms": 46.287411499023435,
+                "bitwise_repeats": [
+                  true,
+                  true
+                ]
+              }
+            ]
+          }
+        },
+        "records": [
+          {
+            "case": "case-00.pt",
+            "capture_sha256": "06b80b148555c6e84e3df42680c8a6e52f7db2c22dc47bc2b43ca259f6b78961",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.18763776779174804,
+            "candidate_ms": 0.13732607841491698,
+            "speedup": 1.3663666068204419,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-01.pt",
+            "capture_sha256": "0c3b3eaaf9b345eab4e3914c7c03cc65142fa435708b75a86a89ea96e1f210df",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.82559814453126,
+            "candidate_ms": 44.027288818359374,
+            "speedup": 3.9254199561900576,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-02.pt",
+            "capture_sha256": "6a3bc91d243e41268bfdf67d1fae84ef244c79480a8262dc7dea6da311456d78",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.6392166519165039,
+            "candidate_ms": 0.5189017486572266,
+            "speedup": 1.2318645168774605,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-03.pt",
+            "capture_sha256": "cf39bc4ae6a7ecb647f6aeca540b0ecefb88b7575ff41a944a14af102c77cad4",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 171.293896484375,
+            "candidate_ms": 46.17676696777344,
+            "speedup": 3.709525541359798,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-04.pt",
+            "capture_sha256": "eb22408251ec9c17b2538ebe22dcf0659b894e7b6f70e7f88e3c0880d364c1ca",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 0.4009932708740234,
+            "candidate_ms": 0.3509043121337891,
+            "speedup": 1.142742499901617,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          },
+          {
+            "case": "case-05.pt",
+            "capture_sha256": "dd6fa83206db808690c59349cc6b68ae685903a664915935f5589b205609d09a",
+            "comparison": {
+              "passed": true,
+              "tensor_count": 3,
+              "failures": []
+            },
+            "bitwise_old_new": true,
+            "baseline_ms": 172.66826171875,
+            "candidate_ms": 46.287411499023435,
+            "speedup": 3.730350350708052,
+            "baseline_repeatable": true,
+            "candidate_repeatable": true
+          }
+        ],
+        "passed": true
+      }
+    }
+  },
+  "passed": true
+}
