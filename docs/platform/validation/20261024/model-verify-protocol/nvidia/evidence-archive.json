@@ -1,0 +1,5 @@
+{
+  "sha256": "ff13609c4cd1ee452945abf0d539c7bf32e4b524282d9b223747fbd78f092f71",
+  "bytes": 30443115,
+  "scope": "All matrix reports, logs, full inference output tensors, common asset manifests and tool source; training gradient tensors and weights remain at the original paths"
+}

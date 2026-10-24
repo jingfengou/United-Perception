@@ -1,0 +1,88 @@
+{
+  "completed_planned_cases": 56,
+  "cpu_contract_tests": {
+    "metax": 72,
+    "nvidia": 72
+  },
+  "created_utc": "2026-10-24T13:17:30.121156+00:00",
+  "executed_successfully": 54,
+  "explicit_failed_strict_detr_cases": 2,
+  "files": {
+    "assets-transfer.json": {
+      "bytes": 1632,
+      "sha256": "f49d40d3574a0183bbddc5b8320325edb76fa6dde335220aba47b000c3a58e8e"
+    },
+    "checkpoint-plan.json": {
+      "bytes": 1543,
+      "sha256": "f2b80d54a0bf41407db3486ceaaf3763bf2f74e50315dcf2653d30180cbcae98"
+    },
+    "harness-attempt.json": {
+      "bytes": 10979,
+      "sha256": "bcb5405537179f75adbae40e10a8eed7f100ac8565e22ac53b939eed11823b96"
+    },
+    "metax/cpu.xml": {
+      "bytes": 9884,
+      "sha256": "fb790988d2ac0d6982c0b56d609f288833526878d398a519d0d907bf60bd28fc"
+    },
+    "metax/evidence-archive.json": {
+      "bytes": 282,
+      "sha256": "80d5e59061808ce31a910e6416665c4bd5648cd1dddb6ef6ca2084e644ae9349"
+    },
+    "metax/evidence-index.json": {
+      "bytes": 20692,
+      "sha256": "028cb9cd011d42c412de16ec4cb277f43ff3f3c0e8dbef6eb3f442f045c69434"
+    },
+    "metax/full-tensor-index.json": {
+      "bytes": 14650,
+      "sha256": "8acfcff269fef76c003eda0d96fddb9446bcb8c4ff68c892298f06e63a2a7655"
+    },
+    "nvidia/cpu.xml": {
+      "bytes": 9871,
+      "sha256": "378ba13c30d68bcc8e9c34dbaa080c4828a680a487bc888aa9d91f3e39c8eb64"
+    },
+    "nvidia/evidence-archive.json": {
+      "bytes": 282,
+      "sha256": "dada32fe7239f8ed6612b65fe7e3cf9b4b7e5099c631f3f00830c02b2fd19c6d"
+    },
+    "nvidia/evidence-index.json": {
+      "bytes": 20692,
+      "sha256": "46a4a484bd6e7c642770ba6ddc050e4399b615b8e96f76b4c1e3d225f891b80d"
+    },
+    "nvidia/full-tensor-index.json": {
+      "bytes": 10744,
+      "sha256": "e2a0d46924283e38ef1e1ea8e82722c92ea0a0c2ea46bf06f03eb3c079557d77"
+    },
+    "protocol.json": {
+      "bytes": 2841,
+      "sha256": "c50d78f2b950821f2a16aef7e72573cca8d509aa0083288f690c8966833ed674"
+    },
+    "reference-audit.json": {
+      "bytes": 29053,
+      "sha256": "778d4143963f28f33442ff14658b62ca2a43c4edba44b029ee86f0fbe742e206"
+    },
+    "results.csv": {
+      "bytes": 654,
+      "sha256": "16231e177b74528ba24f30649d4d354c82182b51aac838c2abcb8bcb866ce835"
+    },
+    "summary.json": {
+      "bytes": 261549,
+      "sha256": "056293c55def54bd7e32015b042167df1f8768c5a20ac84a8eb0269c562ce952"
+    }
+  },
+  "large_evidence": {
+    "metax": "/workspace/up-run/up-platform-clean-20261023/model-verify-protocol-20261024",
+    "nvidia": "/data2/oujingfeng/up-platform-clean-20261023/model-verify-protocol-20261024"
+  },
+  "optimizer_updates": 0,
+  "production_paths_unchanged_since": "b137c68a1988e99b3cb19ac3307796b9ab70a984",
+  "public_text_normalization": "CRLF to LF only; original server artifacts remain unchanged",
+  "reference_audit_commit": "655fd49",
+  "reference_audit_sha256": "c1153d8807daba4f7669f419a3345c36b0f7559931e3be03f8698d3700c0ad5b",
+  "runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "successful_backward_cases": 22,
+  "successful_inference_cases": 32,
+  "summary_commit": "7d737cc",
+  "summary_sha256": "1d113e572a99163cfe7cb3ff98a7e0d54f4e838241f2811c6d60af862bd09ee5",
+  "verification_driver_commit": "3f57d38",
+  "verification_driver_sha256": "0ef694b363559326e93a2713a7ab1d5f833bfca8e444299d9ba61cd47b20e8d9"
+}

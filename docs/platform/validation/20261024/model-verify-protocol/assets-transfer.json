@@ -1,0 +1,21 @@
+{
+  "archive_sha256": "f5abca88e2f35648fc0c08c0bd0e91a74e63f89581bd126021f6b8d3b9bd380c",
+  "files": {
+    "detr/manifest.json": "bb14322938dcb7879373f5a881885abc6880c205666a2bef1bbdc40ad27bfa68",
+    "detr/training.pt": "1a958b28ef1605aeae0afcec600239918be7b933ea3466b6e254f31e41debad0",
+    "detr/validation.pt": "8c6bf43665812cdc026bebbd2ea5dfe4f8b04e30e9e9c9a015331edbb481e12c",
+    "detr/weights.pt": "956b042939f111333f8fc069500a615a95e9c9d21aa0dfb65c198f10a8ba4cda",
+    "resnet18/manifest.json": "a74e76306ce61e052973a3ebefe28b778fd126ae4dc93628d45a92ab63998891",
+    "resnet18/training.pt": "33e2fa1e55257e209734f38d7613255b7ca187b2f651fd77f6e72fc5a40da3f5",
+    "resnet18/validation.pt": "9396c8906e131265e3771a49133fd49255feb8a68e28194801fc46f995a59e24",
+    "resnet18/weights.pt": "ad5924a62e2751fe2865a8533303c3410c3b5316dadcb5e9121619f2aa049eb6",
+    "vit_b16/manifest.json": "cbb45d84ba3782d0a115b3288a404bd1148313caa80d0bbd2f1794acf2e2543e",
+    "vit_b16/training.pt": "5e1fb9fc335a17822f8073519fa052a2de459b35addf890e9c27be8196de675f",
+    "vit_b16/validation.pt": "6f71d9660b468c6726ce8cc60f6fde874646909ee38b519685d9f36228dd268c",
+    "vit_b16/weights.pt": "e2ae2eee8f55683c1fcd61dd164f39000399bc9d1e595bb2c0e776aef16cb4b9",
+    "yolov5s/manifest.json": "18e660098c515deabe226c5c71a7743d0cd461e47965e8d6b6110fee67a8081e",
+    "yolov5s/training.pt": "c46a502ff6bf2aefb13c0faf648da11930cc6981ef058bb8e9528c4c7014197d",
+    "yolov5s/validation.pt": "3e5eaab64fb064b41f89022c809cb9a46a1f942e0ddf1b02c79acb35d599db05",
+    "yolov5s/weights.pt": "79ff5cfe78d4f06507c26f9d8fe880762ddcd1040db293933c99ea2fd0736526"
+  }
+}

@@ -1,0 +1,9 @@
+model,profile,status,metric,nvidia_percent,metax_percent,delta_pp
+resnet18,native,completed,top1,66.4000015258789,66.4000015258789,0.0
+resnet18,ultralytics,completed,top1,66.4000015258789,66.4000015258789,0.0
+yolov5s,native,completed,bbox.AP,29.624264021218593,29.624264021218593,0.0
+yolov5s,ultralytics,completed,bbox.AP,29.624264021218593,29.624264021218593,0.0
+detr,native,completed,bbox.AP,79.22607413166507,79.22607413166507,0.0
+detr,ultralytics,completed,bbox.AP,79.22607413166507,79.22607413166507,0.0
+vit_b16,native,completed,top1,22.55000114440918,22.55000114440918,0.0
+vit_b16,ultralytics,completed,top1,22.55000114440918,22.55000114440918,0.0

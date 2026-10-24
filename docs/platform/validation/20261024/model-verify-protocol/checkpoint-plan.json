@@ -1,0 +1,26 @@
+{
+  "detr": {
+    "origin": "new_nvidia single-seed native final epoch, accuracy-20261024",
+    "path": "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/results/new_nvidia-gpu1/detr/final.pt",
+    "sha256": "170f967c4482311c10e3fd29d4c83222c48958fb827782bb09c64fae66ec7c39",
+    "state_sha256": "3beedb9e944e5d4979a7654c0759f26e689131bad0e99bd99b1a2f1ca5b66066"
+  },
+  "resnet18": {
+    "origin": "new_nvidia single-seed native final epoch, accuracy-20261024",
+    "path": "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/results/new_nvidia-gpu1/resnet18/final.pt",
+    "sha256": "63d70d47b47c8272adc1c7088b6f7e77e9c4ad2ab88142c19b5c1a006efe7f35",
+    "state_sha256": "49bd846ffba191f0fa7f9108f57152b2ba2ce2fa988a6373381376c26aef6929"
+  },
+  "vit_b16": {
+    "origin": "new_nvidia single-seed native final epoch, accuracy-20261024",
+    "path": "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/results/new_nvidia-gpu1/vit_b16/final.pt",
+    "sha256": "ec34cb16982fe77476c4282b77cf5e4301b5881c96294b0de05a4424a5df4fd6",
+    "state_sha256": "2f729879f6f7ab171a3d50220136e67b941f9e3237337e4f4afa5c4ec7307d31"
+  },
+  "yolov5s": {
+    "origin": "new_nvidia single-seed native final epoch, accuracy-20261024",
+    "path": "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/results/new_nvidia-gpu1/yolov5s/final.pt",
+    "sha256": "ed2ffeccf3dccf3dec541cc2b2ae887b1e1d426b4ff9946e03fe586c5fc81b41",
+    "state_sha256": "95107cf536e5551a072e3be5474e4ec1252874b8cf07c1ee7421afcf00322caa"
+  }
+}
