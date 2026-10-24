@@ -1,0 +1,664 @@
+{
+  "accuracy_threshold": null,
+  "complete_runs": 8,
+  "controller_sha256": "c2fe6a4b7136d22b37d856fe16648e2bd0630f292268db649f44086459fa94c0",
+  "gpu_uuid": "GPU-a11f730c-a975-2bf0-b765-3c24d83b7104",
+  "optimizer_updates": 14960,
+  "physical_device": 1,
+  "records": [
+    {
+      "all_cross_source_deltas_pp": {
+        "original-01 vs new-01": -5.166275002710869,
+        "original-01 vs new-02": 1.2194423391191762,
+        "original-02 vs new-01": -7.325891347439491,
+        "original-02 vs new-02": -0.9401740056094461
+      },
+      "common_inputs": {
+        "algorithm_config_sha256": "53d7cf3889a6953faaa9ac0205d1220b385ba878c34265dd56ed1e551f91f3dd",
+        "all_batches_sha256": "6a98d209f260003e1a685c3e487a1f203e98869de55ab62cb43915f1d5e39aef",
+        "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+        "driver_sha256": "6ffd0e3c1e695582b5b67189bd925027d728faf70e13bd9c96d1ea8e70fe5f22",
+        "first_batch_sha256": "40cd5106f1f315145aa8f9c6cc5ce72f31ce99c76d6ae923d9937d026c65e526",
+        "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+        "initial_state_sha256": "6b1cadc0a4478f58cbc6874b281c45f1a49225937611802f8a77a7144430206d"
+      },
+      "cross_inference": [
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "new",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "bbox.AP": 0.2462411767133508,
+            "bbox.AP.5": 0.4957211156575891,
+            "bbox.AP.75": 0.20852080120410593,
+            "bbox.AP_L": 0.3044642730840776,
+            "bbox.AP_M": 0.029699026989315674,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.612781954887218,
+            "bbox.AR_1": 0.1714285714285714,
+            "bbox.AR_10": 0.5413533834586466,
+            "bbox.AR_L": 0.6355371900826448,
+            "bbox.AR_M": 0.5111111111111111,
+            "bbox.AR_S": 0.0
+          },
+          "raw_sha256": "3ef75451cf832f004aace38b2b905de2ebf2cc990c1658d0471cfaeb014c1b07",
+          "trained_with": "original"
+        },
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "original",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "bbox.AP": 0.19457842668624212,
+            "bbox.AP.5": 0.4256688703328624,
+            "bbox.AP.75": 0.13455701177230747,
+            "bbox.AP_L": 0.23159732737084002,
+            "bbox.AP_M": 0.13861333496583994,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.5646616541353383,
+            "bbox.AR_1": 0.13007518796992482,
+            "bbox.AR_10": 0.48872180451127817,
+            "bbox.AR_L": 0.5884297520661157,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.0
+          },
+          "raw_sha256": "9e1a87b3a17bcd57d2eef69b3e240ca45d180932979b1040abb10320f24037ce",
+          "trained_with": "new"
+        }
+      ],
+      "mean_new_minus_original_pp": -3.053224504160159,
+      "metric": "bbox.AP",
+      "model": "yolov5s",
+      "runs": {
+        "new-01": {
+          "checkpoint_sha256": "3d98ded054a4f3f4ff119831705a175f09a0b78137900c0ac8644f197ff0832a",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.19457842668624212,
+            "bbox.AP.5": 0.4256688703328624,
+            "bbox.AP.75": 0.13455701177230747,
+            "bbox.AP_L": 0.23159732737084002,
+            "bbox.AP_M": 0.13861333496583994,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.5646616541353383,
+            "bbox.AR_1": 0.13007518796992482,
+            "bbox.AR_10": 0.48872180451127817,
+            "bbox.AR_L": 0.5884297520661157,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.0
+          },
+          "final_state_sha256": "316980771ab44a99bdefff976a6a65b58e5ed0be773995a576b2b105c9ef303a",
+          "metric_percent": 19.457842668624213,
+          "report_sha256": "ce8bd0eddc60bf1e327c9dd39ffd77dd858d96380cb20cde3e5829ae3a6bf9aa",
+          "restored_metrics": {
+            "bbox.AP": 0.19457842668624212,
+            "bbox.AP.5": 0.4256688703328624,
+            "bbox.AP.75": 0.13455701177230747,
+            "bbox.AP_L": 0.23159732737084002,
+            "bbox.AP_M": 0.13861333496583994,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.5646616541353383,
+            "bbox.AR_1": 0.13007518796992482,
+            "bbox.AR_10": 0.48872180451127817,
+            "bbox.AR_L": 0.5884297520661157,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.0
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "bbox.AP": 0.19457842668624212,
+            "bbox.AP.5": 0.4256688703328624,
+            "bbox.AP.75": 0.13455701177230747,
+            "bbox.AP_L": 0.23159732737084002,
+            "bbox.AP_M": 0.13861333496583994,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.5646616541353383,
+            "bbox.AR_1": 0.13007518796992482,
+            "bbox.AR_10": 0.48872180451127817,
+            "bbox.AR_L": 0.5884297520661157,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.0
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1441.8551084250212
+        },
+        "new-02": {
+          "checkpoint_sha256": "9595f8c0712cfa67020e66a1819fae38a637d65c52c350d8e7d0019634531f13",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.2584356001045426,
+            "bbox.AP.5": 0.4909050665157555,
+            "bbox.AP.75": 0.24523376782110792,
+            "bbox.AP_L": 0.31134450247403894,
+            "bbox.AP_M": 0.14036999897529903,
+            "bbox.AP_S": 0.0077684691546077685,
+            "bbox.AR": 0.6067669172932331,
+            "bbox.AR_1": 0.12330827067669173,
+            "bbox.AR_10": 0.5503759398496241,
+            "bbox.AR_L": 0.6322314049586776,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.1
+          },
+          "final_state_sha256": "0375bf8c28bc20eef4cab518ce5553aab69eea182a18449fd90b6e593af1564b",
+          "metric_percent": 25.843560010454258,
+          "report_sha256": "458b631ef1f4354fbd5a986c0b7d0051ae66ca81804f8f8d4ebd371966e978cb",
+          "restored_metrics": {
+            "bbox.AP": 0.2584356001045426,
+            "bbox.AP.5": 0.4909050665157555,
+            "bbox.AP.75": 0.24523376782110792,
+            "bbox.AP_L": 0.31134450247403894,
+            "bbox.AP_M": 0.14036999897529903,
+            "bbox.AP_S": 0.0077684691546077685,
+            "bbox.AR": 0.6067669172932331,
+            "bbox.AR_1": 0.12330827067669173,
+            "bbox.AR_10": 0.5503759398496241,
+            "bbox.AR_L": 0.6322314049586776,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.1
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "bbox.AP": 0.2584356001045426,
+            "bbox.AP.5": 0.4909050665157555,
+            "bbox.AP.75": 0.24523376782110792,
+            "bbox.AP_L": 0.31134450247403894,
+            "bbox.AP_M": 0.14036999897529903,
+            "bbox.AP_S": 0.0077684691546077685,
+            "bbox.AR": 0.6067669172932331,
+            "bbox.AR_1": 0.12330827067669173,
+            "bbox.AR_10": 0.5503759398496241,
+            "bbox.AR_L": 0.6322314049586776,
+            "bbox.AR_M": 0.4333333333333333,
+            "bbox.AR_S": 0.1
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1442.8888512202539
+        },
+        "original-01": {
+          "checkpoint_sha256": "ac10caf8f2890ff6a56487bf5e0c128c0f9c1370009e05443dbaa3601639509c",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.2462411767133508,
+            "bbox.AP.5": 0.4957211156575891,
+            "bbox.AP.75": 0.20852080120410593,
+            "bbox.AP_L": 0.3044642730840776,
+            "bbox.AP_M": 0.029699026989315674,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.612781954887218,
+            "bbox.AR_1": 0.1714285714285714,
+            "bbox.AR_10": 0.5413533834586466,
+            "bbox.AR_L": 0.6355371900826448,
+            "bbox.AR_M": 0.5111111111111111,
+            "bbox.AR_S": 0.0
+          },
+          "final_state_sha256": "25f1b8c8bdd0fd29e77f7f8df35749e2b42685c4cc4bb717110d3e730539c8a6",
+          "metric_percent": 24.624117671335082,
+          "report_sha256": "02e405b7b43382f30f18488de7bfee37be666731fab64f98eb72522ae9875bcd",
+          "restored_metrics": {
+            "bbox.AP": 0.2462411767133508,
+            "bbox.AP.5": 0.4957211156575891,
+            "bbox.AP.75": 0.20852080120410593,
+            "bbox.AP_L": 0.3044642730840776,
+            "bbox.AP_M": 0.029699026989315674,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.612781954887218,
+            "bbox.AR_1": 0.1714285714285714,
+            "bbox.AR_10": 0.5413533834586466,
+            "bbox.AR_L": 0.6355371900826448,
+            "bbox.AR_M": 0.5111111111111111,
+            "bbox.AR_S": 0.0
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "bbox.AP": 0.2462411767133508,
+            "bbox.AP.5": 0.4957211156575891,
+            "bbox.AP.75": 0.20852080120410593,
+            "bbox.AP_L": 0.3044642730840776,
+            "bbox.AP_M": 0.029699026989315674,
+            "bbox.AP_S": 0.0,
+            "bbox.AR": 0.612781954887218,
+            "bbox.AR_1": 0.1714285714285714,
+            "bbox.AR_10": 0.5413533834586466,
+            "bbox.AR_L": 0.6355371900826448,
+            "bbox.AR_M": 0.5111111111111111,
+            "bbox.AR_S": 0.0
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1449.853581189178
+        },
+        "original-02": {
+          "checkpoint_sha256": "32cf732bf693fbb23c03acd12023e57527295225068d6c133b9a5b9b78a6c6ea",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.26783734016063704,
+            "bbox.AP.5": 0.5690588236087826,
+            "bbox.AP.75": 0.16621870878758505,
+            "bbox.AP_L": 0.323639502292742,
+            "bbox.AP_M": 0.03711490409954563,
+            "bbox.AP_S": 0.016831683168316833,
+            "bbox.AR": 0.5721804511278196,
+            "bbox.AR_1": 0.16165413533834588,
+            "bbox.AR_10": 0.5007518796992481,
+            "bbox.AR_L": 0.5991735537190083,
+            "bbox.AR_M": 0.3777777777777778,
+            "bbox.AR_S": 0.06666666666666667
+          },
+          "final_state_sha256": "7e7b175c515511c68f8afa45bae771ec50134d34c3f711df8093ee639e1bab41",
+          "metric_percent": 26.783734016063704,
+          "report_sha256": "76348d0a245835da47eee794390aaa4263627e3d53f62da1ae05a2d25c040d6d",
+          "restored_metrics": {
+            "bbox.AP": 0.26783734016063704,
+            "bbox.AP.5": 0.5690588236087826,
+            "bbox.AP.75": 0.16621870878758505,
+            "bbox.AP_L": 0.323639502292742,
+            "bbox.AP_M": 0.03711490409954563,
+            "bbox.AP_S": 0.016831683168316833,
+            "bbox.AR": 0.5721804511278196,
+            "bbox.AR_1": 0.16165413533834588,
+            "bbox.AR_10": 0.5007518796992481,
+            "bbox.AR_L": 0.5991735537190083,
+            "bbox.AR_M": 0.3777777777777778,
+            "bbox.AR_S": 0.06666666666666667
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "bbox.AP": 0.26783734016063704,
+            "bbox.AP.5": 0.5690588236087826,
+            "bbox.AP.75": 0.16621870878758505,
+            "bbox.AP_L": 0.323639502292742,
+            "bbox.AP_M": 0.03711490409954563,
+            "bbox.AP_S": 0.016831683168316833,
+            "bbox.AR": 0.5721804511278196,
+            "bbox.AR_1": 0.16165413533834588,
+            "bbox.AR_10": 0.5007518796992481,
+            "bbox.AR_L": 0.5991735537190083,
+            "bbox.AR_M": 0.3777777777777778,
+            "bbox.AR_S": 0.06666666666666667
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1395.5313383163884
+        }
+      },
+      "sources": {
+        "new": {
+          "all_values": [
+            19.457842668624213,
+            25.843560010454258
+          ],
+          "max": 25.843560010454258,
+          "mean": 22.650701339539236,
+          "min": 19.457842668624213,
+          "repeat_spread_pp": 6.385717341830045
+        },
+        "original": {
+          "all_values": [
+            24.624117671335082,
+            26.783734016063704
+          ],
+          "max": 26.783734016063704,
+          "mean": 25.703925843699395,
+          "min": 24.624117671335082,
+          "repeat_spread_pp": 2.1596163447286223
+        }
+      }
+    },
+    {
+      "all_cross_source_deltas_pp": {
+        "original-01 vs new-01": 4.75,
+        "original-01 vs new-02": 6.149999618530273,
+        "original-02 vs new-01": 1.8500003814697266,
+        "original-02 vs new-02": 3.25
+      },
+      "common_inputs": {
+        "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+        "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+        "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+        "driver_sha256": "6ffd0e3c1e695582b5b67189bd925027d728faf70e13bd9c96d1ea8e70fe5f22",
+        "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+        "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+        "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567"
+      },
+      "cross_inference": [
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "new",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "top1": 19.30000114440918,
+            "top5": 73.75
+          },
+          "raw_sha256": "b4220da9ac57ab522a75a15a3607abf68ac9bde64ef7d357f71b4d95f9e8362c",
+          "trained_with": "original"
+        },
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "original",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "top1": 24.05000114440918,
+            "top5": 76.55000305175781
+          },
+          "raw_sha256": "c2ca1845c1cfef36e1abdc45bce25724de3d4ceb59e2a741ac0bfae44d0b902f",
+          "trained_with": "new"
+        }
+      ],
+      "mean_new_minus_original_pp": 4.0,
+      "metric": "top1",
+      "model": "vit_b16",
+      "runs": {
+        "new-01": {
+          "checkpoint_sha256": "e3811ac2a003fd3d630519a0c1b6500c43c1e5f50030e23d204b3aa65c8c06fa",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 24.05000114440918,
+            "top5": 76.55000305175781
+          },
+          "final_state_sha256": "79c2390971b1a76b4f6d24de1b8d31c32bd9c0b345cb076b1f5a1f35126784ef",
+          "metric_percent": 24.05000114440918,
+          "report_sha256": "da5ee07b8ef193911940adc7977c17f46e0ca98b4a9705824704136bfcce2fcc",
+          "restored_metrics": {
+            "top1": 24.05000114440918,
+            "top5": 76.55000305175781
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "top1": 24.05000114440918,
+            "top5": 76.55000305175781
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 430.503748267889
+        },
+        "new-02": {
+          "checkpoint_sha256": "48908727f84423cf40c5ec0f2c9b7b0f07bb7318de45e485de4b8eca7056c3fb",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 25.450000762939453,
+            "top5": 80.45000457763672
+          },
+          "final_state_sha256": "04272926d779d851d507becd059f4ebc1a40e805dd8fb454359ea40da09c957b",
+          "metric_percent": 25.450000762939453,
+          "report_sha256": "1145afaf6a47d2b90132b5b2ccd2043381a02d4be01ae1910a0756c34016be49",
+          "restored_metrics": {
+            "top1": 25.450000762939453,
+            "top5": 80.45000457763672
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "top1": 25.450000762939453,
+            "top5": 80.45000457763672
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 429.5624453560449
+        },
+        "original-01": {
+          "checkpoint_sha256": "1e6b55b3293ef86d9dc22efb7a177fac8bc591a50c9472f666f37d6d35851d27",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 19.30000114440918,
+            "top5": 73.75
+          },
+          "final_state_sha256": "f347a33aad20a86708f38c6e1ee19fdf9ea19c2a0e42326dac8c489a10f91b4c",
+          "metric_percent": 19.30000114440918,
+          "report_sha256": "98d88633ab5ed18f5e0590a61d2216520b11d3332d92d688ba1b8a48cd0e7492",
+          "restored_metrics": {
+            "top1": 19.30000114440918,
+            "top5": 73.75
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "top1": 19.30000114440918,
+            "top5": 73.75
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 429.5240270970389
+        },
+        "original-02": {
+          "checkpoint_sha256": "a649868a60c089e2adc2c7f39a6939386b0ba38514b4e9162d5780a6c22dd268",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": null,
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": false,
+            "cudnn_tf32": false,
+            "deterministic": false,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 22.200000762939453,
+            "top5": 76.55000305175781
+          },
+          "final_state_sha256": "cdb05f21e146139a4c4e1d1c8fa9e307ff3b3bfa561f3316357531c9049d1af5",
+          "metric_percent": 22.200000762939453,
+          "report_sha256": "a5953613b0972eccce9b46608c13156512aa0843f29a47b31612b992769d92cb",
+          "restored_metrics": {
+            "top1": 22.200000762939453,
+            "top5": 76.55000305175781
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "top1": 22.200000762939453,
+            "top5": 76.55000305175781
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 423.274418536108
+        }
+      },
+      "sources": {
+        "new": {
+          "all_values": [
+            24.05000114440918,
+            25.450000762939453
+          ],
+          "max": 25.450000762939453,
+          "mean": 24.750000953674316,
+          "min": 24.05000114440918,
+          "repeat_spread_pp": 1.3999996185302734
+        },
+        "original": {
+          "all_values": [
+            19.30000114440918,
+            22.200000762939453
+          ],
+          "max": 22.200000762939453,
+          "mean": 20.750000953674316,
+          "min": 19.30000114440918,
+          "repeat_spread_pp": 2.8999996185302734
+        }
+      }
+    }
+  ],
+  "scope": "Two repeats per source/model on one physical GPU, same seed; no population equivalence claim",
+  "seed": 131
+}

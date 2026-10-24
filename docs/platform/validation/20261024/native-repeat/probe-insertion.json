@@ -1,0 +1,207 @@
+{
+  "child_finished_utc": "2026-10-24T05:48:51.155421+00:00",
+  "commands": [
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--source",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/original",
+        "--frozen-tools",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03/tools",
+        "--data",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--initial",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/initial/yolov5s/initial.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-original",
+        "--lane",
+        "original_nvidia",
+        "--model",
+        "yolov5s",
+        "--steps",
+        "1"
+      ],
+      "exit_code": 0,
+      "label": "operators-yolov5s-original"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-original/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-original/capture-0-native.json"
+      ],
+      "exit_code": 0,
+      "label": "replay-yolov5s-original-capture-0-native"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-original/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-original/capture-0-deterministic.json",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "label": "replay-yolov5s-original-capture-0-deterministic"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--source",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--frozen-tools",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03/tools",
+        "--data",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--initial",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/initial/yolov5s/initial.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-new",
+        "--lane",
+        "new_nvidia",
+        "--model",
+        "yolov5s",
+        "--steps",
+        "1"
+      ],
+      "exit_code": 0,
+      "label": "operators-yolov5s-new"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-new/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-new/capture-0-native.json"
+      ],
+      "exit_code": 0,
+      "label": "replay-yolov5s-new-capture-0-native"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-new/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/yolov5s-new/capture-0-deterministic.json",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "label": "replay-yolov5s-new-capture-0-deterministic"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--source",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/original",
+        "--frozen-tools",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03/tools",
+        "--data",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--initial",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/initial/vit_b16/initial.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-original",
+        "--lane",
+        "original_nvidia",
+        "--model",
+        "vit_b16",
+        "--steps",
+        "200"
+      ],
+      "exit_code": 0,
+      "label": "operators-vit_b16-original"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-original/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-original/capture-0-native.json"
+      ],
+      "exit_code": 0,
+      "label": "replay-vit_b16-original-capture-0-native"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-original/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-original/capture-0-deterministic.json",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "label": "replay-vit_b16-original-capture-0-deterministic"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--source",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--frozen-tools",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03/tools",
+        "--data",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--initial",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/initial/vit_b16/initial.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-new",
+        "--lane",
+        "new_nvidia",
+        "--model",
+        "vit_b16",
+        "--steps",
+        "200"
+      ],
+      "exit_code": 0,
+      "label": "operators-vit_b16-new"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-new/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-new/capture-0-native.json"
+      ],
+      "exit_code": 0,
+      "label": "replay-vit_b16-new-capture-0-native"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-new/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/operators-01/vit_b16-new/capture-0-deterministic.json",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "label": "replay-vit_b16-new-capture-0-deterministic"
+    }
+  ],
+  "controller_pid": 2142212,
+  "current_child": "full-vit_b16-original-01",
+  "held_utc": "2026-10-24T05:47:56.087806+00:00",
+  "resumed": true,
+  "resumed_utc": "2026-10-24T05:52:20.680549+00:00",
+  "scope": "Hold only queue parent; current training/eval/audit child finishes normally"
+}

@@ -1,0 +1,100 @@
+{
+  "child_finished_utc": "2026-10-24T07:52:35.931494+00:00",
+  "commands": [
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_yolo_targets.py",
+        "--source",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/original",
+        "--frozen-tools",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03/tools",
+        "--data",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--initial",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/initial/yolov5s/initial.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/original",
+        "--lane",
+        "original_nvidia"
+      ],
+      "exit_code": 0,
+      "label": "forward-original"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/original/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/original/capture-0-native.json"
+      ],
+      "exit_code": 0,
+      "label": "forward-replay-original-capture-0-native"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/original/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/original/capture-0-deterministic.json",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "label": "forward-replay-original-capture-0-deterministic"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_yolo_targets.py",
+        "--source",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03",
+        "--frozen-tools",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/source-03/tools",
+        "--data",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/data/data.json",
+        "--initial",
+        "/data2/oujingfeng/up-platform-clean-20261023/accuracy-20261024/initial/yolov5s/initial.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/new",
+        "--lane",
+        "new_nvidia"
+      ],
+      "exit_code": 0,
+      "label": "forward-new"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/new/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/new/capture-0-native.json"
+      ],
+      "exit_code": 0,
+      "label": "forward-replay-new-capture-0-native"
+    },
+    {
+      "command": [
+        "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/probe_native_operators.py",
+        "--capture",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/new/capture-0.pt",
+        "--output",
+        "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024/forward-01/new/capture-0-deterministic.json",
+        "--deterministic"
+      ],
+      "exit_code": 0,
+      "label": "forward-replay-new-capture-0-deterministic"
+    }
+  ],
+  "controller_pid": 2142212,
+  "held_utc": "2026-10-24T07:49:14.789037+00:00",
+  "resumed": true,
+  "resumed_utc": "2026-10-24T07:53:29.606806+00:00",
+  "scope": "Queue parent only; last full training/eval child finishes normally"
+}

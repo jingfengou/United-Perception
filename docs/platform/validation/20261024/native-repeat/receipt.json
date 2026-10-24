@@ -1,0 +1,23 @@
+{
+  "completed_runs": 8,
+  "cpu": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "ubuntu-Precision-7920-Tower",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "57",
+    "time": "9.255",
+    "timestamp": "2026-10-24T13:51:00.068796"
+  },
+  "forward_insertion_resumed": true,
+  "index_sha256": "c0af3c07ebbdcf2a83f122d4be63a650d3e5b768318184372ecd22ded97b62cb",
+  "insertion_resumed": true,
+  "optimizer_updates": 14960,
+  "raw_bytes": 26405809552,
+  "raw_files": 534,
+  "raw_root": "/data2/oujingfeng/up-platform-clean-20261023/native-repeat-20261024",
+  "reports_archive_bytes": 8720906,
+  "reports_archive_sha256": "08f1898a3891632dfdca868a57a2b93de4bf691172d997376c33e9dda18900fd",
+  "summary_sha256": "5c4e00a1c6a6829458b2b956a830e92fd294d6015f0837682d8ec7cc84e7c740"
+}

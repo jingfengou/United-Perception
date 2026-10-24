@@ -1,0 +1,71 @@
+{
+  "records": [
+    {
+      "first_exact_loss_difference": {
+        "delta": -0.00022792816162109375,
+        "left": 12.21291446685791,
+        "right": 12.212686538696289,
+        "step": 2
+      },
+      "left": "original-01",
+      "model": "yolov5s",
+      "right": "original-02"
+    },
+    {
+      "first_exact_loss_difference": {
+        "delta": 0.00022602081298828125,
+        "left": 13.51575756072998,
+        "right": 13.515983581542969,
+        "step": 1
+      },
+      "left": "new-01",
+      "model": "yolov5s",
+      "right": "new-02"
+    },
+    {
+      "first_exact_loss_difference": {
+        "delta": -0.00022602081298828125,
+        "left": 13.515983581542969,
+        "right": 13.51575756072998,
+        "step": 1
+      },
+      "left": "original-01",
+      "model": "yolov5s",
+      "right": "new-01"
+    },
+    {
+      "first_exact_loss_difference": {
+        "delta": 2.384185791015625e-07,
+        "left": 2.3164889812469482,
+        "right": 2.3164892196655273,
+        "step": 159
+      },
+      "left": "original-01",
+      "model": "vit_b16",
+      "right": "original-02"
+    },
+    {
+      "first_exact_loss_difference": {
+        "delta": -2.384185791015625e-07,
+        "left": 2.2597124576568604,
+        "right": 2.2597122192382812,
+        "step": 161
+      },
+      "left": "new-01",
+      "model": "vit_b16",
+      "right": "new-02"
+    },
+    {
+      "first_exact_loss_difference": {
+        "delta": 2.384185791015625e-07,
+        "left": 2.3164889812469482,
+        "right": 2.3164892196655273,
+        "step": 159
+      },
+      "left": "original-01",
+      "model": "vit_b16",
+      "right": "new-01"
+    }
+  ],
+  "scope": "Exact loss equality, not a tolerance verdict"
+}

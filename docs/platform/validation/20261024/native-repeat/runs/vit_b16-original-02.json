@@ -1,0 +1,75 @@
+{
+  "adapter_sha256": null,
+  "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+  "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+  "checkpoint_all_states_finite": true,
+  "checkpoint_sha256": "a649868a60c089e2adc2c7f39a6939386b0ba38514b4e9162d5780a6c22dd268",
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "driver_sha256": "6ffd0e3c1e695582b5b67189bd925027d728faf70e13bd9c96d1ea8e70fe5f22",
+  "environment": {
+    "controls": {
+      "CUBLAS_WORKSPACE_CONFIG": null,
+      "MCDNN_STABLE_RESULT_MOD": null,
+      "MCDNN_USE_DETERMINISTIC_ALGO": null,
+      "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cudnn_tf32": false,
+    "deterministic": false,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "matmul_tf32": false,
+    "packages": {
+      "Pillow": "11.2.1",
+      "numpy": "1.26.4",
+      "opencv-python": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "torch": "2.10.0+cu126",
+      "torchvision": "0.25.0+cu126"
+    },
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "visible_devices": "1"
+  },
+  "epochs": 20,
+  "expected_steps": 3140,
+  "final_metrics": {
+    "top1": 22.200000762939453,
+    "top5": 76.55000305175781
+  },
+  "final_state_sha256": "cdb05f21e146139a4c4e1d1c8fa9e307ff3b3bfa561f3316357531c9049d1af5",
+  "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+  "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+  "initial_metrics": {
+    "top1": 9.65000057220459,
+    "top5": 48.29999923706055
+  },
+  "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+  "lane": "original_nvidia",
+  "mode": "native",
+  "model": "vit_b16",
+  "model_provenance": "native UP model",
+  "peak_allocated_bytes": 3482028544,
+  "peak_reserved_bytes": 4162846720,
+  "raw_index_sha256": "c0af3c07ebbdcf2a83f122d4be63a650d3e5b768318184372ecd22ded97b62cb",
+  "raw_report_sha256": "a5953613b0972eccce9b46608c13156512aa0843f29a47b31612b992769d92cb",
+  "restore_weights_exact": true,
+  "restored_metric_delta": {
+    "top1": 0.0,
+    "top5": 0.0
+  },
+  "restored_metrics": {
+    "top1": 22.200000762939453,
+    "top5": 76.55000305175781
+  },
+  "run": "vit_b16/original-02/vit_b16",
+  "scope": "Complete fixed small-data budget; one seed; no statistical equivalence claim. Official DETR adapter is external to UP.",
+  "seed": 131,
+  "selection": "final epoch only; no best checkpoint or rerun selection",
+  "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "status": "completed",
+  "total_worker_seconds": 443.5523579022847,
+  "training_steps": 3140,
+  "training_wall_seconds": 423.274418536108
+}

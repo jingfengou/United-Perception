@@ -1,0 +1,12 @@
+{
+  "loss_equal_through_update": 158,
+  "matplotlib": "3.10.8",
+  "plotted_updates": 220,
+  "scope": "Observed complete native ViT runs; not deterministic training or statistical equivalence",
+  "source_reports": {
+    "new-01": "da5ee07b8ef193911940adc7977c17f46e0ca98b4a9705824704136bfcce2fcc",
+    "new-02": "1145afaf6a47d2b90132b5b2ccd2043381a02d4be01ae1910a0756c34016be49",
+    "original-01": "98d88633ab5ed18f5e0590a61d2216520b11d3332d92d688ba1b8a48cd0e7492",
+    "original-02": "a5953613b0972eccce9b46608c13156512aa0843f29a47b31612b992769d92cb"
+  }
+}
