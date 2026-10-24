@@ -1,0 +1,76 @@
+{
+  "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+  "all_batches_sha256": "5f9e6a9a6dc5623b6c7ad9902c23f97d5113719948c44f68dd05ebc4a982877e",
+  "checkpoint_all_states_finite": true,
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+  "environment": {
+    "controls": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "MCDNN_STABLE_RESULT_MOD": null,
+      "MCDNN_USE_DETERMINISTIC_ALGO": null,
+      "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic": true,
+    "deterministic_warn_only": false,
+    "fill_uninitialized_memory": true,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "matmul_tf32": false,
+    "packages": {
+      "Pillow": "11.2.1",
+      "numpy": "1.26.4",
+      "opencv-python": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "torch": "2.10.0+cu126",
+      "torchvision": "0.25.0+cu126"
+    },
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "visible_devices": "1"
+  },
+  "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+  "frozen_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+  "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+  "lane": "new_nvidia",
+  "learning_rates": [
+    [
+      7.5e-06
+    ],
+    [
+      1.2259615384615386e-05
+    ],
+    [
+      1.701923076923077e-05
+    ],
+    [
+      2.1778846153846155e-05
+    ],
+    [
+      2.6538461538461538e-05
+    ]
+  ],
+  "losses": [
+    2.3273837566375732,
+    2.362522840499878,
+    2.380937099456787,
+    2.382554054260254,
+    2.4932687282562256
+  ],
+  "mode": "native_deterministic",
+  "model": "vit_b16",
+  "raw_report": {
+    "bytes": 102969,
+    "relative_path": "vit_b16-control/report.json",
+    "sha256": "41b3874d24c1006148d838c5b93ec47557bfb813ffb85b2ba605f4838b30e587"
+  },
+  "restore_weights_exact": true,
+  "scope": "Diagnostic prefix only; final accuracy omitted; raw report retained",
+  "seed": 131,
+  "status": "probe_completed",
+  "training_steps": 5
+}

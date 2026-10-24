@@ -1,0 +1,44 @@
+{
+  "bn_oracle.py": {
+    "archived_sha256": "74f43965c2f8d579661ef23c7a7d2b74f39561be1c2e10894551ea8afe212421",
+    "executed_sha256": "74f43965c2f8d579661ef23c7a7d2b74f39561be1c2e10894551ea8afe212421",
+    "normalization": "CRLF to LF only",
+    "raw_relative_path": "bn_oracle.py",
+    "vendor": "metax"
+  },
+  "compare_bn14.py": {
+    "archived_sha256": "b70ed3f7931a9843d8beec8fb39163ce0642a84f75514bb9dbecf1a3b564d485",
+    "executed_sha256": "04a908918556d1859a600ecca2874e70d370ca133eba39601de86c7675ab9900",
+    "normalization": "CRLF to LF only",
+    "raw_relative_path": "compare_bn14.py",
+    "vendor": "metax"
+  },
+  "compare_controls.py": {
+    "archived_sha256": "34441ad7d9454d26e1cb01fc5f350bb994836e90b10e93eaa90ae0ce7e3e724d",
+    "executed_sha256": "34441ad7d9454d26e1cb01fc5f350bb994836e90b10e93eaa90ae0ce7e3e724d",
+    "normalization": "CRLF to LF only",
+    "raw_relative_path": "compare_controls.py",
+    "vendor": "nvidia"
+  },
+  "compare_replay.py": {
+    "archived_sha256": "e0eaad4b5da531858ac470a7819e196bc18321126eb65eac18888a957708d249",
+    "executed_sha256": "4618b48e88829cc732a90bb27b1769e70d2ac62440e4d1e5b31652481afef58b",
+    "normalization": "CRLF to LF only",
+    "raw_relative_path": "compare_replay.py",
+    "vendor": "metax"
+  },
+  "counter_details.py": {
+    "archived_sha256": "6cb18af12e0473d1a336d9581713ddf14d50fd899374fb226be3b95a12e3afee",
+    "executed_sha256": "6cb18af12e0473d1a336d9581713ddf14d50fd899374fb226be3b95a12e3afee",
+    "normalization": "CRLF to LF only",
+    "raw_relative_path": "counter_details.py",
+    "vendor": "metax"
+  },
+  "mask_details.py": {
+    "archived_sha256": "ec141b437ce5cc22cc3c5d1f0074c309f91cd19710d124a54d1805d4169f069a",
+    "executed_sha256": "2b25d60ab716629e5a1072d879b151f2fa20a12ca724467a1a0c21709c84512c",
+    "normalization": "CRLF to LF only",
+    "raw_relative_path": "mask_details.py",
+    "vendor": "metax"
+  }
+}

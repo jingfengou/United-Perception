@@ -1,0 +1,10 @@
+{
+  "gpu_random_calls": [],
+  "observer_sha256": "1b02b715b628b444fb2378c4a533caf27e1f8a03d959737d4518800cd7203271",
+  "raw_report": {
+    "bytes": 528819,
+    "sha256": "ca0e1349f9a3a23abfb2b673e18271bcfa634ec681d9d986386f0149b770a9c3"
+  },
+  "recorded_writes": 668,
+  "scope": "Corrected counting includes GPU device-only creators, plus Tensor operands"
+}

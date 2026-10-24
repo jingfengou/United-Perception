@@ -1,0 +1,19 @@
+{
+  "elements": 835584,
+  "mismatches": 8793,
+  "first_mismatch": 786443,
+  "last_mismatch": 835577,
+  "mismatches_before_786432": 0,
+  "reference_zeros": 83283,
+  "actual_zeros": 83296,
+  "rng": {
+    "1": [
+      294499921,
+      0
+    ],
+    "2": [
+      294499921,
+      4
+    ]
+  }
+}

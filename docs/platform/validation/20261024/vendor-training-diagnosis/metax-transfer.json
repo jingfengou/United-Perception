@@ -1,0 +1,47 @@
+{
+  "copies": {
+    "cuda": {
+      "channels_last": true,
+      "contiguous": false,
+      "stride": [
+        12288,
+        1,
+        192,
+        3
+      ],
+      "values_exact": true
+    },
+    "explicit_contiguous": {
+      "channels_last": false,
+      "contiguous": true,
+      "stride": [
+        12288,
+        4096,
+        64,
+        1
+      ],
+      "values_exact": true
+    },
+    "to": {
+      "channels_last": true,
+      "contiguous": false,
+      "stride": [
+        12288,
+        1,
+        192,
+        3
+      ],
+      "values_exact": true
+    }
+  },
+  "device": "MetaX C500",
+  "source_stride": [
+    12288,
+    4096,
+    64,
+    1
+  ],
+  "torch": "2.10.0+metax3.8.1.0",
+  "up_imported": false,
+  "up_platform_imported": false
+}

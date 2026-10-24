@@ -1,0 +1,405 @@
+{
+  "diagnostic_tools_commit": "03c3fb788ab938fdd881f4ddf4c3258c2acaeec8",
+  "limitations": [
+    "No new complete-budget accuracy or multiseed equivalence test",
+    "C500 YOLO control step5 does not match the prior full run within tolerance; record synchronization/repeatability limitation",
+    "First differing BN has already different inputs; common-input forward stays within tolerance",
+    "FP64 diagnostic shows both vendors FP32 BN reduction errors; NVIDIA is not an exact arithmetic oracle",
+    "Vendor closed-source kernel implementation not audited; measured RNG mapping matches public CUDA policy"
+  ],
+  "observed_prefix_checks": {
+    "metax/vit_b16": {
+      "all_within_tolerance": true,
+      "deltas": [
+        0.0,
+        0.0,
+        0.0,
+        2.384185791015625e-07,
+        0.0
+      ],
+      "exact": false,
+      "first_loss_exact": true,
+      "full_training_reference_losses": [
+        2.3060355186462402,
+        2.3780717849731445,
+        2.338660717010498,
+        2.4137942790985107,
+        2.559974431991577
+      ],
+      "prefix_losses": [
+        2.3060355186462402,
+        2.3780717849731445,
+        2.338660717010498,
+        2.41379451751709,
+        2.559974431991577
+      ],
+      "reference_report_sha256": "35238a4a8fc668a4824fd1aa287e7bce686814566018bf26fa7768a486d72195"
+    },
+    "metax/yolov5s": {
+      "all_within_tolerance": false,
+      "deltas": [
+        0.0,
+        0.0,
+        9.5367431640625e-07,
+        -4.00543212890625e-05,
+        0.008573532104492188
+      ],
+      "exact": false,
+      "first_loss_exact": true,
+      "full_training_reference_losses": [
+        13.515100479125977,
+        12.209503173828125,
+        14.514596939086914,
+        12.754096031188965,
+        14.245697021484375
+      ],
+      "prefix_losses": [
+        13.515100479125977,
+        12.209503173828125,
+        14.51459789276123,
+        12.754055976867676,
+        14.254270553588867
+      ],
+      "reference_report_sha256": "b6b76816e3e2bb1319c9cf8a6226bfed2101bb7df36323e13481670228a1a44b"
+    },
+    "nvidia/vit_b16": {
+      "all_within_tolerance": true,
+      "deltas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "exact": true,
+      "first_loss_exact": true,
+      "full_training_reference_losses": [
+        2.3273837566375732,
+        2.362522840499878,
+        2.380937099456787,
+        2.382554054260254,
+        2.4932687282562256
+      ],
+      "prefix_losses": [
+        2.3273837566375732,
+        2.362522840499878,
+        2.380937099456787,
+        2.382554054260254,
+        2.4932687282562256
+      ],
+      "reference_report_sha256": "8f8773e8397993ec7dbb6fec798bafc389b4d97bc29de7347cff5dd00250f2ab"
+    },
+    "nvidia/yolov5s": {
+      "all_within_tolerance": true,
+      "deltas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "exact": true,
+      "first_loss_exact": true,
+      "full_training_reference_losses": [
+        13.51510238647461,
+        12.209503173828125,
+        14.515693664550781,
+        12.767378807067871,
+        14.251936912536621
+      ],
+      "prefix_losses": [
+        13.51510238647461,
+        12.209503173828125,
+        14.515693664550781,
+        12.767378807067871,
+        14.251936912536621
+      ],
+      "reference_report_sha256": "c4b1a0df61062023082c6d0c897b46d36d632c5e7532fa155a157e467e5454be"
+    }
+  },
+  "old_multiseed_status": "paused",
+  "optimizer_updates": 48,
+  "production_components_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
+  "receipts": {
+    "metax": {
+      "archive": "collected02.tar.gz",
+      "bytes": 659349,
+      "evidence_index_sha256": "80344ef1dd6e6245aed749fa70ce5c2e8d212d6940f763ed77061d38ac49eb11",
+      "publicly_downloadable": false,
+      "root": "/mnt/afs/oujingfeng/up-hardware-metax-20261021/up-platform-clean-20261023/vendor-training-diagnosis-20261024",
+      "sha256": "bff70b8d3c4310faf36e04c37ca703d76c276159ea3a0768be45cb33c99c2c7d",
+      "supplemental_transfer_result": {
+        "raw_relative_path": "transfer.json.result",
+        "sha256": "6aba3d1c80086115b6ca03a467b25b25842f2d48d3915f644fb61680017ca34c"
+      }
+    },
+    "nvidia": {
+      "archive": "collected02.tar.gz",
+      "bytes": 747268,
+      "evidence_index_sha256": "39709f77e303d7aed3ef5db9074b9f2d62f4026e87c6738fa135630b67226ea2",
+      "publicly_downloadable": false,
+      "root": "/data2/oujingfeng/up-platform-clean-20261023/vendor-training-diagnosis-20261024",
+      "sha256": "49eb8313893e9ae62a30f6b36aefd6cb2ce0ba2c5994e8cf7b5c09e864673b62",
+      "supplemental_transfer_result": {
+        "raw_relative_path": "transfer.json.result",
+        "sha256": "390ec51c6305b563e16ebdc3ce44a7d6e81414a6d598aa3f8bf1c6fd52b44772"
+      }
+    }
+  },
+  "retained_failed_attempts": [
+    {
+      "reason": "Missing USER/LOGNAME for UID1009; import failed before numerical execution",
+      "stage": "pilot",
+      "vendor": "metax"
+    },
+    {
+      "reason": "Missing PYTHONPATH during collection; preserved 6 collection errors; final 81 tests pass",
+      "stage": "nvidia-cpu.xml",
+      "vendor": "nvidia"
+    },
+    {
+      "reason": "Explicitly bounded the comparison to transferred leaves; no partial data accepted",
+      "stage": "CPU comparison before complete leaf exchange"
+    },
+    {
+      "reason": "Retry has full size and SHA256 00942861aab7b6c2c387fd52395a827b9cc810d3da443f487a0ed8af14265270",
+      "stage": "incomplete forward archive transfer"
+    }
+  ],
+  "runtime_files_changed": [],
+  "scope": "First-step and bounded-prefix diagnosis; no new full-budget accuracy claim",
+  "tolerance": {
+    "atol": 1e-05,
+    "rtol": 0.0001
+  },
+  "vendors": {
+    "metax": {
+      "cpu_tests": 81,
+      "jobs": {
+        "first-divergence": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:37:57.248547+00:00",
+          "script_sha256": "4f09fa1a33ae6bdb3e50a39b4734ceea43e221a5fad872770d90ab9ce63515b9",
+          "started_utc": "2026-10-24T15:36:55.224172+00:00",
+          "status": "completed"
+        },
+        "prefix": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:07:33.983965+00:00",
+          "script_sha256": "b0260021f876810e9737a10f01e90c3d24b590fc1660fb84c9c0ebad64189c34",
+          "started_utc": "2026-10-24T15:03:23.497670+00:00",
+          "status": "completed"
+        },
+        "replay": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:15:22.582820+00:00",
+          "script_sha256": "b609203651f1db4501a027c8e1d19efe276498006fe2df5f0cd8e8e2caea3ec6",
+          "started_utc": "2026-10-24T15:10:35.905763+00:00",
+          "status": "completed"
+        },
+        "transfer": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:09:52.030600+00:00",
+          "script_sha256": "bc55c848b64358c4a88a7dfdb608a9c5d024200cc024022a2e273511d24e3765",
+          "started_utc": "2026-10-24T15:09:30.277527+00:00",
+          "status": "completed"
+        },
+        "write-replay": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:23:38.055083+00:00",
+          "script_sha256": "0aa4d94b2a529cfd8ebeb0526ab296ea7d378780231449bd4cb182c4e458f5a3",
+          "started_utc": "2026-10-24T15:22:55.440698+00:00",
+          "status": "completed"
+        },
+        "writes": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:17:23.038732+00:00",
+          "script_sha256": "2ddae3f1bcbe29773a15cf86b1c1de2eaec49c23bba22e9b3088f1ec56c9900b",
+          "started_utc": "2026-10-24T15:16:19.266171+00:00",
+          "status": "completed"
+        },
+        "writes02": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:48:42.273815+00:00",
+          "script_sha256": "1b02b715b628b444fb2378c4a533caf27e1f8a03d959737d4518800cd7203271",
+          "started_utc": "2026-10-24T15:47:37.828537+00:00",
+          "status": "completed"
+        },
+        "yolo-deep": {
+          "device": 2,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:27:14.293416+00:00",
+          "script_sha256": "b155caa613579d0f285e82416a22990707070be7d20027f481b7f2d88591ea7e",
+          "started_utc": "2026-10-24T15:26:01.242553+00:00",
+          "status": "completed"
+        }
+      },
+      "optimizer_updates": 23,
+      "prefix_losses": {
+        "vit_b16-control": [
+          2.3060355186462402,
+          2.3780717849731445,
+          2.338660717010498,
+          2.41379451751709,
+          2.559974431991577
+        ],
+        "vit_b16-observed": [
+          2.3060355186462402
+        ],
+        "writes": [
+          13.515100479125977,
+          12.209503173828125,
+          14.514596939086914,
+          12.754022598266602,
+          14.256001472473145
+        ],
+        "writes02": [
+          13.515100479125977,
+          12.209503173828125,
+          14.51459789276123,
+          12.754095077514648,
+          14.241239547729492
+        ],
+        "yolo-deep": [
+          13.515100479125977
+        ],
+        "yolov5s-control": [
+          13.515100479125977,
+          12.209503173828125,
+          14.51459789276123,
+          12.754055976867676,
+          14.254270553588867
+        ],
+        "yolov5s-observed": [
+          13.515100479125977
+        ]
+      },
+      "raw_files": 1687,
+      "retained_tensor_bytes": 15950264909
+    },
+    "nvidia": {
+      "cpu_tests": 81,
+      "jobs": {
+        "first-divergence": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:32:49.051073+00:00",
+          "script_sha256": "4f09fa1a33ae6bdb3e50a39b4734ceea43e221a5fad872770d90ab9ce63515b9",
+          "started_utc": "2026-10-24T15:32:23.514307+00:00",
+          "status": "completed"
+        },
+        "prefix": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:01:28.163743+00:00",
+          "script_sha256": "b0260021f876810e9737a10f01e90c3d24b590fc1660fb84c9c0ebad64189c34",
+          "started_utc": "2026-10-24T14:58:51.916878+00:00",
+          "status": "completed"
+        },
+        "replay": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:07:42.643059+00:00",
+          "script_sha256": "b609203651f1db4501a027c8e1d19efe276498006fe2df5f0cd8e8e2caea3ec6",
+          "started_utc": "2026-10-24T15:04:58.327980+00:00",
+          "status": "completed"
+        },
+        "transfer": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:24:45.641923+00:00",
+          "script_sha256": "bc55c848b64358c4a88a7dfdb608a9c5d024200cc024022a2e273511d24e3765",
+          "started_utc": "2026-10-24T15:24:43.407506+00:00",
+          "status": "completed"
+        },
+        "write-replay": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:18:30.152976+00:00",
+          "script_sha256": "0aa4d94b2a529cfd8ebeb0526ab296ea7d378780231449bd4cb182c4e458f5a3",
+          "started_utc": "2026-10-24T15:18:23.760955+00:00",
+          "status": "completed"
+        },
+        "writes": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:11:37.176947+00:00",
+          "script_sha256": "2ddae3f1bcbe29773a15cf86b1c1de2eaec49c23bba22e9b3088f1ec56c9900b",
+          "started_utc": "2026-10-24T15:11:09.769422+00:00",
+          "status": "completed"
+        },
+        "writes02": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:43:34.274377+00:00",
+          "script_sha256": "1b02b715b628b444fb2378c4a533caf27e1f8a03d959737d4518800cd7203271",
+          "started_utc": "2026-10-24T15:43:06.149825+00:00",
+          "status": "completed"
+        },
+        "yolo-deep": {
+          "device": 1,
+          "exit_code": 0,
+          "finished_utc": "2026-10-24T15:22:20.960145+00:00",
+          "script_sha256": "b155caa613579d0f285e82416a22990707070be7d20027f481b7f2d88591ea7e",
+          "started_utc": "2026-10-24T15:21:29.684450+00:00",
+          "status": "completed"
+        }
+      },
+      "optimizer_updates": 25,
+      "prefix_losses": {
+        "vit_b16-control": [
+          2.3273837566375732,
+          2.362522840499878,
+          2.380937099456787,
+          2.382554054260254,
+          2.4932687282562256
+        ],
+        "vit_b16-observed": [
+          2.3273837566375732
+        ],
+        "vit_b16-original": [
+          2.3273837566375732
+        ],
+        "writes": [
+          13.51510238647461,
+          12.209503173828125,
+          14.515693664550781,
+          12.767378807067871,
+          14.251936912536621
+        ],
+        "writes02": [
+          13.51510238647461,
+          12.209503173828125,
+          14.515693664550781,
+          12.767378807067871,
+          14.251936912536621
+        ],
+        "yolo-deep": [
+          13.51510238647461
+        ],
+        "yolov5s-control": [
+          13.51510238647461,
+          12.209503173828125,
+          14.515693664550781,
+          12.767378807067871,
+          14.251936912536621
+        ],
+        "yolov5s-observed": [
+          13.51510238647461
+        ],
+        "yolov5s-original": [
+          13.51510238647461
+        ]
+      },
+      "raw_files": 1699,
+      "retained_tensor_bytes": 17385457419
+    }
+  }
+}

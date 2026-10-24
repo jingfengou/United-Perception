@@ -1,0 +1,30 @@
+{
+  "scope": "Observed native RNG states plus comparison with PyTorch 2.10 CUDA Dropout launch formula",
+  "rng_states_before_leaf": {
+    "1": {
+      "raw_hex": "51b68d11000000000000000000000000",
+      "uint64_values": [
+        294499921,
+        0
+      ]
+    },
+    "2": {
+      "raw_hex": "51b68d11000000000400000000000000",
+      "uint64_values": [
+        294499921,
+        4
+      ]
+    }
+  },
+  "properties": {
+    "properties": "_CudaDeviceProperties(name='MetaX C500', major=8, minor=0, total_memory=65120MB, multi_processor_count=104, uuid=55a12599-eb1d-625b-972b-87a3250f3675, pci_bus_id=14, pci_device_id=0, pci_domain_id=0, L2_cache_size=8MB)",
+    "multi_processor_count": 104,
+    "max_threads_per_multi_processor": 2048
+  },
+  "block_size": 256,
+  "vector_width": 4,
+  "property_limited_blocks": 832,
+  "first_vector_pass_capacity": 851968,
+  "token_elements": 835584,
+  "predicted_counter_increment": 4
+}

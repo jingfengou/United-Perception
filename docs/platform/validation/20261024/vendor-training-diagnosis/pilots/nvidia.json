@@ -1,0 +1,534 @@
+{
+  "cases": {
+    "drop_path": {
+      "grad_fn": "MulBackward0",
+      "gradient": {
+        "dtype": "torch.float32",
+        "sha256": "4aeb2815357bb2aef5225dea92f68231667c14c7f97f4f4e9b5b8906ec621058",
+        "shape": [
+          64,
+          17,
+          768
+        ]
+      },
+      "mask": {
+        "dtype": "torch.bool",
+        "sha256": "734b3a9b8585ccbd5eeddd799e767aca4df8e16925f5f830b2a90f4a88d60129",
+        "shape": [
+          64,
+          17,
+          768
+        ]
+      },
+      "output": {
+        "dtype": "torch.float32",
+        "sha256": "4aeb2815357bb2aef5225dea92f68231667c14c7f97f4f4e9b5b8906ec621058",
+        "shape": [
+          64,
+          17,
+          768
+        ]
+      },
+      "repeats": [
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        }
+      ],
+      "rng_after": {
+        "dtype": "torch.uint8",
+        "sha256": "527efe1cf62bb7f307abae57b98457d6ac49da5d86dd54c476d996661149f068",
+        "shape": [
+          16
+        ]
+      },
+      "rng_before": {
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ]
+      },
+      "saved_tensors": {
+        "_saved_other": {
+          "dtype": "torch.float32",
+          "sha256": "d2e9c7711621c6fd42ee66501669890198ea497f983a1a94e68f0349e243e15d",
+          "shape": [
+            64,
+            1,
+            1
+          ]
+        }
+      },
+      "zero_count": 130560
+    },
+    "dropout_attention": {
+      "grad_fn": "NativeDropoutBackward0",
+      "gradient": {
+        "dtype": "torch.float32",
+        "sha256": "6d02c8890cd1cc5be28dac30a073e2ff66757dd63bec41f9e39d249f8db69912",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ]
+      },
+      "mask": {
+        "dtype": "torch.bool",
+        "sha256": "e841b684b650e4240a3ab493a472b045bc19dc9b3877c21381333c45fcad2bb9",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ]
+      },
+      "output": {
+        "dtype": "torch.float32",
+        "sha256": "6d02c8890cd1cc5be28dac30a073e2ff66757dd63bec41f9e39d249f8db69912",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ]
+      },
+      "repeats": [
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        }
+      ],
+      "rng_after": {
+        "dtype": "torch.uint8",
+        "sha256": "527efe1cf62bb7f307abae57b98457d6ac49da5d86dd54c476d996661149f068",
+        "shape": [
+          16
+        ]
+      },
+      "rng_before": {
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ]
+      },
+      "saved_tensors": {
+        "_saved_result1": {
+          "dtype": "torch.bool",
+          "sha256": "e841b684b650e4240a3ab493a472b045bc19dc9b3877c21381333c45fcad2bb9",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ]
+        }
+      },
+      "zero_count": 22004
+    },
+    "dropout_mlp": {
+      "grad_fn": "NativeDropoutBackward0",
+      "gradient": {
+        "dtype": "torch.float32",
+        "sha256": "91855789865a159eba49e488c02a771b96ff52b29be1a5a245608ea5170dff52",
+        "shape": [
+          64,
+          17,
+          3072
+        ]
+      },
+      "mask": {
+        "dtype": "torch.bool",
+        "sha256": "d1fdef42a7552964555b6bbd6ebd8999194c5268afa5384697faf8ea22771d0f",
+        "shape": [
+          64,
+          17,
+          3072
+        ]
+      },
+      "output": {
+        "dtype": "torch.float32",
+        "sha256": "91855789865a159eba49e488c02a771b96ff52b29be1a5a245608ea5170dff52",
+        "shape": [
+          64,
+          17,
+          3072
+        ]
+      },
+      "repeats": [
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        }
+      ],
+      "rng_after": {
+        "dtype": "torch.uint8",
+        "sha256": "c6c57ea5d8ed63e26235698725755256c0de82f28b9fb1b83b594234dfc6cb44",
+        "shape": [
+          16
+        ]
+      },
+      "rng_before": {
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ]
+      },
+      "saved_tensors": {
+        "_saved_result1": {
+          "dtype": "torch.bool",
+          "sha256": "d1fdef42a7552964555b6bbd6ebd8999194c5268afa5384697faf8ea22771d0f",
+          "shape": [
+            64,
+            17,
+            3072
+          ]
+        }
+      },
+      "zero_count": 334838
+    },
+    "dropout_tokens": {
+      "grad_fn": "NativeDropoutBackward0",
+      "gradient": {
+        "dtype": "torch.float32",
+        "sha256": "bc8b0ab00e58de094b1c067c404c3bb9d73edc8e88ebf8a8aabcdff755949d81",
+        "shape": [
+          64,
+          17,
+          768
+        ]
+      },
+      "mask": {
+        "dtype": "torch.bool",
+        "sha256": "d9b3fc35f3a89b85fe69603193d2f6c1345bd1923108377ca101053eb5d42b66",
+        "shape": [
+          64,
+          17,
+          768
+        ]
+      },
+      "output": {
+        "dtype": "torch.float32",
+        "sha256": "bc8b0ab00e58de094b1c067c404c3bb9d73edc8e88ebf8a8aabcdff755949d81",
+        "shape": [
+          64,
+          17,
+          768
+        ]
+      },
+      "repeats": [
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        },
+        {
+          "gradient": true,
+          "mask": true,
+          "output": true,
+          "rng_after": true,
+          "rng_before": true
+        }
+      ],
+      "rng_after": {
+        "dtype": "torch.uint8",
+        "sha256": "9fd7292046170074b110bd9ba8d183d20660a4e010861acd4321189731395598",
+        "shape": [
+          16
+        ]
+      },
+      "rng_before": {
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ]
+      },
+      "saved_tensors": {
+        "_saved_result1": {
+          "dtype": "torch.bool",
+          "sha256": "d9b3fc35f3a89b85fe69603193d2f6c1345bd1923108377ca101053eb5d42b66",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      },
+      "zero_count": 83539
+    }
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "duplicate_write_cases": {
+    "index_put": {
+      "exact_repeats": 9,
+      "selected_values": [
+        0.30000001192092896,
+        0.5
+      ],
+      "target": {
+        "dtype": "torch.float32",
+        "sha256": "780ed77e2203b9b641b93a37feb25f0b25dea0b15bdfa8c0d8b10eb3bf2f24ca",
+        "shape": [
+          2,
+          3,
+          4,
+          4
+        ]
+      }
+    },
+    "indexed_write": {
+      "exact_repeats": 9,
+      "selected_values": [
+        0.30000001192092896,
+        0.5
+      ],
+      "target": {
+        "dtype": "torch.float32",
+        "sha256": "780ed77e2203b9b641b93a37feb25f0b25dea0b15bdfa8c0d8b10eb3bf2f24ca",
+        "shape": [
+          2,
+          3,
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "scope": "Same-seed standalone primitive probes, not a model accuracy result",
+  "seed": 131,
+  "torch": "2.10.0+cu126",
+  "up_imported": false,
+  "up_platform_imported": false
+}

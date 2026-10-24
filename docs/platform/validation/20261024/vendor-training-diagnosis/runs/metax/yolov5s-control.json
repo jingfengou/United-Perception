@@ -1,0 +1,91 @@
+{
+  "algorithm_config_sha256": "53d7cf3889a6953faaa9ac0205d1220b385ba878c34265dd56ed1e551f91f3dd",
+  "all_batches_sha256": "5f99684efdbdf3062fe7ac3ea2f9f2cdb2737e6ed125a8da206cb6edcbcb8d48",
+  "checkpoint_all_states_finite": true,
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+  "environment": {
+    "controls": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "MCDNN_STABLE_RESULT_MOD": null,
+      "MCDNN_USE_DETERMINISTIC_ALGO": null,
+      "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic": true,
+    "deterministic_warn_only": false,
+    "fill_uninitialized_memory": true,
+    "gpu": "MetaX C500",
+    "matmul_tf32": false,
+    "packages": {
+      "Pillow": "11.2.1",
+      "numpy": "1.26.4",
+      "opencv-python": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "torch": "2.10.0+metax3.8.1.0",
+      "torchvision": "0.25.0+metax3.8.1.0"
+    },
+    "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+    "visible_devices": "2"
+  },
+  "first_batch_sha256": "40cd5106f1f315145aa8f9c6cc5ce72f31ce99c76d6ae923d9937d026c65e526",
+  "frozen_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+  "initial_state_sha256": "6b1cadc0a4478f58cbc6874b281c45f1a49225937611802f8a77a7144430206d",
+  "lane": "new_metax",
+  "learning_rates": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.1
+    ],
+    [
+      0.0016666666666666668,
+      0.0016666666666666668,
+      0.0016666666666666668,
+      0.085
+    ],
+    [
+      0.003333260225820683,
+      0.003333260225820683,
+      0.003333260225820683,
+      0.06999992689248735
+    ],
+    [
+      0.004999890338731025,
+      0.004999890338731025,
+      0.004999890338731025,
+      0.054999890338731025
+    ],
+    [
+      0.006666081822599587,
+      0.006666081822599587,
+      0.006666081822599587,
+      0.03999941515593292
+    ]
+  ],
+  "losses": [
+    13.515100479125977,
+    12.209503173828125,
+    14.51459789276123,
+    12.754055976867676,
+    14.254270553588867
+  ],
+  "mode": "native_deterministic",
+  "model": "yolov5s",
+  "raw_report": {
+    "bytes": 105134,
+    "relative_path": "yolov5s-control/report.json",
+    "sha256": "1668fcbb90f3b3bb04d00e6951c1cc01287cf3fb6e29c53ba40d3e107caa838b"
+  },
+  "restore_weights_exact": true,
+  "scope": "Diagnostic prefix only; final accuracy omitted; raw report retained",
+  "seed": 131,
+  "status": "probe_completed",
+  "training_steps": 5
+}

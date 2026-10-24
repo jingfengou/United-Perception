@@ -1,0 +1,164 @@
+{
+  "atol": 1e-05,
+  "common_operand_replay": "Vendor own saved RNG restored; common NVIDIA tensor values/weights; native and explicitly matched reference layouts; fixed CPU-created upstream gradient for isolated operators only",
+  "common_packages": {
+    "Pillow": "11.2.1",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "scipy": "1.16.0"
+  },
+  "controls": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "MCDNN_STABLE_RESULT_MOD": null,
+    "MCDNN_USE_DETERMINISTIC_ALGO": null,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic": true,
+    "tf32": false,
+    "warn_only": false
+  },
+  "created_utc": "2026-10-24T15:33:15.051694+00:00",
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "diagnostic_tool_revision": "Broaden random-op detection to device-only creation; retain v1 and rerun YOLO five-step prefixes on both GPUs",
+  "hardware": {
+    "metax": {
+      "model": "C500",
+      "pci": "0000:0e:00.0",
+      "physical_device": 2,
+      "python": "3.12.11",
+      "torch": "2.10.0+metax3.8.1.0",
+      "torchvision": "0.25.0+metax3.8.1.0"
+    },
+    "nvidia": {
+      "model": "GeForce RTX 4090",
+      "physical_device": 1,
+      "python": "3.12.3",
+      "torch": "2.10.0+cu126",
+      "torchvision": "0.25.0+cu126",
+      "uuid": "GPU-a11f730c-a975-2bf0-b765-3c24d83b7104"
+    }
+  },
+  "initial_diagnostic_protocol_sha256": "c66e285200fd869572cf8621278104b2cb1379a5372819f2f74ee31de2bf28a2",
+  "leaf_prefix_limits": {
+    "both_models_initial": 8,
+    "yolo_deep": 32
+  },
+  "model_gpu_seed": 294499921,
+  "model_prefix_updates": {
+    "metax": {
+      "vit_b16": {
+        "control": 5,
+        "observed": 1
+      },
+      "yolov5s": {
+        "control": 5,
+        "deep": 1,
+        "observed": 1,
+        "writes": 5,
+        "writes02": 5
+      }
+    },
+    "nvidia": {
+      "vit_b16": {
+        "control": 5,
+        "observed": 1,
+        "original": 1
+      },
+      "yolov5s": {
+        "control": 5,
+        "deep": 1,
+        "observed": 1,
+        "original": 1,
+        "writes": 5,
+        "writes02": 5
+      }
+    }
+  },
+  "model_seed": 131,
+  "models": {
+    "vit_b16": {
+      "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+      "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+      "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+      "epochs": 20,
+      "expected_steps": 3140,
+      "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+      "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+      "reference_final_metrics": {
+        "top1": 25.75,
+        "top5": 79.25
+      },
+      "reference_report_sha256": {
+        "new-01": "8f8773e8397993ec7dbb6fec798bafc389b4d97bc29de7347cff5dd00250f2ab",
+        "new-02": "4dd39b40f8bbac52862a78fdd15a4470d2fedaaa7becb22d1932b113705c1856",
+        "original-01": "038dbc569daf20542ce82405acf599bf29b1cc3b9cb0ea3059e1c8ec86e30f2d",
+        "original-02": "74c2aa934fcfefa4e0b18534f13619d649f5e44d9abeda69a841ad249c51e37f"
+      }
+    },
+    "yolov5s": {
+      "algorithm_config_sha256": "53d7cf3889a6953faaa9ac0205d1220b385ba878c34265dd56ed1e551f91f3dd",
+      "all_batches_sha256": "6a98d209f260003e1a685c3e487a1f203e98869de55ab62cb43915f1d5e39aef",
+      "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+      "epochs": 300,
+      "expected_steps": 600,
+      "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+      "initial_state_sha256": "6b1cadc0a4478f58cbc6874b281c45f1a49225937611802f8a77a7144430206d",
+      "reference_final_metrics": {
+        "bbox.AP": 0.27423611431992984,
+        "bbox.AP.5": 0.5565714753726084,
+        "bbox.AP.75": 0.2304570393892731,
+        "bbox.AP_L": 0.3268274472374338,
+        "bbox.AP_M": 0.132140198961841,
+        "bbox.AP_S": 0.13465346534653463,
+        "bbox.AR": 0.5676691729323308,
+        "bbox.AR_1": 0.11353383458646615,
+        "bbox.AR_10": 0.5353383458646617,
+        "bbox.AR_L": 0.5975206611570247,
+        "bbox.AR_M": 0.3111111111111111,
+        "bbox.AR_S": 0.13333333333333333
+      },
+      "reference_report_sha256": {
+        "new-01": "c4b1a0df61062023082c6d0c897b46d36d632c5e7532fa155a157e467e5454be",
+        "new-02": "004e7b3aca661a72281e6ae58f27230bb18c48e25197924631d8df627ceda5df",
+        "original-01": "193143ec7fbb0ba51969f361cc6112be98b60b36b6477451f6d685d97ae8965e",
+        "original-02": "96daeff442084ebdbf7e224c135df28c3eac3240cb2c5246076a827266a1e9a2"
+      }
+    }
+  },
+  "observation_boundary": "Attach after the worker initial validation; no model/output/gradient/mask replacement; CPU captures add synchronization",
+  "original_commit": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "primitive_repeats": 10,
+  "prior_protocol_sha256": "5b37009b504fa11ac44e7fb7ab9bfb4f53964c3e2c1326fe1d3ae03a8b79ef24",
+  "production_components_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
+  "production_file_count": 781,
+  "pythonhashseed": "0",
+  "reference_tools": {
+    "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+    "accuracy_metrics.py": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+    "accuracy_recipe.py": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6",
+    "accuracy_train.py": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+    "compare_platform_models.py": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472",
+    "run_accuracy_cohort.py": "c5ae333ed466f9420b5651ffa0c6b8aa3c207db571d98894b2aad52ef03c4af4",
+    "run_platform_validation.py": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5"
+  },
+  "rtol": 0.0001,
+  "runtime_content_commit": "b137c68a1988e99b3cb19ac3307796b9ab70a984",
+  "runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "scope": "Progressive synchronized diagnostics, not new full-budget accuracy or a preregistered equivalence test",
+  "selection": "All attempts retained; no best selection; old multiseed tasks remain paused; no model/recipe/tolerance/runtime numerics changes",
+  "source_commit": "c879658d40d97b5bb57dd411f889d0fc61cc989d",
+  "standalone_pilot_seed": 131,
+  "tools": {
+    "tools/collect_vendor_diagnosis.py": "0b0a041de1c3c4f79324212a79ed82fc969488a4a42356f4331825645c112f76",
+    "tools/compare_vendor_forward.py": "2bf2d8907fe29864344c167731ff487972a659e66d28af079b6e8cc1f242dbfd",
+    "tools/compare_vendor_prefix.py": "919824fa4281971d7195ab7d956f64c7a512acb478944462fe82e16da1f19a6d",
+    "tools/observe_vendor_prefix.py": "b155caa613579d0f285e82416a22990707070be7d20027f481b7f2d88591ea7e",
+    "tools/observe_vendor_writes.py": "1b02b715b628b444fb2378c4a533caf27e1f8a03d959737d4518800cd7203271",
+    "tools/probe_vendor_randomness.py": "e6751156f4948a356d4c284b0fac745a15b539c6e2b48f1d5f61a562899985a8",
+    "tools/probe_vendor_transfer.py": "bc55c848b64358c4a88a7dfdb608a9c5d024200cc024022a2e273511d24e3765",
+    "tools/replay_vendor_leaf.py": "3772d635da21618b247ae85ce4e127f7a6e001e41e0565773dbc353600e0da35",
+    "tools/replay_vendor_writes.py": "050ad830c3b11abb9612c7bbcd5609de456eb7ff149af3c8df3eca6e0e08c9b4"
+  },
+  "total_optimizer_updates": 48
+}

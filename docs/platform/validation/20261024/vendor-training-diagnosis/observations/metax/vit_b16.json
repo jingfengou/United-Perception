@@ -1,0 +1,6801 @@
+{
+  "atol": 1e-05,
+  "leaves": [
+    {
+      "capture": "leaf-0000.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 0,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "20ac2229556638240e454c6c6357cd2ef991d5c563328a81c3940e3e149378bb",
+          "shape": [
+            64,
+            3,
+            64,
+            64
+          ],
+          "stride": [
+            12288,
+            1,
+            192,
+            3
+          ]
+        }
+      ],
+      "name": "backbone.embedding",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "4fdb5276a94c4ec763097ffe62bcf1b71e68d444454809e3e655fd9fd4fe20d7",
+        "shape": [
+          64,
+          768,
+          4,
+          4
+        ],
+        "stride": [
+          12288,
+          1,
+          3072,
+          768
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "capture": "leaf-0001.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 1,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "fa20320334eb04ea2745b1b837167721c052e7f4ed27bedae5d951cdc5529021",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "f5b860b29dfe995bdcf25bab325b741a743cff79d33e201f88462aa00613b26e",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "8055e3464848128b1b2a7cfdd3f1d9c7a267760725eed8a5afdc61f89e3b6843",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0002.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 2,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "8055e3464848128b1b2a7cfdd3f1d9c7a267760725eed8a5afdc61f89e3b6843",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.norm1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "ab89b572f73ff627f5988c1e9bf1d746181cd610238961cb0b03343347c5a7b1",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "capture": "leaf-0003.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 3,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "ab89b572f73ff627f5988c1e9bf1d746181cd610238961cb0b03343347c5a7b1",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.attention.to_qkv",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "ead7e721f73cee5605cf32fe1f8a623175fdf3f8b10320f7d24036ccc98d131c",
+        "shape": [
+          64,
+          17,
+          2304
+        ],
+        "stride": [
+          39168,
+          2304,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0004.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d42e8c0ef7db32f4e5d10601f75e6cf5aa8aeb61a8377044b633e3c69fc83b96",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 4,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "28047ff9a99f4b7c5a72d584905dd2d487350ddb3513a83787ea9931f64c85bd",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "104ad11c33df58d0a14cf5d6a856fdc0da3116c6c4dc162d656076f2909d5cb7",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_0.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c6b3c4c06020666365400d06937fc4b52461f1093bd50a2bdd0db10fa6d40f52",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0005.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d42e8c0ef7db32f4e5d10601f75e6cf5aa8aeb61a8377044b633e3c69fc83b96",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d42e8c0ef7db32f4e5d10601f75e6cf5aa8aeb61a8377044b633e3c69fc83b96",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 5,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "73a49e01aef49948271a8e7ff88a5467ba82410acb74cf02545a8e8eab7df160",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.attention.to_out",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "13e183bfbfd321a2bd2d160ea695c1da2aa4e583bbc09d77f00b049b220e4be0",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0006.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "634873c856371477a46459c3af6fe3ce47aa9d242c687c8986eb8252ab68a103",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d42e8c0ef7db32f4e5d10601f75e6cf5aa8aeb61a8377044b633e3c69fc83b96",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 6,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "13e183bfbfd321a2bd2d160ea695c1da2aa4e583bbc09d77f00b049b220e4be0",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "a6c16669b936a6cc7b58ede0610e874de02a842758b45565a720a200b1f70a53",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_0.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "71ffe15d8a01dfd562d10919cf2b137edc0a2e75cab8546c83e01ce5348fd953",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0007.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "168b4f2b15c182347dc6133e21412d3c9c55532d197d84effbba215ddca31e51",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "634873c856371477a46459c3af6fe3ce47aa9d242c687c8986eb8252ab68a103",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 7,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "71ffe15d8a01dfd562d10919cf2b137edc0a2e75cab8546c83e01ce5348fd953",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f5068a6f9ee64f8c832e494cc447dde833dfbcf6cf19b80a97c1e18ad24f0a83",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_0.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "1823417615a15e63663e09e7c94b23668bce8be3880363894a61a9dad5b124f9",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 8,
+      "name": "backbone.layers.encoder_0.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 9,
+      "name": "backbone.layers.encoder_0.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 10,
+      "name": "backbone.layers.encoder_0.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0011.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e35b9268831dfd831489db2cc96f45ee35256e4d1bba412d4c9dbdba646a5c17",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "168b4f2b15c182347dc6133e21412d3c9c55532d197d84effbba215ddca31e51",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 11,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "72033ab89ae9b9e629592a53b0083cbb441a4082e8fceaa7507211e129548f37",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "7b897406058692c09a3abd615cc2edee3cc79f30feb820816d7723e73a289deb",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_0.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "ba99d7116e94aae1dec1469e6f1c72698c9b4ab077219929b699e709a0e89cbb",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 12,
+      "name": "backbone.layers.encoder_0.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0013.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3ffdaae0978e97541ca697b508f09d3893059edba75ecb0921efb7ce9ec8b50c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e35b9268831dfd831489db2cc96f45ee35256e4d1bba412d4c9dbdba646a5c17",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 13,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "4e58f3151bd8139ef19defc990234234682b131eeddf55cbeea7c9b31c944b98",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "707703e4fed6986fe763e3e0afa458e95399b17c1f7fa392d9eb882f7fdfa243",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_0.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c7047a51bbd66ebbca0e25b09dac3764439724abbe863abf8733c44745cc180b",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0014.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a77efd2b20c01b9621149380a35aaf62e20ad6a33314cd5f415e21d44862e569",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3ffdaae0978e97541ca697b508f09d3893059edba75ecb0921efb7ce9ec8b50c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 14,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "c7047a51bbd66ebbca0e25b09dac3764439724abbe863abf8733c44745cc180b",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "14be971457cc68cfec2c0746be7a645e8b68acc6af38b51bea48b0f7741e3e10",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_0.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "2c45a659ae1846f22de4e70f3064e51798a98f9504b7bda7da4ef3e91d5d505c",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 15,
+      "name": "backbone.layers.encoder_1.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 16,
+      "name": "backbone.layers.encoder_1.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0017.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d88e053c7b5ab0104daa59783f5e2dee3ef00b835e1aed6482bc4f3dd86b63a1",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a77efd2b20c01b9621149380a35aaf62e20ad6a33314cd5f415e21d44862e569",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 17,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "98119312f457fdb1c34cd673a19fcf7cb07c648beabd44a7a262ce06fec75952",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "a27ed3b713881443153460919ccb9864bf2073b93a41aef64ebb4dfd0f840b6f",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_1.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "ca55f97a8fb0a2fd010aaa5e574d0708b520397999947f4932bad730ecc07f07",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 18,
+      "name": "backbone.layers.encoder_1.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0019.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "305ab1d61b54ed6dc1f07caa6ffae56391455655b02f644089704097c65e4d38",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d88e053c7b5ab0104daa59783f5e2dee3ef00b835e1aed6482bc4f3dd86b63a1",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 19,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "e240cdb00a3312d200a331f4edb86e80e2d0b111e27543b82b845cca8d7e3b24",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "3f3d92c5028a2038d378765a92f2f5e858d049c239dd79165b0b6f0b29b3d83d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_1.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "cd637b961d8168728a16b369b650ae5a767695383303300f27cc446d869af454",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0020.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "613e8f608526e510de872a5ecd84e9bf759eafa6052d4a97a6946a820ea84468",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "305ab1d61b54ed6dc1f07caa6ffae56391455655b02f644089704097c65e4d38",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 20,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "cd637b961d8168728a16b369b650ae5a767695383303300f27cc446d869af454",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "b507552374ca6a32889113b33e9e4fdce190cfef80cd4c23ff1d6d3040ab6e8a",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_1.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c22b05af7d13929b3483b0040211456d8cfb128de8c0337dee301238b8a7d860",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 21,
+      "name": "backbone.layers.encoder_1.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 22,
+      "name": "backbone.layers.encoder_1.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 23,
+      "name": "backbone.layers.encoder_1.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0024.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "932d7dc15589f33f8485c508cf94964c5b4bf3a4ebfca76a06a731f3852ade62",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "613e8f608526e510de872a5ecd84e9bf759eafa6052d4a97a6946a820ea84468",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 24,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "23051346fb19dd918f9e35a65ee4e8272aa4237e4b63d24cf6cb17f6f91a6c6f",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "db61bf099f3546c9c49c7d23f0bb80e3cc23cd72d74b5c747b9eff3a2ad966b4",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_1.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "849039305d50993c83514e111789d95e9bd193fd1d317491a13eeb41fa276e59",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 25,
+      "name": "backbone.layers.encoder_1.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0026.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "2f2fbe2bdf4c933381bd804330217aac173773c4dd56e41290adea3f5ce384dc",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "932d7dc15589f33f8485c508cf94964c5b4bf3a4ebfca76a06a731f3852ade62",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 26,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "f4d1f8b5c64ee24d7cd3367a9038c494711ae8afd905ef5753b7ff0e01327a24",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "4301e7d0da980fb6f92aeb58b5845ae94be401a4357aaf72661ba576eca36c93",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_1.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f03407f1f427ca3dd21736c4d7fdd3fd3b0dd63d6cbcd543f6aa288956c65edd",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0027.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0a103046b3db2d403abbeeac7f001b4e192c96342c7dfa38833dd4586b2e8dcb",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "2f2fbe2bdf4c933381bd804330217aac173773c4dd56e41290adea3f5ce384dc",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 27,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "f03407f1f427ca3dd21736c4d7fdd3fd3b0dd63d6cbcd543f6aa288956c65edd",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "506ba90be7fe760829413e0c4f4339d3be0344e6742fd76a3ea62d55918316e6",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_1.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "38184d579b99dab374fc5ebbe990485cc3bd86a9ba0e160a896f91142c9b1154",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 28,
+      "name": "backbone.layers.encoder_2.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 29,
+      "name": "backbone.layers.encoder_2.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0030.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "39a5fc4e30b37f502109e336f8314140c02b0c78bc44e7618318685829cd0225",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0a103046b3db2d403abbeeac7f001b4e192c96342c7dfa38833dd4586b2e8dcb",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 30,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "4a896c9226b9cbc577d31a12dcc227d644ef1f640543d7b6a5e7608af593930d",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "3809f93002c4944b4900c0fda5e9b57d6890c61f0c7d2783b9c23cec8be920a7",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_2.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "44f975d81f3edd597d75a1929c4f23b97adf9f0057336c08a4193ee72fcf5c88",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 31,
+      "name": "backbone.layers.encoder_2.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0032.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b56eb330f6e1cac8de68364f62ca1223ba7c8f70af3b4f666c4aec0911e2e57a",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "39a5fc4e30b37f502109e336f8314140c02b0c78bc44e7618318685829cd0225",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 32,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "cf26d9421a418807af065f73ad42ce8ed378b07f7a6107214d258afedd00085a",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "2f78451153686325de5b6a89513c2a234baa5666b516fa45a55f309615cd545f",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_2.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "2afe723f1200c67b1f20c62d07c0aece7329a7507edc3ba077894ee343fd0b14",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0033.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b688fb2221744ea1d9e722928259627e47833c81741c13faff06a29811d91683",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b56eb330f6e1cac8de68364f62ca1223ba7c8f70af3b4f666c4aec0911e2e57a",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 33,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "2afe723f1200c67b1f20c62d07c0aece7329a7507edc3ba077894ee343fd0b14",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "3ed9cd2902c3c35e215c21a8dd056734e390f8697d33c702f72f8b0070a9f396",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_2.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "1640254ce556f34e384a9ca5bcfd710a163068b0f31212f67f677863b575ab05",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 34,
+      "name": "backbone.layers.encoder_2.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 35,
+      "name": "backbone.layers.encoder_2.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 36,
+      "name": "backbone.layers.encoder_2.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0037.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "989ab8ef5216c78e642f0319ee057217c6f6ecea3de6113358e6fe51c5b9eebf",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b688fb2221744ea1d9e722928259627e47833c81741c13faff06a29811d91683",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 37,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "00fcdda1ac340e473dc1040b28b85b7556dd56448cf652bee6492095acd202b6",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "f5bb9d07d425ee548fdc36d7a8b8c472a7e5d5afb3dd2a5024f06dde4c61a284",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_2.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c19d082e90eeff7ff7621eb3721b1c94922ffffe5284dcec840af7e3858e05c8",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 38,
+      "name": "backbone.layers.encoder_2.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0039.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e06f25c0b0835c5efceaa1d27f23091a93e5b5f4bf4dc4d1b0d2fa36e9247c0e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "989ab8ef5216c78e642f0319ee057217c6f6ecea3de6113358e6fe51c5b9eebf",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 39,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "35a92d503e9020f2718cd9dd1e876c82459db943ec5bc3052f57d88e50c2f274",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "3325f270020742853e37d7b813fa0ba8ce64fce2430e30f1aa6085da00a508f1",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_2.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "0a8b9613a69a4d3b3ff961089f7dc8cc8da53bb5dcd36ca368344547bd2dd0bf",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0040.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "17ea4240588fe97d0e55d4f1369c6f782e8620923025f5f02f24e8ff49602105",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e06f25c0b0835c5efceaa1d27f23091a93e5b5f4bf4dc4d1b0d2fa36e9247c0e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 40,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "0a8b9613a69a4d3b3ff961089f7dc8cc8da53bb5dcd36ca368344547bd2dd0bf",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "6f62f82c21c98ddd30eb445f98fd338fd5c5babbe7bfaa18f59a62e34795eb9c",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_2.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "3acd7644a98b34616e4ed8d1efcecbe0cffd633c79f2a96325425f82de1942e8",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 41,
+      "name": "backbone.layers.encoder_3.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 42,
+      "name": "backbone.layers.encoder_3.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0043.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "c5134f93b61614e33dd97177c4d2e0d70c7da78530f9e34f94e1085e02bcecd7",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "17ea4240588fe97d0e55d4f1369c6f782e8620923025f5f02f24e8ff49602105",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 43,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "676dd8e9d8f5b7bbc77dceaccae367f822cb7d9e5c563d4a0541d8f3eddd8c0c",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "c5fbd8c0d6c967cd19b1ec8f549395a875af36fcb3c2123b5b27a7c3208ef969",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_3.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5bd714217872c61a82fd7a96aabe14bd57152539f8432fd2daeb79024c13f992",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 44,
+      "name": "backbone.layers.encoder_3.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0045.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "39c4c79ee77aab4756310b73228bf7799e9671e50fd6ec79a3b885d3ebfe1d8a",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "c5134f93b61614e33dd97177c4d2e0d70c7da78530f9e34f94e1085e02bcecd7",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 45,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "600564dd8ab3ce6aaf1fca8c31d3f2b787f63bb6fb5711fe0ee4cf7adf24e6b0",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "4941f1bb72062fae8a412bd908fa8aede04a41c99c444fd01829370d01deeda5",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_3.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "d42fe57ed0a9eb6a5a8fe4f28cf72e0c50cbf89e0281d0f62c875200393a211b",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0046.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "5590a2d2779080b672bd57c479b88abdce7c7ec2375c473daa552196253fda5b",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "39c4c79ee77aab4756310b73228bf7799e9671e50fd6ec79a3b885d3ebfe1d8a",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 46,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "d42fe57ed0a9eb6a5a8fe4f28cf72e0c50cbf89e0281d0f62c875200393a211b",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "9b3687657a464154a7acc818dba8c089bba47a55debcc56ca81134f41140ffe0",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_3.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "d4123cd27c25644c0825cf28f126e664de5e1e091d285fc6d14444eef38b53b3",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 47,
+      "name": "backbone.layers.encoder_3.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 48,
+      "name": "backbone.layers.encoder_3.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 49,
+      "name": "backbone.layers.encoder_3.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0050.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d5ad31c294df07bb0187638df154f2e791ffd34a75338840e8a46816e3f19fd0",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "5590a2d2779080b672bd57c479b88abdce7c7ec2375c473daa552196253fda5b",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 50,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "dff149086355381f237b6c83d1275df20bdd429e23f621734dec44877ca7c9bb",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "2626bc2c54ccc8ef41e30d4edf332e40026732c135215d488ea43249680b22c0",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_3.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "e5d95a57bfebf6edbaf0440360e6b8ef2ac343b485300aa4c1451671bd028f85",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 51,
+      "name": "backbone.layers.encoder_3.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0052.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "7bd78cd4c80beee4a3576e247cb16a591d48d37b24249eca754b3e1d9d8ee0b1",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d5ad31c294df07bb0187638df154f2e791ffd34a75338840e8a46816e3f19fd0",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 52,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "12c24067cd6f2b5c2076fcf4bdc513b0902fde94b382e46a58ba212ba3bb090e",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "764dd5e2b6b6ca453d57d1903182300d064fc26d9bea06984ade268588a97959",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_3.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f0c8dbc3cb1be00c9c86dc8d69f085dc0bb439262890086c6ce5127f683e7f3d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0053.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9b3e3599919ef8babfe22eae3078f4ba3fd1fbc979e067106d7056c36b90ad90",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "7bd78cd4c80beee4a3576e247cb16a591d48d37b24249eca754b3e1d9d8ee0b1",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 53,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "f0c8dbc3cb1be00c9c86dc8d69f085dc0bb439262890086c6ce5127f683e7f3d",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "cf87933e932b21b82d4e9702bdea6011ad93f95f925717f4deeefe69371753bf",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_3.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5b01f393494669bca998c2fbd26ec361308eb074d443d1750cca52a51b164605",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 54,
+      "name": "backbone.layers.encoder_4.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 55,
+      "name": "backbone.layers.encoder_4.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0056.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "ce9fb7d8a56abef1cf12e62511cb12e48c72af784a73729b8334b7b51d34c434",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9b3e3599919ef8babfe22eae3078f4ba3fd1fbc979e067106d7056c36b90ad90",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 56,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "c8f5200947993fbe105daddff2597d5c923109ef5b93741c27388ed3c17281be",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "4936a5769ef17783809647f32d3854e81574a34900a690578cebf97ec9b69c59",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_4.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a0d560c07db99999085daf9ebfd1cbc09c7e04c757148a6bb492f2264b17083a",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 57,
+      "name": "backbone.layers.encoder_4.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0058.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b681f257db2d6a228d8935f62b4d9574b6b318da2a357f09333ea20022ae629e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "ce9fb7d8a56abef1cf12e62511cb12e48c72af784a73729b8334b7b51d34c434",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 58,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "997efec0e2ddb536a6dda9e29bb457320a357765f73aba38b015e561a06ccf33",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "4fbf16fb1c2c76a0a8e50caa4dcd7ea5d14861a8812aae0f3ed9f83e729e36f6",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_4.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "ae20fbe5d79a2ff8dee4f14a86ff4ed7fb19bfdb48bb46aa54c8f50b9950b607",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0059.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "2c8b990bd4e88aa49436e8b294fd279976a4c96cd40374d2677d35caf0560ff7",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b681f257db2d6a228d8935f62b4d9574b6b318da2a357f09333ea20022ae629e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 59,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "ae20fbe5d79a2ff8dee4f14a86ff4ed7fb19bfdb48bb46aa54c8f50b9950b607",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a6f95f8b1fb8f34fb1e2f98614b6c58f5e5d87cee8a5232cc4aea4367d0f6779",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_4.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "bddfabf2482c06705a101643d378c47be22421b872ec2d12371675cac36307c1",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 60,
+      "name": "backbone.layers.encoder_4.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 61,
+      "name": "backbone.layers.encoder_4.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 62,
+      "name": "backbone.layers.encoder_4.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0063.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "dc3fca8ba042c593c1e67454b16b43983e9dcb4decc4adc9cc6848676b612765",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "2c8b990bd4e88aa49436e8b294fd279976a4c96cd40374d2677d35caf0560ff7",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 63,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "343365c1f1fd4a407b98cd2408e7e605277706e288f8ae4ba7883b05cae7f245",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "cc7cb98c074a0de103f1570d24bce86117814843c3a574e4c6ed0bf11ae0cfe9",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_4.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c9e0a6e86b2e397780714d6d9e669a25c36173217b8e4cd61a290055340aed33",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 64,
+      "name": "backbone.layers.encoder_4.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0065.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0d7696aba48842647678f3508401706bd4d280a88e0a0e4effedcd6b89cb9a0e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "dc3fca8ba042c593c1e67454b16b43983e9dcb4decc4adc9cc6848676b612765",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 65,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "79042dcba0f07d4b993f17c10a629a8bffacdf557d4430e0287292b4e5338a03",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "1ba4c56dd6fd2cfcdd5e4001fd26979733537d1b4cf5044c16d02233d794cd5b",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_4.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "71b1d063b045e729cff8f596e2056981e31b41abebc3fcdafa25f286a064c383",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0066.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "87240dc57040363cb09ee7016fa6da9dca541c7cca798c968d26ab40906f9b40",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0d7696aba48842647678f3508401706bd4d280a88e0a0e4effedcd6b89cb9a0e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 66,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "71b1d063b045e729cff8f596e2056981e31b41abebc3fcdafa25f286a064c383",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "9ecbd50b1f5743296d82a3d348f5a63069aefa5486369abc29f3eeba057ec407",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_4.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "e242cd0980d2efa1145b3e4c70dc225eabdbeef943168a5d618ae57fa400334a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 67,
+      "name": "backbone.layers.encoder_5.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 68,
+      "name": "backbone.layers.encoder_5.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0069.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "4f4701c1e38890d8b9f063df301c32bec72964cbb4fb88ce4c44c2cdf9a3b879",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "87240dc57040363cb09ee7016fa6da9dca541c7cca798c968d26ab40906f9b40",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 69,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "4271140ce3c07642682f0ce357fc63f31707d1d33dbc9fa7db33e97e30800f73",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "c6e7e54ec757e46cdf1368ab98a63c2ed667349badfa36d6d55673d2917ee2a8",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_5.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "9a763f7e671fab1bb546d4017f5a586106ff0a4a6c66ebd2a1f56e99cf6299c6",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 70,
+      "name": "backbone.layers.encoder_5.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0071.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "7d8a20c18f3fad1ccfffd20ba8a53a2096e44b483b18565e8350cd1686bda166",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "4f4701c1e38890d8b9f063df301c32bec72964cbb4fb88ce4c44c2cdf9a3b879",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 71,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "fcb874edef4f89cfc11343f0c25966a3e04d7c94ac4781ce43ccba01610ada78",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "79405e1d284bb9cfca27f6e7de1d40324172fe42c47d448d97f7e7ca4a76c6ef",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_5.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "b4319c9579341b89fa8fb9522d340eb413d567a5e64332612faeb968013beeed",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0072.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "6faac1e5288a7ac391e20de7d217b9566356220d8cd8a4921dbbc2467b3e02cf",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "7d8a20c18f3fad1ccfffd20ba8a53a2096e44b483b18565e8350cd1686bda166",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 72,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "b4319c9579341b89fa8fb9522d340eb413d567a5e64332612faeb968013beeed",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "758567900358825b13e9e9803c2eeb7f3566d700993611000e15e296bc0c1f07",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_5.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a5a709b0437a40b5d9092fc8815a3426b28bfe3353d1bb5900df295f44247de9",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 73,
+      "name": "backbone.layers.encoder_5.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 74,
+      "name": "backbone.layers.encoder_5.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 75,
+      "name": "backbone.layers.encoder_5.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0076.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "ea50a1d43de3a0b5e540d4beaefabdfdb3bec7c498c684e1adbaf3b91105b0ee",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "6faac1e5288a7ac391e20de7d217b9566356220d8cd8a4921dbbc2467b3e02cf",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 76,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "6bd18967431932e3c297bceb0a8d9a8d09bdc105340c8d30e727a311cc11eb69",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "b6d409d2d513f23ce0a75650f6e6536cca50f89d5d6eea4b0224d12258037ce4",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_5.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "0d476ae449ddcc4db45b2bc9e2de613a03a93a4726de4695b279962d71b11eca",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 77,
+      "name": "backbone.layers.encoder_5.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0078.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a974a64e6fbc0a07d88ed75ed1eadb46c7aef561ca8a6b7c718ce449f471a04d",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "ea50a1d43de3a0b5e540d4beaefabdfdb3bec7c498c684e1adbaf3b91105b0ee",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 78,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "eb01f49c9270d12c361ab1eff6c2ed08c8d941b01a487c3a0318014bea640d71",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "c8f330ddd01b39fc213e1f0fda50efd1126e8b5cad53a13d6a4b3db938c6327d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_5.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "73345d276b9c9832993b5263b1197056870dc512af2b4569423d12db030384d9",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0079.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9c2993828fc4ba038d06e0de9ed9b15abfb71f0c4935cf71a7a6436fc247cf02",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a974a64e6fbc0a07d88ed75ed1eadb46c7aef561ca8a6b7c718ce449f471a04d",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 79,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "73345d276b9c9832993b5263b1197056870dc512af2b4569423d12db030384d9",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "e23a584f2f16d7b82b1c804e4e7c4f01874ec8bbf7e9fd371b7627846b562e56",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_5.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "835cadc49939ca3e4f3b0f1f1075b505944d8b5608881735d3dc27026b103472",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 80,
+      "name": "backbone.layers.encoder_6.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 81,
+      "name": "backbone.layers.encoder_6.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0082.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "7f317bd52f3979ec2e930eb73416e10c8422d23e294762143ea6276536054eb3",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9c2993828fc4ba038d06e0de9ed9b15abfb71f0c4935cf71a7a6436fc247cf02",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 82,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "8ec3d9d5b592821a965cb972a7d2066ff497d3ae6390d4af8b205dd044209759",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "c7d0cfc65a2dbc9d91fea5f05c642decb683f10c77fef40f89e9c0c675f6458e",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_6.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "9528b536f2997a53c3c8eb33c2db2b2cc9ccb5997a6d8f95ed7a416d7ecf04f8",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 83,
+      "name": "backbone.layers.encoder_6.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0084.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bfec55d8b1f462068793ab914e985f688a3343d9f0b3c1fe8a74557ec101c854",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "7f317bd52f3979ec2e930eb73416e10c8422d23e294762143ea6276536054eb3",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 84,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "f436294a0350bd0aef4fd034e024e6ba9abdd2bc53b8e7bb9519fc9c9bbb0855",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "6042804b6c3be6958ed91ebebb21866a65078724497089230a58b86f45bae68e",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_6.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "52a4a29bb1580431e1b067f23120acc61432f9f5beab70ecbf72ba76aa02e453",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0085.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e78f0afffe4d541ce524072b9369c86104231f8b22af26e405ec10db709916b5",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bfec55d8b1f462068793ab914e985f688a3343d9f0b3c1fe8a74557ec101c854",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 85,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "52a4a29bb1580431e1b067f23120acc61432f9f5beab70ecbf72ba76aa02e453",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "d9ded18af98b040e1bf3489e5f9a298fb0c59d130d259c7eb90ddfcc667aaf59",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_6.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "4846282e21e1445f799233cf68e41aa787d9e99ae602a55e212587f74e435c6a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 86,
+      "name": "backbone.layers.encoder_6.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 87,
+      "name": "backbone.layers.encoder_6.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 88,
+      "name": "backbone.layers.encoder_6.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0089.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8c21817cf9cc78a4cd3b77c66b1158483a85a64d923127e924dea2898e34dbd7",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e78f0afffe4d541ce524072b9369c86104231f8b22af26e405ec10db709916b5",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 89,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "ee7113b1848c2b29e1d4eab97da285aa2238a423430526b61b73d654d084f948",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "e5b0a8587426c352a7069b7e76adf2dcb1384ea4a266a4cc365637b41ca6eea0",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_6.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "7799a7406bb1db4643f0458ff0c9278192d2d232ebcb6b06dd58fe06891f3cac",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 90,
+      "name": "backbone.layers.encoder_6.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0091.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "46a92decb7a609cef40884ca418bb5ecea620b7f81e41ce0f1f028c1a92e826d",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8c21817cf9cc78a4cd3b77c66b1158483a85a64d923127e924dea2898e34dbd7",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 91,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "c2c27f6fb333a6ca478db098b45da28d86d2e20c6daf213992562a62677e0bdb",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "d8dc8c08fad2bb732733438d0ac2af61b2b014ee1456aad6fade92a03e55451b",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_6.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "aed5b19450f71115bea1974c90362b18e464576e8e04ee31351c7cc2dd07b9b7",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0092.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d47caef78a51b0b506a1eef563637620f577384f98db4aadbbd0729800fe5fc8",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "46a92decb7a609cef40884ca418bb5ecea620b7f81e41ce0f1f028c1a92e826d",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 92,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "aed5b19450f71115bea1974c90362b18e464576e8e04ee31351c7cc2dd07b9b7",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5009698392bff4ad0dbef56e615c833bd85e00fcfaf9e939e5b62a0119c284a0",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_6.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "e2efcaa3ab221dd636d0034b3fdb92983757858b06e9ac09e1c9b7c87ecb2c12",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 93,
+      "name": "backbone.layers.encoder_7.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 94,
+      "name": "backbone.layers.encoder_7.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0095.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0d8b8d95e57e2523970031e72db7233277496529be57fefad3102f21af9c1fe2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d47caef78a51b0b506a1eef563637620f577384f98db4aadbbd0729800fe5fc8",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 95,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "4071841723c6905e3881dbb0738c641fb1a10fadc52fe634744593ff9cde32e2",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "7ddc7dc8de946c92425debe0fef73d4391dfb0662d12fee698114f0f7943d7a2",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_7.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "de2a6fdf699c617fcb3b7d48985dfcc5b58b222e6c324b8331a46d2eb0f99854",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 96,
+      "name": "backbone.layers.encoder_7.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0097.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "93851506054c38199b96055847232a67d08e9ff36feaee0ff124a6235b8ea478",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0d8b8d95e57e2523970031e72db7233277496529be57fefad3102f21af9c1fe2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 97,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "80890699ada913e3314321e08de9010db81841bcf28b1959b51bffed8a0ee636",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "0b40941c670a032674dd4cc8c91e634dfc7d891e2406092b24a0a998a720646d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_7.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "51d6003ebbbd8e7df05ff5834738f45e04e3d5d31376ed22f15c10eb6c05ba6e",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0098.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "95db57b1fabd7ad42dd08d0b6d066881cc443192d596f793da3e08e447ce9f98",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "93851506054c38199b96055847232a67d08e9ff36feaee0ff124a6235b8ea478",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 98,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "51d6003ebbbd8e7df05ff5834738f45e04e3d5d31376ed22f15c10eb6c05ba6e",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "e2e5c0f245af8ee01090e87f0a27abcdfec5adf45f2fdb8759ce6881de7c9347",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_7.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "d6a7eab6e4282edc64180d6a74329d6cd20b789c07a0317b31206918c13f64e6",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 99,
+      "name": "backbone.layers.encoder_7.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 100,
+      "name": "backbone.layers.encoder_7.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 101,
+      "name": "backbone.layers.encoder_7.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0102.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "ecc9697612bed79365f2794e26b9f8326a5e5940eafc1ad09c9448c127320c8c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "95db57b1fabd7ad42dd08d0b6d066881cc443192d596f793da3e08e447ce9f98",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 102,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "cff3738f28fa0d684cf60aaff337a6785e4fde60a77f182a4c0f401ac7c5a452",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "611ac7db40c988348f6caf3964bb51ff83c3d07c7c32602f9ff37923556f1910",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_7.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "b38d77e171e48a07763f8afe194d7b506b664a886fce2d03563ccb6a442c93bc",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 103,
+      "name": "backbone.layers.encoder_7.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0104.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "5b3f1255734c20446652211ab9b4ee4a9a3fb7b958f6e835b855e1af395db2ed",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "ecc9697612bed79365f2794e26b9f8326a5e5940eafc1ad09c9448c127320c8c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 104,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "da4c5ff7f311b28e4fb06ff929b1a53ec048e75aa10932bf8dd52816e2e121cb",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "9d11d860ebca6f8e1c830c71a29111f59cc2fa0fdfe6e215189c24b0d29e72c9",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_7.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "fe7fa7f254db8bad455a5694e478b66b7fdf08d047b17ca7634e834e42554be9",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0105.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0f948775fb9c3b9ae6922b4e70401b17ff5f01ca05fa9862c265a02c8a63e451",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "5b3f1255734c20446652211ab9b4ee4a9a3fb7b958f6e835b855e1af395db2ed",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 105,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "fe7fa7f254db8bad455a5694e478b66b7fdf08d047b17ca7634e834e42554be9",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "e36575ba664944cdfbe0739e09b1d48cb1bd9e6cb52dde68e5f9d0f7080cca8b",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_7.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "50b505678fca195460c9804fa6f468d51ecfea9e392e0af595acce61737bd68d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 106,
+      "name": "backbone.layers.encoder_8.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 107,
+      "name": "backbone.layers.encoder_8.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0108.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "19df5ec58581cf4b5aec4a86ddcbbe2a58cd30d668c2233a89970641c3900de9",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "0f948775fb9c3b9ae6922b4e70401b17ff5f01ca05fa9862c265a02c8a63e451",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 108,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "b9acd15be41f8f77a3439674e4ed87089082e5b5c8822ee51e71fcdaf4263a64",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "8d06def45adbc38fea71968b67d3952a59fff74f91ef14b6e8b129a241f8ff9f",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_8.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "770bf65b756fd8548abb7cc4efd8a1e6e7a6ef8c232cdb7c8a5f3d3c66513277",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 109,
+      "name": "backbone.layers.encoder_8.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0110.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "854d932fca1e127b9904dd1a4e8592c611daf0084e3104f3771e76ab7986fdd6",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "19df5ec58581cf4b5aec4a86ddcbbe2a58cd30d668c2233a89970641c3900de9",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 110,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "f56f0a63892ff078ccd826c3b03ed7ebbfe0b3fd477fae5217fd6e22be121699",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "0efeff657b0e29b614d1c75a8cd0e39a825d8589f1d5b4aaf43e5e8df7e4acdd",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_8.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "7e66cd913105bf548151875752564cd9c6a873dda566c5615ab3bf5c2a8300a8",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0111.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "5c3b238e39ec55dde8a4cc295d92f051d923a576c6a1cd6e0c27e0696b4f2eb3",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "854d932fca1e127b9904dd1a4e8592c611daf0084e3104f3771e76ab7986fdd6",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 111,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "7e66cd913105bf548151875752564cd9c6a873dda566c5615ab3bf5c2a8300a8",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "4815aca9050766ba5d5fa380a9e0ae38b2787e6b58d41e21e26abae937806457",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_8.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "8279f3fafb914a371ffdaac3308660a40d72894578bc663769db0d5b1cf6486e",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 112,
+      "name": "backbone.layers.encoder_8.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 113,
+      "name": "backbone.layers.encoder_8.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 114,
+      "name": "backbone.layers.encoder_8.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0115.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "4e96a037b102c61cd839896c7cb05ea88a2725185f9b45706945581dad57b4b9",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "5c3b238e39ec55dde8a4cc295d92f051d923a576c6a1cd6e0c27e0696b4f2eb3",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 115,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "3960ff2d42fab4e5fe278d4003e43811d8ee2438948bf33412e4432737b985db",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "c9baf1d7516d4346c495bb1ec5470b2c46ca39314b571c79a3c1aa3ba079b198",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_8.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5ae34595c56fdb0a5e3f6c7eb9e54e78ff3ace951211ba4a0de02773d78c5088",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 116,
+      "name": "backbone.layers.encoder_8.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0117.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8e2e2c3d12a537d8aa1aa039a7548cc5e1b39dfd9e6720e2d1619992282703d5",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "4e96a037b102c61cd839896c7cb05ea88a2725185f9b45706945581dad57b4b9",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 117,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "41d72f54eeba941262826c91e85ca65ad30fbe1800ebdb2699e9062daf57704b",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "144f4f06d12ce7b25bcd284a00315d66f954db81b30f1a5e2aaf419705d2e709",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_8.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "fbb565dc512fbc9ab505a8b3e58936a9a51d8fc3e625866a49aae6c8719a8262",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0118.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b2f2b7c65a4b30945068925a960db396bfb036a8db01165c93bdf4895980e354",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8e2e2c3d12a537d8aa1aa039a7548cc5e1b39dfd9e6720e2d1619992282703d5",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 118,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "fbb565dc512fbc9ab505a8b3e58936a9a51d8fc3e625866a49aae6c8719a8262",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "edf4bd37f0612f0095b4cb75866893d93e903df7447d1d4da8eb119b63be4c3e",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_8.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "16379bd18f0cc635e22d275a7abc90599c9a121e212c9fcd341d46c8698b6a3c",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 119,
+      "name": "backbone.layers.encoder_9.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 120,
+      "name": "backbone.layers.encoder_9.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0121.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a2c303e339fa4872b6aa7734edaa4e6f9ca11e5fcb96a7ad18d7bbe0b17b7224",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "b2f2b7c65a4b30945068925a960db396bfb036a8db01165c93bdf4895980e354",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 121,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "274c26a478151407735c4af49ad42e80fa17841aaa1eb851ab0ca460972a99ac",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "95cbc1d9f5916805419cac9dfcc01af05087f62b9dbfeb71a949b8c513aafefc",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_9.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "b2bb896204e556fb434c64bf32276e4a44f73a2479743201f5df310bfda274eb",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 122,
+      "name": "backbone.layers.encoder_9.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0123.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "6f9c11933299eeb6f5e025b6aa21173e3a55d7956cf473b789db056d1501c489",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a2c303e339fa4872b6aa7734edaa4e6f9ca11e5fcb96a7ad18d7bbe0b17b7224",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 123,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "d853082832a5830d02ba37e2a1f53418a944042fc3ac2bcd496ff98185ac4780",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "9fe3a39f29be3cbe8f100ea0b07c9459bb66ae94f5c0c5d6cdf043eff88ad036",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_9.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "8739617470c677c6b472e5b737cf0576d507f452b8e91aebaa8e108cc4b99865",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0124.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9b116cde1c9e3f86fac55f2eac3a10f7eba27a07887eff698846dd17f461750b",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "6f9c11933299eeb6f5e025b6aa21173e3a55d7956cf473b789db056d1501c489",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 124,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "8739617470c677c6b472e5b737cf0576d507f452b8e91aebaa8e108cc4b99865",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "1c73eecf7d47a884b6ed919c5844b41701cbd012d56ca2a7d281d383d068b94f",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_9.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "9f0fbd7efd0f63444e5a85a0620adafa177e225324718f993666887aafa86f9e",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 125,
+      "name": "backbone.layers.encoder_9.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 126,
+      "name": "backbone.layers.encoder_9.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 127,
+      "name": "backbone.layers.encoder_9.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0128.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "061ed7a5f54200356315da54b9e4036dd9e8adeff2e8e5d3c9a910e6735bcf64",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9b116cde1c9e3f86fac55f2eac3a10f7eba27a07887eff698846dd17f461750b",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 128,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "f5c831fa08a5038a7f10114bd1ca5debe0a8e7b2f97b6416b69cd701c256477b",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "2dfe1b6fbf84b08d4fd31c73cc53bc4cbc084e439f38c8c1b8783c6b4e48e600",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_9.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a1f230d67750c4a889cce22475955472f98eafe9e6adb8506df31972c07e4753",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 129,
+      "name": "backbone.layers.encoder_9.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0130.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "40ffe9324ac35f4b5363b0d530032ab4c812d324da359ba5a031a19ab550fa4c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "061ed7a5f54200356315da54b9e4036dd9e8adeff2e8e5d3c9a910e6735bcf64",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 130,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "82116a5eb8984305dff477974eef1ac1e951c97fef268d893873a3fff929cd11",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "be46c95c7577a073cfc3f1194e7412bd549e86352ada3d4c3fbc54dbbef03eb3",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_9.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "075cc5fd132cb482ab866897bd511a732cf072ce2515888a33439d3a1e81ff02",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0131.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d4c63cabd2715dcf15c71c35d656c77f755a80e7d4fec22f3f9245520db7da6f",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "40ffe9324ac35f4b5363b0d530032ab4c812d324da359ba5a031a19ab550fa4c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 131,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "075cc5fd132cb482ab866897bd511a732cf072ce2515888a33439d3a1e81ff02",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "cbeb7edce61c41664ff954dde33d41515ec687e1143286cd6d2ed538c1157972",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_9.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "b641810814a03fe8785781fe760a4a6943a0168a5dd941cb194d5eeaa942240d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 132,
+      "name": "backbone.layers.encoder_10.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 133,
+      "name": "backbone.layers.encoder_10.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0134.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "f50a619104f3328e34800a1a87dfeee9b965e8f94c32353ec4793481a4bdb781",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d4c63cabd2715dcf15c71c35d656c77f755a80e7d4fec22f3f9245520db7da6f",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 134,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "d81fdab17f3169b91b68bef8c2eb603ac6a2cdfd483184dfcd9e4775de0cfc98",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "5a1b5dbc50b345c3f20ed0c8355dab9fa4e6c488b715c838ca26c98d934ee2f4",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_10.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c1e7abc9e65a14ff268b6c76c6e6f7fbd34ceb7cd80ee399067078e0a2066518",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 135,
+      "name": "backbone.layers.encoder_10.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0136.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9c617cdb5db6d3e34658680a4ec49f8c99f3e4e8658f3ab8e80532596f5a09d1",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "f50a619104f3328e34800a1a87dfeee9b965e8f94c32353ec4793481a4bdb781",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 136,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "bcc1ccf2ca14fda6a1db98c7f328ac2ec71da8d09d3a6802a4e09db4bdb168bb",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "c63cb5b267e17190c04e7eb1c5373d1eb4c313664f4bfe6999cd0ba160945d22",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_10.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "50c20dd6ee923e3ab2daf31d7b5732a3fb59b0545417a4687f6676e682270e8f",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0137.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e6dd598e29daa667540ec58de2274e3cec258dc0374367ce115831be6280fd69",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9c617cdb5db6d3e34658680a4ec49f8c99f3e4e8658f3ab8e80532596f5a09d1",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 137,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "50c20dd6ee923e3ab2daf31d7b5732a3fb59b0545417a4687f6676e682270e8f",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a43009d5d9c06a3c36726d786a7d792a5285c9b6a28a590bb22fffd4a22f89eb",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_10.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "4b226bd5cc350b2b8e0e8a9d6909ae4ae1c007dbfa3d68c5ce3733845ffed67e",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 138,
+      "name": "backbone.layers.encoder_10.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 139,
+      "name": "backbone.layers.encoder_10.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 140,
+      "name": "backbone.layers.encoder_10.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0141.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "2801d0152d75a5b3d2e2e07417046d6f001045d58522e39901c7522b139f9422",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "e6dd598e29daa667540ec58de2274e3cec258dc0374367ce115831be6280fd69",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 141,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "2ccf539aaee72341877cfea56adc673b7db53b1938792160e171e1677735b9a2",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "27bb9a4ed223e9e0ca478961d0e1b1920208b0fb928121140ac5c8386ac14002",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_10.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "316c83fc7cea5076416717e427eab1d9b320c7b05dfb43c977e06b63d3611974",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 142,
+      "name": "backbone.layers.encoder_10.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0143.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8ca0658da725316e6997651c2c44c29d9f343590ac3c161eab936158c0608d86",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "2801d0152d75a5b3d2e2e07417046d6f001045d58522e39901c7522b139f9422",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 143,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "9e5c140229c501e8a1b9698795f17b83e4f024d6126cad34f7f461176ffebcdc",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "5c558dcb20a87940d804e56710774bcc6c906a8162f225c7d697ae4187f026cd",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_10.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "076fc91ac2ccd3c22c13e37ce96794216461dd32936ad9f9451566ccd5f1b430",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0144.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "70a81d9393b6e3740f5c4231d4b8abf6fa28eb186d63a575091ed80e131d4e7e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8ca0658da725316e6997651c2c44c29d9f343590ac3c161eab936158c0608d86",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 144,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "076fc91ac2ccd3c22c13e37ce96794216461dd32936ad9f9451566ccd5f1b430",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "00e204115f0843f9e80e9c8a7189907eabf56ab869d35536767b85bbe081571b",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_10.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "3d9445e65de3eb0c094a2a043e66b3b11f24babf8cd80f0b97616d94e459e14d",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 145,
+      "name": "backbone.layers.encoder_11.norm1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 146,
+      "name": "backbone.layers.encoder_11.attention.to_qkv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0147.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "c27f99534198331858276c6345ede941bd25829747893c196682305c4ae7c4bf",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "70a81d9393b6e3740f5c4231d4b8abf6fa28eb186d63a575091ed80e131d4e7e",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 147,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "d67a09c08a63f89db029d5048d404dbc573e94042b02cb0e5a890fe18fe16e6a",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ],
+          "stride": [
+            3468,
+            289,
+            17,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "76f3212df20e002c2a938016e52f665fb4cae0a818146be76f501a363a376489",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_11.attention.attention_dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "81bfb1b874f1127f9384ae7ab8486e455ed57cf9ffea00476b71de83560c3ce8",
+        "shape": [
+          64,
+          12,
+          17,
+          17
+        ],
+        "stride": [
+          3468,
+          289,
+          17,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 148,
+      "name": "backbone.layers.encoder_11.attention.to_out",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0149.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "794c9ea8527f88869f80fed7b11db75f6292e1bed003ec9ad4a2bbe009c745b8",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "c27f99534198331858276c6345ede941bd25829747893c196682305c4ae7c4bf",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 149,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "46ccf8a48acc0129bbf4fd55a4abfc55e0ffac72d8d70605e4e97055c60f4494",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "3ded8a1de7a1b98b47bf30335a86086b208f59c3273a9bed08f2b0d39d6c033a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_11.attention.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "4c6ea24e1705a571d48751139dcf5f0981fa5afba30505ebd43b8681e390705c",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0150.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a86e3c5323334f28d1966a712709590a7e016d755cba00725ff7cbf461ee8e4c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "794c9ea8527f88869f80fed7b11db75f6292e1bed003ec9ad4a2bbe009c745b8",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 150,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "4c6ea24e1705a571d48751139dcf5f0981fa5afba30505ebd43b8681e390705c",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "d2f5d04baeefab36aa32ae8541a01f9bb54cbe911a394acc3c2fb5f8a5e96c32",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_11.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "6a6257c275197adcd9fb47229a92c57c8c2b1d048f17f855f38c7e1ce84c03db",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 151,
+      "name": "backbone.layers.encoder_11.norm2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 152,
+      "name": "backbone.layers.encoder_11.feedforward.mlp1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 153,
+      "name": "backbone.layers.encoder_11.feedforward.act",
+      "stochastic": false,
+      "training": true,
+      "type": "up.models.backbones.vision_transformer.GELU"
+    },
+    {
+      "capture": "leaf-0154.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "20d54f84fe83af48c68c6a4be387d5175628e692d391e3a316567eaba62129a8",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "a86e3c5323334f28d1966a712709590a7e016d755cba00725ff7cbf461ee8e4c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 154,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "1901225eadb67f52d61f45c92dec772b78ef6338986c8a245e7ff0a9a7825a73",
+          "shape": [
+            64,
+            17,
+            3072
+          ],
+          "stride": [
+            52224,
+            3072,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "dc3c8a12cb37080993125528985e2cecc18d28bf657db081f76f0e46d3dce70f",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_11.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "058ae4063b76261aac8cd477568503fed8efec44043fc961f504a0b9b7ca4323",
+        "shape": [
+          64,
+          17,
+          3072
+        ],
+        "stride": [
+          52224,
+          3072,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 155,
+      "name": "backbone.layers.encoder_11.feedforward.mlp2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "capture": "leaf-0156.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9dbd50a9246992985d8e9e80214736a964e758d41cffe3530cbcbeb3fb901bd9",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "20d54f84fe83af48c68c6a4be387d5175628e692d391e3a316567eaba62129a8",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 156,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "74a2d115c0a2cc8bd8b7d17a7ed826ec8e79761100e01555a91bc4da68f02025",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.bool",
+        "sha256": "154a533060c2a7280f00aaf1872f9760ba449afdd642d592e62a0ef447585ea9",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "name": "backbone.layers.encoder_11.feedforward.dropout",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "acf5ce333aeaacddba345c4c3a816bfa258327c8b9ce0085c8ba7cab9228e841",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "capture": "leaf-0157.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "dbf5e2c20d2ecc548b86a2ed14261e28473b3fcca075ec8601958a05a6071d3c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "9dbd50a9246992985d8e9e80214736a964e758d41cffe3530cbcbeb3fb901bd9",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 157,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "acf5ce333aeaacddba345c4c3a816bfa258327c8b9ce0085c8ba7cab9228e841",
+          "shape": [
+            64,
+            17,
+            768
+          ],
+          "stride": [
+            13056,
+            768,
+            1
+          ]
+        }
+      ],
+      "mask": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "3bc0575cb91904679822f3a613c4c4c7655122d1a10158e280c3cb7f97208540",
+        "shape": [
+          64,
+          1,
+          1
+        ],
+        "stride": [
+          1,
+          1,
+          1
+        ]
+      },
+      "mask_reconstructs_output": true,
+      "mask_source": "MulBackward0._saved_other",
+      "name": "backbone.layers.encoder_11.drop_path",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "7f6bead4c57063a580517d573ab07612e3dfe1318cc03c875883797bb51f19f1",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "probability": 0.1,
+      "stochastic": true,
+      "training": true,
+      "type": "up.utils.model.utils.DropPath"
+    },
+    {
+      "index": 158,
+      "name": "backbone.encoder_norm",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 159,
+      "name": "head.classifier",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 160,
+      "name": "post_process.cls_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.cls.models.losses.cls_loss.LabelSmoothCELoss"
+    }
+  ],
+  "observer_sha256": "b155caa613579d0f285e82416a22990707070be7d20027f481b7f2d88591ea7e",
+  "rtol": 0.0001,
+  "scope": "Synchronized diagnostic prefix, not new full-budget accuracy or performance",
+  "steps": [
+    {
+      "batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+      "cpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bc81bfb2c75816842b67a2fd37500b9c57cc89a0d5594be83f923b80e679777c",
+        "shape": [
+          5056
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "dbf5e2c20d2ecc548b86a2ed14261e28473b3fcca075ec8601958a05a6071d3c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gradient_sha256": "ec785413378db1e60151eb95451199c0fd159382c66bac873ddbcd67d3960637",
+      "loss": 2.3060355186462402,
+      "step": 1
+    }
+  ]
+}

@@ -1,0 +1,1020 @@
+[
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "d4253d821372334316ad78cb2badccbef596949de6ac0ff6914bfa9840eac473",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "7073b1acd011846cd30cdf2c9683b0e56ced5f649713240a61d22157185b3be8",
+        "mask": null,
+        "output": "76b2ccba4d6db568d0afb46cc92765e045105267f550f3bbae3ab75f95741d6e",
+        "parameter_gradients": {
+          "bias": "71d86e602f9dfc73b51afc2e0b88924dfed709bbe06fff9c2d79da041848c613",
+          "weight": "e3398c2e3d6fac005fa808ec42bce8b24a8a2bd1c0f4e69b45cdaac60b3919b2"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "a9e593e28370289c466f061c2a285dd1f01a337f74d9014c849caeee484ad702",
+          "running_var": "62ce3f562c4e9821ce382b67d62193c2ebeb45fedc8de78d67916ce5b6234f72",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "67bd6458c3af3a1bb54c3231855772d1b0f8844f1a541459ba3469a37b9fe965",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "76b2ccba4d6db568d0afb46cc92765e045105267f550f3bbae3ab75f95741d6e",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "d4253d821372334316ad78cb2badccbef596949de6ac0ff6914bfa9840eac473",
+    "raw_report": {
+      "bytes": 22895,
+      "relative_path": "first-divergence/native/report.json",
+      "sha256": "491071a9fbbfa9df9f6cd6fb3e32f1222f34e5bc4c79e5cdc51b8a9ea8bba0ec"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "d4253d821372334316ad78cb2badccbef596949de6ac0ff6914bfa9840eac473",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "7073b1acd011846cd30cdf2c9683b0e56ced5f649713240a61d22157185b3be8",
+        "mask": null,
+        "output": "76b2ccba4d6db568d0afb46cc92765e045105267f550f3bbae3ab75f95741d6e",
+        "parameter_gradients": {
+          "bias": "71d86e602f9dfc73b51afc2e0b88924dfed709bbe06fff9c2d79da041848c613",
+          "weight": "e3398c2e3d6fac005fa808ec42bce8b24a8a2bd1c0f4e69b45cdaac60b3919b2"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "a9e593e28370289c466f061c2a285dd1f01a337f74d9014c849caeee484ad702",
+          "running_var": "62ce3f562c4e9821ce382b67d62193c2ebeb45fedc8de78d67916ce5b6234f72",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "67bd6458c3af3a1bb54c3231855772d1b0f8844f1a541459ba3469a37b9fe965",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "76b2ccba4d6db568d0afb46cc92765e045105267f550f3bbae3ab75f95741d6e",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "d4253d821372334316ad78cb2badccbef596949de6ac0ff6914bfa9840eac473",
+    "raw_report": {
+      "bytes": 22898,
+      "relative_path": "first-divergence/reference/report.json",
+      "sha256": "b90118757c3049d1cd3ccbd00389fb86df2af7bb154ccfd5b10aaa64319b5e7d"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "67d802490cd53e1c2f5bd59529c8a318c85699488f8d8cedadbca93edd7e3313",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "b0b4edb0fbfd2fff6691351f0a3f2ae6e7d552339023368e58d80800fab6fc5b",
+        "mask": null,
+        "output": "f726da21c42609aa80e3f30b8b684f6fc8e4ac988ed2ad546be73381ee49ea79",
+        "parameter_gradients": {
+          "bias": "abc0f77c491cf9fa38066ac6975e1b76adb5457a6fbfca044c9508af89ee2931",
+          "weight": "2fddb2833880333cd2e9240f94cd750da4d7b7584ca007b7edc09a8ca391aa24"
+        },
+        "state_after": {
+          "bias": "dc4a6de0b529ddfc6fc9500d727b74e2b1fd5b2c2496364770d9edc6b5ee4e85",
+          "weight": "5414114599aea601ea7d6f23ca383d081d2e5ede7e3818a1d9045114ec95e7dc"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "20ac2229556638240e454c6c6357cd2ef991d5c563328a81c3940e3e149378bb",
+        "shape": [
+          64,
+          3,
+          64,
+          64
+        ],
+        "stride": [
+          12288,
+          4096,
+          64,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f726da21c42609aa80e3f30b8b684f6fc8e4ac988ed2ad546be73381ee49ea79",
+        "shape": [
+          64,
+          768,
+          4,
+          4
+        ],
+        "stride": [
+          12288,
+          16,
+          4,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "67d802490cd53e1c2f5bd59529c8a318c85699488f8d8cedadbca93edd7e3313",
+    "raw_report": {
+      "bytes": 19918,
+      "relative_path": "replay/vit-conv-native/report.json",
+      "sha256": "4ed89079f8d3b614a19dde62c0b5fe221c7c83846986184bd42b4ace9dbd8121"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "67d802490cd53e1c2f5bd59529c8a318c85699488f8d8cedadbca93edd7e3313",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "b0b4edb0fbfd2fff6691351f0a3f2ae6e7d552339023368e58d80800fab6fc5b",
+        "mask": null,
+        "output": "f726da21c42609aa80e3f30b8b684f6fc8e4ac988ed2ad546be73381ee49ea79",
+        "parameter_gradients": {
+          "bias": "abc0f77c491cf9fa38066ac6975e1b76adb5457a6fbfca044c9508af89ee2931",
+          "weight": "2fddb2833880333cd2e9240f94cd750da4d7b7584ca007b7edc09a8ca391aa24"
+        },
+        "state_after": {
+          "bias": "dc4a6de0b529ddfc6fc9500d727b74e2b1fd5b2c2496364770d9edc6b5ee4e85",
+          "weight": "5414114599aea601ea7d6f23ca383d081d2e5ede7e3818a1d9045114ec95e7dc"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "20ac2229556638240e454c6c6357cd2ef991d5c563328a81c3940e3e149378bb",
+        "shape": [
+          64,
+          3,
+          64,
+          64
+        ],
+        "stride": [
+          12288,
+          4096,
+          64,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f726da21c42609aa80e3f30b8b684f6fc8e4ac988ed2ad546be73381ee49ea79",
+        "shape": [
+          64,
+          768,
+          4,
+          4
+        ],
+        "stride": [
+          12288,
+          16,
+          4,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "67d802490cd53e1c2f5bd59529c8a318c85699488f8d8cedadbca93edd7e3313",
+    "raw_report": {
+      "bytes": 19921,
+      "relative_path": "replay/vit-conv-reference/report.json",
+      "sha256": "04eb68c6097f2d867294e007da8e7d3cbcc3a3e56bd662361aff74377be2b8be"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "f7136f84d31636c80720a78612278fe1b1789ef2520f82914127a75ca0691377",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "0569aaa613b270a8ba4d6883b0c58b89387cc14506f6f8572d214a1b3b55cd5b",
+        "mask": "a76300e4e89c6e66f4bf587a97b1771106081053240ebab59bc7334cf50c5c66",
+        "output": "7f8633edbfe24bc622413e1df3d7e7e7f0df2f5383c11ca42f5d824319855969",
+        "parameter_gradients": {},
+        "state_after": {}
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f30b2667b2b317540cac9c55a168ac9711c592c89160adbd0b9ee6e7d1de0e0a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "7f8633edbfe24bc622413e1df3d7e7e7f0df2f5383c11ca42f5d824319855969",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d42e8c0ef7db32f4e5d10601f75e6cf5aa8aeb61a8377044b633e3c69fc83b96",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "f7136f84d31636c80720a78612278fe1b1789ef2520f82914127a75ca0691377",
+    "raw_report": {
+      "bytes": 16714,
+      "relative_path": "replay/vit-dropout-native/report.json",
+      "sha256": "b98481fb9b4fd74808e864c2382d9e8e7301e778d171f2c7f03cfdbb904cbdc5"
+    },
+    "repeats": 10,
+    "repr": "Dropout(p=0.1, inplace=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "f7136f84d31636c80720a78612278fe1b1789ef2520f82914127a75ca0691377",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "0569aaa613b270a8ba4d6883b0c58b89387cc14506f6f8572d214a1b3b55cd5b",
+        "mask": "a76300e4e89c6e66f4bf587a97b1771106081053240ebab59bc7334cf50c5c66",
+        "output": "7f8633edbfe24bc622413e1df3d7e7e7f0df2f5383c11ca42f5d824319855969",
+        "parameter_gradients": {},
+        "state_after": {}
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f30b2667b2b317540cac9c55a168ac9711c592c89160adbd0b9ee6e7d1de0e0a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "7f8633edbfe24bc622413e1df3d7e7e7f0df2f5383c11ca42f5d824319855969",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "d42e8c0ef7db32f4e5d10601f75e6cf5aa8aeb61a8377044b633e3c69fc83b96",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "f7136f84d31636c80720a78612278fe1b1789ef2520f82914127a75ca0691377",
+    "raw_report": {
+      "bytes": 16717,
+      "relative_path": "replay/vit-dropout-reference/report.json",
+      "sha256": "00fbe42573417c1c9affd8f49e31ee6eb3bf214e3ced75b34b97dbd523e580ca"
+    },
+    "repeats": 10,
+    "repr": "Dropout(p=0.1, inplace=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "727d47f5299de50af283c95c204bdd58274c0591ea3f42285c9cb6728c05957d",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "1d6b5c5cad8953456ee348567e9cb22617d31dcbc137eb01d45c55e3bbe92766",
+        "mask": null,
+        "output": "6b0366619f30f3b73dab12b5a122dd7039b6edf756b41654355dc41002071ed1",
+        "parameter_gradients": {
+          "bias": "03e6361e0acf0feb37f8d65108c1f7573794e38cf956932a1c155510bdcf42eb",
+          "weight": "87936c80c50d1815a3759a811465e816320e29c27f79d86703dc9f15b57dcc89"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "35e9e107c58f9e87d3e3cb85cd903a5aed57a5697ba7d9d195efd76bdbe831ba",
+          "running_var": "77ab17f032617c379b29512794cd69aed7f5d2bbd408e222b71829574c6fbfeb",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "6b0366619f30f3b73dab12b5a122dd7039b6edf756b41654355dc41002071ed1",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "727d47f5299de50af283c95c204bdd58274c0591ea3f42285c9cb6728c05957d",
+    "raw_report": {
+      "bytes": 22975,
+      "relative_path": "replay/yolo-bn-native/report.json",
+      "sha256": "e31988da67ff78811459ee0bc0fe7ed79735ad5a589fd6bd29e78fff2ed72a0b"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "727d47f5299de50af283c95c204bdd58274c0591ea3f42285c9cb6728c05957d",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "1d6b5c5cad8953456ee348567e9cb22617d31dcbc137eb01d45c55e3bbe92766",
+        "mask": null,
+        "output": "6b0366619f30f3b73dab12b5a122dd7039b6edf756b41654355dc41002071ed1",
+        "parameter_gradients": {
+          "bias": "03e6361e0acf0feb37f8d65108c1f7573794e38cf956932a1c155510bdcf42eb",
+          "weight": "87936c80c50d1815a3759a811465e816320e29c27f79d86703dc9f15b57dcc89"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "35e9e107c58f9e87d3e3cb85cd903a5aed57a5697ba7d9d195efd76bdbe831ba",
+          "running_var": "77ab17f032617c379b29512794cd69aed7f5d2bbd408e222b71829574c6fbfeb",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "6b0366619f30f3b73dab12b5a122dd7039b6edf756b41654355dc41002071ed1",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "727d47f5299de50af283c95c204bdd58274c0591ea3f42285c9cb6728c05957d",
+    "raw_report": {
+      "bytes": 22978,
+      "relative_path": "replay/yolo-bn-reference/report.json",
+      "sha256": "88a7778434039db8873dced0ba5f52aee95f73f043fe2a764cd2ae365b7f9b67"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "45ef933d7e464dfe8a59b8ee0b081c33eeb7a1d42f1444f22902c4399de718d8",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "ee41130f29955f577f3859532530b6a74f09eb4cf9ce317b42a458a4f58875c9",
+        "mask": null,
+        "output": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "parameter_gradients": {
+          "weight": "0aff12eaa6d74ebf85265f449f10b1e96935aa76cfdfef1ab6581c7dc6969873"
+        },
+        "state_after": {
+          "weight": "95c6775e5465833da34e186cb8d96de30d4b9f44621c920df757969db8f3da7a"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a63e26a1aed3086d8ae8d6bea1fb6c34d8fe215607c8886ac8c46f05ef7669fa",
+        "shape": [
+          64,
+          12,
+          160,
+          160
+        ],
+        "stride": [
+          307200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "45ef933d7e464dfe8a59b8ee0b081c33eeb7a1d42f1444f22902c4399de718d8",
+    "raw_report": {
+      "bytes": 18372,
+      "relative_path": "replay/yolo-conv-native/report.json",
+      "sha256": "140968d460b64357fc6b58b910bbc1a1bb35db823f5bd3f2acfbaa539cc24da4"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "45ef933d7e464dfe8a59b8ee0b081c33eeb7a1d42f1444f22902c4399de718d8",
+    "device": "NVIDIA GeForce RTX 4090",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "ee41130f29955f577f3859532530b6a74f09eb4cf9ce317b42a458a4f58875c9",
+        "mask": null,
+        "output": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "parameter_gradients": {
+          "weight": "0aff12eaa6d74ebf85265f449f10b1e96935aa76cfdfef1ab6581c7dc6969873"
+        },
+        "state_after": {
+          "weight": "95c6775e5465833da34e186cb8d96de30d4b9f44621c920df757969db8f3da7a"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a63e26a1aed3086d8ae8d6bea1fb6c34d8fe215607c8886ac8c46f05ef7669fa",
+        "shape": [
+          64,
+          12,
+          160,
+          160
+        ],
+        "stride": [
+          307200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "45ef933d7e464dfe8a59b8ee0b081c33eeb7a1d42f1444f22902c4399de718d8",
+    "raw_report": {
+      "bytes": 18375,
+      "relative_path": "replay/yolo-conv-reference/report.json",
+      "sha256": "3b87377a08599adf4e795ab6ea6b91bb125b360b66531c4d03e8860c26a204c6"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+cu126",
+    "up_imported": false,
+    "up_platform_imported": false
+  }
+]

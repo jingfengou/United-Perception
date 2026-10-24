@@ -1,0 +1,1092 @@
+[
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "d4253d821372334316ad78cb2badccbef596949de6ac0ff6914bfa9840eac473",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "bae97e0bc5f95219b4aeacc522f1866b423dee376311228a3efbe776ce2c14fb",
+        "mask": null,
+        "output": "a8c51ad8e0815d750e5544a59f18cfcbecda9ffa935dc2d9d8090f7d4f45fad6",
+        "parameter_gradients": {
+          "bias": "fff524487d0571370b4cbe18e981ba770fc81bf491cc72a2f16c4199d98626ab",
+          "weight": "69b7df4fa9b13794cee84c5f1ccac67c434211e82e4bbee7503600a462d57021"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "b19b8673af47fefa88e7ffc103c798e190214c7ccb239f0a1a0801de193aed8c",
+          "running_var": "c6562b72ba6ba215dda01605754781a56955d94e72862e99f9e35c49ec43d57d",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "67bd6458c3af3a1bb54c3231855772d1b0f8844f1a541459ba3469a37b9fe965",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          1,
+          2560,
+          32
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a8c51ad8e0815d750e5544a59f18cfcbecda9ffa935dc2d9d8090f7d4f45fad6",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          1,
+          2560,
+          32
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "53dccae5ec3f92d0e19768fb7661ef4949166c231a61b58c5ca37fd577cafb8f",
+    "raw_report": {
+      "bytes": 22889,
+      "relative_path": "first-divergence/native/report.json",
+      "sha256": "bb6e3c0b0ddbe1868ce387db58f8dffbcea61585d826d59151288371113427b9"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "d4253d821372334316ad78cb2badccbef596949de6ac0ff6914bfa9840eac473",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "6ca87195c1ef9f37a3a109da099485bf19b26f2b5ce5209dbfcd2a7e139b8ce1",
+        "mask": null,
+        "output": "a1b9ab7b9184d90407fc6d3e6cd05b1f1675ce439686e272590833651772e460",
+        "parameter_gradients": {
+          "bias": "e66993bb418dc7afe79ca85e2b65ccfa233cdb0f1cd11b80e00c467912e66152",
+          "weight": "26956b2c822a6047ae661cea6394254280cf3b8fa661c7517d1128ae3ff4d126"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "4e9206bc0b02d77b602e04d96e07adde055f58cf8c037e4ee9cbf49f369620cf",
+          "running_var": "c6562b72ba6ba215dda01605754781a56955d94e72862e99f9e35c49ec43d57d",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "67bd6458c3af3a1bb54c3231855772d1b0f8844f1a541459ba3469a37b9fe965",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a1b9ab7b9184d90407fc6d3e6cd05b1f1675ce439686e272590833651772e460",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "53dccae5ec3f92d0e19768fb7661ef4949166c231a61b58c5ca37fd577cafb8f",
+    "raw_report": {
+      "bytes": 22892,
+      "relative_path": "first-divergence/reference/report.json",
+      "sha256": "a1cfe047d31e1a0ef4cd8210329c7f0e45f85976b23b77a72458b86aea39dc8a"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": false,
+    "changed_fields_by_repetition": [
+      [],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ]
+    ],
+    "common_capture_sha256": "67d802490cd53e1c2f5bd59529c8a318c85699488f8d8cedadbca93edd7e3313",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "b0b4edb0fbfd2fff6691351f0a3f2ae6e7d552339023368e58d80800fab6fc5b",
+        "mask": null,
+        "output": "4fdb5276a94c4ec763097ffe62bcf1b71e68d444454809e3e655fd9fd4fe20d7",
+        "parameter_gradients": {
+          "bias": "992d80a2724300d3cb030370185faf58794d79835d4d93e6517e410bddd13726",
+          "weight": "acafb9abf11af37a39c4215e80e0f6d304f2aee53fcbafa10cc68ae57756950b"
+        },
+        "state_after": {
+          "bias": "dc4a6de0b529ddfc6fc9500d727b74e2b1fd5b2c2496364770d9edc6b5ee4e85",
+          "weight": "5414114599aea601ea7d6f23ca383d081d2e5ede7e3818a1d9045114ec95e7dc"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "20ac2229556638240e454c6c6357cd2ef991d5c563328a81c3940e3e149378bb",
+        "shape": [
+          64,
+          3,
+          64,
+          64
+        ],
+        "stride": [
+          12288,
+          1,
+          192,
+          3
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "4fdb5276a94c4ec763097ffe62bcf1b71e68d444454809e3e655fd9fd4fe20d7",
+        "shape": [
+          64,
+          768,
+          4,
+          4
+        ],
+        "stride": [
+          12288,
+          1,
+          3072,
+          768
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "32d75de5c62fd1168cd1ee440a85df3fa8671950bf6d2748cb38e35e96c7de3d",
+    "raw_report": {
+      "bytes": 19942,
+      "relative_path": "replay/vit-conv-native/report.json",
+      "sha256": "3556bba036b2ade66ac8f54a61dc78c9143a9e5321734d9f2660dd6970ee38ee"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": false,
+    "changed_fields_by_repetition": [
+      [],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ]
+    ],
+    "common_capture_sha256": "67d802490cd53e1c2f5bd59529c8a318c85699488f8d8cedadbca93edd7e3313",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "b0b4edb0fbfd2fff6691351f0a3f2ae6e7d552339023368e58d80800fab6fc5b",
+        "mask": null,
+        "output": "f726da21c42609aa80e3f30b8b684f6fc8e4ac988ed2ad546be73381ee49ea79",
+        "parameter_gradients": {
+          "bias": "992d80a2724300d3cb030370185faf58794d79835d4d93e6517e410bddd13726",
+          "weight": "3e679172735e43cb27e5797fa02d505de0e03b7ddffdd42db9574aee80d44228"
+        },
+        "state_after": {
+          "bias": "dc4a6de0b529ddfc6fc9500d727b74e2b1fd5b2c2496364770d9edc6b5ee4e85",
+          "weight": "5414114599aea601ea7d6f23ca383d081d2e5ede7e3818a1d9045114ec95e7dc"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "20ac2229556638240e454c6c6357cd2ef991d5c563328a81c3940e3e149378bb",
+        "shape": [
+          64,
+          3,
+          64,
+          64
+        ],
+        "stride": [
+          12288,
+          4096,
+          64,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f726da21c42609aa80e3f30b8b684f6fc8e4ac988ed2ad546be73381ee49ea79",
+        "shape": [
+          64,
+          768,
+          4,
+          4
+        ],
+        "stride": [
+          12288,
+          16,
+          4,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "32d75de5c62fd1168cd1ee440a85df3fa8671950bf6d2748cb38e35e96c7de3d",
+    "raw_report": {
+      "bytes": 19925,
+      "relative_path": "replay/vit-conv-reference/report.json",
+      "sha256": "2ad32980243bb10f06957f90734869d7ee923177b451f829a7a2cbdb536bac22"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "f7136f84d31636c80720a78612278fe1b1789ef2520f82914127a75ca0691377",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "2299c25e7df0b60dbc4ee0241e648f16c7f7a6ab2bd9a97f20f916bea9bcbc9e",
+        "mask": "f5b860b29dfe995bdcf25bab325b741a743cff79d33e201f88462aa00613b26e",
+        "output": "5658d7a528c2e69a5563016cc7a2575b7a3931742b110decc282d3e803c4ebcd",
+        "parameter_gradients": {},
+        "state_after": {}
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f30b2667b2b317540cac9c55a168ac9711c592c89160adbd0b9ee6e7d1de0e0a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5658d7a528c2e69a5563016cc7a2575b7a3931742b110decc282d3e803c4ebcd",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "8d5903dcf3b525438aca5d1b9ab686c5eee90533dbfb6b6d230964c41a99fcc0",
+    "raw_report": {
+      "bytes": 16708,
+      "relative_path": "replay/vit-dropout-native/report.json",
+      "sha256": "12da6bde426dea7d2cdbcf2a8d370ed100ae6bc0d06451a7c75fa12220773cdd"
+    },
+    "repeats": 10,
+    "repr": "Dropout(p=0.1, inplace=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "f7136f84d31636c80720a78612278fe1b1789ef2520f82914127a75ca0691377",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "2299c25e7df0b60dbc4ee0241e648f16c7f7a6ab2bd9a97f20f916bea9bcbc9e",
+        "mask": "f5b860b29dfe995bdcf25bab325b741a743cff79d33e201f88462aa00613b26e",
+        "output": "5658d7a528c2e69a5563016cc7a2575b7a3931742b110decc282d3e803c4ebcd",
+        "parameter_gradients": {},
+        "state_after": {}
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "f30b2667b2b317540cac9c55a168ac9711c592c89160adbd0b9ee6e7d1de0e0a",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "mask_source": "NativeDropoutBackward0._saved_result1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5658d7a528c2e69a5563016cc7a2575b7a3931742b110decc282d3e803c4ebcd",
+        "shape": [
+          64,
+          17,
+          768
+        ],
+        "stride": [
+          13056,
+          768,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bb49edc4d0525f5c3d2ab1befaaf0435999b6fa24ac7b72b4f99d24f36230bd2",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "8d5903dcf3b525438aca5d1b9ab686c5eee90533dbfb6b6d230964c41a99fcc0",
+    "raw_report": {
+      "bytes": 16711,
+      "relative_path": "replay/vit-dropout-reference/report.json",
+      "sha256": "2d27db85c19faa24f2d93fbb425b86554431091418a6265388eba14f4f563809"
+    },
+    "repeats": 10,
+    "repr": "Dropout(p=0.1, inplace=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "727d47f5299de50af283c95c204bdd58274c0591ea3f42285c9cb6728c05957d",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "0a120df945f12a28f01c35858013ddd55a10bb375730fbd36910d16e4a342d69",
+        "mask": null,
+        "output": "dbf4bad8a019ef0c980b73e5bffea9aff8df1468cf31ae19947babd8838108f1",
+        "parameter_gradients": {
+          "bias": "a3d3f6d0e09799a65dd1e2a3a3ec8f7db4dbcde6bce85f6fa0afd886547b8ea2",
+          "weight": "85cfc67c4642935ffa3e15ab68227bda25efe2e4ea980e60f17d29c99f1c8dba"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "e73a03559745b3a7ab576c11dc8bf4c5490eb87027d4e70d562e581cd1df748a",
+          "running_var": "0978e5a00d20a1974596de8972e5245e9df65739038b48e0b8680e48972387ee",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          1,
+          5120,
+          32
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "dbf4bad8a019ef0c980b73e5bffea9aff8df1468cf31ae19947babd8838108f1",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          1,
+          5120,
+          32
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "1ee4279d0eb937d8ece4afd75f369fb7b9123c6736f55945b5eeb58a89015c72",
+    "raw_report": {
+      "bytes": 22929,
+      "relative_path": "replay/yolo-bn-native/report.json",
+      "sha256": "7a085978ccb0c9cd0ace1804d409cdad9dc85e679f4a3094a7185f41249792bd"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": true,
+    "changed_fields_by_repetition": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "common_capture_sha256": "727d47f5299de50af283c95c204bdd58274c0591ea3f42285c9cb6728c05957d",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "75010b96d16ad887630a5f8187636f1b2c48a9171eb43e30a3d898e9e28e7cee",
+        "mask": null,
+        "output": "07146fd2589d8ffc2f3b9bce68aa62618a976b198c7b601bc917efb087e256ce",
+        "parameter_gradients": {
+          "bias": "15b80b83b4ab94be4b02717413cd7f0fbc0be6100cfe7eb01e798aa0b989004b",
+          "weight": "64d8e38f67535a445ba428f9efdffceb475f77cf9d495f4cee5bf87b6b47b104"
+        },
+        "state_after": {
+          "bias": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+          "num_batches_tracked": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+          "running_mean": "1cf4e34f31ad8e87e01cec5aa5fc0de49b588daa565579d8bb3f3fee340c4821",
+          "running_var": "0978e5a00d20a1974596de8972e5245e9df65739038b48e0b8680e48972387ee",
+          "weight": "b638277a8690e175a9137feff1e43c067f9faf4e2f600caf468fb05b0403b717"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "07146fd2589d8ffc2f3b9bce68aa62618a976b198c7b601bc917efb087e256ce",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "1ee4279d0eb937d8ece4afd75f369fb7b9123c6736f55945b5eeb58a89015c72",
+    "raw_report": {
+      "bytes": 22972,
+      "relative_path": "replay/yolo-bn-reference/report.json",
+      "sha256": "2f184772cd39bf52d6628ec6d5a0427ea94f774670b94f504340f19596c3f73f"
+    },
+    "repeats": 10,
+    "repr": "BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": false,
+    "changed_fields_by_repetition": [
+      [],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ]
+    ],
+    "common_capture_sha256": "45ef933d7e464dfe8a59b8ee0b081c33eeb7a1d42f1444f22902c4399de718d8",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "0da7152ff8731152519cfac20f3f01e6b4bc6dedde226e4decc915e13c11673c",
+        "mask": null,
+        "output": "c42deb3e5199bb05ee92d06d60f61ce2120bbb7cdc7c7e54afcaf8b6b2b39900",
+        "parameter_gradients": {
+          "weight": "240c6ab987d813ed61bdb53fc1e27c2ee2dea5f201bebd0ddbf44986d9399ad2"
+        },
+        "state_after": {
+          "weight": "95c6775e5465833da34e186cb8d96de30d4b9f44621c920df757969db8f3da7a"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a63e26a1aed3086d8ae8d6bea1fb6c34d8fe215607c8886ac8c46f05ef7669fa",
+        "shape": [
+          64,
+          12,
+          160,
+          160
+        ],
+        "stride": [
+          307200,
+          1,
+          1920,
+          12
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c42deb3e5199bb05ee92d06d60f61ce2120bbb7cdc7c7e54afcaf8b6b2b39900",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          1,
+          5120,
+          32
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "native",
+    "own_rng_capture_sha256": "3bf6b907541db680b72663240a6dc363e190c7752d990ce3fa16a044a17b0586",
+    "raw_report": {
+      "bytes": 18336,
+      "relative_path": "replay/yolo-conv-native/report.json",
+      "sha256": "93599fb56b850256fd682a5000eebf5912b47867eac786308757df830ff7c7f0"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  },
+  {
+    "all_repeats_exact": false,
+    "changed_fields_by_repetition": [
+      [],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ],
+      [
+        "parameter_gradients"
+      ]
+    ],
+    "common_capture_sha256": "45ef933d7e464dfe8a59b8ee0b081c33eeb7a1d42f1444f22902c4399de718d8",
+    "device": "MetaX C500",
+    "first_record": {
+      "exact_repeat": true,
+      "fingerprint": {
+        "input_gradient": "c8022b9c1e307d8873ea702ba50af145eea0cfdda85ee62aa348d6af572246d5",
+        "mask": null,
+        "output": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "parameter_gradients": {
+          "weight": "e0fb6a0f0aa831f1a44dffb20f0e4e882ca394bfda5a3a93605c77b51953ae7a"
+        },
+        "state_after": {
+          "weight": "95c6775e5465833da34e186cb8d96de30d4b9f44621c920df757969db8f3da7a"
+        }
+      },
+      "input": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a63e26a1aed3086d8ae8d6bea1fb6c34d8fe215607c8886ac8c46f05ef7669fa",
+        "shape": [
+          64,
+          12,
+          160,
+          160
+        ],
+        "stride": [
+          307200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "mask_source": null,
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      }
+    },
+    "layout": "reference",
+    "own_rng_capture_sha256": "3bf6b907541db680b72663240a6dc363e190c7752d990ce3fa16a044a17b0586",
+    "raw_report": {
+      "bytes": 18379,
+      "relative_path": "replay/yolo-conv-reference/report.json",
+      "sha256": "c6bb40854ee9601fa81b1aaa927b8afdf7763006ef00a4aa7329497ba4f182de"
+    },
+    "repeats": 10,
+    "repr": "Conv2d(12, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)",
+    "scope": "Torch-only captured semantic leaf forward/backward, no UP import",
+    "torch": "2.10.0+metax3.8.1.0",
+    "up_imported": false,
+    "up_platform_imported": false
+  }
+]

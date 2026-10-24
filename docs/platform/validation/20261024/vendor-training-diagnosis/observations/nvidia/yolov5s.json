@@ -1,0 +1,1991 @@
+{
+  "atol": 1e-05,
+  "leaves": [
+    {
+      "capture": "leaf-0000.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 0,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "30c336e36217b1a8a0443a696ac72a66180b97e433380e6c8b70670f4e754a42",
+          "shape": [
+            64,
+            3,
+            320,
+            320
+          ],
+          "stride": [
+            307200,
+            102400,
+            320,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.focus.space2depth",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "a63e26a1aed3086d8ae8d6bea1fb6c34d8fe215607c8886ac8c46f05ef7669fa",
+        "shape": [
+          64,
+          12,
+          160,
+          160
+        ],
+        "stride": [
+          307200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.plugins.yolov5.models.components.Space2Depth"
+    },
+    {
+      "capture": "leaf-0001.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 1,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "a63e26a1aed3086d8ae8d6bea1fb6c34d8fe215607c8886ac8c46f05ef7669fa",
+          "shape": [
+            64,
+            12,
+            160,
+            160
+          ],
+          "stride": [
+            307200,
+            25600,
+            160,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.focus.conv_block.conv",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "capture": "leaf-0002.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 2,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "c4081dcab7469b55749b53d049f1fa99e6b1200d8948a3f6e0696ed0c41b2341",
+          "shape": [
+            64,
+            32,
+            160,
+            160
+          ],
+          "stride": [
+            819200,
+            25600,
+            160,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.focus.conv_block.bn1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "6b0366619f30f3b73dab12b5a122dd7039b6edf756b41654355dc41002071ed1",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "capture": "leaf-0003.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 3,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "6b0366619f30f3b73dab12b5a122dd7039b6edf756b41654355dc41002071ed1",
+          "shape": [
+            64,
+            32,
+            160,
+            160
+          ],
+          "stride": [
+            819200,
+            25600,
+            160,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.focus.conv_block.act",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "cce78c37a22e991ebe52618c57121ae49505e649ea7129a21ec121452cc35588",
+        "shape": [
+          64,
+          32,
+          160,
+          160
+        ],
+        "stride": [
+          819200,
+          25600,
+          160,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "capture": "leaf-0004.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 4,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "cce78c37a22e991ebe52618c57121ae49505e649ea7129a21ec121452cc35588",
+          "shape": [
+            64,
+            32,
+            160,
+            160
+          ],
+          "stride": [
+            819200,
+            25600,
+            160,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.csp_modules.0.0.conv",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "5b0fb349265fb7d3f55f36937daf013c230dbaca5497a7fc9d41e50e76ba9fe2",
+        "shape": [
+          64,
+          64,
+          80,
+          80
+        ],
+        "stride": [
+          409600,
+          6400,
+          80,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "capture": "leaf-0005.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 5,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "5b0fb349265fb7d3f55f36937daf013c230dbaca5497a7fc9d41e50e76ba9fe2",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ],
+          "stride": [
+            409600,
+            6400,
+            80,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.csp_modules.0.0.bn1",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "81618d2ff6587353989a56a4a6734219308b88339e4856af65db01a940273ab1",
+        "shape": [
+          64,
+          64,
+          80,
+          80
+        ],
+        "stride": [
+          409600,
+          6400,
+          80,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "capture": "leaf-0006.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 6,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "81618d2ff6587353989a56a4a6734219308b88339e4856af65db01a940273ab1",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ],
+          "stride": [
+            409600,
+            6400,
+            80,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.csp_modules.0.0.act",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "d5621414c291b296537eb6922c25dfcee553c312954a8f26c5a55b98c2e1eebe",
+        "shape": [
+          64,
+          64,
+          80,
+          80
+        ],
+        "stride": [
+          409600,
+          6400,
+          80,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "capture": "leaf-0007.pt",
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_before": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "index": 7,
+      "input": [
+        {
+          "device": "cuda:0",
+          "dtype": "torch.float32",
+          "sha256": "d5621414c291b296537eb6922c25dfcee553c312954a8f26c5a55b98c2e1eebe",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ],
+          "stride": [
+            409600,
+            6400,
+            80,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.csp_modules.0.1.conv_block1.conv",
+      "output": {
+        "device": "cuda:0",
+        "dtype": "torch.float32",
+        "sha256": "0d3a3d5d7867d2e3728b2fe768e6d0409b53afb471ca4a67604ac69f88ab367c",
+        "shape": [
+          64,
+          32,
+          80,
+          80
+        ],
+        "stride": [
+          204800,
+          6400,
+          80,
+          1
+        ]
+      },
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 8,
+      "name": "backbone.csp_modules.0.1.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 9,
+      "name": "backbone.csp_modules.0.1.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 10,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 11,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 12,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 13,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 14,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 15,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 16,
+      "name": "backbone.csp_modules.0.1.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 17,
+      "name": "backbone.csp_modules.0.1.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 18,
+      "name": "backbone.csp_modules.0.1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 19,
+      "name": "backbone.csp_modules.0.1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 20,
+      "name": "backbone.csp_modules.0.1.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 21,
+      "name": "backbone.csp_modules.0.1.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 22,
+      "name": "backbone.csp_modules.0.1.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 23,
+      "name": "backbone.csp_modules.1.0.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 24,
+      "name": "backbone.csp_modules.1.0.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 25,
+      "name": "backbone.csp_modules.1.0.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 26,
+      "name": "backbone.csp_modules.1.1.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 27,
+      "name": "backbone.csp_modules.1.1.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 28,
+      "name": "backbone.csp_modules.1.1.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 29,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 30,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 31,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 32,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 33,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 34,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 35,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.1.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 36,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.1.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 37,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.1.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 38,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.1.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 39,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.1.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 40,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.1.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 41,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.2.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 42,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.2.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 43,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.2.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 44,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.2.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 45,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.2.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 46,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.2.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 47,
+      "name": "backbone.csp_modules.1.1.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 48,
+      "name": "backbone.csp_modules.1.1.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 49,
+      "name": "backbone.csp_modules.1.1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 50,
+      "name": "backbone.csp_modules.1.1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 51,
+      "name": "backbone.csp_modules.1.1.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 52,
+      "name": "backbone.csp_modules.1.1.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 53,
+      "name": "backbone.csp_modules.1.1.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 54,
+      "name": "backbone.csp_modules.2.0.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 55,
+      "name": "backbone.csp_modules.2.0.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 56,
+      "name": "backbone.csp_modules.2.0.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 57,
+      "name": "backbone.csp_modules.2.1.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 58,
+      "name": "backbone.csp_modules.2.1.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 59,
+      "name": "backbone.csp_modules.2.1.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 60,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 61,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 62,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 63,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 64,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 65,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 66,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.1.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 67,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.1.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 68,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.1.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 69,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.1.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 70,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.1.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 71,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.1.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 72,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.2.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 73,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.2.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 74,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.2.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 75,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.2.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 76,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.2.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 77,
+      "name": "backbone.csp_modules.2.1.cbh_blocks.2.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 78,
+      "name": "backbone.csp_modules.2.1.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 79,
+      "name": "backbone.csp_modules.2.1.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 80,
+      "name": "backbone.csp_modules.2.1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 81,
+      "name": "backbone.csp_modules.2.1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 82,
+      "name": "backbone.csp_modules.2.1.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 83,
+      "name": "backbone.csp_modules.2.1.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 84,
+      "name": "backbone.csp_modules.2.1.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 85,
+      "name": "backbone.csp_modules.3.0.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 86,
+      "name": "backbone.csp_modules.3.0.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 87,
+      "name": "backbone.csp_modules.3.0.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 88,
+      "name": "backbone.csp_modules.3.1.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 89,
+      "name": "backbone.csp_modules.3.1.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 90,
+      "name": "backbone.csp_modules.3.1.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 91,
+      "name": "backbone.csp_modules.3.1.pooling_blocks.0",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.pooling.MaxPool2d"
+    },
+    {
+      "index": 92,
+      "name": "backbone.csp_modules.3.1.pooling_blocks.1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.pooling.MaxPool2d"
+    },
+    {
+      "index": 93,
+      "name": "backbone.csp_modules.3.1.pooling_blocks.2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.pooling.MaxPool2d"
+    },
+    {
+      "index": 94,
+      "name": "backbone.csp_modules.3.1.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 95,
+      "name": "backbone.csp_modules.3.1.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 96,
+      "name": "backbone.csp_modules.3.1.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 97,
+      "name": "backbone.csp_modules.3.2.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 98,
+      "name": "backbone.csp_modules.3.2.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 99,
+      "name": "backbone.csp_modules.3.2.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 100,
+      "name": "backbone.csp_modules.3.2.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 101,
+      "name": "backbone.csp_modules.3.2.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 102,
+      "name": "backbone.csp_modules.3.2.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 103,
+      "name": "backbone.csp_modules.3.2.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 104,
+      "name": "backbone.csp_modules.3.2.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 105,
+      "name": "backbone.csp_modules.3.2.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 106,
+      "name": "backbone.csp_modules.3.2.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 107,
+      "name": "backbone.csp_modules.3.2.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 108,
+      "name": "backbone.csp_modules.3.2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 109,
+      "name": "backbone.csp_modules.3.2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 110,
+      "name": "backbone.csp_modules.3.2.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 111,
+      "name": "backbone.csp_modules.3.2.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 112,
+      "name": "backbone.csp_modules.3.2.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 113,
+      "name": "neck.up_sample_stream.0.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 114,
+      "name": "neck.up_sample_stream.0.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 115,
+      "name": "neck.up_sample_stream.0.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 116,
+      "name": "neck.up_sample_stream.1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.upsampling.Upsample"
+    },
+    {
+      "index": 117,
+      "name": "neck.up_sample_stream.2",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.plugins.yolov5.models.components.Concat"
+    },
+    {
+      "index": 118,
+      "name": "neck.up_sample_stream.3.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 119,
+      "name": "neck.up_sample_stream.3.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 120,
+      "name": "neck.up_sample_stream.3.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 121,
+      "name": "neck.up_sample_stream.3.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 122,
+      "name": "neck.up_sample_stream.3.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 123,
+      "name": "neck.up_sample_stream.3.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 124,
+      "name": "neck.up_sample_stream.3.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 125,
+      "name": "neck.up_sample_stream.3.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 126,
+      "name": "neck.up_sample_stream.3.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 127,
+      "name": "neck.up_sample_stream.3.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 128,
+      "name": "neck.up_sample_stream.3.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 129,
+      "name": "neck.up_sample_stream.3.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 130,
+      "name": "neck.up_sample_stream.3.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 131,
+      "name": "neck.up_sample_stream.3.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 132,
+      "name": "neck.up_sample_stream.3.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 133,
+      "name": "neck.up_sample_stream.3.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 134,
+      "name": "neck.up_sample_stream.4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 135,
+      "name": "neck.up_sample_stream.4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 136,
+      "name": "neck.up_sample_stream.4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 137,
+      "name": "neck.up_sample_stream.5",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.upsampling.Upsample"
+    },
+    {
+      "index": 138,
+      "name": "neck.up_sample_stream.6",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.plugins.yolov5.models.components.Concat"
+    },
+    {
+      "index": 139,
+      "name": "neck.up_sample_stream.7.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 140,
+      "name": "neck.up_sample_stream.7.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 141,
+      "name": "neck.up_sample_stream.7.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 142,
+      "name": "neck.up_sample_stream.7.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 143,
+      "name": "neck.up_sample_stream.7.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 144,
+      "name": "neck.up_sample_stream.7.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 145,
+      "name": "neck.up_sample_stream.7.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 146,
+      "name": "neck.up_sample_stream.7.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 147,
+      "name": "neck.up_sample_stream.7.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 148,
+      "name": "neck.up_sample_stream.7.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 149,
+      "name": "neck.up_sample_stream.7.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 150,
+      "name": "neck.up_sample_stream.7.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 151,
+      "name": "neck.up_sample_stream.7.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 152,
+      "name": "neck.up_sample_stream.7.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 153,
+      "name": "neck.up_sample_stream.7.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 154,
+      "name": "neck.up_sample_stream.7.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 155,
+      "name": "neck.down_sample_stream.0.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 156,
+      "name": "neck.down_sample_stream.0.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 157,
+      "name": "neck.down_sample_stream.0.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 158,
+      "name": "neck.down_sample_stream.1",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.plugins.yolov5.models.components.Concat"
+    },
+    {
+      "index": 159,
+      "name": "neck.down_sample_stream.2.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 160,
+      "name": "neck.down_sample_stream.2.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 161,
+      "name": "neck.down_sample_stream.2.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 162,
+      "name": "neck.down_sample_stream.2.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 163,
+      "name": "neck.down_sample_stream.2.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 164,
+      "name": "neck.down_sample_stream.2.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 165,
+      "name": "neck.down_sample_stream.2.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 166,
+      "name": "neck.down_sample_stream.2.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 167,
+      "name": "neck.down_sample_stream.2.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 168,
+      "name": "neck.down_sample_stream.2.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 169,
+      "name": "neck.down_sample_stream.2.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 170,
+      "name": "neck.down_sample_stream.2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 171,
+      "name": "neck.down_sample_stream.2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 172,
+      "name": "neck.down_sample_stream.2.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 173,
+      "name": "neck.down_sample_stream.2.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 174,
+      "name": "neck.down_sample_stream.2.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 175,
+      "name": "neck.down_sample_stream.3.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 176,
+      "name": "neck.down_sample_stream.3.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 177,
+      "name": "neck.down_sample_stream.3.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 178,
+      "name": "neck.down_sample_stream.4",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.plugins.yolov5.models.components.Concat"
+    },
+    {
+      "index": 179,
+      "name": "neck.down_sample_stream.5.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 180,
+      "name": "neck.down_sample_stream.5.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 181,
+      "name": "neck.down_sample_stream.5.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 182,
+      "name": "neck.down_sample_stream.5.cbh_blocks.0.conv_block1.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 183,
+      "name": "neck.down_sample_stream.5.cbh_blocks.0.conv_block1.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 184,
+      "name": "neck.down_sample_stream.5.cbh_blocks.0.conv_block1.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 185,
+      "name": "neck.down_sample_stream.5.cbh_blocks.0.conv_block2.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 186,
+      "name": "neck.down_sample_stream.5.cbh_blocks.0.conv_block2.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 187,
+      "name": "neck.down_sample_stream.5.cbh_blocks.0.conv_block2.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 188,
+      "name": "neck.down_sample_stream.5.conv3",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 189,
+      "name": "neck.down_sample_stream.5.conv2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 190,
+      "name": "neck.down_sample_stream.5.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 191,
+      "name": "neck.down_sample_stream.5.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 192,
+      "name": "neck.down_sample_stream.5.conv_block4.conv",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 193,
+      "name": "neck.down_sample_stream.5.conv_block4.bn1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.batchnorm.BatchNorm2d"
+    },
+    {
+      "index": 194,
+      "name": "neck.down_sample_stream.5.conv_block4.act",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.activation.SiLU"
+    },
+    {
+      "index": 195,
+      "name": "head.loc_subnet.0",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 196,
+      "name": "head.cls_subnet.0",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 197,
+      "name": "head.obj_subnet.0",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 198,
+      "name": "head.loc_subnet.1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 199,
+      "name": "head.cls_subnet.1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 200,
+      "name": "head.obj_subnet.1",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 201,
+      "name": "head.loc_subnet.2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 202,
+      "name": "head.cls_subnet.2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 203,
+      "name": "head.obj_subnet.2",
+      "stochastic": false,
+      "training": true,
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 204,
+      "name": "post_process.box_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.models.losses.iou_loss.IOULoss"
+    },
+    {
+      "index": 205,
+      "name": "post_process.obj_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.models.losses.entropy_loss.SigmoidCrossEntropyLoss"
+    },
+    {
+      "index": 206,
+      "name": "post_process.box_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.models.losses.iou_loss.IOULoss"
+    },
+    {
+      "index": 207,
+      "name": "post_process.obj_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.models.losses.entropy_loss.SigmoidCrossEntropyLoss"
+    },
+    {
+      "index": 208,
+      "name": "post_process.box_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.models.losses.iou_loss.IOULoss"
+    },
+    {
+      "index": 209,
+      "name": "post_process.obj_loss",
+      "stochastic": false,
+      "training": true,
+      "type": "up.tasks.det.models.losses.entropy_loss.SigmoidCrossEntropyLoss"
+    }
+  ],
+  "observer_sha256": "b155caa613579d0f285e82416a22990707070be7d20027f481b7f2d88591ea7e",
+  "rtol": 0.0001,
+  "scope": "Synchronized diagnostic prefix, not new full-budget accuracy or performance",
+  "steps": [
+    {
+      "batch_sha256": "40cd5106f1f315145aa8f9c6cc5ce72f31ce99c76d6ae923d9937d026c65e526",
+      "cpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "6ce1dc3e4096481799cfcde039a6439943f99aaafdaca92c5213a00935fab0e1",
+        "shape": [
+          5056
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "3971e2535afc1f94218d3da7505a733a35edc1f3f6cb47420dbfc50e57f365c4",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gradient_sha256": "7027c9eb8f1009bda00f7692db898e28a7904b007a03d5f3354339bf1e4a35ba",
+      "loss": 13.51510238647461,
+      "step": 1
+    }
+  ]
+}

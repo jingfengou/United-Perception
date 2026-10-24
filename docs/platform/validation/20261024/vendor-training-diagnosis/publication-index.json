@@ -1,0 +1,240 @@
+{
+  "created_utc": "2026-10-24T15:56:37.290595+00:00",
+  "files": {
+    "audit-scripts/bn_oracle.py": {
+      "bytes": 1607,
+      "sha256": "74f43965c2f8d579661ef23c7a7d2b74f39561be1c2e10894551ea8afe212421"
+    },
+    "audit-scripts/compare_bn14.py": {
+      "bytes": 690,
+      "sha256": "b70ed3f7931a9843d8beec8fb39163ce0642a84f75514bb9dbecf1a3b564d485"
+    },
+    "audit-scripts/compare_controls.py": {
+      "bytes": 1458,
+      "sha256": "34441ad7d9454d26e1cb01fc5f350bb994836e90b10e93eaa90ae0ce7e3e724d"
+    },
+    "audit-scripts/compare_replay.py": {
+      "bytes": 967,
+      "sha256": "e0eaad4b5da531858ac470a7819e196bc18321126eb65eac18888a957708d249"
+    },
+    "audit-scripts/counter_details.py": {
+      "bytes": 1020,
+      "sha256": "6cb18af12e0473d1a336d9581713ddf14d50fd899374fb226be3b95a12e3afee"
+    },
+    "audit-scripts/index.json": {
+      "bytes": 1912,
+      "sha256": "d8e24473718fb38b8a446ac0ec4dc96c9228faa6b3ae8e7ac0bf0d65e33d808f"
+    },
+    "audit-scripts/mask_details.py": {
+      "bytes": 881,
+      "sha256": "ec141b437ce5cc22cc3c5d1f0074c309f91cd19710d124a54d1805d4169f069a"
+    },
+    "audit-scripts/publish_evidence.py": {
+      "bytes": 11855,
+      "sha256": "e856ff8b2672fa9f89c2c30985456a1598d88881bee2402cc10068e9b93544b8"
+    },
+    "bn-fp64-reference.json": {
+      "bytes": 3532,
+      "sha256": "6310d34ddfdb863f450974059f44644d6bd352e6c526e15eddc9c7ae49fc137d"
+    },
+    "bn14-comparison.json": {
+      "bytes": 6061,
+      "sha256": "8b3cd260bdda0349e78eee50f12457efddb397b738b23561d2a2bbaf1819cf68"
+    },
+    "comparisons/controls.json": {
+      "bytes": 366645,
+      "sha256": "67abb4765740f251c653e738d37e60c5a14555d9c2bfc62404b8db86a504932c"
+    },
+    "comparisons/vit_b16.json": {
+      "bytes": 61978,
+      "sha256": "3176a182cd185cbd3e1ca8e43cbd9ad5b7400526dc67ca92244f5ccb75941e87"
+    },
+    "comparisons/yolov5s.json": {
+      "bytes": 78744,
+      "sha256": "c305e25f8a1fc14c64cf28f2c81ed4b365b86244f759e968b116189e4ecd08c4"
+    },
+    "mask-details.json": {
+      "bytes": 289,
+      "sha256": "fcf84671bab463f2a7f5dfb538372461be1278079c80af63a40a9e94053980b7"
+    },
+    "metax-counter-details.json": {
+      "bytes": 927,
+      "sha256": "991c8fe9df032341ff8115b61bd14b73ae71a09b1ddf57dbbebb37bc32b207b8"
+    },
+    "metax-cpu.xml": {
+      "bytes": 15715,
+      "sha256": "60b1c5335a933bb821bd47a81191d1f773a1bb58210c9da67dcb9e68edf5f540"
+    },
+    "metax-evidence-index.json": {
+      "bytes": 264692,
+      "sha256": "80344ef1dd6e6245aed749fa70ce5c2e8d212d6940f763ed77061d38ac49eb11"
+    },
+    "metax-postflight.json": {
+      "bytes": 3109,
+      "sha256": "c3cd42cc6381a3cc56892f0e9571f22800f13f225ca650c903fd21182fca9ff6"
+    },
+    "metax-replays.json": {
+      "bytes": 30125,
+      "sha256": "879b829474895a43443c44e689a05aea9c7e5557eb74103b70b6922de17910b0"
+    },
+    "metax-transfer.json": {
+      "bytes": 754,
+      "sha256": "6aba3d1c80086115b6ca03a467b25b25842f2d48d3915f644fb61680017ca34c"
+    },
+    "metax-writes-audit.json": {
+      "bytes": 358,
+      "sha256": "036b8d05a7b1139ec92758dc66966f14215f268b4ddbf2eb9cd7cd9dcc149d7d"
+    },
+    "metax-writes-replay.json": {
+      "bytes": 22600,
+      "sha256": "9a293fa4c0bfb2af740a876a98ea22c725736241b0049a416da3fd9b172c9e0f"
+    },
+    "nvidia-counter-details.json": {
+      "bytes": 1130,
+      "sha256": "eb86490c2b1fa857c1e1eea7f779cb6e9f410ffc1def73ccc5c019d3e683abbb"
+    },
+    "nvidia-cpu.xml": {
+      "bytes": 15702,
+      "sha256": "e0183a70f042f29bedd5caf5ea2037fa58a46b05f96564032db39c3eb542bada"
+    },
+    "nvidia-evidence-index.json": {
+      "bytes": 253953,
+      "sha256": "39709f77e303d7aed3ef5db9074b9f2d62f4026e87c6738fa135630b67226ea2"
+    },
+    "nvidia-postflight.json": {
+      "bytes": 1409,
+      "sha256": "a0669e97dfc17991d939589814240dd2c502d85dea75a61160b228e3c448fe40"
+    },
+    "nvidia-replays.json": {
+      "bytes": 28855,
+      "sha256": "880a40fdc760030f4a92c5d8fe4f4eb356703d97e1c6948e82c544dc6d83ec7d"
+    },
+    "nvidia-transfer.json": {
+      "bytes": 764,
+      "sha256": "390ec51c6305b563e16ebdc3ce44a7d6e81414a6d598aa3f8bf1c6fd52b44772"
+    },
+    "nvidia-writes-audit.json": {
+      "bytes": 358,
+      "sha256": "036b8d05a7b1139ec92758dc66966f14215f268b4ddbf2eb9cd7cd9dcc149d7d"
+    },
+    "nvidia-writes-replay.json": {
+      "bytes": 22606,
+      "sha256": "2a287b7d8f2177e9c0488a3eba769f18c18be85ed5e83395f12e82246c12c84b"
+    },
+    "observations/metax/vit_b16.json": {
+      "bytes": 160982,
+      "sha256": "3a00ca767025bd43cd6ab61104a14c9a7fb120c69ecabdefd3e40a0149e9a157"
+    },
+    "observations/metax/yolo-deep.json": {
+      "bytes": 83308,
+      "sha256": "a3b847520c88cf66c5879e894d68d41bc236a4ac88feb6a974de9b2d82ab5bdd"
+    },
+    "observations/metax/yolov5s.json": {
+      "bytes": 51928,
+      "sha256": "a54214694d46a79b0f1d381e6db9589d87ef3d8b80c344f3dc72f43ab8cf499c"
+    },
+    "observations/nvidia/vit_b16.json": {
+      "bytes": 160980,
+      "sha256": "740c78d9465c38c4173c733551160fe58f400af1d1db1d9884abdfebc5dbb644"
+    },
+    "observations/nvidia/yolo-deep.json": {
+      "bytes": 83318,
+      "sha256": "31e6b8bc354c241963a96384a7314c378211e0e42ce5eae1b160ede4bd471600"
+    },
+    "observations/nvidia/yolov5s.json": {
+      "bytes": 51944,
+      "sha256": "9c886ad14ef077581227bef3ea87093b95f1533b7c3686fb9e9b4491f1b661ee"
+    },
+    "pilots/metax.json": {
+      "bytes": 12407,
+      "sha256": "b9bd7592d801d922188a854c224388e501c0a7ba50b80364b9236579a0644ad8"
+    },
+    "pilots/nvidia.json": {
+      "bytes": 12413,
+      "sha256": "e58dc858f7469e99d8f1a3a1a05102247623149076c8fca058f82169bc7f8011"
+    },
+    "protocol.json": {
+      "bytes": 7485,
+      "sha256": "fffefe666a636b6a0bbc0d3c3b4668c9e21a6510c2f0fbfda84faa0b7ae1c778"
+    },
+    "replay-comparison.json": {
+      "bytes": 16506,
+      "sha256": "c7399043845b999e361d18eb5e17652665fefe7f4d1bcae648a5a4787dcf524e"
+    },
+    "runs/metax/vit_b16-control.json": {
+      "bytes": 2456,
+      "sha256": "af297749c62c2213263f1a4933b4da1202fb321fb73d489ddbf965fda5824be6"
+    },
+    "runs/metax/vit_b16-observed.json": {
+      "bytes": 2198,
+      "sha256": "0f8422e919233448a2889ddec00e94ac3cf7327dee7c1d89c12dc0c6e3922428"
+    },
+    "runs/metax/writes.json": {
+      "bytes": 2795,
+      "sha256": "38391e8ae22dcfe2a84274de69fb7f55f0592a34280f42a953921169656c3153"
+    },
+    "runs/metax/writes02.json": {
+      "bytes": 2796,
+      "sha256": "98399e99445bff996da00532f840405945c584026ea977e892e6990c83ce64af"
+    },
+    "runs/metax/yolo-deep.json": {
+      "bytes": 2220,
+      "sha256": "f83d6054b2549871d62a7e939492780bb3fae796dea10ec4ecdbaf1e341df815"
+    },
+    "runs/metax/yolov5s-control.json": {
+      "bytes": 2803,
+      "sha256": "359bf26deb8c2b98d2d72e2ed2c66b67ba524a5d53ec2a8be0368201341d6947"
+    },
+    "runs/metax/yolov5s-observed.json": {
+      "bytes": 2227,
+      "sha256": "2775a692466c5527162d3d90e8661e479fbf8135d8dac4faeecedf51a3997bc7"
+    },
+    "runs/nvidia/vit_b16-control.json": {
+      "bytes": 2428,
+      "sha256": "902ad1ad59b2a70da334d10f195b4d13544405b0772d4ff3f0768607894c0fc4"
+    },
+    "runs/nvidia/vit_b16-observed.json": {
+      "bytes": 2169,
+      "sha256": "ad31f766fb5e675ec641882b82b4b3e57cd268ac36a947c4a3756883cc0c83de"
+    },
+    "runs/nvidia/vit_b16-original.json": {
+      "bytes": 2173,
+      "sha256": "3184c61a92c1bac52d916a7dd3677b38417b11fcfc242d985fbcb303004df3c3"
+    },
+    "runs/nvidia/writes.json": {
+      "bytes": 2765,
+      "sha256": "64e4c936149cddbc003762410366bd46ea1aae9200788177535fa76ed3622213"
+    },
+    "runs/nvidia/writes02.json": {
+      "bytes": 2767,
+      "sha256": "2eede303a92f3ef88d19d8e6405b29b1b8ef5dc7819bfe52fa23160a170fc27b"
+    },
+    "runs/nvidia/yolo-deep.json": {
+      "bytes": 2190,
+      "sha256": "ebe47de124955b93389a6ece0a5cbe2e2777c8b9bbab0ad77fe20c1bdd432f75"
+    },
+    "runs/nvidia/yolov5s-control.json": {
+      "bytes": 2774,
+      "sha256": "539e063663db0800d1423feb5fc25d22b7f2dbefa734c761ea14bf1c7974292e"
+    },
+    "runs/nvidia/yolov5s-observed.json": {
+      "bytes": 2197,
+      "sha256": "f98d302af20edc9e03031eceaf1cce1ba18045d28c5d1bc89786d5324481f5d5"
+    },
+    "runs/nvidia/yolov5s-original.json": {
+      "bytes": 2201,
+      "sha256": "fb125cd562990d25874dbae6e8ca2df4e37a63393068618df2aa299c32dafdbd"
+    },
+    "summary.json": {
+      "bytes": 13461,
+      "sha256": "941383f3eb37f19212e243029b5ad9d6390cf72f5b84e8b6fe18c0ee0b3d9cb1"
+    },
+    "yolo32-comparison.json": {
+      "bytes": 15044,
+      "sha256": "a084ca0061e8ecc717710e960bcd40283d003eb364bd6367aae4297a69d26f2a"
+    }
+  },
+  "old_multiseed_status": "paused",
+  "optimizer_updates": 48,
+  "scope": "First-step and bounded-prefix diagnosis; no new full-budget accuracy claim"
+}

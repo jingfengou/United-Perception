@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-10-24T15:49:48.275385+00:00",
+  "vendor": "metax",
+  "frozen_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "data_manifest_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "production_components_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
+  "production_file_count": 781,
+  "data_verification": {
+    "cifar10/train": {
+      "count": 10000,
+      "sha256": "b519c71152a778a5d201fdeec9b1f6b54ecf7b8a28b1fa836748a2180671ad6c"
+    },
+    "cifar10/test": {
+      "count": 2000,
+      "sha256": "dd6e672d9adbbfb4e63ac002f8aa236993494beeaf448660c0b371bbc7c3e96e"
+    },
+    "pennfudan/train": {
+      "count": 120,
+      "sha256": "fd3a94934e1d47aa53bd78dde623b6c96ef3434254fa4199f010e81ff77df693"
+    },
+    "pennfudan/test": {
+      "count": 50,
+      "sha256": "e683b4351fe438ca743c83e876b4c26a3d95cd3d646754cc98f448c0129d12d3"
+    },
+    "resnet50_weights": "b77eecd6bb0a9d7ce8747d13a23f67fb014fb7ed586994cb849e8a9dfcb08cc8",
+    "yolov5_anchors": "0bbfb6aa570aeedf08142e10cd460157aab588e5a395f0771ce4c10cec9b09cd",
+    "detr": "0bec6e1e5aeb57e452879341c3f68fff7e60272bdfdba250eaf9423704963ecd",
+    "detr_source": "954c6297faa72af4b59719a42c850d769d8276fcd99a7c704cb5e34f5e5eb5fb"
+  },
+  "lock_available_for_reuse": true,
+  "gpu_process_query": "mx-smi  version: 2.3.4\n\n=================== MetaX System Management Interface Log ===================\nTimestamp                                         : Sat Oct 24 15:49:48 2026\n\nAttached GPUs                                     : 8\n+---------------------------------------------------------------------------------+\n| MX-SMI 2.3.4                       Kernel Mode Driver Version: 3.6.11           |\n| MACA Version: 3.8.1.3              BIOS Version: 1.29.1.0                       |\n|------------------+-----------------+---------------------+----------------------|\n| Board       Name | GPU   Persist-M | Bus-id              | GPU-Util      sGPU-M |\n| Pwr:Usage/Cap    | Temp       Perf | Memory-Usage        | GPU-State            |\n|==================+=================+=====================+======================|\n| 2     MetaX C500 | 2           Off | 0000:0e:00.0        | 0%          Disabled |\n| 56W / 350W       | 37C          P0 | 858/65536 MiB       | Available            |\n+------------------+-----------------+---------------------+----------------------+\n\n+---------------------------------------------------------------------------------+\n| Process:                                                                        |\n|  GPU                    PID         Process Name                 GPU Memory     |\n|                                                                  Usage(MiB)     |\n|=================================================================================|\n|  no process found                                                               |\n+---------------------------------------------------------------------------------+\n\nEnd of Log\n",
+  "code_and_data_intact": true
+}

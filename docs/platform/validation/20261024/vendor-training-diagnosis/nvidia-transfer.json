@@ -1,0 +1,47 @@
+{
+  "copies": {
+    "cuda": {
+      "channels_last": false,
+      "contiguous": true,
+      "stride": [
+        12288,
+        4096,
+        64,
+        1
+      ],
+      "values_exact": true
+    },
+    "explicit_contiguous": {
+      "channels_last": false,
+      "contiguous": true,
+      "stride": [
+        12288,
+        4096,
+        64,
+        1
+      ],
+      "values_exact": true
+    },
+    "to": {
+      "channels_last": false,
+      "contiguous": true,
+      "stride": [
+        12288,
+        4096,
+        64,
+        1
+      ],
+      "values_exact": true
+    }
+  },
+  "device": "NVIDIA GeForce RTX 4090",
+  "source_stride": [
+    12288,
+    4096,
+    64,
+    1
+  ],
+  "torch": "2.10.0+cu126",
+  "up_imported": false,
+  "up_platform_imported": false
+}

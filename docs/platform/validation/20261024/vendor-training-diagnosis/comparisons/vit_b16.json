@@ -1,0 +1,2566 @@
+{
+  "actual": "/data2/oujingfeng/up-platform-clean-20261023/vendor-training-diagnosis-20261024/metax/vit_b16-observed",
+  "atol": 1e-05,
+  "compared_leaf_limit": 8,
+  "first_bitwise_leaf": 0,
+  "first_outside_tolerance_leaf": 1,
+  "first_step": {
+    "actual": {
+      "batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+      "cpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bc81bfb2c75816842b67a2fd37500b9c57cc89a0d5594be83f923b80e679777c",
+        "shape": [
+          5056
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "dbf5e2c20d2ecc548b86a2ed14261e28473b3fcca075ec8601958a05a6071d3c",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gradient_sha256": "ec785413378db1e60151eb95451199c0fd159382c66bac873ddbcd67d3960637",
+      "loss": 2.3060355186462402,
+      "step": 1
+    },
+    "reference": {
+      "batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+      "cpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "bc81bfb2c75816842b67a2fd37500b9c57cc89a0d5594be83f923b80e679777c",
+        "shape": [
+          5056
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "fd52f507f5a3c1930b59279b687c29cc91af214592be7b661be17bf0afa82241",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gpu_rng_after": {
+        "device": "cpu",
+        "dtype": "torch.uint8",
+        "sha256": "8a31ed2b511357c25f99b4de6cf9ed68c6f0e2e2adbbddd65fdda6f18e2cc265",
+        "shape": [
+          16
+        ],
+        "stride": [
+          1
+        ]
+      },
+      "gradient_sha256": "e138a68db6d66edb755afa05883122f1f41725f910bf1ed1bc156de106c2e5bf",
+      "loss": 2.3273837566375732,
+      "step": 1
+    }
+  },
+  "gradient_tensors": 152,
+  "gradient_tensors_exact": 0,
+  "gradient_tensors_within_tolerance": 0,
+  "gradients": [
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0040903034241637215,
+      "mismatched_elements": 13056,
+      "outside_tolerance": 12247,
+      "passed": false,
+      "path": "/backbone.pos_embedding",
+      "shape": [
+        1,
+        17,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0040903034241637215,
+      "mismatched_elements": 768,
+      "outside_tolerance": 765,
+      "passed": false,
+      "path": "/backbone.cls_token",
+      "shape": [
+        1,
+        1,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0013212606718298048,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 575197,
+      "passed": false,
+      "path": "/backbone.embedding.weight",
+      "shape": [
+        768,
+        3,
+        16,
+        16
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003973328974097967,
+      "mismatched_elements": 768,
+      "outside_tolerance": 762,
+      "passed": false,
+      "path": "/backbone.embedding.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0009497058053966612,
+      "mismatched_elements": 768,
+      "outside_tolerance": 739,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002171194413676858,
+      "mismatched_elements": 768,
+      "outside_tolerance": 762,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0032090824097394943,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1580012,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.004244726384058595,
+      "mismatched_elements": 2262,
+      "outside_tolerance": 1480,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0029594639781862497,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 573855,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006670806324109435,
+      "mismatched_elements": 768,
+      "outside_tolerance": 766,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00414011487737298,
+      "mismatched_elements": 768,
+      "outside_tolerance": 750,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0023352695861831307,
+      "mismatched_elements": 768,
+      "outside_tolerance": 765,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.011598087148740888,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2297816,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0037128584226593375,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3023,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.011377409100532532,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2308305,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0071047639939934015,
+      "mismatched_elements": 768,
+      "outside_tolerance": 765,
+      "passed": false,
+      "path": "/backbone.layers.encoder_0.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0011699502065312117,
+      "mismatched_elements": 768,
+      "outside_tolerance": 735,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0018357746303081512,
+      "mismatched_elements": 768,
+      "outside_tolerance": 754,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0031196135096251965,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1596403,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003799927420914173,
+      "mismatched_elements": 2265,
+      "outside_tolerance": 1475,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003339238930493593,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 574358,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006532428291393444,
+      "mismatched_elements": 768,
+      "outside_tolerance": 768,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.004392406204715371,
+      "mismatched_elements": 768,
+      "outside_tolerance": 746,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0022243839848670177,
+      "mismatched_elements": 768,
+      "outside_tolerance": 759,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.008667025016620755,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2297839,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0033446133602410555,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3028,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.011487758718430996,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2305051,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006024059723131359,
+      "mismatched_elements": 768,
+      "outside_tolerance": 763,
+      "passed": false,
+      "path": "/backbone.layers.encoder_1.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0009180777997244149,
+      "mismatched_elements": 768,
+      "outside_tolerance": 741,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0018345579010201618,
+      "mismatched_elements": 768,
+      "outside_tolerance": 758,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002704144222661853,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1590700,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0034505040966905653,
+      "mismatched_elements": 2274,
+      "outside_tolerance": 1461,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002793362829834223,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 574681,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.005311894812621176,
+      "mismatched_elements": 768,
+      "outside_tolerance": 765,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003159226500429213,
+      "mismatched_elements": 768,
+      "outside_tolerance": 756,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0020477845682762563,
+      "mismatched_elements": 768,
+      "outside_tolerance": 762,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.008967868518084288,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2300962,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0034333053044974804,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3015,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.009112338535487652,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2305061,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.005634942790493369,
+      "mismatched_elements": 768,
+      "outside_tolerance": 762,
+      "passed": false,
+      "path": "/backbone.layers.encoder_2.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0010583641997072846,
+      "mismatched_elements": 768,
+      "outside_tolerance": 746,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0019033002899959683,
+      "mismatched_elements": 768,
+      "outside_tolerance": 759,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0032390390406362712,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1592764,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0032353971619158983,
+      "mismatched_elements": 2265,
+      "outside_tolerance": 1441,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0032518853549845517,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 573968,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0060380923096090555,
+      "mismatched_elements": 768,
+      "outside_tolerance": 764,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0033431672491133213,
+      "mismatched_elements": 768,
+      "outside_tolerance": 751,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.001879696239484474,
+      "mismatched_elements": 768,
+      "outside_tolerance": 759,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007825974491424859,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2301268,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0027163813065271825,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3030,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.009888612665235996,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2302176,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.004951983690261841,
+      "mismatched_elements": 768,
+      "outside_tolerance": 766,
+      "passed": false,
+      "path": "/backbone.layers.encoder_3.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0006402531507774256,
+      "mismatched_elements": 768,
+      "outside_tolerance": 729,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0013217734740464948,
+      "mismatched_elements": 768,
+      "outside_tolerance": 760,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003121027348242933,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1584968,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002489266451448202,
+      "mismatched_elements": 2273,
+      "outside_tolerance": 1445,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0038907688576728106,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 573104,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.005264471983537078,
+      "mismatched_elements": 768,
+      "outside_tolerance": 763,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0022900454932823777,
+      "mismatched_elements": 768,
+      "outside_tolerance": 755,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0020332104759290814,
+      "mismatched_elements": 768,
+      "outside_tolerance": 754,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.008065135916694999,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2295499,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0031644999980926514,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3008,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00747353327460587,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2297880,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.004919987870380282,
+      "mismatched_elements": 768,
+      "outside_tolerance": 763,
+      "passed": false,
+      "path": "/backbone.layers.encoder_4.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0007811174000380561,
+      "mismatched_elements": 768,
+      "outside_tolerance": 734,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0016462135827168822,
+      "mismatched_elements": 768,
+      "outside_tolerance": 755,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0026310915127396584,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1579606,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0023013672325760126,
+      "mismatched_elements": 2261,
+      "outside_tolerance": 1443,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003100734204053879,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 572474,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.004127228865399957,
+      "mismatched_elements": 768,
+      "outside_tolerance": 766,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002851889352314174,
+      "mismatched_elements": 768,
+      "outside_tolerance": 759,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0019047985842917114,
+      "mismatched_elements": 768,
+      "outside_tolerance": 757,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006624816218391061,
+      "mismatched_elements": 2359295,
+      "outside_tolerance": 2294460,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00220039434498176,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3008,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007378478534519672,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2295573,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0036260209744796157,
+      "mismatched_elements": 768,
+      "outside_tolerance": 765,
+      "passed": false,
+      "path": "/backbone.layers.encoder_5.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0006364499568007886,
+      "mismatched_elements": 768,
+      "outside_tolerance": 736,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0009942131000570953,
+      "mismatched_elements": 768,
+      "outside_tolerance": 756,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0024168402087525465,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1577907,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0019827307551167905,
+      "mismatched_elements": 2262,
+      "outside_tolerance": 1442,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002563005080446601,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 572129,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0037664163392037153,
+      "mismatched_elements": 768,
+      "outside_tolerance": 760,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0031081275083124638,
+      "mismatched_elements": 768,
+      "outside_tolerance": 753,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0014656982093583792,
+      "mismatched_elements": 768,
+      "outside_tolerance": 751,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006082705920562148,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2291850,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0019127566192764789,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3001,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006629702402278781,
+      "mismatched_elements": 2359295,
+      "outside_tolerance": 2291418,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00290973880328238,
+      "mismatched_elements": 768,
+      "outside_tolerance": 760,
+      "passed": false,
+      "path": "/backbone.layers.encoder_6.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0008300803310703486,
+      "mismatched_elements": 768,
+      "outside_tolerance": 726,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0012249295832589269,
+      "mismatched_elements": 768,
+      "outside_tolerance": 750,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002575891208834946,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1570324,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002014863770455122,
+      "mismatched_elements": 2266,
+      "outside_tolerance": 1417,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0022807365749031305,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 571213,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003896158596035093,
+      "mismatched_elements": 768,
+      "outside_tolerance": 765,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0020601573050953448,
+      "mismatched_elements": 768,
+      "outside_tolerance": 751,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0014548345643561333,
+      "mismatched_elements": 768,
+      "outside_tolerance": 758,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007889427011832595,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2294906,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0023663447936996818,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 3009,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.009011049289256334,
+      "mismatched_elements": 2359295,
+      "outside_tolerance": 2293576,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00549307418987155,
+      "mismatched_elements": 768,
+      "outside_tolerance": 766,
+      "passed": false,
+      "path": "/backbone.layers.encoder_7.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0007868600077927113,
+      "mismatched_elements": 768,
+      "outside_tolerance": 721,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0009054769325302914,
+      "mismatched_elements": 768,
+      "outside_tolerance": 747,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0027787769213318825,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1556970,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0017468004080001265,
+      "mismatched_elements": 2261,
+      "outside_tolerance": 1425,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0024130717501975596,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 571003,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00333413970656693,
+      "mismatched_elements": 768,
+      "outside_tolerance": 758,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0020007039420306683,
+      "mismatched_elements": 768,
+      "outside_tolerance": 757,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.001327654426859226,
+      "mismatched_elements": 768,
+      "outside_tolerance": 755,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007836693432182074,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2288828,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002048827358521521,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 2987,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007687197648920119,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2287232,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.003643702482804656,
+      "mismatched_elements": 768,
+      "outside_tolerance": 759,
+      "passed": false,
+      "path": "/backbone.layers.encoder_8.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0006167071987874806,
+      "mismatched_elements": 768,
+      "outside_tolerance": 720,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0007779489678796381,
+      "mismatched_elements": 768,
+      "outside_tolerance": 745,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0018942353926831856,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1548592,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0014498298696707934,
+      "mismatched_elements": 2271,
+      "outside_tolerance": 1373,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.002298444276675582,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 570456,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0029814185108989477,
+      "mismatched_elements": 768,
+      "outside_tolerance": 759,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0019537953194230795,
+      "mismatched_elements": 768,
+      "outside_tolerance": 752,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0014538669493049383,
+      "mismatched_elements": 768,
+      "outside_tolerance": 755,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.00611126737203449,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2288780,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0018154837016481906,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 2982,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006240818707738072,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2285055,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0029672669479623437,
+      "mismatched_elements": 768,
+      "outside_tolerance": 760,
+      "passed": false,
+      "path": "/backbone.layers.encoder_9.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0006292710531852208,
+      "mismatched_elements": 768,
+      "outside_tolerance": 730,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0008108411057037301,
+      "mismatched_elements": 768,
+      "outside_tolerance": 734,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0017324573418591172,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1549670,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0013446904413285665,
+      "mismatched_elements": 2260,
+      "outside_tolerance": 1402,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0020704969065263867,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 569407,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0027725262916646898,
+      "mismatched_elements": 768,
+      "outside_tolerance": 760,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0019159225630573928,
+      "mismatched_elements": 768,
+      "outside_tolerance": 758,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0013172713515814394,
+      "mismatched_elements": 768,
+      "outside_tolerance": 746,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0061421752398018725,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2285962,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.001948085664480459,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 2985,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007419545511766046,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2279439,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0036405313294380903,
+      "mismatched_elements": 768,
+      "outside_tolerance": 758,
+      "passed": false,
+      "path": "/backbone.layers.encoder_10.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0006659387145191431,
+      "mismatched_elements": 768,
+      "outside_tolerance": 716,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.norm1.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.001215831027366221,
+      "mismatched_elements": 768,
+      "outside_tolerance": 746,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.norm1.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.008216544927563518,
+      "mismatched_elements": 1769472,
+      "outside_tolerance": 1544469,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.attention.to_qkv.weight",
+      "shape": [
+        2304,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.006731721616233699,
+      "mismatched_elements": 2251,
+      "outside_tolerance": 1423,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.attention.to_qkv.bias",
+      "shape": [
+        2304
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0026092897169291973,
+      "mismatched_elements": 589824,
+      "outside_tolerance": 569538,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.attention.to_out.weight",
+      "shape": [
+        768,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0032340659527108073,
+      "mismatched_elements": 768,
+      "outside_tolerance": 757,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.attention.to_out.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0018018557893810794,
+      "mismatched_elements": 768,
+      "outside_tolerance": 749,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.norm2.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0011637293791864067,
+      "mismatched_elements": 768,
+      "outside_tolerance": 751,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.norm2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.005767580354586244,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2282510,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.feedforward.mlp1.weight",
+      "shape": [
+        3072,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.001646022661589086,
+      "mismatched_elements": 3072,
+      "outside_tolerance": 2967,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.feedforward.mlp1.bias",
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.005752270692028105,
+      "mismatched_elements": 2359296,
+      "outside_tolerance": 2273809,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.feedforward.mlp2.weight",
+      "shape": [
+        768,
+        3072
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0020839328644797206,
+      "mismatched_elements": 768,
+      "outside_tolerance": 753,
+      "passed": false,
+      "path": "/backbone.layers.encoder_11.feedforward.mlp2.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.005077833542600274,
+      "mismatched_elements": 768,
+      "outside_tolerance": 760,
+      "passed": false,
+      "path": "/backbone.encoder_norm.weight",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.0007472285069525242,
+      "mismatched_elements": 768,
+      "outside_tolerance": 746,
+      "passed": false,
+      "path": "/backbone.encoder_norm.bias",
+      "shape": [
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.13101397268474102,
+      "mismatched_elements": 7680,
+      "outside_tolerance": 7679,
+      "passed": false,
+      "path": "/head.classifier.weight",
+      "shape": [
+        10,
+        768
+      ]
+    },
+    {
+      "dtype": "torch.float32",
+      "exact": false,
+      "max_abs": 0.007832042872905731,
+      "mismatched_elements": 10,
+      "outside_tolerance": 10,
+      "passed": false,
+      "path": "/head.classifier.bias",
+      "shape": [
+        10
+      ]
+    }
+  ],
+  "gradients_only": false,
+  "leaves": [
+    {
+      "index": 0,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/0",
+          "shape": [
+            64,
+            3,
+            64,
+            64
+          ]
+        }
+      ],
+      "name": "backbone.embedding",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.2649765014648438e-06,
+          "mismatched_elements": 742275,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            768,
+            4,
+            4
+          ]
+        }
+      ],
+      "state_after": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            768,
+            3,
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            768
+          ]
+        }
+      ],
+      "state_before": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            768,
+            3,
+            16,
+            16
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            768
+          ]
+        }
+      ],
+      "type": "torch.nn.modules.conv.Conv2d"
+    },
+    {
+      "index": 1,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.2649765014648438e-06,
+          "mismatched_elements": 585659,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/0",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "mask": [
+        {
+          "dtype": "torch.bool",
+          "exact": false,
+          "mismatched_elements": 8793,
+          "outside_tolerance": 8793,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "name": "backbone.dropout",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.362597465515137,
+          "mismatched_elements": 522181,
+          "outside_tolerance": 8793,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "state_after": [],
+      "state_before": [],
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 2,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.362597465515137,
+          "mismatched_elements": 522181,
+          "outside_tolerance": 8793,
+          "passed": false,
+          "path": "/0",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.norm1",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.20590512175113,
+          "mismatched_elements": 662943,
+          "outside_tolerance": 49038,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "state_after": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            768
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            768
+          ]
+        }
+      ],
+      "state_before": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            768
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            768
+          ]
+        }
+      ],
+      "type": "torch.nn.modules.normalization.LayerNorm"
+    },
+    {
+      "index": 3,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.20590512175113,
+          "mismatched_elements": 662943,
+          "outside_tolerance": 49038,
+          "passed": false,
+          "path": "/0",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.attention.to_qkv",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.1710150241851807,
+          "mismatched_elements": 2388533,
+          "outside_tolerance": 147435,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            2304
+          ]
+        }
+      ],
+      "state_after": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            2304,
+            768
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            2304
+          ]
+        }
+      ],
+      "state_before": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            2304,
+            768
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            2304
+          ]
+        }
+      ],
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 4,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.0624711737036705,
+          "mismatched_elements": 193351,
+          "outside_tolerance": 13854,
+          "passed": false,
+          "path": "/0",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ]
+        }
+      ],
+      "mask": [
+        {
+          "dtype": "torch.bool",
+          "exact": false,
+          "mismatched_elements": 40032,
+          "outside_tolerance": 40032,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.attention.attention_dropout",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.19706566631793976,
+          "mismatched_elements": 194421,
+          "outside_tolerance": 51192,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            12,
+            17,
+            17
+          ]
+        }
+      ],
+      "state_after": [],
+      "state_before": [],
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 5,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.45938970148563385,
+          "mismatched_elements": 834386,
+          "outside_tolerance": 808146,
+          "passed": false,
+          "path": "/0",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.attention.to_out",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.2416755110025406,
+          "mismatched_elements": 835584,
+          "outside_tolerance": 835286,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "state_after": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            768,
+            768
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            768
+          ]
+        }
+      ],
+      "state_before": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/weight",
+          "shape": [
+            768,
+            768
+          ]
+        },
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "/bias",
+          "shape": [
+            768
+          ]
+        }
+      ],
+      "type": "torch.nn.modules.linear.Linear"
+    },
+    {
+      "index": 6,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.2416755110025406,
+          "mismatched_elements": 835584,
+          "outside_tolerance": 835286,
+          "passed": false,
+          "path": "/0",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "mask": [
+        {
+          "dtype": "torch.bool",
+          "exact": false,
+          "mismatched_elements": 150278,
+          "outside_tolerance": 150278,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.attention.dropout",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.4664362370967865,
+          "mismatched_elements": 827171,
+          "outside_tolerance": 826925,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "state_after": [],
+      "state_before": [],
+      "type": "torch.nn.modules.dropout.Dropout"
+    },
+    {
+      "index": 7,
+      "inputs": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.4664362370967865,
+          "mismatched_elements": 827171,
+          "outside_tolerance": 826925,
+          "passed": false,
+          "path": "/0",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "mask": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.0,
+          "mismatched_elements": 13,
+          "outside_tolerance": 13,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            1,
+            1
+          ]
+        }
+      ],
+      "name": "backbone.layers.encoder_0.drop_path",
+      "output": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 0.518262505531311,
+          "mismatched_elements": 812005,
+          "outside_tolerance": 811817,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            17,
+            768
+          ]
+        }
+      ],
+      "state_after": [],
+      "state_before": [],
+      "type": "up.utils.model.utils.DropPath"
+    }
+  ],
+  "reference": "/data2/oujingfeng/up-platform-clean-20261023/vendor-training-diagnosis-20261024/vit_b16-observed",
+  "rtol": 0.0001,
+  "scope": "Observed first training forward and parameter gradients; CPU comparisons only"
+}

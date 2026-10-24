@@ -1,0 +1,681 @@
+{
+  "atol": 1e-05,
+  "first_outside_tolerance": 14,
+  "leaves": 32,
+  "rows": [
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": true,
+          "max_abs": 0.0,
+          "mismatched_elements": 0,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            12,
+            160,
+            160
+          ]
+        }
+      ],
+      "index": 0,
+      "name": "backbone.focus.space2depth"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.3709068298339844e-06,
+          "mismatched_elements": 43576516,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            160,
+            160
+          ]
+        }
+      ],
+      "index": 1,
+      "name": "backbone.focus.conv_block.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 7.033348083496094e-06,
+          "mismatched_elements": 48107167,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            160,
+            160
+          ]
+        }
+      ],
+      "index": 2,
+      "name": "backbone.focus.conv_block.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 7.510185241699219e-06,
+          "mismatched_elements": 46537261,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            160,
+            160
+          ]
+        }
+      ],
+      "index": 3,
+      "name": "backbone.focus.conv_block.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.291534423828125e-06,
+          "mismatched_elements": 25217478,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 4,
+      "name": "backbone.csp_modules.0.0.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.239776611328125e-05,
+          "mismatched_elements": 25141144,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 5,
+      "name": "backbone.csp_modules.0.0.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.239776611328125e-05,
+          "mismatched_elements": 24331218,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 6,
+      "name": "backbone.csp_modules.0.0.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.76837158203125e-06,
+          "mismatched_elements": 12689650,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 7,
+      "name": "backbone.csp_modules.0.1.conv_block1.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.52587890625e-05,
+          "mismatched_elements": 12585681,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 8,
+      "name": "backbone.csp_modules.0.1.conv_block1.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.5974044799804688e-05,
+          "mismatched_elements": 12251813,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 9,
+      "name": "backbone.csp_modules.0.1.conv_block1.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 6.094574928283691e-06,
+          "mismatched_elements": 12760810,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 10,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block1.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.0503997802734375e-05,
+          "mismatched_elements": 12689039,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 11,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block1.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.09808349609375e-05,
+          "mismatched_elements": 12413819,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 12,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block1.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.239776611328125e-05,
+          "mismatched_elements": 12817824,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 13,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block2.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 3.0517578125e-05,
+          "mismatched_elements": 12818613,
+          "outside_tolerance": 6,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 14,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block2.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 3.0517578125e-05,
+          "mismatched_elements": 12514382,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 15,
+      "name": "backbone.csp_modules.0.1.cbh_blocks.0.conv_block2.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.33514404296875e-05,
+          "mismatched_elements": 12750854,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 16,
+      "name": "backbone.csp_modules.0.1.conv3"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 3.933906555175781e-06,
+          "mismatched_elements": 12644354,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            32,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 17,
+      "name": "backbone.csp_modules.0.1.conv2"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.6702880859375e-05,
+          "mismatched_elements": 25310418,
+          "outside_tolerance": 12,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 18,
+      "name": "backbone.csp_modules.0.1.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.574920654296875e-05,
+          "mismatched_elements": 24712017,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 19,
+      "name": "backbone.csp_modules.0.1.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.3113021850585938e-05,
+          "mismatched_elements": 25599883,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 20,
+      "name": "backbone.csp_modules.0.1.conv_block4.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 3.719329833984375e-05,
+          "mismatched_elements": 25483608,
+          "outside_tolerance": 24,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 21,
+      "name": "backbone.csp_modules.0.1.conv_block4.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 3.719329833984375e-05,
+          "mismatched_elements": 25066521,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            80,
+            80
+          ]
+        }
+      ],
+      "index": 22,
+      "name": "backbone.csp_modules.0.1.conv_block4.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.71661376953125e-05,
+          "mismatched_elements": 12862030,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            128,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 23,
+      "name": "backbone.csp_modules.1.0.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.100799560546875e-05,
+          "mismatched_elements": 12802480,
+          "outside_tolerance": 47,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            128,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 24,
+      "name": "backbone.csp_modules.1.0.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.100799560546875e-05,
+          "mismatched_elements": 12632206,
+          "outside_tolerance": 3,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            128,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 25,
+      "name": "backbone.csp_modules.1.0.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 1.6450881958007812e-05,
+          "mismatched_elements": 6433261,
+          "outside_tolerance": 0,
+          "passed": true,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 26,
+      "name": "backbone.csp_modules.1.1.conv_block1.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 4.9591064453125e-05,
+          "mismatched_elements": 6411780,
+          "outside_tolerance": 125,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 27,
+      "name": "backbone.csp_modules.1.1.conv_block1.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 5.269050598144531e-05,
+          "mismatched_elements": 6346016,
+          "outside_tolerance": 7,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 28,
+      "name": "backbone.csp_modules.1.1.conv_block1.act"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 2.104043960571289e-05,
+          "mismatched_elements": 6437812,
+          "outside_tolerance": 1,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 29,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block1.conv"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 6.103515625e-05,
+          "mismatched_elements": 6412319,
+          "outside_tolerance": 222,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 30,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block1.bn1"
+    },
+    {
+      "comparison": [
+        {
+          "dtype": "torch.float32",
+          "exact": false,
+          "max_abs": 6.508827209472656e-05,
+          "mismatched_elements": 6360681,
+          "outside_tolerance": 14,
+          "passed": false,
+          "path": "",
+          "shape": [
+            64,
+            64,
+            40,
+            40
+          ]
+        }
+      ],
+      "index": 31,
+      "name": "backbone.csp_modules.1.1.cbh_blocks.0.conv_block1.act"
+    }
+  ],
+  "rtol": 0.0001,
+  "scope": "Explicit first-leaf prefix, not whole-model equivalence"
+}
