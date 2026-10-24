@@ -1,0 +1,36 @@
+{
+  "id": "up-clean-native-three-lane-single-seed-20261024",
+  "baseline_ref": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "runtime_ref": "61bcf822ea4bced0b7152daf8dcad1573c079a48",
+  "source_stage": "source-03",
+  "new_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "original_source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "source_archive_sha256": "3b84891ea5533621f6c24b1d79e9c3207955c2cd4d74481ea3c71884a762fab2",
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "lanes": ["original_nvidia", "new_nvidia", "new_metax"],
+  "seed": 131,
+  "precision": "FP32 native; matmul and convolution TF32 off; benchmark off; deterministic algorithms off; no MCDNN determinism controls, v1/v2/portable, or CPU model fallback",
+  "selection": "Final epoch only, no best-epoch/seed selection, no automatic retry",
+  "accuracy_threshold": null,
+  "verdict": "Report all signed/absolute percentage-point differences; no equivalence/pass claim",
+  "scope": "Complete declared CIFAR-10/PennFudan budgets, not full ImageNet/COCO convergence",
+  "data": {"cifar10_train": 10000, "cifar10_test": 2000, "pennfudan_train": 120, "pennfudan_test": 50},
+  "models": {
+    "resnet18": {"epochs": 20, "steps": 3140, "batch": 64, "image_size": 64, "metric": "top1", "metric_to_percentage_points": 1.0, "provenance": "Native UP ResNet18; 10 classes"},
+    "yolov5s": {"epochs": 300, "steps": 600, "batch": 64, "image_size": 320, "metric": "bbox.AP", "metric_to_percentage_points": 100.0, "provenance": "Native UP YOLOv5-S SiLU; one foreground class, EMA off"},
+    "vit_b16": {"epochs": 20, "steps": 3140, "batch": 64, "image_size": 64, "metric": "top1", "metric_to_percentage_points": 1.0, "provenance": "Native UP ViT-B16; 12 blocks, width768, 17 tokens, 10 classes"},
+    "faster_rcnn": {"epochs": 12, "steps": 720, "batch": 2, "image_size": [320, 512], "metric": "bbox.AP", "metric_to_percentage_points": 100.0, "provenance": "Native UP R50-FPN; one foreground class, original pretrained R50"},
+    "detr": {"epochs": 12, "steps": 720, "batch": 2, "image_size": [320, 512], "metric": "bbox.AP", "metric_to_percentage_points": 100.0, "provenance": "Same pinned official DETR R50 adapter in all three UP Runners; original UP has no DETR; official criterion unchanged, no deterministic CE rewrite"}
+  },
+  "expected_complete_runs": 15,
+  "expected_optimizer_updates": 24960,
+  "initialization": "Generate once on original UP/NVIDIA; distribute identical CPU tensor files and verify SHA256 before loading strictly in every lane",
+  "native_binaries": {
+    "original_nvidia": "d49bb62be6f70cb8003f7ef2c94999c562e6215181f80920135f00db1340c59a",
+    "new_nvidia": "ac30ea811dd4999890dbb4eee285327d9627bf78507847cac0fcedc5a7fadd0a",
+    "new_metax": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317"
+  },
+  "audits": ["Full optimizer budget", "Finite model/optimizer/scheduler checkpoint state", "Strict common initial weights", "Weight and optimizer/scheduler restoration", "CPU metric recomputation from saved final predictions", "Separate-process standalone inference"],
+  "nonblocking_diagnostics": ["Loss/final-weight differences", "Saved training-batch hashes", "Restored/inference metric variation on native kernels"],
+  "paused_history": "No old multi-seed controller resumed; previous reports are not counted as current results"
+}
