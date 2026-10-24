@@ -1,0 +1,6 @@
+{
+  "created_utc": "2026-10-24T09:49:44.910345+00:00",
+  "nvidia_smi": "index, uuid, name, driver_version, temperature.gpu, power.draw [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\n1, GPU-a11f730c-a975-2bf0-b765-3c24d83b7104, NVIDIA GeForce RTX 4090, 580.178.04, 58, 147.70 W, 2520 MHz, 10501 MHz\n",
+  "cpu_load": "2.70 2.33 1.74 3/21146 2228851\n",
+  "scope": "Snapshot during first deterministic run, not a performance-matched native telemetry series"
+}

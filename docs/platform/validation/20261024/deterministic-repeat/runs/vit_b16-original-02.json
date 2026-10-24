@@ -1,0 +1,76 @@
+{
+  "adapter_sha256": null,
+  "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+  "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+  "checkpoint_all_states_finite": true,
+  "checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+  "environment": {
+    "controls": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "MCDNN_STABLE_RESULT_MOD": null,
+      "MCDNN_USE_DETERMINISTIC_ALGO": null,
+      "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "cudnn_tf32": false,
+    "deterministic": true,
+    "deterministic_warn_only": false,
+    "fill_uninitialized_memory": true,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "matmul_tf32": false,
+    "packages": {
+      "Pillow": "11.2.1",
+      "numpy": "1.26.4",
+      "opencv-python": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "torch": "2.10.0+cu126",
+      "torchvision": "0.25.0+cu126"
+    },
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "visible_devices": "1"
+  },
+  "epochs": 20,
+  "expected_steps": 3140,
+  "final_metrics": {
+    "top1": 25.75,
+    "top5": 79.25
+  },
+  "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+  "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+  "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+  "initial_metrics": {
+    "top1": 9.65000057220459,
+    "top5": 48.29999923706055
+  },
+  "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+  "lane": "original_nvidia",
+  "mode": "native_deterministic",
+  "model": "vit_b16",
+  "model_provenance": "native UP model",
+  "peak_allocated_bytes": 3529280000,
+  "peak_reserved_bytes": 4175429632,
+  "raw_index_sha256": "fc746f174a45213c906d86a5757341d23f3f9281d643b18cb380b6215e14accc",
+  "raw_report_sha256": "74c2aa934fcfefa4e0b18534f13619d649f5e44d9abeda69a841ad249c51e37f",
+  "restore_weights_exact": true,
+  "restored_metric_delta": {
+    "top1": 0.0,
+    "top5": 0.0
+  },
+  "restored_metrics": {
+    "top1": 25.75,
+    "top5": 79.25
+  },
+  "scope": "Complete fixed small-data budget; one seed; no statistical equivalence claim. Official DETR adapter is external to UP.",
+  "seed": 131,
+  "selection": "final epoch only; no best checkpoint or rerun selection",
+  "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "status": "completed",
+  "total_worker_seconds": 516.7041820599698,
+  "training_steps": 3140,
+  "training_wall_seconds": 495.4667056989856
+}

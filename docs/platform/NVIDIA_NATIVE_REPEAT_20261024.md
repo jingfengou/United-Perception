@@ -7,7 +7,7 @@
 所有训练仍是 seed 131；同源重复不是更换 seed，也不挑选有利的一次。
 冻结要求见 [protocol.json](validation/20261024/native-repeat/protocol.json)。
 
-后续 [原生确定性完整训练对照](NVIDIA_DETERMINISTIC_REPEAT_20261024.md) 已启动，原版、新版同时开启相同的严格确定性选项；该阶段单独记录，不替换本页 native 结果。
+后续 [原生确定性完整训练对照](NVIDIA_DETERMINISTIC_REPEAT_20261024.md) 已完成：原版、新版同时开启相同选项后，YOLO/ViT 各自四次完整训练的全部 loss、最终模型状态及指标一致；性能代价单列，该阶段不替换本页 native 结果。
 
 ## 结论与完整结果
 

@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "2f78a15c7df5f70cb8eb2603f8e1c0aedc9004d2486b933c8e6ee102cbaf9af7",
+  "elapsed_seconds": 5.192317151930183,
+  "lane": "new_nvidia",
+  "metrics": {
+    "bbox.AP": 0.27423611431992984,
+    "bbox.AP.5": 0.5565714753726084,
+    "bbox.AP.75": 0.2304570393892731,
+    "bbox.AP_L": 0.3268274472374338,
+    "bbox.AP_M": 0.132140198961841,
+    "bbox.AP_S": 0.13465346534653463,
+    "bbox.AR": 0.5676691729323308,
+    "bbox.AR_1": 0.11353383458646615,
+    "bbox.AR_10": 0.5353383458646617,
+    "bbox.AR_L": 0.5975206611570247,
+    "bbox.AR_M": 0.3111111111111111,
+    "bbox.AR_S": 0.13333333333333333
+  },
+  "model": "yolov5s",
+  "numerics": "native_deterministic",
+  "purpose": "inference",
+  "raw_report_sha256": "eb0ff089ff35289a3e2d6de1509e71e5c1e9c999252d0f0d113fcab91d71f6ab",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "weights_exact": true
+}

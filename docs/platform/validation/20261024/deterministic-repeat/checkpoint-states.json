@@ -1,0 +1,60 @@
+{
+  "vit_b16": {
+    "all_four_exact": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true
+    },
+    "hashes": {
+      "new-01": {
+        "model": "b44c09e8eee2a93f1c21e099ccfcd149714066ea2595c547dcba4c1edcdd33fa",
+        "optimizer": "c011ab507a4b4fa564b40f6f16562cf6884addcaf5ac43d64043c53233e10ffa",
+        "scheduler": "908f0bf1aa0f099fb26e031ec7eeb569ed56ceb0a74b8d26b90a758782461542"
+      },
+      "new-02": {
+        "model": "b44c09e8eee2a93f1c21e099ccfcd149714066ea2595c547dcba4c1edcdd33fa",
+        "optimizer": "c011ab507a4b4fa564b40f6f16562cf6884addcaf5ac43d64043c53233e10ffa",
+        "scheduler": "908f0bf1aa0f099fb26e031ec7eeb569ed56ceb0a74b8d26b90a758782461542"
+      },
+      "original-01": {
+        "model": "b44c09e8eee2a93f1c21e099ccfcd149714066ea2595c547dcba4c1edcdd33fa",
+        "optimizer": "c011ab507a4b4fa564b40f6f16562cf6884addcaf5ac43d64043c53233e10ffa",
+        "scheduler": "908f0bf1aa0f099fb26e031ec7eeb569ed56ceb0a74b8d26b90a758782461542"
+      },
+      "original-02": {
+        "model": "b44c09e8eee2a93f1c21e099ccfcd149714066ea2595c547dcba4c1edcdd33fa",
+        "optimizer": "c011ab507a4b4fa564b40f6f16562cf6884addcaf5ac43d64043c53233e10ffa",
+        "scheduler": "908f0bf1aa0f099fb26e031ec7eeb569ed56ceb0a74b8d26b90a758782461542"
+      }
+    }
+  },
+  "yolov5s": {
+    "all_four_exact": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true
+    },
+    "hashes": {
+      "new-01": {
+        "model": "ae90a9e57f457e6be18299e6df44c649aaf3947ea936ab4edf01046b79ce2b77",
+        "optimizer": "ce3293e8dd8376f7758874587ba1027d5363e1a6ebf92008464043b01c61b126",
+        "scheduler": "c3b3111a4229011392227255dca44cdc835380a298b8f5240adf4c6e188a794c"
+      },
+      "new-02": {
+        "model": "ae90a9e57f457e6be18299e6df44c649aaf3947ea936ab4edf01046b79ce2b77",
+        "optimizer": "ce3293e8dd8376f7758874587ba1027d5363e1a6ebf92008464043b01c61b126",
+        "scheduler": "c3b3111a4229011392227255dca44cdc835380a298b8f5240adf4c6e188a794c"
+      },
+      "original-01": {
+        "model": "ae90a9e57f457e6be18299e6df44c649aaf3947ea936ab4edf01046b79ce2b77",
+        "optimizer": "ce3293e8dd8376f7758874587ba1027d5363e1a6ebf92008464043b01c61b126",
+        "scheduler": "c3b3111a4229011392227255dca44cdc835380a298b8f5240adf4c6e188a794c"
+      },
+      "original-02": {
+        "model": "ae90a9e57f457e6be18299e6df44c649aaf3947ea936ab4edf01046b79ce2b77",
+        "optimizer": "ce3293e8dd8376f7758874587ba1027d5363e1a6ebf92008464043b01c61b126",
+        "scheduler": "c3b3111a4229011392227255dca44cdc835380a298b8f5240adf4c6e188a794c"
+      }
+    }
+  }
+}

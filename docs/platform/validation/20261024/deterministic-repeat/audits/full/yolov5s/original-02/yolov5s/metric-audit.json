@@ -1,0 +1,22 @@
+{
+  "evaluator_sha256": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+  "labels_sha256": "221b282c8d851335ccee7099afd150c5d73b8c39249f39a2d2bdb6ad64c1cede",
+  "metrics": {
+    "bbox.AP": 0.27423611431992984,
+    "bbox.AP.5": 0.5565714753726084,
+    "bbox.AP.75": 0.2304570393892731,
+    "bbox.AP_L": 0.3268274472374338,
+    "bbox.AP_M": 0.132140198961841,
+    "bbox.AP_S": 0.13465346534653463,
+    "bbox.AR": 0.5676691729323308,
+    "bbox.AR_1": 0.11353383458646615,
+    "bbox.AR_10": 0.5353383458646617,
+    "bbox.AR_L": 0.5975206611570247,
+    "bbox.AR_M": 0.3111111111111111,
+    "bbox.AR_S": 0.13333333333333333
+  },
+  "model": "yolov5s",
+  "passed": true,
+  "predictions_sha256": "dada45e23949c1a70e5f2e7f13c97f0929b1e821ed8125b85e56df3c4711e87d",
+  "report_sha256": "96daeff442084ebdbf7e224c135df28c3eac3240cb2c5246076a827266a1e9a2"
+}

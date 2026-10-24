@@ -1,0 +1,16 @@
+{
+  "checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+  "elapsed_seconds": 11.226518839597702,
+  "lane": "new_nvidia",
+  "metrics": {
+    "top1": 25.75,
+    "top5": 79.25
+  },
+  "model": "vit_b16",
+  "numerics": "native_deterministic",
+  "purpose": "inference",
+  "raw_report_sha256": "763b695291e39cd27f82aa276c25f09f448397f50ae6175bc30ce75261b92d06",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "weights_exact": true
+}

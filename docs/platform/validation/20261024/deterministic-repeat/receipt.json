@@ -1,0 +1,23 @@
+{
+  "checkpoint_states_sha256": "87b978a79479fa7c8cc014e919cd69a54f1f257b8a8d5d98d63a663ffd15e775",
+  "complete_runs": 8,
+  "cpu": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "ubuntu-Precision-7920-Tower",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "65",
+    "time": "8.657",
+    "timestamp": "2026-10-24T17:53:28.994716"
+  },
+  "index_sha256": "fc746f174a45213c906d86a5757341d23f3f9281d643b18cb380b6215e14accc",
+  "large_artifacts": "Retained in the original experiment directory; not included in reports.tar.gz",
+  "optimizer_updates": 14960,
+  "raw_bytes": 8707736232,
+  "raw_files": 317,
+  "raw_root": "/data2/oujingfeng/up-platform-clean-20261023/deterministic-repeat-20261024",
+  "reports_archive_bytes": 4444053,
+  "reports_archive_sha256": "6b4e25818f007d8f5ddc3e2c780eb9f811999cd5b6523db3a3a95f2a524b4ba1",
+  "summary_sha256": "b87e99dae585bd065e6f9f5899a4ff4b26f846bdf633e20387f1c0b0d66c1811"
+}

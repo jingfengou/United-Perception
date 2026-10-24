@@ -1,0 +1,943 @@
+{
+  "accuracy_threshold": null,
+  "complete_runs": 8,
+  "controller_sha256": "e4aee6cd93c8641ccf0ed6d3371ec7b970fc9342247bc72bc2e550d4f07e4b68",
+  "gpu_uuid": "GPU-a11f730c-a975-2bf0-b765-3c24d83b7104",
+  "numerics": "native_deterministic",
+  "optimizer_updates": 14960,
+  "physical_device": 1,
+  "records": [
+    {
+      "all_cross_source_deltas_pp": {
+        "original-01 vs new-01": 0.0,
+        "original-01 vs new-02": 0.0,
+        "original-02 vs new-01": 0.0,
+        "original-02 vs new-02": 0.0
+      },
+      "common_inputs": {
+        "algorithm_config_sha256": "53d7cf3889a6953faaa9ac0205d1220b385ba878c34265dd56ed1e551f91f3dd",
+        "all_batches_sha256": "6a98d209f260003e1a685c3e487a1f203e98869de55ab62cb43915f1d5e39aef",
+        "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+        "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+        "first_batch_sha256": "40cd5106f1f315145aa8f9c6cc5ce72f31ce99c76d6ae923d9937d026c65e526",
+        "initial_file_sha256": "7c894c3406d86a6381fc7097be5aa15f52b881b3efcb901a03234ee19eca5fa4",
+        "initial_state_sha256": "6b1cadc0a4478f58cbc6874b281c45f1a49225937611802f8a77a7144430206d"
+      },
+      "cross_inference": [
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "new",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "raw_sha256": "eb0ff089ff35289a3e2d6de1509e71e5c1e9c999252d0f0d113fcab91d71f6ab",
+          "trained_with": "original"
+        },
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "original",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "raw_sha256": "ecad4eb14a67890029b40d8a19f1d981e745764fdaedbcdac4cf7de6b539e627",
+          "trained_with": "new"
+        }
+      ],
+      "mean_new_minus_original_pp": 0.0,
+      "metric": "bbox.AP",
+      "model": "yolov5s",
+      "performance_vs_prior_native": {
+        "new": {
+          "deterministic": [
+            {
+              "peak_allocated_bytes": 6056214016,
+              "peak_reserved_bytes": 7017070592,
+              "training_wall_seconds": 1474.4948076303117
+            },
+            {
+              "peak_allocated_bytes": 6056214016,
+              "peak_reserved_bytes": 7017070592,
+              "training_wall_seconds": 1491.6783030168153
+            }
+          ],
+          "means": {
+            "deterministic": {
+              "peak_allocated_bytes": 6056214016.0,
+              "peak_reserved_bytes": 7017070592.0,
+              "training_wall_seconds": 1483.0865553235635
+            },
+            "native": {
+              "peak_allocated_bytes": 6056462336.0,
+              "peak_reserved_bytes": 6513754112.0,
+              "training_wall_seconds": 1442.3719798226375
+            }
+          },
+          "native": [
+            {
+              "peak_allocated_bytes": 6056462336,
+              "peak_reserved_bytes": 6513754112,
+              "training_wall_seconds": 1441.8551084250212
+            },
+            {
+              "peak_allocated_bytes": 6056462336,
+              "peak_reserved_bytes": 6513754112,
+              "training_wall_seconds": 1442.8888512202539
+            }
+          ],
+          "reference_reports": {
+            "01": "ce8bd0eddc60bf1e327c9dd39ffd77dd858d96380cb20cde3e5829ae3a6bf9aa",
+            "02": "458b631ef1f4354fbd5a986c0b7d0051ae66ca81804f8f8d4ebd371966e978cb"
+          },
+          "training_time_change_percent": 2.822751417143632
+        },
+        "original": {
+          "deterministic": [
+            {
+              "peak_allocated_bytes": 6056214016,
+              "peak_reserved_bytes": 7017070592,
+              "training_wall_seconds": 1470.7859935979359
+            },
+            {
+              "peak_allocated_bytes": 6056214016,
+              "peak_reserved_bytes": 7017070592,
+              "training_wall_seconds": 1508.222318152897
+            }
+          ],
+          "means": {
+            "deterministic": {
+              "peak_allocated_bytes": 6056214016.0,
+              "peak_reserved_bytes": 7017070592.0,
+              "training_wall_seconds": 1489.5041558754165
+            },
+            "native": {
+              "peak_allocated_bytes": 6056462336.0,
+              "peak_reserved_bytes": 6513754112.0,
+              "training_wall_seconds": 1422.6924597527832
+            }
+          },
+          "native": [
+            {
+              "peak_allocated_bytes": 6056462336,
+              "peak_reserved_bytes": 6513754112,
+              "training_wall_seconds": 1449.853581189178
+            },
+            {
+              "peak_allocated_bytes": 6056462336,
+              "peak_reserved_bytes": 6513754112,
+              "training_wall_seconds": 1395.5313383163884
+            }
+          ],
+          "reference_reports": {
+            "01": "02e405b7b43382f30f18488de7bfee37be666731fab64f98eb72522ae9875bcd",
+            "02": "76348d0a245835da47eee794390aaa4263627e3d53f62da1ae05a2d25c040d6d"
+          },
+          "training_time_change_percent": 4.696144670243285
+        }
+      },
+      "runs": {
+        "new-01": {
+          "checkpoint_sha256": "2f78a15c7df5f70cb8eb2603f8e1c0aedc9004d2486b933c8e6ee102cbaf9af7",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "metric_percent": 27.423611431992985,
+          "peak_allocated_bytes": 6056214016,
+          "peak_reserved_bytes": 7017070592,
+          "report_sha256": "c4b1a0df61062023082c6d0c897b46d36d632c5e7532fa155a157e467e5454be",
+          "restored_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1474.4948076303117
+        },
+        "new-02": {
+          "checkpoint_sha256": "2f78a15c7df5f70cb8eb2603f8e1c0aedc9004d2486b933c8e6ee102cbaf9af7",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "metric_percent": 27.423611431992985,
+          "peak_allocated_bytes": 6056214016,
+          "peak_reserved_bytes": 7017070592,
+          "report_sha256": "004e7b3aca661a72281e6ae58f27230bb18c48e25197924631d8df627ceda5df",
+          "restored_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1491.6783030168153
+        },
+        "original-01": {
+          "checkpoint_sha256": "2f78a15c7df5f70cb8eb2603f8e1c0aedc9004d2486b933c8e6ee102cbaf9af7",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "metric_percent": 27.423611431992985,
+          "peak_allocated_bytes": 6056214016,
+          "peak_reserved_bytes": 7017070592,
+          "report_sha256": "193143ec7fbb0ba51969f361cc6112be98b60b36b6477451f6d685d97ae8965e",
+          "restored_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1470.7859935979359
+        },
+        "original-02": {
+          "checkpoint_sha256": "2f78a15c7df5f70cb8eb2603f8e1c0aedc9004d2486b933c8e6ee102cbaf9af7",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "final_state_sha256": "c11de78cd3ef07b5ca92792be33bc2c319c6fe0fa5a36f139da5768b7bf54217",
+          "metric_percent": 27.423611431992985,
+          "peak_allocated_bytes": 6056214016,
+          "peak_reserved_bytes": 7017070592,
+          "report_sha256": "96daeff442084ebdbf7e224c135df28c3eac3240cb2c5246076a827266a1e9a2",
+          "restored_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "bbox.AP": 0.27423611431992984,
+            "bbox.AP.5": 0.5565714753726084,
+            "bbox.AP.75": 0.2304570393892731,
+            "bbox.AP_L": 0.3268274472374338,
+            "bbox.AP_M": 0.132140198961841,
+            "bbox.AP_S": 0.13465346534653463,
+            "bbox.AR": 0.5676691729323308,
+            "bbox.AR_1": 0.11353383458646615,
+            "bbox.AR_10": 0.5353383458646617,
+            "bbox.AR_L": 0.5975206611570247,
+            "bbox.AR_M": 0.3111111111111111,
+            "bbox.AR_S": 0.13333333333333333
+          },
+          "training_steps": 600,
+          "training_wall_seconds": 1508.222318152897
+        }
+      },
+      "same_source_and_cross_source_comparisons": [
+        {
+          "epoch_metrics_exact": true,
+          "final_metrics_exact": true,
+          "final_model_state_exact": true,
+          "first_exact_loss_difference": null,
+          "left": "original-01",
+          "losses_exact": true,
+          "losses_exceeding_original_tolerance": 0,
+          "max_abs_loss_difference": 0.0,
+          "right": "original-02"
+        },
+        {
+          "epoch_metrics_exact": true,
+          "final_metrics_exact": true,
+          "final_model_state_exact": true,
+          "first_exact_loss_difference": null,
+          "left": "new-01",
+          "losses_exact": true,
+          "losses_exceeding_original_tolerance": 0,
+          "max_abs_loss_difference": 0.0,
+          "right": "new-02"
+        },
+        {
+          "epoch_metrics_exact": true,
+          "final_metrics_exact": true,
+          "final_model_state_exact": true,
+          "first_exact_loss_difference": null,
+          "left": "original-01",
+          "losses_exact": true,
+          "losses_exceeding_original_tolerance": 0,
+          "max_abs_loss_difference": 0.0,
+          "right": "new-01"
+        }
+      ],
+      "sources": {
+        "new": {
+          "all_values": [
+            27.423611431992985,
+            27.423611431992985
+          ],
+          "max": 27.423611431992985,
+          "mean": 27.423611431992985,
+          "min": 27.423611431992985,
+          "repeat_spread_pp": 0.0
+        },
+        "original": {
+          "all_values": [
+            27.423611431992985,
+            27.423611431992985
+          ],
+          "max": 27.423611431992985,
+          "mean": 27.423611431992985,
+          "min": 27.423611431992985,
+          "repeat_spread_pp": 0.0
+        }
+      }
+    },
+    {
+      "all_cross_source_deltas_pp": {
+        "original-01 vs new-01": 0.0,
+        "original-01 vs new-02": 0.0,
+        "original-02 vs new-01": 0.0,
+        "original-02 vs new-02": 0.0
+      },
+      "common_inputs": {
+        "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+        "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+        "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+        "driver_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+        "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+        "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+        "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567"
+      },
+      "cross_inference": [
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "new",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "raw_sha256": "2c49b6cb19103f670e46a9287b286bccc97ac0d780f47dfdc79e797cce9e5701",
+          "trained_with": "original"
+        },
+        {
+          "all_metrics_exact": true,
+          "inferred_with": "original",
+          "metric_delta_pp": 0.0,
+          "metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "raw_sha256": "fc78c732cff3f40c3bbe04aeeb015c04e53fb4c6219813ca5ab51b0ca8597b15",
+          "trained_with": "new"
+        }
+      ],
+      "mean_new_minus_original_pp": 0.0,
+      "metric": "top1",
+      "model": "vit_b16",
+      "performance_vs_prior_native": {
+        "new": {
+          "deterministic": [
+            {
+              "peak_allocated_bytes": 3529280000,
+              "peak_reserved_bytes": 4175429632,
+              "training_wall_seconds": 482.6948793050833
+            },
+            {
+              "peak_allocated_bytes": 3529280000,
+              "peak_reserved_bytes": 4175429632,
+              "training_wall_seconds": 462.8798137488775
+            }
+          ],
+          "means": {
+            "deterministic": {
+              "peak_allocated_bytes": 3529280000.0,
+              "peak_reserved_bytes": 4175429632.0,
+              "training_wall_seconds": 472.7873465269804
+            },
+            "native": {
+              "peak_allocated_bytes": 3479374336.0,
+              "peak_reserved_bytes": 4162846720.0,
+              "training_wall_seconds": 430.03309681196697
+            }
+          },
+          "native": [
+            {
+              "peak_allocated_bytes": 3482028544,
+              "peak_reserved_bytes": 4162846720,
+              "training_wall_seconds": 430.503748267889
+            },
+            {
+              "peak_allocated_bytes": 3476720128,
+              "peak_reserved_bytes": 4162846720,
+              "training_wall_seconds": 429.5624453560449
+            }
+          ],
+          "reference_reports": {
+            "01": "da5ee07b8ef193911940adc7977c17f46e0ca98b4a9705824704136bfcce2fcc",
+            "02": "1145afaf6a47d2b90132b5b2ccd2043381a02d4be01ae1910a0756c34016be49"
+          },
+          "training_time_change_percent": 9.942083535423274
+        },
+        "original": {
+          "deterministic": [
+            {
+              "peak_allocated_bytes": 3529280000,
+              "peak_reserved_bytes": 4175429632,
+              "training_wall_seconds": 509.9608172108419
+            },
+            {
+              "peak_allocated_bytes": 3529280000,
+              "peak_reserved_bytes": 4175429632,
+              "training_wall_seconds": 495.4667056989856
+            }
+          ],
+          "means": {
+            "deterministic": {
+              "peak_allocated_bytes": 3529280000.0,
+              "peak_reserved_bytes": 4175429632.0,
+              "training_wall_seconds": 502.71376145491377
+            },
+            "native": {
+              "peak_allocated_bytes": 3479374336.0,
+              "peak_reserved_bytes": 4162846720.0,
+              "training_wall_seconds": 426.39922281657346
+            }
+          },
+          "native": [
+            {
+              "peak_allocated_bytes": 3476720128,
+              "peak_reserved_bytes": 4162846720,
+              "training_wall_seconds": 429.5240270970389
+            },
+            {
+              "peak_allocated_bytes": 3482028544,
+              "peak_reserved_bytes": 4162846720,
+              "training_wall_seconds": 423.274418536108
+            }
+          ],
+          "reference_reports": {
+            "01": "98d88633ab5ed18f5e0590a61d2216520b11d3332d92d688ba1b8a48cd0e7492",
+            "02": "a5953613b0972eccce9b46608c13156512aa0843f29a47b31612b992769d92cb"
+          },
+          "training_time_change_percent": 17.89743849302674
+        }
+      },
+      "runs": {
+        "new-01": {
+          "checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "metric_percent": 25.75,
+          "peak_allocated_bytes": 3529280000,
+          "peak_reserved_bytes": 4175429632,
+          "report_sha256": "8f8773e8397993ec7dbb6fec798bafc389b4d97bc29de7347cff5dd00250f2ab",
+          "restored_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 482.6948793050833
+        },
+        "new-02": {
+          "checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "metric_percent": 25.75,
+          "peak_allocated_bytes": 3529280000,
+          "peak_reserved_bytes": 4175429632,
+          "report_sha256": "4dd39b40f8bbac52862a78fdd15a4470d2fedaaa7becb22d1932b113705c1856",
+          "restored_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+          "standalone_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 462.8798137488775
+        },
+        "original-01": {
+          "checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "metric_percent": 25.75,
+          "peak_allocated_bytes": 3529280000,
+          "peak_reserved_bytes": 4175429632,
+          "report_sha256": "038dbc569daf20542ce82405acf599bf29b1cc3b9cb0ea3059e1c8ec86e30f2d",
+          "restored_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 509.9608172108419
+        },
+        "original-02": {
+          "checkpoint_sha256": "8f8c0d4929c3ca08927072e5530237b53a7a30db5e744dc7cdaae9989f904145",
+          "environment": {
+            "controls": {
+              "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+              "MCDNN_STABLE_RESULT_MOD": null,
+              "MCDNN_USE_DETERMINISTIC_ALGO": null,
+              "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+              "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+            },
+            "cudnn_benchmark": false,
+            "cudnn_deterministic": true,
+            "cudnn_tf32": false,
+            "deterministic": true,
+            "deterministic_warn_only": false,
+            "fill_uninitialized_memory": true,
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "matmul_tf32": false,
+            "packages": {
+              "Pillow": "11.2.1",
+              "numpy": "1.26.4",
+              "opencv-python": "4.11.0.86",
+              "pycocotools": "2.0.10",
+              "scipy": "1.16.0",
+              "torch": "2.10.0+cu126",
+              "torchvision": "0.25.0+cu126"
+            },
+            "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+            "visible_devices": "1"
+          },
+          "final_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "final_state_sha256": "4c1cf141edcacf3ea1e5ed563e09146b94e31ef6ddae556d17322979c508e0b6",
+          "metric_percent": 25.75,
+          "peak_allocated_bytes": 3529280000,
+          "peak_reserved_bytes": 4175429632,
+          "report_sha256": "74c2aa934fcfefa4e0b18534f13619d649f5e44d9abeda69a841ad249c51e37f",
+          "restored_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+          "standalone_metrics": {
+            "top1": 25.75,
+            "top5": 79.25
+          },
+          "training_steps": 3140,
+          "training_wall_seconds": 495.4667056989856
+        }
+      },
+      "same_source_and_cross_source_comparisons": [
+        {
+          "epoch_metrics_exact": true,
+          "final_metrics_exact": true,
+          "final_model_state_exact": true,
+          "first_exact_loss_difference": null,
+          "left": "original-01",
+          "losses_exact": true,
+          "losses_exceeding_original_tolerance": 0,
+          "max_abs_loss_difference": 0.0,
+          "right": "original-02"
+        },
+        {
+          "epoch_metrics_exact": true,
+          "final_metrics_exact": true,
+          "final_model_state_exact": true,
+          "first_exact_loss_difference": null,
+          "left": "new-01",
+          "losses_exact": true,
+          "losses_exceeding_original_tolerance": 0,
+          "max_abs_loss_difference": 0.0,
+          "right": "new-02"
+        },
+        {
+          "epoch_metrics_exact": true,
+          "final_metrics_exact": true,
+          "final_model_state_exact": true,
+          "first_exact_loss_difference": null,
+          "left": "original-01",
+          "losses_exact": true,
+          "losses_exceeding_original_tolerance": 0,
+          "max_abs_loss_difference": 0.0,
+          "right": "new-01"
+        }
+      ],
+      "sources": {
+        "new": {
+          "all_values": [
+            25.75,
+            25.75
+          ],
+          "max": 25.75,
+          "mean": 25.75,
+          "min": 25.75,
+          "repeat_spread_pp": 0.0
+        },
+        "original": {
+          "all_values": [
+            25.75,
+            25.75
+          ],
+          "max": 25.75,
+          "mean": 25.75,
+          "min": 25.75,
+          "repeat_spread_pp": 0.0
+        }
+      }
+    }
+  ],
+  "scope": "Two repeats per source/model on one physical GPU, same seed; no population equivalence claim",
+  "seed": 131
+}
