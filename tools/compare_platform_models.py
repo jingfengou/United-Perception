@@ -120,6 +120,8 @@ def seed():
 
 
 def worker(args):
+    measure_time = getattr(args, 'measure_time', False)
+    timing_events = []
     # PointPillar's registry lives in det_3d, which ordinary 2D runs need not load.
     if args.model == 'pointpillar':
         tasks = os.environ.get('DEFAULT_TASKS', 'cls:det').split(':')
@@ -187,11 +189,17 @@ def worker(args):
         for step in range(3):
             model.train()
             optimizer.zero_grad(set_to_none=True)
+            if measure_time:
+                started, finished = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
+                started.record()
             output = model(batch())
             losses = {k: v for k, v in output.items() if 'loss' in k and isinstance(v, torch.Tensor)}
             if not losses:
                 raise AssertionError('Expected actual UP model loss, not a synthetic feature loss')
             sum(losses.values()).backward()
+            if measure_time:
+                finished.record()
+                timing_events.append((started, finished))
             record['steps'].append({'losses': cpu(losses), 'gradients': {k: cpu(p.grad) for k, p in model.named_parameters()}})
             optimizer.step()
             before = cpu(model.state_dict())
@@ -232,6 +240,8 @@ def worker(args):
                                       'tasks': os.environ.get('DEFAULT_TASKS'),
                                       'config': MODELS[args.model], 'seed': 131, 'numerics': 'native',
                                       'deterministic_algorithms': args.deterministic,
+                                      'timing': {'scope': 'CUDA event time for batch transfer and forward/backward; excludes optimizer, eval, restoration and CPU evidence copies',
+                                          'forward_backward_ms': [start.elapsed_time(end) for start, end in timing_events]} if measure_time else None,
                                       'native_extension': {'path': str(extension.__file__),
                                           'sha256': hashlib.sha256(Path(extension.__file__).read_bytes()).hexdigest(),
                                           'roi_align_deterministic_backward_version': getattr(extension.roi_align, 'deterministic_backward_version', None)},
@@ -263,6 +273,8 @@ def main(args):
                            '--variant', variant, '--purpose', purpose, '--output', str(path)]
                 if args.deterministic:
                     command.append('--deterministic')
+                if args.measure_time:
+                    command.append('--measure-time')
                 if args.reference_defer_kitti:
                     command.append('--reference-defer-kitti')
                 with path.with_suffix('.log').open('w') as log:
@@ -292,6 +304,7 @@ if __name__ == '__main__':
     parser.add_argument('--models', nargs='+', choices=MODELS, default=list(MODELS))
     parser.add_argument('--worker', action='store_true')
     parser.add_argument('--deterministic', action='store_true', help='Use the same native deterministic controls on original and routed runs; no custom numerical kernels')
+    parser.add_argument('--measure-time', action='store_true', help='Record forward/backward GPU timing outside tensor comparison payloads')
     parser.add_argument('--reference-defer-kitti', action='store_true', help='Explicit reference import adapter for PointPillar only; does not validate or replace the original KITTI evaluator')
     parser.add_argument('--model', choices=MODELS)
     parser.add_argument('--variant', choices=('original', 'repeat', 'routed'))
