@@ -1,0 +1,38 @@
+{
+  "reference_commit": "120d9af31fb022ccec71f1060eee892491341ca1",
+  "runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "data_manifest_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "models": ["resnet18", "yolov5s", "detr", "vit_b16"],
+  "vendors": ["nvidia", "metax"],
+  "checkpoint_cohort": "All four final-epoch new_nvidia native checkpoints from accuracy-20261024; no best-score selection",
+  "common_assets": "Prepare once on NVIDIA in a fresh process per model; transfer identical weight and real-data CPU tensor files to MetaX with SHA256 verification",
+  "seed": 131,
+  "rtol": 0.0001,
+  "atol": 0.00001,
+  "inference": {
+    "profiles": ["native", "ultralytics"],
+    "fresh_processes_per_model_profile_vendor": 2,
+    "first_batch_repeats_per_process": 10,
+    "classification_validation_samples": 2000,
+    "detection_validation_samples": 50,
+    "metrics": "Original UP dataset evaluators on all frozen held-out batches; also compare raw semantic output tensors and within-device repeats"
+  },
+  "gradients": {
+    "profiles": ["native", "ultralytics", "strict"],
+    "trials_per_batch": 10,
+    "batch_positions": "First, second and last batch in the original training loader, deduplicated if the loader has two batches",
+    "state": "Reload identical parameters and buffers, clear gradients and restore CPU/CUDA/NumPy/Python RNG before every trial",
+    "optimizer_updates": 0,
+    "scope": "Within-vendor forward/backward repeatability at fixed inputs/state/RNG, not complete training accuracy or convergence"
+  },
+  "profiles": {
+    "native": {"deterministic": false, "warn_only": false, "cudnn_deterministic": false, "CUBLAS_WORKSPACE_CONFIG": null},
+    "ultralytics": {"deterministic": true, "warn_only": true, "cudnn_deterministic": true, "CUBLAS_WORKSPACE_CONFIG": ":4096:8"},
+    "strict": {"deterministic": true, "warn_only": false, "cudnn_deterministic": true, "CUBLAS_WORKSPACE_CONFIG": ":4096:8"}
+  },
+  "shared_policy": {"fp32": true, "tf32": false, "cudnn_benchmark": false, "OMP_NUM_THREADS": 2, "MKL_NUM_THREADS": 2, "PYTHONHASHSEED": "131"},
+  "not_a_literal_reference_reproduction": "Use matched UP FP32 policy, data, models and weights; borrow inference/state control and warn-only configuration, not the reference benchmark scores, AMP recipe or entire library implementation",
+  "failure_policy": "Preserve every planned failure/warning. Execution completion, repeatability, tolerance and task metric equality are separate outcomes. Strict unsupported operators must fail without rewriting the model or silently retrying",
+  "prohibited": ["model algorithm changes", "CPU model fallback", "portable/v2/custom deterministic kernels", "tolerance relaxation", "old multi-seed task resumption"],
+  "planned_cases_per_vendor": 28
+}
