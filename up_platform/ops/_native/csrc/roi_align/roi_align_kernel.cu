@@ -292,10 +292,14 @@ using at::Tensor;
         const int width, const int channels, const int pooled_h, const int pooled_w,
         const int sampling_ratio, scalar_t* bottom_diff, const scalar_t* rois) {
         CUDA_1D_KERNEL_LOOP(index, nthreads) {
-            const int px = index % width, py = (index / width) % height;
-            const int channel = (index / width / height) % channels;
-            const int batch = index / width / height / channels;
-            scalar_t total = bottom_diff[index];
+            // Adjacent lanes share a spatial position and take the same sampling
+            // branches; only the thread mapping changes, not NCHW or sum order.
+            const int channel = index % channels;
+            const int px = (index / channels) % width;
+            const int py = (index / channels / width) % height;
+            const int batch = index / channels / width / height;
+            const int target = ((batch * channels + channel) * height + py) * width + px;
+            scalar_t total = bottom_diff[target];
             for (int n = 0; n < num_rois; ++n) {
                 const scalar_t* roi = rois + n * 5;
                 if (static_cast<int>(roi[0]) != batch) continue;
@@ -344,7 +348,7 @@ using at::Tensor;
                     }
                 }
             }
-            bottom_diff[index] = total;
+            bottom_diff[target] = total;
         }
     }
 
