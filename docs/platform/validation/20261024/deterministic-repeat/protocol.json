@@ -1,0 +1,71 @@
+{
+  "accuracy_threshold": null,
+  "atol": 1e-05,
+  "controls": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "cudnn.benchmark": false,
+    "cudnn.deterministic": true,
+    "cudnn_tf32": false,
+    "matmul_tf32": false,
+    "torch.use_deterministic_algorithms": true
+  },
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "device": 1,
+  "diagnostics": "No model algorithm replacement, no per-step gradient observer, no old multi-seed task resumed.",
+  "expected_full_optimizer_updates": 14960,
+  "expected_full_runs": 8,
+  "full_model_order": [
+    "vit_b16",
+    "yolov5s"
+  ],
+  "gpu_uuid": "GPU-a11f730c-a975-2bf0-b765-3c24d83b7104",
+  "id": "nvidia-same-card-native-deterministic-repeat-20261024",
+  "initialization": "Exactly the same initial/<model>/initial.pt as prior cohort; strict load and hash checks",
+  "models": {
+    "vit_b16": {
+      "epochs": 20,
+      "steps": 3140
+    },
+    "yolov5s": {
+      "epochs": 300,
+      "steps": 600
+    }
+  },
+  "new_runtime_source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "order_per_model": [
+    "original-01",
+    "new-01",
+    "new-02",
+    "original-02"
+  ],
+  "original_ref": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "original_source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "performance_reference": "Previous eight native same-card runs, unchanged inputs/workload and physical GPU; temporal rather than interleaved performance control.",
+  "precision": "FP32 native deterministic; TF32 off; benchmark off; deterministic strict (warn_only=False)",
+  "rtol": 0.0001,
+  "runtime_ref": "b137c68a1988e99b3cb19ac3307796b9ab70a984",
+  "seed": 131,
+  "selection": "All repeats, final epoch only; no retry or best selection",
+  "state": "Frozen before deterministic execution; final evidence will retain all complete and failed runs.",
+  "tools": {
+    "tests/platform/test_accuracy_numerics.py": "ae9309673cadf982ca5f832dcf7286f9d2c21346e951460315641c7a686c9061",
+    "tests/platform/test_accuracy_recipe.py": "9adb39b610e13183bb8f57ccfd1555ddede7bcd6d781273fbc17a8b5844058a0",
+    "tests/platform/test_contracts.py": "8565690c55f6d70b25b8daf5d4dc90eb0a575dd7a022bd7b2c1254540ebba95d",
+    "tests/platform/test_kitti_diagnostics.py": "39a2c4a90b08709ef111deae639a0d845a9d169e37029c5080a033f5ad492d2b",
+    "tests/platform/test_kitti_geometry.py": "a32a0e548e8e2037c214b617c957178e970f4459be540a08882ccaa80f6ae36c",
+    "tests/platform/test_native_operator_probe.py": "160ce81d0911c9734ffb8777da949d29e628be3d8d94682cee655bb8fc71aecc",
+    "tests/platform/test_operator_diagnosis.py": "9a78034f3326d0e3c6159b4717c509a51a2e2280fa73537ba34f98718a49f784",
+    "tests/platform/test_optional_dependencies.py": "b0dd7a6621937981dd1817ba952ed4689faa7a464863e7c2ea2883b9357f145e",
+    "tests/platform/test_public_import.py": "f193f5eb3f0af3791f50b07ec47105416deda8091ed994b7d9dd2ff277389c24",
+    "tests/platform/test_roi_align_determinism.py": "a64e6a1b202209526587b40f0472926197edc9eeaac92efae5bd3caf487e4122",
+    "tests/platform/test_roi_benchmark.py": "ce29b43ec35bbc50a07f0dab8b2d4023b2d70a9636cb3c7cccdb70f1afbd0773",
+    "tests/platform/test_runtime.py": "cbffe866908da0a6910b525a3a7a4072bd35e2d0407a68ab6d72efd2fa14f400",
+    "tests/platform/test_selection.py": "bda6497875d9ed8ec69f19f1198c23ef5002fc34686ca83bdf7453e73564355c",
+    "tests/platform/test_torch_bindings.py": "61a851e10766376220622a7a84ed01ac614928c7909df9f1233caa4555ba82c9",
+    "tests/platform/test_vendor_template.py": "c58ee5ad05efce06a5ec54f1fd6f68d79ebc99cd20d41d58a1887ad8fe64d209",
+    "tools/accuracy_train.py": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+    "tools/probe_native_operators.py": "9977679db954ec7e6e9dc2d3f65225e5b9430ed050509c0db0a9ec9db4770da5",
+    "tools/run_accuracy_cohort.py": "c5ae333ed466f9420b5651ffa0c6b8aa3c207db571d98894b2aad52ef03c4af4",
+    "tools/run_native_repeat.py": "e4a641bb888eda0cf2afa876a13074f8ea00c5e9c59ff92361243487d2ca3e9c"
+  }
+}
