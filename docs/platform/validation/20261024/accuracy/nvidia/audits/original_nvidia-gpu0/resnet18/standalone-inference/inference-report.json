@@ -1,0 +1,15 @@
+{
+  "checkpoint_sha256": "160415aec50f1845d4e01c39654755eb96a989d2f4ea376549a7504bb1a16c37",
+  "elapsed_seconds": 5.397531722206622,
+  "lane": "original_nvidia",
+  "metrics": {
+    "top1": 64.9000015258789,
+    "top5": 97.1500015258789
+  },
+  "model": "resnet18",
+  "purpose": "original UP standalone inference",
+  "raw_report_sha256": "41f3f872c36a00229b0c8ca47c1afa23da57c9f62dd6aa3a37a4c5ea1e71753e",
+  "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "status": "completed",
+  "weights_exact": true
+}

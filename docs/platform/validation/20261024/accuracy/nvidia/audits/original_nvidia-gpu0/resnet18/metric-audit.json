@@ -1,0 +1,12 @@
+{
+  "evaluator_sha256": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+  "labels_sha256": "4f330becf565813b86d87c9f848ac354303da175d1ae2eb101ec44bdbd4c6a4d",
+  "metrics": {
+    "top1": 64.9000015258789,
+    "top5": 97.1500015258789
+  },
+  "model": "resnet18",
+  "passed": true,
+  "predictions_sha256": "91fe72c28ef504fe88290c9f0844d70496af6d924a9d7d2efc04db8e6cd86a5c",
+  "report_sha256": "7394bd4e5412bf1506d8a6378531c26577305b631eab046d871858b4e8fbfb7e"
+}

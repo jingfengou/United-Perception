@@ -1,0 +1,80 @@
+{
+  "adapter_sha256": null,
+  "algorithm_config_sha256": "2db723a6a09f57d63b4449cd32be28d760cad656c0a4e44dafd1cbf5c412204e",
+  "all_batches_sha256": "27a79dc4c2fe013afbb4642ed0b806830a25680dcaf45c3131af36d8cec03276",
+  "checkpoint_all_states_finite": true,
+  "checkpoint_sha256": "8ffc16fe630fce4361884695f3b045538e2c7d0df6fe20530d35e6279f6794ca",
+  "data_sha256": "b089b8da229c473997193fd8ebee0a0a02fd3f5c32faa7eb36ff0c36ec3804a9",
+  "driver_sha256": "6ffd0e3c1e695582b5b67189bd925027d728faf70e13bd9c96d1ea8e70fe5f22",
+  "environment": {
+    "controls": {
+      "CUBLAS_WORKSPACE_CONFIG": null,
+      "MCDNN_STABLE_RESULT_MOD": null,
+      "MCDNN_USE_DETERMINISTIC_ALGO": null,
+      "PYTORCH_DISABLE_CUDA_CUDNN_TF32": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cudnn_tf32": false,
+    "deterministic": false,
+    "gpu": "MetaX C500",
+    "matmul_tf32": false,
+    "packages": {
+      "Pillow": "11.2.1",
+      "numpy": "1.26.4",
+      "opencv-python": "4.11.0.86",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "torch": "2.10.0+metax3.8.1.0",
+      "torchvision": "0.25.0+metax3.8.1.0"
+    },
+    "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+    "visible_devices": "3"
+  },
+  "epochs": 20,
+  "expected_steps": 3140,
+  "final_metrics": {
+    "top1": 24.350000381469727,
+    "top5": 77.80000305175781
+  },
+  "final_state_sha256": "5d9495f90cbb3921a50bf89c8359fa0c3bc68526a5d459c851cf90735bd12819",
+  "first_batch_sha256": "b652fa2517771657ebe52579b4d0e7274fee16fd08d585a6a328ab5f8136bb29",
+  "initial_file_sha256": "dd2268ceabd8536abe6d63f884914b9f77b80408f2f13d119df0d1d1287f8ebb",
+  "initial_metrics": {
+    "top1": 9.65000057220459,
+    "top5": 48.29999923706055
+  },
+  "initial_state_sha256": "34278e3291784b374e2d82401db03d67db8868d015cd370d0e6a3144d71be567",
+  "lane": "new_metax",
+  "mode": "native",
+  "model": "vit_b16",
+  "model_provenance": "native UP model",
+  "peak_allocated_bytes": 3662580224,
+  "peak_reserved_bytes": 4320133120,
+  "raw_index_sha256": "ebb52c1f461d5765b63225386c9732c6201b54158036d47e2ef8108fd577a8ee",
+  "raw_report": "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024/results/new_metax-gpu3/vit_b16/report.json",
+  "raw_report_sha256": "b47ce9b4f8db9d0827e971ba6cd7933f3afdd7ccc816872763e0e70822e2554d",
+  "restore_weights_exact": true,
+  "restored_metric_delta": {
+    "top1": 0.0,
+    "top5": 0.0
+  },
+  "restored_metrics": {
+    "top1": 24.350000381469727,
+    "top5": 77.80000305175781
+  },
+  "scope": "Complete fixed small-data budget; one seed; no statistical equivalence claim. Official DETR adapter is external to UP.",
+  "seed": 131,
+  "selection": "final epoch only; no best checkpoint or rerun selection",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "total_worker_seconds": 605.8368133241311,
+  "training_steps": 3140,
+  "training_wall_seconds": 560.7455656407401,
+  "trajectory": {
+    "epoch_metrics_count": 23,
+    "learning_rates_sha256": "e9611411d3a05892a9896941659094169385db25fd39eecd535324f0c07967e6",
+    "loss_count": 3140
+  }
+}

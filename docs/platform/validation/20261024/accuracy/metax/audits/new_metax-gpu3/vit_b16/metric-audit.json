@@ -1,0 +1,12 @@
+{
+  "evaluator_sha256": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+  "labels_sha256": "4f330becf565813b86d87c9f848ac354303da175d1ae2eb101ec44bdbd4c6a4d",
+  "metrics": {
+    "top1": 24.350000381469727,
+    "top5": 77.80000305175781
+  },
+  "model": "vit_b16",
+  "passed": true,
+  "predictions_sha256": "b0141a282dd75d63db6d7c6b11d66bbbd132595ddc3f2974b5baf18263b93bdc",
+  "report_sha256": "b47ce9b4f8db9d0827e971ba6cd7933f3afdd7ccc816872763e0e70822e2554d"
+}

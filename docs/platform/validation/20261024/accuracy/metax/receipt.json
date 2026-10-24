@@ -1,0 +1,94 @@
+{
+  "completed_runs": 5,
+  "cpu": {
+    "errors": "0",
+    "failures": "0",
+    "hostname": "ed0db0d48661",
+    "name": "pytest",
+    "skipped": "0",
+    "tests": "54",
+    "time": "31.712",
+    "timestamp": "2026-10-24T04:36:39.627949+00:00"
+  },
+  "host": "metax",
+  "raw_bytes": 9492902895,
+  "raw_files": 1134,
+  "raw_index": "/tmp/up-clean-accuracy-20261024/evidence-01/index.json",
+  "raw_index_sha256": "ebb52c1f461d5765b63225386c9732c6201b54158036d47e2ef8108fd577a8ee",
+  "raw_root": "/workspace/up-run/up-platform-clean-20261023/accuracy-20261024",
+  "records": [
+    {
+      "final_metrics": {
+        "top1": 66.45000457763672,
+        "top5": 96.9000015258789
+      },
+      "lane": "new_metax",
+      "model": "resnet18"
+    },
+    {
+      "final_metrics": {
+        "bbox.AP": 0.291649035674241,
+        "bbox.AP.5": 0.5512928966815122,
+        "bbox.AP.75": 0.2513381871316574,
+        "bbox.AP_L": 0.3405535399960013,
+        "bbox.AP_M": 0.11435870143341105,
+        "bbox.AP_S": 0.015709570957095707,
+        "bbox.AR": 0.6022556390977444,
+        "bbox.AR_1": 0.11654135338345865,
+        "bbox.AR_10": 0.5451127819548872,
+        "bbox.AR_L": 0.6272727272727273,
+        "bbox.AR_M": 0.39999999999999997,
+        "bbox.AR_S": 0.2
+      },
+      "lane": "new_metax",
+      "model": "yolov5s"
+    },
+    {
+      "final_metrics": {
+        "bbox.AP": 0.7775180717359853,
+        "bbox.AP.5": 0.9712719445470943,
+        "bbox.AP.75": 0.8779313896502515,
+        "bbox.AP_L": 0.8137698094892825,
+        "bbox.AP_M": 0.4127806339032619,
+        "bbox.AP_S": 0.26930693069306927,
+        "bbox.AR": 0.8278195488721805,
+        "bbox.AR_1": 0.34210526315789475,
+        "bbox.AR_10": 0.8187969924812031,
+        "bbox.AR_L": 0.8570247933884299,
+        "bbox.AR_M": 0.6222222222222222,
+        "bbox.AR_S": 0.26666666666666666
+      },
+      "lane": "new_metax",
+      "model": "detr"
+    },
+    {
+      "final_metrics": {
+        "bbox.AP": 0.5836867222325117,
+        "bbox.AP.5": 0.8694428313737246,
+        "bbox.AP.75": 0.6979072139910338,
+        "bbox.AP_L": 0.6347030088741923,
+        "bbox.AP_M": 0.024882293186907142,
+        "bbox.AP_S": 0.0,
+        "bbox.AR": 0.6654135338345865,
+        "bbox.AR_1": 0.3015037593984963,
+        "bbox.AR_10": 0.6323308270676692,
+        "bbox.AR_L": 0.7057851239669422,
+        "bbox.AR_M": 0.34444444444444444,
+        "bbox.AR_S": 0.0
+      },
+      "lane": "new_metax",
+      "model": "faster_rcnn"
+    },
+    {
+      "final_metrics": {
+        "top1": 24.350000381469727,
+        "top5": 77.80000305175781
+      },
+      "lane": "new_metax",
+      "model": "vit_b16"
+    }
+  ],
+  "reports_archive": "/tmp/up-clean-accuracy-20261024/evidence-01/reports.tar.gz",
+  "reports_archive_sha256": "cc2aa6600cfcc5e46ec4f1dd06f149040f13b60ae5384f18242f94ec007bd3a9",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5"
+}

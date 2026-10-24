@@ -1,0 +1,15 @@
+{
+  "checkpoint_sha256": "a25b15ef157f0a214777ce80242702846f675d8457ba82cd307d411c016374aa",
+  "elapsed_seconds": 26.69997606333345,
+  "lane": "new_metax",
+  "metrics": {
+    "top1": 66.45000457763672,
+    "top5": 96.9000015258789
+  },
+  "model": "resnet18",
+  "purpose": "inference",
+  "raw_report_sha256": "8f6a9fb21b35a360b489025cfa5abbb8d0c612f7dc1c3551ffdda0167f683cec",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "weights_exact": true
+}

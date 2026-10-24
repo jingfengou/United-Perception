@@ -1,0 +1,396 @@
+{
+  "records": [
+    {
+      "first_exact_loss_difference_original_vs_new_nvidia": {
+        "delta": -0.0001373291015625,
+        "new": 4.30216121673584,
+        "original": 4.302298545837402,
+        "step": 3
+      },
+      "first_training_loss": {
+        "new_metax": 2.5067286491394043,
+        "new_nvidia": 2.5067286491394043,
+        "original_nvidia": 2.5067286491394043
+      },
+      "initial_metrics": {
+        "new_metax": {
+          "top1": 11.0,
+          "top5": 50.20000076293945
+        },
+        "new_nvidia": {
+          "top1": 11.0,
+          "top5": 50.20000076293945
+        },
+        "original_nvidia": {
+          "top1": 11.0,
+          "top5": 50.20000076293945
+        }
+      },
+      "model": "resnet18",
+      "same_checkpoint_metric_restore_deltas": {
+        "new_metax": {
+          "top1": 0.0,
+          "top5": 0.0
+        },
+        "new_nvidia": {
+          "top1": 0.0,
+          "top5": 0.0
+        },
+        "original_nvidia": {
+          "top1": 0.0,
+          "top5": 0.0
+        }
+      }
+    },
+    {
+      "first_exact_loss_difference_original_vs_new_nvidia": {
+        "delta": -1.71661376953125e-05,
+        "new": 13.515820503234863,
+        "original": 13.515837669372559,
+        "step": 1
+      },
+      "first_training_loss": {
+        "new_metax": 13.515604019165039,
+        "new_nvidia": 13.515820503234863,
+        "original_nvidia": 13.515837669372559
+      },
+      "initial_metrics": {
+        "new_metax": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "new_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "original_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        }
+      },
+      "model": "yolov5s",
+      "same_checkpoint_metric_restore_deltas": {
+        "new_metax": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "new_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "original_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        }
+      }
+    },
+    {
+      "first_exact_loss_difference_original_vs_new_nvidia": {
+        "delta": -2.384185791015625e-07,
+        "new": 2.3017349243164062,
+        "original": 2.3017351627349854,
+        "step": 180
+      },
+      "first_training_loss": {
+        "new_metax": 2.3060355186462402,
+        "new_nvidia": 2.3273837566375732,
+        "original_nvidia": 2.3273837566375732
+      },
+      "initial_metrics": {
+        "new_metax": {
+          "top1": 9.65000057220459,
+          "top5": 48.29999923706055
+        },
+        "new_nvidia": {
+          "top1": 9.65000057220459,
+          "top5": 48.29999923706055
+        },
+        "original_nvidia": {
+          "top1": 9.65000057220459,
+          "top5": 48.29999923706055
+        }
+      },
+      "model": "vit_b16",
+      "same_checkpoint_metric_restore_deltas": {
+        "new_metax": {
+          "top1": 0.0,
+          "top5": 0.0
+        },
+        "new_nvidia": {
+          "top1": 0.0,
+          "top5": 0.0
+        },
+        "original_nvidia": {
+          "top1": 0.0,
+          "top5": 0.0
+        }
+      }
+    },
+    {
+      "first_exact_loss_difference_original_vs_new_nvidia": {
+        "delta": -2.9861927032470703e-05,
+        "new": 0.8266177773475647,
+        "original": 0.8266476392745972,
+        "step": 3
+      },
+      "first_training_loss": {
+        "new_metax": 1.4564670324325562,
+        "new_nvidia": 1.4564250707626343,
+        "original_nvidia": 1.4564250707626343
+      },
+      "initial_metrics": {
+        "new_metax": {
+          "bbox.AP": 0.0001336264741037371,
+          "bbox.AP.5": 0.0005445689571298599,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0007311845419091548,
+          "bbox.AP_M": 2.754647483826284e-05,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.030827067669172932,
+          "bbox.AR_1": 0.003007518796992481,
+          "bbox.AR_10": 0.003007518796992481,
+          "bbox.AR_L": 0.030578512396694214,
+          "bbox.AR_M": 0.04444444444444444,
+          "bbox.AR_S": 0.0
+        },
+        "new_nvidia": {
+          "bbox.AP": 0.00013364224905517796,
+          "bbox.AP.5": 0.0005446518029375215,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0007313706930113746,
+          "bbox.AP_M": 2.754647483826284e-05,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.030827067669172932,
+          "bbox.AR_1": 0.003007518796992481,
+          "bbox.AR_10": 0.003007518796992481,
+          "bbox.AR_L": 0.030578512396694214,
+          "bbox.AR_M": 0.04444444444444444,
+          "bbox.AR_S": 0.0
+        },
+        "original_nvidia": {
+          "bbox.AP": 0.00013364224905517796,
+          "bbox.AP.5": 0.0005446518029375215,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0007313706930113746,
+          "bbox.AP_M": 2.754647483826284e-05,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.030827067669172932,
+          "bbox.AR_1": 0.003007518796992481,
+          "bbox.AR_10": 0.003007518796992481,
+          "bbox.AR_L": 0.030578512396694214,
+          "bbox.AR_M": 0.04444444444444444,
+          "bbox.AR_S": 0.0
+        }
+      },
+      "model": "faster_rcnn",
+      "same_checkpoint_metric_restore_deltas": {
+        "new_metax": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "new_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "original_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        }
+      }
+    },
+    {
+      "first_exact_loss_difference_original_vs_new_nvidia": {
+        "delta": -4.0531158447265625e-06,
+        "new": 2.8088693618774414,
+        "original": 2.808873414993286,
+        "step": 3
+      },
+      "first_training_loss": {
+        "new_metax": 3.0134057998657227,
+        "new_nvidia": 3.013404607772827,
+        "original_nvidia": 3.013404607772827
+      },
+      "initial_metrics": {
+        "new_metax": {
+          "bbox.AP": 0.7476246570894742,
+          "bbox.AP.5": 0.9404987172034478,
+          "bbox.AP.75": 0.8832682951733054,
+          "bbox.AP_L": 0.7911459938513826,
+          "bbox.AP_M": 0.38010347761962043,
+          "bbox.AP_S": 0.27313254014477073,
+          "bbox.AR": 0.8203007518796992,
+          "bbox.AR_1": 0.3270676691729323,
+          "bbox.AR_10": 0.8165413533834587,
+          "bbox.AR_L": 0.8421487603305786,
+          "bbox.AR_M": 0.6555555555555556,
+          "bbox.AR_S": 0.4333333333333333
+        },
+        "new_nvidia": {
+          "bbox.AP": 0.7476246570894742,
+          "bbox.AP.5": 0.9404987172034478,
+          "bbox.AP.75": 0.8832682951733054,
+          "bbox.AP_L": 0.7911459938513826,
+          "bbox.AP_M": 0.38010347761962043,
+          "bbox.AP_S": 0.27313254014477073,
+          "bbox.AR": 0.8203007518796992,
+          "bbox.AR_1": 0.3270676691729323,
+          "bbox.AR_10": 0.8165413533834587,
+          "bbox.AR_L": 0.8421487603305786,
+          "bbox.AR_M": 0.6555555555555556,
+          "bbox.AR_S": 0.4333333333333333
+        },
+        "original_nvidia": {
+          "bbox.AP": 0.7476246570894742,
+          "bbox.AP.5": 0.9404987172034478,
+          "bbox.AP.75": 0.8832682951733054,
+          "bbox.AP_L": 0.7911459938513826,
+          "bbox.AP_M": 0.38010347761962043,
+          "bbox.AP_S": 0.27313254014477073,
+          "bbox.AR": 0.8203007518796992,
+          "bbox.AR_1": 0.3270676691729323,
+          "bbox.AR_10": 0.8165413533834587,
+          "bbox.AR_L": 0.8421487603305786,
+          "bbox.AR_M": 0.6555555555555556,
+          "bbox.AR_S": 0.4333333333333333
+        }
+      },
+      "model": "detr",
+      "same_checkpoint_metric_restore_deltas": {
+        "new_metax": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "new_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        },
+        "original_nvidia": {
+          "bbox.AP": 0.0,
+          "bbox.AP.5": 0.0,
+          "bbox.AP.75": 0.0,
+          "bbox.AP_L": 0.0,
+          "bbox.AP_M": 0.0,
+          "bbox.AP_S": 0.0,
+          "bbox.AR": 0.0,
+          "bbox.AR_1": 0.0,
+          "bbox.AR_10": 0.0,
+          "bbox.AR_L": 0.0,
+          "bbox.AR_M": 0.0,
+          "bbox.AR_S": 0.0
+        }
+      }
+    }
+  ],
+  "repeat_variance": "Not estimated; one run per lane; no same-source full-budget repeat",
+  "scope": "Observations only; exact loss differences are not operator tolerance failures or causal attribution"
+}

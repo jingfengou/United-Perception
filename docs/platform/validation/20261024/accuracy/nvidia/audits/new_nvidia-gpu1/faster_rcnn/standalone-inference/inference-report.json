@@ -1,0 +1,25 @@
+{
+  "checkpoint_sha256": "76c30b9abf09fdfd2a491e0836e2131f9f0ac518e1cd5170a45807bc2cb1c2f7",
+  "elapsed_seconds": 8.402078561019152,
+  "lane": "new_nvidia",
+  "metrics": {
+    "bbox.AP": 0.6147036787214324,
+    "bbox.AP.5": 0.8910814580355535,
+    "bbox.AP.75": 0.7474058233332126,
+    "bbox.AP_L": 0.666395314921075,
+    "bbox.AP_M": 0.04824076844720329,
+    "bbox.AP_S": 0.0,
+    "bbox.AR": 0.6924812030075188,
+    "bbox.AR_1": 0.30451127819548873,
+    "bbox.AR_10": 0.6593984962406014,
+    "bbox.AR_L": 0.7297520661157024,
+    "bbox.AR_M": 0.4222222222222222,
+    "bbox.AR_S": 0.0
+  },
+  "model": "faster_rcnn",
+  "purpose": "inference",
+  "raw_report_sha256": "51b09939a8f7d4350137ab9576f9820b263a5649f811e066d172feeaec968728",
+  "source_sha256": "74bcb57f91310e2e1f84d3f12d621b1e45fbdc699804110dcc7cd33e8ac187c5",
+  "status": "completed",
+  "weights_exact": true
+}

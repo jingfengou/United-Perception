@@ -1,0 +1,22 @@
+{
+  "evaluator_sha256": "99137e33378ab8897e84f3693a5234a38513973637bac212f344cfebac48a490",
+  "labels_sha256": "221b282c8d851335ccee7099afd150c5d73b8c39249f39a2d2bdb6ad64c1cede",
+  "metrics": {
+    "bbox.AP": 0.6147036787214324,
+    "bbox.AP.5": 0.8910814580355535,
+    "bbox.AP.75": 0.7474058233332126,
+    "bbox.AP_L": 0.666395314921075,
+    "bbox.AP_M": 0.04824076844720329,
+    "bbox.AP_S": 0.0,
+    "bbox.AR": 0.6924812030075188,
+    "bbox.AR_1": 0.30451127819548873,
+    "bbox.AR_10": 0.6593984962406014,
+    "bbox.AR_L": 0.7297520661157024,
+    "bbox.AR_M": 0.4222222222222222,
+    "bbox.AR_S": 0.0
+  },
+  "model": "faster_rcnn",
+  "passed": true,
+  "predictions_sha256": "9b83aac00afcb43624b61bdd52e412378ae99d20f23e31119f9b6d4f183ac5df",
+  "report_sha256": "4fb4fe76da3963bbf6cad953cc339b43ede06ec99825e0f41193e1816c4ea00f"
+}

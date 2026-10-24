@@ -1,0 +1,25 @@
+{
+  "checkpoint_sha256": "6f45330f9126f332a07e8cc0cd0db4c2c186250203a757156eb9af66655cb069",
+  "elapsed_seconds": 8.871145086362958,
+  "lane": "original_nvidia",
+  "metrics": {
+    "bbox.AP": 0.7764736351927837,
+    "bbox.AP.5": 0.9689714226333298,
+    "bbox.AP.75": 0.8799389285423233,
+    "bbox.AP_L": 0.812599633957895,
+    "bbox.AP_M": 0.4109832263872679,
+    "bbox.AP_S": 0.26930693069306927,
+    "bbox.AR": 0.8323308270676693,
+    "bbox.AR_1": 0.34135338345864663,
+    "bbox.AR_10": 0.8263157894736842,
+    "bbox.AR_L": 0.8611570247933884,
+    "bbox.AR_M": 0.6333333333333333,
+    "bbox.AR_S": 0.26666666666666666
+  },
+  "model": "detr",
+  "purpose": "original UP standalone inference",
+  "raw_report_sha256": "c78c31c06eaf2174f1074e03a53c8fee541bda9312cbec7172a49748df342b6f",
+  "source_sha256": "35ea0ab7da9c01bb4b7fe192194e36912a084f14b3f8c1deaab8df9a7e54ca1e",
+  "status": "completed",
+  "weights_exact": true
+}
