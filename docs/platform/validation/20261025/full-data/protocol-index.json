@@ -52,6 +52,7 @@
       ]
     }
   },
+  "frozen_tool_bytes_index_sha256": "75c4cfb83d86638b4094d5d572e4f35d412549edebb6033dca20a3635498adc7",
   "frozen_tool_bytes_sha256": {
     "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
     "accuracy_detr.py": "adcabe3aa7d716581f115dae170689e52c4a218a6945c2796ed884130c20915b",
@@ -68,6 +69,7 @@
     "run_platform_validation.py": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5"
   },
   "full_training_complete": false,
+  "preflight_audit_sha256": "a0a3586478a4c852f918e9c8076216c88c0f5add8bc5d3ec03641eb82d34a321",
   "preflight_data_scope": "512 train/64 validation ImageNet, 128 train/64 validation COCO; complete class counts only",
   "preflight_data_tar_sha256": "9cd5a064db44c27731cfb148041ecacd8776904a14fdb395e9fdcd4593791c9a",
   "preflight_plan_sha256": "7d7812084e0d3ee6470a16bf08cdd1e802525ea0058f78bb105c6301b8d6a3ce",

@@ -13,8 +13,9 @@
 
 ## 当前验收重点
 
-[完整 ImageNet / COCO 三路径对照](IMAGENET_COCO_PARITY_20261025.md)正在准备数据和双卡预检查；
-当前完整预算训练尚未启动，最终精度待测。它与以下 CIFAR-10 / PennFudan 结果分别记录。
+[完整 ImageNet / COCO 三路径对照](IMAGENET_COCO_PARITY_20261025.md)已完成并审计 48 项双卡预检查，
+全部输入及中断恢复顺序一致；当前仍在传输和审计完整数据，完整预算训练尚未启动、最终精度待测。
+它与以下 CIFAR-10 / PennFudan 结果分别记录，预检查执行成功不代表精度等价。
 
 本轮五模型、三条路径的单种子 native 真实数据完整预算已完成：**15 次训练、24,960 次更新**，最终指标、恢复及独立推理已审计，见 [三路径训练记录](ACCURACY_NATIVE_20261024.md)。
 新版沐曦相对新版 NVIDIA 的绝对差为 ResNet 0.05、YOLO 0.46、ViT 1.80、Faster R-CNN 3.10、DETR 1.47 pp。

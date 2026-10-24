@@ -1,6 +1,6 @@
 # 完整 ImageNet / COCO 三路径训练对照
 
-日期：2026-10-25。**状态：数据准备和最终双卡预检查进行中，完整预算训练尚未启动，最终精度待测。**
+日期：2026-10-25。**状态：48 项双卡预检查及输入/恢复审计已完成；ImageNet 传输和全量数据审计进行中，完整预算训练尚未启动，最终精度待测。**
 
 本轮与先前 CIFAR-10 / PennFudan 实验分别记录；旧多随机种子任务保持暂停。
 不修改 `up/`、`up_platform/` 或原模型配置文件，不迁入 portable/v2，不放宽算子比较容差。
@@ -110,6 +110,36 @@ Python 补丁版本、厂商 SDK、GPU 和第三方内核不同，不能声称�
 预检查仅使用真实图片小视图，保留完整类别数；**短程成功或 AP 为零都不是完整精度结论**。
 正式训练必须等两边预检查、逐图数据审计、公共初始权重与配置/输入核对完成，再冻结正式计划；不会拿预检查计划代替正式计划。
 
+2026-10-25 更新：[preflight-08 独立审计](validation/20261025/full-data/preflight-audit.json)已确认四模型、三条路径的 **48 项执行全部完成**。
+每个 rank 的全部预检查输入在三条路径之间相同；中断恢复后的图片顺序与增强结果也与不间断运行逐批相同。
+DETR 为每路径 36 步，其余模型各 8 步，另做相同预算的中断/恢复对照；合计 360 个调度步、348 次成功优化器更新。
+ResNet50 的原生 AMP 在每条训练轨迹中均跳过 2 次更新，已如实计数。
+这确认执行和恢复协议可用，**没有据此断言新旧最终权重数值等价或完整数据精度一致**。
+
+### 冻结工具的换行格式
+
+运行源码清单只归一化 CRLF/LF，工具计划则检查实际文件字节。
+Windows 留存的部分旧工具是 CRLF；Linux 克隆后不能简单修改计划中的哈希来绕过检查。
+[逐文件字节索引](validation/20261025/full-data/frozen-tool-bytes.json)同时记录原始哈希、LF 内容哈希和换行格式。
+可从相同版本的 Git 内容还原到独立目录，原模型文件不需要修改：
+
+```python
+import hashlib, json
+from pathlib import Path
+specs = json.loads(Path("docs/platform/validation/20261025/full-data/frozen-tool-bytes.json").read_text())
+target = Path("frozen-tools")
+target.mkdir(exist_ok=False)
+for name, spec in specs.items():
+    raw = (Path("tools") / name).read_bytes().replace(b"\r\n", b"\n")
+    assert hashlib.sha256(raw).hexdigest() == spec["lf_normalized_sha256"]
+    raw = raw if spec["line_endings"] == "LF" else raw.replace(b"\n", b"\r\n")
+    assert hashlib.sha256(raw).hexdigest() == spec["sha256"]
+    (target / name).write_bytes(raw)
+```
+
+下例的 `FROZEN_TOOLS` 指向该目录。源快照中也采用这 13 个工具形成源码清单；
+原版快照包含原版 `up/`、`configs/` 和 `tools/`，新版再包含 `up_platform/`，避免把其他实验脚本混入同一清单。
+
 数据准备和审计：
 
 ```bash
@@ -128,12 +158,12 @@ python tools/full_accuracy_bind.py \
 ```bash
 export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONHASHSEED=0 DEFAULT_TASKS=cls:det
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --standalone --nproc-per-node=2 \
-  tools/full_accuracy_train.py --source "$SOURCE" --data data-binding.json \
+  "$FROZEN_TOOLS/full_accuracy_train.py" --source "$SOURCE" --data data-binding.json \
   --plan full-plan.json --model resnet50 --lane "$LANE" \
   --initial "$COMMON_INITIAL" --output "$RESULT/train"
 # 经检查点完整性审计后，原命令增加 --resume 恢复；不换计划、种子、数据或输出目录。
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --standalone --nproc-per-node=2 \
-  tools/full_accuracy_train.py --source "$SOURCE" --data data-binding.json \
+  "$FROZEN_TOOLS/full_accuracy_train.py" --source "$SOURCE" --data data-binding.json \
   --plan full-plan.json --model resnet50 --lane "$LANE" \
   --initial "$COMMON_INITIAL" --mode inference --checkpoint "$RESULT/train" \
   --output "$RESULT/inference"
