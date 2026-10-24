@@ -42,7 +42,7 @@ def audit(root):
         unit = 'percent' if 'accuracy (%)' in label else 'ratio'
         metrics.append({'model': model, 'dataset': dataset, 'metric': label, 'unit': unit,
             'nvidia': nvidia, 'metax': metax, 'delta_pp': delta_pp(nvidia, metax, unit=unit),
-            'reference_display': module.comparison(label, nvidia, metax), 'input_print_digits': digits,
+            'reference_display': module.comparison(label, nvidia, metax), 'reference_table_digits': digits,
             'scope': 'Numbers extracted from published logs; classification and DETR logs already round their outputs'})
     files = [root/'README.md', root/'generate_summary.py']
     files += sorted(p for folder in ('cuda', 'mx-c500', 'cuda_train', 'mx-c500_train')
