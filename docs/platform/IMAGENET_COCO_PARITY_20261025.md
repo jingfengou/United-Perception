@@ -1,6 +1,6 @@
 # 完整 ImageNet / COCO 三路径单 epoch 对照
 
-日期：2026-10-25。**状态：前三模型共 9 次单 epoch 对照中，C500 的 ResNet50、YOLOv5-S 共 2 次已完成训练、完整验证、独立推理及 CPU 指标复算；ViT 训练中。NVIDIA 仍等待旧作业首个检查点后接续，尚无三路径精度结论。DETR 暂缓。**
+日期：2026-10-25。**状态：前三模型共 9 次单 epoch 对照中，C500 的 ResNet50、YOLOv5-S、ViT 共 3 次已完成训练、完整验证、独立推理及 CPU 指标复算。NVIDIA 仍等待旧作业首个检查点后接续，尚无三路径精度结论。DETR 暂缓。**
 
 本轮与先前 CIFAR-10 / PennFudan 实验分别记录；旧多随机种子任务保持暂停。
 不修改 `up/`、`up_platform/` 或原模型配置文件，不迁入 portable/v2，不放宽算子比较容差。
@@ -14,6 +14,7 @@
 | --- | --- | ---: | ---: |
 | ResNet50 | Top-1 **0.2980%**，Top-5 **1.2140%** | 29.27 | 3.49 |
 | YOLOv5-S | COCO bbox AP **0.7869**（0–100） | 10.09 | 12.87 |
+| ViT-B/16 | Top-1 **3.3120%**，Top-5 **10.3860%** | 36.19 | 14.44 |
 
 YOLO 原始 `bbox.AP` 为 `0.007869252330576044`，上表乘 100 显示 AP 点，不能把两种单位混用。
 这些早期指标很低；本轮保留长配方的 warmup 和 EMA，且只有一轮，低值原因和跨平台差异仍待对照确认，不作收敛精度结论。
@@ -21,12 +22,17 @@ YOLO 原始 `bbox.AP` 为 `0.007869252330576044`，上表乘 100 显示 AP 点�
 
 - ResNet50：10,010 个调度步，10,005 次成功优化器更新，原生 AMP 跳过 5 次。
 - YOLOv5-S：1,849 个调度步及优化器更新。
-- 两模型均核对公共初始权重、冻结计划/源码、完整检查点与各 rank 文件哈希；训练内 eval 和新进程独立推理的完整预测文件逐字节相同。
-- CPU 从保存预测重新计分，ResNet50 验证集 50,000 张且路径/标签无缺失或重复；COCO 在全部 5,000 张上重新执行原版 `pycocotools` 评估，包含无预测图片。重算值与报告逐项一致。
+- ViT-B/16：10,010 个调度步，10,006 次成功优化器更新，原生 AMP 跳过 4 次。
+- 三模型均核对公共初始权重、冻结计划/源码、完整检查点与各 rank 文件哈希；训练内 eval 和新进程独立推理的完整预测文件逐字节相同。
+- CPU 从保存预测重新计分，两种分类模型的验证集均为 50,000 张，路径/标签无缺失或重复；COCO 在全部 5,000 张上重新执行原版 `pycocotools` 评估，包含无预测图片。重算值与报告逐项一致。
 
 原始指标、环境、成功更新数、预测与恢复校验值见 [部分结果汇总](validation/20261025/one-epoch/partial-metrics.json)，
-[ResNet50 审核](validation/20261025/one-epoch/new_metax-resnet50-audit.json)和 [YOLO 审核](validation/20261025/one-epoch/new_metax-yolov5s-audit.json)。
+[ResNet50 审核](validation/20261025/one-epoch/new_metax-resnet50-audit.json)、[YOLO 审核](validation/20261025/one-epoch/new_metax-yolov5s-audit.json)和 [ViT 审核](validation/20261025/one-epoch/new_metax-vit_b16-audit.json)。
 其中 `comparisons` 明确标记为等待三条路径，不把部分读数标成对照通过。
+
+C500 的三模型队列守卫已确认最后一次独立推理和检查点完整，结束父控制器并阻止 DETR 接续。
+因此旧父状态文件可能仍显示最后一次 inference 的 `running`；完成依据是队列守卫、各模型结果和 CPU 审计，不能据此重复启动。
+独立的[平台算子检查](MODEL_OPERATOR_PARITY_20261025.md)也已完成 C500 部分，不能把其局部误差直接解释为以上精度读数的原因。
 
 ## 比较什么
 

@@ -1,0 +1,47 @@
+{
+  "audit_seconds": 4.1375239146873355,
+  "budget": {
+    "execution_epochs": 1,
+    "expected_steps": 10010,
+    "recipe_epochs": 300,
+    "steps_per_epoch": 10010
+  },
+  "checkpoint_files": {
+    "checkpoint-1.pt": "31f3cd6cc132690c8c4633ed8c41afc47389da5c2825637737bce70e2c9f1072",
+    "checkpoint-1.rank0.pt": "98eb50b057b535aaa97f3b99aa80148ded9ae85573247df347f9224a9ba00622",
+    "checkpoint-1.rank1.pt": "78983365fe225998f6c91e08b0256c94bbd052268a906ab4a8ebe314fff42a0e"
+  },
+  "cuda_visible_devices": "",
+  "details": {
+    "correct": {
+      "1": 1656,
+      "5": 5193
+    },
+    "metric_units": "percent (0 to 100), upstream FP32 multiplication",
+    "unique_membership_and_labels_exact": true,
+    "validation_images": 50000
+  },
+  "framework_imported": false,
+  "inference_sha256": "bbb75eaaded9e575164414ac18a13dc1daefb8b3f2f926ae73f7df948762b237",
+  "lane": "new_metax",
+  "metrics_recompute_exact": true,
+  "model": "vit_b16",
+  "model_computation": false,
+  "prediction_sha256": {
+    "inference": "2e1694ea101707d4e4559b09237f9b1f39262a8666132eb2f6fcda760c996145",
+    "train": "2e1694ea101707d4e4559b09237f9b1f39262a8666132eb2f6fcda760c996145"
+  },
+  "predictions_identical": true,
+  "recomputed_final_metrics": {
+    "top1": 3.312000274658203,
+    "top5": 10.386000633239746
+  },
+  "recomputed_inference_metrics": {
+    "top1": 3.312000274658203,
+    "top5": 10.386000633239746
+  },
+  "recorded_utc": "2026-10-25T04:35:51.575951+00:00",
+  "report_sha256": "f638b56681923ce4c99ec9c8201ea57e6b2d50de6045b517a46fcd24359e402f",
+  "status": "completed_cpu_integrity_and_metric_audit",
+  "tool_sha256": "805d9e6219015b1daf0c332ce3dda808a92e29779d5b39b37a34f5797828cede"
+}
