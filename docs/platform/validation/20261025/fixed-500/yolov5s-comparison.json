@@ -1,0 +1,114 @@
+{
+  "yolov5s": {
+    "metrics": {
+      "new_metax": {
+        "bbox.AP": 7.04460444155005e-05,
+        "bbox.AP.5": 0.0003252857631892946,
+        "bbox.AP.75": 1.3834016514582543e-05,
+        "bbox.AP_L": 8.343643690115887e-05,
+        "bbox.AP_M": 0.00032536916609637764,
+        "bbox.AP_S": 5.724652744668632e-05,
+        "bbox.AR": 0.001353608166342596,
+        "bbox.AR_1": 0.00014746157269542411,
+        "bbox.AR_10": 0.0004918092818474302,
+        "bbox.AR_L": 0.0020996894924724986,
+        "bbox.AR_M": 0.002250491704798604,
+        "bbox.AR_S": 0.00018105849582172702
+      },
+      "new_nvidia": {
+        "bbox.AP": 5.899088022336288e-05,
+        "bbox.AP.5": 0.00022731686143945599,
+        "bbox.AP.75": 3.562021616672071e-06,
+        "bbox.AP_L": 6.648486177981887e-05,
+        "bbox.AP_M": 0.00040155684584717763,
+        "bbox.AP_S": 9.881789361014729e-05,
+        "bbox.AR": 0.0016248490808346144,
+        "bbox.AR_1": 0.00022709305534860365,
+        "bbox.AR_10": 0.0007471104272922161,
+        "bbox.AR_L": 0.002874971710319954,
+        "bbox.AR_M": 0.002346452927848945,
+        "bbox.AR_S": 0.00026723537604456826
+      },
+      "original_nvidia": {
+        "bbox.AP": 6.344897623579566e-05,
+        "bbox.AP.5": 0.00023102624208628405,
+        "bbox.AP.75": 9.882223878861679e-06,
+        "bbox.AP_L": 0.000124394732428064,
+        "bbox.AP_M": 0.0003129926896785542,
+        "bbox.AP_S": 0.00012324145178773118,
+        "bbox.AR": 0.0016266782095519865,
+        "bbox.AR_1": 0.0003926437535233595,
+        "bbox.AR_10": 0.0008095418136669676,
+        "bbox.AR_L": 0.003393567418810659,
+        "bbox.AR_M": 0.002254149497279578,
+        "bbox.AR_S": 0.00019887335257142476
+      }
+    },
+    "trajectories": {
+      "metax_vs_new_nvidia": {
+        "0": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 19.29806137084961,
+            "reference": 19.301977157592773
+          },
+          "first_loss_exceeding_tolerance_step": 1,
+          "first_optimizer_update_count_difference_step": null,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 485,
+          "max_loss_absolute_difference": 0.1970500946044922,
+          "rtol": 0.0001,
+          "steps": 500
+        },
+        "1": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 18.275257110595703,
+            "reference": 18.280773162841797
+          },
+          "first_loss_exceeding_tolerance_step": 1,
+          "first_optimizer_update_count_difference_step": null,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 471,
+          "max_loss_absolute_difference": 0.167755126953125,
+          "rtol": 0.0001,
+          "steps": 500
+        }
+      },
+      "new_vs_original_nvidia": {
+        "0": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 19.301977157592773,
+            "reference": 19.3007755279541
+          },
+          "first_loss_exceeding_tolerance_step": 10,
+          "first_optimizer_update_count_difference_step": null,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 475,
+          "max_loss_absolute_difference": 0.33963966369628906,
+          "rtol": 0.0001,
+          "steps": 500
+        },
+        "1": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 18.280773162841797,
+            "reference": 18.28267478942871
+          },
+          "first_loss_exceeding_tolerance_step": 1,
+          "first_optimizer_update_count_difference_step": null,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 472,
+          "max_loss_absolute_difference": 0.3750648498535156,
+          "rtol": 0.0001,
+          "steps": 500
+        }
+      }
+    }
+  }
+}
