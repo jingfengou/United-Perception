@@ -1,0 +1,43 @@
+{
+  "critical_cuda_packages": {
+    "cuda-bindings": "12.9.4",
+    "nvidia-cublas-cu12": "12.6.4.1",
+    "nvidia-cuda-nvrtc-cu12": "12.6.77",
+    "nvidia-cuda-runtime-cu12": "12.6.77",
+    "nvidia-cudnn-cu12": "9.10.2.21",
+    "nvidia-cusolver-cu12": "11.7.1.2",
+    "nvidia-nccl-cu12": "2.27.5"
+  },
+  "cuda_initialized": false,
+  "cuda_runtime_build": "12.6",
+  "cuda_visible_devices": "",
+  "cxx11_abi": true,
+  "executable": "/workspace/up-platform-clean-A8002-20261025/venv/bin/python",
+  "gpu_workloads_started": 0,
+  "imported_library_paths": [
+    "/workspace/up-platform-clean-A8002-20261025/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublas.so.12",
+    "/workspace/up-platform-clean-A8002-20261025/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublasLt.so.12",
+    "/workspace/up-platform-clean-A8002-20261025/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+    "/workspace/up-platform-clean-A8002-20261025/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn.so.9",
+    "/workspace/up-platform-clean-A8002-20261025/venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so",
+    "/workspace/up-platform-clean-A8002-20261025/venv/lib/python3.12/site-packages/torchvision.libs/libcudart.45e7f3ed.so.12"
+  ],
+  "packages": {
+    "Pillow": "11.2.1",
+    "PyYAML": "6.0.3",
+    "easydict": "1.13",
+    "einops": "0.8.1",
+    "numpy": "1.26.4",
+    "onnx": "1.17.0",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.10",
+    "scipy": "1.16.0",
+    "torch": "2.10.0+cu126",
+    "torchvision": "0.25.0+cu126",
+    "triton": "3.6.0"
+  },
+  "python": "3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]",
+  "status": "matched_CPU_imports_and_ABI_not_GPU_validated",
+  "torch": "2.10.0+cu126",
+  "torchvision": "0.25.0+cu126"
+}

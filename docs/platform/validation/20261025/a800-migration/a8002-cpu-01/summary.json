@@ -1,0 +1,72 @@
+{
+  "artifacts": {
+    "contracts.xml": "92bbc3454051e4bb3a4a640ca0449078d0bfc1464d9a8ba7114dbad38fae5fc8",
+    "runtime.json": "41c6723fd4a4392640153111a153f13d65710a8c3f1c1f054423e8aed285baf5"
+  },
+  "cpu_contract_stage": 2,
+  "cpu_test_input_sha256": "0f6cc221a29fa4e5d625d5bce7c324470cb1fe107b401cfa9cccf047d90a6492",
+  "critical_cuda_package_count": 7,
+  "environment_attempt": 4,
+  "environment_finished_utc": "2026-10-25T06:46:07.332564+00:00",
+  "expected_package_count": 12,
+  "gpu_workloads_started": 0,
+  "host": "A800-2 (CPU preparation only, not allocated GPU)",
+  "limitations": [
+    "No new GPU allocation or GPU execution",
+    "Dataset installation/audit on the eventual granted host still pending",
+    "No new model accuracy or cross-vendor numerical conclusion",
+    "A different granted host must independently pass environment/data/GPU admission"
+  ],
+  "model_algorithm_changed": false,
+  "parent_plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+  "preserved_history": [
+    "Prefetch 01 stopped on multiple valid Pillow glibc wheels; no environment was modified. Prefetch 02 selected only the actual remaining dependencies and reused the verified OpenCV wheel.",
+    "Environment 03 was interrupted only while its owned pip was downloading OpenCV, after exact argv/PPID/startticks and no package installation were checked. Environment 04 reused all unchanged pins and verified PyPI wheels.",
+    "CPU waiter 01 recorded the superseded environment closure before pytest ran. CPU stage 02 actually executed the 114 tests. Raw jobs, commands, wheel hashes and logs remain in task evidence."
+  ],
+  "private_environment_job_sha256": "ab6ff74204b686514ea815b59ea054ccc925dd9d8fe48d748f7c8752f2a42784",
+  "recorded_utc": "2026-10-25T06:47:34.832149+00:00",
+  "scope": "Pinned environment, CPU imports/CXX11 ABI and CPU contracts only",
+  "source_or_tolerance_changed": false,
+  "status": "CPU_ready_GPU_and_dataset_admission_pending",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 114
+  },
+  "wheel_transport": [
+    {
+      "bytes": 62986597,
+      "filename": "opencv_python-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "name": "opencv-python",
+      "sha256": "6b02611523803495003bd87362db3e1d2a0454a6a63025dc6658a9830570aa0d",
+      "url": "https://files.pythonhosted.org/packages/2c/8b/90eb44a40476fa0e71e05a0283947cfd74a5d36121a11d926ad6f3193cc4/opencv_python-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "version": "4.11.0.86"
+    },
+    {
+      "bytes": 35070225,
+      "filename": "scipy-1.16.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "name": "scipy",
+      "sha256": "03931b4e870c6fef5b5c0970d52c9f6ddd8c8d3e934a98f09308377eba6f3824",
+      "url": "https://files.pythonhosted.org/packages/6d/f0/b6ac354a956384fd8abee2debbb624648125b298f2c4a7b4f0d6248048a5/scipy-1.16.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "version": "1.16.0"
+    },
+    {
+      "bytes": 397099,
+      "filename": "pycocotools-2.0.10-cp312-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "name": "pycocotools",
+      "sha256": "4539d8b29230de042f574012edd0b5227528da083c4f12bbd6488567aabd3920",
+      "url": "https://files.pythonhosted.org/packages/49/80/912b4c60f94e747dd2c3adbda5d4a4edc1d735fbfa0d91ab2eb231decb5d/pycocotools-2.0.10-cp312-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "version": "2.0.10"
+    },
+    {
+      "bytes": 62594,
+      "filename": "cuda_pathfinder-1.8.4-py3-none-any.whl",
+      "name": "cuda-pathfinder",
+      "sha256": "85a4e708c725d603f576042ef32781a3d1737c51e84c35fe361d2680191af65a",
+      "url": "https://files.pythonhosted.org/packages/8e/93/f0904fa7d954ecc4c0db17c8d63d185d442dd59fc6757f1d1f448c59c256/cuda_pathfinder-1.8.4-py3-none-any.whl",
+      "version": "1.8.4"
+    }
+  ]
+}
