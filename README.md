@@ -42,18 +42,13 @@ NVIDIA 与沐曦已有真机记录；失败、缺口和复现步骤见 [验证�
 
 ## 如何调用
 
-```text
-UP 模型 / 训练 / 独立推理
-        ↓
-PlatformBackend + 各算子类别父类
-        ↓
-ops/<类别>/nvidia.py 或 metax.py 的显式绑定
-        ↓
-对应厂商 PyTorch / 共享实现 / 厂商编译的内核
-```
+<p align="center">
+  <img src="docs/platform/assets/platform-overview.svg" width="100%" alt="UP 平台组成：统一入口选择厂商与用途，训练和推理共用设备接口及 15 类算子，底层绑定当前厂商实现" />
+</p>
 
-训练中的 eval 和 `train --evaluate` 使用训练适配；独立推理使用推理适配。
-两者复用公共能力，不根据 `.eval()` 自动切换后端。
+平台包含训练/推理适配，以及两者共用的设备和算子接口。模型直接调用分类算子，训练/推理适配提供 AMP、DDP 等执行能力。
+15 类算子是：**矩阵、卷积、注意力、归一化、激活、池化/插值、损失、检测、可变形卷积、Focal 损失、点云、稀疏、通信、量化、剪枝**。
+训练中的 eval 和 `train --evaluate` 使用训练适配；独立推理使用推理适配。详见[架构说明](docs/platform/ARCHITECTURE_20261025.md)。
 
 ## 安装
 
@@ -103,9 +98,13 @@ python -m up inference --config model.yaml --img_path images/ --ckpt model.pth \
 
 ## 新增厂商
 
-按 [接入指南](docs/platform/ADDING_VENDOR.md) 生成模板，实现设备后端、训练/推理差异和缺失算子。
-兼容的厂商 PyTorch 操作可以显式复用；不兼容的操作必须提供完整实现及所需反向。
-昇腾、寒武纪目前是逐项模板，不是已验证支持。
+<p align="center">
+  <img src="docs/platform/assets/vendor-onboarding.svg" width="100%" alt="新增厂商四步：准备厂商环境，生成全部类别模板，实现或复用接口，注册配置并完成真机验证" />
+</p>
+
+**准备环境 → 生成模板 → 实现接口 → 注册和真机验证。**
+兼容项直接复用厂商 PyTorch；缺失项接 SDK 或自写内核，并提供所需反向。
+[接入指南](docs/platform/ADDING_VENDOR.md) 列全了 15 类文件、生成命令、实现示例和配置。昇腾、寒武纪当前为待实现和验证的模板。
 
 ## 来源
 

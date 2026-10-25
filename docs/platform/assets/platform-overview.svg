@@ -1,70 +1,75 @@
-<?xml version='1.0' encoding='utf-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1100" viewBox="0 0 1080 1100" role="img" aria-labelledby="title desc">
-  <title id="title">UP 平台组成与厂商实现</title>
-  <desc id="desc">平台包含设备、共享算子和用途适配，训练与推理二选一，11处linklink边界尚未收口。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">UP 平台组成与 15 类算子</title>
+  <desc id="desc">UP 通过 up_platform 统一入口选择厂商、设备和用途。训练与独立推理共用设备接口，以及矩阵、卷积、注意力、归一化、激活、池化插值、损失、检测、可变形卷积、Focal 损失、点云、稀疏、通信、量化、剪枝十五类算子。NVIDIA 和沐曦使用各自运行库和扩展。linklink 边界及部分依赖尚待补齐。</desc>
   <style>
-svg{--bg:#ffffff;--ink:#17243d;--muted:#53617b;--line:#cbd5e3;--surface:#f5f8fc;--accent:#2548c7;--soft:#edf2ff;--warn:#815000;--warnbg:#fff5df;font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}
-@media(prefers-color-scheme:dark){svg{--bg:#111827;--ink:#edf3ff;--muted:#b8c7dc;--line:#41516b;--surface:#1c293d;--accent:#a4bbff;--soft:#243654;--warn:#ffda91;--warnbg:#382d1a}}
-text{fill:var(--ink);font-weight:400} .muted{fill:var(--muted)} .accent{fill:var(--accent)} .warn{fill:var(--warn)}
-</style>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-    </marker>
-  </defs>
-  <rect x="0" y="0" width="1080" height="1100" rx="0" fill="var(--bg)" stroke="none" stroke-width="1.25" />
-  <text x="40" y="58" font-size="32" style="font-weight:500">UP 平台组成与厂商实现</text>
-  <text x="40" y="88" font-size="20" style="font-weight:400" class="muted">统一完整操作入口；共享公共能力，显式选择当前厂商</text>
-  <rect x="40" y="110" width="1000" height="82" rx="14" fill="var(--soft)" stroke="none" stroke-width="1.25" />
-  <text x="64" y="145" font-size="24" style="font-weight:500">UP 模型、训练与独立推理</text>
-  <text x="64" y="176" font-size="20" style="font-weight:400">模型、损失、数据与配方留在 UP；硬件差异进入平台实现</text>
-  <path d="M 540 192 L 540 216" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
-  <rect x="40" y="224" width="1000" height="520" rx="14" fill="var(--bg)" stroke="var(--line)" stroke-width="1.25" />
-  <text x="64" y="264" font-size="26" style="font-weight:500" class="accent">up_platform · 平台上下文</text>
-  <text x="64" y="297" font-size="19" style="font-weight:400" class="muted">backend：厂商身份    device：设备类型/编号    purpose：training 或 inference</text>
-  <path d="M 540 310 L 540 330 M 216 330 L 864 330" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
-  <path d="M 216 330 L 216 346" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
-  <path d="M 540 330 L 540 346" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
-  <path d="M 864 330 L 864 346" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
-  <rect x="64" y="352" width="304" height="310" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="1.25" />
-  <rect x="388" y="352" width="304" height="310" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="1.25" />
-  <rect x="712" y="352" width="304" height="310" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="1.25" />
-  <text x="84" y="391" font-size="23" style="font-weight:500">设备管理 · 18 项</text>
-  <text x="84" y="438" font-size="20" style="font-weight:400">设备查询 / 绑定 / 属性</text>
-  <text x="84" y="472" font-size="20" style="font-weight:400">模型和数据迁移</text>
-  <text x="84" y="506" font-size="20" style="font-weight:400">同步 / 显存管理</text>
-  <text x="84" y="540" font-size="20" style="font-weight:400">GPU RNG 保存与恢复</text>
-  <text x="84" y="574" font-size="20" style="font-weight:400">卷积开关 / 环境信息</text>
-  <text x="84" y="635" font-size="18" style="font-weight:400" class="muted">DeviceBackend</text>
-  <text x="408" y="391" font-size="23" style="font-weight:500">共享能力 · 129 项</text>
-  <text x="408" y="435" font-size="18" style="font-weight:400">矩阵7 · 卷积4</text>
-  <text x="408" y="467" font-size="18" style="font-weight:400">Attention1 · 归一化10</text>
-  <text x="408" y="499" font-size="18" style="font-weight:400">激活22 · 池化10 · 损失10</text>
-  <text x="408" y="531" font-size="18" style="font-weight:400">检测6 · 可变形卷积1</text>
-  <text x="408" y="563" font-size="18" style="font-weight:400">Focal3 · 点云10 · 稀疏11</text>
-  <text x="408" y="595" font-size="18" style="font-weight:400">通信17 · 量化7 · 剪枝10</text>
-  <text x="408" y="635" font-size="18" style="font-weight:400" class="muted">15 类接口，训练与推理共用</text>
-  <text x="732" y="391" font-size="22" style="font-weight:500">执行适配 · 用途二选一</text>
-  <rect x="728" y="411" width="272" height="140" rx="9" fill="var(--bg)" stroke="none" stroke-width="1.25" />
-  <text x="744" y="442" font-size="21" style="font-weight:500">训练 · 7 项</text>
-  <text x="744" y="475" font-size="18" style="font-weight:400">AMP / GradScaler / DDP</text>
-  <text x="744" y="505" font-size="18" style="font-weight:400">优化器 / 裁剪 / 训练内验证</text>
-  <text x="744" y="535" font-size="17" style="font-weight:400" class="warn">融合优化器：缺 linklink 库</text>
-  <rect x="728" y="566" width="272" height="80" rx="9" fill="var(--bg)" stroke="none" stroke-width="1.25" />
-  <text x="744" y="595" font-size="21" style="font-weight:500">推理 · 2 项</text>
-  <text x="744" y="626" font-size="18" style="font-weight:400">autocast / ONNX 导出</text>
-  <text x="64" y="699" font-size="20" style="font-weight:400">18（设备）+ 129（共享能力）+ 7（训练）+ 2（推理）= 156 项当前契约</text>
-  <text x="64" y="730" font-size="18" style="font-weight:400" class="muted">训练内 eval 保留 training 用途；device 与 ops 是两种用途的共同依赖</text>
-  <path d="M 540 744 L 540 778" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
-  <rect x="40" y="786" width="1000" height="126" rx="14" fill="var(--soft)" stroke="none" stroke-width="1.25" />
-  <text x="64" y="819" font-size="22" style="font-weight:500">厂商实现：按 backend 显式选择，进程内使用同一家</text>
-  <text x="64" y="853" font-size="22" style="font-weight:500">NVIDIA</text>
-  <text x="64" y="884" font-size="18" style="font-weight:400">NVIDIA Torch / CUDA · 扩展 _nvidia_ops</text>
-  <text x="552" y="853" font-size="22" style="font-weight:500">沐曦 C500</text>
-  <text x="552" y="884" font-size="18" style="font-weight:400">沐曦 Torch / MACA · 扩展 _metax_ops</text>
-  <text x="40" y="941" font-size="19" style="font-weight:400" class="muted">共享的是代码与契约；各家使用自己的运行库和独立编译扩展。</text>
-  <rect x="40" y="960" width="1000" height="91" rx="14" fill="var(--warnbg)" stroke="none" stroke-width="1.25" />
-  <text x="64" y="993" font-size="22" style="font-weight:500" class="warn">待收口：11 处 linklink 上层导入</text>
-  <text x="64" y="1027" font-size="18" style="font-weight:400" class="warn">7 处 SyncBN · 2 处 FP16 · 1 处通信 · 1 处融合优化器；缺 linklink 库，且边界迁移未完成</text>
-  <text x="40" y="1080" font-size="17" style="font-weight:400" class="muted">组成关系图 · 基础 Tensor 和 autograd 由厂商 PyTorch 设备适配提供</text>
+    svg{--bg:#fff;--ink:#1f2328;--muted:#59636e;--line:#d1d9e0;--surface:#f6f8fa;--accent:#0969da;--soft:#eef6ff;--warn:#7d4e00;--warnbg:#fff8e6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+    @media(prefers-color-scheme:dark){svg{--bg:#0d1117;--ink:#e6edf3;--muted:#b1bac4;--line:#30363d;--surface:#161b22;--accent:#79c0ff;--soft:#13233b;--warn:#f0ce80;--warnbg:#302719}}
+    text{fill:var(--ink);font-size:22px}.title{font-size:40px;font-weight:650}.heading{font-size:28px;font-weight:650}.label{font-size:24px;font-weight:600}.muted{fill:var(--muted)}.code{font-size:20px;fill:var(--muted)}.accent{fill:var(--accent)}.warn{fill:var(--warn)}
+    .frame{fill:var(--bg);stroke:var(--line);stroke-width:1.5}.surface{fill:var(--surface)}.soft{fill:var(--soft)}.arrow{fill:none;stroke:var(--muted);stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 8 5 1 9" fill="none" stroke="var(--muted)" stroke-width="1.5"/></marker></defs>
+  <rect width="1200" height="1200" fill="var(--bg)"/>
+
+  <g id="up-workflows">
+    <text x="48" y="64" class="title">一套 UP，按接口接入不同显卡</text>
+    <text x="48" y="102" class="muted">模型与配方留在 UP；设备、执行适配和厂商差异交给平台层。</text>
+    <rect x="48" y="128" width="1104" height="80" rx="12" class="soft"/>
+    <text x="72" y="162" class="heading">UP 模型 · 训练 · 训练内 eval · 独立推理</text>
+    <text x="72" y="192">模型、数据、损失组合、学习率和训练步骤</text>
+    <path d="M600 210 V238" class="arrow"/>
+  </g>
+
+  <g id="platform-components">
+    <rect x="48" y="248" width="1104" height="630" rx="12" class="frame"/>
+    <text x="72" y="292" class="heading accent">up_platform · 统一入口</text>
+    <text x="72" y="324" class="muted">configure_platform / get_platform：选择厂商、设备和用途</text>
+
+    <rect x="72" y="350" width="512" height="104" rx="10" class="surface"/>
+    <text x="92" y="388" class="label">训练（含训练内 eval）· 7 项</text>
+    <text x="92" y="425">AMP · GradScaler · DDP · 优化器 · 裁剪</text>
+    <rect x="616" y="350" width="512" height="104" rx="10" class="surface"/>
+    <text x="636" y="388" class="label">独立推理 · 2 项</text>
+    <text x="636" y="425">推理 autocast · ONNX 导出</text>
+
+    <rect x="72" y="478" width="1056" height="66" rx="10" class="soft"/>
+    <text x="92" y="519" class="label">共享设备 · 18 项</text>
+    <text x="320" y="519">绑定 · 迁移 · 同步 · 显存 · RNG · 运行环境</text>
+    <text x="72" y="582" class="label">共享算子与功能 · 15 类 / 125 项 GPU 相关接口</text>
+
+    <g id="operator-categories">
+      <g data-category="matrix"><rect x="72" y="600" width="336" height="42" rx="6" class="surface"/><text x="86" y="629">矩阵</text><text x="394" y="629" text-anchor="end" class="code">matrix</text></g>
+      <g data-category="convolution"><rect x="432" y="600" width="336" height="42" rx="6" class="surface"/><text x="446" y="629">卷积</text><text x="754" y="629" text-anchor="end" class="code">convolution</text></g>
+      <g data-category="attention"><rect x="792" y="600" width="336" height="42" rx="6" class="surface"/><text x="806" y="629">注意力</text><text x="1114" y="629" text-anchor="end" class="code">attention</text></g>
+      <g data-category="normalization"><rect x="72" y="650" width="336" height="42" rx="6" class="surface"/><text x="86" y="679">归一化</text><text x="394" y="679" text-anchor="end" class="code">normalization</text></g>
+      <g data-category="activation"><rect x="432" y="650" width="336" height="42" rx="6" class="surface"/><text x="446" y="679">激活</text><text x="754" y="679" text-anchor="end" class="code">activation</text></g>
+      <g data-category="pooling"><rect x="792" y="650" width="336" height="42" rx="6" class="surface"/><text x="806" y="679">池化 / 插值</text><text x="1114" y="679" text-anchor="end" class="code">pooling</text></g>
+      <g data-category="loss"><rect x="72" y="700" width="336" height="42" rx="6" class="surface"/><text x="86" y="729">损失</text><text x="394" y="729" text-anchor="end" class="code">loss</text></g>
+      <g data-category="detection"><rect x="432" y="700" width="336" height="42" rx="6" class="surface"/><text x="446" y="729">检测</text><text x="754" y="729" text-anchor="end" class="code">detection</text></g>
+      <g data-category="deformable"><rect x="792" y="700" width="336" height="42" rx="6" class="surface"/><text x="806" y="729">可变形卷积</text><text x="1114" y="729" text-anchor="end" class="code">deformable</text></g>
+      <g data-category="focal"><rect x="72" y="750" width="336" height="42" rx="6" class="surface"/><text x="86" y="779">Focal 损失</text><text x="394" y="779" text-anchor="end" class="code">focal</text></g>
+      <g data-category="pointcloud"><rect x="432" y="750" width="336" height="42" rx="6" class="surface"/><text x="446" y="779">点云</text><text x="754" y="779" text-anchor="end" class="code">pointcloud</text></g>
+      <g data-category="sparse"><rect x="792" y="750" width="336" height="42" rx="6" class="surface"/><text x="806" y="779">稀疏</text><text x="1114" y="779" text-anchor="end" class="code">sparse</text></g>
+      <g data-category="communication"><rect x="72" y="800" width="336" height="42" rx="6" class="surface"/><text x="86" y="829">通信</text><text x="394" y="829" text-anchor="end" class="code">communication</text></g>
+      <g data-category="quantization"><rect x="432" y="800" width="336" height="42" rx="6" class="surface"/><text x="446" y="829">量化</text><text x="754" y="829" text-anchor="end" class="code">quantization</text></g>
+      <g data-category="pruning"><rect x="792" y="800" width="336" height="42" rx="6" class="surface"/><text x="806" y="829">剪枝</text><text x="1114" y="829" text-anchor="end" class="code">pruning</text></g>
+    </g>
+  </g>
+
+  <text x="48" y="912" class="code">GPU 接口 152 项 = 设备 18 + 算子 125 + 训练 7 + 推理 2；4 个纯 CPU 接口另保留。</text>
+  <path d="M600 928 V950" class="arrow"/>
+  <text x="48" y="978" class="heading">厂商绑定 · 按 backend 选择一家</text>
+  <g id="vendor-implementations">
+    <rect x="48" y="994" width="352" height="110" rx="10" class="soft"/>
+    <text x="68" y="1027" class="label">NVIDIA</text><text x="68" y="1057">NVIDIA PyTorch / CUDA</text><text x="68" y="1089" class="code">独立扩展 _nvidia_ops</text>
+    <rect x="424" y="994" width="352" height="110" rx="10" class="soft"/>
+    <text x="444" y="1027" class="label">沐曦 C500</text><text x="444" y="1057">沐曦 PyTorch / MACA</text><text x="444" y="1089" class="code">独立扩展 _metax_ops</text>
+    <rect x="800" y="994" width="352" height="110" rx="10" class="surface"/>
+    <text x="820" y="1027" class="label">新厂商</text><text x="820" y="1057">厂商 PyTorch / SDK / 内核</text><text x="820" y="1089" class="code">昇腾、寒武纪当前为模板</text>
+  </g>
+
+  <g id="remaining-work">
+    <rect x="48" y="1114" width="1104" height="72" rx="10" fill="var(--warnbg)"/>
+    <text x="68" y="1143" class="warn">待收尾：11 处 linklink 上层导入，边界迁移未完成，且缺真实实现库。</text>
+    <text x="68" y="1172" class="code warn">SyncBN 7 处 · FP16 2 处 · 通信 1 处 · 融合优化器 1 处；Amba 另有 3 项缺 FakeSparse。</text>
+  </g>
 </svg>
