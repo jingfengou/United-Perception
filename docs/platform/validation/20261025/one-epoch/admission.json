@@ -1,0 +1,22 @@
+{
+  "both_data_audits_completed": true,
+  "both_preflights_completed": true,
+  "cpu_tests_per_environment": 105,
+  "created_utc": "2026-10-25T02:18:14.159893+00:00",
+  "execution_epochs_per_model": 1,
+  "matched_initial_states_configs_and_all_preflight_inputs": true,
+  "models_to_run": [
+    "resnet50",
+    "yolov5s",
+    "vit_b16",
+    "detr"
+  ],
+  "plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+  "previous_gpu_preflight": "preflight-08, 48 executions, identical production source and input protocol",
+  "resumed_data_and_augmentation_order_matches": true,
+  "source_change_scope": [
+    "tools/full_accuracy_recipe.py",
+    "tools/full_accuracy_train.py"
+  ],
+  "supersedes_plan_sha256": "9a3e53beba98af7bd2daff88acbb53baa12d4d5aec4574ee5d4b9fd5fdd27cd1"
+}

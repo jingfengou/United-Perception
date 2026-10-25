@@ -1,0 +1,67 @@
+{
+  "accuracy_data.py": {
+    "lf_normalized_sha256": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+    "line_endings": "LF",
+    "sha256": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968"
+  },
+  "accuracy_detr.py": {
+    "lf_normalized_sha256": "adcabe3aa7d716581f115dae170689e52c4a218a6945c2796ed884130c20915b",
+    "line_endings": "LF",
+    "sha256": "adcabe3aa7d716581f115dae170689e52c4a218a6945c2796ed884130c20915b"
+  },
+  "accuracy_recipe.py": {
+    "lf_normalized_sha256": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6",
+    "line_endings": "LF",
+    "sha256": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6"
+  },
+  "accuracy_train.py": {
+    "lf_normalized_sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+    "line_endings": "LF",
+    "sha256": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e"
+  },
+  "compare_platform_models.py": {
+    "lf_normalized_sha256": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472",
+    "line_endings": "LF",
+    "sha256": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472"
+  },
+  "full_accuracy_bind.py": {
+    "lf_normalized_sha256": "c390b13270b399c20df6139636264ca607cb85f9dae662146c873095f622c73e",
+    "line_endings": "LF",
+    "sha256": "c390b13270b399c20df6139636264ca607cb85f9dae662146c873095f622c73e"
+  },
+  "full_accuracy_data.py": {
+    "lf_normalized_sha256": "e4ed34106739821f4ac4dee3425ecf7f9d288cf78a32c8c3f01ea516513933d6",
+    "line_endings": "LF",
+    "sha256": "e4ed34106739821f4ac4dee3425ecf7f9d288cf78a32c8c3f01ea516513933d6"
+  },
+  "full_accuracy_detr.py": {
+    "lf_normalized_sha256": "7f5a20ebba09e57b90a886f48f6b966c73f84ac2e53029abd59959220a3bf616",
+    "line_endings": "LF",
+    "sha256": "7f5a20ebba09e57b90a886f48f6b966c73f84ac2e53029abd59959220a3bf616"
+  },
+  "full_accuracy_recipe.py": {
+    "lf_normalized_sha256": "eb607ee647de358ce48a8e09323903390315103c92b3bcd1d07e900e3fdbcf80",
+    "line_endings": "LF",
+    "sha256": "eb607ee647de358ce48a8e09323903390315103c92b3bcd1d07e900e3fdbcf80"
+  },
+  "full_accuracy_train.py": {
+    "lf_normalized_sha256": "f73e033c08d0c5503abdc66944e23550ea3d22dfb9e1a1b2b3cb1373d3fa9d94",
+    "line_endings": "LF",
+    "sha256": "f73e033c08d0c5503abdc66944e23550ea3d22dfb9e1a1b2b3cb1373d3fa9d94"
+  },
+  "prepare_coco2017.py": {
+    "lf_normalized_sha256": "89428f3aceefb3209314a455383e142f06a84e772073b0da270c3363628d7945",
+    "line_endings": "LF",
+    "sha256": "89428f3aceefb3209314a455383e142f06a84e772073b0da270c3363628d7945"
+  },
+  "prepare_imagenet_parquet.py": {
+    "lf_normalized_sha256": "ba11f5f2afcda6d871521db2aaf7194089b4fc9ee05cf1bef33a191ea40eeb0d",
+    "line_endings": "LF",
+    "sha256": "ba11f5f2afcda6d871521db2aaf7194089b4fc9ee05cf1bef33a191ea40eeb0d"
+  },
+  "run_platform_validation.py": {
+    "lf_normalized_sha256": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5",
+    "line_endings": "LF",
+    "sha256": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5"
+  }
+}

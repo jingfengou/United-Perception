@@ -1,33 +1,42 @@
-# 完整 ImageNet / COCO 三路径训练对照
+# 完整 ImageNet / COCO 三路径单 epoch 对照
 
-日期：2026-10-25。**状态：48 项双卡预检查及输入/恢复审计已完成；ImageNet 传输和全量数据审计进行中，完整预算训练尚未启动，最终精度待测。**
+日期：2026-10-25。**状态：两家全量数据审计、48 项双卡预检查及输入/恢复审计已完成；按用户新指示，四模型均改为每路径 1 个完整 epoch。新计划已冻结并排队，等待旧长预算 ResNet50 保存检查点并释放设备；本轮指标待测。**
 
 本轮与先前 CIFAR-10 / PennFudan 实验分别记录；旧多随机种子任务保持暂停。
 不修改 `up/`、`up_platform/` 或原模型配置文件，不迁入 portable/v2，不放宽算子比较容差。
 
 ## 比较什么
 
-| 模型 | 数据 | 完整预算 | 每卡 batch / 两卡全局 batch | 精度模式 |
-| --- | --- | ---: | ---: | --- |
-| UP ResNet50 bag-of-tricks | ImageNet-1K | 200 epochs | 64 / 128 | 原生 AMP FP16 |
-| UP ViT-B/16 | ImageNet-1K | 300 epochs | 64 / 128 | 原生 AMP FP16 |
-| UP YOLOv5-S | COCO2017 | 300 epochs | 32 / 64 | 原生 FP32 |
-| 同一官方 DETR R50 适配器 | COCO2017 | 300 epochs，资源安排待确认 | 2 / 4 | 原生 FP32 |
+| 模型 | 数据 | 本轮执行预算 | 每路径调度步数 | 每卡 batch / 两卡全局 batch | 精度模式 |
+| --- | --- | ---: | ---: | ---: | --- |
+| UP ResNet50 bag-of-tricks | ImageNet-1K | 1 epoch | 10,010 | 64 / 128 | 原生 AMP FP16 |
+| UP ViT-B/16 | ImageNet-1K | 1 epoch | 10,010 | 64 / 128 | 原生 AMP FP16 |
+| UP YOLOv5-S | COCO2017 | 1 epoch | 1,849 | 32 / 64 | 原生 FP32 |
+| 同一官方 DETR R50 适配器 | COCO2017 | 1 epoch | 29,572 | 2 / 4 | 原生 FP32 |
 
 每个模型比较原版 UP/NVIDIA、新版 UP/NVIDIA、新版 UP/C500，种子均为 **131**。
 原版和新版 NVIDIA 顺序使用同一对 RTX 4090；C500 使用两张卡，保持相同全局 batch。
-每个模型只生成一次公共初始权重，再分发给三条路径。最终 epoch 为主指标，保留原配置中启用的 EMA，不挑最好一次。
+每个模型只生成一次公共初始权重，再分发给三条路径。报告第 1 个 epoch 结束后的指标，保留原配置中启用的 EMA，不挑最好一次。
+共 12 次单 epoch 训练；使用完整训练集和验证集，**不代表完成原配方训练或达到收敛精度**。
 
 这是用户确认的**对应 UP 模型**，不是逐项复现 model-verify：原版 UP 没有 YOLO26 或原生 DETR，
 ViT 和 ResNet 的训练配方也不同。不能用本轮结果直接核对该仓库表中的精度。
 
-### DETR 的资源问题
+### 预算变更与旧任务
 
 64 步真实图片诊断中，双 4090 的 FP32 DETR 预热后中位耗时约 **3.21 秒/步**。
-当前全局 batch 4 对完整 COCO 的 300 epochs 约为 8,871,600 步，按短测粗估单条 NVIDIA 路径约 330 天，
-尚未计入评估和保存。动态尺寸的算法选择也会影响短测，这不是可靠的完整数据 ETA，需要补充稳定态吞吐或调整资源。
-已向用户确认是否等待更合适的资源或另测统一 AMP 配置；未得到新选择前，不自动启动这个长期 DETR 作业。
-其余三模型的准备和既定预算不依赖该选择。
+原计划为 ResNet50 200 epochs，其余三模型各 300 epochs。用户先明确 DETR 只测 1 epoch，随后明确其他模型也只跑 1 epoch。
+因此本轮只执行各原配方的第 1 轮，**保留原学习率、warmup、优化器、增强及 EMA 时间轴，不把长配方压缩成新的一轮配方**。
+动态尺寸、初始化和数据吞吐影响很大，上述短测不作为完成时间承诺。
+
+数据审计完成后，旧三模型长预算控制器已于 2026-10-25 09:52（北京时间）启动 NVIDIA ResNet50，C500 随后启动。
+变更预算后，仅阻止本任务控制器启动后续长作业，让已有训练发布首个完整检查点，再向本任务 torchrun 发送 SIGINT 并释放设备。
+旧计划、日志、检查点和停止原因单独保留；它们不会重新标成新阶段的完整结果。
+新阶段从公共初始权重独立执行，输出在 `one-epoch/`，不覆盖旧 `full-cohort/`。
+
+[新计划](validation/20261025/one-epoch/plan.json)的 SHA256 为
+`5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426`。
+旧长预算计划 SHA256 为 `9a3e53beba98af7bd2daff88acbb53baa12d4d5aec4574ee5d4b9fd5fdd27cd1`，保持原样。
 
 ## 数据准备与校验
 
@@ -70,7 +79,7 @@ UP 默认 COCO 数据集会排除空标注图片。实验外部数据视图显�
   数据增强沿用 UP 的既有检测输入流程，并非逐项复现官方 DETR 的数据增强配方。
   使用 ImageNet backbone 初始化加随机检测器，不从已训练 COCO 检测器起步。
   外部官方 DETR 内部 PyTorch 操作保持原样；这不证明每个操作均经过 UP 平台类别接口。
-- 每 5 epochs 以及最终预算结束时验证，每 epoch 保存检查点。
+- 每 5 epochs 以及最终执行预算结束时验证；本轮因此在第 1 个 epoch 完整验证并保存检查点。
   两个滚动槽保存模型、优化器、LR、EMA，以及各 rank 的 buffer、RNG、scaler；完整性校验成功后才发布恢复索引。
   不永久保留每个 epoch 的大权重，所有训练记录和失败尝试仍保留。
 - AMP 跳过的优化器更新单独计数；不能把调度批次数一律称为成功执行的 `optimizer.step()` 次数。
@@ -99,7 +108,11 @@ Python 补丁版本、厂商 SDK、GPU 和第三方内核不同，不能声称�
 
 ## 验证状态与复现入口
 
-两边匹配虚拟环境的当前 **102 项 CPU 契约测试均通过**。新增采样器用例先在旧驱动复现失败，再在修复后通过。
+此前两边匹配虚拟环境的 **102 项 CPU 契约测试均通过**。新增采样器用例先在旧驱动复现失败，再在修复后通过。
+单 epoch 阶段新增执行预算契约，两家均为 **105 项通过、零跳过**，见
+[NVIDIA](validation/20261025/one-epoch/cpu-nvidia.xml)和 [C500](validation/20261025/one-epoch/cpu-metax.xml)。
+只修改外部 `full_accuracy_recipe.py`、`full_accuracy_train.py` 的预算检查、循环终点和报告；
+两家快照核对确认 `up/`、`up_platform/`、`configs/` 和已有编译二进制不变。
 无 Torch/CUDA 的独立环境可构建 wheel/sdist、安装并导入公共平台包。
 [源码核对](validation/20261025/full-data/frozen-baseline-audit.json)确认：
 原版 618 个相关文件与 `52aaeb9e` 无内容差异；新版 781 个运行文件与本地一致，仅归一化 CRLF/LF。
@@ -108,7 +121,7 @@ Python 补丁版本、厂商 SDK、GPU 和第三方内核不同，不能声称�
 旧阶段的进程执行成功不代表恢复协议通过：DETR 的图片顺序审计已发现并保留上述失败；
 新阶段对每个预检查批次记录输入 Tensor 校验值，同时检查跨路径输入一致及恢复前后顺序/增强一致。
 预检查仅使用真实图片小视图，保留完整类别数；**短程成功或 AP 为零都不是完整精度结论**。
-正式训练必须等两边预检查、逐图数据审计、公共初始权重与配置/输入核对完成，再冻结正式计划；不会拿预检查计划代替正式计划。
+两边预检查、逐图数据审计、公共初始权重与配置/输入核对已完成，随后冻结独立的单 epoch 正式计划；没有拿预检查计划代替正式计划。
 
 2026-10-25 更新：[preflight-08 独立审计](validation/20261025/full-data/preflight-audit.json)已确认四模型、三条路径的 **48 项执行全部完成**。
 每个 rank 的全部预检查输入在三条路径之间相同；中断恢复后的图片顺序与增强结果也与不间断运行逐批相同。
@@ -120,13 +133,14 @@ ResNet50 的原生 AMP 在每条训练轨迹中均跳过 2 次更新，已如实
 
 运行源码清单只归一化 CRLF/LF，工具计划则检查实际文件字节。
 Windows 留存的部分旧工具是 CRLF；Linux 克隆后不能简单修改计划中的哈希来绕过检查。
-[逐文件字节索引](validation/20261025/full-data/frozen-tool-bytes.json)同时记录原始哈希、LF 内容哈希和换行格式。
+历史 training-07 的[逐文件字节索引](validation/20261025/full-data/frozen-tool-bytes.json)对应 Git 提交 `7da1be8`，保留不变。
+本轮 training-08 使用[新的逐文件字节索引](validation/20261025/one-epoch/frozen-tool-bytes.json)，同时记录原始哈希、LF 内容哈希和换行格式。
 可从相同版本的 Git 内容还原到独立目录，原模型文件不需要修改：
 
 ```python
 import hashlib, json
 from pathlib import Path
-specs = json.loads(Path("docs/platform/validation/20261025/full-data/frozen-tool-bytes.json").read_text())
+specs = json.loads(Path("docs/platform/validation/20261025/one-epoch/frozen-tool-bytes.json").read_text())
 target = Path("frozen-tools")
 target.mkdir(exist_ok=False)
 for name, spec in specs.items():
@@ -152,22 +166,26 @@ python tools/full_accuracy_bind.py \
   --backbone "$BACKBONE" --anchors "$ANCHORS" --output data-binding.json
 ```
 
-正式计划冻结后，每条路径分别执行以下命令；`LANE` 为 `original_nvidia`、`new_nvidia` 或 `new_metax`。
+每条路径分别执行以下命令；`LANE` 为 `original_nvidia`、`new_nvidia` 或 `new_metax`。
 `SOURCE` 指向对应冻结源码，不能把新版源码当成原版路径。
+`ONE_EPOCH_PLAN` 指向上述公开单 epoch 计划；`execution_epochs: 1` 是正式执行预算，不能改用 `--probe-steps`。
+该计划固定本轮数据绑定 SHA256；换机器复现需要先完成同样的逐图审计，再另存新的路径绑定及计划，不能伪造旧绑定哈希。
 
 ```bash
 export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONHASHSEED=0 DEFAULT_TASKS=cls:det
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --standalone --nproc-per-node=2 \
   "$FROZEN_TOOLS/full_accuracy_train.py" --source "$SOURCE" --data data-binding.json \
-  --plan full-plan.json --model resnet50 --lane "$LANE" \
+  --plan "$ONE_EPOCH_PLAN" --model resnet50 --lane "$LANE" \
   --initial "$COMMON_INITIAL" --output "$RESULT/train"
 # 经检查点完整性审计后，原命令增加 --resume 恢复；不换计划、种子、数据或输出目录。
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --standalone --nproc-per-node=2 \
   "$FROZEN_TOOLS/full_accuracy_train.py" --source "$SOURCE" --data data-binding.json \
-  --plan full-plan.json --model resnet50 --lane "$LANE" \
+  --plan "$ONE_EPOCH_PLAN" --model resnet50 --lane "$LANE" \
   --initial "$COMMON_INITIAL" --mode inference --checkpoint "$RESULT/train" \
   --output "$RESULT/inference"
 ```
 
 按实际获配编号替换 `CUDA_VISIBLE_DEVICES`，C500 必须使用厂商环境。
-正式计划、公共初始权重校验值、机器数据绑定索引、完成指标和失败记录会随实际完成状态追加；当前尚未产生完整训练精度表。
+对其余模型替换 `--model`、对应初始权重和独立输出目录，步数必须符合上表。
+本轮 [证据索引](validation/20261025/one-epoch/index.json)记录计划、工具字节、源码及测试；完成指标和失败记录随真实进度追加。
+当前尚未产生三路径单 epoch 的完整指标表，不宣称新旧或跨厂商精度一致。

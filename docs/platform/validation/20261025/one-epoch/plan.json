@@ -1,0 +1,175 @@
+{
+  "checkpoint_policy": "two rolling slots, every epoch; all rank buffers/RNG/scaler retained",
+  "data_bindings_sha256": [
+    "21b1631421db1083e8a3d90f67ddeb1fc2fe6a93b4a71e6cf807eab862e22fb7",
+    "1c6c1350d1ef9224ca598199847dc1c27157d77ea3eb425e228706e246fcc8c9"
+  ],
+  "data_identity": {
+    "all_image_bytes_verified": true,
+    "all_images_rgb_decoded": true,
+    "anchors_sha256": "0bbfb6aa570aeedf08142e10cd460157aab588e5a395f0771ce4c10cec9b09cd",
+    "backbone_sha256": "b77eecd6bb0a9d7ce8747d13a23f67fb014fb7ed586994cb849e8a9dfcb08cc8",
+    "detr_source_sha256": "954c6297faa72af4b59719a42c850d769d8276fcd99a7c704cb5e34f5e5eb5fb",
+    "scope": "full ImageNet-1K and COCO2017, all original image bytes audited",
+    "splits": {
+      "coco/test": {
+        "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+        "image_archive_sha256": "4f7e2ccb2866ec5041993c9cf2a952bbed69647b115d0f74da7ce8f4bef82f05",
+        "image_bytes": 814705164,
+        "images": 5000,
+        "meta_sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+      },
+      "coco/train": {
+        "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+        "image_archive_sha256": "69a8bb58ea5f8f99d24875f21416de2e9ded3178e903f1f7603e283b9e06d929",
+        "image_bytes": 19314466396,
+        "images": 118287,
+        "meta_sha256": "610fce4944abdeb15354cc765333805529359d12d88f2f711393ca586901d01d"
+      },
+      "imagenet/test": {
+        "image_bytes": 6706296736,
+        "image_manifests_sha256": "ce2fbdc75b3bbd94e4c75366202aeb3c50342b25c79ca5074153ef513501a730",
+        "images": 50000,
+        "meta_sha256": "9801da114fc05c93ebc87795f19822c1b12d224a4ed427e3237e9db3cd68068a"
+      },
+      "imagenet/train": {
+        "image_bytes": 146898709175,
+        "image_manifests_sha256": "f7072c92f0978fbf96c3fadbd34b983490cd3094e6673fefaf90d38ee0fb8840",
+        "images": 1281167,
+        "meta_sha256": "3a499581167accad60be24b5aa27532b79155bc20e022157f525d70183de942b"
+      }
+    }
+  },
+  "deferred_models": {},
+  "environments": {
+    "metax": {
+      "cpu_affinity": 160,
+      "executable": "/workspace/up-run/venv/bin/python",
+      "packages": {
+        "Pillow": "11.2.1",
+        "PyYAML": "6.0.3",
+        "easydict": "1.13",
+        "einops": "0.8.1",
+        "numpy": "1.26.4",
+        "onnx": "1.17.0",
+        "opencv-python": "4.11.0.86",
+        "pyarrow": "25.0.0",
+        "pycocotools": "2.0.10",
+        "scipy": "1.16.0",
+        "timm": null,
+        "torch": "2.10.0+metax3.8.1.0",
+        "torchvision": "0.25.0+metax3.8.1.0",
+        "triton": "3.6.0+metax3.8.1.0"
+      },
+      "pid": 5094,
+      "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]"
+    },
+    "nvidia": {
+      "cpu_affinity": 72,
+      "executable": "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+      "packages": {
+        "Pillow": "11.2.1",
+        "PyYAML": "6.0.3",
+        "easydict": "1.13",
+        "einops": "0.8.1",
+        "numpy": "1.26.4",
+        "onnx": "1.17.0",
+        "opencv-python": "4.11.0.86",
+        "pyarrow": null,
+        "pycocotools": "2.0.10",
+        "scipy": "1.16.0",
+        "timm": null,
+        "torch": "2.10.0+cu126",
+        "torchvision": "0.25.0+cu126",
+        "triton": "3.6.0"
+      },
+      "pid": 2424297,
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+    }
+  },
+  "human_budget_instruction": "DETR one epoch; other models also one epoch",
+  "models": {
+    "detr": {
+      "batch_size": 2,
+      "epochs": 300,
+      "execution_epochs": 1,
+      "expected_steps": 29572,
+      "initial_sha256": "d1bbbc4743374aac78477322863a9c0af412598002e96a32546874b30bc0bc95",
+      "initial_state_sha256": "575e806bbfcf1423a6e9d8d0d32b4969d88660bf8a2c9ebef9dc86edcdc6ba54",
+      "precision": "fp32"
+    },
+    "resnet50": {
+      "batch_size": 64,
+      "epochs": 200,
+      "execution_epochs": 1,
+      "expected_steps": 10010,
+      "initial_sha256": "028395c695e80e5119dbbb6cc389bb74cfc58506828ea3e528abda74b82806e6",
+      "initial_state_sha256": "165aca64cdae5851d5bdb5cde93d41c0bbc6dde5d8e55edf787d0838913df6f4",
+      "precision": "amp_fp16"
+    },
+    "vit_b16": {
+      "batch_size": 64,
+      "epochs": 300,
+      "execution_epochs": 1,
+      "expected_steps": 10010,
+      "initial_sha256": "32ec9a93c359073f03a4013b9afa381637a1b98365a0db153745422233e0c526",
+      "initial_state_sha256": "f609e98f496aeb48467186067db6cda3620a8be6c15494ec8b5b7e98ab02e4d7",
+      "precision": "amp_fp16"
+    },
+    "yolov5s": {
+      "batch_size": 32,
+      "epochs": 300,
+      "execution_epochs": 1,
+      "expected_steps": 1849,
+      "initial_sha256": "b1bf49f96f118ffc3a4d897fa9775b27113baade86bb3debd44a38312b09cf62",
+      "initial_state_sha256": "7f7e04e84843afb524a292e4256c48043acb048f82add11c3f4255a370432f03",
+      "precision": "fp32"
+    }
+  },
+  "models_to_run": [
+    "resnet50",
+    "yolov5s",
+    "vit_b16",
+    "detr"
+  ],
+  "native_profile": {
+    "benchmark": true,
+    "convolution_tf32": false,
+    "deterministic_algorithms": false,
+    "matmul_tf32": false
+  },
+  "purpose": "single_epoch_full_data_comparison",
+  "recipe_policy": "retain original LR/optimizer/augmentation horizon; stop after first complete epoch",
+  "scope": "one complete epoch of full ImageNet-1K / COCO2017; not converged benchmark accuracy",
+  "seed": 131,
+  "selection": "epoch 1, original EMA where configured; no best-run selection",
+  "sources": {
+    "new_metax": {
+      "sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8"
+    },
+    "new_nvidia": {
+      "sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8"
+    },
+    "original_nvidia": {
+      "sha256": "d9ceac12843eebce70b4d1a57eade0ce7083573510d1abb1749a8e2e7c230416"
+    }
+  },
+  "supersedes_plan_sha256": "9a3e53beba98af7bd2daff88acbb53baa12d4d5aec4574ee5d4b9fd5fdd27cd1",
+  "tools": {
+    "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+    "accuracy_detr.py": "adcabe3aa7d716581f115dae170689e52c4a218a6945c2796ed884130c20915b",
+    "accuracy_recipe.py": "9022dad23c34445133f9e7831ae6ab3aec3d94aeb9598958cdabc9668c3d4ff6",
+    "accuracy_train.py": "a604fc94c1b5e1f89e7d53d441947613dab843b2bf9681a2a211cac8090ebc6e",
+    "compare_platform_models.py": "2c4daa605bdd64b8725d79c85a4990134c6415c368ecd27da25103b45f6f3472",
+    "full_accuracy_bind.py": "c390b13270b399c20df6139636264ca607cb85f9dae662146c873095f622c73e",
+    "full_accuracy_data.py": "e4ed34106739821f4ac4dee3425ecf7f9d288cf78a32c8c3f01ea516513933d6",
+    "full_accuracy_detr.py": "7f5a20ebba09e57b90a886f48f6b966c73f84ac2e53029abd59959220a3bf616",
+    "full_accuracy_recipe.py": "eb607ee647de358ce48a8e09323903390315103c92b3bcd1d07e900e3fdbcf80",
+    "full_accuracy_train.py": "f73e033c08d0c5503abdc66944e23550ea3d22dfb9e1a1b2b3cb1373d3fa9d94",
+    "prepare_coco2017.py": "89428f3aceefb3209314a455383e142f06a84e772073b0da270c3363628d7945",
+    "prepare_imagenet_parquet.py": "ba11f5f2afcda6d871521db2aaf7194089b4fc9ee05cf1bef33a191ea40eeb0d",
+    "run_platform_validation.py": "83937fcac25579b3d6b39fa549851e67706461982234e5ba93095b112ad560d5"
+  },
+  "workers": 4,
+  "world_size": 2
+}

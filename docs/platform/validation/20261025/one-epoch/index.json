@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "admission.json": "da582d2fe404e70bb3c2eea7e266e07ea6ec7e19c1f3acd256ddf5ee6a30c87b",
+    "cpu-metax.xml": "55b73d6e775a43f4818975dc77281166de283d9ff3cf37ae9634dce66e239be4",
+    "cpu-nvidia.xml": "f76de4e21a97a6dd2f91661f3d44c4c2531a657477582fc3555598788911c64f",
+    "frozen-tool-bytes.json": "1f37b339389ee9ed1b4491e5f3b3c471a27fe164ff0a01f59e19d20e2ed1c0f1",
+    "plan.json": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+    "sources.json": "f07bf35e1654b51b7553d206ce9876af30f9b371a7a514de2085cc31c88ae1fa"
+  },
+  "baseline_revision": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "cpu_tests": {
+    "metax": {
+      "sha256": "55b73d6e775a43f4818975dc77281166de283d9ff3cf37ae9634dce66e239be4",
+      "suites": [
+        {
+          "errors": "0",
+          "failures": "0",
+          "hostname": "99f0fbb80f6d",
+          "name": "pytest",
+          "skipped": "0",
+          "tests": "105",
+          "time": "33.166",
+          "timestamp": "2026-10-25T02:21:45.973920+00:00"
+        }
+      ]
+    },
+    "nvidia": {
+      "sha256": "f76de4e21a97a6dd2f91661f3d44c4c2531a657477582fc3555598788911c64f",
+      "suites": [
+        {
+          "errors": "0",
+          "failures": "0",
+          "hostname": "ubuntu-Precision-7920-Tower",
+          "name": "pytest",
+          "skipped": "0",
+          "tests": "105",
+          "time": "52.959",
+          "timestamp": "2026-10-25T10:16:38.166343"
+        }
+      ]
+    }
+  },
+  "expected_scheduled_steps_per_lane": {
+    "detr": 29572,
+    "resnet50": 10010,
+    "vit_b16": 10010,
+    "yolov5s": 1849
+  },
+  "full_recipe_convergence_complete": false,
+  "limitations": [
+    "one epoch is not original recipe completion or converged benchmark accuracy",
+    "native randomness allowed and recorded, not a statistical equivalence claim",
+    "old interrupted long-budget attempts are preserved separately, not selected as new results"
+  ],
+  "live_status": {
+    "metax": {
+      "completed_cases": 0,
+      "controller_pid": 26220,
+      "controller_status": "waiting_for_old_budget_checkpoint_and_release",
+      "current": null,
+      "progress": {},
+      "started_utc": "2026-10-25T02:22:58.964180+00:00",
+      "transition_status": "waiting_for_first_complete_checkpoint"
+    },
+    "nvidia": {
+      "completed_cases": 0,
+      "controller_pid": 2616759,
+      "controller_status": "waiting_for_old_budget_checkpoint_and_release",
+      "current": null,
+      "progress": {},
+      "started_utc": "2026-10-25T02:18:22.171445+00:00",
+      "transition_status": "waiting_for_first_complete_checkpoint"
+    }
+  },
+  "optimizer_updates_policy": "count actual optimizer.step separately from AMP-skipped batches",
+  "preflight_reference": "../full-data/preflight-audit.json",
+  "previous_evidence_policy": "Keep full-plan/full-cohort and transition receipts on both hosts; never relabel them as this stage",
+  "previous_plan_sha256": "9a3e53beba98af7bd2daff88acbb53baa12d4d5aec4574ee5d4b9fd5fdd27cd1",
+  "production_runtime_component_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
+  "recipe_policy": "retain original LR/optimizer/augmentation horizon; stop after first complete epoch",
+  "recorded_utc": "2026-10-25T02:20:48.436172+00:00",
+  "reproduction_tools_commit": "ba1e318292448dda27d46a4fc11d19645eecc00d",
+  "scope": "one complete epoch of full ImageNet-1K / COCO2017; not converged benchmark accuracy",
+  "seed": 131,
+  "single_epoch_cohort_complete": false,
+  "source_stage": "snapshots-08",
+  "tools_stage": "training-08",
+  "total_scheduled_steps": 154323,
+  "total_training_cases": 12
+}

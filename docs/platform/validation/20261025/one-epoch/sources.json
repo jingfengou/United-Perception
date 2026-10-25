@@ -1,0 +1,47 @@
+{
+  "metax": {
+    "reason": "explicit one-epoch execution budget; original optimizer/LR/augmentation horizon retained",
+    "sources": {
+      "new": {
+        "binaries": {
+          "up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so": "05ce324b2f2d9b40a5a6c67d67a585fac49ecb74dca8679b6469d1e973b7d317"
+        },
+        "changed_files": [
+          "tools/full_accuracy_recipe.py",
+          "tools/full_accuracy_train.py"
+        ],
+        "files": 794,
+        "sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8"
+      }
+    },
+    "training_tools": "training-08"
+  },
+  "nvidia": {
+    "reason": "explicit one-epoch execution budget; original optimizer/LR/augmentation horizon retained",
+    "sources": {
+      "new": {
+        "binaries": {
+          "up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so": "ac30ea811dd4999890dbb4eee285327d9627bf78507847cac0fcedc5a7fadd0a"
+        },
+        "changed_files": [
+          "tools/full_accuracy_recipe.py",
+          "tools/full_accuracy_train.py"
+        ],
+        "files": 794,
+        "sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8"
+      },
+      "original": {
+        "binaries": {
+          "up/extensions/_C.cpython-312-x86_64-linux-gnu.so": "d49bb62be6f70cb8003f7ef2c94999c562e6215181f80920135f00db1340c59a"
+        },
+        "changed_files": [
+          "tools/full_accuracy_recipe.py",
+          "tools/full_accuracy_train.py"
+        ],
+        "files": 631,
+        "sha256": "d9ceac12843eebce70b4d1a57eade0ce7083573510d1abb1749a8e2e7c230416"
+      }
+    },
+    "training_tools": "training-08"
+  }
+}
