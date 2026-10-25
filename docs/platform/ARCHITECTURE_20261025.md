@@ -10,6 +10,13 @@
 
 实线表示组成关系。`execution` 按入口选择训练或推理实现，进程内不是同时启用两套用途。
 
+![优化后的平台组成图：对齐三类组件，训练和推理内嵌于执行适配，并保留未完成边界](assets/platform-overview.svg)
+
+原节点关系保留为可编辑参考：
+
+<details>
+<summary>查看 Mermaid 节点关系</summary>
+
 ```mermaid
 flowchart TB
     C["平台配置<br/>backend：厂商身份<br/>device：设备类型和编号<br/>purpose：training 或 inference"]
@@ -20,6 +27,8 @@ flowchart TB
     E -->|training| T["TrainingBackend：7 项<br/>autocast、grad_scaler、wrap_ddp<br/>optimizer、clip_grad_norm_、validation<br/>fused_optimizer：接口已有，SDK 依赖缺失"]
     E -->|inference| I["InferenceBackend：2 项<br/>autocast、export_onnx<br/>普通 PyTorch 模型推理，不自动换引擎"]
 ```
+
+</details>
 
 这对应当前对象的真实组成：
 
@@ -35,6 +44,14 @@ PlatformBackend（已选厂商、已选用途）
 - **训练/推理适配不包含整套业务循环**：数据、配方、损失组合、学习率、优化器步骤和 checkpoint 编排仍由 UP 负责。平台提供 AMP、DDP、优化器构造和执行上下文等接口。
 
 某个厂商如果需要区分训练算子与推理算子，可以在 `build(config, purpose)` 中显式装配不同实现；共享目录不要求所有用途永远采用同一内核。只支持前向的推理内核不能直接作为训练实现，这也不表示当前已经接入新的部署引擎。
+
+## 新厂商怎样实现这些接口
+
+![新厂商接口实现与注册验收路径](assets/vendor-onboarding.svg)
+
+实际需要交付 `device.py`、15 类 `ops/*.py`、`training.py`、`inference.py` 和注册装配。已有厂商 PyTorch 时显式复用兼容方法；缺失操作提供 SDK/内核及所需反向和状态。完全没有 PyTorch 设备后端时，先补张量、派发和 autograd 桥接。
+
+模板生成命令、目录、公共 Torch 绑定、SDK Linear 函数与层的覆盖示例、注册 YAML 和验收要求见[新增厂商实施指南](ADDING_VENDOR.md)。这条接入路径不把下面的 11 处遗留 SDK 分支自动标成已完成。
 
 ## 图二：实际调用与缺口
 
