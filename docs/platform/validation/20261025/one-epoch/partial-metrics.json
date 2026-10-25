@@ -1,0 +1,314 @@
+{
+  "all_selected_lanes_complete": false,
+  "comparisons": {
+    "resnet50": {
+      "status": "awaiting_three_lanes"
+    },
+    "vit_b16": {
+      "status": "awaiting_three_lanes"
+    },
+    "yolov5s": {
+      "status": "awaiting_three_lanes"
+    }
+  },
+  "completed": {
+    "new_metax/resnet50": {
+      "amp_skipped_steps": 5,
+      "checkpoint_sha256": "869702fe3b7bfc28a47848257d7ca722b2979ed4d430739d8394b7ba130361d5",
+      "cpu_audit_file": "new_metax-resnet50-audit.json",
+      "ema": true,
+      "environment": {
+        "device": "MetaX C500",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+metax3.8.1.0",
+          "torchvision": "0.25.0+metax3.8.1.0"
+        },
+        "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 46.91776882857084,
+      "identity": {
+        "algorithm_config_sha256": "d24b1f926d667a74a2b07549b34d528dbe56467697bc50c88408dca4ba5ccb42",
+        "data_identity": {
+          "all_image_bytes_verified": true,
+          "all_images_rgb_decoded": true,
+          "anchors_sha256": "0bbfb6aa570aeedf08142e10cd460157aab588e5a395f0771ce4c10cec9b09cd",
+          "backbone_sha256": "b77eecd6bb0a9d7ce8747d13a23f67fb014fb7ed586994cb849e8a9dfcb08cc8",
+          "detr_source_sha256": "954c6297faa72af4b59719a42c850d769d8276fcd99a7c704cb5e34f5e5eb5fb",
+          "scope": "full ImageNet-1K and COCO2017, all original image bytes audited",
+          "splits": {
+            "coco/test": {
+              "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+              "image_archive_sha256": "4f7e2ccb2866ec5041993c9cf2a952bbed69647b115d0f74da7ce8f4bef82f05",
+              "image_bytes": 814705164,
+              "images": 5000,
+              "meta_sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+            },
+            "coco/train": {
+              "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+              "image_archive_sha256": "69a8bb58ea5f8f99d24875f21416de2e9ded3178e903f1f7603e283b9e06d929",
+              "image_bytes": 19314466396,
+              "images": 118287,
+              "meta_sha256": "610fce4944abdeb15354cc765333805529359d12d88f2f711393ca586901d01d"
+            },
+            "imagenet/test": {
+              "image_bytes": 6706296736,
+              "image_manifests_sha256": "ce2fbdc75b3bbd94e4c75366202aeb3c50342b25c79ca5074153ef513501a730",
+              "images": 50000,
+              "meta_sha256": "9801da114fc05c93ebc87795f19822c1b12d224a4ed427e3237e9db3cd68068a"
+            },
+            "imagenet/train": {
+              "image_bytes": 146898709175,
+              "image_manifests_sha256": "f7072c92f0978fbf96c3fadbd34b983490cd3094e6673fefaf90d38ee0fb8840",
+              "images": 1281167,
+              "meta_sha256": "3a499581167accad60be24b5aa27532b79155bc20e022157f525d70183de942b"
+            }
+          }
+        },
+        "driver_sha256": "f73e033c08d0c5503abdc66944e23550ea3d22dfb9e1a1b2b3cb1373d3fa9d94",
+        "lane": "new_metax",
+        "model": "resnet50",
+        "plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+        "preflight_steps": null,
+        "seed": 131,
+        "source_sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8",
+        "world_size": 2
+      },
+      "inference_metrics": {
+        "top1": 0.2980000078678131,
+        "top5": 1.2140001058578491
+      },
+      "inference_sha256": "146ab841ffdd901cdc90e5812ebe5e8e07cbb0a648322b7d265cf6da6052776c",
+      "initial_state_sha256": "165aca64cdae5851d5bdb5cde93d41c0bbc6dde5d8e55edf787d0838913df6f4",
+      "lane": "new_metax",
+      "metrics": {
+        "top1": 0.2980000078678131,
+        "top5": 1.2140001058578491
+      },
+      "model": "resnet50",
+      "optimizer_updates": 10005,
+      "precision": "amp_fp16",
+      "rank0_peak_allocated_bytes": 3746323968,
+      "rank0_peak_reserved_bytes": 4001366016,
+      "report_sha256": "eaade75961a0f09f27f16b58e014e909cc8a43198378833a51a0bb59f8cb94ce",
+      "scheduled_steps": 10010,
+      "status": "audited_training_and_inference_complete",
+      "train_and_inference_predictions_identical": true,
+      "training_seconds": 1756.1153235845268
+    },
+    "new_metax/yolov5s": {
+      "amp_skipped_steps": 0,
+      "checkpoint_sha256": "433737824fd98c0ba6c4caa85ca5881795302462dfe3c5a9f9c6fd2e0b6c4eff",
+      "cpu_audit_file": "new_metax-yolov5s-audit.json",
+      "ema": true,
+      "environment": {
+        "device": "MetaX C500",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+metax3.8.1.0",
+          "torchvision": "0.25.0+metax3.8.1.0"
+        },
+        "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 122.9853412695229,
+      "identity": {
+        "algorithm_config_sha256": "289fccb5e3cf7e72ad1668ae7729c36336f6cdafeed7c0741c7a45ecdc8b5af3",
+        "data_identity": {
+          "all_image_bytes_verified": true,
+          "all_images_rgb_decoded": true,
+          "anchors_sha256": "0bbfb6aa570aeedf08142e10cd460157aab588e5a395f0771ce4c10cec9b09cd",
+          "backbone_sha256": "b77eecd6bb0a9d7ce8747d13a23f67fb014fb7ed586994cb849e8a9dfcb08cc8",
+          "detr_source_sha256": "954c6297faa72af4b59719a42c850d769d8276fcd99a7c704cb5e34f5e5eb5fb",
+          "scope": "full ImageNet-1K and COCO2017, all original image bytes audited",
+          "splits": {
+            "coco/test": {
+              "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+              "image_archive_sha256": "4f7e2ccb2866ec5041993c9cf2a952bbed69647b115d0f74da7ce8f4bef82f05",
+              "image_bytes": 814705164,
+              "images": 5000,
+              "meta_sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+            },
+            "coco/train": {
+              "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+              "image_archive_sha256": "69a8bb58ea5f8f99d24875f21416de2e9ded3178e903f1f7603e283b9e06d929",
+              "image_bytes": 19314466396,
+              "images": 118287,
+              "meta_sha256": "610fce4944abdeb15354cc765333805529359d12d88f2f711393ca586901d01d"
+            },
+            "imagenet/test": {
+              "image_bytes": 6706296736,
+              "image_manifests_sha256": "ce2fbdc75b3bbd94e4c75366202aeb3c50342b25c79ca5074153ef513501a730",
+              "images": 50000,
+              "meta_sha256": "9801da114fc05c93ebc87795f19822c1b12d224a4ed427e3237e9db3cd68068a"
+            },
+            "imagenet/train": {
+              "image_bytes": 146898709175,
+              "image_manifests_sha256": "f7072c92f0978fbf96c3fadbd34b983490cd3094e6673fefaf90d38ee0fb8840",
+              "images": 1281167,
+              "meta_sha256": "3a499581167accad60be24b5aa27532b79155bc20e022157f525d70183de942b"
+            }
+          }
+        },
+        "driver_sha256": "f73e033c08d0c5503abdc66944e23550ea3d22dfb9e1a1b2b3cb1373d3fa9d94",
+        "lane": "new_metax",
+        "model": "yolov5s",
+        "plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+        "preflight_steps": null,
+        "seed": 131,
+        "source_sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8",
+        "world_size": 2
+      },
+      "inference_metrics": {
+        "bbox.AP": 0.007869252330576044,
+        "bbox.AP.5": 0.02047908449553328,
+        "bbox.AP.75": 0.0041242241624821,
+        "bbox.AP_L": 0.009146921331815713,
+        "bbox.AP_M": 0.012088845697015528,
+        "bbox.AP_S": 0.005189179757163921,
+        "bbox.AR": 0.10182826470332897,
+        "bbox.AR_1": 0.037746302709242376,
+        "bbox.AR_10": 0.09043350409353768,
+        "bbox.AR_L": 0.13973802762380866,
+        "bbox.AR_M": 0.11454854796849516,
+        "bbox.AR_S": 0.021487745234786457
+      },
+      "inference_sha256": "1ef261017be19e491e8a3d765dafafc5042b986148df977fd277ce4601b27528",
+      "initial_state_sha256": "7f7e04e84843afb524a292e4256c48043acb048f82add11c3f4255a370432f03",
+      "lane": "new_metax",
+      "metrics": {
+        "bbox.AP": 0.007869252330576044,
+        "bbox.AP.5": 0.02047908449553328,
+        "bbox.AP.75": 0.0041242241624821,
+        "bbox.AP_L": 0.009146921331815713,
+        "bbox.AP_M": 0.012088845697015528,
+        "bbox.AP_S": 0.005189179757163921,
+        "bbox.AR": 0.10182826470332897,
+        "bbox.AR_1": 0.037746302709242376,
+        "bbox.AR_10": 0.09043350409353768,
+        "bbox.AR_L": 0.13973802762380866,
+        "bbox.AR_M": 0.11454854796849516,
+        "bbox.AR_S": 0.021487745234786457
+      },
+      "model": "yolov5s",
+      "optimizer_updates": 1849,
+      "precision": "fp32",
+      "rank0_peak_allocated_bytes": 13818983936,
+      "rank0_peak_reserved_bytes": 14877196288,
+      "report_sha256": "4008c310f9d2296162dadc1d4f84f24eda2df99177e773342a70b894ccd6b24d",
+      "scheduled_steps": 1849,
+      "status": "audited_training_and_inference_complete",
+      "train_and_inference_predictions_identical": true,
+      "training_seconds": 605.1851181192324
+    }
+  },
+  "completed_audited_training_lanes": 2,
+  "expected_training_lanes": 9,
+  "full_recipe_convergence_complete": false,
+  "limitations": [
+    "single epoch with original EMA/warmup; not original full recipe convergence",
+    "partial vendor readings do not establish platform equivalence",
+    "timings exclude model initialization/checkpoint/independent inference; memory is rank0 PyTorch allocator peak"
+  ],
+  "live": {
+    "metax": {
+      "completed_subprocess_cases": 4,
+      "controller_status": "running",
+      "current": {
+        "case": "train",
+        "command": [
+          "/workspace/up-run/venv/bin/python",
+          "-m",
+          "torch.distributed.run",
+          "--standalone",
+          "--nproc-per-node=2",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/training-08/tools/full_accuracy_train.py",
+          "--source",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/snapshots-08/new",
+          "--data",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/full-data-binding.json",
+          "--plan",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch-plan.json",
+          "--model",
+          "vit_b16",
+          "--lane",
+          "new_metax",
+          "--initial",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/preflight-initialization/vit_b16/initial.pt",
+          "--output",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch/new_metax/vit_b16/train"
+        ],
+        "lane": "new_metax",
+        "model": "vit_b16",
+        "pid": 28282,
+        "started_utc": "2026-10-25T03:17:48.322875+00:00"
+      },
+      "guard_status": "guarding_selected_models",
+      "model_status": {
+        "new_metax/resnet50": {
+          "checkpoint_generation": 1,
+          "completed_steps": 10010,
+          "evaluation_seconds": 46.91776882857084,
+          "expected_steps": 10010,
+          "last_epoch": 1,
+          "optimizer_updates": 10005,
+          "peak_allocated_bytes": 3746323968,
+          "peak_reserved_bytes": 4001366016,
+          "status": "completed",
+          "training_seconds": 1756.1153235845268
+        },
+        "new_metax/vit_b16": {
+          "checkpoint_generation": 0,
+          "completed_steps": 7300,
+          "epoch": 1,
+          "evaluation_seconds": 0.0,
+          "expected_steps": 10010,
+          "loss": 6.807016849517822,
+          "optimizer_updates": 7298,
+          "status": "training",
+          "training_seconds": 0.0
+        },
+        "new_metax/yolov5s": {
+          "checkpoint_generation": 1,
+          "completed_steps": 1849,
+          "evaluation_seconds": 122.9853412695229,
+          "expected_steps": 1849,
+          "last_epoch": 1,
+          "optimizer_updates": 1849,
+          "peak_allocated_bytes": 13818983936,
+          "peak_reserved_bytes": 14877196288,
+          "status": "completed",
+          "training_seconds": 605.1851181192324
+        }
+      }
+    },
+    "nvidia": {
+      "completed_subprocess_cases": 0,
+      "controller_status": "waiting_for_old_budget_checkpoint_and_release",
+      "current": null,
+      "guard_status": "guarding_selected_models",
+      "model_status": {
+        "new_nvidia/resnet50": null,
+        "new_nvidia/vit_b16": null,
+        "new_nvidia/yolov5s": null,
+        "original_nvidia/resnet50": null,
+        "original_nvidia/vit_b16": null,
+        "original_nvidia/yolov5s": null
+      }
+    }
+  },
+  "metric_units": {
+    "bbox.AP": "raw fraction; display AP points = raw*100",
+    "top1": "percent",
+    "top5": "percent"
+  },
+  "recorded_utc": "2026-10-25T03:40:31.240238+00:00",
+  "scope": "selected three models, one epoch each, seed131"
+}

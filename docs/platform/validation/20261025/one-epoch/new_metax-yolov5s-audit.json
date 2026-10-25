@@ -1,0 +1,65 @@
+{
+  "audit_seconds": 74.99916706327349,
+  "budget": {
+    "execution_epochs": 1,
+    "expected_steps": 1849,
+    "recipe_epochs": 300,
+    "steps_per_epoch": 1849
+  },
+  "checkpoint_files": {
+    "checkpoint-1.pt": "433737824fd98c0ba6c4caa85ca5881795302462dfe3c5a9f9c6fd2e0b6c4eff",
+    "checkpoint-1.rank0.pt": "8a4d658c3b185250702387c6ea186b2e5a5ec28ebfef7f8fd2daec0c26ccd5ac",
+    "checkpoint-1.rank1.pt": "3284c9c8921a8cd122aa39622c769a5b73aac742f6d98c1a0b866bab0107f33d"
+  },
+  "cuda_visible_devices": "",
+  "details": {
+    "detections": 1470382,
+    "empty_prediction_images_included_in_evaluation": true,
+    "images_with_predictions": 4999,
+    "metric_units": "raw 0 to 1; multiply by 100 for AP points",
+    "validation_images": 5000
+  },
+  "framework_imported": false,
+  "inference_sha256": "1ef261017be19e491e8a3d765dafafc5042b986148df977fd277ce4601b27528",
+  "lane": "new_metax",
+  "metrics_recompute_exact": true,
+  "model": "yolov5s",
+  "model_computation": false,
+  "prediction_sha256": {
+    "inference": "b6cee841b9943b11ebb7f2221daf6809e36a7819ff8619413672a4079e512939",
+    "train": "b6cee841b9943b11ebb7f2221daf6809e36a7819ff8619413672a4079e512939"
+  },
+  "predictions_identical": true,
+  "recomputed_final_metrics": {
+    "bbox.AP": 0.007869252330576044,
+    "bbox.AP.5": 0.02047908449553328,
+    "bbox.AP.75": 0.0041242241624821,
+    "bbox.AP_L": 0.009146921331815713,
+    "bbox.AP_M": 0.012088845697015528,
+    "bbox.AP_S": 0.005189179757163921,
+    "bbox.AR": 0.10182826470332897,
+    "bbox.AR_1": 0.037746302709242376,
+    "bbox.AR_10": 0.09043350409353768,
+    "bbox.AR_L": 0.13973802762380866,
+    "bbox.AR_M": 0.11454854796849516,
+    "bbox.AR_S": 0.021487745234786457
+  },
+  "recomputed_inference_metrics": {
+    "bbox.AP": 0.007869252330576044,
+    "bbox.AP.5": 0.02047908449553328,
+    "bbox.AP.75": 0.0041242241624821,
+    "bbox.AP_L": 0.009146921331815713,
+    "bbox.AP_M": 0.012088845697015528,
+    "bbox.AP_S": 0.005189179757163921,
+    "bbox.AR": 0.10182826470332897,
+    "bbox.AR_1": 0.037746302709242376,
+    "bbox.AR_10": 0.09043350409353768,
+    "bbox.AR_L": 0.13973802762380866,
+    "bbox.AR_M": 0.11454854796849516,
+    "bbox.AR_S": 0.021487745234786457
+  },
+  "recorded_utc": "2026-10-25T03:43:31.690028+00:00",
+  "report_sha256": "4008c310f9d2296162dadc1d4f84f24eda2df99177e773342a70b894ccd6b24d",
+  "status": "completed_cpu_integrity_and_metric_audit",
+  "tool_sha256": "805d9e6219015b1daf0c332ce3dda808a92e29779d5b39b37a34f5797828cede"
+}

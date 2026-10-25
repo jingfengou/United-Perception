@@ -4,11 +4,15 @@
     "cpu-metax.xml": "55b73d6e775a43f4818975dc77281166de283d9ff3cf37ae9634dce66e239be4",
     "cpu-nvidia.xml": "f76de4e21a97a6dd2f91661f3d44c4c2531a657477582fc3555598788911c64f",
     "frozen-tool-bytes.json": "1f37b339389ee9ed1b4491e5f3b3c471a27fe164ff0a01f59e19d20e2ed1c0f1",
+    "new_metax-resnet50-audit.json": "a541013005cc4ef730b15e2cb355458ae9c3e502146a455d2b20cfcba6173890",
+    "new_metax-yolov5s-audit.json": "5354b7e57c1691fe2e9eeef5b09be6cfd8d450938231e8f631519073e24b0814",
+    "partial-metrics.json": "23daaa0a8947b1b1c746a693da94320738a96705b7091f9c3c5c2a3e4a53aa1c",
     "plan.json": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
     "selection-receipt.json": "15f1148131310ad530bda4ec236fb132526b660535aff6992f398e8fcf297195",
     "selection.json": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f",
     "sources.json": "f07bf35e1654b51b7553d206ce9876af30f9b371a7a514de2085cc31c88ae1fa"
   },
+  "audited_training_lanes": 2,
   "baseline_revision": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
   "completion_receipt": "three-model-guard-job.json, selected_models_completed_detr_held on each host",
   "cpu_tests": {
@@ -60,8 +64,7 @@
   ],
   "live_status": {
     "metax": {
-      "completed_cases": 0,
-      "controller_pid": 26220,
+      "completed_subprocess_cases": 4,
       "controller_status": "running",
       "current": {
         "case": "train",
@@ -79,45 +82,74 @@
           "--plan",
           "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch-plan.json",
           "--model",
-          "resnet50",
+          "vit_b16",
           "--lane",
           "new_metax",
           "--initial",
-          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/preflight-initialization/resnet50/initial.pt",
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/preflight-initialization/vit_b16/initial.pt",
           "--output",
-          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch/new_metax/resnet50/train"
+          "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch/new_metax/vit_b16/train"
         ],
         "lane": "new_metax",
-        "model": "resnet50",
-        "pid": 26265,
-        "started_utc": "2026-10-25T02:28:30.205671+00:00"
+        "model": "vit_b16",
+        "pid": 28282,
+        "started_utc": "2026-10-25T03:17:48.322875+00:00"
       },
       "guard_status": "guarding_selected_models",
-      "progress": {
+      "model_status": {
         "new_metax/resnet50": {
+          "checkpoint_generation": 1,
+          "completed_steps": 10010,
+          "evaluation_seconds": 46.91776882857084,
+          "expected_steps": 10010,
+          "last_epoch": 1,
+          "optimizer_updates": 10005,
+          "peak_allocated_bytes": 3746323968,
+          "peak_reserved_bytes": 4001366016,
+          "status": "completed",
+          "training_seconds": 1756.1153235845268
+        },
+        "new_metax/vit_b16": {
           "checkpoint_generation": 0,
-          "completed_steps": 3100,
+          "completed_steps": 7300,
           "epoch": 1,
           "evaluation_seconds": 0.0,
           "expected_steps": 10010,
-          "loss": 6.042084693908691,
-          "optimizer_updates": 3098,
+          "loss": 6.807016849517822,
+          "optimizer_updates": 7298,
           "status": "training",
           "training_seconds": 0.0
+        },
+        "new_metax/yolov5s": {
+          "checkpoint_generation": 1,
+          "completed_steps": 1849,
+          "evaluation_seconds": 122.9853412695229,
+          "expected_steps": 1849,
+          "last_epoch": 1,
+          "optimizer_updates": 1849,
+          "peak_allocated_bytes": 13818983936,
+          "peak_reserved_bytes": 14877196288,
+          "status": "completed",
+          "training_seconds": 605.1851181192324
         }
-      },
-      "transition_status": "superseded_after_saved_checkpoint"
+      }
     },
     "nvidia": {
-      "completed_cases": 0,
-      "controller_pid": 2616759,
+      "completed_subprocess_cases": 0,
       "controller_status": "waiting_for_old_budget_checkpoint_and_release",
       "current": null,
       "guard_status": "guarding_selected_models",
-      "progress": {},
-      "transition_status": "waiting_for_first_complete_checkpoint"
+      "model_status": {
+        "new_nvidia/resnet50": null,
+        "new_nvidia/vit_b16": null,
+        "new_nvidia/yolov5s": null,
+        "original_nvidia/resnet50": null,
+        "original_nvidia/vit_b16": null,
+        "original_nvidia/yolov5s": null
+      }
     }
   },
+  "metric_summary": "partial-metrics.json",
   "optimizer_updates_policy": "count actual optimizer.step separately from AMP-skipped batches",
   "parent_plan_training_cases": 12,
   "preflight_reference": "../full-data/preflight-audit.json",
@@ -125,7 +157,7 @@
   "previous_plan_sha256": "9a3e53beba98af7bd2daff88acbb53baa12d4d5aec4574ee5d4b9fd5fdd27cd1",
   "production_runtime_component_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
   "recipe_policy": "retain original LR/optimizer/augmentation horizon; stop after first complete epoch",
-  "recorded_utc": "2026-10-25T02:33:45.289847+00:00",
+  "recorded_utc": "2026-10-25T03:40:31.240238+00:00",
   "reproduction_tools_commit": "ba1e318292448dda27d46a4fc11d19645eecc00d",
   "scope": "selected ResNet50, YOLOv5-S and ViT-B/16; three lanes, one full-data epoch each; DETR deferred",
   "seed": 131,

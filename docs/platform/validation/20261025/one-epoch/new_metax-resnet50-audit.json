@@ -1,0 +1,47 @@
+{
+  "audit_seconds": 1.482900551520288,
+  "budget": {
+    "execution_epochs": 1,
+    "expected_steps": 10010,
+    "recipe_epochs": 200,
+    "steps_per_epoch": 10010
+  },
+  "checkpoint_files": {
+    "checkpoint-1.pt": "869702fe3b7bfc28a47848257d7ca722b2979ed4d430739d8394b7ba130361d5",
+    "checkpoint-1.rank0.pt": "520c4eecfa8c0915ec3dd0942d3c8c50f068b7ccf1085d05627c03709b5d9705",
+    "checkpoint-1.rank1.pt": "92ebdc9dbf1b53474f4a79ec1ca068423ded0439e2bdd99a4f412391e0747cfa"
+  },
+  "cuda_visible_devices": "",
+  "details": {
+    "correct": {
+      "1": 149,
+      "5": 607
+    },
+    "metric_units": "percent (0 to 100), upstream FP32 multiplication",
+    "unique_membership_and_labels_exact": true,
+    "validation_images": 50000
+  },
+  "framework_imported": false,
+  "inference_sha256": "146ab841ffdd901cdc90e5812ebe5e8e07cbb0a648322b7d265cf6da6052776c",
+  "lane": "new_metax",
+  "metrics_recompute_exact": true,
+  "model": "resnet50",
+  "model_computation": false,
+  "prediction_sha256": {
+    "inference": "d300c2d08918522ba327b58c077aabb345825945d29d714ecea59beb67bfa073",
+    "train": "d300c2d08918522ba327b58c077aabb345825945d29d714ecea59beb67bfa073"
+  },
+  "predictions_identical": true,
+  "recomputed_final_metrics": {
+    "top1": 0.2980000078678131,
+    "top5": 1.2140001058578491
+  },
+  "recomputed_inference_metrics": {
+    "top1": 0.2980000078678131,
+    "top5": 1.2140001058578491
+  },
+  "recorded_utc": "2026-10-25T03:42:16.686969+00:00",
+  "report_sha256": "eaade75961a0f09f27f16b58e014e909cc8a43198378833a51a0bb59f8cb94ce",
+  "status": "completed_cpu_integrity_and_metric_audit",
+  "tool_sha256": "805d9e6219015b1daf0c332ce3dda808a92e29779d5b39b37a34f5797828cede"
+}
