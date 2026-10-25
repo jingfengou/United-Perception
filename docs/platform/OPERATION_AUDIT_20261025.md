@@ -7,6 +7,8 @@
 
 [完整 CSV](operation_audit_20261025.csv) · [机器可读 JSON 与源证据哈希](operation_audit_20261025.json) · [全部签名和契约](INTERFACES.md)
 
+这些接口的组件归属、训练/推理如何共用算子与设备，以及两家厂商的实现路径见[平台架构详图](ARCHITECTURE_20261025.md)。
+
 ## 三种比较必须分开
 
 - **原 UP→新版，同一厂商**：19 个专用操作有独立小样本路由对照。参考提取原 UP Python/autograd 体，双方使用同一厂商编译扩展；C500 的 PSRoIPool 整数 scratch 明确补 contiguous。这验证路由迁移，不能据此证明原始内核与所有后续修正内核无差异。
