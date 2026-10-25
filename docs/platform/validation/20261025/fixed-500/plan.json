@@ -1,0 +1,19 @@
+{
+  "full_epoch_or_convergence_claim": false,
+  "full_validation_after_500_steps": true,
+  "models": [
+    "resnet50",
+    "yolov5s",
+    "vit_b16"
+  ],
+  "native": true,
+  "operational_tools": {
+    "audit_short500_01.py": "0ad04d571ae5425dac26018e78263e98068c9366f474c144ec588eeac42879e2",
+    "run_short500_01.py": "b163a8a081bb92ecb611c588a231c7929c34f6cb81d743a90f50570dd0b44368"
+  },
+  "parent_plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+  "purpose": "paired_500_step_diagnostic",
+  "same_data_initial_weights_recipe_seed_precision": true,
+  "stage": "short-500-01",
+  "steps": 500
+}
