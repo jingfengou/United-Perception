@@ -1,0 +1,7 @@
+{
+  "execution_sha256": "79441420ed7be26805d024635691d0a48d2e179cb50c077bacb54beb38926e2c",
+  "lf_normalized_sha256": "3e54d68be0696fb2c299cecbc3f90108a359ec3d6e8f2bd1ad082bd6ad595292",
+  "execution_line_endings": "CRLF",
+  "published_line_endings": "LF",
+  "restore": "Normalize CRLF to LF, verify LF hash, then replace LF with CRLF and verify execution hash. Do not alter the frozen running plan."
+}

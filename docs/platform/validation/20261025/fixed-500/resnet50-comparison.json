@@ -1,0 +1,84 @@
+{
+  "resnet50": {
+    "metrics": {
+      "new_metax": {
+        "top1": 0.11600000411272049,
+        "top5": 0.5020000338554382
+      },
+      "new_nvidia": {
+        "top1": 0.10200000554323196,
+        "top5": 0.46000000834465027
+      },
+      "original_nvidia": {
+        "top1": 0.10000000149011612,
+        "top5": 0.5420000553131104
+      }
+    },
+    "trajectories": {
+      "metax_vs_new_nvidia": {
+        "0": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 7.284472465515137,
+            "reference": 7.283603191375732
+          },
+          "first_loss_exceeding_tolerance_step": 1,
+          "first_optimizer_update_count_difference_step": 15,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 489,
+          "max_loss_absolute_difference": 2.0848264694213867,
+          "rtol": 0.0001,
+          "steps": 500
+        },
+        "1": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 7.396762371063232,
+            "reference": 7.397619247436523
+          },
+          "first_loss_exceeding_tolerance_step": 1,
+          "first_optimizer_update_count_difference_step": 15,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 490,
+          "max_loss_absolute_difference": 1.198188304901123,
+          "rtol": 0.0001,
+          "steps": 500
+        }
+      },
+      "new_vs_original_nvidia": {
+        "0": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 1,
+          "first_loss_difference_values": {
+            "actual": 7.283603191375732,
+            "reference": 7.283541679382324
+          },
+          "first_loss_exceeding_tolerance_step": 3,
+          "first_optimizer_update_count_difference_step": null,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 493,
+          "max_loss_absolute_difference": 7.777764320373535,
+          "rtol": 0.0001,
+          "steps": 500
+        },
+        "1": {
+          "atol": 1e-05,
+          "first_loss_difference_step": 3,
+          "first_loss_difference_values": {
+            "actual": 7.883509635925293,
+            "reference": 7.873675346374512
+          },
+          "first_loss_exceeding_tolerance_step": 3,
+          "first_optimizer_update_count_difference_step": null,
+          "inputs_and_learning_rates_match": true,
+          "loss_steps_exceeding_tolerance": 485,
+          "max_loss_absolute_difference": 1.5945372581481934,
+          "rtol": 0.0001,
+          "steps": 500
+        }
+      }
+    }
+  }
+}
