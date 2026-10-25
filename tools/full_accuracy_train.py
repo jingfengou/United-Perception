@@ -26,7 +26,7 @@ import torch.distributed as dist
 from accuracy_data import digest
 from accuracy_train import batch_hash, configure_numerics, finite, metrics, state_hash
 from compare_platform_models import cpu
-from full_accuracy_recipe import RECIPES, recipe
+from full_accuracy_recipe import RECIPES, execution_budget, recipe
 from run_platform_validation import source_manifest
 
 
@@ -330,9 +330,8 @@ def run(args):
                   'rank_local_buffers_restored': True})
         return
     epoch_steps = runner.train_epoch_size
-    expected = RECIPES[args.model]['epochs']*epoch_steps
-    if runner.max_iter != expected or expected != settings['expected_steps']:
-        raise ValueError('Native UP step budget differs from frozen plan')
+    budget = execution_budget(args.model, settings, epoch_steps, runner.max_iter)
+    expected = budget['expected_steps']
     target = args.probe_steps or expected
     stop = args.checkpoint_stop_after or target
     if args.checkpoint_stop_after and not args.probe_steps:
@@ -348,7 +347,7 @@ def run(args):
     trace = (args.output/f'train.rank{rank}.jsonl').open('a')
     try:
         start_epoch = progress['completed_steps']//epoch_steps
-        for epoch in range(start_epoch, RECIPES[args.model]['epochs']):
+        for epoch in range(start_epoch, budget['execution_epochs']):
             skip = progress['completed_steps'] % epoch_steps
             iterator(runner, 'train', seed=args.seed, rank=rank, epoch=epoch, skip=skip)
             if pending_state:
@@ -417,7 +416,8 @@ def run(args):
                     write(args.output/'report.json', {'identity': identity, 'progress': progress,
                         'status': ('preflight_checkpoint' if stop < target else 'preflight_completed') if args.probe_steps else 'completed',
                         'final_metrics': values, 'initial_state_sha256': initial_state_sha,
-                        'expected_steps': expected, 'selection': 'final epoch; native EMA where configured',
+                        'expected_steps': expected, 'budget': budget,
+                        'selection': 'final requested epoch; native EMA where configured',
                         'precision': RECIPES[args.model]['precision'], 'benchmark': torch.backends.cudnn.benchmark,
                         'deterministic': torch.are_deterministic_algorithms_enabled(),
                         'peak_allocated_bytes': torch.cuda.max_memory_allocated(),

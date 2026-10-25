@@ -11,6 +11,34 @@ spec.loader.exec_module(recipes)
 
 
 class TestFullRecipes(unittest.TestCase):
+    def test_one_epoch_keeps_native_recipe_horizon(self):
+        for model, steps in (('resnet50', 10010), ('vit_b16', 10010),
+                             ('yolov5s', 1849), ('detr', 29572)):
+            with self.subTest(model=model):
+                original = recipes.RECIPES[model]['epochs']
+                budget = recipes.execution_budget(model,
+                    {'execution_epochs': 1, 'expected_steps': steps}, steps, original*steps)
+                self.assertEqual(budget, {'recipe_epochs': original, 'execution_epochs': 1,
+                    'steps_per_epoch': steps, 'expected_steps': steps})
+                self.assertEqual(recipes.RECIPES[model]['epochs'], original)
+
+    def test_legacy_full_budget_remains_the_default(self):
+        for model, item in recipes.RECIPES.items():
+            total = item['epochs']*19
+            budget = recipes.execution_budget(model, {'expected_steps': total}, 19, total)
+            self.assertEqual(budget['execution_epochs'], item['epochs'])
+            self.assertEqual(budget['expected_steps'], total)
+
+    def test_invalid_or_disguised_reduced_budgets_are_rejected(self):
+        for epochs in (0, -1, 201, True, 1.0, '1'):
+            with self.subTest(epochs=epochs), self.assertRaises(ValueError):
+                recipes.execution_budget('resnet50',
+                    {'execution_epochs': epochs, 'expected_steps': 19}, 19, 3800)
+        with self.assertRaisesRegex(ValueError, 'Native UP recipe'):
+            recipes.execution_budget('resnet50', {'execution_epochs': 1, 'expected_steps': 19}, 19, 19)
+        with self.assertRaisesRegex(ValueError, 'frozen plan'):
+            recipes.execution_budget('resnet50', {'execution_epochs': 1, 'expected_steps': 18}, 19, 3800)
+
     def data(self):
         return {'imagenet': {'train': {'meta': 'train.txt'}, 'test': {'meta': 'val.txt'}, 'image_dir': 'images'},
             'coco': {split: {'meta': split+'.json', 'image_dir': split,

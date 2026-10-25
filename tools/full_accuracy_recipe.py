@@ -20,6 +20,21 @@ RECIPES = {
 }
 
 
+def execution_budget(model, settings, epoch_steps, native_max_iter):
+    """Stop at a frozen epoch boundary without compressing the native recipe."""
+    recipe_epochs = RECIPES[model]['epochs']
+    epochs = settings.get('execution_epochs', recipe_epochs)
+    if type(epochs) is not int or not 1 <= epochs <= recipe_epochs:
+        raise ValueError('Execution epochs must be an integer within the native recipe')
+    if epoch_steps < 1 or native_max_iter != recipe_epochs*epoch_steps:
+        raise ValueError('Native UP recipe step budget changed')
+    expected = epochs*epoch_steps
+    if settings['expected_steps'] != expected:
+        raise ValueError('Execution step budget differs from frozen plan')
+    return {'recipe_epochs': recipe_epochs, 'execution_epochs': epochs,
+            'steps_per_epoch': epoch_steps, 'expected_steps': expected}
+
+
 def recipe(source, data, model, *, batch_size, world_size, workers=4, seed=131):
     import yaml
     if min(batch_size, world_size) < 1 or workers < 1:
