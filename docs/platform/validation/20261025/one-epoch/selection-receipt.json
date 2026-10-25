@@ -1,0 +1,22 @@
+{
+  "hosts": {
+    "metax": {
+      "controller_pid": 26220,
+      "controller_status": "running",
+      "current_model": "resnet50",
+      "guard_pid": 26698,
+      "guard_status": "guarding_selected_models",
+      "selection_sha256": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f"
+    },
+    "nvidia": {
+      "controller_pid": 2616759,
+      "controller_status": "waiting_for_old_budget_checkpoint_and_release",
+      "current_model": null,
+      "guard_pid": 2621358,
+      "guard_status": "guarding_selected_models",
+      "selection_sha256": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f"
+    }
+  },
+  "recorded_utc": "2026-10-25T02:33:45.289847+00:00",
+  "selection_sha256": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f"
+}
