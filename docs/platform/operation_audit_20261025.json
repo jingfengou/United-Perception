@@ -1,0 +1,5452 @@
+{
+  "date": "2026-10-25",
+  "upstream_commit": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
+  "evidence_source_commit": "3ded8f17f3b830b161fecfe4b632b86652fac783",
+  "interface_count": 156,
+  "category_counts": {
+    "device": 18,
+    "training": 7,
+    "inference": 2,
+    "activation": 22,
+    "attention": 1,
+    "communication": 17,
+    "convolution": 4,
+    "deformable": 1,
+    "detection": 6,
+    "focal": 3,
+    "loss": 10,
+    "matrix": 7,
+    "normalization": 10,
+    "pointcloud": 10,
+    "pooling": 10,
+    "pruning": 10,
+    "quantization": 7,
+    "sparse": 11
+  },
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "new_gpu_execution": false,
+  "null_means": "not measured / no applicable tensor gradient, never zero",
+  "native_reference_scope": "Original UP Python/autograd bodies, same vendor-compiled extension; MetaX PSRoIPool scratch explicitly contiguous. Not pristine original kernel versus corrected kernel equivalence.",
+  "cross_vendor_model_scope": "98 common-input samples / 16 interfaces from ResNet50 YOLOv5-S ViT-B16; training AMP for classifiers, FP32 YOLO; not full shape/dtype coverage",
+  "same_vendor_upstream_operation_count": 19,
+  "cross_vendor_real_model_operation_count": 16,
+  "reason_legend": {
+    "U": "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。",
+    "P": "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。",
+    "D": "DeformConv 原实现自身重复的输入梯度最大差也为 9.536743e-7；新旧差小于该重复差且在容差内，包含原生浮点/执行波动，未进一步证明某个指令是原因。",
+    "F": "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。",
+    "R": "同 seed 不保证跨设备随机流消耗/线程网格相同。既有纯 Torch 重放及真实掩码诊断复现差异；本轮未强制统一掩码。",
+    "C": "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。",
+    "A": "RoIAlign 原子反向的浮点加法顺序随调度变化，原版重复也有差异。新版仅在显式确定性开关开启时走固定顺序；小样本路由差为 0 不等于 native 训练始终稳定。",
+    "G": "KITTI 旧几何边界错误经用户授权单独纠正：IoU/归一化重叠的新旧最大差为 1，原始交面积模式最大差为 13.39433956（面积单位）。两家修后同输入最大差为 0；不同单位不能合并解释为 IoU 差。",
+    "M": "设备拷贝逻辑值相同，但既有纯 Torch 探针中 NVIDIA 为 NCHW、C500 为 channels-last；这是实测布局差，布局可影响后续内核选择，不是值被平台改写。",
+    "S": "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。",
+    "T": "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。",
+    "B": "spring.linklink 变体缺 SDK（含 SyncBN/FP16 和三个融合优化器），相关变体未执行；不得用普通实现替代，数值差异未知。",
+    "V": "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。",
+    "Q": "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。",
+    "X": "原有显式 CPU/cumm voxel 分支尚未做真机用例验收；不能将 PointPillar 执行成功作为该分支通过。",
+    "H": "原版与新版 SegFormer MultiheadAttention 组合模块在两家各有 11 个 Tensor 比较通过；报告未保存最大差，不能填写为 0，也不能扩展为所有 Attention 变体。"
+  },
+  "source_text_sha256_lf": {
+    "docs/platform/interfaces.json": "6bab6bd679338859647c10370802195de2e66e4524e6cf3925b79bc92f60a970",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/findings.json": "b17c1606c863a6cde136408d19833767221ae5eb5bfb46a1183197b700338ff2",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/comparisons/resnet50-training.json": "c77babe1de0eebf5ba3aac932a976fff8a0a7551bf15750d6027ed5aba50ada8",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/nvidia-replay/resnet50/training/replay.json": "13b477848181539785c557dd66260281b5f4bef74ddc566f249ef105c46505b4",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/metax-replay/resnet50/training/replay.json": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/comparisons/resnet50-inference.json": "aacd6fbafe3c7f3879c1e41952356c107ee996bed0188c1625c2ad590dc6f974",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/nvidia-replay/resnet50/inference/replay.json": "e232e82ccfbaed11ecf1c9e9451bf9955bde8e8bfea1c3531bf9de4790b16b72",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/metax-replay/resnet50/inference/replay.json": "edbd2ec6d6782c2e288194e1170afade1f4d4c610dc42d80c5f49ca4cac95cb4",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/comparisons/yolov5s-training.json": "4be419be4113060fb4394902e16c0a758f238068f777e0fd25b5d22271efb0bd",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/nvidia-replay/yolov5s/training/replay.json": "c3538bd76e33613190e56d56cd5914233241361157ef6c49fd1768519f195b48",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/metax-replay/yolov5s/training/replay.json": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/comparisons/yolov5s-inference.json": "fa9ad34c77a1c48b97615cc00822f804c84e6fb6d66f59e8805a3a8a1e4da013",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/nvidia-replay/yolov5s/inference/replay.json": "d4fe3390620541685c56135c54432ab5a2f1cdcae7d9b9c2d6e67f77cb9e1382",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/metax-replay/yolov5s/inference/replay.json": "990cd1620f63a0c9cb7fe5b0a413bd0ad0bbee5e096c888bc3a109764752214f",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/comparisons/vit_b16-training.json": "518dd83484b732ebba3cef9361c95d3b1b258bd38a4201cc28e36d05a354c809",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/nvidia-replay/vit_b16/training/replay.json": "ed887ec3bdfdd0d9aa3908088a23b4fda8b3aaba39d93c64e35840e77825e310",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/metax-replay/vit_b16/training/replay.json": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/comparisons/vit_b16-inference.json": "481ff10055d4c35641ca68ab37d80dc05841f85cd29c61ef5eb3662dae563fb9",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/nvidia-replay/vit_b16/inference/replay.json": "8569cbe37d8d86712d77bc11b7a271a0fb1ba28b24a569ab9b360d741006cf22",
+    "docs/platform/validation/20261025/model-ops/nvidia-complete-02/metax-replay/vit_b16/inference/replay.json": "59a6320d6d3440a86028c16a737511f563a0645d1e85321c452ab7af73dfa039",
+    "docs/platform/validation/20261023/nvidia/results/frozen-stage12/native-training.json": "7b5b19d12d5e8a808887ae55943d4461f4bb2dba2fdd321dda543e221e5b9de6",
+    "docs/platform/validation/20261023/nvidia/results/frozen-stage12/native-inference.json": "0a1fc470a1d41086d05ab4addcf40d9e84403500b318471f76d4c16d48ff67d2",
+    "docs/platform/validation/20261023/metax/results/frozen-stage13/native-training.json": "c3b3668ed6d4292151eaf305cd3c0ef46e278d2f1ca9fa7cb0affb122348579f",
+    "docs/platform/validation/20261023/metax/results/frozen-stage13/native-inference.json": "23c0c118553818cbc92daa7e3fd4e06d16662c4458195fa83f77fa3e48e90a92",
+    "docs/platform/validation/20261023/nvidia-startup/results/startup-stage15/summary.json": "023f589009fd535fb1f634e8433bd5609978c1adf13d4ab924be54740c0daa95",
+    "docs/platform/validation/20261023/metax-startup/results/startup-stage15/summary.json": "a40f02f54c5b1066719a614bf8b7f864f21b46c160b0efe53196d9b594dbdc56",
+    "docs/platform/validation/20261024/kitti-cross-vendor.json": "461acf3962f76a62090be1e30664f03c94ddde791597a5234c549bc970437d72",
+    "docs/platform/validation/20261024/kitti-nvidia.json": "52c96f4093f45b64a0532c52c2fbdd1d833263977e9cb22fe16a87c66240d4f8",
+    "docs/platform/validation/20261024/kitti-metax.json": "5902e4157dfa18480a862acc10f87e0016a9ed3e8d5c014256debc867bf4ef65"
+  },
+  "operations": [
+    {
+      "number": 1,
+      "interface": "device.available",
+      "category": "device",
+      "signature": "(self)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 13,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 2,
+      "interface": "device.convolution_flags",
+      "category": "device",
+      "signature": "(self, *, enabled=None, benchmark=None, deterministic=None, allow_tf32=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 77,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 3,
+      "interface": "device.current_device",
+      "category": "device",
+      "signature": "(self)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 29,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 4,
+      "interface": "device.device",
+      "category": "device",
+      "signature": "(self, index=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 17,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 5,
+      "interface": "device.device_count",
+      "category": "device",
+      "signature": "(self)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 25,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 6,
+      "interface": "device.empty_cache",
+      "category": "device",
+      "signature": "(self)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 49,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 7,
+      "interface": "device.environment",
+      "category": "device",
+      "signature": "(self)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 81,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 8,
+      "interface": "device.get_rng_state",
+      "category": "device",
+      "signature": "(self, device=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 65,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 9,
+      "interface": "device.is_accelerator",
+      "category": "device",
+      "signature": "(self, tensor)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 37,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 10,
+      "interface": "device.manual_seed",
+      "category": "device",
+      "signature": "(self, seed)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 73,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 11,
+      "interface": "device.max_memory_allocated",
+      "category": "device",
+      "signature": "(self, device=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 57,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 12,
+      "interface": "device.memory_allocated",
+      "category": "device",
+      "signature": "(self, device=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 53,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 13,
+      "interface": "device.move",
+      "category": "device",
+      "signature": "(self, value, device=None, non_blocking=False)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 41,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "M"
+      ],
+      "group_evidence": "既有逻辑值/stride 配对探针，不是本轮模型最终精度",
+      "explanation": [
+        "设备拷贝逻辑值相同，但既有纯 Torch 探针中 NVIDIA 为 NCHW、C500 为 channels-last；这是实测布局差，布局可影响后续内核选择，不是值被平台改写。"
+      ],
+      "evidence": [
+        "VENDOR_TRAINING_DIAGNOSIS_20261024.md"
+      ]
+    },
+    {
+      "number": 14,
+      "interface": "device.properties",
+      "category": "device",
+      "signature": "(self, index=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 33,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 15,
+      "interface": "device.reset_peak_memory_stats",
+      "category": "device",
+      "signature": "(self, device=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 61,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 16,
+      "interface": "device.set_device",
+      "category": "device",
+      "signature": "(self, index)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 21,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 17,
+      "interface": "device.set_rng_state",
+      "category": "device",
+      "signature": "(self, state, device=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 69,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 18,
+      "interface": "device.synchronize",
+      "category": "device",
+      "signature": "(self, device=None)",
+      "contract_source": "up_platform/base.py",
+      "contract_line": 45,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 19,
+      "interface": "training.autocast",
+      "category": "training",
+      "signature": "(self, enabled=True, dtype=None, cache_enabled=True)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 5,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 20,
+      "interface": "training.clip_grad_norm_",
+      "category": "training",
+      "signature": "(self, parameters, max_norm, norm_type=2.0, **kwargs)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 29,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 21,
+      "interface": "training.fused_optimizer",
+      "category": "training",
+      "signature": "(self, name, params, **kwargs)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 21,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "B"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "spring.linklink 变体缺 SDK（含 SyncBN/FP16 和三个融合优化器），相关变体未执行；不得用普通实现替代，数值差异未知。"
+      ],
+      "evidence": [
+        "LINKLINK.md"
+      ]
+    },
+    {
+      "number": 22,
+      "interface": "training.grad_scaler",
+      "category": "training",
+      "signature": "(self, init_scale=65536.0, growth_factor=2.0, backoff_factor=0.5, growth_interval=2000, enabled=True)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 9,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 23,
+      "interface": "training.optimizer",
+      "category": "training",
+      "signature": "(self, name, **kwargs)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 25,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 24,
+      "interface": "training.validation",
+      "category": "training",
+      "signature": "(self, module)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 17,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 25,
+      "interface": "training.wrap_ddp",
+      "category": "training",
+      "signature": "(self, module, **kwargs)",
+      "contract_source": "up_platform/training/base.py",
+      "contract_line": 13,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 26,
+      "interface": "inference.autocast",
+      "category": "inference",
+      "signature": "(self, enabled=True, dtype=None, cache_enabled=True)",
+      "contract_source": "up_platform/inference/base.py",
+      "contract_line": 5,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 27,
+      "interface": "inference.export_onnx",
+      "category": "inference",
+      "signature": "(self, model, args, destination, **kwargs)",
+      "contract_source": "up_platform/inference/base.py",
+      "contract_line": 9,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 28,
+      "interface": "activation.Dropout",
+      "category": "activation",
+      "signature": "(p=0.5, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 165,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 2,
+        "forward_max_abs": 5.730083465576172,
+        "all_saved_fields_max_abs": 5.730083465576172,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 2
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 5.730083465576172,
+                "passed": false,
+                "shape": [
+                  64,
+                  197,
+                  768
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.5498282313346863,
+                "passed": false,
+                "shape": [
+                  64,
+                  197,
+                  768
+                ],
+                "tensor_field": "input_gradients[0]"
+              }
+            ],
+            "input_case": "case-0001.pt",
+            "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "activation.Dropout",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": true
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.028536077588796616,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  197
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.5498282313346863,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  197
+                ],
+                "tensor_field": "input_gradients[0]"
+              }
+            ],
+            "input_case": "case-0006.pt",
+            "input_variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "activation.Dropout",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": true
+          }
+        ]
+      },
+      "reasons": [
+        "R"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同 seed 不保证跨设备随机流消耗/线程网格相同。既有纯 Torch 重放及真实掩码诊断复现差异；本轮未强制统一掩码。"
+      ],
+      "evidence": [
+        "VENDOR_TRAINING_DIAGNOSIS_20261024.md"
+      ]
+    },
+    {
+      "number": 29,
+      "interface": "activation.Dropout2d",
+      "category": "activation",
+      "signature": "(p=0.5, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 173,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 30,
+      "interface": "activation.GELU",
+      "category": "activation",
+      "signature": "(approximate='none')",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 109,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 31,
+      "interface": "activation.Hardswish",
+      "category": "activation",
+      "signature": "(inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 32,
+      "interface": "activation.LeakyReLU",
+      "category": "activation",
+      "signature": "(negative_slope=0.01, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 133,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 33,
+      "interface": "activation.ReLU",
+      "category": "activation",
+      "signature": "(inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 93,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 0.0,
+        "all_saved_fields_max_abs": 0,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 34,
+      "interface": "activation.ReLU6",
+      "category": "activation",
+      "signature": "(inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 101,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 35,
+      "interface": "activation.SELU",
+      "category": "activation",
+      "signature": "(inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 125,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 36,
+      "interface": "activation.SiLU",
+      "category": "activation",
+      "signature": "(inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 117,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 9.5367431640625e-07,
+        "all_saved_fields_max_abs": 9.5367431640625e-07,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 37,
+      "interface": "activation.Sigmoid",
+      "category": "activation",
+      "signature": "()",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 141,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 38,
+      "interface": "activation.Softmax",
+      "category": "activation",
+      "signature": "(dim=None)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 157,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 39,
+      "interface": "activation.Tanh",
+      "category": "activation",
+      "signature": "()",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 149,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 40,
+      "interface": "activation.gelu",
+      "category": "activation",
+      "signature": "(input, approximate='none')",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 37,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 41,
+      "interface": "activation.hardtanh",
+      "category": "activation",
+      "signature": "(input, min_val=-1.0, max_val=1.0, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 29,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 42,
+      "interface": "activation.log_softmax",
+      "category": "activation",
+      "signature": "(input, dim=None, _stacklevel=3, dtype=None)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 77,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 2,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 2,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 2,
+        "outside_tolerance_cases": 2,
+        "forward_max_abs": 9.5367431640625e-07,
+        "all_saved_fields_max_abs": 6.103515625e-05,
+        "phases": {
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 2
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 3.0517578125e-05,
+                "passed": false,
+                "shape": [
+                  64,
+                  1000
+                ],
+                "tensor_field": "input_gradients[0]"
+              }
+            ],
+            "input_case": "case-0009.pt",
+            "input_variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "resnet50",
+            "operation": "activation.log_softmax",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 6.103515625e-05,
+                "passed": false,
+                "shape": [
+                  64,
+                  1000
+                ],
+                "tensor_field": "input_gradients[0]"
+              }
+            ],
+            "input_case": "case-0010.pt",
+            "input_variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "activation.log_softmax",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          }
+        ]
+      },
+      "reasons": [
+        "F"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 43,
+      "interface": "activation.relu",
+      "category": "activation",
+      "signature": "(input, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 13,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 44,
+      "interface": "activation.relu6",
+      "category": "activation",
+      "signature": "(input, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 21,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 45,
+      "interface": "activation.sigmoid",
+      "category": "activation",
+      "signature": "(input)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 53,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 1.1920928955078125e-07,
+        "all_saved_fields_max_abs": 1.1920928955078125e-07,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 46,
+      "interface": "activation.silu",
+      "category": "activation",
+      "signature": "(input, inplace=False)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 45,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 47,
+      "interface": "activation.softmax",
+      "category": "activation",
+      "signature": "(input, dim=None, _stacklevel=3, dtype=None)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 69,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 7,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 7,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 7,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 5.587935447692871e-09,
+        "all_saved_fields_max_abs": 3.814697265625e-06,
+        "phases": {
+          "independent_inference": {
+            "cases": 3,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 3,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 48,
+      "interface": "activation.softplus",
+      "category": "activation",
+      "signature": "(input, beta=1, threshold=20)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 85,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 49,
+      "interface": "activation.tanh",
+      "category": "activation",
+      "signature": "(input)",
+      "contract_source": "up_platform/ops/activation/base.py",
+      "contract_line": 61,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 3,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 3,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 3,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 1.1920928955078125e-07,
+        "all_saved_fields_max_abs": 1.1920928955078125e-07,
+        "phases": {
+          "independent_inference": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 50,
+      "interface": "attention.MultiheadAttention",
+      "category": "attention",
+      "signature": "(embed_dim, num_heads, dropout=0.0, bias=True, add_bias_kv=False, add_zero_attn=False, kdim=None, vdim=None, batch_first=False, device=None, dtype=None)",
+      "contract_source": "up_platform/ops/attention/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "H"
+      ],
+      "group_evidence": null,
+      "upstream_composite_reference": {
+        "nvidia": {
+          "passed": true,
+          "tensor_count": 11,
+          "max_abs": null,
+          "scope": "Original and routed SegFormer attention wrapper, not isolated arbitrary MHA calls"
+        },
+        "metax": {
+          "passed": true,
+          "tensor_count": 11,
+          "max_abs": null,
+          "scope": "Original and routed SegFormer attention wrapper, not isolated arbitrary MHA calls"
+        }
+      },
+      "explanation": [
+        "原版与新版 SegFormer MultiheadAttention 组合模块在两家各有 11 个 Tensor 比较通过；报告未保存最大差，不能填写为 0，也不能扩展为所有 Attention 变体。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 51,
+      "interface": "communication.all_gather",
+      "category": "communication",
+      "signature": "(tensor_list, tensor, group=None, async_op=False)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 111,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 52,
+      "interface": "communication.all_gather_object",
+      "category": "communication",
+      "signature": "(object_list, obj, group=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 127,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 53,
+      "interface": "communication.all_reduce",
+      "category": "communication",
+      "signature": "(tensor, op=None, group=None, async_op=False)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 95,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 54,
+      "interface": "communication.barrier",
+      "category": "communication",
+      "signature": "(group=None, async_op=False, device_ids=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 87,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 55,
+      "interface": "communication.broadcast",
+      "category": "communication",
+      "signature": "(tensor, src, group=None, async_op=False)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 103,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 56,
+      "interface": "communication.broadcast_object_list",
+      "category": "communication",
+      "signature": "(object_list, src=0, group=None, device=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 135,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 57,
+      "interface": "communication.destroy_process_group",
+      "category": "communication",
+      "signature": "(group=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 71,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 58,
+      "interface": "communication.gather",
+      "category": "communication",
+      "signature": "(tensor, gather_list=None, dst=0, group=None, async_op=False)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 119,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 59,
+      "interface": "communication.get_backend",
+      "category": "communication",
+      "signature": "(group=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 39,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 60,
+      "interface": "communication.get_rank",
+      "category": "communication",
+      "signature": "(group=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 61,
+      "interface": "communication.get_world_size",
+      "category": "communication",
+      "signature": "(group=None)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 62,
+      "interface": "communication.init_process_group",
+      "category": "communication",
+      "signature": "(backend=None, **kwargs)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 63,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 63,
+      "interface": "communication.is_available",
+      "category": "communication",
+      "signature": "()",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 64,
+      "interface": "communication.is_initialized",
+      "category": "communication",
+      "signature": "()",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 15,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 65,
+      "interface": "communication.new_group",
+      "category": "communication",
+      "signature": "(ranks=None, **kwargs)",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 79,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 66,
+      "interface": "communication.sum_op",
+      "category": "communication",
+      "signature": "()",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 67,
+      "interface": "communication.world_group",
+      "category": "communication",
+      "signature": "()",
+      "contract_source": "up_platform/ops/communication/base.py",
+      "contract_line": 47,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "S"
+      ],
+      "group_evidence": "双卡训练/恢复/训练内 eval 与通信语义证据；非本接口独立新旧数值比较",
+      "explanation": [
+        "设备元信息、句柄、同步、RNG、显存计数或执行上下文按语义核对，不应统一当作精度误差。没有本接口隔离的新旧/跨卡 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md"
+      ]
+    },
+    {
+      "number": 68,
+      "interface": "convolution.Conv2d",
+      "category": "convolution",
+      "signature": "(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)",
+      "contract_source": "up_platform/ops/convolution/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 15,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0.00048828125,
+          "outside_tolerance_cases": 2,
+          "native_repeat_outside_tolerance_cases": 2
+        },
+        "metax": {
+          "cases": 15,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 3.5,
+          "outside_tolerance_cases": 5,
+          "native_repeat_outside_tolerance_cases": 5
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 15,
+        "outside_tolerance_cases": 5,
+        "forward_max_abs": 0.00390625,
+        "all_saved_fields_max_abs": 2.5,
+        "phases": {
+          "independent_inference": {
+            "cases": 5,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 5,
+            "outside_tolerance_cases": 5
+          },
+          "training_eval": {
+            "cases": 5,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.00390625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  112,
+                  112
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.001953125,
+                "passed": false,
+                "shape": [
+                  64,
+                  3,
+                  224,
+                  224
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 2.5,
+                "passed": false,
+                "shape": [
+                  64,
+                  3,
+                  7,
+                  7
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0000.pt",
+            "input_variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]",
+            "model": "resnet50",
+            "operation": "convolution.Conv2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.00390625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  56,
+                  56
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.000244140625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  56,
+                  56
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 1.75,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  1,
+                  1
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0004.pt",
+            "input_variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "resnet50",
+            "operation": "convolution.Conv2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0009765625,
+                "passed": false,
+                "shape": [
+                  64,
+                  768,
+                  14,
+                  14
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.000244140625,
+                "passed": false,
+                "shape": [
+                  64,
+                  3,
+                  224,
+                  224
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.09375,
+                "passed": false,
+                "shape": [
+                  768,
+                  3,
+                  16,
+                  16
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0000.pt",
+            "input_variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]",
+            "model": "vit_b16",
+            "operation": "convolution.Conv2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.0012359619140625,
+                "passed": false,
+                "shape": [
+                  32,
+                  12,
+                  3,
+                  3
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0000.pt",
+            "input_variant": "[{'shape': [32, 12, 320, 320], 'stride': [1228800, 102400, 320, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]",
+            "model": "yolov5s",
+            "operation": "convolution.Conv2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.0015869140625,
+                "passed": false,
+                "shape": [
+                  64,
+                  32,
+                  3,
+                  3
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0003.pt",
+            "input_variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "yolov5s",
+            "operation": "convolution.Conv2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          }
+        ]
+      },
+      "reasons": [
+        "F"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 69,
+      "interface": "convolution.ConvTranspose2d",
+      "category": "convolution",
+      "signature": "(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, bias=True, dilation=1, padding_mode='zeros', device=None, dtype=None)",
+      "contract_source": "up_platform/ops/convolution/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 70,
+      "interface": "convolution.conv2d",
+      "category": "convolution",
+      "signature": "(input, weight, bias=None, stride=1, padding=0, dilation=1, groups=1)",
+      "contract_source": "up_platform/ops/convolution/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 71,
+      "interface": "convolution.conv_transpose2d",
+      "category": "convolution",
+      "signature": "(input, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1)",
+      "contract_source": "up_platform/ops/convolution/base.py",
+      "contract_line": 15,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 72,
+      "interface": "deformable.deform_conv",
+      "category": "deformable",
+      "signature": "(input, offset, weight, out_channels, kernel_size, stride, pad, dilations, groups, deformable_groups)",
+      "contract_source": "up_platform/ops/deformable/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 4.76837158203125e-07,
+            "reference_repeat_gradient_max_abs": 9.5367431640625e-07
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 5.960464477539062e-07,
+            "reference_repeat_gradient_max_abs": 9.5367431640625e-07
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "D"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "DeformConv 原实现自身重复的输入梯度最大差也为 9.536743e-7；新旧差小于该重复差且在容差内，包含原生浮点/执行波动，未进一步证明某个指令是原因。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 73,
+      "interface": "detection.iou_overlap",
+      "category": "detection",
+      "signature": "(b1, b2, mode='IoU')",
+      "contract_source": "up_platform/ops/detection/base.py",
+      "contract_line": 62,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 74,
+      "interface": "detection.naive_nms",
+      "category": "detection",
+      "signature": "(dets, thresh, *, offset)",
+      "contract_source": "up_platform/ops/detection/base.py",
+      "contract_line": 40,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 75,
+      "interface": "detection.psroi_align",
+      "category": "detection",
+      "signature": "(features, rois, group_size, spatial_scale, output_dim, sampling_ratio)",
+      "contract_source": "up_platform/ops/detection/base.py",
+      "contract_line": 18,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 76,
+      "interface": "detection.psroi_pool",
+      "category": "detection",
+      "signature": "(features, rois, group_size, spatial_scale, output_dim)",
+      "contract_source": "up_platform/ops/detection/base.py",
+      "contract_line": 29,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P",
+        "T"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。",
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵",
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 77,
+      "interface": "detection.roi_align",
+      "category": "detection",
+      "signature": "(features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode, *, aligned)",
+      "contract_source": "up_platform/ops/detection/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 4,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P",
+        "A"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。",
+        "RoIAlign 原子反向的浮点加法顺序随调度变化，原版重复也有差异。新版仅在显式确定性开关开启时走固定顺序；小样本路由差为 0 不等于 native 训练始终稳定。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵",
+        "FRCNN_DETERMINISM_20261024.md"
+      ]
+    },
+    {
+      "number": 78,
+      "interface": "detection.softer_nms",
+      "category": "detection",
+      "signature": "(dets, thresh=0.0001, sigma=0.5, iou_thresh=0.3, iou_method='linear', iou_sigma=0.02, method='var_voting')",
+      "contract_source": "up_platform/ops/detection/base.py",
+      "contract_line": 51,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 79,
+      "interface": "focal.cross_sigmoid_focal_loss",
+      "category": "focal",
+      "signature": "(preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction)",
+      "contract_source": "up_platform/ops/focal/base.py",
+      "contract_line": 29,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 80,
+      "interface": "focal.sigmoid_focal_loss",
+      "category": "focal",
+      "signature": "(preds, targets, weight_pos, gamma, alpha, num_classes, reduction)",
+      "contract_source": "up_platform/ops/focal/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 81,
+      "interface": "focal.softmax_focal_loss",
+      "category": "focal",
+      "signature": "(preds, targets, weight_pos, gamma, alpha, num_classes)",
+      "contract_source": "up_platform/ops/focal/base.py",
+      "contract_line": 18,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 82,
+      "interface": "loss.BCEWithLogitsLoss",
+      "category": "loss",
+      "signature": "(weight=None, size_average=None, reduce=None, reduction='mean', pos_weight=None)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 83,
+      "interface": "loss.CosineSimilarity",
+      "category": "loss",
+      "signature": "(dim=1, eps=1e-08)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 79,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 84,
+      "interface": "loss.CrossEntropyLoss",
+      "category": "loss",
+      "signature": "(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction='mean', label_smoothing=0.0)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 47,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 85,
+      "interface": "loss.KLDivLoss",
+      "category": "loss",
+      "signature": "(size_average=None, reduce=None, reduction='mean', log_target=False)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 63,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 86,
+      "interface": "loss.L1Loss",
+      "category": "loss",
+      "signature": "(size_average=None, reduce=None, reduction='mean')",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 71,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 87,
+      "interface": "loss.binary_cross_entropy",
+      "category": "loss",
+      "signature": "(input, target, weight=None, size_average=None, reduce=None, reduction='mean')",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 88,
+      "interface": "loss.binary_cross_entropy_with_logits",
+      "category": "loss",
+      "signature": "(input, target, weight=None, size_average=None, reduce=None, reduction='mean', pos_weight=None)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 15,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 2,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 2,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 2,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 9.5367431640625e-07,
+        "all_saved_fields_max_abs": 9.5367431640625e-07,
+        "phases": {
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 89,
+      "interface": "loss.cross_entropy",
+      "category": "loss",
+      "signature": "(input, target, weight=None, size_average=None, ignore_index=-100, reduce=None, reduction='mean', label_smoothing=0.0)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 90,
+      "interface": "loss.kl_div",
+      "category": "loss",
+      "signature": "(input, target, size_average=None, reduce=None, reduction='mean', log_target=False)",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 91,
+      "interface": "loss.l1_loss",
+      "category": "loss",
+      "signature": "(input, target, size_average=None, reduce=None, reduction='mean')",
+      "contract_source": "up_platform/ops/loss/base.py",
+      "contract_line": 39,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 92,
+      "interface": "matrix.Linear",
+      "category": "matrix",
+      "signature": "(in_features, out_features, bias=True, device=None, dtype=None)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 9,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 9,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 9,
+        "outside_tolerance_cases": 3,
+        "forward_max_abs": 0.0078125,
+        "all_saved_fields_max_abs": 0.0625,
+        "phases": {
+          "independent_inference": {
+            "cases": 3,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 3,
+            "outside_tolerance_cases": 3
+          },
+          "training_eval": {
+            "cases": 3,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0078125,
+                "passed": false,
+                "shape": [
+                  64,
+                  1000
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.000244140625,
+                "passed": false,
+                "shape": [
+                  64,
+                  2048
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.001953125,
+                "passed": false,
+                "shape": [
+                  1000,
+                  2048
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0008.pt",
+            "input_variant": "[{'shape': [64, 2048], 'stride': [2048, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "resnet50",
+            "operation": "matrix.Linear",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.001953125,
+                "passed": false,
+                "shape": [
+                  64,
+                  197,
+                  2304
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.00048828125,
+                "passed": false,
+                "shape": [
+                  64,
+                  197,
+                  768
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.0625,
+                "passed": false,
+                "shape": [
+                  2304,
+                  768
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0003.pt",
+            "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "matrix.Linear",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0001220703125,
+                "passed": false,
+                "shape": [
+                  64,
+                  197,
+                  768
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.000244140625,
+                "passed": false,
+                "shape": [
+                  64,
+                  197,
+                  768
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.00390625,
+                "passed": false,
+                "shape": [
+                  768,
+                  768
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0008.pt",
+            "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "matrix.Linear",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          }
+        ]
+      },
+      "reasons": [
+        "F"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 93,
+      "interface": "matrix.addmm",
+      "category": "matrix",
+      "signature": "(input, mat1, mat2, *, beta=1, alpha=1, out=None)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 39,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 94,
+      "interface": "matrix.bmm",
+      "category": "matrix",
+      "signature": "(input, mat2, *, out=None)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 95,
+      "interface": "matrix.einsum",
+      "category": "matrix",
+      "signature": "(equation, *operands)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 47,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 96,
+      "interface": "matrix.linear",
+      "category": "matrix",
+      "signature": "(input, weight, bias=None)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 97,
+      "interface": "matrix.matmul",
+      "category": "matrix",
+      "signature": "(input, other, *, out=None)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 15,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 2,
+        "forward_max_abs": 0.0078125,
+        "all_saved_fields_max_abs": 0.0078125,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 2
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0078125,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  197
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0078125,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  64
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.0078125,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  64,
+                  197
+                ],
+                "tensor_field": "input_gradients[1]"
+              }
+            ],
+            "input_case": "case-0004.pt",
+            "input_variant": "[{'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [64, 12, 64, 197], 'stride': [453888, 64, 1, 2304], 'storage_offset': 768, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "matrix.matmul",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.000244140625,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  64
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.00390625,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  197
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 3.0517578125e-05,
+                "passed": false,
+                "shape": [
+                  64,
+                  12,
+                  197,
+                  64
+                ],
+                "tensor_field": "input_gradients[1]"
+              }
+            ],
+            "input_case": "case-0007.pt",
+            "input_variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 1536, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "matrix.matmul",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          }
+        ]
+      },
+      "reasons": [
+        "F"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 98,
+      "interface": "matrix.mm",
+      "category": "matrix",
+      "signature": "(input, mat2, *, out=None)",
+      "contract_source": "up_platform/ops/matrix/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 99,
+      "interface": "normalization.BatchNorm1d",
+      "category": "normalization",
+      "signature": "(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 57,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 100,
+      "interface": "normalization.BatchNorm2d",
+      "category": "normalization",
+      "signature": "(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 65,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 12,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 12,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 12,
+        "outside_tolerance_cases": 4,
+        "forward_max_abs": 0.00390625,
+        "all_saved_fields_max_abs": 0.004199981689453125,
+        "phases": {
+          "independent_inference": {
+            "cases": 4,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 4,
+            "outside_tolerance_cases": 4
+          },
+          "training_eval": {
+            "cases": 4,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.00390625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  112,
+                  112
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0009765625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  112,
+                  112
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.00013446807861328125,
+                "passed": false,
+                "shape": [
+                  64
+                ],
+                "tensor_field": "parameter_gradients.bias"
+              }
+            ],
+            "input_case": "case-0001.pt",
+            "input_variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "resnet50",
+            "operation": "normalization.BatchNorm2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.00390625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  56,
+                  56
+                ],
+                "tensor_field": "output"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0009765625,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  56,
+                  56
+                ],
+                "tensor_field": "input_gradients[0]"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.00011444091796875,
+                "passed": false,
+                "shape": [
+                  64
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              }
+            ],
+            "input_case": "case-0005.pt",
+            "input_variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "resnet50",
+            "operation": "normalization.BatchNorm2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.004199981689453125,
+                "passed": false,
+                "shape": [
+                  32
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.0035219192504882812,
+                "passed": false,
+                "shape": [
+                  32
+                ],
+                "tensor_field": "parameter_gradients.bias"
+              }
+            ],
+            "input_case": "case-0001.pt",
+            "input_variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "yolov5s",
+            "operation": "normalization.BatchNorm2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          },
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.000640869140625,
+                "passed": false,
+                "shape": [
+                  64
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.00067901611328125,
+                "passed": false,
+                "shape": [
+                  64
+                ],
+                "tensor_field": "parameter_gradients.bias"
+              }
+            ],
+            "input_case": "case-0004.pt",
+            "input_variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "yolov5s",
+            "operation": "normalization.BatchNorm2d",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          }
+        ]
+      },
+      "reasons": [
+        "F"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 101,
+      "interface": "normalization.LayerNorm",
+      "category": "normalization",
+      "signature": "(normalized_shape, eps=1e-05, elementwise_affine=True, bias=True, device=None, dtype=None)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 73,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 3,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 3,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 3,
+        "outside_tolerance_cases": 1,
+        "forward_max_abs": 9.5367431640625e-07,
+        "all_saved_fields_max_abs": 3.4332275390625e-05,
+        "phases": {
+          "independent_inference": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 1,
+            "outside_tolerance_cases": 1
+          },
+          "training_eval": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": [
+          {
+            "failed_fields": [
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 3.4332275390625e-05,
+                "passed": false,
+                "shape": [
+                  768
+                ],
+                "tensor_field": "parameter_gradients.weight"
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 2.491474151611328e-05,
+                "passed": false,
+                "shape": [
+                  768
+                ],
+                "tensor_field": "parameter_gradients.bias"
+              }
+            ],
+            "input_case": "case-0002.pt",
+            "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+            "model": "vit_b16",
+            "operation": "normalization.LayerNorm",
+            "phase": "training",
+            "purpose": "training",
+            "stochastic": false
+          }
+        ]
+      },
+      "reasons": [
+        "F"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "同厂商的平台前向与直接 Torch 逐位相同；跨厂商差异也存在于厂商 Torch 路径。涉及 AMP/归约，但未审阅厂商内部内核，不能断言某一方算错。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 102,
+      "interface": "normalization.batch_norm",
+      "category": "normalization",
+      "signature": "(input, running_mean, running_var, weight=None, bias=None, training=False, momentum=0.1, eps=1e-05)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 25,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 103,
+      "interface": "normalization.batch_norm_module_forward",
+      "category": "normalization",
+      "signature": "(module, input)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 104,
+      "interface": "normalization.group_norm",
+      "category": "normalization",
+      "signature": "(input, num_groups, weight=None, bias=None, eps=1e-05)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 41,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 105,
+      "interface": "normalization.layer_norm",
+      "category": "normalization",
+      "signature": "(input, normalized_shape, weight=None, bias=None, eps=1e-05)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 33,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 106,
+      "interface": "normalization.normalize",
+      "category": "normalization",
+      "signature": "(input, p=2.0, dim=1, eps=1e-12, out=None)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 49,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 107,
+      "interface": "normalization.sync_batch_norm",
+      "category": "normalization",
+      "signature": "(input, weight, bias, running_mean, running_var, eps, momentum, process_group, world_size)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 19,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T",
+        "B"
+      ],
+      "group_evidence": "Torch SyncBN 双卡路径已执行；linklink 变体缺 SDK",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。",
+        "spring.linklink 变体缺 SDK（含 SyncBN/FP16 和三个融合优化器），相关变体未执行；不得用普通实现替代，数值差异未知。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵",
+        "LINKLINK.md"
+      ]
+    },
+    {
+      "number": 108,
+      "interface": "normalization.sync_batch_norm_forward",
+      "category": "normalization",
+      "signature": "(module, input)",
+      "contract_source": "up_platform/ops/normalization/base.py",
+      "contract_line": 13,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T",
+        "B"
+      ],
+      "group_evidence": "Torch SyncBN 双卡路径已执行；linklink 变体缺 SDK",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。",
+        "spring.linklink 变体缺 SDK（含 SyncBN/FP16 和三个融合优化器），相关变体未执行；不得用普通实现替代，数值差异未知。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵",
+        "LINKLINK.md"
+      ]
+    },
+    {
+      "number": 109,
+      "interface": "pointcloud.boxes_bev_iou_cpu",
+      "category": "pointcloud",
+      "signature": "(boxes_a, boxes_b)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 66,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 110,
+      "interface": "pointcloud.boxes_iou3d",
+      "category": "pointcloud",
+      "signature": "(boxes_a, boxes_b)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 88,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 111,
+      "interface": "pointcloud.boxes_iou_bev",
+      "category": "pointcloud",
+      "signature": "(boxes_a, boxes_b)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 77,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 112,
+      "interface": "pointcloud.nms3d",
+      "category": "pointcloud",
+      "signature": "(boxes, scores, thresh, pre_maxsize=None, **kwargs)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 99,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 113,
+      "interface": "pointcloud.nms3d_normal",
+      "category": "pointcloud",
+      "signature": "(boxes, scores, thresh, **kwargs)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 110,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 114,
+      "interface": "pointcloud.points_in_boxes_cpu",
+      "category": "pointcloud",
+      "signature": "(points, boxes)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 22,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 115,
+      "interface": "pointcloud.points_in_boxes_gpu",
+      "category": "pointcloud",
+      "signature": "(points, boxes)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 33,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 116,
+      "interface": "pointcloud.roiaware_pool3d",
+      "category": "pointcloud",
+      "signature": "(rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 44,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": 0.0,
+            "reference_repeat_gradient_max_abs": 0.0
+          },
+          "inference": {
+            "cases": 2,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 117,
+      "interface": "pointcloud.roipoint_pool3d",
+      "category": "pointcloud",
+      "signature": "(points, point_features, boxes3d, pool_extra_width, num_sampled_points=512)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {
+        "nvidia": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        },
+        "metax": {
+          "training": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          },
+          "inference": {
+            "cases": 1,
+            "passed": true,
+            "output_max_abs": 0.0,
+            "gradient_max_abs": null,
+            "reference_repeat_gradient_max_abs": null
+          }
+        }
+      },
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "P"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "所测原 UP Python/autograd 体与平台入口复用同一厂商编译扩展，支持路由兼容；不证明所有形状、旧/新内核或跨厂商相同。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 118,
+      "interface": "pointcloud.rotate_iou_eval",
+      "category": "pointcloud",
+      "signature": "(boxes, query_boxes, criterion=-1, device_id=0)",
+      "contract_source": "up_platform/ops/pointcloud/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": {
+        "scope": "same corrected KITTI evaluator",
+        "cases": 24,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 0.0,
+        "all_saved_fields_max_abs": 0.0
+      },
+      "reasons": [
+        "G"
+      ],
+      "group_evidence": null,
+      "intentional_legacy_change": {
+        "nvidia": {
+          "max_abs_by_criterion": {
+            "-1": 1.0,
+            "0": 1.0,
+            "1": 1.0,
+            "2": 13.394339561462402
+          },
+          "iou_max_abs": 1.0,
+          "intersection_area_max_abs": 13.394339561462402,
+          "reason": "authorized geometry correction, not a compatibility failure"
+        },
+        "metax": {
+          "max_abs_by_criterion": {
+            "-1": 1.0,
+            "0": 1.0,
+            "1": 1.0,
+            "2": 13.394339561462402
+          },
+          "iou_max_abs": 1.0,
+          "intersection_area_max_abs": 13.394339561462402,
+          "reason": "authorized geometry correction, not a compatibility failure"
+        }
+      },
+      "explanation": [
+        "KITTI 旧几何边界错误经用户授权单独纠正：IoU/归一化重叠的新旧最大差为 1，原始交面积模式最大差为 13.39433956（面积单位）。两家修后同输入最大差为 0；不同单位不能合并解释为 IoU 差。"
+      ],
+      "evidence": [
+        "KITTI_GEOMETRY_20261024.md"
+      ]
+    },
+    {
+      "number": 119,
+      "interface": "pooling.AdaptiveAvgPool2d",
+      "category": "pooling",
+      "signature": "(output_size)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 39,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 3,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 3,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 3,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 1.430511474609375e-06,
+        "all_saved_fields_max_abs": 1.430511474609375e-06,
+        "phases": {
+          "independent_inference": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 1,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 120,
+      "interface": "pooling.AvgPool2d",
+      "category": "pooling",
+      "signature": "(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True, divisor_override=None)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 47,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 121,
+      "interface": "pooling.MaxPool2d",
+      "category": "pooling",
+      "signature": "(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 0.0,
+        "all_saved_fields_max_abs": 0,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 122,
+      "interface": "pooling.Upsample",
+      "category": "pooling",
+      "signature": "(size=None, scale_factor=None, mode='nearest', align_corners=None, recompute_scale_factor=None)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 63,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {
+        "nvidia": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        },
+        "metax": {
+          "cases": 6,
+          "forward_max_abs": 0.0,
+          "all_saved_fields_max_abs": 0,
+          "outside_tolerance_cases": 0,
+          "native_repeat_outside_tolerance_cases": 0
+        }
+      },
+      "cross_vendor": {
+        "reference_vendor": "nvidia",
+        "actual_vendor": "metax",
+        "cases": 6,
+        "outside_tolerance_cases": 0,
+        "forward_max_abs": 0.0,
+        "all_saved_fields_max_abs": 0,
+        "phases": {
+          "independent_inference": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          },
+          "training_eval": {
+            "cases": 2,
+            "outside_tolerance_cases": 0
+          }
+        },
+        "failed_tensor_fields": []
+      },
+      "reasons": [
+        "C"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "这组公共输入样本全部在原容差内；若有非零低位差，同样存在于直接厂商 Torch，未定位到具体内部算法；不能推广全部变体。"
+      ],
+      "evidence": [
+        "MODEL_OPERATOR_PARITY_20261025.md#跨厂商结果"
+      ]
+    },
+    {
+      "number": 123,
+      "interface": "pooling.UpsamplingBilinear2d",
+      "category": "pooling",
+      "signature": "(size=None, scale_factor=None)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 71,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 124,
+      "interface": "pooling.ZeroPad2d",
+      "category": "pooling",
+      "signature": "(padding)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 79,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 125,
+      "interface": "pooling.adaptive_avg_pool2d",
+      "category": "pooling",
+      "signature": "(input, output_size)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 126,
+      "interface": "pooling.interpolate",
+      "category": "pooling",
+      "signature": "(input, size=None, scale_factor=None, mode='nearest', align_corners=None, recompute_scale_factor=None, antialias=False)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 127,
+      "interface": "pooling.max_pool2d",
+      "category": "pooling",
+      "signature": "(input, kernel_size, stride=None, padding=0, dilation=1, ceil_mode=False, return_indices=False)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 15,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 128,
+      "interface": "pooling.pad",
+      "category": "pooling",
+      "signature": "(input, pad, mode='constant', value=None)",
+      "contract_source": "up_platform/ops/pooling/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "U"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "未逐接口隔离测量；没有数值或定位证据，不能填 0 或推断原因。"
+      ],
+      "evidence": [
+        "INTERFACES.md"
+      ]
+    },
+    {
+      "number": 129,
+      "interface": "pruning.build_scheduler",
+      "category": "pruning",
+      "signature": "(config)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 130,
+      "interface": "pruning.export",
+      "category": "pruning",
+      "signature": "(scheduler, model)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 131,
+      "interface": "pruning.init_optimizer",
+      "category": "pruning",
+      "signature": "(scheduler, optimizer)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 79,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 132,
+      "interface": "pruning.last_prune_step",
+      "category": "pruning",
+      "signature": "(scheduler)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 14,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 133,
+      "interface": "pruning.module_type",
+      "category": "pruning",
+      "signature": "(name)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 134,
+      "interface": "pruning.prepare",
+      "category": "pruning",
+      "signature": "(scheduler, model)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 39,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 135,
+      "interface": "pruning.prune",
+      "category": "pruning",
+      "signature": "(scheduler, model, iteration)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 47,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 136,
+      "interface": "pruning.set_iteration",
+      "category": "pruning",
+      "signature": "(scheduler, iteration)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 6,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 137,
+      "interface": "pruning.set_lr_scheduler",
+      "category": "pruning",
+      "signature": "(scheduler, lr_scheduler)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 71,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 138,
+      "interface": "pruning.sparse_rate",
+      "category": "pruning",
+      "signature": "(scheduler, model)",
+      "contract_source": "up_platform/ops/pruning/base.py",
+      "contract_line": 63,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "V"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "存在可选变体缺口：剪枝 2:4 permutation=False 流程已执行，Amba FakeSparse 缺依赖；不把全部剪枝变体标为通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 139,
+      "interface": "quantization.backend_types",
+      "category": "quantization",
+      "signature": "()",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 7,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 140,
+      "interface": "quantization.convert_deploy",
+      "category": "quantization",
+      "signature": "(model, backend_type, **kwargs)",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 55,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 141,
+      "interface": "quantization.enable_calibration",
+      "category": "quantization",
+      "signature": "(model, quantizer_type='fake_quant')",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 31,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 142,
+      "interface": "quantization.enable_quantization",
+      "category": "quantization",
+      "signature": "(model, weight_cali_on=False, act_cali_on=False)",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 39,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 143,
+      "interface": "quantization.module_type",
+      "category": "quantization",
+      "signature": "(name)",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 15,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 144,
+      "interface": "quantization.prepare",
+      "category": "quantization",
+      "signature": "(model, backend_type, prepare_custom_config_dict=None)",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 23,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 145,
+      "interface": "quantization.reconstruct",
+      "category": "quantization",
+      "signature": "(model, cali_data, config, graph_module_list=None)",
+      "contract_source": "up_platform/ops/quantization/base.py",
+      "contract_line": 47,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "Q"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "MQBench 校准/QAT/恢复/ONNX 与 QDrop 组合已执行；NART/部署引擎未验证，未隔离每个入口的 max_abs。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 146,
+      "interface": "sparse.SparseConv3d",
+      "category": "sparse",
+      "signature": "(in_channels, out_channels, kernel_size, **kwargs)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 26,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 147,
+      "interface": "sparse.SparseConvTensor",
+      "category": "sparse",
+      "signature": "(features, indices, spatial_shape, batch_size, **kwargs)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 50,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 148,
+      "interface": "sparse.SparseInverseConv3d",
+      "category": "sparse",
+      "signature": "(in_channels, out_channels, kernel_size, indice_key, **kwargs)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 34,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 149,
+      "interface": "sparse.SparseSequential",
+      "category": "sparse",
+      "signature": "(*modules)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 42,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 150,
+      "interface": "sparse.SubMConv3d",
+      "category": "sparse",
+      "signature": "(in_channels, out_channels, kernel_size, **kwargs)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 18,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 151,
+      "interface": "sparse.dense",
+      "category": "sparse",
+      "signature": "(tensor, channels_first=True)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 74,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 152,
+      "interface": "sparse.features",
+      "category": "sparse",
+      "signature": "(tensor)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 66,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 153,
+      "interface": "sparse.is_sparse_convolution",
+      "category": "sparse",
+      "signature": "(module)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 82,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 154,
+      "interface": "sparse.module_instance",
+      "category": "sparse",
+      "signature": "(module_type)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 90,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 155,
+      "interface": "sparse.replace_feature",
+      "category": "sparse",
+      "signature": "(tensor, features)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 58,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "T"
+      ],
+      "group_evidence": "类别组合对照存在，但未证明本接口逐项覆盖或独立最大误差",
+      "explanation": [
+        "该类别已有同厂商直接依赖/路由组合流程证据；未输出本接口独立误差，不能把组合通过拆成所有成员逐项通过或跨厂商相等。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    },
+    {
+      "number": 156,
+      "interface": "sparse.voxelize_cpu",
+      "category": "sparse",
+      "signature": "(generator, points)",
+      "contract_source": "up_platform/ops/sparse/base.py",
+      "contract_line": 6,
+      "same_vendor_upstream_python_vs_platform": {},
+      "platform_vs_direct_vendor_torch": {},
+      "cross_vendor": null,
+      "reasons": [
+        "X"
+      ],
+      "group_evidence": null,
+      "explanation": [
+        "原有显式 CPU/cumm voxel 分支尚未做真机用例验收；不能将 PointPillar 执行成功作为该分支通过。"
+      ],
+      "evidence": [
+        "VALIDATION.md#结果矩阵"
+      ]
+    }
+  ]
+}
