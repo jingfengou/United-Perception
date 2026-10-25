@@ -1,0 +1,306 @@
+{
+  "1": {
+    "status": "completed_initial_interface_cases",
+    "pid": 2882417,
+    "records": [
+      {
+        "name": "cpu-audit-tests",
+        "exit_code": 0,
+        "seconds": 3.2125523439608514
+      },
+      {
+        "name": "basic-training",
+        "exit_code": 0,
+        "seconds": 9.589796890038997
+      },
+      {
+        "name": "device-training",
+        "exit_code": 0,
+        "seconds": 2.9489434766583145
+      },
+      {
+        "name": "training-training",
+        "exit_code": 0,
+        "seconds": 4.016464137006551
+      },
+      {
+        "name": "basic-inference",
+        "exit_code": 0,
+        "seconds": 6.361529473215342
+      },
+      {
+        "name": "inference-inference",
+        "exit_code": 0,
+        "seconds": 3.1622146777808666
+      }
+    ],
+    "updated_utc": "2026-10-25T15:13:03.137854+00:00"
+  },
+  "2": {
+    "status": "completed_initial_interface_cases",
+    "pid": 2883496,
+    "records": [
+      {
+        "name": "cpu-audit-tests",
+        "exit_code": 0,
+        "seconds": 2.450628565158695
+      },
+      {
+        "name": "basic-training",
+        "exit_code": 0,
+        "seconds": 16.5313133392483
+      },
+      {
+        "name": "device-training",
+        "exit_code": 0,
+        "seconds": 3.070070886053145
+      },
+      {
+        "name": "training-training",
+        "exit_code": 0,
+        "seconds": 3.721369681879878
+      },
+      {
+        "name": "basic-inference",
+        "exit_code": 0,
+        "seconds": 7.572176087182015
+      },
+      {
+        "name": "inference-inference",
+        "exit_code": 0,
+        "seconds": 2.8907040231861174
+      },
+      {
+        "name": "native-training-original",
+        "exit_code": 0,
+        "seconds": 3.4591484451666474
+      },
+      {
+        "name": "native-training-routed",
+        "exit_code": 0,
+        "seconds": 3.254006066825241
+      },
+      {
+        "name": "native-inference-original",
+        "exit_code": 0,
+        "seconds": 2.4937088801525533
+      },
+      {
+        "name": "native-inference-routed",
+        "exit_code": 0,
+        "seconds": 2.4647551961243153
+      },
+      {
+        "name": "native-comparison",
+        "exit_code": 0,
+        "seconds": 1.648153514135629
+      }
+    ],
+    "updated_utc": "2026-10-25T15:15:35.474719+00:00"
+  },
+  "3": {
+    "status": "completed_interface_cases_with_reports",
+    "pid": 2885868,
+    "records": [
+      {
+        "name": "cpu-audit-tests",
+        "exit_code": 0,
+        "seconds": 2.6111367968842387
+      },
+      {
+        "name": "device-training",
+        "exit_code": 0,
+        "seconds": 2.737196497153491
+      },
+      {
+        "name": "native-training-original",
+        "exit_code": 0,
+        "seconds": 3.253573866561055
+      },
+      {
+        "name": "native-training-routed",
+        "exit_code": 0,
+        "seconds": 3.1654312647879124
+      },
+      {
+        "name": "native-inference-original",
+        "exit_code": 0,
+        "seconds": 2.5989704648964107
+      },
+      {
+        "name": "native-inference-routed",
+        "exit_code": 0,
+        "seconds": 2.436004174873233
+      },
+      {
+        "name": "native-comparison",
+        "exit_code": 0,
+        "seconds": 1.7235237648710608
+      },
+      {
+        "name": "distributed",
+        "exit_code": 1,
+        "seconds": 164.13133318675682
+      },
+      {
+        "name": "optional-sparse-direct",
+        "exit_code": 0,
+        "seconds": 7.498712132219225
+      },
+      {
+        "name": "optional-sparse-routed",
+        "exit_code": 0,
+        "seconds": 6.313281140755862
+      },
+      {
+        "name": "optional-quantization-direct",
+        "exit_code": 0,
+        "seconds": 5.7028076229617
+      },
+      {
+        "name": "optional-quantization-routed",
+        "exit_code": 0,
+        "seconds": 4.13853778783232
+      },
+      {
+        "name": "optional-qdrop-direct",
+        "exit_code": 0,
+        "seconds": 4.770521008875221
+      },
+      {
+        "name": "optional-qdrop-routed",
+        "exit_code": 0,
+        "seconds": 4.6418301980011165
+      },
+      {
+        "name": "optional-pruning-direct",
+        "exit_code": 0,
+        "seconds": 3.9725611908361316
+      },
+      {
+        "name": "optional-pruning-routed",
+        "exit_code": 0,
+        "seconds": 3.601941466797143
+      },
+      {
+        "name": "optional-base_export-direct",
+        "exit_code": 0,
+        "seconds": 3.1824706071056426
+      },
+      {
+        "name": "optional-base_export-routed",
+        "exit_code": 0,
+        "seconds": 3.2964217830449343
+      },
+      {
+        "name": "optional-amba-direct",
+        "exit_code": 0,
+        "seconds": 3.3208636031486094
+      },
+      {
+        "name": "optional-amba-routed",
+        "exit_code": 0,
+        "seconds": 3.1956830620765686
+      },
+      {
+        "name": "optional-comparison",
+        "exit_code": 0,
+        "seconds": 1.7095552030950785
+      },
+      {
+        "name": "kitti-original-new-oracle",
+        "exit_code": 0,
+        "seconds": 8.05476725474
+      }
+    ],
+    "updated_utc": "2026-10-25T15:24:15.428201+00:00"
+  },
+  "4": {
+    "status": "completed_additional_and_collective_cases",
+    "pid": 2887966,
+    "records": [
+      {
+        "name": "cpu-audit-tests",
+        "exit_code": 0,
+        "seconds": 2.600302323233336
+      },
+      {
+        "name": "additional-training",
+        "exit_code": 0,
+        "seconds": 4.3206279091537
+      },
+      {
+        "name": "additional-inference",
+        "exit_code": 0,
+        "seconds": 3.1668577040545642
+      },
+      {
+        "name": "distributed",
+        "exit_code": 1,
+        "seconds": 242.11464529531077
+      }
+    ],
+    "updated_utc": "2026-10-25T15:28:25.296432+00:00"
+  },
+  "5": {
+    "status": "failed",
+    "pid": 2890106,
+    "records": [
+      {
+        "name": "cpu-audit-tests",
+        "exit_code": 0,
+        "seconds": 2.6088172160089016
+      }
+    ],
+    "updated_utc": "2026-10-25T15:27:59.578760+00:00",
+    "error": "BlockingIOError(11, 'Resource temporarily unavailable')"
+  },
+  "6": {
+    "status": "completed_targeted_cases",
+    "pid": 2890936,
+    "records": [
+      {
+        "name": "cpu-tests-reused-identical-source-05",
+        "exit_code": 0
+      },
+      {
+        "name": "distributed",
+        "exit_code": 0,
+        "seconds": 12.06297799386084
+      },
+      {
+        "name": "base-export-direct",
+        "exit_code": 0,
+        "seconds": 3.213144978042692
+      },
+      {
+        "name": "base-export-routed",
+        "exit_code": 0,
+        "seconds": 3.18463173834607
+      }
+    ],
+    "updated_utc": "2026-10-25T15:29:42.303929+00:00"
+  },
+  "7": {
+    "status": "completed_targeted_export_cases",
+    "pid": 2893996,
+    "records": [
+      {
+        "name": "cpu-audit-tests",
+        "exit_code": 0,
+        "seconds": 2.6521967709995806
+      },
+      {
+        "name": "base-export-direct",
+        "exit_code": 0,
+        "seconds": 3.540262095630169
+      },
+      {
+        "name": "base-export-routed",
+        "exit_code": 0,
+        "seconds": 3.3377437512390316
+      }
+    ],
+    "updated_utc": "2026-10-25T15:35:56.580438+00:00"
+  }
+}

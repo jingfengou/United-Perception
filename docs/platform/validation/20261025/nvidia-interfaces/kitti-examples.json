@@ -1,0 +1,91 @@
+{
+  "interface": "pointcloud.rotate_iou_eval",
+  "status": "intentional_geometry_correction",
+  "original_source_sha256": "28264b3402385d6bd0f0b3441f619589bb7b0928606e5848cde8844c2c2be2df",
+  "reference_sha256": "b1bace744f0f8f21037b4c55e7bd8c457d09163d835195f4a335e7157bd54bb3",
+  "scope": "Original 7100 input pairs, four criteria; independent test-only GEOS oracle",
+  "records": [
+    {
+      "criterion": -1,
+      "changed_pairs": 64,
+      "max_old_new": 1.0,
+      "max_new_oracle": 0.0,
+      "new_within_original_tolerance": true,
+      "old_vs_preserved_reference_max": 0.0
+    },
+    {
+      "criterion": 0,
+      "changed_pairs": 64,
+      "max_old_new": 1.0,
+      "max_new_oracle": 0.0,
+      "new_within_original_tolerance": true,
+      "old_vs_preserved_reference_max": 0.0
+    },
+    {
+      "criterion": 1,
+      "changed_pairs": 64,
+      "max_old_new": 1.0,
+      "max_new_oracle": 0.0,
+      "new_within_original_tolerance": true,
+      "old_vs_preserved_reference_max": 0.0
+    },
+    {
+      "criterion": 2,
+      "changed_pairs": 64,
+      "max_old_new": 13.394339561462402,
+      "max_new_oracle": 0.0,
+      "new_within_original_tolerance": true,
+      "old_vs_preserved_reference_max": 0.0
+    }
+  ],
+  "examples": [
+    {
+      "index": [
+        4,
+        4
+      ],
+      "boxes_xy_width_height_clockwise_angle": [
+        -1.4486390352249146,
+        -2.8545501232147217,
+        3.6832115650177,
+        2.5028069019317627,
+        2.0032901763916016
+      ],
+      "query": [
+        -1.4486390352249146,
+        -2.8545501232147217,
+        3.6832115650177,
+        2.5028069019317627,
+        2.0032901763916016
+      ],
+      "same_box": true,
+      "old_iou": 0.3333333730697632,
+      "new_iou": 1.0,
+      "oracle_iou": 1.0
+    },
+    {
+      "index": [
+        14,
+        14
+      ],
+      "boxes_xy_width_height_clockwise_angle": [
+        0.4963768720626831,
+        -2.9515836238861084,
+        1.5063551664352417,
+        3.5074212551116943,
+        -0.756895124912262
+      ],
+      "query": [
+        0.4963768720626831,
+        -2.9515836238861084,
+        1.5063551664352417,
+        3.5074212551116943,
+        -0.756895124912262
+      ],
+      "same_box": true,
+      "old_iou": 0.0,
+      "new_iou": 1.0,
+      "oracle_iou": 1.0
+    }
+  ]
+}

@@ -7,6 +7,8 @@
 
 [完整 CSV](operation_audit_20261025.csv) · [机器可读 JSON 与源证据哈希](operation_audit_20261025.json) · [全部签名和契约](INTERFACES.md)
 
+**后续 NVIDIA 补测已发布**：[补测报告](NVIDIA_INTERFACE_PARITY_20261025.md) · [新增逐项 CSV](validation/20261025/nvidia-interfaces/interfaces.csv)。152 项已执行相应对照，4 项依赖阻塞；本页保留此前汇总时的参考类型和缺测状态，不将历史“未测”原地改写成“差为 0”。
+
 这些接口的组件归属、训练/推理如何共用算子与设备，以及两家厂商的实现路径见[平台架构详图](ARCHITECTURE_20261025.md)。
 
 ## 三种比较必须分开

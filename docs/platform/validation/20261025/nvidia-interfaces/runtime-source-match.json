@@ -1,0 +1,16 @@
+{
+  "original_files": 618,
+  "new_files": 781,
+  "all_source_bytes_match_LF": true,
+  "excluded": {
+    "original": [
+      "up/tasks/det_3d/data/metrics/kitti_object_eval_python/README.md",
+      "up/tasks/nas/bignas/README.md"
+    ],
+    "new": [
+      "up/tasks/det_3d/data/metrics/kitti_object_eval_python/README.md",
+      "up/tasks/nas/bignas/README.md"
+    ]
+  },
+  "manifest_sha256": "c4a6a901f9b9917659e3a8c81b66774df7676a12811883cb3588bd16432dd0fe"
+}

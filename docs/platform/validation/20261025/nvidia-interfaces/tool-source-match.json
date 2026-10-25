@@ -1,0 +1,61 @@
+{
+  "scope": "Publication versus final 133-test CPU snapshot; each GPU stage retains its own frozen tools",
+  "files": [
+    {
+      "path": "tools/audit_platform_interfaces.py",
+      "final_cpu_snapshot_sha256_lf": "de5ae0d1521bc3bb7a2568757e958c2b91a900d1662446ceaaad4f0eca3e9af9",
+      "publication_sha256_lf": "6232d0777ef2f84a2a6f922c310ec430bd64dac7957a82ea9146ca0b809255b9",
+      "only_remove_statically_unused_imports": true,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tools/platform_interface_fixtures.py",
+      "final_cpu_snapshot_sha256_lf": "d845165faf4ab84edb9238b75a15f13ba95262345f3de8039719cee362cb08e9",
+      "publication_sha256_lf": "d522aaf1a6beb40fd7434f71beeeaf658035e0e914ee967fe88b98b2d8da2638",
+      "only_remove_statically_unused_imports": true,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tools/audit_platform_collectives.py",
+      "final_cpu_snapshot_sha256_lf": "b5c438956987adc0435180b8a4a0e98b7c5ab78e124085d6bf3cdb8e0c9f6682",
+      "publication_sha256_lf": "b5c438956987adc0435180b8a4a0e98b7c5ab78e124085d6bf3cdb8e0c9f6682",
+      "only_remove_statically_unused_imports": false,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tools/audit_platform_native_binaries.py",
+      "final_cpu_snapshot_sha256_lf": "fae014951f01f47fbdd9460b193336d8198c3a36ae2522ecad1c9968b148a9fe",
+      "publication_sha256_lf": "fae014951f01f47fbdd9460b193336d8198c3a36ae2522ecad1c9968b148a9fe",
+      "only_remove_statically_unused_imports": false,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tools/audit_platform_optional.py",
+      "final_cpu_snapshot_sha256_lf": "0ee1f4b153ea3521ed47dea31a6c2d550aeca82f76ed4d120940bce3a7b9208e",
+      "publication_sha256_lf": "b01478d94b4c45dbc86742ca42fb3ba9aac8b70cb2a85f11d3dabd4fc3e43c76",
+      "only_remove_statically_unused_imports": true,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tools/audit_platform_kitti_examples.py",
+      "final_cpu_snapshot_sha256_lf": "e84c47a43fa53683be2a8092dd3bad6747234e202a5718d9e934b64524d47db8",
+      "publication_sha256_lf": "e84c47a43fa53683be2a8092dd3bad6747234e202a5718d9e934b64524d47db8",
+      "only_remove_statically_unused_imports": false,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tools/summarize_interface_audit.py",
+      "final_cpu_snapshot_sha256_lf": "4ab7c10622b1f70cc4ff31195cee5aa19b4158c8fbda36bddeb9249e590c0232",
+      "publication_sha256_lf": "4ab7c10622b1f70cc4ff31195cee5aa19b4158c8fbda36bddeb9249e590c0232",
+      "only_remove_statically_unused_imports": false,
+      "AST_without_unused_imports_identical": true
+    },
+    {
+      "path": "tests/platform/test_interface_audit.py",
+      "final_cpu_snapshot_sha256_lf": "7c5947f3474558b6b4aafa8cf092bfe887941d7a5fa31c0af3839309c8367811",
+      "publication_sha256_lf": "7c5947f3474558b6b4aafa8cf092bfe887941d7a5fa31c0af3839309c8367811",
+      "only_remove_statically_unused_imports": false,
+      "AST_without_unused_imports_identical": true
+    }
+  ]
+}

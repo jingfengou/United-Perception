@@ -1,0 +1,2129 @@
+{
+  "scope": "Finite NVIDIA same-platform fixtures; independent original native binaries and declared Torch/dependency APIs",
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "interface_count": 156,
+  "interface_status_counts": {
+    "measured_within_tolerance": 150,
+    "blocked_dependency": 4,
+    "intentional_geometry_correction": 1,
+    "matching_nonfinite_state": 1
+  },
+  "case_status_counts": {
+    "within_tolerance": 845,
+    "matching_error": 2,
+    "blocked_dependency": 6,
+    "matching_nonfinite": 18,
+    "intentional_geometry_correction": 1
+  },
+  "interfaces": [
+    {
+      "interface": "device.available",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.convolution_flags",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.current_device",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.device",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.device_count",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.empty_cache",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.environment",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.get_rng_state",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.is_accelerator",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.manual_seed",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.max_memory_allocated",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.memory_allocated",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.move",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.properties",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.reset_peak_memory_stats",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.set_device",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.set_rng_state",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "device.synchronize",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/device-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.autocast",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/training-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.clip_grad_norm_",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/training-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.fused_optimizer",
+      "status": "blocked_dependency",
+      "case_count": 3,
+      "case_statuses": {
+        "blocked_dependency": 3
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-02/training-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.grad_scaler",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/training-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.optimizer",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/training-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.validation",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/training-training/summary.json"
+      ]
+    },
+    {
+      "interface": "training.wrap_ddp",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "inference.autocast",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/inference-inference/summary.json"
+      ]
+    },
+    {
+      "interface": "inference.export_onnx",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-02/inference-inference/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.Dropout",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.Dropout2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.GELU",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.Hardswish",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.LeakyReLU",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.ReLU",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.ReLU6",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.SELU",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.SiLU",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.Sigmoid",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.Softmax",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.Tanh",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.gelu",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.hardtanh",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.log_softmax",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.relu",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.relu6",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.sigmoid",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.silu",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.softmax",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.softplus",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "activation.tanh",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "attention.MultiheadAttention",
+      "status": "measured_within_tolerance",
+      "case_count": 14,
+      "case_statuses": {
+        "within_tolerance": 14
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.all_gather",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.all_gather_object",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.all_reduce",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.barrier",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.broadcast",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.broadcast_object_list",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.destroy_process_group",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.gather",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.get_backend",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.get_rank",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.get_world_size",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.init_process_group",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.is_available",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.is_initialized",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.new_group",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.sum_op",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "communication.world_group",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "convolution.Conv2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "convolution.ConvTranspose2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "convolution.conv2d",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "convolution.conv_transpose2d",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "deformable.deform_conv",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 4.76837158203125e-07,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "detection.iou_overlap",
+      "status": "measured_within_tolerance",
+      "case_count": 8,
+      "case_statuses": {
+        "within_tolerance": 8
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "detection.naive_nms",
+      "status": "measured_within_tolerance",
+      "case_count": 8,
+      "case_statuses": {
+        "within_tolerance": 8
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "detection.psroi_align",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "detection.psroi_pool",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "detection.roi_align",
+      "status": "measured_within_tolerance",
+      "case_count": 8,
+      "case_statuses": {
+        "within_tolerance": 8
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "detection.softer_nms",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "focal.cross_sigmoid_focal_loss",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "focal.sigmoid_focal_loss",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "focal.softmax_focal_loss",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "loss.BCEWithLogitsLoss",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 10,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.CosineSimilarity",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.CrossEntropyLoss",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 10,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.KLDivLoss",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 10,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.L1Loss",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 10,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.binary_cross_entropy",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 8,
+        "matching_error": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.binary_cross_entropy_with_logits",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 8,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.cross_entropy",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 8,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.kl_div",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 8,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "loss.l1_loss",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 8,
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.Linear",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.addmm",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.bmm",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.einsum",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.linear",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.matmul",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "matrix.mm",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.BatchNorm1d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.BatchNorm2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.LayerNorm",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.batch_norm",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.batch_norm_module_forward",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.group_norm",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.layer_norm",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.normalize",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.sync_batch_norm",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "normalization.sync_batch_norm_forward",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-06/distributed/rank0/summary.json",
+        "interface-audit-06/distributed/rank1/summary.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.boxes_bev_iou_cpu",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.boxes_iou3d",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.boxes_iou_bev",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.nms3d",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.nms3d_normal",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.points_in_boxes_cpu",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.points_in_boxes_gpu",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.roiaware_pool3d",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.roipoint_pool3d",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/native-comparison.json"
+      ]
+    },
+    {
+      "interface": "pointcloud.rotate_iou_eval",
+      "status": "intentional_geometry_correction",
+      "case_count": 1,
+      "case_statuses": {
+        "intentional_geometry_correction": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/kitti/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.AdaptiveAvgPool2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.AvgPool2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.MaxPool2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.Upsample",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 1.1920928955078125e-07,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.UpsamplingBilinear2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.ZeroPad2d",
+      "status": "measured_within_tolerance",
+      "case_count": 12,
+      "case_statuses": {
+        "within_tolerance": 12
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.adaptive_avg_pool2d",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.interpolate",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 1.1920928955078125e-07,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.max_pool2d",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pooling.pad",
+      "status": "measured_within_tolerance",
+      "case_count": 10,
+      "case_statuses": {
+        "within_tolerance": 10
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-02/basic-inference/summary.json",
+        "interface-audit-02/basic-training/summary.json",
+        "interface-audit-04/additional-inference/summary.json",
+        "interface-audit-04/additional-training/summary.json"
+      ]
+    },
+    {
+      "interface": "pruning.build_scheduler",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "pruning.export",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-07/optional/base_export-{direct,routed}/summary.json"
+      ]
+    },
+    {
+      "interface": "pruning.init_optimizer",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "pruning.last_prune_step",
+      "status": "blocked_dependency",
+      "case_count": 1,
+      "case_statuses": {
+        "blocked_dependency": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional/amba-{direct,routed}/summary.json"
+      ]
+    },
+    {
+      "interface": "pruning.module_type",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "pruning.prepare",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "pruning.prune",
+      "status": "blocked_dependency",
+      "case_count": 1,
+      "case_statuses": {
+        "blocked_dependency": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional/amba-{direct,routed}/summary.json"
+      ]
+    },
+    {
+      "interface": "pruning.set_iteration",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "pruning.set_lr_scheduler",
+      "status": "blocked_dependency",
+      "case_count": 1,
+      "case_statuses": {
+        "blocked_dependency": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional/amba-{direct,routed}/summary.json"
+      ]
+    },
+    {
+      "interface": "pruning.sparse_rate",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.backend_types",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.convert_deploy",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.enable_calibration",
+      "status": "measured_within_tolerance",
+      "case_count": 2,
+      "case_statuses": {
+        "within_tolerance": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.enable_quantization",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.module_type",
+      "status": "measured_within_tolerance",
+      "case_count": 4,
+      "case_statuses": {
+        "within_tolerance": 4
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.prepare",
+      "status": "matching_nonfinite_state",
+      "case_count": 2,
+      "case_statuses": {
+        "matching_nonfinite": 2
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "quantization.reconstruct",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.SparseConv3d",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.SparseConvTensor",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.SparseInverseConv3d",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.SparseSequential",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.SubMConv3d",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.dense",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.features",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.is_sparse_convolution",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": null,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.module_instance",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.replace_feature",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    },
+    {
+      "interface": "sparse.voxelize_cpu",
+      "status": "measured_within_tolerance",
+      "case_count": 1,
+      "case_statuses": {
+        "within_tolerance": 1
+      },
+      "max_abs_compared_numeric_fields": 0.0,
+      "evidence": [
+        "interface-audit-03/optional-comparison.json"
+      ]
+    }
+  ],
+  "source_sha256": {
+    "interface-audit-02/basic-training/summary.json": "3a565268afae2dad36e23d710951eaa467d5ed18ba6b62ae918a1cfe16a59891",
+    "interface-audit-02/basic-inference/summary.json": "b6b85863de8e0821efce6e82aba3b6bbf86e991e56bbead9e719a5e244feeec4",
+    "interface-audit-02/training-training/summary.json": "98cb11f687237f9659a68dfdedfe0a3195d95bdf85b47b7899d1226f07459c18",
+    "interface-audit-02/inference-inference/summary.json": "5b6138aa8fbdbfa78a4d1b3fd6d2fbad35c54a4384ec63a879613c127f3f36bf",
+    "interface-audit-03/device-training/summary.json": "457a4d5359208d838065e9b629b17f2f0342bdc39161d3583cb8253c095ebcea",
+    "interface-audit-04/additional-training/summary.json": "5be5a44f5fe1b5e6c800f8ba448fdb611386efc289093a7bb9a9037c426181b8",
+    "interface-audit-04/additional-inference/summary.json": "1c5c02cb99a08e092cb976b3062f79f9c9377311b1b084b93d28dd79bdb58a07",
+    "interface-audit-03/native-comparison.json": "1e23e8faed88c4414ad97ae8645a6388c4c470cc1552f3d28455ba84da209ecb",
+    "interface-audit-06/distributed/rank0/summary.json": "fbec866aab914a921a445c1cd41cd095788c61248199f826993a10cc3134521f",
+    "interface-audit-06/distributed/rank1/summary.json": "9f9171da47abb779fe013c73e39397dfdcd32d66b788239f3cd7daaa2c925838",
+    "interface-audit-03/optional-comparison.json": "dd681a00d96b5e999f34dcb6d2dadff011948ce19e3ca4fec1ef7a4f7ea1e923",
+    "interface-audit-07/optional/base_export-direct/summary.json": "c2d2a875ce8a72c6e890330bcbe41c488aa9d8358b88c75f9fba9223113707a4",
+    "interface-audit-07/optional/base_export-routed/summary.json": "0ec4e874f5dc676ae159c598ba01d20a30a56c0986b5370cfb9bfcf9793c3837",
+    "interface-audit-03/kitti/summary.json": "ca9bcb15834932f65c64a594874569ed46bbbd32b4de145207473411484f6612",
+    "interface-audit-03/optional/amba-direct/summary.json": "55a8a5eec341fda5a759580a85f9db0c2433822abbd530901c5036840a18b11c",
+    "interface-audit-03/optional/amba-routed/summary.json": "b1c48ff305aa9a2e15fed887c0a9bf74006274a6e43018d33f970d2cec83f11d"
+  },
+  "case_details": {
+    "archive": "metadata.tar.gz",
+    "path": "interface-audit-final-04/analysis/summary.json",
+    "case_count": 872
+  }
+}
