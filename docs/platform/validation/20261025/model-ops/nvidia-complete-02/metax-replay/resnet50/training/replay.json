@@ -1,0 +1,3508 @@
+{
+  "atol": 1e-05,
+  "cases": [
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0000.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "ae4920913beac6d07b8130e40ba6fb08a42197fb6f13d6aabf7eca413388a4b6",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                224,
+                224
+              ]
+            },
+            {
+              "bitwise_equal": false,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 3.5,
+              "passed": false,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 4,
+              "passed": true
+            }
+          ],
+          "passed": false
+        }
+      },
+      "result_file": "result-0000.pt",
+      "result_sha256": "a40c1b229b72c7868fa6f441a663c3821ed82ea45d1799b6d0f103475929f846",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                224,
+                224
+              ]
+            },
+            {
+              "bitwise_equal": false,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 3.0,
+              "passed": false,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 4,
+              "passed": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                224,
+                224
+              ]
+            },
+            {
+              "bitwise_equal": false,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 3.5,
+              "passed": false,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 4,
+              "passed": true
+            }
+          ],
+          "passed": false
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0001.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "1609dadcdd3a9b77a9487921f66df1675a6b30874568ef3d9cb6abeb1f1723bf",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 6,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 7,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 8,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 9,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0001.pt",
+      "result_sha256": "1cf18437a03ac4e03844745821c8af1b9a1da3c0c856454d4e3fa2dc7d1b5675",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 6,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 7,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 8,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 9,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 6,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 7,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 8,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 9,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0002.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "a650d61342bae90e069f9e6a81024612724a2e15255f49b381bcd770fb46064a",
+      "operation": "activation.ReLU",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0002.pt",
+      "result_sha256": "76f9daf7cb673053c581912df8a07d3e2a934daafb4cc3c334504440f8cd2838",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0003.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "fec3e5e0a33f9b2de2fe92faac249c0aee2b184155f0940b8a3d1896c02365f3",
+      "operation": "pooling.MaxPool2d",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0003.pt",
+      "result_sha256": "b614e3c7dff13715cfb427deb6acffc0e5b32968ecaefcd2590303ffec895bdf",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0004.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "7f90bfbb04943d908885b8c31de7855af9405cfc9e2be620cfe4e013bcd5498e",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": false,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 1.875,
+              "passed": false,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 4,
+              "passed": true
+            }
+          ],
+          "passed": false
+        }
+      },
+      "result_file": "result-0004.pt",
+      "result_sha256": "df3a6e6e064ff8a4286556c43ae7ef853f87cc62ed77c28716a00a8ab49fbbde",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": false,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 1.5,
+              "passed": false,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 4,
+              "passed": true
+            }
+          ],
+          "passed": false
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": false,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 2.5,
+              "passed": false,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 4,
+              "passed": true
+            }
+          ],
+          "passed": false
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0005.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "79a782c1102cf66836348d32ab2eda27bde1f4a8ece7f2bbaa3db34d0d3ffb67",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 6,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 7,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 8,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 9,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0005.pt",
+      "result_sha256": "c44f18ceb3f5dbcb3156d578d9f421e16e4c8b5429334ecad23a12c3cd945e52",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 6,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 7,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 8,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 9,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 6,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 7,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 8,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 9,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0006.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "052c55c09dec3545c552107d4ef8410c8e7cd24cd6f89df687d220d35a24c176",
+      "operation": "activation.ReLU",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0006.pt",
+      "result_sha256": "d643de89fd0c5e8394d4425c1d9e56e16defde02c1a6b274fd2c18205e873aa6",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0007.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "1d38ddf633789cb62e44e05f9c0f955864585fee445f2539c3b1d2f49aacd6f2",
+      "operation": "pooling.AdaptiveAvgPool2d",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                1,
+                1
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0007.pt",
+      "result_sha256": "5446df7eeedf1d01a5c04291b230186988019509a208365016e97b0fe307efb6",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                1,
+                1
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                1,
+                1
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0008.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "9bba38ac320f48d485e6711092023089bf0ca8d1661e4a79c8a155afb1cc0558",
+      "operation": "matrix.Linear",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0008.pt",
+      "result_sha256": "3739dfa78f503e3c3d75318615d7b73ea6aa52d0404b50dd5adea02badf2f6b1",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0009.pt",
+      "input_gradient_count": 1,
+      "input_sha256": "bd7389f6fbf9c53060bc25b8029f37a794d0b42865c98856f45d9cf975124fb7",
+      "operation": "activation.log_softmax",
+      "phase": "training",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0009.pt",
+      "result_sha256": "a82d48aa120549b046902f852e5a0addbd0774b17464e5e9ad76c6cc2c7a891a",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float16",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0010.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "b95dc74bd302a4e3da21328f4f058798b49f12814a99a505b19d5e1d82821779",
+      "operation": "convolution.Conv2d",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0010.pt",
+      "result_sha256": "b31cab0c7926d590223cd6ec78edb86f49b80d831218ddc06015222767dc8837",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                3,
+                7,
+                7
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0011.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "a5bc2c4415487c0216c53fbba7c34b04bacb24b6b28a3629391426fa1ab8ca0f",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0011.pt",
+      "result_sha256": "d3c076d3376ace30599ae2fdfb0fa4869a6dd65d0af910b7abb012c260e424a9",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0012.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "456423967ef60f26cd2434a073b0422be2ad1629f49e5e4306be66bd619660a0",
+      "operation": "activation.ReLU",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0012.pt",
+      "result_sha256": "8a882e43b5b69bc74ea0b2b12f18354180f8d11db6dcffb8a8bfd56880b6f46f",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                112,
+                112
+              ]
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0013.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "8b1a72f50e69060acb69ee6fb112e0edf4fed1c67fbebb770aea191e4dcf8eaf",
+      "operation": "pooling.MaxPool2d",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0013.pt",
+      "result_sha256": "c17bfa0a7ce51f259c36de746fa595c79d4bfe92fa302680b850b13b449f8186",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0014.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "c513c313026f7410ac837966088d38b91797545dbcdbd248874a0616d2393055",
+      "operation": "convolution.Conv2d",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0014.pt",
+      "result_sha256": "0fdddb916c029763845727221e2ee24fd101228076ca0d933ce2afe5e18d9932",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 2,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0015.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "410150999634b1d87cce7e96397b28d54909e8b5acd7c574ac0974b3240db42a",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0015.pt",
+      "result_sha256": "71343cd173c2fb0d1dab4873b412ccdf8c298ef17341ba57e2c79677540450dc",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 3,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 4,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.int64",
+              "finite": true,
+              "leaf": 5,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": []
+            },
+            {
+              "leaf": 6,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0016.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "1dd67ecbbf41febeee92763fec8adafbf6aeb4b375423cd6a07a3e118d12820d",
+      "operation": "activation.ReLU",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0016.pt",
+      "result_sha256": "7f2d24e638345de5b742ca9433f8f9c4d374a6fc797e3a3572ea274330bed775",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                64,
+                56,
+                56
+              ]
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0017.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "36982710d26149e9c4dd6fd128a95cdc473c5bed4d2a9b83fdb4533a2074aea8",
+      "operation": "pooling.AdaptiveAvgPool2d",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0017.pt",
+      "result_sha256": "3ee1d9af64f95c1c12667ae0903e3ea35171bdee8b78606a84635d80d72b4d42",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                2048,
+                1,
+                1
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0018.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "c8d89e7f82d44ee1b6611a0e9c9a79d7ab60f62b6ffb04535a0c92aa4b4dfa62",
+      "operation": "matrix.Linear",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "leaf": 3,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0018.pt",
+      "result_sha256": "f87750a523f6d7bba732fc1b71307f30a9bbc5398e5572bed8c5031e3f9f9c05",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "leaf": 3,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 1,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000,
+                2048
+              ]
+            },
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 2,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                1000
+              ]
+            },
+            {
+              "leaf": 3,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    },
+    {
+      "gradient_policy": "observed differentiable operands plus leading floating operand",
+      "input_case": "case-0019.pt",
+      "input_gradient_count": 0,
+      "input_sha256": "fe41fddb3e057e572e90fb9502f0fe0ed9cb1b1b450fb12af1c17f37c6575a82",
+      "operation": "activation.softmax",
+      "phase": "training_eval",
+      "platform_vs_direct_vendor_torch": {
+        "available": true,
+        "comparison": {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      },
+      "result_file": "result-0019.pt",
+      "result_sha256": "929b9e9489cb423e63abd8ae226cf782a3533c843764859098b28f4f04ccc91a",
+      "rng_after_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "rng_before_sha256": "9f59292e60d2075e52279c98f170d9b481f9b96f837da35713b6f4e622b57795",
+      "same_vendor_repeats": [
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        },
+        {
+          "leaves": [
+            {
+              "bitwise_equal": true,
+              "dtype": "torch.float32",
+              "finite": true,
+              "leaf": 0,
+              "max_abs": 0.0,
+              "passed": true,
+              "shape": [
+                64,
+                1000
+              ]
+            },
+            {
+              "leaf": 1,
+              "passed": true
+            }
+          ],
+          "passed": true
+        }
+      ],
+      "stochastic": false,
+      "upstream_policy": "(CPU arange % 97 - 48) / 97, cast to output dtype"
+    }
+  ],
+  "common_capture_vendor": "metax",
+  "completed": true,
+  "device": "MetaX C500",
+  "model": "resnet50",
+  "observation_sha256": "74613fc8ca402af79f3ebd9bbcccad9e67ad774c0a1855a94fdb6d2a2c6086d5",
+  "purpose": "training",
+  "repeats": 3,
+  "rng_policy": "same external seed; vendor RNG states never copied between platforms",
+  "rtol": 0.0001,
+  "scope": "sampled semantic operations, forward/gradients/state; instrumented timings are not benchmarks",
+  "torch": "2.10.0+metax3.8.1.0",
+  "vendor": "metax"
+}

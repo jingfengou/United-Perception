@@ -1,0 +1,38 @@
+{
+  "atol": 1e-05,
+  "cases_per_operation_phase": 2,
+  "common_capture_vendor": "metax",
+  "execution_selection_sha256": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f",
+  "models": [
+    "resnet50",
+    "yolov5s",
+    "vit_b16"
+  ],
+  "parent_plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+  "policy": "after selected accuracy cohort; common actual operands, native GPU compute, no tolerance changes",
+  "purposes": [
+    "training",
+    "inference"
+  ],
+  "repeats": 3,
+  "rtol": 0.0001,
+  "scope": "sampled tensor operations actually used by three models; not every shape or all platform interfaces",
+  "sources": {
+    "new_metax": {
+      "sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8"
+    },
+    "new_nvidia": {
+      "sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8"
+    },
+    "original_nvidia": {
+      "sha256": "d9ceac12843eebce70b4d1a57eade0ce7083573510d1abb1749a8e2e7c230416"
+    }
+  },
+  "stage": "platform-ops-audit-01",
+  "tools": {
+    "accuracy_data.py": "ba0adef057414a81e760a35e14f8a574e08ecddff7b36b879c3f51f46eb40968",
+    "platform_operator_cases.py": "9c1b6b1c5f4a003379a48e65962f14c63fc26bc0b67908d1677a824750b627d2",
+    "probe_platform_model_ops.py": "7af38bd1f1840126cbb56d57d0b55e5c1c60245c79adbf7751e36b028a24af14"
+  },
+  "training_includes_eval": true
+}

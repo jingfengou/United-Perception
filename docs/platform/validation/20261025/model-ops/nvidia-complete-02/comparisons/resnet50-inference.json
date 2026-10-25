@@ -1,0 +1,478 @@
+{
+  "actual_vendor": "metax",
+  "atol": 1e-05,
+  "cases": [
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              112,
+              112
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              3,
+              7,
+              7
+            ]
+          },
+          {
+            "leaf": 2,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0000.pt",
+      "operation": "convolution.Conv2d",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": false,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 4.76837158203125e-07,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              112,
+              112
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 2,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 3,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 4,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.int64",
+            "finite": true,
+            "leaf": 5,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": []
+          },
+          {
+            "leaf": 6,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0001.pt",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              112,
+              112
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              112,
+              112
+            ]
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0002.pt",
+      "operation": "activation.ReLU",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              56,
+              56
+            ]
+          },
+          {
+            "leaf": 1,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0003.pt",
+      "operation": "pooling.MaxPool2d",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": false,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 2.384185791015625e-06,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              56,
+              56
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              1,
+              1
+            ]
+          },
+          {
+            "leaf": 2,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0004.pt",
+      "operation": "convolution.Conv2d",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": false,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 4.76837158203125e-07,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              56,
+              56
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 2,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 3,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 4,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.int64",
+            "finite": true,
+            "leaf": 5,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": []
+          },
+          {
+            "leaf": 6,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0005.pt",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              56,
+              56
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              64,
+              64,
+              56,
+              56
+            ]
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0006.pt",
+      "operation": "activation.ReLU",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": false,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 1.430511474609375e-06,
+            "passed": true,
+            "shape": [
+              64,
+              2048,
+              1,
+              1
+            ]
+          },
+          {
+            "leaf": 1,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0007.pt",
+      "operation": "pooling.AdaptiveAvgPool2d",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": false,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 9.059906005859375e-06,
+            "passed": true,
+            "shape": [
+              64,
+              1000
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 1,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              1000,
+              2048
+            ]
+          },
+          {
+            "bitwise_equal": true,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 2,
+            "max_abs": 0.0,
+            "passed": true,
+            "shape": [
+              1000
+            ]
+          },
+          {
+            "leaf": 3,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0008.pt",
+      "operation": "matrix.Linear",
+      "phase": "independent_inference",
+      "stochastic": false
+    },
+    {
+      "comparison": {
+        "leaves": [
+          {
+            "bitwise_equal": false,
+            "dtype": "torch.float32",
+            "finite": true,
+            "leaf": 0,
+            "max_abs": 5.587935447692871e-09,
+            "passed": true,
+            "shape": [
+              64,
+              1000
+            ]
+          },
+          {
+            "leaf": 1,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "input_case": "case-0009.pt",
+      "operation": "activation.softmax",
+      "phase": "independent_inference",
+      "stochastic": false
+    }
+  ],
+  "cases_within_tolerance": 10,
+  "limitation": "Equal seed does not imply equal cross-vendor random masks. No tolerance relaxation or forced mask replacement.",
+  "model": "resnet50",
+  "numerical_cases": 10,
+  "purpose": "inference",
+  "reference_vendor": "nvidia",
+  "rtol": 0.0001,
+  "scope": "common operands/weights/upstream gradients, sampled real-model platform operations",
+  "stochastic_cases": 0
+}

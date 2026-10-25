@@ -1,0 +1,889 @@
+{
+  "accuracy_causality_established": false,
+  "all_interfaces_verified": false,
+  "cases_by_phase": {
+    "independent_inference": 32,
+    "training": 34,
+    "training_eval": 32
+  },
+  "failed_case_count": 19,
+  "failures": [
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.00390625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            112,
+            112
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.001953125,
+          "passed": false,
+          "shape": [
+            64,
+            3,
+            224,
+            224
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 2.5,
+          "passed": false,
+          "shape": [
+            64,
+            3,
+            7,
+            7
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0000.pt",
+      "input_variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]",
+      "model": "resnet50",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.00390625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            112,
+            112
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.0009765625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            112,
+            112
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 3,
+          "max_abs": 0.00013446807861328125,
+          "passed": false,
+          "shape": [
+            64
+          ],
+          "tensor_field": "parameter_gradients.bias"
+        }
+      ],
+      "input_case": "case-0001.pt",
+      "input_variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "resnet50",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.00390625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            56,
+            56
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.000244140625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            56,
+            56
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 1.75,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            1,
+            1
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0004.pt",
+      "input_variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "resnet50",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.00390625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            56,
+            56
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.0009765625,
+          "passed": false,
+          "shape": [
+            64,
+            64,
+            56,
+            56
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.00011444091796875,
+          "passed": false,
+          "shape": [
+            64
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0005.pt",
+      "input_variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "resnet50",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.0078125,
+          "passed": false,
+          "shape": [
+            64,
+            1000
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.000244140625,
+          "passed": false,
+          "shape": [
+            64,
+            2048
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.001953125,
+          "passed": false,
+          "shape": [
+            1000,
+            2048
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0008.pt",
+      "input_variant": "[{'shape': [64, 2048], 'stride': [2048, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "resnet50",
+      "operation": "matrix.Linear",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 3.0517578125e-05,
+          "passed": false,
+          "shape": [
+            64,
+            1000
+          ],
+          "tensor_field": "input_gradients[0]"
+        }
+      ],
+      "input_case": "case-0009.pt",
+      "input_variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "resnet50",
+      "operation": "activation.log_softmax",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.0009765625,
+          "passed": false,
+          "shape": [
+            64,
+            768,
+            14,
+            14
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.000244140625,
+          "passed": false,
+          "shape": [
+            64,
+            3,
+            224,
+            224
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.09375,
+          "passed": false,
+          "shape": [
+            768,
+            3,
+            16,
+            16
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0000.pt",
+      "input_variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]",
+      "model": "vit_b16",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 5.730083465576172,
+          "passed": false,
+          "shape": [
+            64,
+            197,
+            768
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.5498282313346863,
+          "passed": false,
+          "shape": [
+            64,
+            197,
+            768
+          ],
+          "tensor_field": "input_gradients[0]"
+        }
+      ],
+      "input_case": "case-0001.pt",
+      "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "activation.Dropout",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": true
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 3.4332275390625e-05,
+          "passed": false,
+          "shape": [
+            768
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 3,
+          "max_abs": 2.491474151611328e-05,
+          "passed": false,
+          "shape": [
+            768
+          ],
+          "tensor_field": "parameter_gradients.bias"
+        }
+      ],
+      "input_case": "case-0002.pt",
+      "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "normalization.LayerNorm",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.001953125,
+          "passed": false,
+          "shape": [
+            64,
+            197,
+            2304
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.00048828125,
+          "passed": false,
+          "shape": [
+            64,
+            197,
+            768
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.0625,
+          "passed": false,
+          "shape": [
+            2304,
+            768
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0003.pt",
+      "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "matrix.Linear",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.0078125,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            197
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.0078125,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            64
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.0078125,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            64,
+            197
+          ],
+          "tensor_field": "input_gradients[1]"
+        }
+      ],
+      "input_case": "case-0004.pt",
+      "input_variant": "[{'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [64, 12, 64, 197], 'stride': [453888, 64, 1, 2304], 'storage_offset': 768, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "matrix.matmul",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.028536077588796616,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            197
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.5498282313346863,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            197
+          ],
+          "tensor_field": "input_gradients[0]"
+        }
+      ],
+      "input_case": "case-0006.pt",
+      "input_variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "activation.Dropout",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": true
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.000244140625,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            64
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.00390625,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            197
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 3.0517578125e-05,
+          "passed": false,
+          "shape": [
+            64,
+            12,
+            197,
+            64
+          ],
+          "tensor_field": "input_gradients[1]"
+        }
+      ],
+      "input_case": "case-0007.pt",
+      "input_variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 1536, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "matrix.matmul",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 0,
+          "max_abs": 0.0001220703125,
+          "passed": false,
+          "shape": [
+            64,
+            197,
+            768
+          ],
+          "tensor_field": "output"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 0.000244140625,
+          "passed": false,
+          "shape": [
+            64,
+            197,
+            768
+          ],
+          "tensor_field": "input_gradients[0]"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.00390625,
+          "passed": false,
+          "shape": [
+            768,
+            768
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0008.pt",
+      "input_variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "matrix.Linear",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float16",
+          "finite": true,
+          "leaf": 1,
+          "max_abs": 6.103515625e-05,
+          "passed": false,
+          "shape": [
+            64,
+            1000
+          ],
+          "tensor_field": "input_gradients[0]"
+        }
+      ],
+      "input_case": "case-0010.pt",
+      "input_variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "vit_b16",
+      "operation": "activation.log_softmax",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.0012359619140625,
+          "passed": false,
+          "shape": [
+            32,
+            12,
+            3,
+            3
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0000.pt",
+      "input_variant": "[{'shape': [32, 12, 320, 320], 'stride': [1228800, 102400, 320, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]",
+      "model": "yolov5s",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.004199981689453125,
+          "passed": false,
+          "shape": [
+            32
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 3,
+          "max_abs": 0.0035219192504882812,
+          "passed": false,
+          "shape": [
+            32
+          ],
+          "tensor_field": "parameter_gradients.bias"
+        }
+      ],
+      "input_case": "case-0001.pt",
+      "input_variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "yolov5s",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.0015869140625,
+          "passed": false,
+          "shape": [
+            64,
+            32,
+            3,
+            3
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        }
+      ],
+      "input_case": "case-0003.pt",
+      "input_variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "yolov5s",
+      "operation": "convolution.Conv2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    },
+    {
+      "failed_fields": [
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 2,
+          "max_abs": 0.000640869140625,
+          "passed": false,
+          "shape": [
+            64
+          ],
+          "tensor_field": "parameter_gradients.weight"
+        },
+        {
+          "bitwise_equal": false,
+          "dtype": "torch.float32",
+          "finite": true,
+          "leaf": 3,
+          "max_abs": 0.00067901611328125,
+          "passed": false,
+          "shape": [
+            64
+          ],
+          "tensor_field": "parameter_gradients.bias"
+        }
+      ],
+      "input_case": "case-0004.pt",
+      "input_variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]",
+      "model": "yolov5s",
+      "operation": "normalization.BatchNorm2d",
+      "phase": "training",
+      "purpose": "training",
+      "stochastic": false
+    }
+  ],
+  "gradient_scope": "Fixed CPU-generated upstream cast to captured output dtype; not the full model loss gradient",
+  "native_controls": {
+    "metax": {
+      "cases": 98,
+      "direct_reference_outside_tolerance_cases": [
+        "resnet50/training/case-0000.pt",
+        "resnet50/training/case-0004.pt",
+        "vit_b16/training/case-0000.pt",
+        "yolov5s/training/case-0000.pt",
+        "yolov5s/training/case-0003.pt"
+      ],
+      "forward_bitwise_equal_to_direct_torch": 98,
+      "native_repeat_outside_tolerance_cases": [
+        "resnet50/training/case-0000.pt",
+        "resnet50/training/case-0004.pt",
+        "vit_b16/training/case-0000.pt",
+        "yolov5s/training/case-0000.pt",
+        "yolov5s/training/case-0003.pt"
+      ]
+    },
+    "nvidia": {
+      "cases": 98,
+      "direct_reference_outside_tolerance_cases": [
+        "yolov5s/training/case-0000.pt",
+        "yolov5s/training/case-0003.pt"
+      ],
+      "forward_bitwise_equal_to_direct_torch": 98,
+      "native_repeat_outside_tolerance_cases": [
+        "yolov5s/training/case-0000.pt",
+        "yolov5s/training/case-0003.pt"
+      ]
+    }
+  },
+  "sampled_operation_types": [
+    "activation.Dropout",
+    "activation.ReLU",
+    "activation.SiLU",
+    "activation.log_softmax",
+    "activation.sigmoid",
+    "activation.softmax",
+    "activation.tanh",
+    "convolution.Conv2d",
+    "loss.binary_cross_entropy_with_logits",
+    "matrix.Linear",
+    "matrix.matmul",
+    "normalization.BatchNorm2d",
+    "normalization.LayerNorm",
+    "pooling.AdaptiveAvgPool2d",
+    "pooling.MaxPool2d",
+    "pooling.Upsample"
+  ],
+  "training_dropout_failed_cases": 2
+}

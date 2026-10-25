@@ -1,0 +1,141 @@
+{
+  "files": {
+    "common-captures/resnet50/inference/observation.json": {
+      "bytes": 11469,
+      "sha256": "fc10185e7c839a1769962a6c393dd20ad7abcf5e4528abdc4d59f0467b7ef7c7"
+    },
+    "common-captures/resnet50/training/observation.json": {
+      "bytes": 17520,
+      "sha256": "74613fc8ca402af79f3ebd9bbcccad9e67ad774c0a1855a94fdb6d2a2c6086d5"
+    },
+    "common-captures/vit_b16/inference/observation.json": {
+      "bytes": 12223,
+      "sha256": "23598a7197f30aaff2071dea7bf9a2085f4ef3c8509b8ebfecf1cf0267b11434"
+    },
+    "common-captures/vit_b16/training/observation.json": {
+      "bytes": 19118,
+      "sha256": "eca83fdf678253d284dfe3561380e78dd0df432dfb2c30a31f31e6072479858f"
+    },
+    "common-captures/yolov5s/inference/observation.json": {
+      "bytes": 12005,
+      "sha256": "09c5fd37dab6a83b40de9b77ba0804b746432e34ac591899e69d173e0bc08d9a"
+    },
+    "common-captures/yolov5s/training/observation.json": {
+      "bytes": 20082,
+      "sha256": "c34c583a374753943d9a89f7b237e6f0c75806b5b26c231f24e1650dbd32b0d0"
+    },
+    "common-ready.json": {
+      "bytes": 207,
+      "sha256": "090d30763cfe70c8a0009922dc513bf274783af89977697016acd3754cf23b3a"
+    },
+    "comparisons/resnet50-inference.json": {
+      "bytes": 10979,
+      "sha256": "aacd6fbafe3c7f3879c1e41952356c107ee996bed0188c1625c2ad590dc6f974"
+    },
+    "comparisons/resnet50-training.json": {
+      "bytes": 26742,
+      "sha256": "c77babe1de0eebf5ba3aac932a976fff8a0a7551bf15750d6027ed5aba50ada8"
+    },
+    "comparisons/vit_b16-inference.json": {
+      "bytes": 9561,
+      "sha256": "481ff10055d4c35641ca68ab37d80dc05841f85cd29c61ef5eb3662dae563fb9"
+    },
+    "comparisons/vit_b16-training.json": {
+      "bytes": 24841,
+      "sha256": "518dd83484b732ebba3cef9361c95d3b1b258bd38a4201cc28e36d05a354c809"
+    },
+    "comparisons/yolov5s-inference.json": {
+      "bytes": 11254,
+      "sha256": "fa9ad34c77a1c48b97615cc00822f804c84e6fb6d66f59e8805a3a8a1e4da013"
+    },
+    "comparisons/yolov5s-training.json": {
+      "bytes": 29042,
+      "sha256": "4be419be4113060fb4394902e16c0a758f238068f777e0fd25b5d22271efb0bd"
+    },
+    "job.json": {
+      "bytes": 19139,
+      "sha256": "941bb7d0831582f5c16bcdb9ceec379fd2efcf22bb5847864243261ab7b249e3"
+    },
+    "metax-replay/resnet50/inference/replay.json": {
+      "bytes": 38008,
+      "sha256": "edbd2ec6d6782c2e288194e1170afade1f4d4c610dc42d80c5f49ca4cac95cb4"
+    },
+    "metax-replay/resnet50/training/replay.json": {
+      "bytes": 92473,
+      "sha256": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c"
+    },
+    "metax-replay/vit_b16/inference/replay.json": {
+      "bytes": 33761,
+      "sha256": "59a6320d6d3440a86028c16a737511f563a0645d1e85321c452ab7af73dfa039"
+    },
+    "metax-replay/vit_b16/training/replay.json": {
+      "bytes": 86789,
+      "sha256": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4"
+    },
+    "metax-replay/yolov5s/inference/replay.json": {
+      "bytes": 39022,
+      "sha256": "990cd1620f63a0c9cb7fe5b0a413bd0ad0bbee5e096c888bc3a109764752214f"
+    },
+    "metax-replay/yolov5s/training/replay.json": {
+      "bytes": 100393,
+      "sha256": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d"
+    },
+    "nvidia-coverage/resnet50/inference/observation.json": {
+      "bytes": 5586,
+      "sha256": "3701f0a84cb0c9b2f41622a53d1e626b1644c2ea075c94784635869b08c94788"
+    },
+    "nvidia-coverage/resnet50/training/observation.json": {
+      "bytes": 6184,
+      "sha256": "d5b0872e7223e45f0c9cd2ae24ed0b1ba02d829b1e0d1738f3ecd8d871f5b572"
+    },
+    "nvidia-coverage/vit_b16/inference/observation.json": {
+      "bytes": 5500,
+      "sha256": "2f9628fafeca6cb0855caf38b52ff7e14dd504f9c5444adb12414144ccd925ba"
+    },
+    "nvidia-coverage/vit_b16/training/observation.json": {
+      "bytes": 6148,
+      "sha256": "54223f822a92c45785389aa4a1e30c5eedcaf97a91f60614c312ea28bac0d2e9"
+    },
+    "nvidia-coverage/yolov5s/inference/observation.json": {
+      "bytes": 5469,
+      "sha256": "ea9c3a9ecbe70fb682dfb04fa27cf7072fbcbcfc075be74f2f2afc70ffcbb4f3"
+    },
+    "nvidia-coverage/yolov5s/training/observation.json": {
+      "bytes": 6090,
+      "sha256": "ad30ab8f2d7d34fe782cb9aae5b7d24954e655512ff1b0bf1dcd7a2f854a9351"
+    },
+    "nvidia-replay/resnet50/inference/replay.json": {
+      "bytes": 38015,
+      "sha256": "e232e82ccfbaed11ecf1c9e9451bf9955bde8e8bfea1c3531bf9de4790b16b72"
+    },
+    "nvidia-replay/resnet50/training/replay.json": {
+      "bytes": 92460,
+      "sha256": "13b477848181539785c557dd66260281b5f4bef74ddc566f249ef105c46505b4"
+    },
+    "nvidia-replay/vit_b16/inference/replay.json": {
+      "bytes": 33768,
+      "sha256": "8569cbe37d8d86712d77bc11b7a271a0fb1ba28b24a569ab9b360d741006cf22"
+    },
+    "nvidia-replay/vit_b16/training/replay.json": {
+      "bytes": 86778,
+      "sha256": "ed887ec3bdfdd0d9aa3908088a23b4fda8b3aaba39d93c64e35840e77825e310"
+    },
+    "nvidia-replay/yolov5s/inference/replay.json": {
+      "bytes": 39029,
+      "sha256": "d4fe3390620541685c56135c54432ab5a2f1cdcae7d9b9c2d6e67f77cb9e1382"
+    },
+    "nvidia-replay/yolov5s/training/replay.json": {
+      "bytes": 100399,
+      "sha256": "c3538bd76e33613190e56d56cd5914233241361157ef6c49fd1768519f195b48"
+    },
+    "plan.json": {
+      "bytes": 1396,
+      "sha256": "a94271d921a9decdea2ef54c046ee9bc7d55949bdff34179b76188834987c014"
+    },
+    "summary.json": {
+      "bytes": 38290,
+      "sha256": "2915ae9669ee800b885525d34796163622494a1a06eb616f59404061a18e1b40"
+    }
+  },
+  "includes_tensors": false
+}
