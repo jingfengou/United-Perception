@@ -1,0 +1,47 @@
+{
+  "audit_seconds": 5.153356097638607,
+  "budget": {
+    "execution_epochs": 1,
+    "expected_steps": 10010,
+    "recipe_epochs": 200,
+    "steps_per_epoch": 10010
+  },
+  "checkpoint_files": {
+    "checkpoint-1.pt": "5cca2b4d1c4d9634144ba5304e417b714d838c8e1feb796a1ffa1e83ab13890b",
+    "checkpoint-1.rank0.pt": "9e4c8dd137ccbd361211cd711169a2e2c8cf677e142452432deb711cb4076285",
+    "checkpoint-1.rank1.pt": "7f4d2978bb57c05561003470293ba92afb69f01ec5deadf57a8e8ac5ebc09f06"
+  },
+  "cuda_visible_devices": "",
+  "details": {
+    "correct": {
+      "1": 140,
+      "5": 695
+    },
+    "metric_units": "percent (0 to 100), upstream FP32 multiplication",
+    "unique_membership_and_labels_exact": true,
+    "validation_images": 50000
+  },
+  "framework_imported": false,
+  "inference_sha256": "32b835c79207346b0df3b92b49312f58f83acd4e78519db72c1e0da358adc142",
+  "lane": "original_nvidia",
+  "metrics_recompute_exact": true,
+  "model": "resnet50",
+  "model_computation": false,
+  "prediction_sha256": {
+    "inference": "ebea6126fd949bd215cf5fa54ac44d5e889c8c49ae45bbea958b75856c38c999",
+    "train": "ebea6126fd949bd215cf5fa54ac44d5e889c8c49ae45bbea958b75856c38c999"
+  },
+  "predictions_identical": true,
+  "recomputed_final_metrics": {
+    "top1": 0.2800000011920929,
+    "top5": 1.3900001049041748
+  },
+  "recomputed_inference_metrics": {
+    "top1": 0.2800000011920929,
+    "top5": 1.3900001049041748
+  },
+  "recorded_utc": "2026-10-25T08:34:00.585249+00:00",
+  "report_sha256": "feee3bf84f6033454f52d414cfb1de7114da3954b0a1a01d4b4cd115e9624428",
+  "status": "completed_cpu_integrity_and_metric_audit",
+  "tool_sha256": "805d9e6219015b1daf0c332ce3dda808a92e29779d5b39b37a34f5797828cede"
+}

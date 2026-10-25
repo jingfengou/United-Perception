@@ -7,13 +7,14 @@
     "new_metax-resnet50-audit.json": "a541013005cc4ef730b15e2cb355458ae9c3e502146a455d2b20cfcba6173890",
     "new_metax-vit_b16-audit.json": "3153457b018e1db7a6ffd28d4074e858ce64e689611eb553c96e8050fc5ce79e",
     "new_metax-yolov5s-audit.json": "5354b7e57c1691fe2e9eeef5b09be6cfd8d450938231e8f631519073e24b0814",
-    "partial-metrics.json": "d4fb479cf303c25f0f9ea73aab57b5ba755ead3bd67b2cbdb4c595f2f96fa09c",
+    "original_nvidia-resnet50-audit.json": "ec3c0e0151c8e3acaec4fe9cb3fda2eb4554b9014fde437cf000a8f76cad6068",
+    "partial-metrics.json": "08027d0a14c9d6515dbfb025dec73e43d50ef68e72f524fa88fe6673a741014e",
     "plan.json": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
     "selection-receipt.json": "15f1148131310ad530bda4ec236fb132526b660535aff6992f398e8fcf297195",
     "selection.json": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f",
     "sources.json": "f07bf35e1654b51b7553d206ce9876af30f9b371a7a514de2085cc31c88ae1fa"
   },
-  "audited_training_lanes": 3,
+  "audited_training_lanes": 4,
   "baseline_revision": "52aaeb9ed27a490820696d7754d19f98cd6ecd11",
   "completion_receipt": "three-model-guard-job.json, selected_models_completed_detr_held on each host",
   "cpu_tests": {
@@ -141,7 +142,7 @@
       }
     },
     "nvidia": {
-      "completed_subprocess_cases": 0,
+      "completed_subprocess_cases": 2,
       "controller_status": "running",
       "current": {
         "case": "train",
@@ -153,7 +154,7 @@
           "--nproc-per-node=2",
           "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/training-08/tools/full_accuracy_train.py",
           "--source",
-          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/snapshots-08/original",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/snapshots-08/new",
           "--data",
           "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/full-data-binding.json",
           "--plan",
@@ -161,32 +162,43 @@
           "--model",
           "resnet50",
           "--lane",
-          "original_nvidia",
+          "new_nvidia",
           "--initial",
           "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/preflight-initialization/resnet50/initial.pt",
           "--output",
-          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch/original_nvidia/resnet50/train"
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch/new_nvidia/resnet50/train"
         ],
-        "lane": "original_nvidia",
+        "lane": "new_nvidia",
         "model": "resnet50",
-        "pid": 2663300,
-        "started_utc": "2026-10-25T04:47:53.988429+00:00"
+        "pid": 2722750,
+        "started_utc": "2026-10-25T07:46:21.421423+00:00"
       },
       "guard_status": "guarding_selected_models",
       "model_status": {
-        "new_nvidia/resnet50": null,
-        "new_nvidia/vit_b16": null,
-        "new_nvidia/yolov5s": null,
-        "original_nvidia/resnet50": {
+        "new_nvidia/resnet50": {
           "checkpoint_generation": 0,
-          "completed_steps": 1600,
+          "completed_steps": 2700,
           "epoch": 1,
           "evaluation_seconds": 0.0,
           "expected_steps": 10010,
-          "loss": 6.688818454742432,
-          "optimizer_updates": 1599,
+          "loss": 6.1612443923950195,
+          "optimizer_updates": 2699,
           "status": "training",
           "training_seconds": 0.0
+        },
+        "new_nvidia/vit_b16": null,
+        "new_nvidia/yolov5s": null,
+        "original_nvidia/resnet50": {
+          "checkpoint_generation": 1,
+          "completed_steps": 10010,
+          "evaluation_seconds": 73.36474078428,
+          "expected_steps": 10010,
+          "last_epoch": 1,
+          "optimizer_updates": 10005,
+          "peak_allocated_bytes": 3750107136,
+          "peak_reserved_bytes": 4204789760,
+          "status": "completed",
+          "training_seconds": 10543.043198683765
         },
         "original_nvidia/vit_b16": null,
         "original_nvidia/yolov5s": null
@@ -201,7 +213,7 @@
   "previous_plan_sha256": "9a3e53beba98af7bd2daff88acbb53baa12d4d5aec4574ee5d4b9fd5fdd27cd1",
   "production_runtime_component_sha256": "248470101c9a9abee1cd1bde3b1ac66486ce964cf2028ef0ef3dca325867f77f",
   "recipe_policy": "retain original LR/optimizer/augmentation horizon; stop after first complete epoch",
-  "recorded_utc": "2026-10-25T05:17:52.129479+00:00",
+  "recorded_utc": "2026-10-25T08:34:25.664773+00:00",
   "reproduction_tools_commit": "ba1e318292448dda27d46a4fc11d19645eecc00d",
   "scope": "selected ResNet50, YOLOv5-S and ViT-B/16; three lanes, one full-data epoch each; DETR deferred",
   "seed": 131,
