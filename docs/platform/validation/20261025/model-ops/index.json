@@ -3,11 +3,17 @@
     "cpu-metax.xml": "70956d831c1bda16592aedfc9a25d5ed006209bcb950f6bf597ca7e0be4612c8",
     "cpu-nvidia.xml": "06f8bd217c910f92ef70e9e8524312b4d6f4e90e6a90d0800aed8c85037bd1bd",
     "frozen-tool-bytes.json": "7312e48f3f212ec32a1dafcc82c0b26929701cf20c08e413933b7670168d9339",
+    "metax-partial.json": "c1ae9ae23dbab11e1b3fa04635dae9bfaf94a8c2997ed245571b8a53f570b260",
     "plan.json": "a94271d921a9decdea2ef54c046ee9bc7d55949bdff34179b76188834987c014"
   },
   "atol": 1e-05,
   "binary_provenance": "../one-epoch/sources.json",
   "cases_per_operation_phase": 2,
+  "common_archive": {
+    "archive": "operator-audit-common-01.tar",
+    "archive_bytes": 29680189440,
+    "archive_sha256": "162a9540cef722009e7c740a516611d542bbfd85660f0e7013996f91595afad7"
+  },
   "common_capture_vendor": "metax",
   "coverage_policy": "all observed calls counted; sampled numeric variants, setup construction is not numerical execution",
   "cpu_source_zip_sha256": "0f6cc221a29fa4e5d625d5bce7c324470cb1fe107b401cfa9cccf047d90a6492",
@@ -15,7 +21,7 @@
   "gpu_numerical_cohort_complete": false,
   "hosts": {
     "metax": {
-      "controller_status": "waiting_for_selected_training",
+      "controller_status": "common_archive_ready",
       "cpu_suites": [
         {
           "errors": "0",
@@ -29,8 +35,13 @@
         }
       ],
       "cpu_xml_sha256": "70956d831c1bda16592aedfc9a25d5ed006209bcb950f6bf597ca7e0be4612c8",
-      "gpu_cases_completed": 0,
-      "pid": 26794
+      "direct_reference_outside_tolerance": 5,
+      "gpu_cases_completed": 12,
+      "local_numeric_report": "metax-partial.json",
+      "numeric_cases": 98,
+      "pid": 26794,
+      "repeat_outside_tolerance_cases": 5,
+      "selected_training_status": "selected_models_completed_detr_held"
     },
     "nvidia": {
       "controller_status": "waiting_for_selected_training",
@@ -48,7 +59,8 @@
       ],
       "cpu_xml_sha256": "06f8bd217c910f92ef70e9e8524312b4d6f4e90e6a90d0800aed8c85037bd1bd",
       "gpu_cases_completed": 0,
-      "pid": 2628521
+      "pid": 2628521,
+      "selected_training_status": "guarding_selected_models"
     }
   },
   "models": [
@@ -64,11 +76,11 @@
     "inference"
   ],
   "raw_gpu_tools_archive_sha256": "3e6d5647faf9da3454beebc9c0f724699bcb5f278e6205d89fc93ad05637f743",
-  "recorded_utc": "2026-10-25T03:00:27.756060+00:00",
+  "recorded_utc": "2026-10-25T04:36:52.908288+00:00",
   "reference_tools_commit": "4ba36d8c22e3e26d3f1992327c56fea90a865c2b",
   "repeats": 3,
   "rtol": 0.0001,
   "scope": "sampled tensor operations actually used by three models; not every shape or all platform interfaces",
   "training_includes_eval": true,
-  "transfer_status": "waiting_for_metax_common_archive"
+  "transfer_status": "downloading"
 }

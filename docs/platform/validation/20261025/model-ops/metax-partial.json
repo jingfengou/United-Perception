@@ -1,0 +1,3748 @@
+{
+  "aggregate_field_policy": "Failed Conv2d comparisons affect parameter_gradients.weight (flattened leaf 2); max_abs is not a dataset accuracy metric.",
+  "archive_bytes": 29680189440,
+  "archive_sha256": "162a9540cef722009e7c740a516611d542bbfd85660f0e7013996f91595afad7",
+  "atol": 1e-05,
+  "cross_vendor_comparison_complete": false,
+  "direct_reference_cases": 98,
+  "direct_reference_outside_tolerance": 5,
+  "gpu_subprocess_cases_completed": 12,
+  "limitations": [
+    "Representative variants from one real model batch; not all platform interfaces or shapes.",
+    "Native same-vendor variation can affect platform-vs-direct comparisons; no causal attribution from one difference.",
+    "NVIDIA replay and common-operand cross-vendor comparison pending.",
+    "Instrumented capture/replay times are not performance benchmarks."
+  ],
+  "numeric_cases": 98,
+  "operator_plan_sha256": "a94271d921a9decdea2ef54c046ee9bc7d55949bdff34179b76188834987c014",
+  "recorded_utc": "2026-10-25T04:36:52.908288+00:00",
+  "repeat_nonbitwise_cases": 5,
+  "repeat_outside_tolerance_cases": 5,
+  "rows": [
+    {
+      "direct_findings": [
+        {
+          "comparison": {
+            "leaves": [
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  64,
+                  112,
+                  112
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  3,
+                  224,
+                  224
+                ]
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 3.5,
+                "passed": false,
+                "shape": [
+                  64,
+                  3,
+                  7,
+                  7
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  3,
+                  7,
+                  7
+                ]
+              },
+              {
+                "leaf": 4,
+                "passed": true
+              }
+            ],
+            "passed": false
+          },
+          "input_case": "case-0000.pt",
+          "operation": "convolution.Conv2d"
+        },
+        {
+          "comparison": {
+            "leaves": [
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  64,
+                  56,
+                  56
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  64,
+                  56,
+                  56
+                ]
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 1.875,
+                "passed": false,
+                "shape": [
+                  64,
+                  64,
+                  1,
+                  1
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  64,
+                  1,
+                  1
+                ]
+              },
+              {
+                "leaf": 4,
+                "passed": true
+              }
+            ],
+            "passed": false
+          },
+          "input_case": "case-0004.pt",
+          "operation": "convolution.Conv2d"
+        }
+      ],
+      "direct_reference_cases": 10,
+      "direct_reference_outside_tolerance": 2,
+      "evidence_files": [
+        {
+          "bytes": 17520,
+          "path": "platform-ops-audit-01/common-captures/resnet50/training/observation.json",
+          "sha256": "74613fc8ca402af79f3ebd9bbcccad9e67ad774c0a1855a94fdb6d2a2c6086d5"
+        },
+        {
+          "bytes": 92473,
+          "path": "platform-ops-audit-01/metax-replay/resnet50/training/replay.json",
+          "sha256": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "training/activation.ReLU": 12,
+        "training/activation.log_softmax": 1,
+        "training/convolution.Conv2d": 12,
+        "training/matrix.Linear": 1,
+        "training/normalization.BatchNorm2d": 12,
+        "training/pooling.AdaptiveAvgPool2d": 1,
+        "training/pooling.MaxPool2d": 1
+      },
+      "interfaces": [
+        "activation.ReLU",
+        "activation.log_softmax",
+        "convolution.Conv2d",
+        "matrix.Linear",
+        "normalization.BatchNorm2d",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.MaxPool2d"
+      ],
+      "model": "resnet50",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.matmul",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.LayerNorm",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.sigmoid",
+        "activation.tanh",
+        "activation.softplus",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SiLU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AvgPool2d",
+        "pooling.Upsample",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 10,
+      "observation_sha256": "74613fc8ca402af79f3ebd9bbcccad9e67ad774c0a1855a94fdb6d2a2c6086d5",
+      "observed_call_counts": {
+        "training/activation.ReLU": 49,
+        "training/activation.log_softmax": 1,
+        "training/convolution.Conv2d": 53,
+        "training/matrix.Linear": 1,
+        "training/normalization.BatchNorm2d": 53,
+        "training/pooling.AdaptiveAvgPool2d": 1,
+        "training/pooling.MaxPool2d": 1
+      },
+      "observed_without_numeric_case": [],
+      "phase": "training",
+      "purpose": "training",
+      "repeat_findings": [
+        {
+          "comparisons": [
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    112,
+                    112
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    3,
+                    224,
+                    224
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 3.0,
+                  "passed": false,
+                  "shape": [
+                    64,
+                    3,
+                    7,
+                    7
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    3,
+                    7,
+                    7
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            },
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    112,
+                    112
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    3,
+                    224,
+                    224
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 3.5,
+                  "passed": false,
+                  "shape": [
+                    64,
+                    3,
+                    7,
+                    7
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    3,
+                    7,
+                    7
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            }
+          ],
+          "input_case": "case-0000.pt",
+          "operation": "convolution.Conv2d"
+        },
+        {
+          "comparisons": [
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    56,
+                    56
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    56,
+                    56
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 1.5,
+                  "passed": false,
+                  "shape": [
+                    64,
+                    64,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            },
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    56,
+                    56
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    56,
+                    56
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 2.5,
+                  "passed": false,
+                  "shape": [
+                    64,
+                    64,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    64,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            }
+          ],
+          "input_case": "case-0004.pt",
+          "operation": "convolution.Conv2d"
+        }
+      ],
+      "repeat_nonbitwise_cases": 2,
+      "repeat_outside_tolerance_cases": 2,
+      "replay_sha256": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c",
+      "sampled_cases": [
+        {
+          "bytes": 38575413,
+          "file": "case-0000.pt",
+          "operands_sha256": "6c3f562a892d91a13976bb1cca629d241955d22b6fa24e6b8d515fd414b4857a",
+          "operation": "convolution.Conv2d",
+          "phase": "training",
+          "sha256": "ae4920913beac6d07b8130e40ba6fb08a42197fb6f13d6aabf7eca413388a4b6",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 102765357,
+          "file": "case-0001.pt",
+          "operands_sha256": "d1a433148b5b380d37c1241edf2248c243ee8df4e6700769e814a335091bcf61",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training",
+          "sha256": "1609dadcdd3a9b77a9487921f66df1675a6b30874568ef3d9cb6abeb1f1723bf",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 102762551,
+          "file": "case-0002.pt",
+          "operands_sha256": "c56812ba7ad54e53bcb4b3f6f0c29d78727dc3cc712650147adf743132694fe9",
+          "operation": "activation.ReLU",
+          "phase": "training",
+          "sha256": "a650d61342bae90e069f9e6a81024612724a2e15255f49b381bcd770fb46064a",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 102762679,
+          "file": "case-0003.pt",
+          "operands_sha256": "b67b42a1f40ae012ee7bde2150d79a5ff1dff04fce884ef4999123d869bd534f",
+          "operation": "pooling.MaxPool2d",
+          "phase": "training",
+          "sha256": "fec3e5e0a33f9b2de2fe92faac249c0aee2b184155f0940b8a3d1896c02365f3",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 25709173,
+          "file": "case-0004.pt",
+          "operands_sha256": "7d48f3ce8a26b75bd9408de7ded1678b41e1a062ec42552b7a403d68890743b0",
+          "operation": "convolution.Conv2d",
+          "phase": "training",
+          "sha256": "7f90bfbb04943d908885b8c31de7855af9405cfc9e2be620cfe4e013bcd5498e",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 25695021,
+          "file": "case-0005.pt",
+          "operands_sha256": "ede6f57b92789777d5bb9b51f7b002543ca1c600b1a0046cc8049f8d8f231583",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training",
+          "sha256": "79a782c1102cf66836348d32ab2eda27bde1f4a8ece7f2bbaa3db34d0d3ffb67",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 25692215,
+          "file": "case-0006.pt",
+          "operands_sha256": "04e396989152a51e5f3d9e2375155cb078b7dddfedd125f2e7216654b406262d",
+          "operation": "activation.ReLU",
+          "phase": "training",
+          "sha256": "052c55c09dec3545c552107d4ef8410c8e7cd24cd6f89df687d220d35a24c176",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 12847223,
+          "file": "case-0007.pt",
+          "operands_sha256": "cd7e7661cc195a563278b75161aea1ea40156e19128999cf1f8089a68ab055a2",
+          "operation": "pooling.AdaptiveAvgPool2d",
+          "phase": "training",
+          "sha256": "1d38ddf633789cb62e44e05f9c0f955864585fee445f2539c3b1d2f49aacd6f2",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 2048, 7, 7], 'stride': [100352, 1, 14336, 2048], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 8460915,
+          "file": "case-0008.pt",
+          "operands_sha256": "fd58ac6307b01820ab99928860ac513795a79666848eb3ca0228aded67e57e1b",
+          "operation": "matrix.Linear",
+          "phase": "training",
+          "sha256": "9bba38ac320f48d485e6711092023089bf0ca8d1661e4a79c8a155afb1cc0558",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 2048], 'stride': [2048, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 130039,
+          "file": "case-0009.pt",
+          "operands_sha256": "d099311e59deaad59a405f72f4005f85bd8daca3482dbf9dcd318c5f1b461258",
+          "operation": "activation.log_softmax",
+          "phase": "training",
+          "sha256": "bd7389f6fbf9c53060bc25b8029f37a794d0b42865c98856f45d9cf975124fb7",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        }
+      ],
+      "stochastic_cases": 0
+    },
+    {
+      "direct_findings": [],
+      "direct_reference_cases": 10,
+      "direct_reference_outside_tolerance": 0,
+      "evidence_files": [
+        {
+          "bytes": 17520,
+          "path": "platform-ops-audit-01/common-captures/resnet50/training/observation.json",
+          "sha256": "74613fc8ca402af79f3ebd9bbcccad9e67ad774c0a1855a94fdb6d2a2c6086d5"
+        },
+        {
+          "bytes": 92473,
+          "path": "platform-ops-audit-01/metax-replay/resnet50/training/replay.json",
+          "sha256": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "training_eval/activation.ReLU": 12,
+        "training_eval/activation.softmax": 1,
+        "training_eval/convolution.Conv2d": 12,
+        "training_eval/matrix.Linear": 1,
+        "training_eval/normalization.BatchNorm2d": 12,
+        "training_eval/pooling.AdaptiveAvgPool2d": 1,
+        "training_eval/pooling.MaxPool2d": 1
+      },
+      "interfaces": [
+        "activation.ReLU",
+        "activation.softmax",
+        "convolution.Conv2d",
+        "matrix.Linear",
+        "normalization.BatchNorm2d",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.MaxPool2d"
+      ],
+      "model": "resnet50",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.matmul",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.LayerNorm",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.sigmoid",
+        "activation.tanh",
+        "activation.softplus",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SiLU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AvgPool2d",
+        "pooling.Upsample",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 10,
+      "observation_sha256": "74613fc8ca402af79f3ebd9bbcccad9e67ad774c0a1855a94fdb6d2a2c6086d5",
+      "observed_call_counts": {
+        "training_eval/activation.ReLU": 49,
+        "training_eval/activation.softmax": 1,
+        "training_eval/convolution.Conv2d": 53,
+        "training_eval/matrix.Linear": 1,
+        "training_eval/normalization.BatchNorm2d": 53,
+        "training_eval/pooling.AdaptiveAvgPool2d": 1,
+        "training_eval/pooling.MaxPool2d": 1
+      },
+      "observed_without_numeric_case": [],
+      "phase": "training_eval",
+      "purpose": "training",
+      "repeat_findings": [],
+      "repeat_nonbitwise_cases": 0,
+      "repeat_outside_tolerance_cases": 0,
+      "replay_sha256": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c",
+      "sampled_cases": [
+        {
+          "bytes": 38575477,
+          "file": "case-0010.pt",
+          "operands_sha256": "5f876aa83a03cac2cfac0b04fe3cc36e8d2cf7f75e88c9231c6be79cdca54a3c",
+          "operation": "convolution.Conv2d",
+          "phase": "training_eval",
+          "sha256": "b95dc74bd302a4e3da21328f4f058798b49f12814a99a505b19d5e1d82821779",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 205525805,
+          "file": "case-0011.pt",
+          "operands_sha256": "59407254101f44e61a109cab518f07502ea4abb952fb070125961e7fc470afc5",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training_eval",
+          "sha256": "a5bc2c4415487c0216c53fbba7c34b04bacb24b6b28a3629391426fa1ab8ca0f",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 205522999,
+          "file": "case-0012.pt",
+          "operands_sha256": "23efce601f54f2e8d90a83fddc46409b4b7bac8f267d1173cf62977b7ed698ae",
+          "operation": "activation.ReLU",
+          "phase": "training_eval",
+          "sha256": "456423967ef60f26cd2434a073b0422be2ad1629f49e5e4306be66bd619660a0",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 205523127,
+          "file": "case-0013.pt",
+          "operands_sha256": "f5075149955ca4bc9ffe8eb28ef868189db9a3f3e50ba248dac28539a1dca611",
+          "operation": "pooling.MaxPool2d",
+          "phase": "training_eval",
+          "sha256": "8b1a72f50e69060acb69ee6fb112e0edf4fed1c67fbebb770aea191e4dcf8eaf",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 51399285,
+          "file": "case-0014.pt",
+          "operands_sha256": "3446c8e678a975cd3b1bc9fe2902eee25f01f7dc561d3efaa41de54db1a6d147",
+          "operation": "convolution.Conv2d",
+          "phase": "training_eval",
+          "sha256": "c513c313026f7410ac837966088d38b91797545dbcdbd248874a0616d2393055",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 51385133,
+          "file": "case-0015.pt",
+          "operands_sha256": "48749ac1626f36f46d69813c89897a3eda54e17e7d2b2940282e5352ef4b989c",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training_eval",
+          "sha256": "410150999634b1d87cce7e96397b28d54909e8b5acd7c574ac0974b3240db42a",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 51382327,
+          "file": "case-0016.pt",
+          "operands_sha256": "402b11f6cccac304a7391754c14d4ca13e2c6e624397c4895bdd78e754383698",
+          "operation": "activation.ReLU",
+          "phase": "training_eval",
+          "sha256": "1dd67ecbbf41febeee92763fec8adafbf6aeb4b375423cd6a07a3e118d12820d",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 25692279,
+          "file": "case-0017.pt",
+          "operands_sha256": "020e41a9e41580fe4eb3a3564d6aaabe58479309347ca7c487011164a1fa94ac",
+          "operation": "pooling.AdaptiveAvgPool2d",
+          "phase": "training_eval",
+          "sha256": "36982710d26149e9c4dd6fd128a95cdc473c5bed4d2a9b83fdb4533a2074aea8",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 2048, 7, 7], 'stride': [100352, 1, 14336, 2048], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 8723059,
+          "file": "case-0018.pt",
+          "operands_sha256": "77f19269b6815a8cea1fe7f28c84dcd412d6e389ceb78c97f9967d3d93ad45a3",
+          "operation": "matrix.Linear",
+          "phase": "training_eval",
+          "sha256": "c8d89e7f82d44ee1b6611a0e9c9a79d7ab60f62b6ffb04535a0c92aa4b4dfa62",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 2048], 'stride': [2048, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 258039,
+          "file": "case-0019.pt",
+          "operands_sha256": "4e7215c71fba6bc365f1af279e94a5b4034fa5b7f5504f4f1c4f3043b88e2fac",
+          "operation": "activation.softmax",
+          "phase": "training_eval",
+          "sha256": "fe41fddb3e057e572e90fb9502f0fe0ed9cb1b1b450fb12af1c17f37c6575a82",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 0
+    },
+    {
+      "direct_findings": [],
+      "direct_reference_cases": 10,
+      "direct_reference_outside_tolerance": 0,
+      "evidence_files": [
+        {
+          "bytes": 11469,
+          "path": "platform-ops-audit-01/common-captures/resnet50/inference/observation.json",
+          "sha256": "fc10185e7c839a1769962a6c393dd20ad7abcf5e4528abdc4d59f0467b7ef7c7"
+        },
+        {
+          "bytes": 38008,
+          "path": "platform-ops-audit-01/metax-replay/resnet50/inference/replay.json",
+          "sha256": "edbd2ec6d6782c2e288194e1170afade1f4d4c610dc42d80c5f49ca4cac95cb4"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "independent_inference/activation.ReLU": 12,
+        "independent_inference/activation.softmax": 1,
+        "independent_inference/convolution.Conv2d": 12,
+        "independent_inference/matrix.Linear": 1,
+        "independent_inference/normalization.BatchNorm2d": 12,
+        "independent_inference/pooling.AdaptiveAvgPool2d": 1,
+        "independent_inference/pooling.MaxPool2d": 1
+      },
+      "interfaces": [
+        "activation.ReLU",
+        "activation.softmax",
+        "convolution.Conv2d",
+        "matrix.Linear",
+        "normalization.BatchNorm2d",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.MaxPool2d"
+      ],
+      "model": "resnet50",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.matmul",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.LayerNorm",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.sigmoid",
+        "activation.tanh",
+        "activation.log_softmax",
+        "activation.softplus",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SiLU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AvgPool2d",
+        "pooling.Upsample",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 10,
+      "observation_sha256": "fc10185e7c839a1769962a6c393dd20ad7abcf5e4528abdc4d59f0467b7ef7c7",
+      "observed_call_counts": {
+        "independent_inference/activation.ReLU": 49,
+        "independent_inference/activation.softmax": 1,
+        "independent_inference/convolution.Conv2d": 53,
+        "independent_inference/matrix.Linear": 1,
+        "independent_inference/normalization.BatchNorm2d": 53,
+        "independent_inference/pooling.AdaptiveAvgPool2d": 1,
+        "independent_inference/pooling.MaxPool2d": 1
+      },
+      "observed_without_numeric_case": [],
+      "phase": "independent_inference",
+      "purpose": "inference",
+      "repeat_findings": [],
+      "repeat_nonbitwise_cases": 0,
+      "repeat_outside_tolerance_cases": 0,
+      "replay_sha256": "edbd2ec6d6782c2e288194e1170afade1f4d4c610dc42d80c5f49ca4cac95cb4",
+      "sampled_cases": [
+        {
+          "bytes": 38575477,
+          "file": "case-0000.pt",
+          "operands_sha256": "5f876aa83a03cac2cfac0b04fe3cc36e8d2cf7f75e88c9231c6be79cdca54a3c",
+          "operation": "convolution.Conv2d",
+          "phase": "independent_inference",
+          "sha256": "940d39ba92ab48f1a85b68391ff6b9f5db4bfd647c3689a8c80d1f2ffa0ee96f",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 205525805,
+          "file": "case-0001.pt",
+          "operands_sha256": "59407254101f44e61a109cab518f07502ea4abb952fb070125961e7fc470afc5",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "independent_inference",
+          "sha256": "56673cb18e0461f25e3b4162861c17687f0db2c8e519d18e24df2d3048e2b1d4",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 205522999,
+          "file": "case-0002.pt",
+          "operands_sha256": "23efce601f54f2e8d90a83fddc46409b4b7bac8f267d1173cf62977b7ed698ae",
+          "operation": "activation.ReLU",
+          "phase": "independent_inference",
+          "sha256": "ceccbb02d3bcc60c52d1f325ac0982f0b449df5f6e95dfe27643b47d49224a10",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 205523127,
+          "file": "case-0003.pt",
+          "operands_sha256": "f5075149955ca4bc9ffe8eb28ef868189db9a3f3e50ba248dac28539a1dca611",
+          "operation": "pooling.MaxPool2d",
+          "phase": "independent_inference",
+          "sha256": "143cdf76b993d5ffbff5881b2369d3652b8507f3888784a0e8cf4930cfd74a50",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 112, 112], 'stride': [802816, 1, 7168, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 51399285,
+          "file": "case-0004.pt",
+          "operands_sha256": "3446c8e678a975cd3b1bc9fe2902eee25f01f7dc561d3efaa41de54db1a6d147",
+          "operation": "convolution.Conv2d",
+          "phase": "independent_inference",
+          "sha256": "04bd95e01c58e76d92df13a73640d830865d30fd6acaaf5a41ecffa3df465fd5",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 51385133,
+          "file": "case-0005.pt",
+          "operands_sha256": "48749ac1626f36f46d69813c89897a3eda54e17e7d2b2940282e5352ef4b989c",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "independent_inference",
+          "sha256": "8ec98c594acfc8ee2a90962d772dbc1e57008cd8fdad0934c29fb655861aa923",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 51382327,
+          "file": "case-0006.pt",
+          "operands_sha256": "402b11f6cccac304a7391754c14d4ca13e2c6e624397c4895bdd78e754383698",
+          "operation": "activation.ReLU",
+          "phase": "independent_inference",
+          "sha256": "9a9accb3173f6b09a214cff4c57d89674d19b434d8c407b2eb1f9d97fc3f6a1c",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 64, 56, 56], 'stride': [200704, 1, 3584, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 25692279,
+          "file": "case-0007.pt",
+          "operands_sha256": "020e41a9e41580fe4eb3a3564d6aaabe58479309347ca7c487011164a1fa94ac",
+          "operation": "pooling.AdaptiveAvgPool2d",
+          "phase": "independent_inference",
+          "sha256": "bc6248ae81f8550873385dd37b342b97bd24f242dec99a327f86955e4b5f69bf",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 2048, 7, 7], 'stride': [100352, 1, 14336, 2048], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 8723059,
+          "file": "case-0008.pt",
+          "operands_sha256": "77f19269b6815a8cea1fe7f28c84dcd412d6e389ceb78c97f9967d3d93ad45a3",
+          "operation": "matrix.Linear",
+          "phase": "independent_inference",
+          "sha256": "0ce62ca3515f139d5509f3822dbdaa9170c624c20a154ae00d1afbc6e5cb4923",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 2048], 'stride': [2048, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 258039,
+          "file": "case-0009.pt",
+          "operands_sha256": "4e7215c71fba6bc365f1af279e94a5b4034fa5b7f5504f4f1c4f3043b88e2fac",
+          "operation": "activation.softmax",
+          "phase": "independent_inference",
+          "sha256": "194da1d2a9a9f6d29f8e539ebf4d9c2d11b15d1caea3202850b99aedcabd16c8",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 0
+    },
+    {
+      "direct_findings": [
+        {
+          "comparison": {
+            "leaves": [
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  32,
+                  32,
+                  320,
+                  320
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  32,
+                  12,
+                  320,
+                  320
+                ]
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.00012969970703125,
+                "passed": false,
+                "shape": [
+                  32,
+                  12,
+                  3,
+                  3
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  32,
+                  12,
+                  3,
+                  3
+                ]
+              },
+              {
+                "leaf": 4,
+                "passed": true
+              }
+            ],
+            "passed": false
+          },
+          "input_case": "case-0000.pt",
+          "operation": "convolution.Conv2d"
+        },
+        {
+          "comparison": {
+            "leaves": [
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  32,
+                  64,
+                  160,
+                  160
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  32,
+                  32,
+                  320,
+                  320
+                ]
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.00030517578125,
+                "passed": false,
+                "shape": [
+                  64,
+                  32,
+                  3,
+                  3
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  32,
+                  3,
+                  3
+                ]
+              },
+              {
+                "leaf": 4,
+                "passed": true
+              }
+            ],
+            "passed": false
+          },
+          "input_case": "case-0003.pt",
+          "operation": "convolution.Conv2d"
+        }
+      ],
+      "direct_reference_cases": 13,
+      "direct_reference_outside_tolerance": 2,
+      "evidence_files": [
+        {
+          "bytes": 20082,
+          "path": "platform-ops-audit-01/common-captures/yolov5s/training/observation.json",
+          "sha256": "c34c583a374753943d9a89f7b237e6f0c75806b5b26c231f24e1650dbd32b0d0"
+        },
+        {
+          "bytes": 100393,
+          "path": "platform-ops-audit-01/metax-replay/yolov5s/training/replay.json",
+          "sha256": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "training/activation.SiLU": 9,
+        "training/activation.sigmoid": 6,
+        "training/convolution.Conv2d": 13,
+        "training/loss.binary_cross_entropy_with_logits": 6,
+        "training/normalization.BatchNorm2d": 9,
+        "training/pooling.MaxPool2d": 1,
+        "training/pooling.Upsample": 2
+      },
+      "interfaces": [
+        "activation.SiLU",
+        "activation.sigmoid",
+        "convolution.Conv2d",
+        "loss.binary_cross_entropy_with_logits",
+        "normalization.BatchNorm2d",
+        "pooling.MaxPool2d",
+        "pooling.Upsample"
+      ],
+      "model": "yolov5s",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.matmul",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "matrix.Linear",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.LayerNorm",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.tanh",
+        "activation.softmax",
+        "activation.log_softmax",
+        "activation.softplus",
+        "activation.ReLU",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.AvgPool2d",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 13,
+      "observation_sha256": "c34c583a374753943d9a89f7b237e6f0c75806b5b26c231f24e1650dbd32b0d0",
+      "observed_call_counts": {
+        "training/activation.SiLU": 59,
+        "training/activation.sigmoid": 6,
+        "training/convolution.Conv2d": 76,
+        "training/loss.binary_cross_entropy_with_logits": 6,
+        "training/normalization.BatchNorm2d": 59,
+        "training/pooling.MaxPool2d": 3,
+        "training/pooling.Upsample": 2
+      },
+      "observed_without_numeric_case": [],
+      "phase": "training",
+      "purpose": "training",
+      "repeat_findings": [
+        {
+          "comparisons": [
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    32,
+                    320,
+                    320
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    12,
+                    320,
+                    320
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 0.000152587890625,
+                  "passed": false,
+                  "shape": [
+                    32,
+                    12,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    12,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            },
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    32,
+                    320,
+                    320
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    12,
+                    320,
+                    320
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 0.0001220703125,
+                  "passed": false,
+                  "shape": [
+                    32,
+                    12,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    12,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            }
+          ],
+          "input_case": "case-0000.pt",
+          "operation": "convolution.Conv2d"
+        },
+        {
+          "comparisons": [
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    64,
+                    160,
+                    160
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    32,
+                    320,
+                    320
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 0.00030517578125,
+                  "passed": false,
+                  "shape": [
+                    64,
+                    32,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    32,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            },
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    64,
+                    160,
+                    160
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    32,
+                    32,
+                    320,
+                    320
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 0.00042724609375,
+                  "passed": false,
+                  "shape": [
+                    64,
+                    32,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    32,
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "leaf": 4,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            }
+          ],
+          "input_case": "case-0003.pt",
+          "operation": "convolution.Conv2d"
+        }
+      ],
+      "repeat_nonbitwise_cases": 2,
+      "repeat_outside_tolerance_cases": 2,
+      "replay_sha256": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d",
+      "sampled_cases": [
+        {
+          "bytes": 157302837,
+          "file": "case-0000.pt",
+          "operands_sha256": "dd7e7def6ed6a33763c6e02558ac4cf9cbb08a5ddc289a62614c323067880ea0",
+          "operation": "convolution.Conv2d",
+          "phase": "training",
+          "sha256": "dfb8312da2d79bc35b934a22aeba249edc76b82ed81191880155f88dc70d30f7",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 12, 320, 320], 'stride': [1228800, 102400, 320, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419434797,
+          "file": "case-0001.pt",
+          "operands_sha256": "9db61b31aac32d6b14a3380d1c7e52a1c704b183254d927d41553e4778901cfe",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training",
+          "sha256": "a3c7440cd4c411382edb2b8d5224e7da1f517e2fd3a419f6e018febc442bb5ea",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 419432503,
+          "file": "case-0002.pt",
+          "operands_sha256": "5f1c3f7e9e5ba3a1bdf5749ad9f216b53292359c367c9b036fea816825bd5a79",
+          "operation": "activation.SiLU",
+          "phase": "training",
+          "sha256": "95fedf5ef47d47c02fe4c70e9d7ef31a2376ccf064b439cd86c39d3499908c44",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 419506741,
+          "file": "case-0003.pt",
+          "operands_sha256": "8ea800c6f2a8830854e58d241de2322e4a42ddf24c383efe93a69e6aef048f09",
+          "operation": "convolution.Conv2d",
+          "phase": "training",
+          "sha256": "aefa0f08bb8e1fb697f2996a308744e048889bbf932f47bb8d82141ce5b8cb49",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 209720045,
+          "file": "case-0004.pt",
+          "operands_sha256": "d685695abb765d09fb8c0654213df671ad6f77b16d20d2b648b8b47a2c1cab80",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training",
+          "sha256": "8895d72b135443da2851aa6798e9ac3fbea5746ae776af7c5bd73fe860ead4e5",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 209717303,
+          "file": "case-0005.pt",
+          "operands_sha256": "145f1ac26cac70c422fcfac867902809499a21730f08a47ed52adc0ae8307137",
+          "operation": "activation.SiLU",
+          "phase": "training",
+          "sha256": "56168516120c6fdfd964afb53824d34405790ec5e3636ad13ccf147a6df770f4",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 13109431,
+          "file": "case-0006.pt",
+          "operands_sha256": "93a18ace1d7f8cedc80794001573a6a716b9d447629c8f7368aa3ed304646bb9",
+          "operation": "pooling.MaxPool2d",
+          "phase": "training",
+          "sha256": "92f446f31f1459b6fe2f8a693536d15e2018c5570f941c7d2eee4b8001ca4cec",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 256, 20, 20], 'stride': [102400, 1, 5120, 256], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 13109431,
+          "file": "case-0007.pt",
+          "operands_sha256": "84a5af437ccd3d3b09078288b7dd81b135473affeeee370fdfb38bb990007394",
+          "operation": "pooling.Upsample",
+          "phase": "training",
+          "sha256": "5256824173cca7b14561d8750402947ef8dd5aff191c3fe81a79cb9b4d8ece0d",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 256, 20, 20], 'stride': [102400, 1, 5120, 256], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 26216631,
+          "file": "case-0008.pt",
+          "operands_sha256": "dc16369a5e852e606cac8f2931b917e1563048008fcf423ea2ea3ddfa141096d",
+          "operation": "pooling.Upsample",
+          "phase": "training",
+          "sha256": "fab3ce7d297846c8756dc207e0d90ab047d92c5929e82807f998f3aff093fd99",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 128, 40, 40], 'stride': [204800, 1, 5120, 128], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 4917239,
+          "file": "case-0009.pt",
+          "operands_sha256": "9e282beb18baa8431314bdee24cb0c67902b4eba1760d389ed11dbed88dca2ad",
+          "operation": "activation.sigmoid",
+          "phase": "training",
+          "sha256": "a99329187c7f11135135be7dc04ed9e99badff98373569fcb6f046f403abd325",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 3, 80, 80, 2], 'stride': [76800, 25600, 320, 4, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 4917239,
+          "file": "case-0010.pt",
+          "operands_sha256": "ab8a12fbfb4dfff1b213d9108d42eefe1cf6c5579661166debe70ae4a2a85b8d",
+          "operation": "activation.sigmoid",
+          "phase": "training",
+          "sha256": "2603acc8b37be081059cdad49c054baab01ff62aef0e655f1e8d49ea985faac4",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 3, 80, 80, 2], 'stride': [76800, 25600, 320, 4, 1], 'storage_offset': 2, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 4917557,
+          "file": "case-0011.pt",
+          "operands_sha256": "48e976052f87843e9a800096e4aeb6339a4ab6033dde7ad138a4e70afa8ea5c1",
+          "operation": "loss.binary_cross_entropy_with_logits",
+          "phase": "training",
+          "sha256": "b2777d24874e791b1a8db47713621faa2c2f9641d57b1daca0ab38ddcc6b6250",
+          "stochastic": false,
+          "variant": "[{'shape': [614400], 'stride': [1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [614400], 'stride': [1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 393218357,
+          "file": "case-0012.pt",
+          "operands_sha256": "fb8ddac41a85fb3b66982de490f5b78e807633662c5564d8703d1fc0a74da2a3",
+          "operation": "loss.binary_cross_entropy_with_logits",
+          "phase": "training",
+          "sha256": "edc89b41557c0755c606c9cdb6b5900b5f063b62b4bb5e827cf0b05054167628",
+          "stochastic": false,
+          "variant": "[{'shape': [49152000], 'stride': [1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [49152000], 'stride': [1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 0
+    },
+    {
+      "direct_findings": [],
+      "direct_reference_cases": 11,
+      "direct_reference_outside_tolerance": 0,
+      "evidence_files": [
+        {
+          "bytes": 20082,
+          "path": "platform-ops-audit-01/common-captures/yolov5s/training/observation.json",
+          "sha256": "c34c583a374753943d9a89f7b237e6f0c75806b5b26c231f24e1650dbd32b0d0"
+        },
+        {
+          "bytes": 100393,
+          "path": "platform-ops-audit-01/metax-replay/yolov5s/training/replay.json",
+          "sha256": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "training_eval/activation.SiLU": 9,
+        "training_eval/activation.sigmoid": 9,
+        "training_eval/convolution.Conv2d": 13,
+        "training_eval/normalization.BatchNorm2d": 9,
+        "training_eval/pooling.MaxPool2d": 1,
+        "training_eval/pooling.Upsample": 2
+      },
+      "interfaces": [
+        "activation.SiLU",
+        "activation.sigmoid",
+        "convolution.Conv2d",
+        "normalization.BatchNorm2d",
+        "pooling.MaxPool2d",
+        "pooling.Upsample"
+      ],
+      "model": "yolov5s",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.matmul",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "matrix.Linear",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.LayerNorm",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.tanh",
+        "activation.softmax",
+        "activation.log_softmax",
+        "activation.softplus",
+        "activation.ReLU",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.AvgPool2d",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 11,
+      "observation_sha256": "c34c583a374753943d9a89f7b237e6f0c75806b5b26c231f24e1650dbd32b0d0",
+      "observed_call_counts": {
+        "training_eval/activation.SiLU": 59,
+        "training_eval/activation.sigmoid": 9,
+        "training_eval/convolution.Conv2d": 76,
+        "training_eval/normalization.BatchNorm2d": 59,
+        "training_eval/pooling.MaxPool2d": 3,
+        "training_eval/pooling.Upsample": 2
+      },
+      "observed_without_numeric_case": [],
+      "phase": "training_eval",
+      "purpose": "training",
+      "repeat_findings": [],
+      "repeat_nonbitwise_cases": 0,
+      "repeat_outside_tolerance_cases": 0,
+      "replay_sha256": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d",
+      "sampled_cases": [
+        {
+          "bytes": 157302901,
+          "file": "case-0013.pt",
+          "operands_sha256": "0adb8071e61ecb4d6a56fab0ba4f9c52e95bf72caf09caed2e66aa60b97e0185",
+          "operation": "convolution.Conv2d",
+          "phase": "training_eval",
+          "sha256": "9783441192151ebf113557911925334b8e6dea54388f583c0b9bf6d553fa519a",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 12, 320, 320], 'stride': [1228800, 102400, 320, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419434797,
+          "file": "case-0014.pt",
+          "operands_sha256": "2ec200698e93fdc1e8bc5d465cf85cd92c5c1206881b65315739206476f40609",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training_eval",
+          "sha256": "4f8722d54031bc98864c8fc9ef3a2ad8d3ac5c9fda6d37116bdebcf0c0a38c91",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419432503,
+          "file": "case-0015.pt",
+          "operands_sha256": "e0716d03305b0680dd0dc0fb8911feab88022589bbf5ce95cc2b204df33c14af",
+          "operation": "activation.SiLU",
+          "phase": "training_eval",
+          "sha256": "97ef6468564e529737cb3d9124570446ae4f6403269a6314ef4381a7b7be6781",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419506805,
+          "file": "case-0016.pt",
+          "operands_sha256": "0de1b5631731c73f25c2d36ff921ca6599700ca02d70c4d7894b923e4e416b7d",
+          "operation": "convolution.Conv2d",
+          "phase": "training_eval",
+          "sha256": "a315b4d2f13645ebc3644006b373cb6f1c3fe148d95bb6c42b642b1da034807f",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 209720109,
+          "file": "case-0017.pt",
+          "operands_sha256": "d9f8a4b67bc2166b8f72c60a56deb341534ed3bb5cacf6d152ccbd8d9ad43d6c",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "training_eval",
+          "sha256": "cc6889b40c2399311d7867e59580a5e7e106c16d78733973dcc65225957bbb70",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 209717303,
+          "file": "case-0018.pt",
+          "operands_sha256": "cb8ce14f76466eb0d7ee31292ed196f7bbd6b080bc139800ba6f2a5bcccd08df",
+          "operation": "activation.SiLU",
+          "phase": "training_eval",
+          "sha256": "bacad9b380e539b1c55261eeb33a2b926b1d6705546d67f180c0785df35c4e72",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 13109431,
+          "file": "case-0019.pt",
+          "operands_sha256": "441543096e9a262efd0c18cb0189e128a049d5bf089070ee43d09b6f7478f0ca",
+          "operation": "pooling.MaxPool2d",
+          "phase": "training_eval",
+          "sha256": "8f2649684a011d62578bf9be5f8f4b92ecc3af700a1d5156ee1c1ce660702a27",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 256, 20, 20], 'stride': [102400, 1, 5120, 256], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 13109431,
+          "file": "case-0020.pt",
+          "operands_sha256": "1034a3a986ad0dca8629af1a8d37a52daf5a60e7848a09b0b4caf9c31e73e9f2",
+          "operation": "pooling.Upsample",
+          "phase": "training_eval",
+          "sha256": "5b90415e9ee8106c9638caa92a8ed18c1200e4a56092dcbfb3067ee9c82319be",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 256, 20, 20], 'stride': [102400, 1, 5120, 256], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 26216631,
+          "file": "case-0021.pt",
+          "operands_sha256": "49fe0de1bd0e19b2651068493cf88a22a8e9879deb033b4a83d23d918a122b32",
+          "operation": "pooling.Upsample",
+          "phase": "training_eval",
+          "sha256": "e5311ad5a62806a262d44c84fb187b3fe972529239f49604e512ee39e1da42e6",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 128, 40, 40], 'stride': [204800, 1, 5120, 128], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 9832439,
+          "file": "case-0022.pt",
+          "operands_sha256": "c18055eef35902faf2b5cff8fa436ba07267d295fca1e30ee049abbbb4127fc8",
+          "operation": "activation.sigmoid",
+          "phase": "training_eval",
+          "sha256": "e2002a63151457be7d1e99ccccf5eec693f574917f72cacdaf119fcca01a6786",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 3, 80, 80, 4], 'stride': [76800, 25600, 320, 4, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 196610039,
+          "file": "case-0023.pt",
+          "operands_sha256": "0eb84582a523e010633f436028fd1e0901f79fdebbe3072cca9dca19289ebee4",
+          "operation": "activation.sigmoid",
+          "phase": "training_eval",
+          "sha256": "eacb5aef386e5f6ef1a1e4f38da520d7c9ceeb0e33564538587a8794771c5537",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 3, 80, 80, 80], 'stride': [1536000, 512000, 6400, 80, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 0
+    },
+    {
+      "direct_findings": [],
+      "direct_reference_cases": 11,
+      "direct_reference_outside_tolerance": 0,
+      "evidence_files": [
+        {
+          "bytes": 12005,
+          "path": "platform-ops-audit-01/common-captures/yolov5s/inference/observation.json",
+          "sha256": "09c5fd37dab6a83b40de9b77ba0804b746432e34ac591899e69d173e0bc08d9a"
+        },
+        {
+          "bytes": 39022,
+          "path": "platform-ops-audit-01/metax-replay/yolov5s/inference/replay.json",
+          "sha256": "990cd1620f63a0c9cb7fe5b0a413bd0ad0bbee5e096c888bc3a109764752214f"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "independent_inference/activation.SiLU": 9,
+        "independent_inference/activation.sigmoid": 9,
+        "independent_inference/convolution.Conv2d": 13,
+        "independent_inference/normalization.BatchNorm2d": 9,
+        "independent_inference/pooling.MaxPool2d": 1,
+        "independent_inference/pooling.Upsample": 2
+      },
+      "interfaces": [
+        "activation.SiLU",
+        "activation.sigmoid",
+        "convolution.Conv2d",
+        "normalization.BatchNorm2d",
+        "pooling.MaxPool2d",
+        "pooling.Upsample"
+      ],
+      "model": "yolov5s",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.matmul",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "matrix.Linear",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.LayerNorm",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.tanh",
+        "activation.softmax",
+        "activation.log_softmax",
+        "activation.softplus",
+        "activation.ReLU",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.AvgPool2d",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 11,
+      "observation_sha256": "09c5fd37dab6a83b40de9b77ba0804b746432e34ac591899e69d173e0bc08d9a",
+      "observed_call_counts": {
+        "independent_inference/activation.SiLU": 59,
+        "independent_inference/activation.sigmoid": 9,
+        "independent_inference/convolution.Conv2d": 76,
+        "independent_inference/normalization.BatchNorm2d": 59,
+        "independent_inference/pooling.MaxPool2d": 3,
+        "independent_inference/pooling.Upsample": 2
+      },
+      "observed_without_numeric_case": [],
+      "phase": "independent_inference",
+      "purpose": "inference",
+      "repeat_findings": [],
+      "repeat_nonbitwise_cases": 0,
+      "repeat_outside_tolerance_cases": 0,
+      "replay_sha256": "990cd1620f63a0c9cb7fe5b0a413bd0ad0bbee5e096c888bc3a109764752214f",
+      "sampled_cases": [
+        {
+          "bytes": 157302901,
+          "file": "case-0000.pt",
+          "operands_sha256": "0adb8071e61ecb4d6a56fab0ba4f9c52e95bf72caf09caed2e66aa60b97e0185",
+          "operation": "convolution.Conv2d",
+          "phase": "independent_inference",
+          "sha256": "d43d7ab32f10ed473a48ae4bf1e98136d71fdf2449209e2a01f6746fa96d07f2",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 12, 320, 320], 'stride': [1228800, 102400, 320, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419434797,
+          "file": "case-0001.pt",
+          "operands_sha256": "2ec200698e93fdc1e8bc5d465cf85cd92c5c1206881b65315739206476f40609",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "independent_inference",
+          "sha256": "7c1809abfafaf2e81fee92afbe5e860ef136632575d307abedfee0f48c7a729f",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419432567,
+          "file": "case-0002.pt",
+          "operands_sha256": "e0716d03305b0680dd0dc0fb8911feab88022589bbf5ce95cc2b204df33c14af",
+          "operation": "activation.SiLU",
+          "phase": "independent_inference",
+          "sha256": "d87614b23c835f22b49e9b2b8f47bf44208788bd5a5512344859146f1ea5d3aa",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 419506805,
+          "file": "case-0003.pt",
+          "operands_sha256": "0de1b5631731c73f25c2d36ff921ca6599700ca02d70c4d7894b923e4e416b7d",
+          "operation": "convolution.Conv2d",
+          "phase": "independent_inference",
+          "sha256": "854a6a9116b10f6110a46992b2f47226f5e251672b731cb674f99f6f39672dc0",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 32, 320, 320], 'stride': [3276800, 1, 10240, 32], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 209720109,
+          "file": "case-0004.pt",
+          "operands_sha256": "d9f8a4b67bc2166b8f72c60a56deb341534ed3bb5cacf6d152ccbd8d9ad43d6c",
+          "operation": "normalization.BatchNorm2d",
+          "phase": "independent_inference",
+          "sha256": "47dfbd9598f9d8492d7ac53f02eab43ab506336a68a96753bf744c7a55b65600",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 209717303,
+          "file": "case-0005.pt",
+          "operands_sha256": "cb8ce14f76466eb0d7ee31292ed196f7bbd6b080bc139800ba6f2a5bcccd08df",
+          "operation": "activation.SiLU",
+          "phase": "independent_inference",
+          "sha256": "243ba166abc637370ddfa006ae83a38e72c8bf8f97e4af17fb7a0d8d10f0c660",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 64, 160, 160], 'stride': [1638400, 1, 10240, 64], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 13109431,
+          "file": "case-0006.pt",
+          "operands_sha256": "441543096e9a262efd0c18cb0189e128a049d5bf089070ee43d09b6f7478f0ca",
+          "operation": "pooling.MaxPool2d",
+          "phase": "independent_inference",
+          "sha256": "236b33fc71f806dcad92c72e348322859322bad9e2c3feda1040b11e295add0b",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 256, 20, 20], 'stride': [102400, 1, 5120, 256], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 13109431,
+          "file": "case-0007.pt",
+          "operands_sha256": "1034a3a986ad0dca8629af1a8d37a52daf5a60e7848a09b0b4caf9c31e73e9f2",
+          "operation": "pooling.Upsample",
+          "phase": "independent_inference",
+          "sha256": "63023a709793437f44a2b7d1d2370d20c8e44bc421b7715dba1133329b0c7418",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 256, 20, 20], 'stride': [102400, 1, 5120, 256], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 26216631,
+          "file": "case-0008.pt",
+          "operands_sha256": "49fe0de1bd0e19b2651068493cf88a22a8e9879deb033b4a83d23d918a122b32",
+          "operation": "pooling.Upsample",
+          "phase": "independent_inference",
+          "sha256": "fbef58f6ddc2156340a2ec7a4dc68dd5ce4cef443724dea1dd2825d69f147979",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 128, 40, 40], 'stride': [204800, 1, 5120, 128], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 9832439,
+          "file": "case-0009.pt",
+          "operands_sha256": "c18055eef35902faf2b5cff8fa436ba07267d295fca1e30ee049abbbb4127fc8",
+          "operation": "activation.sigmoid",
+          "phase": "independent_inference",
+          "sha256": "0b9ce4bae40fb5d374ad08f99e52c11586a883a26f3db82871932177b7b23faa",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 3, 80, 80, 4], 'stride': [76800, 25600, 320, 4, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 196610039,
+          "file": "case-0010.pt",
+          "operands_sha256": "0eb84582a523e010633f436028fd1e0901f79fdebbe3072cca9dca19289ebee4",
+          "operation": "activation.sigmoid",
+          "phase": "independent_inference",
+          "sha256": "d4aacd48d0af05ea2102aa74e4f85c822a8ba08e97732cfb3bb652da0873d02e",
+          "stochastic": false,
+          "variant": "[{'shape': [32, 3, 80, 80, 80], 'stride': [1536000, 512000, 6400, 80, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 0
+    },
+    {
+      "direct_findings": [
+        {
+          "comparison": {
+            "leaves": [
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float16",
+                "finite": true,
+                "leaf": 0,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  768,
+                  14,
+                  14
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 1,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  64,
+                  3,
+                  224,
+                  224
+                ]
+              },
+              {
+                "bitwise_equal": false,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 2,
+                "max_abs": 0.0625,
+                "passed": false,
+                "shape": [
+                  768,
+                  3,
+                  16,
+                  16
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 3,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  768
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 4,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  768,
+                  3,
+                  16,
+                  16
+                ]
+              },
+              {
+                "bitwise_equal": true,
+                "dtype": "torch.float32",
+                "finite": true,
+                "leaf": 5,
+                "max_abs": 0.0,
+                "passed": true,
+                "shape": [
+                  768
+                ]
+              },
+              {
+                "leaf": 6,
+                "passed": true
+              }
+            ],
+            "passed": false
+          },
+          "input_case": "case-0000.pt",
+          "operation": "convolution.Conv2d"
+        }
+      ],
+      "direct_reference_cases": 11,
+      "direct_reference_outside_tolerance": 1,
+      "evidence_files": [
+        {
+          "bytes": 19118,
+          "path": "platform-ops-audit-01/common-captures/vit_b16/training/observation.json",
+          "sha256": "eca83fdf678253d284dfe3561380e78dd0df432dfb2c30a31f31e6072479858f"
+        },
+        {
+          "bytes": 86789,
+          "path": "platform-ops-audit-01/metax-replay/vit_b16/training/replay.json",
+          "sha256": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "training/activation.Dropout": 4,
+        "training/activation.log_softmax": 1,
+        "training/activation.softmax": 1,
+        "training/activation.tanh": 1,
+        "training/convolution.Conv2d": 1,
+        "training/matrix.Linear": 4,
+        "training/matrix.matmul": 2,
+        "training/normalization.LayerNorm": 1
+      },
+      "interfaces": [
+        "activation.Dropout",
+        "activation.log_softmax",
+        "activation.softmax",
+        "activation.tanh",
+        "convolution.Conv2d",
+        "matrix.Linear",
+        "matrix.matmul",
+        "normalization.LayerNorm"
+      ],
+      "model": "vit_b16",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.BatchNorm2d",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.sigmoid",
+        "activation.softplus",
+        "activation.ReLU",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SiLU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.AvgPool2d",
+        "pooling.MaxPool2d",
+        "pooling.Upsample",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 11,
+      "observation_sha256": "eca83fdf678253d284dfe3561380e78dd0df432dfb2c30a31f31e6072479858f",
+      "observed_call_counts": {
+        "training/activation.Dropout": 49,
+        "training/activation.log_softmax": 1,
+        "training/activation.softmax": 12,
+        "training/activation.tanh": 12,
+        "training/convolution.Conv2d": 1,
+        "training/matrix.Linear": 49,
+        "training/matrix.matmul": 24,
+        "training/normalization.LayerNorm": 25
+      },
+      "observed_without_numeric_case": [],
+      "phase": "training",
+      "purpose": "training",
+      "repeat_findings": [
+        {
+          "comparisons": [
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    768,
+                    14,
+                    14
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    3,
+                    224,
+                    224
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 0.0625,
+                  "passed": false,
+                  "shape": [
+                    768,
+                    3,
+                    16,
+                    16
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    768
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 4,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    768,
+                    3,
+                    16,
+                    16
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 5,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    768
+                  ]
+                },
+                {
+                  "leaf": 6,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            },
+            {
+              "leaves": [
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float16",
+                  "finite": true,
+                  "leaf": 0,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    768,
+                    14,
+                    14
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 1,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    64,
+                    3,
+                    224,
+                    224
+                  ]
+                },
+                {
+                  "bitwise_equal": false,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 2,
+                  "max_abs": 0.0625,
+                  "passed": false,
+                  "shape": [
+                    768,
+                    3,
+                    16,
+                    16
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 3,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    768
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 4,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    768,
+                    3,
+                    16,
+                    16
+                  ]
+                },
+                {
+                  "bitwise_equal": true,
+                  "dtype": "torch.float32",
+                  "finite": true,
+                  "leaf": 5,
+                  "max_abs": 0.0,
+                  "passed": true,
+                  "shape": [
+                    768
+                  ]
+                },
+                {
+                  "leaf": 6,
+                  "passed": true
+                }
+              ],
+              "passed": false
+            }
+          ],
+          "input_case": "case-0000.pt",
+          "operation": "convolution.Conv2d"
+        }
+      ],
+      "repeat_nonbitwise_cases": 1,
+      "repeat_outside_tolerance_cases": 1,
+      "replay_sha256": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4",
+      "sampled_cases": [
+        {
+          "bytes": 40900467,
+          "file": "case-0000.pt",
+          "operands_sha256": "653c1fa23bfe270362bd7f669f924113cac543aaa60f3bd5c0a760d315527b52",
+          "operation": "convolution.Conv2d",
+          "phase": "training",
+          "sha256": "0dace3264744d5a1079fb55295a76aeef6d40151ab7b20082c4779580599f1d4",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 38733879,
+          "file": "case-0001.pt",
+          "operands_sha256": "137b22f04e76b5488e9d80b2560f5516ab93b3fc4e2e0c6349f89cd102afea96",
+          "operation": "activation.Dropout",
+          "phase": "training",
+          "sha256": "1b409f52be12084471773fbc2db1fc726f953f6ffc8bb9214070fbfdcd6f98ee",
+          "stochastic": true,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 38740787,
+          "file": "case-0002.pt",
+          "operands_sha256": "904073c9f8766aeb8d33ce550d3468f36ad2372ef2835d7cbfc8db15eebe788c",
+          "operation": "normalization.LayerNorm",
+          "phase": "training",
+          "sha256": "5222a9516e7654b03d21cc24bcb1a23c73eed640e0fe2a14bc3eb146f359393f",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 45821683,
+          "file": "case-0003.pt",
+          "operands_sha256": "63182a0e0b0cdfc16f1cf2571475e2890488ca84ca1e44547da2014ab2150ff9",
+          "operation": "matrix.Linear",
+          "phase": "training",
+          "sha256": "fa828c4dbc03302dd57c254c84f3b0bc6aa13ca4fc03cd7661811850839d767b",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 38734133,
+          "file": "case-0004.pt",
+          "operands_sha256": "1da5741cd93a07d821815ce255e9751fee45ae6afe9e3692c0dfb13b76729e89",
+          "operation": "matrix.matmul",
+          "phase": "training",
+          "sha256": "1aab61765407fbae935dec679507ec8805a57cf1b980c3db41a9172061f3f9a5",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [64, 12, 64, 197], 'stride': [453888, 64, 1, 2304], 'storage_offset': 768, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 59612663,
+          "file": "case-0005.pt",
+          "operands_sha256": "3cfecfb788c58bbe9db64c2e48647aff1fcaa4dc10e8d9da581a2be9e46617fd",
+          "operation": "activation.softmax",
+          "phase": "training",
+          "sha256": "12d3bf47d49787a06b48535a193ac216651ca8eadea67a80914b8e25b117bc57",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 119223351,
+          "file": "case-0006.pt",
+          "operands_sha256": "730fbdab455079f744f81832fb1ebd6654fd2ebe1a566c79613c3d003570ea93",
+          "operation": "activation.Dropout",
+          "phase": "training",
+          "sha256": "cf60bbac29d22f3a6739a4c2de37ad834f253472e26c7a7d13504a7ef393d6fc",
+          "stochastic": true,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 138589557,
+          "file": "case-0007.pt",
+          "operands_sha256": "37ab5819660f78d898f61122afc102bdd9a6c466158b0caa36eb0f156feb453f",
+          "operation": "matrix.matmul",
+          "phase": "training",
+          "sha256": "6c8015322582ce9e5895c846aabb4917162b11d413bd4be73f9f5fd958b2db70",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}, {'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 1536, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 21731059,
+          "file": "case-0008.pt",
+          "operands_sha256": "d6d2457de981e40f3e0db1b08c11f2c490f2a881b965e5b486331c87e350b78e",
+          "operation": "matrix.Linear",
+          "phase": "training",
+          "sha256": "d1fdb01243ab4e1b2dc7e136f5ca75beced6118a3281e515fcb10519a553819c",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 154929143,
+          "file": "case-0009.pt",
+          "operands_sha256": "a130f13fb9cd2c3a6401b63d138c80633668eccd8aa74344e4d3eb0540282944",
+          "operation": "activation.tanh",
+          "phase": "training",
+          "sha256": "22a85f764270994ea0b7c14b6fe635706fb80b3caf1384b6ad5666ce097828bf",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 3072], 'stride': [605184, 3072, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': True}]"
+        },
+        {
+          "bytes": 130039,
+          "file": "case-0010.pt",
+          "operands_sha256": "c0dde6f7b0128c133fa831389050903fad2e6edef81f6adaf11c4049e1a20eed",
+          "operation": "activation.log_softmax",
+          "phase": "training",
+          "sha256": "7c0aadd732440f17f1999a62755dfe43d23cee34dc33fca68c496a4472b08d52",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float16', 'device_type': 'cuda', 'requires_grad': True}]"
+        }
+      ],
+      "stochastic_cases": 2
+    },
+    {
+      "direct_findings": [],
+      "direct_reference_cases": 11,
+      "direct_reference_outside_tolerance": 0,
+      "evidence_files": [
+        {
+          "bytes": 19118,
+          "path": "platform-ops-audit-01/common-captures/vit_b16/training/observation.json",
+          "sha256": "eca83fdf678253d284dfe3561380e78dd0df432dfb2c30a31f31e6072479858f"
+        },
+        {
+          "bytes": 86789,
+          "path": "platform-ops-audit-01/metax-replay/vit_b16/training/replay.json",
+          "sha256": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "training_eval/activation.Dropout": 3,
+        "training_eval/activation.softmax": 2,
+        "training_eval/activation.tanh": 1,
+        "training_eval/convolution.Conv2d": 1,
+        "training_eval/matrix.Linear": 3,
+        "training_eval/matrix.matmul": 2,
+        "training_eval/normalization.LayerNorm": 1
+      },
+      "interfaces": [
+        "activation.Dropout",
+        "activation.softmax",
+        "activation.tanh",
+        "convolution.Conv2d",
+        "matrix.Linear",
+        "matrix.matmul",
+        "normalization.LayerNorm"
+      ],
+      "model": "vit_b16",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.BatchNorm2d",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.sigmoid",
+        "activation.softplus",
+        "activation.ReLU",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SiLU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.AvgPool2d",
+        "pooling.MaxPool2d",
+        "pooling.Upsample",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 11,
+      "observation_sha256": "eca83fdf678253d284dfe3561380e78dd0df432dfb2c30a31f31e6072479858f",
+      "observed_call_counts": {
+        "training_eval/activation.Dropout": 49,
+        "training_eval/activation.softmax": 13,
+        "training_eval/activation.tanh": 12,
+        "training_eval/convolution.Conv2d": 1,
+        "training_eval/matrix.Linear": 49,
+        "training_eval/matrix.matmul": 24,
+        "training_eval/normalization.LayerNorm": 25
+      },
+      "observed_without_numeric_case": [],
+      "phase": "training_eval",
+      "purpose": "training",
+      "repeat_findings": [],
+      "repeat_nonbitwise_cases": 0,
+      "repeat_outside_tolerance_cases": 0,
+      "replay_sha256": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4",
+      "sampled_cases": [
+        {
+          "bytes": 40900531,
+          "file": "case-0011.pt",
+          "operands_sha256": "ca6f963cc6c8c7e47218860761b7855d3bc87d2b726d53963a3648e89ee9a6b6",
+          "operation": "convolution.Conv2d",
+          "phase": "training_eval",
+          "sha256": "db8c9541fd42a360236d91362c8ef3949048141e81293f2800e236f0f14a92b6",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 38733943,
+          "file": "case-0012.pt",
+          "operands_sha256": "82de52a17e5d64731eb9a11995d246ee24d46f7c680a9a991df3cc5505fbab5c",
+          "operation": "activation.Dropout",
+          "phase": "training_eval",
+          "sha256": "1eadc29788c4184c4397746915e5126c7fce97b64c9d54999fa6bfa1dafa5bab",
+          "stochastic": true,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 38740787,
+          "file": "case-0013.pt",
+          "operands_sha256": "82de52a17e5d64731eb9a11995d246ee24d46f7c680a9a991df3cc5505fbab5c",
+          "operation": "normalization.LayerNorm",
+          "phase": "training_eval",
+          "sha256": "2e33263c2f0ff7f15249934d9eaafb3dfc61abc22a4a3a754ce9addaf7ab71d2",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 45821683,
+          "file": "case-0014.pt",
+          "operands_sha256": "083783e689b4a9f1a35c2ecaea13d620f5dd24face444397e499d0b7c6372d04",
+          "operation": "matrix.Linear",
+          "phase": "training_eval",
+          "sha256": "03b08ee1606ff265e9983f85e71049d87f0d67a5f9395f8a9f90ce7b648da48f",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 77465909,
+          "file": "case-0015.pt",
+          "operands_sha256": "616a71a80bc0fcbc5152dbc10d8db2f9bbb78158b7eda5cf23b6d33b7bc57518",
+          "operation": "matrix.matmul",
+          "phase": "training_eval",
+          "sha256": "b931c464cb3f797a612f2f72643464d33aadb850672f991ea44d88d4d3586971",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}, {'shape': [64, 12, 64, 197], 'stride': [453888, 64, 1, 2304], 'storage_offset': 768, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 119223287,
+          "file": "case-0016.pt",
+          "operands_sha256": "758f3e1c83d3ade5ba2ba967311101e58ce6b12413b37a2940bd0e9561735574",
+          "operation": "activation.softmax",
+          "phase": "training_eval",
+          "sha256": "0da2145690d1e9467bc735b8d6e367bb530fbc23a9c4cc04ed9431eed0abe84c",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 119223415,
+          "file": "case-0017.pt",
+          "operands_sha256": "59677773dee87c96185d496af61cd1bc13e208df798a59e9e3d8bb5182bf2304",
+          "operation": "activation.Dropout",
+          "phase": "training_eval",
+          "sha256": "ccbc5792aa64275495cce8b2d4749c7e20b2d3425672a42de04167132f6bceb5",
+          "stochastic": true,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 157955381,
+          "file": "case-0018.pt",
+          "operands_sha256": "23b2d1e498d5ef71e5a1653a4878469f6cec7078c9ac190a5347b0f1e5c12e99",
+          "operation": "matrix.matmul",
+          "phase": "training_eval",
+          "sha256": "bbcc1339882ebd79edf9514339f9b021b53bdf44806af183428265c76c088a7d",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}, {'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 1536, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 154929143,
+          "file": "case-0019.pt",
+          "operands_sha256": "b3653318568142453db7eb0ec912497f313a7eccfcee77ab7e7cafe2819d68e8",
+          "operation": "activation.tanh",
+          "phase": "training_eval",
+          "sha256": "ad67846793c1db8dc8debd7b986bf511f94766ad888e7cb8330a729ea7c1d676",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 3072], 'stride': [605184, 3072, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 164370163,
+          "file": "case-0020.pt",
+          "operands_sha256": "d7efce95573e2e23195bdada1ddcb0020363ecb11611de5ede0f75252f172967",
+          "operation": "matrix.Linear",
+          "phase": "training_eval",
+          "sha256": "2f1fb9b24e25722d4211c810d3f41aed830bda407fca4492e89e1296704b1814",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 3072], 'stride': [605184, 3072, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 258039,
+          "file": "case-0021.pt",
+          "operands_sha256": "3a9234b9a33ddefe3d8bc3f36fdedb32660975c70a44c609f8287106a0fe2879",
+          "operation": "activation.softmax",
+          "phase": "training_eval",
+          "sha256": "78954ad488d818901710b1194b1f296591e53c0e378d08c9103efc650fe17372",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 2
+    },
+    {
+      "direct_findings": [],
+      "direct_reference_cases": 11,
+      "direct_reference_outside_tolerance": 0,
+      "evidence_files": [
+        {
+          "bytes": 12223,
+          "path": "platform-ops-audit-01/common-captures/vit_b16/inference/observation.json",
+          "sha256": "23598a7197f30aaff2071dea7bf9a2085f4ef3c8509b8ebfecf1cf0267b11434"
+        },
+        {
+          "bytes": 33761,
+          "path": "platform-ops-audit-01/metax-replay/vit_b16/inference/replay.json",
+          "sha256": "59a6320d6d3440a86028c16a737511f563a0645d1e85321c452ab7af73dfa039"
+        }
+      ],
+      "full_observed_variant_counts": {
+        "independent_inference/activation.Dropout": 3,
+        "independent_inference/activation.softmax": 2,
+        "independent_inference/activation.tanh": 1,
+        "independent_inference/convolution.Conv2d": 1,
+        "independent_inference/matrix.Linear": 3,
+        "independent_inference/matrix.matmul": 2,
+        "independent_inference/normalization.LayerNorm": 1
+      },
+      "interfaces": [
+        "activation.Dropout",
+        "activation.softmax",
+        "activation.tanh",
+        "convolution.Conv2d",
+        "matrix.Linear",
+        "matrix.matmul",
+        "normalization.LayerNorm"
+      ],
+      "model": "vit_b16",
+      "no_direct_reference": [],
+      "nonportable_calls": [],
+      "not_observed_interfaces": [
+        "communication.is_available",
+        "communication.is_initialized",
+        "communication.get_rank",
+        "communication.get_world_size",
+        "communication.get_backend",
+        "communication.world_group",
+        "communication.sum_op",
+        "communication.init_process_group",
+        "communication.destroy_process_group",
+        "communication.new_group",
+        "communication.barrier",
+        "communication.all_reduce",
+        "communication.broadcast",
+        "communication.all_gather",
+        "communication.gather",
+        "communication.all_gather_object",
+        "communication.broadcast_object_list",
+        "sparse.voxelize_cpu",
+        "sparse.SubMConv3d",
+        "sparse.SparseConv3d",
+        "sparse.SparseInverseConv3d",
+        "sparse.SparseSequential",
+        "sparse.SparseConvTensor",
+        "sparse.replace_feature",
+        "sparse.features",
+        "sparse.dense",
+        "sparse.is_sparse_convolution",
+        "sparse.module_instance",
+        "quantization.backend_types",
+        "quantization.module_type",
+        "quantization.prepare",
+        "quantization.enable_calibration",
+        "quantization.enable_quantization",
+        "quantization.reconstruct",
+        "quantization.convert_deploy",
+        "pruning.set_iteration",
+        "pruning.last_prune_step",
+        "pruning.module_type",
+        "pruning.build_scheduler",
+        "pruning.prepare",
+        "pruning.prune",
+        "pruning.export",
+        "pruning.sparse_rate",
+        "pruning.set_lr_scheduler",
+        "pruning.init_optimizer",
+        "detection.roi_align",
+        "detection.psroi_align",
+        "detection.psroi_pool",
+        "detection.naive_nms",
+        "detection.softer_nms",
+        "detection.iou_overlap",
+        "deformable.deform_conv",
+        "focal.sigmoid_focal_loss",
+        "focal.softmax_focal_loss",
+        "focal.cross_sigmoid_focal_loss",
+        "pointcloud.rotate_iou_eval",
+        "pointcloud.points_in_boxes_cpu",
+        "pointcloud.points_in_boxes_gpu",
+        "pointcloud.roiaware_pool3d",
+        "pointcloud.roipoint_pool3d",
+        "pointcloud.boxes_bev_iou_cpu",
+        "pointcloud.boxes_iou_bev",
+        "pointcloud.boxes_iou3d",
+        "pointcloud.nms3d",
+        "pointcloud.nms3d_normal",
+        "matrix.linear",
+        "matrix.mm",
+        "matrix.bmm",
+        "matrix.addmm",
+        "matrix.einsum",
+        "convolution.conv2d",
+        "convolution.conv_transpose2d",
+        "convolution.ConvTranspose2d",
+        "normalization.batch_norm_module_forward",
+        "normalization.sync_batch_norm_forward",
+        "normalization.sync_batch_norm",
+        "normalization.batch_norm",
+        "normalization.layer_norm",
+        "normalization.group_norm",
+        "normalization.normalize",
+        "normalization.BatchNorm1d",
+        "normalization.BatchNorm2d",
+        "activation.Hardswish",
+        "activation.relu",
+        "activation.relu6",
+        "activation.hardtanh",
+        "activation.gelu",
+        "activation.silu",
+        "activation.sigmoid",
+        "activation.log_softmax",
+        "activation.softplus",
+        "activation.ReLU",
+        "activation.ReLU6",
+        "activation.GELU",
+        "activation.SiLU",
+        "activation.SELU",
+        "activation.LeakyReLU",
+        "activation.Sigmoid",
+        "activation.Tanh",
+        "activation.Softmax",
+        "activation.Dropout2d",
+        "pooling.adaptive_avg_pool2d",
+        "pooling.max_pool2d",
+        "pooling.interpolate",
+        "pooling.pad",
+        "pooling.AdaptiveAvgPool2d",
+        "pooling.AvgPool2d",
+        "pooling.MaxPool2d",
+        "pooling.Upsample",
+        "pooling.UpsamplingBilinear2d",
+        "pooling.ZeroPad2d",
+        "loss.binary_cross_entropy",
+        "loss.binary_cross_entropy_with_logits",
+        "loss.cross_entropy",
+        "loss.kl_div",
+        "loss.l1_loss",
+        "loss.CrossEntropyLoss",
+        "loss.BCEWithLogitsLoss",
+        "loss.KLDivLoss",
+        "loss.L1Loss",
+        "loss.CosineSimilarity",
+        "attention.MultiheadAttention"
+      ],
+      "numeric_cases": 11,
+      "observation_sha256": "23598a7197f30aaff2071dea7bf9a2085f4ef3c8509b8ebfecf1cf0267b11434",
+      "observed_call_counts": {
+        "independent_inference/activation.Dropout": 49,
+        "independent_inference/activation.softmax": 13,
+        "independent_inference/activation.tanh": 12,
+        "independent_inference/convolution.Conv2d": 1,
+        "independent_inference/matrix.Linear": 49,
+        "independent_inference/matrix.matmul": 24,
+        "independent_inference/normalization.LayerNorm": 25
+      },
+      "observed_without_numeric_case": [],
+      "phase": "independent_inference",
+      "purpose": "inference",
+      "repeat_findings": [],
+      "repeat_nonbitwise_cases": 0,
+      "repeat_outside_tolerance_cases": 0,
+      "replay_sha256": "59a6320d6d3440a86028c16a737511f563a0645d1e85321c452ab7af73dfa039",
+      "sampled_cases": [
+        {
+          "bytes": 40900531,
+          "file": "case-0000.pt",
+          "operands_sha256": "ca6f963cc6c8c7e47218860761b7855d3bc87d2b726d53963a3648e89ee9a6b6",
+          "operation": "convolution.Conv2d",
+          "phase": "independent_inference",
+          "sha256": "232bea0ed2d9c88e217da40febd5b3e761238f0a8d0b153ee494056d8676ceee",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 3, 224, 224], 'stride': [150528, 1, 672, 3], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 38733943,
+          "file": "case-0001.pt",
+          "operands_sha256": "82de52a17e5d64731eb9a11995d246ee24d46f7c680a9a991df3cc5505fbab5c",
+          "operation": "activation.Dropout",
+          "phase": "independent_inference",
+          "sha256": "9b2e70ef42c71d833938a158585f41c247566ab535f84fc12f668afbef0a0702",
+          "stochastic": true,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 38740787,
+          "file": "case-0002.pt",
+          "operands_sha256": "82de52a17e5d64731eb9a11995d246ee24d46f7c680a9a991df3cc5505fbab5c",
+          "operation": "normalization.LayerNorm",
+          "phase": "independent_inference",
+          "sha256": "4c028b5509596dade13d3273f8c2e69ccbfc112cc9b3c3613aa6b463c3129302",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 45821747,
+          "file": "case-0003.pt",
+          "operands_sha256": "083783e689b4a9f1a35c2ecaea13d620f5dd24face444397e499d0b7c6372d04",
+          "operation": "matrix.Linear",
+          "phase": "independent_inference",
+          "sha256": "4b8d70038b06557118aca2950e5c4650ff7b6c31ec3df3401e584ad5d7594d16",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 768], 'stride': [151296, 768, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 77465973,
+          "file": "case-0004.pt",
+          "operands_sha256": "616a71a80bc0fcbc5152dbc10d8db2f9bbb78158b7eda5cf23b6d33b7bc57518",
+          "operation": "matrix.matmul",
+          "phase": "independent_inference",
+          "sha256": "7cd246994028e49ec8d9016a4e95c1851fa60303a6321802d4fa26275d84784a",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}, {'shape': [64, 12, 64, 197], 'stride': [453888, 64, 1, 2304], 'storage_offset': 768, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 119223351,
+          "file": "case-0005.pt",
+          "operands_sha256": "758f3e1c83d3ade5ba2ba967311101e58ce6b12413b37a2940bd0e9561735574",
+          "operation": "activation.softmax",
+          "phase": "independent_inference",
+          "sha256": "2077a80cf4b660dce781fcb21d8177f80e61faa207787508bfee59b1da64b1c3",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 119223415,
+          "file": "case-0006.pt",
+          "operands_sha256": "59677773dee87c96185d496af61cd1bc13e208df798a59e9e3d8bb5182bf2304",
+          "operation": "activation.Dropout",
+          "phase": "independent_inference",
+          "sha256": "cd682a1b2d32ad60335959c35d8e0b2e983b4e90a1152169ab3c356b5138b918",
+          "stochastic": true,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 157955445,
+          "file": "case-0007.pt",
+          "operands_sha256": "23b2d1e498d5ef71e5a1653a4878469f6cec7078c9ac190a5347b0f1e5c12e99",
+          "operation": "matrix.matmul",
+          "phase": "independent_inference",
+          "sha256": "dfff733311dcb01b8c39a079055a34526b48dbe895c0e43e9ac1aeeddf589606",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 12, 197, 197], 'stride': [465708, 38809, 197, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}, {'shape': [64, 12, 197, 64], 'stride': [453888, 64, 2304, 1], 'storage_offset': 1536, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 154929143,
+          "file": "case-0008.pt",
+          "operands_sha256": "b3653318568142453db7eb0ec912497f313a7eccfcee77ab7e7cafe2819d68e8",
+          "operation": "activation.tanh",
+          "phase": "independent_inference",
+          "sha256": "7a1a3fef6c1aa065362a351913f4d3e512d1f764a2cb6d4c612ed3043e125b89",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 3072], 'stride': [605184, 3072, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 164370227,
+          "file": "case-0009.pt",
+          "operands_sha256": "d7efce95573e2e23195bdada1ddcb0020363ecb11611de5ede0f75252f172967",
+          "operation": "matrix.Linear",
+          "phase": "independent_inference",
+          "sha256": "349d32c60506b4b625ff29a1d31a288d48d47d418cb37aff446fbaebae59d34f",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 197, 3072], 'stride': [605184, 3072, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        },
+        {
+          "bytes": 258039,
+          "file": "case-0010.pt",
+          "operands_sha256": "3a9234b9a33ddefe3d8bc3f36fdedb32660975c70a44c609f8287106a0fe2879",
+          "operation": "activation.softmax",
+          "phase": "independent_inference",
+          "sha256": "6f547dac945a789e3c3878ecb2c3aa7bedc809d215f5a7a97971961881cb1af5",
+          "stochastic": false,
+          "variant": "[{'shape': [64, 1000], 'stride': [1000, 1], 'storage_offset': 0, 'dtype': 'torch.float32', 'device_type': 'cuda', 'requires_grad': False}]"
+        }
+      ],
+      "stochastic_cases": 2
+    }
+  ],
+  "rtol": 0.0001,
+  "scope": "sampled C500 platform-vs-direct-Torch and native repeats; NVIDIA and cross-vendor pending",
+  "source_provenance": "../one-epoch/sources.json",
+  "stage": "platform-ops-audit-01",
+  "status": "common_archive_ready",
+  "torch": "2.10.0+metax3.8.1.0",
+  "vendor": "metax"
+}
