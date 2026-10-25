@@ -1,0 +1,57 @@
+{
+  "checkpoint_files": {
+    "checkpoint-1.pt": "9761fcdbb99cbde01b97e41a2dcf070ac5c3a28581e53ab6fcc55141b38b8eba",
+    "checkpoint-1.rank0.pt": "fc814b11bbf49e623bc979b16c81c8ae5b3b3fd19a8ce181084b5ab39e69621b",
+    "checkpoint-1.rank1.pt": "68283f218739a095066d70f42081a1ac6c896619b754d70ee5806ed5ba905563"
+  },
+  "convergence_claim": false,
+  "full_epoch_completed": false,
+  "inference_metrics": {
+    "bbox.AP": 6.344897623579566e-05,
+    "bbox.AP.5": 0.00023102624208628405,
+    "bbox.AP.75": 9.882223878861679e-06,
+    "bbox.AP_L": 0.000124394732428064,
+    "bbox.AP_M": 0.0003129926896785542,
+    "bbox.AP_S": 0.00012324145178773118,
+    "bbox.AR": 0.0016266782095519865,
+    "bbox.AR_1": 0.0003926437535233595,
+    "bbox.AR_10": 0.0008095418136669676,
+    "bbox.AR_L": 0.003393567418810659,
+    "bbox.AR_M": 0.002254149497279578,
+    "bbox.AR_S": 0.00019887335257142476
+  },
+  "inference_sha256": "15ca322058dd84472b1f35d6f363ec70f16d2db1f3d3481d2c95a83d6480562b",
+  "lane": "original_nvidia",
+  "metrics_recompute_exact": true,
+  "model": "yolov5s",
+  "model_computation": false,
+  "optimizer_updates": 500,
+  "prediction_sha256": {
+    "inference": "d6fc8818ea1c407019d5f4d4f353f42dd01b4ba9e68bf7e932160247ed5fe9d6",
+    "train": "d6fc8818ea1c407019d5f4d4f353f42dd01b4ba9e68bf7e932160247ed5fe9d6"
+  },
+  "predictions_identical": true,
+  "recomputed_metrics": {
+    "bbox.AP": 6.344897623579566e-05,
+    "bbox.AP.5": 0.00023102624208628405,
+    "bbox.AP.75": 9.882223878861679e-06,
+    "bbox.AP_L": 0.000124394732428064,
+    "bbox.AP_M": 0.0003129926896785542,
+    "bbox.AP_S": 0.00012324145178773118,
+    "bbox.AR": 0.0016266782095519865,
+    "bbox.AR_1": 0.0003926437535233595,
+    "bbox.AR_10": 0.0008095418136669676,
+    "bbox.AR_L": 0.003393567418810659,
+    "bbox.AR_M": 0.002254149497279578,
+    "bbox.AR_S": 0.00019887335257142476
+  },
+  "recorded_utc": "2026-10-25T09:26:56.424572+00:00",
+  "report_sha256": "cefc5783f6c87394344404c4a40d037c7e123a3746dd4b0b1f7aac402f14e2e9",
+  "scheduled_steps": 500,
+  "status": "audited_500_steps",
+  "training_trace_sha256": {
+    "0": "3e622e263ba2af88305bdb2d1dd1504b3574c17c05a81e1aa5f3ea1ea521d215",
+    "1": "03139eabe5ba9f37cfcd147c7b13a95699ad5369613af68e1b7d859f1a1175e9"
+  },
+  "validation_images": 5000
+}

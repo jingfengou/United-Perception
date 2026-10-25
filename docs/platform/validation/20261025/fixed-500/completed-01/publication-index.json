@@ -1,0 +1,248 @@
+{
+  "files": {
+    "additional-checks.json": {
+      "bytes": 295,
+      "sha256": "8ae33b877e64c5fc99b86172082083d39feb539d6bbe8bc88e0959da83092f4b"
+    },
+    "metax/analysis-tests.xml": {
+      "bytes": 1557,
+      "sha256": "424eb29badd59e6dc67432f097d7fac7a503b9f5aa1ba032256e2f28a0cf6e47"
+    },
+    "metax/cpu-audits/new_metax-resnet50.json": {
+      "bytes": 1442,
+      "sha256": "64e2e0682ef4b0923fe26889f6dd36acf45f3657f775a49029650eb6e27c3854"
+    },
+    "metax/cpu-audits/new_metax-vit_b16.json": {
+      "bytes": 1441,
+      "sha256": "be3130af53e2244ba8fa363eac5c5f90f63678e76d9a917f59699c0c8c611f4b"
+    },
+    "metax/cpu-audits/new_metax-yolov5s.json": {
+      "bytes": 2268,
+      "sha256": "9bc5a5d639a6c88d56f13ceec86c8836a639e2cda81058f5bc9551aeaa12db45"
+    },
+    "metax/evidence-index-01.json": {
+      "bytes": 4153,
+      "sha256": "dc49715b0cbf35dd3cea1f1c53534896304301f4a656ecd442381eda770393f9"
+    },
+    "metax/job.json": {
+      "bytes": 13749,
+      "sha256": "8f7f08655098475af448ffe1efa88b30c1e98a2800c46a42373859bce0ad9ab9"
+    },
+    "metax/launch.json": {
+      "bytes": 327,
+      "sha256": "e21306cf6e032c858818d351953866a1a4913aa0189f8a53b75ac6feba1a3ff7"
+    },
+    "metax/results/new_metax/resnet50/inference/inference.json": {
+      "bytes": 2702,
+      "sha256": "7b05d12d60bed6a199e6163855e904aacb56a9ef5b04082792cdd503a35439af"
+    },
+    "metax/results/new_metax/resnet50/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "03a096c5ec3993c911fe8407dc3a14909a9582a8b88286b903c41145a078fc75"
+    },
+    "metax/results/new_metax/resnet50/train/effective-config.json": {
+      "bytes": 6924,
+      "sha256": "be52df435fe2fd4111e550d2bfbc5a5682e60c50f33d1a6efb59958de4144033"
+    },
+    "metax/results/new_metax/resnet50/train/report.json": {
+      "bytes": 3587,
+      "sha256": "c0e1113fc9e2ec2f3149788285d97d8c32ab225d4b1dfe7de0e3a160d312b7b6"
+    },
+    "metax/results/new_metax/vit_b16/inference/inference.json": {
+      "bytes": 2702,
+      "sha256": "0d62d2cb197ba401226bd73997f80b9aa0a99a9cccc47d51bfd18581b087492b"
+    },
+    "metax/results/new_metax/vit_b16/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "e66c0dfa7bb8f64f09c7412859aa733b6aa7a52c419069814bb99bc2c63d5c40"
+    },
+    "metax/results/new_metax/vit_b16/train/effective-config.json": {
+      "bytes": 6537,
+      "sha256": "866494098176bd87260b9ff4fa499b2611b97a9f1db4b67591dd531a5e21a9de"
+    },
+    "metax/results/new_metax/vit_b16/train/report.json": {
+      "bytes": 3589,
+      "sha256": "b0a4b2aa41eb942e38b1ed654000b7e6a45de0cd5036bcc05eff26fb7ffda542"
+    },
+    "metax/results/new_metax/yolov5s/inference/inference.json": {
+      "bytes": 3115,
+      "sha256": "4bbbfb9fc8dd22bc30e30f86ab578d13f2e193177d02933b470152c56f9a35f7"
+    },
+    "metax/results/new_metax/yolov5s/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "6abaf708346f2da5cc9880a025d2b8fc8d1ab25b8efb2bd8c824134ab9796088"
+    },
+    "metax/results/new_metax/yolov5s/train/effective-config.json": {
+      "bytes": 8804,
+      "sha256": "531c1f4b07f5b1861c1b6a09287e469e4d61cf3cdf59d0c2924cc99278cdc132"
+    },
+    "metax/results/new_metax/yolov5s/train/report.json": {
+      "bytes": 3996,
+      "sha256": "c1a2075d95471e6d9d7e0e10191a3312043c83a2d104d57c5aab5158f69b3be3"
+    },
+    "nvidia/analysis-tests.xml": {
+      "bytes": 1546,
+      "sha256": "f3d34fd3de9fdfdf890f3b0e0b07a839bf86c96ee6896122fb453bcdc5f528f9"
+    },
+    "nvidia/cpu-audits/new_nvidia-resnet50.json": {
+      "bytes": 1445,
+      "sha256": "189ae3fb257c7139e02a3154295406b18b16353588cf70d4cc257254c1413b3a"
+    },
+    "nvidia/cpu-audits/new_nvidia-vit_b16.json": {
+      "bytes": 1442,
+      "sha256": "48921e034ee9324fa594535f4b4cb5a64ed508ec95c165dea5eced005eda6172"
+    },
+    "nvidia/cpu-audits/new_nvidia-yolov5s.json": {
+      "bytes": 2271,
+      "sha256": "7318742123fd75175ea7ab2d55045088cc3150a85c30ce38365b6b6e3a59726e"
+    },
+    "nvidia/cpu-audits/original_nvidia-resnet50.json": {
+      "bytes": 1448,
+      "sha256": "106f7995a12b25d96f24ce81fda1d911d8fead29e60e24902c3e1ce6fba15b45"
+    },
+    "nvidia/cpu-audits/original_nvidia-vit_b16.json": {
+      "bytes": 1447,
+      "sha256": "5adb6fd1121dc3bb59fae1e34024c853bd443bfa090fe13a932649d9093d67be"
+    },
+    "nvidia/cpu-audits/original_nvidia-yolov5s.json": {
+      "bytes": 2272,
+      "sha256": "da18aa11f9fb3798f86571ce10217920b1f6fe01b13a88e04fe66b102a1bcfcc"
+    },
+    "nvidia/evidence-index-01.json": {
+      "bytes": 7833,
+      "sha256": "c442d8f6c4668365fe037773356cf54c9138f086d253ad683f53a191094385e1"
+    },
+    "nvidia/job.json": {
+      "bytes": 19623,
+      "sha256": "fb33a3a24e5ce6ba96f9d3819e35ba9deedeac29991e6e644827d4edb5fc5bea"
+    },
+    "nvidia/launch.json": {
+      "bytes": 361,
+      "sha256": "505a0df9bbf30d91eba0bc5c968535c2c0f8faecaabc75b05979229e970ae643"
+    },
+    "nvidia/results/new_nvidia/resnet50/inference/inference.json": {
+      "bytes": 2704,
+      "sha256": "110b0d39d7886573eacd7a3e46e114b17c5c63619d747eb33157a9f534b931d3"
+    },
+    "nvidia/results/new_nvidia/resnet50/train/checkpoint.json": {
+      "bytes": 2914,
+      "sha256": "018c85c6e8406765e3d26a110ff685d19d16369b983060956c2b211f7e1af9e0"
+    },
+    "nvidia/results/new_nvidia/resnet50/train/effective-config.json": {
+      "bytes": 6927,
+      "sha256": "c53adcbf3cde01c1873df76de28e48e5c0e71231630f23a47d98b8ad85fe8b14"
+    },
+    "nvidia/results/new_nvidia/resnet50/train/report.json": {
+      "bytes": 3560,
+      "sha256": "42e8b6b8e06b0f2f2938ad7f9b92fc7e8f0f74e52c687a20643ab7cd7c0876eb"
+    },
+    "nvidia/results/new_nvidia/vit_b16/inference/inference.json": {
+      "bytes": 2703,
+      "sha256": "a8f0854e82b11b861680b92def8b2d2a1da83c3d4b5a659221349e2572663183"
+    },
+    "nvidia/results/new_nvidia/vit_b16/train/checkpoint.json": {
+      "bytes": 2913,
+      "sha256": "c595248360c5db36d5a0c3a17ac02a57e24840f4bc0d32bb1b976a8cd7bcb30a"
+    },
+    "nvidia/results/new_nvidia/vit_b16/train/effective-config.json": {
+      "bytes": 6540,
+      "sha256": "6636eaafd43ca1dbe0fcfd126b238ed4ea7e9587e252ceaa722fcd08c3ee366a"
+    },
+    "nvidia/results/new_nvidia/vit_b16/train/report.json": {
+      "bytes": 3560,
+      "sha256": "000f29f8e08c3be53d2df13f00c8655e3823f8740e7b2741ee7b5dabc86a574b"
+    },
+    "nvidia/results/new_nvidia/yolov5s/inference/inference.json": {
+      "bytes": 3117,
+      "sha256": "14a07c9cb6118dca7fbedcd81cfc0711d6b04f707d5023e7ddf81a21d166ee65"
+    },
+    "nvidia/results/new_nvidia/yolov5s/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "9807b032e1a9ed05ae588c2f1edab5b30af423911d9dd1323f106861e0fc2516"
+    },
+    "nvidia/results/new_nvidia/yolov5s/train/effective-config.json": {
+      "bytes": 8807,
+      "sha256": "8f150ea0bef86fc007e3bb29adec36b0ddf471380bc5c0ac2f0abc2bca091769"
+    },
+    "nvidia/results/new_nvidia/yolov5s/train/report.json": {
+      "bytes": 3967,
+      "sha256": "bd96a0379201a747f38bc2bf4c0c8424214b429d2679346c03423ca38686feea"
+    },
+    "nvidia/results/original_nvidia/resnet50/inference/inference.json": {
+      "bytes": 2708,
+      "sha256": "0b97fa7f2d95bbb3f58cf1006c983db7751edf32c5a6d0b6e894ddd551a095b9"
+    },
+    "nvidia/results/original_nvidia/resnet50/train/checkpoint.json": {
+      "bytes": 2917,
+      "sha256": "ac7f428015d3d96442aaf2b951e0a6535eb3caa71be0f41e0864646263f93ea7"
+    },
+    "nvidia/results/original_nvidia/resnet50/train/effective-config.json": {
+      "bytes": 6858,
+      "sha256": "2577339143cc1737114812edf44184b36e67ec3ff8aaad08391852887609eeb7"
+    },
+    "nvidia/results/original_nvidia/resnet50/train/report.json": {
+      "bytes": 3562,
+      "sha256": "a3cec3a3052238af7e4dfc82dd9ff367f7f0cf26da9cb6c973636c5006d1d37b"
+    },
+    "nvidia/results/original_nvidia/vit_b16/inference/inference.json": {
+      "bytes": 2708,
+      "sha256": "752430c872d3e58cab6dcbe0d323853b40465b31412a75d9c61d7a21def54ade"
+    },
+    "nvidia/results/original_nvidia/vit_b16/train/checkpoint.json": {
+      "bytes": 2918,
+      "sha256": "8216b39f6e44c5e415e2427ee2075e720ef5329341068c1f90fd1033baa6744e"
+    },
+    "nvidia/results/original_nvidia/vit_b16/train/effective-config.json": {
+      "bytes": 6471,
+      "sha256": "4efc8dea7c87f5bc5800848b749324abc4bf3a5b32d95b69573a395f4dd8f19d"
+    },
+    "nvidia/results/original_nvidia/vit_b16/train/report.json": {
+      "bytes": 3565,
+      "sha256": "fd6e6588ccb86ce59ce2f5c49a2fd03ebd5ac71771928d4af8b57d58313d0f3f"
+    },
+    "nvidia/results/original_nvidia/yolov5s/inference/inference.json": {
+      "bytes": 3120,
+      "sha256": "15ca322058dd84472b1f35d6f363ec70f16d2db1f3d3481d2c95a83d6480562b"
+    },
+    "nvidia/results/original_nvidia/yolov5s/train/checkpoint.json": {
+      "bytes": 2918,
+      "sha256": "ede0be654d5bd11760d0a675f920b5e829aadd3794a923dd7a5beb78f5e59297"
+    },
+    "nvidia/results/original_nvidia/yolov5s/train/effective-config.json": {
+      "bytes": 8738,
+      "sha256": "5869213db6d772194f7d748b92fc614025b6eb863283200ece1c8e798faaa032"
+    },
+    "nvidia/results/original_nvidia/yolov5s/train/report.json": {
+      "bytes": 3971,
+      "sha256": "cefc5783f6c87394344404c4a40d037c7e123a3746dd4b0b1f7aac402f14e2e9"
+    },
+    "summary.json": {
+      "bytes": 18668,
+      "sha256": "a0ec608c1ac9b42c8e22c1e364f46ca1e84b8d3a69c26777463e541da429c562"
+    }
+  },
+  "publication_bytes": "UTF-8 LF; raw archive indexes retain original execution-byte hashes",
+  "raw_bundles": {
+    "metax": {
+      "archive": "short500-metax-evidence-01.tar.gz",
+      "bytes": 385071,
+      "includes_model_weights_or_data": false,
+      "runs": 3,
+      "sha256": "3abbba8862268f92c4a6ee23fdb6fd5630d2a8b6119cf3e428c2878e2ca8a2b9",
+      "vendor": "metax"
+    },
+    "nvidia": {
+      "archive": "short500-nvidia-evidence-01.tar.gz",
+      "bytes": 767938,
+      "includes_model_weights_or_data": false,
+      "runs": 6,
+      "sha256": "5f2110eab72b332170a23231406260283bb8450e0d39591b66e611807897e3a1",
+      "vendor": "nvidia"
+    }
+  },
+  "raw_traces": "Kept in indexed evidence bundles and remote task storage; not duplicated in Git",
+  "runs": 9,
+  "runtime_changed": false,
+  "scheduled_steps": 4500,
+  "stage": "short-500-01"
+}

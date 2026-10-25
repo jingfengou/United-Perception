@@ -1,0 +1,37 @@
+{
+  "checkpoint_files": {
+    "checkpoint-1.pt": "3e4f3186c3fc9ae1032e8f3e1604712c6e6b72a850e9a5c131be51c5f853b775",
+    "checkpoint-1.rank0.pt": "6f14db1deeccfbe4e921604e073e7bb5f40a86c14221aaddde8e82b6c869a281",
+    "checkpoint-1.rank1.pt": "55dd08563947dbb5c201d2de1f02410c464ec7cce8214178f1025c5df234ebda"
+  },
+  "convergence_claim": false,
+  "full_epoch_completed": false,
+  "inference_metrics": {
+    "top1": 0.10600000619888306,
+    "top5": 0.5980000495910645
+  },
+  "inference_sha256": "0d62d2cb197ba401226bd73997f80b9aa0a99a9cccc47d51bfd18581b087492b",
+  "lane": "new_metax",
+  "metrics_recompute_exact": true,
+  "model": "vit_b16",
+  "model_computation": false,
+  "optimizer_updates": 500,
+  "prediction_sha256": {
+    "inference": "fc3441faef3f031cadd3069b2bb6f523f0e3cc99f1ecad570a3ee5875785ca82",
+    "train": "fc3441faef3f031cadd3069b2bb6f523f0e3cc99f1ecad570a3ee5875785ca82"
+  },
+  "predictions_identical": true,
+  "recomputed_metrics": {
+    "top1": 0.10600000619888306,
+    "top5": 0.5980000495910645
+  },
+  "recorded_utc": "2026-10-25T09:20:57.078448+00:00",
+  "report_sha256": "b0a4b2aa41eb942e38b1ed654000b7e6a45de0cd5036bcc05eff26fb7ffda542",
+  "scheduled_steps": 500,
+  "status": "audited_500_steps",
+  "training_trace_sha256": {
+    "0": "cc0ee65360c7f4b47975fbf45d687551c9c732dbdc1cde94aace3c6234436475",
+    "1": "ffc86c8e4230ab1f477a49e8a00c34cbbe8a688e62c040dee5e9290ef32ae78e"
+  },
+  "validation_images": 50000
+}

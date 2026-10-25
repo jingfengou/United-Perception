@@ -1,0 +1,293 @@
+{
+  "args": {
+    "backend": "dist",
+    "display": 100,
+    "no_running_config": true
+  },
+  "auto_augment": {
+    "kwargs": {
+      "scale": [
+        0.08,
+        1
+      ],
+      "size": 224
+    },
+    "type": "torch_auto_augmentation"
+  },
+  "center_crop": {
+    "kwargs": {
+      "size": 224
+    },
+    "type": "torch_center_crop"
+  },
+  "dataset": {
+    "test": {
+      "batch_sampler": {
+        "kwargs": {
+          "batch_size": 64,
+          "sampler": {
+            "kwargs": {},
+            "type": "dist"
+          }
+        },
+        "type": "base"
+      },
+      "dataloader": {
+        "kwargs": {
+          "num_workers": 4,
+          "pin_memory": true
+        },
+        "type": "cls_base"
+      },
+      "dataset": {
+        "kwargs": {
+          "evaluator": {
+            "kwargs": {
+              "topk": [
+                1,
+                5
+              ]
+            },
+            "type": "imagenet"
+          },
+          "image_reader": {
+            "kwargs": {
+              "color_mode": "RGB",
+              "image_dir": "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/images",
+              "memcached": false
+            },
+            "type": "fs_pillow"
+          },
+          "meta_file": "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/val.txt",
+          "transformer": [
+            {
+              "kwargs": {
+                "size": 256
+              },
+              "type": "torch_resize"
+            },
+            {
+              "kwargs": {
+                "size": 224
+              },
+              "type": "torch_center_crop"
+            },
+            {
+              "type": "to_tensor"
+            },
+            {
+              "kwargs": {
+                "mean": [
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                "std": [
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "type": "normalize"
+            }
+          ]
+        },
+        "type": "cls"
+      }
+    },
+    "train": {
+      "batch_sampler": {
+        "kwargs": {
+          "batch_size": 64,
+          "sampler": {
+            "kwargs": {},
+            "type": "dist"
+          }
+        },
+        "type": "base"
+      },
+      "dataloader": {
+        "kwargs": {
+          "batch_fn": {
+            "kwargs": {
+              "cutmix_alpha": 1.0,
+              "mixup_alpha": 0.8,
+              "num_classes": 1000,
+              "switch_prob": 0.5
+            },
+            "type": "batch_cutmixup"
+          },
+          "num_workers": 4,
+          "pin_memory": true
+        },
+        "type": "cls_base"
+      },
+      "dataset": {
+        "kwargs": {
+          "image_reader": {
+            "kwargs": {
+              "color_mode": "RGB",
+              "image_dir": "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/images",
+              "memcached": false
+            },
+            "type": "fs_pillow"
+          },
+          "meta_file": "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/train.txt",
+          "transformer": [
+            {
+              "kwargs": {
+                "scale": [
+                  0.08,
+                  1
+                ],
+                "size": 224
+              },
+              "type": "torch_random_resized_crop"
+            },
+            {
+              "kwargs": {
+                "scale": [
+                  0.08,
+                  1
+                ],
+                "size": 224
+              },
+              "type": "torch_auto_augmentation"
+            },
+            {
+              "type": "to_tensor"
+            },
+            {
+              "kwargs": {
+                "mean": [
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                "std": [
+                  0.5,
+                  0.5,
+                  0.5
+                ]
+              },
+              "type": "normalize"
+            }
+          ]
+        },
+        "type": "cls"
+      }
+    }
+  },
+  "hooks": [],
+  "net": [
+    {
+      "kwargs": {
+        "attention_dropout": 0.1,
+        "drop_path": 0.1,
+        "dropout": 0.1,
+        "qkv_bias": true
+      },
+      "name": "backbone",
+      "type": "vit_base_patch16_224"
+    },
+    {
+      "kwargs": {
+        "in_plane": 768,
+        "input_feature_idx": -1,
+        "num_classes": 1000
+      },
+      "name": "head",
+      "type": "vit_head"
+    },
+    {
+      "kwargs": {
+        "cls_loss": {
+          "kwargs": {
+            "num_classes": 1000,
+            "smooth_ratio": 0.1
+          },
+          "type": "label_smooth_ce"
+        }
+      },
+      "name": "post_process",
+      "type": "base_cls_postprocess"
+    }
+  ],
+  "normalize": {
+    "kwargs": {
+      "mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "std": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "type": "normalize"
+  },
+  "num_classes": 1000,
+  "random_resized_crop": {
+    "kwargs": {
+      "scale": [
+        0.08,
+        1
+      ],
+      "size": 224
+    },
+    "type": "torch_random_resized_crop"
+  },
+  "runtime": {
+    "device": "cuda:0",
+    "fp16": true,
+    "platform": {
+      "backend": "metax",
+      "device": "cuda:0"
+    },
+    "random_seed": 131,
+    "task_names": "cls"
+  },
+  "saver": {
+    "auto_resume": false,
+    "memory_friendly": true,
+    "results_dir": "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/short-500-01/results/new_metax/vit_b16/train/predictions",
+    "save_dir": "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/short-500-01/results/new_metax/vit_b16/train/native-checkpoints",
+    "save_result": true
+  },
+  "to_tensor": {
+    "type": "to_tensor"
+  },
+  "torch_size": {
+    "kwargs": {
+      "size": 256
+    },
+    "type": "torch_resize"
+  },
+  "trainer": {
+    "lr_scheduler": {
+      "kwargs": {
+        "T_max": 300,
+        "eta_min": 1e-06,
+        "warm_epoch": 3
+      },
+      "type": "CosineLREpochScheduler",
+      "warmup_iter": 15040,
+      "warmup_ratio": 0.0013333333333333333,
+      "warmup_register_type": "no_scale_lr",
+      "warmup_type": "linear"
+    },
+    "max_epoch": 300,
+    "only_save_latest": true,
+    "optimizer": {
+      "kwargs": {
+        "lr": 0.0001875,
+        "weight_decay": 0.05
+      },
+      "type": "AdamW"
+    },
+    "save_freq": 5,
+    "test_freq": 5
+  }
+}

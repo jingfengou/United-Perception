@@ -1,0 +1,10 @@
+{
+  "pid": 2746789,
+  "command": [
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+    "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/run_short500_01.py",
+    "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025",
+    "nvidia"
+  ],
+  "started_utc": "2026-10-25T08:53:35.664017+00:00"
+}

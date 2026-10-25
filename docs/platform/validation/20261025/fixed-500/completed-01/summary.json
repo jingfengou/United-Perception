@@ -1,0 +1,515 @@
+{
+  "accuracy_pass_threshold": null,
+  "audited_training_runs": 9,
+  "cases": {
+    "new_metax/resnet50": {
+      "amp_skipped_steps": 4,
+      "environment": {
+        "device": "MetaX C500",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+metax3.8.1.0",
+          "torchvision": "0.25.0+metax3.8.1.0"
+        },
+        "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 47.29905963130295,
+      "metrics": {
+        "top1": 0.11600000411272049,
+        "top5": 0.5020000338554382
+      },
+      "optimizer_updates": 496,
+      "rank0_peak_allocated_bytes": 3746323968,
+      "report_sha256": "c0e1113fc9e2ec2f3149788285d97d8c32ab225d4b1dfe7de0e3a160d312b7b6",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 92.30156571418047
+    },
+    "new_metax/vit_b16": {
+      "amp_skipped_steps": 0,
+      "environment": {
+        "device": "MetaX C500",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+metax3.8.1.0",
+          "torchvision": "0.25.0+metax3.8.1.0"
+        },
+        "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 66.71603026427329,
+      "metrics": {
+        "top1": 0.10600000619888306,
+        "top5": 0.5980000495910645
+      },
+      "optimizer_updates": 500,
+      "rank0_peak_allocated_bytes": 15509660160,
+      "report_sha256": "b0a4b2aa41eb942e38b1ed654000b7e6a45de0cd5036bcc05eff26fb7ffda542",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 154.57735529262573
+    },
+    "new_metax/yolov5s": {
+      "amp_skipped_steps": 0,
+      "environment": {
+        "device": "MetaX C500",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+metax3.8.1.0",
+          "torchvision": "0.25.0+metax3.8.1.0"
+        },
+        "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 71.37619119603187,
+      "metrics": {
+        "bbox.AP": 7.04460444155005e-05,
+        "bbox.AP.5": 0.0003252857631892946,
+        "bbox.AP.75": 1.3834016514582543e-05,
+        "bbox.AP_L": 8.343643690115887e-05,
+        "bbox.AP_M": 0.00032536916609637764,
+        "bbox.AP_S": 5.724652744668632e-05,
+        "bbox.AR": 0.001353608166342596,
+        "bbox.AR_1": 0.00014746157269542411,
+        "bbox.AR_10": 0.0004918092818474302,
+        "bbox.AR_L": 0.0020996894924724986,
+        "bbox.AR_M": 0.002250491704798604,
+        "bbox.AR_S": 0.00018105849582172702
+      },
+      "optimizer_updates": 500,
+      "rank0_peak_allocated_bytes": 13818983936,
+      "report_sha256": "c1a2075d95471e6d9d7e0e10191a3312043c83a2d104d57c5aab5158f69b3be3",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 309.17662532348186
+    },
+    "new_nvidia/resnet50": {
+      "amp_skipped_steps": 1,
+      "environment": {
+        "device": "NVIDIA GeForce RTX 4090",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+cu126",
+          "torchvision": "0.25.0+cu126"
+        },
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 42.96032761596143,
+      "metrics": {
+        "top1": 0.10200000554323196,
+        "top5": 0.46000000834465027
+      },
+      "optimizer_updates": 499,
+      "rank0_peak_allocated_bytes": 3795679232,
+      "report_sha256": "42e8b6b8e06b0f2f2938ad7f9b92fc7e8f0f74e52c687a20643ab7cd7c0876eb",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 149.59680517809466
+    },
+    "new_nvidia/vit_b16": {
+      "amp_skipped_steps": 0,
+      "environment": {
+        "device": "NVIDIA GeForce RTX 4090",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+cu126",
+          "torchvision": "0.25.0+cu126"
+        },
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 64.55645806575194,
+      "metrics": {
+        "top1": 0.11400000751018524,
+        "top5": 0.5700000524520874
+      },
+      "optimizer_updates": 500,
+      "rank0_peak_allocated_bytes": 15329381888,
+      "report_sha256": "000f29f8e08c3be53d2df13f00c8655e3823f8740e7b2741ee7b5dabc86a574b",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 206.87031795689836
+    },
+    "new_nvidia/yolov5s": {
+      "amp_skipped_steps": 0,
+      "environment": {
+        "device": "NVIDIA GeForce RTX 4090",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+cu126",
+          "torchvision": "0.25.0+cu126"
+        },
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 87.39742030994967,
+      "metrics": {
+        "bbox.AP": 5.899088022336288e-05,
+        "bbox.AP.5": 0.00022731686143945599,
+        "bbox.AP.75": 3.562021616672071e-06,
+        "bbox.AP_L": 6.648486177981887e-05,
+        "bbox.AP_M": 0.00040155684584717763,
+        "bbox.AP_S": 9.881789361014729e-05,
+        "bbox.AR": 0.0016248490808346144,
+        "bbox.AR_1": 0.00022709305534860365,
+        "bbox.AR_10": 0.0007471104272922161,
+        "bbox.AR_L": 0.002874971710319954,
+        "bbox.AR_M": 0.002346452927848945,
+        "bbox.AR_S": 0.00026723537604456826
+      },
+      "optimizer_updates": 500,
+      "rank0_peak_allocated_bytes": 16314354176,
+      "report_sha256": "bd96a0379201a747f38bc2bf4c0c8424214b429d2679346c03423ca38686feea",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 446.4023471628316
+    },
+    "original_nvidia/resnet50": {
+      "amp_skipped_steps": 1,
+      "environment": {
+        "device": "NVIDIA GeForce RTX 4090",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+cu126",
+          "torchvision": "0.25.0+cu126"
+        },
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 76.80650932900608,
+      "metrics": {
+        "top1": 0.10000000149011612,
+        "top5": 0.5420000553131104
+      },
+      "optimizer_updates": 499,
+      "rank0_peak_allocated_bytes": 3795679232,
+      "report_sha256": "a3cec3a3052238af7e4dfc82dd9ff367f7f0cf26da9cb6c973636c5006d1d37b",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 556.207664415706
+    },
+    "original_nvidia/vit_b16": {
+      "amp_skipped_steps": 0,
+      "environment": {
+        "device": "NVIDIA GeForce RTX 4090",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+cu126",
+          "torchvision": "0.25.0+cu126"
+        },
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 65.20693289581686,
+      "metrics": {
+        "top1": 0.11400000751018524,
+        "top5": 0.5700000524520874
+      },
+      "optimizer_updates": 500,
+      "rank0_peak_allocated_bytes": 15329381888,
+      "report_sha256": "fd6e6588ccb86ce59ce2f5c49a2fd03ebd5ac71771928d4af8b57d58313d0f3f",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 489.47865246701986
+    },
+    "original_nvidia/yolov5s": {
+      "amp_skipped_steps": 0,
+      "environment": {
+        "device": "NVIDIA GeForce RTX 4090",
+        "packages": {
+          "Pillow": "11.2.1",
+          "numpy": "1.26.4",
+          "opencv-python": "4.11.0.86",
+          "pycocotools": "2.0.10",
+          "scipy": "1.16.0",
+          "torch": "2.10.0+cu126",
+          "torchvision": "0.25.0+cu126"
+        },
+        "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]"
+      },
+      "evaluation_seconds": 150.30973838362843,
+      "metrics": {
+        "bbox.AP": 6.344897623579566e-05,
+        "bbox.AP.5": 0.00023102624208628405,
+        "bbox.AP.75": 9.882223878861679e-06,
+        "bbox.AP_L": 0.000124394732428064,
+        "bbox.AP_M": 0.0003129926896785542,
+        "bbox.AP_S": 0.00012324145178773118,
+        "bbox.AR": 0.0016266782095519865,
+        "bbox.AR_1": 0.0003926437535233595,
+        "bbox.AR_10": 0.0008095418136669676,
+        "bbox.AR_L": 0.003393567418810659,
+        "bbox.AR_M": 0.002254149497279578,
+        "bbox.AR_S": 0.00019887335257142476
+      },
+      "optimizer_updates": 500,
+      "rank0_peak_allocated_bytes": 16314354176,
+      "report_sha256": "cefc5783f6c87394344404c4a40d037c7e123a3746dd4b0b1f7aac402f14e2e9",
+      "scheduled_steps": 500,
+      "train_inference_predictions_identical": true,
+      "training_seconds": 695.4169041831046
+    }
+  },
+  "comparisons": {
+    "resnet50": {
+      "metax_minus_new_nvidia_pp": 0.013999998569488525,
+      "metric": "top1",
+      "metrics": {
+        "new_metax": 0.11600000411272049,
+        "new_nvidia": 0.10200000554323196,
+        "original_nvidia": 0.10000000149011612
+      },
+      "new_minus_original_nvidia_pp": 0.0020000040531158447,
+      "trajectories": {
+        "metax_vs_new_nvidia": {
+          "0": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 7.284472465515137,
+              "reference": 7.283603191375732
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": 15,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 489,
+            "max_loss_absolute_difference": 2.0848264694213867,
+            "rtol": 0.0001,
+            "steps": 500
+          },
+          "1": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 7.396762371063232,
+              "reference": 7.397619247436523
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": 15,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 490,
+            "max_loss_absolute_difference": 1.198188304901123,
+            "rtol": 0.0001,
+            "steps": 500
+          }
+        },
+        "new_vs_original_nvidia": {
+          "0": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 7.283603191375732,
+              "reference": 7.283541679382324
+            },
+            "first_loss_exceeding_tolerance_step": 3,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 493,
+            "max_loss_absolute_difference": 7.777764320373535,
+            "rtol": 0.0001,
+            "steps": 500
+          },
+          "1": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 3,
+            "first_loss_difference_values": {
+              "actual": 7.883509635925293,
+              "reference": 7.873675346374512
+            },
+            "first_loss_exceeding_tolerance_step": 3,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 485,
+            "max_loss_absolute_difference": 1.5945372581481934,
+            "rtol": 0.0001,
+            "steps": 500
+          }
+        }
+      },
+      "units": "percent"
+    },
+    "vit_b16": {
+      "metax_minus_new_nvidia_pp": -0.008000001311302185,
+      "metric": "top1",
+      "metrics": {
+        "new_metax": 0.10600000619888306,
+        "new_nvidia": 0.11400000751018524,
+        "original_nvidia": 0.11400000751018524
+      },
+      "new_minus_original_nvidia_pp": 0.0,
+      "trajectories": {
+        "metax_vs_new_nvidia": {
+          "0": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 7.072028160095215,
+              "reference": 7.066281795501709
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 492,
+            "max_loss_absolute_difference": 0.11964654922485352,
+            "rtol": 0.0001,
+            "steps": 500
+          },
+          "1": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 7.04448127746582,
+              "reference": 7.031651973724365
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 493,
+            "max_loss_absolute_difference": 0.12290430068969727,
+            "rtol": 0.0001,
+            "steps": 500
+          }
+        },
+        "new_vs_original_nvidia": {
+          "0": {
+            "atol": 1e-05,
+            "first_loss_difference_step": null,
+            "first_loss_difference_values": null,
+            "first_loss_exceeding_tolerance_step": null,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 0,
+            "max_loss_absolute_difference": 0.0,
+            "rtol": 0.0001,
+            "steps": 500
+          },
+          "1": {
+            "atol": 1e-05,
+            "first_loss_difference_step": null,
+            "first_loss_difference_values": null,
+            "first_loss_exceeding_tolerance_step": null,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 0,
+            "max_loss_absolute_difference": 0.0,
+            "rtol": 0.0001,
+            "steps": 500
+          }
+        }
+      },
+      "units": "percent"
+    },
+    "yolov5s": {
+      "metax_minus_new_nvidia_pp": 0.0011455164192137619,
+      "metric": "bbox.AP",
+      "metrics": {
+        "new_metax": 0.00704460444155005,
+        "new_nvidia": 0.0058990880223362884,
+        "original_nvidia": 0.006344897623579566
+      },
+      "new_minus_original_nvidia_pp": -0.0004458096012432775,
+      "trajectories": {
+        "metax_vs_new_nvidia": {
+          "0": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 19.29806137084961,
+              "reference": 19.301977157592773
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 485,
+            "max_loss_absolute_difference": 0.1970500946044922,
+            "rtol": 0.0001,
+            "steps": 500
+          },
+          "1": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 18.275257110595703,
+              "reference": 18.280773162841797
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 471,
+            "max_loss_absolute_difference": 0.167755126953125,
+            "rtol": 0.0001,
+            "steps": 500
+          }
+        },
+        "new_vs_original_nvidia": {
+          "0": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 19.301977157592773,
+              "reference": 19.3007755279541
+            },
+            "first_loss_exceeding_tolerance_step": 10,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 475,
+            "max_loss_absolute_difference": 0.33963966369628906,
+            "rtol": 0.0001,
+            "steps": 500
+          },
+          "1": {
+            "atol": 1e-05,
+            "first_loss_difference_step": 1,
+            "first_loss_difference_values": {
+              "actual": 18.280773162841797,
+              "reference": 18.28267478942871
+            },
+            "first_loss_exceeding_tolerance_step": 1,
+            "first_optimizer_update_count_difference_step": null,
+            "inputs_and_learning_rates_match": true,
+            "loss_steps_exceeding_tolerance": 472,
+            "max_loss_absolute_difference": 0.3750648498535156,
+            "rtol": 0.0001,
+            "steps": 500
+          }
+        }
+      },
+      "units": "AP points"
+    }
+  },
+  "convergence_claim": false,
+  "full_epoch_completed": false,
+  "limitations": [
+    "One seed/native execution; no statistical equivalence claim",
+    "Loss differences and operator differences do not by themselves prove final-accuracy causation",
+    "Training time includes input hashing and data-loader wait; memory is rank0 allocator peak"
+  ],
+  "purpose": "three_models_three_lanes_500_steps",
+  "scheduled_steps_total": 4500
+}

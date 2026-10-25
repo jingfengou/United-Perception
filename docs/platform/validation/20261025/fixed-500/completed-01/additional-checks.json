@@ -1,0 +1,7 @@
+{
+  "all_final_checkpoint_tensors_old_new_compared": false,
+  "prediction_sha256": "09bc5ae862e4685cadc80d2b997f6317c41cc09c96d5da91fece20ead0ce2890",
+  "total_amp_skipped_batches": 6,
+  "total_successful_optimizer_updates": 4494,
+  "vit_nvidia_old_new_saved_predictions_byte_identical": true
+}

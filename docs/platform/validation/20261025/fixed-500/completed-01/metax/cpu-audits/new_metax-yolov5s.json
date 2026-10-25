@@ -1,0 +1,57 @@
+{
+  "checkpoint_files": {
+    "checkpoint-1.pt": "faa952e94d3b25f0edf0c1677d54264fb33e656a8105188b5c86a8202e65a8ba",
+    "checkpoint-1.rank0.pt": "18e25529817aa65c5a17870cbbad73d904ae7ba51702af03172ecd1ca96cbc5b",
+    "checkpoint-1.rank1.pt": "983576576da4fc92b90e77bc8922c09d9085ed0c559a26e7631e8cdaa3492cdc"
+  },
+  "convergence_claim": false,
+  "full_epoch_completed": false,
+  "inference_metrics": {
+    "bbox.AP": 7.04460444155005e-05,
+    "bbox.AP.5": 0.0003252857631892946,
+    "bbox.AP.75": 1.3834016514582543e-05,
+    "bbox.AP_L": 8.343643690115887e-05,
+    "bbox.AP_M": 0.00032536916609637764,
+    "bbox.AP_S": 5.724652744668632e-05,
+    "bbox.AR": 0.001353608166342596,
+    "bbox.AR_1": 0.00014746157269542411,
+    "bbox.AR_10": 0.0004918092818474302,
+    "bbox.AR_L": 0.0020996894924724986,
+    "bbox.AR_M": 0.002250491704798604,
+    "bbox.AR_S": 0.00018105849582172702
+  },
+  "inference_sha256": "4bbbfb9fc8dd22bc30e30f86ab578d13f2e193177d02933b470152c56f9a35f7",
+  "lane": "new_metax",
+  "metrics_recompute_exact": true,
+  "model": "yolov5s",
+  "model_computation": false,
+  "optimizer_updates": 500,
+  "prediction_sha256": {
+    "inference": "db00d38ee02aacad5a930084c9932fb842ba90df312f24d83488c5111c59ae62",
+    "train": "db00d38ee02aacad5a930084c9932fb842ba90df312f24d83488c5111c59ae62"
+  },
+  "predictions_identical": true,
+  "recomputed_metrics": {
+    "bbox.AP": 7.04460444155005e-05,
+    "bbox.AP.5": 0.0003252857631892946,
+    "bbox.AP.75": 1.3834016514582543e-05,
+    "bbox.AP_L": 8.343643690115887e-05,
+    "bbox.AP_M": 0.00032536916609637764,
+    "bbox.AP_S": 5.724652744668632e-05,
+    "bbox.AR": 0.001353608166342596,
+    "bbox.AR_1": 0.00014746157269542411,
+    "bbox.AR_10": 0.0004918092818474302,
+    "bbox.AR_L": 0.0020996894924724986,
+    "bbox.AR_M": 0.002250491704798604,
+    "bbox.AR_S": 0.00018105849582172702
+  },
+  "recorded_utc": "2026-10-25T09:13:42.774755+00:00",
+  "report_sha256": "c1a2075d95471e6d9d7e0e10191a3312043c83a2d104d57c5aab5158f69b3be3",
+  "scheduled_steps": 500,
+  "status": "audited_500_steps",
+  "training_trace_sha256": {
+    "0": "54ec102228e2e935ee825467f6ef3db773dbfe75205b740846909c6c245a71a4",
+    "1": "860549612396bb063752f1b8da5a318a3bf3aac5b449133e77a61918cb688fc0"
+  },
+  "validation_images": 5000
+}

@@ -1,0 +1,62 @@
+{
+  "files": {
+    "checkpoint-1.pt": "1b4c4fc8ed8302eb8583cc197746858377f24957df86d8a47bbf4f974d468fb7",
+    "checkpoint-1.rank0.pt": "f8076be1e5dcae2144e60b7e5d40a0dfd9125f48c0f2dc7045b1e090c9e5bc52",
+    "checkpoint-1.rank1.pt": "ac2ba72694530c04789d621ec1fcbfa9a35d4cd5a5f71a2d25a02071d66c76c6"
+  },
+  "identity": {
+    "algorithm_config_sha256": "d24b1f926d667a74a2b07549b34d528dbe56467697bc50c88408dca4ba5ccb42",
+    "data_identity": {
+      "all_image_bytes_verified": true,
+      "all_images_rgb_decoded": true,
+      "anchors_sha256": "0bbfb6aa570aeedf08142e10cd460157aab588e5a395f0771ce4c10cec9b09cd",
+      "backbone_sha256": "b77eecd6bb0a9d7ce8747d13a23f67fb014fb7ed586994cb849e8a9dfcb08cc8",
+      "detr_source_sha256": "954c6297faa72af4b59719a42c850d769d8276fcd99a7c704cb5e34f5e5eb5fb",
+      "scope": "full ImageNet-1K and COCO2017, all original image bytes audited",
+      "splits": {
+        "coco/test": {
+          "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+          "image_archive_sha256": "4f7e2ccb2866ec5041993c9cf2a952bbed69647b115d0f74da7ce8f4bef82f05",
+          "image_bytes": 814705164,
+          "images": 5000,
+          "meta_sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+        },
+        "coco/train": {
+          "annotation_archive_sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+          "image_archive_sha256": "69a8bb58ea5f8f99d24875f21416de2e9ded3178e903f1f7603e283b9e06d929",
+          "image_bytes": 19314466396,
+          "images": 118287,
+          "meta_sha256": "610fce4944abdeb15354cc765333805529359d12d88f2f711393ca586901d01d"
+        },
+        "imagenet/test": {
+          "image_bytes": 6706296736,
+          "image_manifests_sha256": "ce2fbdc75b3bbd94e4c75366202aeb3c50342b25c79ca5074153ef513501a730",
+          "images": 50000,
+          "meta_sha256": "9801da114fc05c93ebc87795f19822c1b12d224a4ed427e3237e9db3cd68068a"
+        },
+        "imagenet/train": {
+          "image_bytes": 146898709175,
+          "image_manifests_sha256": "f7072c92f0978fbf96c3fadbd34b983490cd3094e6673fefaf90d38ee0fb8840",
+          "images": 1281167,
+          "meta_sha256": "3a499581167accad60be24b5aa27532b79155bc20e022157f525d70183de942b"
+        }
+      }
+    },
+    "driver_sha256": "f73e033c08d0c5503abdc66944e23550ea3d22dfb9e1a1b2b3cb1373d3fa9d94",
+    "lane": "new_nvidia",
+    "model": "resnet50",
+    "plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+    "preflight_steps": 500,
+    "seed": 131,
+    "source_sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8",
+    "world_size": 2
+  },
+  "progress": {
+    "checkpoint_generation": 1,
+    "completed_steps": 500,
+    "evaluation_seconds": 42.96032761596143,
+    "optimizer_updates": 499,
+    "training_seconds": 149.59680517809466
+  },
+  "slot": 1
+}

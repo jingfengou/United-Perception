@@ -1,0 +1,37 @@
+{
+  "checkpoint_files": {
+    "checkpoint-1.pt": "c4c3ab2802c14894004f173db81893a47691a7c04a6ee8ca01152ddd4661eafe",
+    "checkpoint-1.rank0.pt": "9dd261df994d6b1877bcc94310265fa27b9ce09ce25b8a3043dc48b7038822ca",
+    "checkpoint-1.rank1.pt": "5010a94287541159a7cf67b8f385a709b21a3207ac499124155c264331fbe30c"
+  },
+  "convergence_claim": false,
+  "full_epoch_completed": false,
+  "inference_metrics": {
+    "top1": 0.11400000751018524,
+    "top5": 0.5700000524520874
+  },
+  "inference_sha256": "752430c872d3e58cab6dcbe0d323853b40465b31412a75d9c61d7a21def54ade",
+  "lane": "original_nvidia",
+  "metrics_recompute_exact": true,
+  "model": "vit_b16",
+  "model_computation": false,
+  "optimizer_updates": 500,
+  "prediction_sha256": {
+    "inference": "09bc5ae862e4685cadc80d2b997f6317c41cc09c96d5da91fece20ead0ce2890",
+    "train": "09bc5ae862e4685cadc80d2b997f6317c41cc09c96d5da91fece20ead0ce2890"
+  },
+  "predictions_identical": true,
+  "recomputed_metrics": {
+    "top1": 0.11400000751018524,
+    "top5": 0.5700000524520874
+  },
+  "recorded_utc": "2026-10-25T09:49:45.197402+00:00",
+  "report_sha256": "fd6e6588ccb86ce59ce2f5c49a2fd03ebd5ac71771928d4af8b57d58313d0f3f",
+  "scheduled_steps": 500,
+  "status": "audited_500_steps",
+  "training_trace_sha256": {
+    "0": "547b47ddbe515731d5b44041fb3d0052748db338617ab9653db10bf2e43bf3ca",
+    "1": "2131c8571b5870b62b02324410cf040718cf807527de5c13903697fabcf0aecc"
+  },
+  "validation_images": 50000
+}

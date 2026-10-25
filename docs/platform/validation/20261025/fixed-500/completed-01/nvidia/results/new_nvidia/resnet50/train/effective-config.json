@@ -1,0 +1,312 @@
+{
+  "args": {
+    "backend": "dist",
+    "display": 100,
+    "no_running_config": true
+  },
+  "center_crop": {
+    "kwargs": {
+      "size": 224
+    },
+    "type": "torch_center_crop"
+  },
+  "dataset": {
+    "test": {
+      "batch_sampler": {
+        "kwargs": {
+          "batch_size": 64,
+          "sampler": {
+            "kwargs": {},
+            "type": "dist"
+          }
+        },
+        "type": "base"
+      },
+      "dataloader": {
+        "kwargs": {
+          "num_workers": 4,
+          "pin_memory": true
+        },
+        "type": "cls_base"
+      },
+      "dataset": {
+        "kwargs": {
+          "evaluator": {
+            "kwargs": {
+              "topk": [
+                1,
+                5
+              ]
+            },
+            "type": "imagenet"
+          },
+          "image_reader": {
+            "kwargs": {
+              "color_mode": "RGB",
+              "image_dir": "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/images",
+              "memcached": false
+            },
+            "type": "fs_pillow"
+          },
+          "meta_file": "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/val.txt",
+          "transformer": [
+            {
+              "kwargs": {
+                "size": 256
+              },
+              "type": "torch_resize"
+            },
+            {
+              "kwargs": {
+                "size": 224
+              },
+              "type": "torch_center_crop"
+            },
+            {
+              "type": "to_tensor"
+            },
+            {
+              "kwargs": {
+                "mean": [
+                  0.485,
+                  0.456,
+                  0.406
+                ],
+                "std": [
+                  0.229,
+                  0.224,
+                  0.225
+                ]
+              },
+              "type": "normalize"
+            }
+          ]
+        },
+        "type": "cls"
+      }
+    },
+    "train": {
+      "batch_sampler": {
+        "kwargs": {
+          "batch_size": 64,
+          "sampler": {
+            "kwargs": {},
+            "type": "dist"
+          }
+        },
+        "type": "base"
+      },
+      "dataloader": {
+        "kwargs": {
+          "batch_fn": {
+            "kwargs": {
+              "alpha": 0.2,
+              "num_classes": 1000
+            },
+            "type": "batch_mixup"
+          },
+          "num_workers": 4,
+          "pin_memory": true
+        },
+        "type": "cls_base"
+      },
+      "dataset": {
+        "kwargs": {
+          "image_reader": {
+            "kwargs": {
+              "color_mode": "RGB",
+              "image_dir": "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/images",
+              "memcached": false
+            },
+            "type": "fs_pillow"
+          },
+          "meta_file": "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/data/imagenet/train.txt",
+          "transformer": [
+            {
+              "kwargs": {
+                "scale": [
+                  0.08,
+                  1
+                ],
+                "size": 224
+              },
+              "type": "torch_random_resized_crop"
+            },
+            {
+              "type": "torch_random_horizontal_flip"
+            },
+            {
+              "kwargs": {
+                "brightness": 0.2,
+                "contrast": 0.2,
+                "hue": 0.1,
+                "saturation": 0.2
+              },
+              "type": "torch_color_jitter"
+            },
+            {
+              "type": "to_tensor"
+            },
+            {
+              "kwargs": {
+                "mean": [
+                  0.485,
+                  0.456,
+                  0.406
+                ],
+                "std": [
+                  0.229,
+                  0.224,
+                  0.225
+                ]
+              },
+              "type": "normalize"
+            }
+          ]
+        },
+        "type": "cls"
+      }
+    }
+  },
+  "ema": {
+    "enable": true,
+    "kwargs": {
+      "decay": 0.9999
+    }
+  },
+  "hooks": [],
+  "net": [
+    {
+      "kwargs": {
+        "frozen_layers": [],
+        "initializer": {
+          "method": "msra"
+        },
+        "normalize": {
+          "type": "solo_bn"
+        },
+        "out_layers": [
+          4
+        ],
+        "out_strides": [
+          32
+        ]
+      },
+      "name": "backbone",
+      "type": "resnet50"
+    },
+    {
+      "kwargs": {
+        "in_plane": 2048,
+        "input_feature_idx": -1,
+        "num_classes": 1000
+      },
+      "name": "head",
+      "type": "base_cls_head"
+    },
+    {
+      "kwargs": {
+        "cls_loss": {
+          "kwargs": {
+            "num_classes": 1000,
+            "smooth_ratio": 0.1
+          },
+          "type": "label_smooth_ce"
+        }
+      },
+      "name": "post_process",
+      "type": "base_cls_postprocess"
+    }
+  ],
+  "normalize": {
+    "kwargs": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "type": "normalize"
+  },
+  "num_classes": 1000,
+  "pil_color_jitter": {
+    "kwargs": {
+      "brightness": 0.2,
+      "contrast": 0.2,
+      "hue": 0.1,
+      "saturation": 0.2
+    },
+    "type": "torch_color_jitter"
+  },
+  "random_horizontal_flip": {
+    "type": "torch_random_horizontal_flip"
+  },
+  "random_resized_crop": {
+    "kwargs": {
+      "scale": [
+        0.08,
+        1
+      ],
+      "size": 224
+    },
+    "type": "torch_random_resized_crop"
+  },
+  "runtime": {
+    "device": "cuda:0",
+    "fp16": true,
+    "platform": {
+      "backend": "nvidia",
+      "device": "cuda:0"
+    },
+    "random_seed": 131,
+    "task_names": "cls"
+  },
+  "saver": {
+    "auto_resume": false,
+    "memory_friendly": true,
+    "results_dir": "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/short-500-01/results/new_nvidia/resnet50/train/predictions",
+    "save_dir": "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/short-500-01/results/new_nvidia/resnet50/train/native-checkpoints",
+    "save_result": true
+  },
+  "to_tensor": {
+    "type": "to_tensor"
+  },
+  "torch_size": {
+    "kwargs": {
+      "size": 256
+    },
+    "type": "torch_resize"
+  },
+  "trainer": {
+    "lr_scheduler": {
+      "kwargs": {
+        "T_max": 200,
+        "eta_min": 0.0,
+        "warmup_iter": 12520
+      },
+      "type": "CosineAnnealingLR",
+      "warmup_iter": 12520,
+      "warmup_ratio": 0.25,
+      "warmup_register_type": "no_scale_lr",
+      "warmup_type": "linear"
+    },
+    "max_epoch": 200,
+    "only_save_latest": true,
+    "optimizer": {
+      "kwargs": {
+        "lr": 0.2,
+        "momentum": 0.9,
+        "nesterov": true,
+        "weight_decay": 5e-05
+      },
+      "type": "SGD"
+    },
+    "save_freq": 5,
+    "test_freq": 5
+  }
+}

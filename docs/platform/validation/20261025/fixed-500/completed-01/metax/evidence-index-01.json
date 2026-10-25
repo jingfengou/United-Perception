@@ -1,0 +1,107 @@
+{
+  "files": {
+    "analysis-tests.xml": {
+      "bytes": 1557,
+      "sha256": "424eb29badd59e6dc67432f097d7fac7a503b9f5aa1ba032256e2f28a0cf6e47"
+    },
+    "cpu-audits/new_metax-resnet50.json": {
+      "bytes": 1442,
+      "sha256": "64e2e0682ef4b0923fe26889f6dd36acf45f3657f775a49029650eb6e27c3854"
+    },
+    "cpu-audits/new_metax-vit_b16.json": {
+      "bytes": 1441,
+      "sha256": "be3130af53e2244ba8fa363eac5c5f90f63678e76d9a917f59699c0c8c611f4b"
+    },
+    "cpu-audits/new_metax-yolov5s.json": {
+      "bytes": 2268,
+      "sha256": "9bc5a5d639a6c88d56f13ceec86c8836a639e2cda81058f5bc9551aeaa12db45"
+    },
+    "job.json": {
+      "bytes": 13749,
+      "sha256": "8f7f08655098475af448ffe1efa88b30c1e98a2800c46a42373859bce0ad9ab9"
+    },
+    "launch.json": {
+      "bytes": 327,
+      "sha256": "e21306cf6e032c858818d351953866a1a4913aa0189f8a53b75ac6feba1a3ff7"
+    },
+    "results/new_metax/resnet50/inference/inference.json": {
+      "bytes": 2702,
+      "sha256": "7b05d12d60bed6a199e6163855e904aacb56a9ef5b04082792cdd503a35439af"
+    },
+    "results/new_metax/resnet50/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "03a096c5ec3993c911fe8407dc3a14909a9582a8b88286b903c41145a078fc75"
+    },
+    "results/new_metax/resnet50/train/effective-config.json": {
+      "bytes": 6924,
+      "sha256": "be52df435fe2fd4111e550d2bfbc5a5682e60c50f33d1a6efb59958de4144033"
+    },
+    "results/new_metax/resnet50/train/report.json": {
+      "bytes": 3587,
+      "sha256": "c0e1113fc9e2ec2f3149788285d97d8c32ab225d4b1dfe7de0e3a160d312b7b6"
+    },
+    "results/new_metax/resnet50/train/train.rank0.jsonl": {
+      "bytes": 162230,
+      "sha256": "b725f8f75c02998cc659d9863da6c1215f9f1c199281439f6888197c2930c60f"
+    },
+    "results/new_metax/resnet50/train/train.rank1.jsonl": {
+      "bytes": 162256,
+      "sha256": "2791a3102c3d755bcb00e447322b6fed3d3f5d7995f708c108a20e3fd72e4b8d"
+    },
+    "results/new_metax/vit_b16/inference/inference.json": {
+      "bytes": 2702,
+      "sha256": "0d62d2cb197ba401226bd73997f80b9aa0a99a9cccc47d51bfd18581b087492b"
+    },
+    "results/new_metax/vit_b16/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "e66c0dfa7bb8f64f09c7412859aa733b6aa7a52c419069814bb99bc2c63d5c40"
+    },
+    "results/new_metax/vit_b16/train/effective-config.json": {
+      "bytes": 6537,
+      "sha256": "866494098176bd87260b9ff4fa499b2611b97a9f1db4b67591dd531a5e21a9de"
+    },
+    "results/new_metax/vit_b16/train/report.json": {
+      "bytes": 3589,
+      "sha256": "b0a4b2aa41eb942e38b1ed654000b7e6a45de0cd5036bcc05eff26fb7ffda542"
+    },
+    "results/new_metax/vit_b16/train/train.rank0.jsonl": {
+      "bytes": 163134,
+      "sha256": "cc0ee65360c7f4b47975fbf45d687551c9c732dbdc1cde94aace3c6234436475"
+    },
+    "results/new_metax/vit_b16/train/train.rank1.jsonl": {
+      "bytes": 163155,
+      "sha256": "ffc86c8e4230ab1f477a49e8a00c34cbbe8a688e62c040dee5e9290ef32ae78e"
+    },
+    "results/new_metax/yolov5s/inference/inference.json": {
+      "bytes": 3115,
+      "sha256": "4bbbfb9fc8dd22bc30e30f86ab578d13f2e193177d02933b470152c56f9a35f7"
+    },
+    "results/new_metax/yolov5s/train/checkpoint.json": {
+      "bytes": 2912,
+      "sha256": "6abaf708346f2da5cc9880a025d2b8fc8d1ab25b8efb2bd8c824134ab9796088"
+    },
+    "results/new_metax/yolov5s/train/effective-config.json": {
+      "bytes": 8804,
+      "sha256": "531c1f4b07f5b1861c1b6a09287e469e4d61cf3cdf59d0c2924cc99278cdc132"
+    },
+    "results/new_metax/yolov5s/train/report.json": {
+      "bytes": 3996,
+      "sha256": "c1a2075d95471e6d9d7e0e10191a3312043c83a2d104d57c5aab5158f69b3be3"
+    },
+    "results/new_metax/yolov5s/train/train.rank0.jsonl": {
+      "bytes": 196790,
+      "sha256": "54ec102228e2e935ee825467f6ef3db773dbfe75205b740846909c6c245a71a4"
+    },
+    "results/new_metax/yolov5s/train/train.rank1.jsonl": {
+      "bytes": 196792,
+      "sha256": "860549612396bb063752f1b8da5a318a3bf3aac5b449133e77a61918cb688fc0"
+    },
+    "short500-plan-01.json": {
+      "bytes": 647,
+      "sha256": "79441420ed7be26805d024635691d0a48d2e179cb50c077bacb54beb38926e2c"
+    }
+  },
+  "runs": 3,
+  "stage": "short-500-01",
+  "vendor": "metax"
+}

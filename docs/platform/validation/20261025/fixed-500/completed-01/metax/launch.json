@@ -1,0 +1,10 @@
+{
+  "pid": 33036,
+  "command": [
+    "/workspace/up-run/venv/bin/python",
+    "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025/run_short500_01.py",
+    "/workspace/up-run/up-platform-clean-20261023/imagenet-coco-parity-20261025",
+    "metax"
+  ],
+  "started_utc": "2026-10-25T08:58:10.404834+00:00"
+}
