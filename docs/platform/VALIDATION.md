@@ -8,7 +8,7 @@
 
 全部 **156 项接口 / 18 类**的新旧 UP、跨厂商差异及缺测状态见[逐项清单](OPERATION_AUDIT_20261025.md)，可下载[完整 CSV](operation_audit_20261025.csv)。清单区分原 UP 参考、直接厂商 Torch 参考和同操作数跨卡对照，不将未测项填写为零。
 
-2026-10-25 的[NVIDIA 逐接口补测](NVIDIA_INTERFACE_PARITY_20261025.md)已完成所有现有依赖可执行的项目：150 项所测数值/状态一致、1 项初始非有限状态一致、1 项 KITTI 有意修正，4 项真实依赖阻塞；最终 CPU 133 项通过。专用操作这次使用原版/新版各自的二进制，不覆盖下面旧阶段的共享扩展范围。完整[新逐项 CSV](validation/20261025/nvidia-interfaces/interfaces.csv)记录实际结果与缺口，不代表全部变体或收敛精度通过。
+2026-10-25 的[NVIDIA 逐接口补测](NVIDIA_INTERFACE_PARITY_20261025.md)已完成所有现有依赖可执行的项目：原 156 项全接口口径中，150 项所测数值/状态一致、1 项初始非有限状态一致、1 项 KITTI 有意修正，4 项真实依赖阻塞；最终 CPU 133 项通过。2026-10-26 按用户重点另列 [152 项 GPU 相关口径](NVIDIA_INTERFACE_PARITY_20261025.md#gpu-相关口径2026-10-26-整理)：146 匹配、1 初始化状态一致、1 几何修正、4 阻塞，排除纯 CPU 操作与 CPU NMS 分支，不用 CPU 测试增加 GPU 通过数。专用操作使用原版/新版各自二进制；[GPU CSV](validation/20261025/nvidia-interfaces/gpu-interfaces-20261026.csv)与[原全接口 CSV](validation/20261025/nvidia-interfaces/interfaces.csv)分别保留，不代表全部变体或收敛精度通过。
 
 组件归属、实际调用、NVIDIA/沐曦实现与 11 处 SDK 残留位置见[平台架构详图](ARCHITECTURE_20261025.md)。图中“已接入”“边界未收口”“依赖缺失”“模板”和“未验证”分别标注。
 

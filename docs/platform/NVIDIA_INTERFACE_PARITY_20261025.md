@@ -2,13 +2,42 @@
 
 日期：2026-10-25。原版 UP：`52aaeb9ed27a490820696d7754d19f98cd6ecd11`。
 
-**152 项接口已执行相应对照，4 项因真实依赖缺失而阻塞；没有未执行却填为零的接口。**
+**原完整清单含 156 项接口，其中 152 项已执行相应对照，4 项因真实依赖缺失而阻塞；没有未执行却填为零的接口。**
 这是有限输入下的接口、梯度和状态检查，不是全部输入空间、所有可选 SDK 变体或模型收敛精度的证明。
 本轮没有改 `up/`、`up_platform/`、`configs/`、模型算法或原容差，没有恢复 DETR、多随机种子或长程训练。
 
 [156 项 CSV](validation/20261025/nvidia-interfaces/interfaces.csv) · [逐项摘要](validation/20261025/nvidia-interfaces/summary.json) · [完整小型元数据包](validation/20261025/nvidia-interfaces/metadata.tar.gz) · [原始证据索引](validation/20261025/nvidia-interfaces/evidence-index.json)
 
-## 结果
+## GPU 相关口径（2026-10-26 整理）
+
+用户要求重点关注 GPU 操作，本节从上述已保存的真机结果筛选范围，**没有新增 GPU 执行或改写旧结果**。
+GPU 相关接口包括实际 GPU 计算，以及决定 GPU 行为的设备、AMP、DDP、通信和工具链控制；不能因为控制代码或返回元数据在 CPU 上，就把 GPU 运行时接口排除。
+
+| GPU 相关结果 | 接口数 |
+| --- | ---: |
+| 所测数值或状态与参考一致 | 146 |
+| MQBench 合法初始化非有限状态一致 | 1 |
+| KITTI 几何错误有意修正 | 1 |
+| 真实依赖阻塞 | 4 |
+| 合计 | **152** |
+
+因此 GPU 范围内 148 项已执行相应对照、4 项依赖阻塞。这里的 148 与此前全接口执行的 152 不同，后者还包含 4 个 CPU 接口。
+专用扩展按 GPU 分支筛选后为 **16 个操作、每种用途 26 个配对用例，共 52 个**；下文历史表的 19 个操作/62 个用例包含 CPU 操作与分支。
+
+[GPU 逐项 CSV](validation/20261025/nvidia-interfaces/gpu-interfaces-20261026.csv) · [机器可读范围、排除规则和原始证据 SHA256](validation/20261025/nvidia-interfaces/gpu-scope-20261026.json)
+
+以下仅 CPU 计算的接口不计入 GPU 适配验收：
+
+- `pointcloud.points_in_boxes_cpu`、`pointcloud.boxes_bev_iou_cpu`、`sparse.voxelize_cpu`。
+- `detection.softer_nms`：虽然接受 GPU Tensor，但原版和新版都将数据转到 CPU 调用 `cpu_softer_nms`，再把结果放回输入设备；这不是新加的 CPU 回退，也不是 GPU 内核验收。
+
+`detection.naive_nms` 保留 GPU 分支，剔除 CPU 输入的 4 条配对记录。总共排除 11 条 CPU 记录；GPU 范围保留 834 条匹配、2 条相同报错、18 条相同非有限状态、1 条几何修正及 6 条依赖阻塞记录。
+原有 CPU 功能、133 项 CPU 软件检查及完整历史表保留，但不拿它们增加 GPU 通过数。
+KITTI 返回 NumPy、GPU RNG 返回 CPU 状态字节，并不意味着这些操作在 CPU 上计算；分类按实际实现和用途，不按返回容器猜测。
+
+下面继续保留原 **156 项全接口历史结果**，其数字没有因调整关注范围而被覆盖。
+
+## 全接口历史结果
 
 | 接口级结果 | 项数 | 含义 |
 | --- | ---: | --- |
