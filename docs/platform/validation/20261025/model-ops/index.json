@@ -1,0 +1,74 @@
+{
+  "artifacts": {
+    "cpu-metax.xml": "70956d831c1bda16592aedfc9a25d5ed006209bcb950f6bf597ca7e0be4612c8",
+    "cpu-nvidia.xml": "06f8bd217c910f92ef70e9e8524312b4d6f4e90e6a90d0800aed8c85037bd1bd",
+    "frozen-tool-bytes.json": "7312e48f3f212ec32a1dafcc82c0b26929701cf20c08e413933b7670168d9339",
+    "plan.json": "a94271d921a9decdea2ef54c046ee9bc7d55949bdff34179b76188834987c014"
+  },
+  "atol": 1e-05,
+  "binary_provenance": "../one-epoch/sources.json",
+  "cases_per_operation_phase": 2,
+  "common_capture_vendor": "metax",
+  "coverage_policy": "all observed calls counted; sampled numeric variants, setup construction is not numerical execution",
+  "cpu_source_zip_sha256": "0f6cc221a29fa4e5d625d5bce7c324470cb1fe107b401cfa9cccf047d90a6492",
+  "execution_selection_sha256": "626e972c165fad7a4953a2a6325e689150a4a6dd813e15d2aab9cc29b5a7c52f",
+  "gpu_numerical_cohort_complete": false,
+  "hosts": {
+    "metax": {
+      "controller_status": "waiting_for_selected_training",
+      "cpu_suites": [
+        {
+          "errors": "0",
+          "failures": "0",
+          "hostname": "99f0fbb80f6d",
+          "name": "pytest",
+          "skipped": "0",
+          "tests": "114",
+          "time": "33.272",
+          "timestamp": "2026-10-25T02:53:34.619240+00:00"
+        }
+      ],
+      "cpu_xml_sha256": "70956d831c1bda16592aedfc9a25d5ed006209bcb950f6bf597ca7e0be4612c8",
+      "gpu_cases_completed": 0,
+      "pid": 26794
+    },
+    "nvidia": {
+      "controller_status": "waiting_for_selected_training",
+      "cpu_suites": [
+        {
+          "errors": "0",
+          "failures": "0",
+          "hostname": "ubuntu-Precision-7920-Tower",
+          "name": "pytest",
+          "skipped": "0",
+          "tests": "114",
+          "time": "21.809",
+          "timestamp": "2026-10-25T10:48:48.558763"
+        }
+      ],
+      "cpu_xml_sha256": "06f8bd217c910f92ef70e9e8524312b4d6f4e90e6a90d0800aed8c85037bd1bd",
+      "gpu_cases_completed": 0,
+      "pid": 2628521
+    }
+  },
+  "models": [
+    "resnet50",
+    "yolov5s",
+    "vit_b16"
+  ],
+  "no_accuracy_or_cross_vendor_pass_claim": true,
+  "operator_plan_sha256": "a94271d921a9decdea2ef54c046ee9bc7d55949bdff34179b76188834987c014",
+  "parent_plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+  "purposes": [
+    "training",
+    "inference"
+  ],
+  "raw_gpu_tools_archive_sha256": "3e6d5647faf9da3454beebc9c0f724699bcb5f278e6205d89fc93ad05637f743",
+  "recorded_utc": "2026-10-25T03:00:27.756060+00:00",
+  "reference_tools_commit": "4ba36d8c22e3e26d3f1992327c56fea90a865c2b",
+  "repeats": 3,
+  "rtol": 0.0001,
+  "scope": "sampled tensor operations actually used by three models; not every shape or all platform interfaces",
+  "training_includes_eval": true,
+  "transfer_status": "waiting_for_metax_common_archive"
+}
