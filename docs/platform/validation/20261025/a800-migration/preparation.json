@@ -1,0 +1,147 @@
+{
+  "allocation_status": "awaiting_fresh_coordinator_grant",
+  "archive_staging": {
+    "completed_verified_files": [
+      {
+        "bytes": 32127793,
+        "name": "a800-frozen-sources-20261025.tar.gz",
+        "sha256": "a7d8381038db84beb043224ab26b8e2f1efca1cdf2a8f967c5038a9258e1cd8e",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 177218,
+        "name": "a800-frozen-sources-receipt.json",
+        "sha256": "308a9c37ec6200709e90dca28af799e3a9d6806c28dce0502cd1d41e80359a54",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 54513,
+        "name": "training-tools-08.zip",
+        "sha256": "ead2b135302ab63539d61a414d568a23cd766fc5d83f07fc7a4a5a7eeb35a674",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 101662720,
+        "name": "preflight-data-06.tar",
+        "sha256": "9cd5a064db44c27731cfb148041ecacd8776904a14fdb395e9fdcd4593791c9a",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 645652480,
+        "name": "preflight-initials-02.tar",
+        "sha256": "60857047ffbc86163818025e723517c1bd5e48ae080d643e05b36cb7cf774ad7",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 1246641,
+        "name": "cpu-model-ops-01.zip",
+        "sha256": "0f6cc221a29fa4e5d625d5bce7c324470cb1fe107b401cfa9cccf047d90a6492",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 252907541,
+        "name": "annotations_trainval2017.zip",
+        "sha256": "113a836d90195ee1f884e704da6304dfaaecff1f023f49b6ca93c4aaae470268",
+        "status": "remote_archive_verified"
+      },
+      {
+        "bytes": 815585330,
+        "name": "val2017.zip",
+        "sha256": "4f7e2ccb2866ec5041993c9cf2a952bbed69647b115d0f74da7ce8f4bef82f05",
+        "status": "remote_archive_verified"
+      }
+    ],
+    "current_file": "train2017.zip",
+    "limitation": "Archive SHA verification is not per-image/RGB dataset admission.",
+    "status": "upload-08"
+  },
+  "archived_4090_binary_sha256": {
+    "snapshots-08/new/up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so": "ac30ea811dd4999890dbb4eee285327d9627bf78507847cac0fcedc5a7fadd0a",
+    "snapshots-08/original/up/extensions/_C.cpython-312-x86_64-linux-gnu.so": "d49bb62be6f70cb8003f7ef2c94999c562e6215181f80920135f00db1340c59a"
+  },
+  "candidate_environment": "A800-1; candidate does not mean allocated",
+  "completed_C500_lanes_reused": 3,
+  "completed_C500_operator_samples_reused": 98,
+  "environment": {
+    "differences": {},
+    "expected": {
+      "Pillow": "11.2.1",
+      "PyYAML": "6.0.3",
+      "easydict": "1.13",
+      "einops": "0.8.1",
+      "numpy": "1.26.4",
+      "onnx": "1.17.0",
+      "opencv-python": "4.11.0.86",
+      "pyarrow": null,
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "timm": null,
+      "torch": "2.10.0+cu126",
+      "torchvision": "0.25.0+cu126",
+      "triton": "3.6.0"
+    },
+    "packages": {
+      "Pillow": "11.2.1",
+      "PyYAML": "6.0.3",
+      "easydict": "1.13",
+      "einops": "0.8.1",
+      "numpy": "1.26.4",
+      "onnx": "1.17.0",
+      "opencv-python": "4.11.0.86",
+      "pyarrow": "19.0.1",
+      "pycocotools": "2.0.10",
+      "scipy": "1.16.0",
+      "timm": null,
+      "torch": "2.10.0+cu126",
+      "torchvision": "0.25.0+cu126",
+      "triton": "3.6.0"
+    },
+    "python": "3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]"
+  },
+  "human_instruction": "NVIDIA comparison may run on A800",
+  "native_build": {
+    "compiler_version": "12.9.86",
+    "entry_sha256": "cf3fb8c39b3842a790ea249c4355eaa731e01ccbc85325fe87fcbf760d2889ba",
+    "gpu_workloads_started": 0,
+    "limitation": "sm89 binaries are archived, not loaded on A800. Compilation is not GPU verification.",
+    "records": [],
+    "status": "compiling_original_sm80_CPU_only",
+    "target_architecture": "8.0"
+  },
+  "no_new_accuracy_or_GPU_pass_claim": true,
+  "nvidia_pairing_policy": "original and new on the same granted A800 pair; keep 4090 history separate",
+  "parent_plan_sha256": "5e640ab5765222062df3f5afa14c91bf4f88be19179b70f9f5b3b0b46c996426",
+  "pending": [
+    "fresh exclusive two-GPU grant and live ownership checks",
+    "sm80 native compilation and GPU validation",
+    "full data installation and byte/RGB audit",
+    "separate A800 plan/admission/preflight before full training",
+    "A800 common-operand operator replay"
+  ],
+  "recorded_utc": "2026-10-25T05:17:51.101937+00:00",
+  "source_archive_sha256": "a7d8381038db84beb043224ab26b8e2f1efca1cdf2a8f967c5038a9258e1cd8e",
+  "source_manifests": {
+    "new": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8",
+    "original": "d9ceac12843eebce70b4d1a57eade0ce7083573510d1abb1749a8e2e7c230416"
+  },
+  "status": "CPU_preparation_only_A800_GPU_training_not_started",
+  "unchanged_protocol": {
+    "batch_per_rank": {
+      "resnet50": 64,
+      "vit_b16": 64,
+      "yolov5s": 32
+    },
+    "benchmark": true,
+    "deterministic": false,
+    "execution_epochs": 1,
+    "models": [
+      "resnet50",
+      "yolov5s",
+      "vit_b16"
+    ],
+    "native": true,
+    "seed": 131,
+    "tf32": false,
+    "world_size": 2
+  }
+}

@@ -384,14 +384,52 @@
     },
     "nvidia": {
       "completed_subprocess_cases": 0,
-      "controller_status": "waiting_for_old_budget_checkpoint_and_release",
-      "current": null,
+      "controller_status": "running",
+      "current": {
+        "case": "train",
+        "command": [
+          "/data2/oujingfeng/UP-current-validation-20261022/venv/bin/python",
+          "-m",
+          "torch.distributed.run",
+          "--standalone",
+          "--nproc-per-node=2",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/training-08/tools/full_accuracy_train.py",
+          "--source",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/snapshots-08/original",
+          "--data",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/full-data-binding.json",
+          "--plan",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch-plan.json",
+          "--model",
+          "resnet50",
+          "--lane",
+          "original_nvidia",
+          "--initial",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/preflight-initialization/resnet50/initial.pt",
+          "--output",
+          "/data2/oujingfeng/up-platform-clean-20261023/imagenet-coco-parity-20261025/one-epoch/original_nvidia/resnet50/train"
+        ],
+        "lane": "original_nvidia",
+        "model": "resnet50",
+        "pid": 2663300,
+        "started_utc": "2026-10-25T04:47:53.988429+00:00"
+      },
       "guard_status": "guarding_selected_models",
       "model_status": {
         "new_nvidia/resnet50": null,
         "new_nvidia/vit_b16": null,
         "new_nvidia/yolov5s": null,
-        "original_nvidia/resnet50": null,
+        "original_nvidia/resnet50": {
+          "checkpoint_generation": 0,
+          "completed_steps": 1600,
+          "epoch": 1,
+          "evaluation_seconds": 0.0,
+          "expected_steps": 10010,
+          "loss": 6.688818454742432,
+          "optimizer_updates": 1599,
+          "status": "training",
+          "training_seconds": 0.0
+        },
         "original_nvidia/vit_b16": null,
         "original_nvidia/yolov5s": null
       }
@@ -402,6 +440,6 @@
     "top1": "percent",
     "top5": "percent"
   },
-  "recorded_utc": "2026-10-25T04:32:07.800873+00:00",
+  "recorded_utc": "2026-10-25T05:17:52.129479+00:00",
   "scope": "selected three models, one epoch each, seed131"
 }
