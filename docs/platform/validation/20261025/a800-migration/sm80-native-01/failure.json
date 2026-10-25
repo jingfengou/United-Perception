@@ -1,0 +1,11 @@
+{
+  "status": "failed_CPU_probe_preserved",
+  "recorded_utc": "2026-10-25T05:41:04.160833+00:00",
+  "source_sha256": "faaf24aed77a68e58085283f484a301fd63569f5509ab6be4e4554eca31efd03",
+  "error": "ImportError: generic_type: type \"IOUMethod\" is already registered!",
+  "tool_evidence_chunk": "388370",
+  "cause": "The diagnostic loaded original and new pybind modules into one interpreter.",
+  "remedy": "Stage 02 checks each module in its own process, as the real reference/routed runs do.",
+  "gpu_workloads_started": 0,
+  "production_source_modified": false
+}

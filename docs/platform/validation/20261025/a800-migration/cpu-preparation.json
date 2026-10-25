@@ -1,0 +1,34 @@
+{
+  "allocation_status": "awaiting_one_fresh_exclusive_same_host_two_GPU_grant",
+  "artifacts": {
+    "a1002-source-sample.json": "5d3d1ba98dbfaf552416f646e74c55ad30465ec41f0cd95e93a177a621bb7006",
+    "sm80-native-01/failure.json": "53c3d00b2bd83bdbe65d0dbe28f3892d5959664feed2e18660ee08f8cc0ee87a",
+    "sm80-native-02/manifest.json": "d2914c5b0816ee64e08ef424befbf8f3593ec280bbc14840f7dbff93b5e0c840"
+  },
+  "binary_archive": {
+    "bytes": 30632926,
+    "sha256": "0187b0fa3de3d91acbc87ab92988c5c6dd5c87a0ad1c556a2bb0bb60080d85c8",
+    "storage": "private task evidence/shared staging; not stored in Git"
+  },
+  "candidate_hosts": [
+    "A100-1",
+    "A100-2",
+    "A100-3",
+    "A800-2",
+    "A800-3",
+    "A800-4"
+  ],
+  "gpu_validation_complete": false,
+  "gpu_workloads_started": 0,
+  "model_accuracy_conclusion_changed": false,
+  "preparation_correction": "CPU probe 01 loaded both pybind modules into one process and hit duplicate IOUMethod registration. Probe 02 uses separate processes, matching actual baseline/routed execution. No C++/CUDA/model changes.",
+  "recorded_utc": "2026-10-25T05:58:59.153595+00:00",
+  "scope": "CPU compilation/import ABI and bounded source data checks; no GPU validation",
+  "source_checks": {
+    "expected_train_shards": 294,
+    "expected_validation_shards": 14,
+    "full_dataset_admitted": false,
+    "remaining_shards_not_checked": 306,
+    "source_shards_hashed": 2
+  }
+}

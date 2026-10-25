@@ -1,0 +1,79 @@
+{
+  "archive_bytes": 30632926,
+  "archive_sha256": "0187b0fa3de3d91acbc87ab92988c5c6dd5c87a0ad1c556a2bb0bb60080d85c8",
+  "build_entry_sha256": "cf3fb8c39b3842a790ea249c4355eaa731e01ccbc85325fe87fcbf760d2889ba",
+  "build_host": "A800-1 (CPU only)",
+  "child_sha256": "0c14f4557e9cd27c392179d43a7486ce4f5db8be7cbebae01086282246591db1",
+  "created_utc": "2026-10-25T05:41:04.171722+00:00",
+  "cuda_packages": {
+    "cuda-bindings": "12.9.4",
+    "nvidia-cublas-cu12": "12.6.4.1",
+    "nvidia-cuda-nvrtc-cu12": "12.6.77",
+    "nvidia-cuda-runtime-cu12": "12.6.77",
+    "nvidia-cudnn-cu12": "9.10.2.21",
+    "nvidia-cusolver-cu12": "11.7.1.2",
+    "nvidia-nccl-cu12": "2.27.5"
+  },
+  "gpu_workloads_started": 0,
+  "prior_failure": "../sm80-native-01/failure.json",
+  "python": "3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]",
+  "source_manifests": {
+    "new": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8",
+    "original": "d9ceac12843eebce70b4d1a57eade0ce7083573510d1abb1749a8e2e7c230416"
+  },
+  "status": "CPU_ABI_checked_sm80_not_GPU_validated",
+  "variants": {
+    "new": {
+      "architecture_output": "ELF file    1: _nvidia_ops.cpython-312-x86_64-linux-gnu.1.sm_80.cubin\nELF file    2: _nvidia_ops.cpython-312-x86_64-linux-gnu.2.sm_80.cubin\nELF file    3: _nvidia_ops.cpython-312-x86_64-linux-gnu.3.sm_80.cubin\nELF file    4: _nvidia_ops.cpython-312-x86_64-linux-gnu.4.sm_80.cubin\nELF file    5: _nvidia_ops.cpython-312-x86_64-linux-gnu.5.sm_80.cubin\nELF file    6: _nvidia_ops.cpython-312-x86_64-linux-gnu.6.sm_80.cubin\nELF file    7: _nvidia_ops.cpython-312-x86_64-linux-gnu.7.sm_80.cubin\nELF file    8: _nvidia_ops.cpython-312-x86_64-linux-gnu.8.sm_80.cubin\nELF file    9: _nvidia_ops.cpython-312-x86_64-linux-gnu.9.sm_80.cubin\nELF file   10: _nvidia_ops.cpython-312-x86_64-linux-gnu.10.sm_80.cubin\nELF file   11: _nvidia_ops.cpython-312-x86_64-linux-gnu.11.sm_80.cubin\nELF file   12: _nvidia_ops.cpython-312-x86_64-linux-gnu.12.sm_80.cubin\nELF file   13: _nvidia_ops.cpython-312-x86_64-linux-gnu.13.sm_80.cubin\n",
+      "bindings": [
+        "cross_focal_loss",
+        "deform_conv_v1",
+        "focal_loss",
+        "iou3d_nms",
+        "kitti_geometry_version",
+        "kitti_rotate_iou",
+        "naive_nms",
+        "overlaps",
+        "psroi_align",
+        "psroi_pooling",
+        "roi_align",
+        "roiaware_pool3d",
+        "roipoint_pool3d",
+        "softer_nms"
+      ],
+      "compiler_log_sha256": "4e2013a3d30383b17c6e9566e4a37568620bc619455e5d5096fbe316f2ac82c6",
+      "cpu_abi_import_passed": true,
+      "cuda_initialized": false,
+      "cxx11_abi": true,
+      "path": "up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "b94a4d33e0bd099d670207ce64dacbf823fa491c03a53fdbc541321d4cda6336",
+      "source_sha256": "843a75eaf22a7df60597daadc1b20b26e18eaeafd373f596384d043c2853d1a8",
+      "torch": "2.10.0+cu126"
+    },
+    "original": {
+      "architecture_output": "ELF file    1: _C.cpython-312-x86_64-linux-gnu.1.sm_80.cubin\nELF file    2: _C.cpython-312-x86_64-linux-gnu.2.sm_80.cubin\nELF file    3: _C.cpython-312-x86_64-linux-gnu.3.sm_80.cubin\nELF file    4: _C.cpython-312-x86_64-linux-gnu.4.sm_80.cubin\nELF file    5: _C.cpython-312-x86_64-linux-gnu.5.sm_80.cubin\nELF file    6: _C.cpython-312-x86_64-linux-gnu.6.sm_80.cubin\nELF file    7: _C.cpython-312-x86_64-linux-gnu.7.sm_80.cubin\nELF file    8: _C.cpython-312-x86_64-linux-gnu.8.sm_80.cubin\nELF file    9: _C.cpython-312-x86_64-linux-gnu.9.sm_80.cubin\nELF file   10: _C.cpython-312-x86_64-linux-gnu.10.sm_80.cubin\nELF file   11: _C.cpython-312-x86_64-linux-gnu.11.sm_80.cubin\nELF file   12: _C.cpython-312-x86_64-linux-gnu.12.sm_80.cubin\n",
+      "bindings": [
+        "cross_focal_loss",
+        "deform_conv_v1",
+        "focal_loss",
+        "iou3d_nms",
+        "naive_nms",
+        "overlaps",
+        "psroi_align",
+        "psroi_pooling",
+        "roi_align",
+        "roiaware_pool3d",
+        "roipoint_pool3d",
+        "softer_nms"
+      ],
+      "compiler_log_sha256": "aa54f3d0f9bf6f7ab71b8c2d8ba07315f5e12a57d589d96d5059c63d69b61a8b",
+      "cpu_abi_import_passed": true,
+      "cuda_initialized": false,
+      "cxx11_abi": true,
+      "path": "up/extensions/_C.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "67a2f3d81892b7785be94dab15d631d60f18cc42d64990fbd5e0ff5049a7f074",
+      "source_sha256": "d9ceac12843eebce70b4d1a57eade0ce7083573510d1abb1749a8e2e7c230416",
+      "torch": "2.10.0+cu126"
+    }
+  }
+}
