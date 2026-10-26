@@ -1,0 +1,16 @@
+{
+  "nvidia": {
+    "vendor": "nvidia",
+    "status": "passed",
+    "direct_executable": true,
+    "launcher_sha256": "8980fc44d4d07cac67c5df33ea000b6f8e8a064b6406ad4a893961c9fa855c77",
+    "exit": 0
+  },
+  "metax": {
+    "vendor": "metax",
+    "status": "passed",
+    "direct_executable": true,
+    "launcher_sha256": "8980fc44d4d07cac67c5df33ea000b6f8e8a064b6406ad4a893961c9fa855c77",
+    "exit": 0
+  }
+}

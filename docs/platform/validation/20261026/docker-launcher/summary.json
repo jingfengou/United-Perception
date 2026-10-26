@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-26",
+  "branch": "codex/up-docker-launcher",
+  "tested_code_commit": "7f53bee97fd6cb238e4189efc6480d069827415b",
+  "launcher_sha256": "8980fc44d4d07cac67c5df33ea000b6f8e8a064b6406ad4a893961c9fa855c77",
+  "production_changes": {
+    "up": false,
+    "up_platform": false,
+    "configs": false
+  },
+  "linux_contracts": {
+    "nvidia": {
+      "tests": 15,
+      "failures": 0,
+      "skipped": 0,
+      "host_launcher_tests": 11,
+      "existing_environment_launcher_tests": 4
+    },
+    "metax": {
+      "tests": 15,
+      "failures": 0,
+      "skipped": 0,
+      "host_launcher_tests": 11,
+      "existing_environment_launcher_tests": 4
+    }
+  },
+  "metax": {
+    "gpu": 2,
+    "pci": "0000:0e:00.0",
+    "image": "sha256:f1bb287ddc3a6e4db84245c3fa4989295bbff2a00f6626966cc0f421cd77c7c3",
+    "status": "passed_cli_workflow",
+    "model": "UP ResNet18",
+    "generated_images": 4,
+    "input_size": [
+      224,
+      224
+    ],
+    "batch_size": 2,
+    "epochs": 1,
+    "training_updates": 2,
+    "checks": [
+      "GPU matrix forward/backward and native extension load",
+      "actual UP train and in-training eval",
+      "eval alias and checkpoint restore",
+      "independent inference PNG",
+      "checkpoint bytes unchanged by eval/inference"
+    ],
+    "artifacts": {
+      "checkpoint": "work-02/outputs/checkpoints/ckpt_e1.pth",
+      "checkpoint_sha256": "d51ff3298a45fee95acb7e14aac309ef29f93ad25ce0b920a7d65bc7f078a25b",
+      "container_latest_link": "/work/outputs/checkpoints/ckpt_e1.pth",
+      "prediction_sha256": "b6eb39ceec5cae4d9d17478a82100d30049deef06ec302e7b5c1e1f0c40ee5f0",
+      "model_config_sha256": "fb575e9137839e3afdae4b63f20a048cc68e81ce68af451a8225c283dbfcefcb"
+    },
+    "numerical_parity_test": false,
+    "dataset_accuracy_test": false
+  },
+  "nvidia": {
+    "status": "software_contracts_passed_gpu_container_not_tested",
+    "reason": "Actual4090 host has no Docker. Existing directory environments were already removed as requested.",
+    "dependency_error_exit": 127,
+    "temporary_environments_recreated": false
+  },
+  "preserved_preparation_failures": [
+    {
+      "stage": "metax/gpu-job-01.json",
+      "reason": "Private fixture newline quoting; failed before any GPU execution"
+    },
+    {
+      "stage": "metax/gpu-job-02.json",
+      "reason": "Training passed. Host assertion treated a container-absolute latest checkpoint symlink as a host path. Stage03 resolved the concrete file and continued eval/inference without retraining."
+    }
+  ],
+  "limitations": [
+    "GPU CLI smoke uses generated inputs, not the full COCO example or convergence accuracy.",
+    "NVIDIA Docker GPU execution and multi-GPU Docker execution were not performed.",
+    "No old multi-seed or long training was resumed. Native numerical policy was unchanged."
+  ],
+  "raw_evidence": "raw-evidence-index.json",
+  "direct_entry": {
+    "nvidia": {
+      "vendor": "nvidia",
+      "status": "passed",
+      "direct_executable": true,
+      "launcher_sha256": "8980fc44d4d07cac67c5df33ea000b6f8e8a064b6406ad4a893961c9fa855c77",
+      "exit": 0
+    },
+    "metax": {
+      "vendor": "metax",
+      "status": "passed",
+      "direct_executable": true,
+      "launcher_sha256": "8980fc44d4d07cac67c5df33ea000b6f8e8a064b6406ad4a893961c9fa855c77",
+      "exit": 0
+    }
+  },
+  "documentation_checks": {
+    "documents": 27,
+    "local_links": 516,
+    "missing_links": 0,
+    "bash_example_blocks": 16,
+    "bash_syntax_failures": 0,
+    "readme_images": 3,
+    "boundary_violations": 0,
+    "existing_linklink_exceptions_unchanged": 11
+  }
+}

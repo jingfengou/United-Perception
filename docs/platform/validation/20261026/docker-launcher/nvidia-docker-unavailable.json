@@ -1,0 +1,7 @@
+{
+  "status": "expected_dependency_error",
+  "exit": 127,
+  "stderr": "up_docker: Docker is not installed or not on PATH\n",
+  "gpu_execution": false,
+  "scope": "Explicit error on actual4090 host without Docker; no environment reinstalled"
+}

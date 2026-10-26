@@ -1,0 +1,137 @@
+{
+  "status": "completed",
+  "records": [
+    {
+      "name": "prepare-fixture",
+      "command": [
+        "sudo",
+        "-n",
+        "docker",
+        "run",
+        "--rm",
+        "--entrypoint",
+        "/opt/up/envs/metax/bin/python",
+        "--mount",
+        "type=bind,src=/home/oujingfeng/up-docker-launcher-20261026/source-01,dst=/source,readonly",
+        "--mount",
+        "type=bind,src=/home/oujingfeng/up-docker-launcher-20261026/work-02,dst=/work",
+        "--mount",
+        "type=bind,src=/home/oujingfeng/up-docker-launcher-20261026/data-02,dst=/data",
+        "up-unified:local",
+        "-c",
+        "import json\nfrom pathlib import Path\nimport numpy as np\nfrom PIL import Image\nimport yaml\nconfig=yaml.safe_load(Path('/source/configs/cls/resnet/res18.yaml').read_text())\nrng=np.random.default_rng(131)\nimages=Path('/data/images')\nimages.mkdir()\nfor index in range(4):\n    Image.fromarray(rng.integers(0,256,(224,224,3),dtype=np.uint8)).save(images/(str(index)+'.png'))\nfor split in ('train','test'):\n    meta=Path('/data')/(split+'.txt')\n    meta.write_text(''.join(str(i)+'.png '+str(i)+chr(10) for i in range(4)))\n    dataset=config['dataset'][split]\n    dataset['dataset']['kwargs']['meta_file']='/data/'+split+'.txt'\n    dataset['dataset']['kwargs']['image_reader']['kwargs']['image_dir']='/data/images'\n    dataset['batch_sampler']['kwargs']['batch_size']=2\n    dataset['dataloader']['kwargs']['num_workers']=0\nconfig['trainer'].update(max_epoch=1,test_freq=1,save_freq=1,only_save_latest=False)\nconfig['saver'].update(auto_resume=False,save_dir='outputs/checkpoints',results_dir='outputs/eval')\nPath('/work/model.yaml').write_text(yaml.safe_dump(config,sort_keys=False))\nPath('/work/images').mkdir()\nImage.open(images/'0.png').save('/work/images/sample.png')\nprint(json.dumps({'source':'configs/cls/resnet/res18.yaml','fixed_seed':131,'images':4,'batch_size':2,'epochs':1,'expected_updates':2,'scope':'generated-input CLI smoke, not dataset accuracy'}))\n"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "gpu-probe",
+      "command": [
+        "sudo",
+        "-n",
+        "env",
+        "UP_WORK=/home/oujingfeng/up-docker-launcher-20261026/work-02",
+        "UP_DATA=/home/oujingfeng/up-docker-launcher-20261026/data-02",
+        "UP_GPU=2",
+        "DEFAULT_TASKS=cls:det",
+        "bash",
+        "/home/oujingfeng/up-docker-launcher-20261026/source-01/up_docker",
+        "metax",
+        "check"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "train",
+      "command": [
+        "sudo",
+        "-n",
+        "env",
+        "UP_WORK=/home/oujingfeng/up-docker-launcher-20261026/work-02",
+        "UP_DATA=/home/oujingfeng/up-docker-launcher-20261026/data-02",
+        "UP_GPU=2",
+        "DEFAULT_TASKS=cls:det",
+        "bash",
+        "/home/oujingfeng/up-docker-launcher-20261026/source-01/up_docker",
+        "metax",
+        "train",
+        "--config",
+        "model.yaml",
+        "--launch",
+        "pytorch",
+        "--ng",
+        "1",
+        "--display",
+        "1"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "eval",
+      "command": [
+        "sudo",
+        "-n",
+        "env",
+        "UP_WORK=/home/oujingfeng/up-docker-launcher-20261026/work-02",
+        "UP_DATA=/home/oujingfeng/up-docker-launcher-20261026/data-02",
+        "UP_GPU=2",
+        "DEFAULT_TASKS=cls:det",
+        "bash",
+        "/home/oujingfeng/up-docker-launcher-20261026/source-01/up_docker",
+        "metax",
+        "eval",
+        "--config",
+        "model.yaml",
+        "--launch",
+        "pytorch",
+        "--ng",
+        "1",
+        "--opts",
+        "saver.auto_resume",
+        "False",
+        "saver.resume_model",
+        "outputs/checkpoints/ckpt_latest.pth"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "inference",
+      "command": [
+        "sudo",
+        "-n",
+        "env",
+        "UP_WORK=/home/oujingfeng/up-docker-launcher-20261026/work-02",
+        "UP_DATA=/home/oujingfeng/up-docker-launcher-20261026/data-02",
+        "UP_GPU=2",
+        "DEFAULT_TASKS=cls:det",
+        "bash",
+        "/home/oujingfeng/up-docker-launcher-20261026/source-01/up_docker",
+        "metax",
+        "inference",
+        "--config",
+        "model.yaml",
+        "--launch",
+        "pytorch",
+        "--ng",
+        "1",
+        "--img_path",
+        "images",
+        "--ckpt",
+        "outputs/checkpoints/ckpt_latest.pth",
+        "--vis_dir",
+        "outputs/predictions"
+      ],
+      "exit": 0
+    }
+  ],
+  "image": "sha256:f1bb287ddc3a6e4db84245c3fa4989295bbff2a00f6626966cc0f421cd77c7c3",
+  "artifacts": {
+    "checkpoint": "work-02/outputs/checkpoints/ckpt_e1.pth",
+    "checkpoint_sha256": "d51ff3298a45fee95acb7e14aac309ef29f93ad25ce0b920a7d65bc7f078a25b",
+    "container_latest_link": "/work/outputs/checkpoints/ckpt_e1.pth",
+    "prediction_sha256": "b6eb39ceec5cae4d9d17478a82100d30049deef06ec302e7b5c1e1f0c40ee5f0",
+    "model_config_sha256": "fb575e9137839e3afdae4b63f20a048cc68e81ce68af451a8225c283dbfcefcb"
+  },
+  "training_stage": "gpu-job-02.json",
+  "completed_at_unix": 1792998160.7108583,
+  "scope": "ResNet18 generated-input CLI: 2 training updates, train-eval, separate eval, independent inference; no numerical/accuracy claim"
+}

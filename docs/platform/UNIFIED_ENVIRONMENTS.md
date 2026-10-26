@@ -2,6 +2,8 @@
 
 一个 Linux/amd64 镜像保存两套独立 Python 包、SDK 路径、UP wheel 和缓存。`up-run` 选择厂商后，在新进程中执行 UP；模型算法和配置格式保持原样。
 
+第一次使用请按 [完整示例](QUICKSTART_UNIFIED.md) 操作：仓库脚本 `./up_docker <厂商> train|eval|inference ...` 封装宿主机 Docker 启动参数，无需复制 Bash 函数。本文保留镜像内部布局与环境验证记录。
+
 ## 布局
 
 ```text

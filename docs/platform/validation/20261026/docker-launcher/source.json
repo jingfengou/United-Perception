@@ -1,0 +1,29 @@
+{
+  "archive_sha256": "c1e5f3f46026abb985f048f9225c632eb3b97f172df0ed0265185ddb83d52a73",
+  "files": {
+    "up_docker": {
+      "sha256": "8980fc44d4d07cac67c5df33ea000b6f8e8a064b6406ad4a893961c9fa855c77",
+      "bytes": 3067
+    },
+    "tests/platform/test_docker_launcher.py": {
+      "sha256": "0163e7939b30ab30b281f77bd9a1efae7400dc566212564b59f60d72ffbc4078",
+      "bytes": 6924
+    },
+    "tests/platform/test_vendor_launcher.py": {
+      "sha256": "817728be23df928f067e29a056b8cbe4e0e88fcddbe16524913df879560243c6",
+      "bytes": 5413
+    },
+    "docker/unified/launch.py": {
+      "sha256": "69dbe5c2a21108604636290937b552ab68e14b76d4823e4c886b7aceeda4d5c3",
+      "bytes": 4332
+    },
+    "docker/unified/profiles.json": {
+      "sha256": "9c3c19598936616284e688f58e89530f32f61a9ac505c0107674a63338988bc7",
+      "bytes": 831
+    },
+    "configs/cls/resnet/res18.yaml": {
+      "sha256": "1336e9293f242e4e772dd750264dfd34fe437ea60ff748a58bd5e2f5e0960e6d",
+      "bytes": 3748
+    }
+  }
+}

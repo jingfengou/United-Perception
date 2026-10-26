@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "records": [
+    {
+      "name": "syntax",
+      "command": [
+        "bash",
+        "-n",
+        "up_docker"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "contracts",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/platform",
+        "-p",
+        "test_*launcher.py",
+        "-v"
+      ],
+      "exit": 0
+    }
+  ],
+  "completed_at_unix": 1792997430.4372952
+}

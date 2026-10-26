@@ -5,7 +5,7 @@
 在原版 [United-Perception](https://github.com/ModelTC/United-Perception) 上重建的显式多厂商平台层。
 模型、数据和训练配方留在 `up/`，设备、算子和厂商差异集中在 `up_platform/`。
 
-**当前分支：`codex/unified-vendor-image`，基于 `codex/up-platform-clean` 增加通用镜像和环境启动器。平台层仍处于阶段性验收。**
+**当前分支：`codex/up-docker-launcher`，在通用镜像基础上提供仓库启动脚本和完整使用示例。平台层仍处于阶段性验收。**
 NVIDIA 与沐曦已有真机记录；失败、缺口和复现步骤见 [验证报告](docs/platform/VALIDATION.md)。
 本仓库是 UP 的正式 fork，`main` 保留原版 UP；平台改造位于本分支。
 [旧实验仓库](https://github.com/jingfengou/United-Perception-Hardware) 的 `main`、Release 和历史证据保持原样。
@@ -57,8 +57,10 @@ PyTorch 已提供统一 API 和设备派发机制，平台层集中处理设备�
 
 ## 安装与环境切换
 
-**一个镜像，内含 NVIDIA 和沐曦两套隔离环境，用 `up-run nvidia ...` 或 `up-run metax ...` 选择。**
+**一个镜像，内含 NVIDIA 和沐曦两套隔离环境，在宿主机用 `./up_docker nvidia ...` 或 `./up_docker metax ...` 选择。**
 启动器同时选择 Python、SDK 路径、专用扩展和 UP 后端；切换会启动新进程，不需要反复安装 PyTorch。
+
+[从构建镜像到训练、验证、推理的完整示例](docs/platform/QUICKSTART_UNIFIED.md) · [启动脚本](up_docker)
 
 两套环境分别保存 PyTorch、TorchVision、编译产物和缓存，模型、配置、数据和权重可以共用。版本与构建细节见 [通用镜像说明](docs/platform/UNIFIED_ENVIRONMENTS.md)。
 
@@ -73,7 +75,7 @@ PyTorch 已提供统一 API 和设备派发机制，平台层集中处理设备�
 基础镜像来自厂商，需要有拉取权限；镜像不包含宿主机内核驱动。
 
 ```bash
-git clone --branch codex/unified-vendor-image https://github.com/jingfengou/United-Perception.git
+git clone --branch codex/up-docker-launcher https://github.com/jingfengou/United-Perception.git
 cd United-Perception
 docker build -f docker/unified/Dockerfile -t up-unified:local .
 ```
@@ -83,26 +85,35 @@ docker build -f docker/unified/Dockerfile -t up-unified:local .
 
 ### 使用时切换
 
-先检查当前服务器的设备、PyTorch、动态库和专用扩展：
+在仓库根目录执行；先按 [完整示例](docs/platform/QUICKSTART_UNIFIED.md) 准备配置和目录：
 
 ```bash
-# NVIDIA 服务器，示例选择第 0 张卡
-docker run --rm --gpus device=0 up-unified:local nvidia check
+export UP_WORK="$HOME/up-demo"
+export UP_DATA="/datasets/coco2017"
+export UP_GPU=0
 
-# 沐曦服务器，示例选择第 0 张卡
-docker run --rm --device=/dev/dri --device=/dev/mxcd --group-add video \
-  -e CUDA_VISIBLE_DEVICES=0 up-unified:local metax check
+# 在对应厂商服务器检查环境
+./up_docker nvidia check
+./up_docker metax check
 ```
 
-准备好自己的 `model.yaml`、数据和权重后，一条命令启动 UP，例如：
+一条命令启动训练、训练路径验证或独立推理，例如在沐曦服务器上：
 
 ```bash
-docker run --rm --gpus device=0 --shm-size=8g -e DEFAULT_TASKS=cls:det -v "$PWD":/work -w /work \
-  up-unified:local nvidia train --config model.yaml --launch pytorch --ng 1
+./up_docker metax train --config model.yaml --launch pytorch --ng 1 \
+  --opts saver.save_dir outputs/metax/checkpoints saver.results_dir outputs/metax/eval
+
+./up_docker metax eval --config model.yaml --launch pytorch --ng 1 \
+  --opts saver.auto_resume False saver.resume_model outputs/metax/checkpoints/ckpt_latest.pth \
+  saver.save_dir outputs/metax/checkpoints saver.results_dir outputs/metax/eval
+
+./up_docker metax inference --config model.yaml --img_path images/ \
+  --ckpt outputs/metax/checkpoints/ckpt_latest.pth --vis_dir outputs/metax/predictions \
+  --launch pytorch --ng 1
 ```
 
-在沐曦服务器上，将设备参数换成上面的沐曦参数，厂商选 `metax`。训练内验证使用 `train --evaluate`；独立推理使用 `inference`，其余 UP 参数见下节。
-这里用 `DEFAULT_TASKS=cls:det` 加载分类和二维检测模块。点云等任务需选择对应模块，并按 [环境说明](docs/platform/ENVIRONMENT.md) 补齐该任务依赖；启动器不替用户猜测模型类型。
+在 NVIDIA 服务器上将 `metax` 换成 `nvidia`，同时为其指定独立输出目录。`eval` 转发原有 `train --evaluate`，完整参数直接传给 UP。
+脚本默认 `DEFAULT_TASKS=cls:det`，加载分类和二维检测模块。点云等任务需显式选择对应模块，并按 [环境说明](docs/platform/ENVIRONMENT.md) 补齐该任务依赖。
 启动器自动补上 `runtime.platform.backend`，与用户指定的后端冲突时会报错。两家卡在不同服务器时，在各自服务器加载同一镜像；启动器不负责跨服务器调度。
 
 已有厂商容器或 Conda/venv 也可继续使用下节的原生 UP 命令。临时目录环境可使用同一启动器，安装布局和验证范围见 [通用镜像说明](docs/platform/UNIFIED_ENVIRONMENTS.md)。

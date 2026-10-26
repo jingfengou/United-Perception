@@ -1,0 +1,118 @@
+{
+  "nvidia": {
+    "vendor": "nvidia",
+    "archive": "/data2/oujingfeng/up-docker-launcher-20261026/evidence-01.zip",
+    "sha256": "17597214bac9ca50e8a9993790261ba3a8a7987357fa89f32a856c915c49ae2b",
+    "bytes": 2151,
+    "files": {
+      "cpu-job-01.json": {
+        "sha256": "faedbf29f5dbdf5de1b7f39759a4676d9882ac387d442400b256707cad6ca9bb",
+        "bytes": 302
+      },
+      "cpu-launch-01.json": {
+        "sha256": "85e41cc3d446a6b7084bcae633106e435c5c0fdad2ee108e0063aa6a47630c3f",
+        "bytes": 191
+      },
+      "contracts-01.log": {
+        "sha256": "2390a7966898231283f39780fcbe13d0b7bdcecda81e9bf095305a2deaadc5e0",
+        "bytes": 2191
+      },
+      "syntax-01.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "source-01.json": {
+        "sha256": "6ef3d63f1db98c90af4aec3e2c62eb6de759d05589a9605f59a48fda4964fde6",
+        "bytes": 1028
+      },
+      "no-docker-01.json": {
+        "sha256": "0654ce46dbeb07eed3c7e017b4cffc6aa73ef3cd88fdfa8d7b65de72a56d149b",
+        "bytes": 230
+      }
+    }
+  },
+  "metax": {
+    "vendor": "metax",
+    "archive": "/home/oujingfeng/up-docker-launcher-20261026/evidence-01.zip",
+    "sha256": "85876c7e785ff8407910bffc47fdb11ae0fb89720ccc4e7ad6f594ecbc13cc71",
+    "bytes": 21468,
+    "files": {
+      "cpu-job-01.json": {
+        "sha256": "062db0028d0e035f09af6c0fe703f8a78aea4a829cc804398b1bf1e96f78789f",
+        "bytes": 302
+      },
+      "cpu-launch-01.json": {
+        "sha256": "bfd57b79f0fc91d98b2a4b2757102bc1cf134930de9e4508d45529becceb91a5",
+        "bytes": 189
+      },
+      "contracts-01.log": {
+        "sha256": "d555df90ab2d6aaed59eef028486efcc05f1e346833656266b79fcb1f5d1a241",
+        "bytes": 1520
+      },
+      "syntax-01.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "source-01.json": {
+        "sha256": "6ef3d63f1db98c90af4aec3e2c62eb6de759d05589a9605f59a48fda4964fde6",
+        "bytes": 1028
+      },
+      "gpu-job-01.json": {
+        "sha256": "d3420376bc05303fafd2328a7c10491e86c0bc9ea367b69bbaaad95ee8c8c1ab",
+        "bytes": 1942
+      },
+      "gpu-job-02.json": {
+        "sha256": "b4c05d69779652d6a0c4232e92cd96f3307165d7e6a54845e881742c70b0d973",
+        "bytes": 2634
+      },
+      "gpu-job-03.json": {
+        "sha256": "efd9a8f55f462710d57450808154f5112636854605a116bef56e6810d06d4e6f",
+        "bytes": 4303
+      },
+      "gpu-probe-02.log": {
+        "sha256": "fd26915033b05f1db7769c5ad01c294430daa0ef2747b4dc03c485767956de9c",
+        "bytes": 3146
+      },
+      "train-02.log": {
+        "sha256": "ea49e7b03207985eb8869021595e717e01f607fd96b71fe3023903b93683df08",
+        "bytes": 27895
+      },
+      "eval-03.log": {
+        "sha256": "2accbcf57d1fc65f66b12612267fd076824bddc0c06e15a06ccfb5de2b991dc9",
+        "bytes": 21694
+      },
+      "inference-03.log": {
+        "sha256": "fd67fdd2981b77186246c2d690a0fbfbc55fc10904306448731e310ce3ba25a0",
+        "bytes": 932
+      },
+      "gpu-controller-01.log": {
+        "sha256": "daa7d8e33baa9f160e27bc24082dd3992e9210c17d86e7a570e305c28c4bce22",
+        "bytes": 457
+      },
+      "gpu-controller-02.log": {
+        "sha256": "40591245b7f83191cc549be31b031533746a3636433eb1d9aec5cd7d07575e33",
+        "bytes": 172
+      },
+      "gpu-controller-03.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "prepare-fixture-02.log": {
+        "sha256": "03ad3c97ebae5068efb2b7538ab36877ca6699cb514e71e8c7c6d938e6a762ff",
+        "bytes": 189
+      },
+      "work-02/model.yaml": {
+        "sha256": "fb575e9137839e3afdae4b63f20a048cc68e81ce68af451a8225c283dbfcefcb",
+        "bytes": 2893
+      },
+      "allocation-02.json": {
+        "sha256": "80ad66757ce0e5fc9c2b11b85d9e3837adef421d971c187a94eea28005964eca",
+        "bytes": 3665
+      },
+      "allocation-03.json": {
+        "sha256": "41219bda92bf7f1709f7448ae77aa5c2c29f7e4e08531b880e8dbeaeee0fef1f",
+        "bytes": 3541
+      }
+    }
+  }
+}

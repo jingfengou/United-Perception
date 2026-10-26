@@ -1,0 +1,20 @@
+test_dataset_mount_is_optional (test_docker_launcher.DockerLauncherTests) ... ok
+test_docker_failure_is_propagated (test_docker_launcher.DockerLauncherTests) ... ok
+test_eval_keeps_training_route_and_opts_last (test_docker_launcher.DockerLauncherTests) ... ok
+test_help_needs_no_docker_or_environment (test_docker_launcher.DockerLauncherTests) ... ok
+test_inference_preserves_checkpoint_and_output (test_docker_launcher.DockerLauncherTests) ... ok
+test_invalid_selection_does_not_start_docker (test_docker_launcher.DockerLauncherTests) ... ok
+test_metax_visibility_and_explicit_task_selection (test_docker_launcher.DockerLauncherTests) ... ok
+test_missing_dataset_does_not_create_or_start_anything (test_docker_launcher.DockerLauncherTests) ... ok
+test_multi_gpu_csv_is_one_docker_argument (test_docker_launcher.DockerLauncherTests) ... ok
+test_numerical_controls_are_opt_in_and_vendor_scoped (test_docker_launcher.DockerLauncherTests) ... ok
+test_nvidia_mounts_and_arguments_are_not_shell_interpreted (test_docker_launcher.DockerLauncherTests) ... ok
+test_add_opts_and_reject_ambiguous_syntax (test_vendor_launcher.VendorLauncherTests) ... ok
+test_dispatch_in_a_fresh_vendor_process (test_vendor_launcher.VendorLauncherTests) ... ok
+test_preserve_opts_and_reject_vendor_conflict (test_vendor_launcher.VendorLauncherTests) ... ok
+test_sdk_and_python_pollution_is_removed (test_vendor_launcher.VendorLauncherTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.381s
+
+OK

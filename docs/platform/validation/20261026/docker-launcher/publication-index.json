@@ -1,0 +1,46 @@
+{
+  "direct-entry.json": {
+    "sha256": "d22df3aec3e0f31746dd9565296798e7b9ae11d8594d15b7737a22f20ffca477",
+    "bytes": 407
+  },
+  "metax-cli.json": {
+    "sha256": "dff514520b5b638dd1acb5811e31bc10939929ac85945a8dfd0cc3def278ed8f",
+    "bytes": 5256
+  },
+  "metax-contracts.txt": {
+    "sha256": "d555df90ab2d6aaed59eef028486efcc05f1e346833656266b79fcb1f5d1a241",
+    "bytes": 1520
+  },
+  "metax-cpu.json": {
+    "sha256": "f32db37a41baa2a9ec41cef192844211aebc54330b6987a4c7340899565e96c5",
+    "bytes": 483
+  },
+  "metax-gpu-probe.json": {
+    "sha256": "5acb5d77211d5900c7e8a1abbd5f51e50f5de4ac7fd8e5ec1b67da26533c94d6",
+    "bytes": 2752
+  },
+  "nvidia-contracts.txt": {
+    "sha256": "2390a7966898231283f39780fcbe13d0b7bdcecda81e9bf095305a2deaadc5e0",
+    "bytes": 2191
+  },
+  "nvidia-cpu.json": {
+    "sha256": "53bc5a5da2d1bf4cd10ca304ba5e033a53126aa140d79878d0c9b8ec2f2cd190",
+    "bytes": 483
+  },
+  "nvidia-docker-unavailable.json": {
+    "sha256": "f43d62c78b85b029b1c2fca62d0d61c3ded43eef2872031fc908ac4a5e19f4e2",
+    "bytes": 243
+  },
+  "raw-evidence-index.json": {
+    "sha256": "57a75a64deb9c3fe025b6619974285371f48145a0eed3e559d06a84182804858",
+    "bytes": 4106
+  },
+  "source.json": {
+    "sha256": "490606104db41735d8360cd8881a79aab3a3252069be2bf74e7980f182a4ab66",
+    "bytes": 999
+  },
+  "summary.json": {
+    "sha256": "27c1fd56c3b3ea3d5f276d806ca2a2578e11ce6471470f52044e714be2b00876",
+    "bytes": 3588
+  }
+}
