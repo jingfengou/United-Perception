@@ -2,7 +2,7 @@
 import os
 import re
 from pathlib import Path
-from setuptools import find_packages, setup
+from setuptools import find_namespace_packages, setup
 
 version = re.search(r'__version__ = "(\D*)(.*?)"', Path("up/__init__.py").read_text()).group(2)
 extensions, commands = [], {}
@@ -16,6 +16,8 @@ native_sources = sorted(p.relative_to(native_root).as_posix() for p in (native_r
                         if p.suffix in (".h", ".cpp", ".cu"))
 
 setup(name="UP", version=version, author="Model ToolChain", description="United Perception",
-      python_requires=">=3.10", packages=find_packages(), ext_modules=extensions,
+      python_requires=">=3.10", packages=find_namespace_packages(
+          include=("up", "up.*", "up_platform", "up_platform.*"),
+          exclude=("up_platform.ops._native.csrc", "up_platform.ops._native.csrc.*")), ext_modules=extensions,
       cmdclass=commands, include_package_data=False,
       package_data={"up_platform.ops._native": native_sources})
