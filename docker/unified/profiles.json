@@ -1,0 +1,14 @@
+{
+  "nvidia": {
+    "python": "{root}/envs/nvidia/bin/python",
+    "bin": ["{root}/envs/nvidia/bin", "{root}/sdk/cuda/bin"],
+    "libraries": ["{root}/envs/nvidia/lib", "{root}/host-driver/nvidia", "/usr/local/nvidia/lib64", "/usr/local/nvidia/lib"],
+    "variables": {"CUDA_HOME": "{root}/sdk/cuda"}
+  },
+  "metax": {
+    "python": "{root}/envs/metax/bin/python",
+    "bin": ["{root}/envs/metax/bin", "{root}/sdk/maca/bin", "{root}/sdk/maca/mxgpu_llvm/bin", "{root}/sdk/maca/ompi/bin", "{root}/sdk/maca/ucx/bin", "{root}/sdk/mxdriver/bin"],
+    "libraries": ["{root}/envs/metax/lib", "{root}/sdk/maca/lib", "{root}/sdk/maca/mxshmem/lib", "{root}/sdk/maca/ompi/lib", "{root}/sdk/maca/ucx/lib", "{root}/sdk/mxdriver/lib"],
+    "variables": {"MACA_PATH": "{root}/sdk/maca", "MACA_CLANG_PATH": "{root}/sdk/maca/mxgpu_llvm/bin"}
+  }
+}

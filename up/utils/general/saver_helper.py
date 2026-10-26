@@ -1,3 +1,4 @@
+from up_platform import get_platform
 # Standard Library
 import json
 import os
@@ -54,21 +55,21 @@ class Saver(object):
     def get_model_from_ckpt(ckpt_path):
         return Saver.load_checkpoint(ckpt_path)['model']
 
-    def load_pretrain_or_resume(self):
+    def load_pretrain_or_resume(self, map_location=None):
         if self.auto_resume:
             last_checkpoint_path = self.find_last_checkpoint()
             if last_checkpoint_path is not None:
                 logger.warning('Load checkpoint from {}'.format(last_checkpoint_path))
-                return self.load_checkpoint(last_checkpoint_path)
+                return self.load_checkpoint(last_checkpoint_path, map_location=map_location)
             else:
                 logger.warning('Not found any valid checkpoint yet')
 
         if 'resume_model' in self.save_cfg:
             logger.warning('Load checkpoint from {}'.format(self.save_cfg['resume_model']))
-            state = self.load_checkpoint(self.save_cfg['resume_model'], convert=True)
+            state = self.load_checkpoint(self.save_cfg['resume_model'], convert=True, map_location=map_location)
             return state
         elif 'pretrain_model' in self.save_cfg:
-            state = self.load_checkpoint(self.save_cfg['pretrain_model'], convert=True)
+            state = self.load_checkpoint(self.save_cfg['pretrain_model'], convert=True, map_location=map_location)
             logger.warning('Load checkpoint from {}'.format(self.save_cfg['pretrain_model']))
             output = {}
             if 'ema' in state:
@@ -87,11 +88,13 @@ class Saver(object):
             return {'model': {}}
 
     @staticmethod
-    def load_checkpoint(ckpt_path, convert=False):
+    def load_checkpoint(ckpt_path, convert=False, map_location=None):
         # assert os.path.exists(ckpt_path), f'No such file: {ckpt_path}'
-        device = torch.cuda.current_device()
+        device = get_platform().device.current_device()
         # ckpt_dict = torch.load(ckpt_path, map_location=lambda storage, loc: storage.cuda(device))
-        ckpt_dict = PetrelHelper.load(ckpt_path, map_location=lambda storage, loc: storage.cuda(device))
+        if map_location is None:
+            map_location = lambda storage, loc: get_platform().device.move(storage, device)
+        ckpt_dict = PetrelHelper.load(ckpt_path, map_location=map_location)
         return Saver.process_checkpoint(ckpt_dict, convert)
 
     @staticmethod

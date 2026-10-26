@@ -1,3 +1,5 @@
+from up_platform import get_platform
+from up.utils.env.platform import training_validation
 import torch.optim
 import time
 import os
@@ -5,7 +7,6 @@ import copy
 import shutil
 import json
 from collections import defaultdict
-from torch.nn.parallel import DistributedDataParallel as DDP
 from up.utils.general.log_helper import default_logger as logger
 from up.utils.general.hook_helper import build_hooks
 from up.utils.env.gene_env import set_random_seed, to_device
@@ -50,8 +51,20 @@ class BaseRunner(object):
         config = copy.deepcopy(config)
         self.config = self.upgrade_config(config)
         self.set_default_cfg()
+        from up.utils.env.platform import configure_from_up
+        try:
+            purpose = get_platform().purpose
+        except RuntimeError:
+            purpose = 'training'
+        configure_from_up(self.config, purpose=purpose)
+        from up.utils.env.platform import fsdp_options
+        self.fsdp_options = fsdp_options(self.config, backend=DIST_BACKEND.backend, purpose=purpose,
+                                         runner_type=self.config['runtime'].get('runner', {}).get('type', 'base'))
+        self.use_fsdp = self.fsdp_options is not None
+        if self.use_fsdp and not env.distributed:
+            raise ValueError('FSDP2 requires a distributed launch with at least two ranks')
         self.iter_base = self.config['runtime']['iter_base']
-        self.device = self.config['runtime']['device']
+        self.device = str(get_platform().device.device())
         self.aligned = self.config['runtime']['aligned']
         self.fp16 = False
         node_info, node_list = get_memory_info(get_total=True)
@@ -65,7 +78,10 @@ class BaseRunner(object):
     def prepare_fp16(self):
         if self.config['runtime'].get('fp16', False):
             if self.backend == 'dist':
-                self.scaler = torch.cuda.amp.GradScaler(enabled=True)
+                if get_platform().purpose == 'training':
+                    scaler = (get_platform().execution.sharded_grad_scaler if self.use_fsdp
+                              else get_platform().execution.grad_scaler)
+                    self.scaler = scaler(enabled=True)
             else:
                 register_float_module(self.config['runtime']['fp16'].get('keep_batchnorm_fp32', True))
                 loss_scale = self.config['runtime']['fp16'].get('scale_factor', 'dynamic')
@@ -83,7 +99,8 @@ class BaseRunner(object):
         self.config['runtime']['random_seed'] = self.config['runtime'].setdefault('random_seed', 131)
         self.config['runtime']['aligned'] = self.config['runtime'].setdefault('aligned', False)
         self.config['runtime']['iter_base'] = self.config['runtime'].setdefault('iter_base', False)
-        self.config['runtime']['device'] = self.config['runtime'].setdefault('device', 'cuda')
+        if 'platform' not in self.config['runtime']:
+            self.config['runtime'].setdefault('device', 'cuda')
         self.config['runtime']['async_norm'] = self.config['runtime'].setdefault('async_norm', False)
         self.config['runtime']['special_bn_init'] = self.config['runtime'].setdefault('special_bn_init', False)
         model_helper_cfg = self.config['runtime'].get('model_helper', {})
@@ -98,10 +115,14 @@ class BaseRunner(object):
         self.build_dataloaders()
         self.prepare_fp16()
         self.build_model()
+        if self.use_fsdp:
+            self.prepare_fsdp_model()
         self.build_trainer()
-        self.build_saver()
+        if not self.use_fsdp:
+            self.build_saver()
         self.build_hooks()
-        self.build_ema()
+        if not self.use_fsdp:
+            self.build_ema()
         self.resume_model()
         self.prepare_dist_model()
         get_env_info()
@@ -225,12 +246,15 @@ class BaseRunner(object):
         rank_init = self.config['runtime']['rank_init']
         random_seed = self.config['runtime']['random_seed']
         set_random_seed(random_seed, rank_init)
-        torch.backends.cudnn.enabled = not self.args.get('nocudnn', False)
+        get_platform().device.convolution_flags(enabled=not self.args.get('nocudnn', False))
         logger.info(f'world size:{env.world_size}')
 
     def resume_model(self):
-        ckpt = self.saver.load_pretrain_or_resume()
-        self.model.load(ckpt['model'])
+        if self.use_fsdp:
+            ckpt = self._fsdp_checkpoint
+        else:
+            ckpt = self.saver.load_pretrain_or_resume()
+            self.model.load(ckpt['model'])
         if self.training:
             if self.fp16:
                 if self.backend == 'dist':
@@ -239,13 +263,39 @@ class BaseRunner(object):
                     self.optimizer.reload()
             if 'optimizer' in ckpt:
                 start_epoch = ckpt['epoch']
-                self.optimizer.load_state_dict(ckpt['optimizer'])
+                if self.use_fsdp or ckpt.get('parallel_strategy') == 'fsdp2':
+                    get_platform().execution.load_full_state_dict(
+                        self.model, {'optimizer': ckpt['optimizer']}, self.optimizer)
+                else:
+                    self.optimizer.load_state_dict(ckpt['optimizer'])
                 self.lr_scheduler.load_state_dict(ckpt['lr_scheduler'])
+                if ckpt.get('fsdp_scheduler_step_pending', False):
+                    self.lr_scheduler.step()
                 logger.info(f'resume from epoch:{start_epoch} iteration:{self.cur_iter}')
-        if 'ema' in ckpt and self.ema is not None:
+        if 'ema' in ckpt and self.ema is not None and not self.use_fsdp:
             if ckpt['ema']:
                 logger.info("load ckpt ema to model ema")
                 self.ema.load_state_dict(ckpt['ema'])
+        if self.use_fsdp:
+            if self.training and 'fsdp_rank_states' in ckpt:
+                from up.utils.env.platform import restore_fsdp_rank_state
+                restore_fsdp_rank_state(self.model, ckpt['fsdp_rank_states'], getattr(self, 'scaler', None))
+                if self.ema is not None and 'fsdp_ema_rank_states' in ckpt:
+                    restore_fsdp_rank_state(self.ema.model, ckpt['fsdp_ema_rank_states'])
+            del self._fsdp_checkpoint
+
+    def prepare_fsdp_model(self):
+        """Load full weights before sharding; construct the optimizer afterwards."""
+        self.build_saver()
+        self.build_ema()
+        ckpt = self.saver.load_pretrain_or_resume(map_location='cpu')
+        self.model.load(ckpt['model'])
+        if self.ema is not None and ckpt.get('ema'):
+            self.ema.load_state_dict(ckpt['ema'])
+        self.model = get_platform().execution.wrap_fsdp(self.model, **self.fsdp_options)
+        if self.ema is not None:
+            get_platform().execution.wrap_fsdp(self.ema.model, **self.fsdp_options)
+        self._fsdp_checkpoint = ckpt
 
     def build_saver(self):
         cfg_saver = self.config['saver']
@@ -332,10 +382,10 @@ class BaseRunner(object):
         logger.info(f"is_eval: {self.is_eval}")
 
     def prepare_dist_model(self):
-        if env.distributed:
+        if env.distributed and get_platform().purpose == 'training' and not self.use_fsdp:
             if self.backend == 'dist':
                 logger.info('using ddp')
-                self.model = DDP(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
+                self.model = get_platform().execution.wrap_ddp(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
             else:
                 self.model = DistModule(self.model, not self.args.get('asynchronize', False))
 
@@ -363,12 +413,14 @@ class BaseRunner(object):
 
     def train(self):
         self._hooks('before_train')
-        self.model.cuda().train()
+        get_platform().device.move(self.model).train()
         for iter_idx in range(self.start_iter, self.max_iter):
             batch = self.get_batch('train')
             loss = self.forward_train(batch)
             self.backward(loss)
             self.update()
+            if self.use_fsdp:
+                self._fsdp_scheduler_step_pending = True
             if self.ema is not None:
                 self.ema.step(self.model, curr_step=iter_idx)
             if self.is_test(iter_idx):
@@ -388,11 +440,13 @@ class BaseRunner(object):
                 if self.is_save(iter_idx):
                     self.save()
             self.lr_scheduler.step()
+            if self.use_fsdp:
+                self._fsdp_scheduler_step_pending = False
         self._hooks('after_train')
 
     @torch.no_grad()
     def _inference(self):
-        self.model.cuda().eval()
+        get_platform().device.move(self.model).eval()
         test_loader = self.data_loaders['test']
         all_results_list = []
         test_resume = ((hasattr(test_loader.dataset, 'test_resume')) and (test_loader.dataset.test_resume is True))
@@ -490,7 +544,11 @@ class BaseRunner(object):
         return res_file, all_device_results_list
 
     @torch.no_grad()
+    @training_validation
     def evaluate(self):
+        return self._evaluate()
+
+    def _evaluate(self):
         res_file, all_device_results_list = self.inference()
         if env.is_master():
             logger.info("begin evaluate")
@@ -502,9 +560,16 @@ class BaseRunner(object):
         else:
             metrics = Metric({})
         barrier()
+        if self.use_fsdp:
+            # Best-checkpoint hooks must enter FSDP collectives on every rank.
+            values = [metrics]
+            get_platform().category('communication').broadcast_object_list(values, src=0)
+            metrics = values[0]
         try:
             self._hooks('after_eval', metrics)
         except BaseException:
+            if self.use_fsdp:
+                raise
             logger.warning('metrics type is incompatible for hook')
         self.set_cur_eval_iter()
         return metrics
@@ -524,8 +589,8 @@ class BaseRunner(object):
         model_dtype = torch.float32
         if self.fp16 and self.backend == 'linklink':
             model_dtype = self.model.dtype
-        if batch['image'].device != torch.device('cuda') or batch['image'].dtype != model_dtype:
-            batch = to_device(batch, device=torch.device('cuda'), dtype=model_dtype)
+        if batch['image'].device != get_platform().device.device() or batch['image'].dtype != model_dtype:
+            batch = to_device(batch, device=get_platform().device.device(), dtype=model_dtype)
         return batch
 
     def get_batch(self, batch_type='train'):
@@ -636,8 +701,8 @@ class BaseRunner(object):
         model_helper_kwargs = self.config['runtime']['model_helper']['kwargs']
         model_helper_ins = MODEL_HELPER_REGISTRY[model_helper_type]
         self.model = model_helper_ins(self.config['net'], **model_helper_kwargs)
-        if self.device == 'cuda':
-            self.model = self.model.cuda()
+        if get_platform().device.device_type != 'cpu':
+            self.model = get_platform().device.move(self.model)
         if self.config['runtime']['special_bn_init']:
             self.special_bn_init()
         if self.fp16 and self.backend == 'linklink':
@@ -663,8 +728,8 @@ class BaseRunner(object):
             model_helper_kwargs = self.config['runtime']['model_helper']['kwargs']
             model_helper_ins = MODEL_HELPER_REGISTRY[model_helper_type]
             model = model_helper_ins(net_cfg, **model_helper_kwargs)
-            if self.device == 'cuda':
-                model = model.cuda()
+            if get_platform().device.device_type != 'cpu':
+                model = get_platform().device.move(model)
             if self.fp16 and self.backend == 'linklink':
                 model = model.half()
             if self.config['runtime']['special_bn_init']:
@@ -705,11 +770,15 @@ class BaseRunner(object):
         return {'scaler': self.scaler.state_dict()}
 
     def get_dump_dict(self):
-        model_dict = self.model.state_dict()
+        if self.use_fsdp:
+            state = get_platform().execution.full_state_dict(self.model, self.optimizer)
+            model_dict, optimizer_dict = state['model'], state['optimizer']
+        else:
+            model_dict, optimizer_dict = self.model.state_dict(), self.optimizer.state_dict()
         dump_dict = {
             'epoch': self.cur_epoch(),
             'iter': self.cur_iter,
-            'optimizer': self.optimizer.state_dict(),
+            'optimizer': optimizer_dict,
             'model': model_dict,
             'lr_scheduler': self.lr_scheduler.state_dict()
         }
@@ -717,6 +786,17 @@ class BaseRunner(object):
             dump_dict.update(self.get_fp16_dump_dict())
         if self.ema is not None:
             dump_dict['ema'] = self.ema.state_dict()
+            if self.use_fsdp:
+                dump_dict['ema']['ema_state_dict'] = get_platform().execution.full_state_dict(self.ema.model)['model']
+        if self.use_fsdp:
+            from up.utils.env.platform import fsdp_rank_state
+            dump_dict['parallel_strategy'] = 'fsdp2'
+            # UP saves after an update but before advancing its LR scheduler.
+            # Persist this boundary so continuation does not repeat that batch.
+            dump_dict['fsdp_scheduler_step_pending'] = getattr(self, '_fsdp_scheduler_step_pending', False)
+            dump_dict['fsdp_rank_states'] = fsdp_rank_state(self.model, getattr(self, 'scaler', None))
+            if self.ema is not None:
+                dump_dict['fsdp_ema_rank_states'] = fsdp_rank_state(self.ema.model)
         return dump_dict
 
     def forward_model(self, batch):
@@ -726,7 +806,7 @@ class BaseRunner(object):
 
     def forward(self, batch, return_output=False):
         if self.backend == 'dist' and self.fp16:
-            with torch.cuda.amp.autocast(enabled=True):
+            with get_platform().execution.autocast(enabled=True):
                 output = self.forward_model(batch)
         else:
             output = self.forward_model(batch)

@@ -1,0 +1,4670 @@
+{
+  "scope": "Current required GPU-facing interfaces only; optional legacy compatibility and CPU-only entries excluded",
+  "recorded_date": "2026-10-27",
+  "source_commit": "133235f325e60f153c08864ca36e01ee34ec307e",
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "evidence": {
+    "N1": {
+      "vendor": "nvidia",
+      "label": "逐接口 NVIDIA 对照",
+      "scope": "基础算子对照声明的 Torch API；设备、AMP、优化器、通信、状态与工具链逐项检查。保留原容差与缺测项。",
+      "hardware": "NVIDIA RTX 4090",
+      "torch": "2.10.0+cu126",
+      "artifacts": [
+        {
+          "path": "dist/nvidia-interface-audit-20261025/verified-evidence-04/interface-audit-final-04/analysis/summary.json",
+          "sha256": "2eee2ee259b2d928610ec5a63bb6265ab8f9e961531644f1477c44ee0839c326"
+        }
+      ]
+    },
+    "N2": {
+      "vendor": "nvidia",
+      "label": "独立原版/新版 NVIDIA 二进制",
+      "scope": "GPU 范围内 16 个专用操作、52 个训练/推理配对用例。原版 Python/原版扩展与新版扩展分别在独立进程执行。",
+      "hardware": "NVIDIA RTX 4090",
+      "torch": "2.10.0+cu126",
+      "artifacts": [
+        {
+          "path": "dist/nvidia-interface-audit-20261025/verified-evidence-04/interface-audit-03/native-comparison.json",
+          "sha256": "1e23e8faed88c4414ad97ae8645a6388c4c470cc1552f3d28455ba84da209ecb"
+        }
+      ]
+    },
+    "M1": {
+      "vendor": "metax",
+      "label": "沐曦专用 GPU 算子路由/梯度",
+      "scope": "16 个 GPU 操作的训练/推理用例。原 UP Python/autograd 参考与平台路由共用沐曦编译扩展；PSRoIPool 参考的整数工作区显式补 contiguous。不是原版 NVIDIA 二进制在沐曦上执行。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/frozen-stage13/native-training.json",
+          "sha256": "c3b3668ed6d4292151eaf305cd3c0ef46e278d2f1ca9fa7cb0affb122348579f"
+        },
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/frozen-stage13/native-inference.json",
+          "sha256": "23c0c118553818cbc92daa7e3fd4e06d16662c4458195fa83f77fa3e48e90a92"
+        }
+      ]
+    },
+    "N3": {
+      "vendor": "nvidia",
+      "label": "修正后的 KITTI GPU 几何评估",
+      "scope": "训练/推理用途与独立 GEOS/解析边界用例对照通过，明确保留与原版错误结果的有意差异。",
+      "hardware": "NVIDIA RTX 4090",
+      "torch": "2.10.0+cu126",
+      "artifacts": [
+        {
+          "path": "dist/issue-followup/kitti-nvidia/results/kitti-training/summary.json",
+          "sha256": "49dee4b1e8c1dfad2406b51d9edd50413d44911b74e38197fcd50cc3040fc11e"
+        },
+        {
+          "path": "dist/issue-followup/kitti-nvidia/results/kitti-inference/summary.json",
+          "sha256": "ab217cc47861910fa5c6925ed03860f98c3e31f7138f2d6a2285916ec529aa8e"
+        }
+      ]
+    },
+    "M2": {
+      "vendor": "metax",
+      "label": "修正后的 KITTI GPU 几何评估",
+      "scope": "训练/推理用途与独立 GEOS/解析边界用例对照通过，明确保留与原版错误结果的有意差异。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "dist/issue-followup/kitti-metax/results/kitti-training/summary.json",
+          "sha256": "ef9386eff88702f276f2ae952946dec6aaf808a36c43257120559d4500bdee3a"
+        },
+        {
+          "path": "dist/issue-followup/kitti-metax/results/kitti-inference/summary.json",
+          "sha256": "31a6c226e5a3d9f358e4753b12bd9caf643ba8b75e5de7f042b087e124b267e7"
+        }
+      ]
+    },
+    "M3": {
+      "vendor": "metax",
+      "label": "沐曦双卡通信/DDP/AMP 集成",
+      "scope": "异步 all_reduce、对象通信、进程组、DDP、AMP/GradScaler、训练内 eval 与恢复通过。只为脚本实际调用的平台接口记通过；底层 SyncBN 执行不替代其两个平台包装接口的逐项验证。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/frozen-stage11/distributed/rank0.json",
+          "sha256": "2271b3cc59464c230de35ecf6a6b44dad475bd23150ed0a9a90c793f45dcf121"
+        },
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/frozen-stage11/distributed/rank1.json",
+          "sha256": "1b11d209614992798ee18c265f37cda7935fa540c90e3ea8e9e767a1e8820384"
+        }
+      ]
+    },
+    "M4": {
+      "vendor": "metax",
+      "label": "沐曦稀疏/量化/剪枝工具链",
+      "scope": "spconv 稀疏块前向/反向/恢复、MQBench 校准/QAT/原导出、MSBench Ampere 2:4 优化器更新/恢复通过。只映射实际调用的方法；未执行的 getter、类型接口和 Amba 分支不连带记为通过。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/frozen-stage13/toolchains/summary.json",
+          "sha256": "40fa8d9a7c3d11f24615e22f44de0ea48cdde892148523ca5eecab09f0daafad"
+        }
+      ]
+    },
+    "M5": {
+      "vendor": "metax",
+      "label": "沐曦 QDrop 重建",
+      "scope": "真实 MQBench QDrop 重建、输出和权重恢复用例通过。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/extra-toolchains-01/summary.json",
+          "sha256": "380a5a1dee9574dd445db13f51f0649099e8261976d6a4c62419580706735c54"
+        }
+      ]
+    },
+    "M8": {
+      "vendor": "metax",
+      "label": "沐曦原有 ONNX 导出接口",
+      "scope": "7 组原版/新版 GPU 操作导出图拓扑和 symbolic 属性一致；通过平台 export_onnx 调用。未执行部署推理引擎。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "materials/docs/platform/validation/20261023/metax/results/exports-01/summary.json",
+          "sha256": "13eec248f1564d762fca8eff72ba8829d6705f908eeca0091f952c5876d5fa7a"
+        }
+      ]
+    },
+    "N4": {
+      "vendor": "nvidia",
+      "label": "双卡 FSDP2 FP32/AMP 与 UP BaseRunner",
+      "scope": "DDP/FSDP2 权重、梯度裁剪、EMA、不均等验证批次、全状态保存恢复、全 rank 溢出同步及新进程推理通过。合成输入的短程功能验证，不是数据集收敛或跨厂商精度证明。",
+      "hardware": "NVIDIA RTX 4090",
+      "torch": "2.10.0+cu126",
+      "artifacts": [
+        {
+          "path": "fsdp-20261026/evidence/nvidia/validation-08/fp32/training.json",
+          "sha256": "035b5c76031c2526d2cf8b6bf59ef24fc6a1fb59313d7b0dd45c04f771258a95"
+        },
+        {
+          "path": "fsdp-20261026/evidence/nvidia/validation-08/amp/training.json",
+          "sha256": "1e6f1bda2d298c5fe9ca3c864fd2ba415897629bbd888d828c58f22b256eb4c5"
+        },
+        {
+          "path": "fsdp-20261026/evidence/nvidia/validation-08/up-runner/training.json",
+          "sha256": "537fbaa8a2182434f61f4cfa01f943f1cc6fa5efc0432011d0e287c55aaee14f"
+        },
+        {
+          "path": "fsdp-20261026/evidence/nvidia/validation-08/up-runner/inference.json",
+          "sha256": "ac5ee89a78ca69efd8db049df39d3781749f43d4fd98a49ce929d47c3bb853b0"
+        }
+      ]
+    },
+    "M6": {
+      "vendor": "metax",
+      "label": "双卡 FSDP2 FP32/AMP 与 UP BaseRunner",
+      "scope": "DDP/FSDP2 权重、梯度裁剪、EMA、不均等验证批次、全状态保存恢复、全 rank 溢出同步及新进程推理通过。合成输入的短程功能验证，不是数据集收敛或跨厂商精度证明。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "fsdp-20261026/evidence/metax/validation-08/fp32/training.json",
+          "sha256": "f18f32451e5f80ef0d2a736c7ad13daef41d548295ab7d92f44f801669895b62"
+        },
+        {
+          "path": "fsdp-20261026/evidence/metax/validation-08/amp/training.json",
+          "sha256": "d7d888be1fddd56beb345ba5877f6e46d3803971c624e29b284d31094388bbe0"
+        },
+        {
+          "path": "fsdp-20261026/evidence/metax/validation-08/up-runner/training.json",
+          "sha256": "537fbaa8a2182434f61f4cfa01f943f1cc6fa5efc0432011d0e287c55aaee14f"
+        },
+        {
+          "path": "fsdp-20261026/evidence/metax/validation-08/up-runner/inference.json",
+          "sha256": "ac5ee89a78ca69efd8db049df39d3781749f43d4fd98a49ce929d47c3bb853b0"
+        }
+      ]
+    },
+    "N5": {
+      "vendor": "nvidia",
+      "label": "三模型真实批次算子重放",
+      "scope": "98 个样本，真实每卡 batch、dtype/stride；同操作数直接厂商 Torch 对照和三次原生重放。前向均匹配；Conv2d 部分权重梯度对照及自身重复超差，单独保留。",
+      "hardware": "NVIDIA RTX 4090",
+      "torch": "2.10.0+cu126",
+      "artifacts": [
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/nvidia-replay/resnet50/inference/replay.json",
+          "sha256": "e232e82ccfbaed11ecf1c9e9451bf9955bde8e8bfea1c3531bf9de4790b16b72"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/nvidia-replay/resnet50/training/replay.json",
+          "sha256": "13b477848181539785c557dd66260281b5f4bef74ddc566f249ef105c46505b4"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/nvidia-replay/vit_b16/inference/replay.json",
+          "sha256": "8569cbe37d8d86712d77bc11b7a271a0fb1ba28b24a569ab9b360d741006cf22"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/nvidia-replay/vit_b16/training/replay.json",
+          "sha256": "ed887ec3bdfdd0d9aa3908088a23b4fda8b3aaba39d93c64e35840e77825e310"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/nvidia-replay/yolov5s/inference/replay.json",
+          "sha256": "d4fe3390620541685c56135c54432ab5a2f1cdcae7d9b9c2d6e67f77cb9e1382"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/nvidia-replay/yolov5s/training/replay.json",
+          "sha256": "c3538bd76e33613190e56d56cd5914233241361157ef6c49fd1768519f195b48"
+        }
+      ]
+    },
+    "M7": {
+      "vendor": "metax",
+      "label": "三模型真实批次算子重放",
+      "scope": "98 个样本，真实每卡 batch、dtype/stride；同操作数直接厂商 Torch 对照和三次原生重放。前向均匹配；Conv2d 部分权重梯度对照及自身重复超差，单独保留。",
+      "hardware": "MetaX C500",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/metax-replay/resnet50/inference/replay.json",
+          "sha256": "edbd2ec6d6782c2e288194e1170afade1f4d4c610dc42d80c5f49ca4cac95cb4"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/metax-replay/resnet50/training/replay.json",
+          "sha256": "cc1177c6d89bb211706f0ba474b5531b63d9760a7fe0138a4207fe01c1950e8c"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/metax-replay/vit_b16/inference/replay.json",
+          "sha256": "59a6320d6d3440a86028c16a737511f563a0645d1e85321c452ab7af73dfa039"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/metax-replay/vit_b16/training/replay.json",
+          "sha256": "1d83b12d14a6e47f812d8a475afd0bc571b3bc99d8b0a5a32a802bb0a70315e4"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/metax-replay/yolov5s/inference/replay.json",
+          "sha256": "990cd1620f63a0c9cb7fe5b0a413bd0ad0bbee5e096c888bc3a109764752214f"
+        },
+        {
+          "path": "dist/imagenet-coco-parity-20261025/operator-short-02-collected/metax-replay/yolov5s/training/replay.json",
+          "sha256": "a24e8ac846076fd07b220e08ef923a714a5d9c8319f6f172fb7438a12b70772d"
+        }
+      ]
+    },
+    "M9": {
+      "vendor": "metax",
+      "label": "C500 逐接口补测与原始失败复核",
+      "scope": "设备、常用算子、训练/推理、双卡通信/SyncBN及工具链逐项对照直接厂商 API；782 个常规用例在原容差内，2 个 BCE/AMP 拒绝行为一致，18 个空输入/观察器非有限边界一致，3 个 Amba 策略依赖缺失。保留首次 AFS/依赖路径/稀疏类型识别失败及显式补测；CPU 接口排除。",
+      "hardware": "MetaX C500 (GPU 2/3, 0000:0e:00.0 / 0000:11:00.0)",
+      "torch": "2.10.0+metax3.8.1.0",
+      "artifacts": [
+        {
+          "path": "metax-interface-audit-20261027/analysis-01/summary.json",
+          "sha256": "57f1c81c49903e887fc365cf60a0ac901c08076b8d4f108b636410cbefb8efe0"
+        },
+        {
+          "path": "metax-interface-audit-20261027/evidence-index.json",
+          "sha256": "814151ca744a3273870e8e26f0812fa4d4618a6f7dcd32d85503fbb4949c4e1d"
+        },
+        {
+          "path": "metax-interface-audit-20261027/source-02.json",
+          "sha256": "5e016513ff46ac70a16d11841782b6014f4547f4856e477ff5cdc88ba9c02bde"
+        },
+        {
+          "path": "metax-interface-audit-20261027/analysis-01-receipt.json",
+          "sha256": "f4fb50cbaa152224fe34962b56e50c6db708df06801a505a1250ade1515223b6"
+        },
+        {
+          "path": "metax-interface-audit-20261027/attempt-02/runtime-delta.json",
+          "sha256": "2ac21a9bf75edcb86a3d2c75beb3803796cec6cceeeb5cc75c2b727e6fbcce9f"
+        },
+        {
+          "path": "metax-interface-audit-20261027/attempt-02/cpu-contracts.xml",
+          "sha256": "93aaa2c509d9bdfbf3b70fbf3f731a9b463c95044f037424f61774fba16f0bab"
+        },
+        {
+          "path": "metax-interface-audit-20261027/mx-smi-after.txt",
+          "sha256": "c75f3ee5a14056c91a1ea2be136f61494cafd497910f755077d303c454ec3a78"
+        }
+      ]
+    }
+  },
+  "interfaces": {
+    "device.available": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.convolution_flags": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.current_device": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡分配/迁移及推理集成通过；不是独立性能测试"
+      }
+    },
+    "device.device": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.device_count": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.empty_cache": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.environment": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.get_rng_state": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.is_accelerator": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.manual_seed": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.max_memory_allocated": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.memory_allocated": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.move": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡分配/迁移及推理集成通过；不是独立性能测试"
+      }
+    },
+    "device.properties": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.reset_peak_memory_stats": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.set_device": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡分配/迁移及推理集成通过；不是独立性能测试"
+      }
+    },
+    "device.set_rng_state": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "device.synchronize": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "device_cases",
+          "label": "设备逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "training.autocast": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "training_cases",
+          "label": "训练逐项（两家）"
+        },
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.clip_grad_norm_": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "training_cases",
+          "label": "训练逐项（两家）"
+        },
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.full_state_dict": {
+      "tests": [
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "双卡 FSDP2 FP32/AMP"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.grad_scaler": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "training_cases",
+          "label": "训练逐项（两家）"
+        },
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.load_full_state_dict": {
+      "tests": [
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "双卡 FSDP2 FP32/AMP"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.optimizer": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "training_cases",
+          "label": "训练逐项（两家）"
+        },
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.sharded_grad_scaler": {
+      "tests": [
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "双卡 FSDP2 FP32/AMP"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.validation": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "training_cases",
+          "label": "训练逐项（两家）"
+        },
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.wrap_ddp": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "DDP 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡训练（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6",
+          "M9"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "training.wrap_fsdp": {
+      "tests": [
+        {
+          "path": "tests/platform/fsdp_smoke.py",
+          "symbol": "main",
+          "label": "双卡 FSDP2 FP32/AMP"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N4"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M6"
+        ],
+        "detail": "双卡 FP32/AMP、训练验证或保存恢复用例通过"
+      }
+    },
+    "inference.autocast": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "amp_case",
+          "label": "推理逐项（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "inference.export_onnx": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "inference_cases",
+          "label": "推理逐项（两家）"
+        },
+        {
+          "path": "tools/compare_platform_exports.py",
+          "symbol": "main",
+          "label": "原导出符号（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M8",
+          "M9"
+        ],
+        "detail": "7 组导出图/属性对照通过；未验证部署引擎"
+      }
+    },
+    "activation.Dropout": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "activation.Dropout2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.GELU": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.Hardswish": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.LeakyReLU": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.ReLU": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "activation.ReLU6": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.SELU": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.SiLU": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "activation.Sigmoid": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.Softmax": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.Tanh": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.gelu": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.hardtanh": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.log_softmax": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 2 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 2 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "activation.relu": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.relu6": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.sigmoid": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "activation.silu": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.softmax": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 7 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 7 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "activation.softplus": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "activation.tanh": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 3 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 3 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "attention.MultiheadAttention": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.all_gather": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.all_gather_object": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.all_reduce": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.barrier": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.broadcast": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.broadcast_object_list": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.destroy_process_group": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.gather": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.get_backend": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.get_rank": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.get_world_size": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.init_process_group": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.is_available": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.is_initialized": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.new_group": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M3",
+          "M9"
+        ],
+        "detail": "双卡集成用例通过；非全部同步/异步变体"
+      }
+    },
+    "communication.sum_op": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "communication.world_group": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "convolution.Conv2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "partial",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "前向匹配；2/15 权重梯度样本超差，自身重复也超差"
+      },
+      "metax": {
+        "status": "partial",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "本轮小输入用例通过；历史真实批次 5/15 权重梯度超差及自身波动继续保留"
+      }
+    },
+    "convolution.ConvTranspose2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "convolution.conv2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "convolution.conv_transpose2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "deformable.deform_conv": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "detection.iou_overlap": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "detection.naive_nms": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "detection.psroi_align": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "detection.psroi_pool": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "detection.roi_align": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "focal.cross_sigmoid_focal_loss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "focal.sigmoid_focal_loss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "focal.softmax_focal_loss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "loss.BCEWithLogitsLoss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.CosineSimilarity": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.CrossEntropyLoss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.KLDivLoss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.L1Loss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.binary_cross_entropy": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.binary_cross_entropy_with_logits": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 2 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 2 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "loss.cross_entropy": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.kl_div": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "loss.l1_loss": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "matrix.Linear": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 9 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 9 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "matrix.addmm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "matrix.bmm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "matrix.einsum": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "matrix.linear": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "matrix.matmul": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "matrix.mm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.BatchNorm1d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.BatchNorm2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 12 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 12 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "normalization.LayerNorm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 3 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 3 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "normalization.batch_norm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.batch_norm_module_forward": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.group_norm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.layer_norm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.normalize": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.sync_batch_norm": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "normalization.sync_batch_norm_forward": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_collectives.py",
+          "symbol": "main",
+          "label": "通信/SyncBN 逐项（两家）"
+        },
+        {
+          "path": "tools/validate_platform_distributed.py",
+          "symbol": "main",
+          "label": "双卡集成（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pointcloud.boxes_iou3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.boxes_iou_bev": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.nms3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.nms3d_normal": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.points_in_boxes_gpu": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.roiaware_pool3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.roipoint_pool3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_native_binaries.py",
+          "symbol": "worker",
+          "label": "独立原版二进制（NVIDIA）"
+        },
+        {
+          "path": "tools/compare_platform_native.py",
+          "symbol": "main",
+          "label": "原 UP 语义/路由（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N2"
+        ],
+        "detail": "专用算子前向/所需梯度通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M1"
+        ],
+        "detail": "原 UP 语义参考/平台路由前向及所需梯度通过"
+      }
+    },
+    "pointcloud.rotate_iou_eval": {
+      "tests": [
+        {
+          "path": "tools/validate_platform_kitti.py",
+          "symbol": "main",
+          "label": "独立几何参考/解析边界"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N3"
+        ],
+        "detail": "修正后独立几何参考通过；与原版有意不同"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M2"
+        ],
+        "detail": "修正后独立几何参考通过；与原版有意不同"
+      }
+    },
+    "pooling.AdaptiveAvgPool2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 3 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 3 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "pooling.AvgPool2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pooling.MaxPool2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "pooling.Upsample": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        },
+        {
+          "path": "tools/probe_platform_model_ops.py",
+          "symbol": "replay",
+          "label": "真实批次重放/自身重复"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1",
+          "N5"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M7",
+          "M9"
+        ],
+        "detail": "真实批次 6 个样本前向/所需梯度/状态通过"
+      }
+    },
+    "pooling.UpsamplingBilinear2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pooling.ZeroPad2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pooling.adaptive_avg_pool2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pooling.interpolate": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pooling.max_pool2d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pooling.pad": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_interfaces.py",
+          "symbol": "basic",
+          "label": "逐项前向/梯度（两家）"
+        },
+        {
+          "path": "tools/platform_interface_fixtures.py",
+          "symbol": "fixture",
+          "label": "具体接口输入/布局"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pruning.build_scheduler": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "MSBench Ampere 2:4 更新/恢复通过；不是 Amba 分支"
+      }
+    },
+    "pruning.export": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pruning.init_optimizer": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "MSBench Ampere 2:4 更新/恢复通过；不是 Amba 分支"
+      }
+    },
+    "pruning.last_prune_step": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "unverified",
+        "evidence": [],
+        "detail": "已绑定；所需 Amba FakeSparse 策略在测试依赖中不可用"
+      },
+      "metax": {
+        "status": "unverified",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "已绑定；所需 Amba FakeSparse 策略在测试依赖中不可用"
+      }
+    },
+    "pruning.module_type": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pruning.prepare": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "MSBench Ampere 2:4 更新/恢复通过；不是 Amba 分支"
+      }
+    },
+    "pruning.prune": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "unverified",
+        "evidence": [],
+        "detail": "已绑定；所需 Amba FakeSparse 策略在测试依赖中不可用"
+      },
+      "metax": {
+        "status": "unverified",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "已绑定；所需 Amba FakeSparse 策略在测试依赖中不可用"
+      }
+    },
+    "pruning.set_iteration": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "pruning.set_lr_scheduler": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "unverified",
+        "evidence": [],
+        "detail": "已绑定；所需 Amba FakeSparse 策略在测试依赖中不可用"
+      },
+      "metax": {
+        "status": "unverified",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "已绑定；所需 Amba FakeSparse 策略在测试依赖中不可用"
+      }
+    },
+    "pruning.sparse_rate": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "quantization.backend_types": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "quantization.convert_deploy": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "校准/QAT/恢复或原有导出用例通过"
+      }
+    },
+    "quantization.enable_calibration": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "校准/QAT/恢复或原有导出用例通过"
+      }
+    },
+    "quantization.enable_quantization": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "校准/QAT/恢复或原有导出用例通过"
+      }
+    },
+    "quantization.module_type": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "quantization.prepare": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "初始化观察器 Inf/-Inf 状态匹配；数值校准另见工具链用例"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "校准/QAT/恢复或原有导出用例通过"
+      }
+    },
+    "quantization.reconstruct": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M5",
+          "M9"
+        ],
+        "detail": "QDrop 重建/恢复用例通过"
+      }
+    },
+    "sparse.SparseConv3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.SparseConvTensor": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.SparseInverseConv3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.SparseSequential": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.SubMConv3d": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.dense": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.features": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "sparse.is_sparse_convolution": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        },
+        {
+          "path": "tests/platform/test_optional_dependencies.py",
+          "symbol": "test_metax_sparse_type_uses_the_actual_vendor_base_class",
+          "label": "沐曦 SDK 基类路径回归"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M9"
+        ],
+        "detail": "所列前向、所需梯度或状态与直接沐曦 API 对照通过"
+      }
+    },
+    "sparse.module_instance": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    },
+    "sparse.replace_feature": {
+      "tests": [
+        {
+          "path": "tools/audit_platform_optional.py",
+          "symbol": "execute",
+          "label": "逐项工具链（两家）"
+        },
+        {
+          "path": "tools/compare_platform_toolchains.py",
+          "symbol": "worker",
+          "label": "工具链训练/恢复（两家）"
+        }
+      ],
+      "nvidia": {
+        "status": "passed",
+        "evidence": [
+          "N1"
+        ],
+        "detail": "所列数值/状态用例通过"
+      },
+      "metax": {
+        "status": "passed",
+        "evidence": [
+          "M4",
+          "M9"
+        ],
+        "detail": "spconv 稀疏块训练/恢复用例通过"
+      }
+    }
+  }
+}

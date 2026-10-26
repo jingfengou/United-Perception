@@ -1,0 +1,92 @@
+name: Clean Platform
+on:
+  push:
+    branches: [codex/up-platform-clean]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  public-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install build markdown-it-py
+      - run: python -m build
+      - run: >-
+          python -c "from pathlib import Path; from zipfile import ZipFile;
+          expected={p.as_posix() for p in Path('up_platform/ops/_native/csrc').rglob('*') if p.is_file()};
+          expected.update(p.as_posix() for p in Path('up').rglob('*.py'));
+          expected.update(p.as_posix() for p in Path('up_platform').rglob('*.py'));
+          wheel=next(Path('dist').glob('*.whl')); names=set(ZipFile(wheel).namelist());
+          assert expected <= names; assert not any(n.endswith('.so') for n in names)"
+      - run: python -m pip install --no-deps dist/*.whl
+      - run: python -I -c "import up_platform, sys; assert 'torch' not in sys.modules; assert 'up' not in sys.modules"
+      - run: python tools/platform_inventory.py
+      - run: python tools/platform_contracts.py
+      - run: python tools/platform_call_sites.py
+      - run: python tools/platform_coverage.py
+      - run: python tools/check_platform_boundaries.py
+      - run: python tools/check_platform_docs.py
+      - run: python -m unittest discover -s tests/platform -p test_contracts.py -v
+      - run: python -m unittest discover -s tests/platform -p test_vendor_launcher.py -v
+      - run: bash -n up_docker
+      - run: python -m unittest discover -s tests/platform -p test_docker_launcher.py -v
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-packages
+          path: dist/
+  cpu-contracts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - python: '3.10'
+            torch: '2.6.0'
+          - python: '3.12'
+            torch: '2.10.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install pytest numpy PyYAML Pillow==11.2.1 markdown-it-py
+      - run: python -m pytest tests/platform -q --junitxml=platform-tests.xml
+        env:
+          CUDA_VISIBLE_DEVICES: ''
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cpu-tests-${{ matrix.python }}
+          path: platform-tests.xml
+  tutorial:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/up-platform-clean'
+    needs: [public-install, cpu-contracts]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: platform-tutorial
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Package standalone tutorial
+        run: |
+          mkdir _site
+          cp docs/platform/TUTORIAL.html _site/index.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

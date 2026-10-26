@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+  <title id="title">新增显卡厂商的四步接入流程</title>
+  <desc id="desc">第一步准备厂商 PyTorch 或完成设备桥接；第二步生成列全十五类算子的模板；第三步实现设备、算子、训练及推理接口，兼容项复用、缺失项接 SDK 或内核；第四步注册配置并完成算子和模型的真机验证。</desc>
+  <style>
+    svg{--bg:#fff;--ink:#1f2328;--muted:#59636e;--line:#d1d9e0;--surface:#f6f8fa;--accent:#0969da;--soft:#eef6ff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+    @media(prefers-color-scheme:dark){svg{--bg:#0d1117;--ink:#e6edf3;--muted:#b1bac4;--line:#30363d;--surface:#161b22;--accent:#79c0ff;--soft:#13233b}}
+    text{fill:var(--ink);font-size:22px}.title{font-size:40px;font-weight:650}.heading{font-size:28px;font-weight:650}.label{font-size:24px;font-weight:600}.muted{fill:var(--muted)}.accent{fill:var(--accent)}.code{font-size:20px}.step{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.arrow{fill:none;stroke:var(--muted);stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 8 5 1 9" fill="none" stroke="var(--muted)" stroke-width="1.5"/></marker></defs>
+  <rect width="1200" height="860" fill="var(--bg)"/>
+  <text x="48" y="64" class="title">新增厂商，按这四步做</text>
+  <text x="48" y="102" class="muted">兼容项直接复用；只补设备差异和缺失算子。</text>
+
+  <g id="prepare-runtime">
+    <rect x="48" y="128" width="1104" height="130" rx="12" class="step"/>
+    <text x="72" y="169" class="heading"><tspan class="accent">01</tspan>  准备厂商运行环境</text>
+    <text x="72" y="207">已有厂商 PyTorch → 使用匹配的驱动、SDK 和依赖。</text>
+    <text x="72" y="239">没有 PyTorch 设备后端 → 先补张量存储、设备派发与 autograd 桥接。</text>
+    <path d="M600 260 V276" class="arrow"/>
+  </g>
+
+  <g id="generate-template">
+    <rect x="48" y="286" width="1104" height="112" rx="12" class="step"/>
+    <text x="72" y="327" class="heading"><tspan class="accent">02</tspan>  生成模板：设备 + 15 类算子 + 训练 / 推理 + 注册</text>
+    <text x="72" y="366" class="code">python tools/new_platform_vendor.py --vendor acme --device 设备名 --output acme_platform</text>
+    <path d="M600 400 V416" class="arrow"/>
+  </g>
+
+  <g id="implement-interfaces">
+    <rect x="48" y="426" width="1104" height="214" rx="12" class="step"/>
+    <text x="72" y="467" class="heading"><tspan class="accent">03</tspan>  按父类签名，实现或绑定接口</text>
+    <path d="M312 490 V614 M762 490 V614" stroke="var(--line)" stroke-width="1.5"/>
+    <text x="72" y="518" class="label">device.py</text>
+    <text x="72" y="558">设备 · 迁移 · 同步</text>
+    <text x="72" y="591">显存 · RNG · SDK</text>
+    <text x="336" y="518" class="label">ops/ 各类别.py</text>
+    <text x="336" y="558">兼容 → 绑定厂商 PyTorch</text>
+    <text x="336" y="591">缺失 → SDK / 内核 + 所需反向</text>
+    <text x="786" y="518" class="code">training.py / inference.py</text>
+    <text x="786" y="558">AMP · DDP/FSDP2 · 优化器</text>
+    <text x="786" y="591">训练内 eval · 独立推理 · 导出</text>
+    <path d="M600 642 V660" class="arrow"/>
+  </g>
+
+  <g id="register-and-verify">
+    <rect x="48" y="670" width="1104" height="132" rx="12" fill="var(--soft)"/>
+    <text x="72" y="711" class="heading"><tspan class="accent">04</tspan>  注册、配置，并在厂商显卡上验收</text>
+    <text x="72" y="749">生成器已写注册 → YAML 选择 backend / device / plugins → 算子与模型真机测试</text>
+    <text x="72" y="782">检查输出、梯度和状态；覆盖训练、eval、恢复、独立推理及多卡。</text>
+  </g>
+  <text x="48" y="843" class="code muted">缺失能力明确报错；训练内 eval 使用训练适配。实现清单、示例与命令见接入指南。</text>
+</svg>

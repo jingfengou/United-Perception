@@ -1,0 +1,6 @@
+-r ../../docs/platform/requirements-common.txt
+pandas==2.2.3
+pycocotools==2.0.10
+setuptools==80.9.0
+wheel==0.45.1
+ninja==1.11.1.4

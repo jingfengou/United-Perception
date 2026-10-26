@@ -20,6 +20,23 @@ datasets/pycocotools
 build
 **/build
 
+dist/
+*.egg-info/
+*.whl
+.pytest_cache/
+.venv/
+*.pem
+
 .vscode/
 *_build
 .env
+
+# Local experiment reports and generated output; keep source documentation curated.
+/docs/platform/validation/
+/docs/platform/*_20*.md
+/docs/platform/*.json
+/docs/platform/*.csv
+/docs/platform/CHANGES.md
+/docs/platform/HISTORY.md
+/docs/platform/VALIDATION.md
+/docs/platform/assets/*.png

@@ -1,0 +1,1735 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="读懂 UP 平台改造做了什么、各部分如何实现，以及怎样运行和接入新厂商。">
+  <title>UP 平台层 · 从设计到使用</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#f7f9fb; --panel:#fff; --text:#1b2b3c; --muted:#556779; --line:#d8e1e9; --accent:#1859a0; --soft:#eaf2fc; --code:#f0f3f7; --green:#1b684a; }
+    @media (prefers-color-scheme:dark) { :root { --bg:#131b24; --panel:#1b2633; --text:#e4edf8; --muted:#adbdcf; --line:#3e5063; --accent:#99c8ff; --soft:#263d59; --code:#263342; --green:#9cddbd; } }
+    * { box-sizing:border-box; }
+    html { scroll-padding-top:24px; }
+    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.7 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif; }
+    main { max-width:1180px; margin:auto; padding:44px 28px 56px; }
+    h1,h2,h3 { line-height:1.35; margin:0 0 14px; font-weight:650; }
+    h1 { font-size:clamp(30px,4vw,44px); letter-spacing:-.04em; }
+    h2 { font-size:27px; } h3 { font-size:19px; }
+    p { margin:0 0 15px; }
+    a { color:var(--accent); text-underline-offset:3px; overflow-wrap:anywhere; }
+    code,pre { font-family:ui-monospace,"Cascadia Code",Consolas,monospace; font-size:13px; }
+    code { background:var(--code); padding:2px 5px; border-radius:4px; overflow-wrap:anywhere; }
+    pre { background:var(--code); border-radius:8px; padding:16px; white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; margin:12px 0; }
+    pre code { padding:0; }
+    button,select,input { font:inherit; color:inherit; }
+    button { cursor:pointer; }
+    button:focus-visible,summary:focus-visible,select:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+    .kicker { color:var(--accent); font-size:12px; letter-spacing:.12em; margin-bottom:10px; }
+    .lead { font-size:19px; max-width:780px; }
+    .muted,.hint { color:var(--muted); } .hint { font-size:13px; }
+    nav { display:flex; flex-wrap:wrap; gap:10px 24px; margin:24px 0 0; }
+    section { margin-top:44px; padding-top:32px; border-top:1px solid var(--line); }
+    .chapter { display:flex; gap:12px; align-items:baseline; margin-bottom:14px; }
+    .chapter span { color:var(--accent); font-size:14px; } .chapter h2 { margin:0; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; margin:20px 0; }
+    .flow { display:grid; gap:8px; }
+    .arrow { text-align:center; color:var(--muted); }
+    .node { width:100%; padding:12px 15px; border:1px solid var(--line); background:var(--panel); border-radius:8px; text-align:left; display:flex; gap:12px; align-items:baseline; }
+    .node b { color:var(--accent); font-size:12px; min-width:20px; }
+    .node small { display:block; font-size:13px; color:var(--muted); }
+    .node:hover,.node[aria-pressed=true] { border-color:var(--accent); background:var(--soft); }
+    .parts { display:grid; grid-template-columns:1fr 1.3fr 1.5fr; gap:12px; align-items:stretch; }
+    .part { display:grid; align-content:start; gap:8px; min-width:0; }
+    .part-label { font-size:12px; color:var(--muted); padding-left:3px; }
+    .selection { border-top:1px solid var(--line); padding-top:14px; margin-top:16px; }
+    .selection p { margin:0 0 6px; }
+    .small-link { font-size:13px; }
+    .principles { display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; }
+    .principles p { margin:0; }
+    .browser { display:grid; grid-template-columns:300px minmax(0,1fr); background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:clip; margin:20px 0; }
+    .sidebar { border-right:1px solid var(--line); min-width:0; }
+    .sidebar-head { padding:14px; border-bottom:1px solid var(--line); }
+    .sidebar-head strong { display:block; font-size:13px; margin-bottom:8px; }
+    input { width:100%; min-width:0; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:7px 9px; font-size:13px; }
+    .tree { padding:10px 8px; max-height:630px; overflow:auto; scrollbar-width:thin; font:13px/1.6 ui-monospace,"Cascadia Code",Consolas,monospace; }
+    .tree details { margin:1px 0; }
+    .tree summary { cursor:pointer; padding:5px 4px; border-radius:4px; overflow-wrap:anywhere; }
+    .tree summary:hover { background:var(--code); }
+    .children { margin-left:10px; padding-left:7px; border-left:1px solid var(--line); }
+    .file { display:block; width:100%; border:0; text-align:left; background:transparent; padding:5px 7px; border-radius:4px; font:inherit; overflow-wrap:anywhere; }
+    .file:hover { background:var(--code); }
+    .tree [aria-current=true] { color:var(--accent); background:var(--soft); }
+    .code-view { padding:24px; min-width:0; }
+    .breadcrumb { color:var(--muted); font-size:12px; overflow-wrap:anywhere; margin-bottom:12px; }
+    .badge { display:inline-block; border-radius:4px; background:var(--soft); color:var(--accent); padding:2px 7px; font-size:12px; margin-bottom:12px; }
+    .code-view h3 { overflow-wrap:anywhere; }
+    .code-view ul { padding-left:20px; margin:12px 0; }
+    .code-view li { margin:6px 0; }
+    .file-list { list-style:none; padding:0 !important; }
+    .file-list button { background:transparent; border:0; color:var(--accent); text-align:left; padding:2px 0; font-size:13px; }
+    .file-list span { display:block; color:var(--muted); font-size:13px; }
+    .subheading { margin:22px 0 8px; }
+    .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+    label { display:grid; gap:5px; font-size:13px; min-width:0; }
+    select { width:100%; min-width:0; background:var(--panel); border:1px solid var(--line); padding:9px; border-radius:6px; }
+    .chain { display:grid; gap:8px; }
+    .chain-row { display:grid; grid-template-columns:86px minmax(0,1fr); gap:10px; padding:10px 0; border-bottom:1px solid var(--line); }
+    .chain-row>span { font-size:12px; color:var(--muted); }
+    .chain-row div { min-width:0; }
+    .chain-row code { display:block; white-space:pre-wrap; }
+    .chain-row a { font-size:12px; }
+    .category-list { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0; }
+    .category-list button { font-size:12px; background:var(--panel); color:var(--accent); border:1px solid var(--line); border-radius:5px; padding:5px 8px; }
+    .category-list button:hover { border-color:var(--accent); }
+    .category-list button[aria-pressed=true] { background:var(--soft); border-color:var(--accent); }
+    table { width:100%; border-collapse:collapse; font-size:14px; margin:18px 0; }
+    th,td { padding:10px 12px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); }
+    th { color:var(--muted); font-weight:600; }
+    .lesson-row { margin:12px 0; }
+    .lesson-row strong { display:block; font-size:13px; margin-bottom:3px; color:var(--accent); }
+    .lesson-row p { margin:0; }
+    .snippet { margin:16px 0; }
+    .snippet>a { font-size:12px; }
+    .code-view details { margin:14px 0; }
+    .code-view details summary { cursor:pointer; color:var(--accent); font-size:13px; }
+    .related { display:flex; flex-wrap:wrap; gap:6px 12px; margin:12px 0; }
+    .related a { font-size:12px; }
+    .step { display:grid; grid-template-columns:26px minmax(0,1fr); gap:8px; margin-top:24px; }
+    .step>b { color:var(--accent); } .step>div { min-width:0; }
+    .runtime-path { display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+    .runtime-path a { font-size:13px; padding:4px 8px; border:1px solid var(--line); border-radius:5px; text-decoration:none; }
+    details.extra { border-top:1px solid var(--line); margin-top:20px; padding-top:14px; }
+    details.extra summary { color:var(--accent); cursor:pointer; }
+    footer { padding-top:20px; margin-top:36px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); }
+    [hidden] { display:none !important; }
+    @media (max-width:820px) { .browser { grid-template-columns:240px minmax(0,1fr); } .code-view { padding:18px; } }
+    @media (max-width:640px) { main { padding:28px 16px 40px; } .parts,.principles,.fields { grid-template-columns:1fr; } .browser { grid-template-columns:1fr; } .sidebar { border-right:0; border-bottom:1px solid var(--line); } .tree { max-height:260px; } .card { padding:16px; } h2 { font-size:24px; } .chain-row { grid-template-columns:1fr; gap:4px; } }
+    @media print { .sidebar,nav { display:none; } .browser { display:block; } main { max-width:none; padding:0; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="kicker">UP / PLATFORM GUIDE</p>
+    <h1>一套 UP，接不同厂商的显卡</h1>
+    <p class="lead">这次改造把硬件调用从 UP 中抽到平台层。下面沿着设计、代码和实际命令，讲清它做了什么、怎样实现，以及怎么使用和扩展。</p>
+    <nav aria-label="教程目录"><a href="#design">01 改了什么，为什么这样分</a><a href="#code">02 各部分怎样实现</a><a href="#usage">03 怎样使用</a><a href="#extend">04 怎样扩展</a></nav>
+  </header>
+
+  <section id="design" aria-labelledby="design-title">
+    <div class="chapter"><span>01</span><h2 id="design-title">先看设计：算法留在 UP，硬件交给平台</h2></div>
+    <p>原版 UP 的设备调用和专用算子散在模型、训练与推理里。现在把这些入口集中到 <code>up_platform/</code>；换厂商时，实现平台接口即可。</p>
+    <table aria-label="相对原版 UP 的改动"><thead><tr><th>部分</th><th>这次做的事</th></tr></thead><tbody>
+      <tr><td><strong>UP 主体</strong><br><code>up/</code>、<code>configs/</code></td><td>模型、损失、数据和配方继续由 UP 管理；硬件调用改接平台，原算子的导入路径和 <code>.apply()</code> 入口保留。</td></tr>
+      <tr><td><strong>统一平台</strong><br><code>up_platform/</code></td><td>新增设备、15 类算子、训练和推理接口；各厂商显式实现或绑定，共用兼容代码。训练补入 FSDP2 分片能力。</td></tr>
+      <tr><td><strong>安装与切换</strong><br><code>docker/unified/</code>、<code>up_docker</code></td><td>一份镜像隔离 NVIDIA 与沐曦环境，一条命令选择厂商和任务。</td></tr>
+      <tr><td><strong>接入与维护</strong><br><code>tools/</code>、<code>tests/platform/</code></td><td>生成新厂商模板，检查接口、上层调用和文档，并提供算子及模型流程评测代码。</td></tr>
+    </tbody></table>
+    <div class="card" id="architecture">
+      <p class="hint">点击方框看职责；字母与下面的代码目录对应。</p>
+      <div class="flow" role="group" aria-label="UP 到厂商实现的流程">
+        <button class="node" type="button" data-node="up" aria-pressed="false"><b>A</b><span><strong>UP：模型、数据、损失和训练流程</strong><small>up/：决定计算步骤，调用平台能力</small></span></button>
+        <div class="arrow" aria-hidden="true">↓</div>
+        <button class="node" type="button" data-node="platform" aria-pressed="true"><b>B</b><span><strong>统一入口：configure_platform() / get_platform()</strong><small>factory.py + base.py：选厂商，装配平台</small></span></button>
+        <div class="arrow" aria-hidden="true">↓</div>
+        <div class="parts">
+          <div class="part"><span class="part-label">训练、推理共用</span><button class="node" type="button" data-node="device" aria-pressed="false"><b>C</b><span><strong>设备</strong><small>迁移、同步、显存、RNG</small></span></button></div>
+          <div class="part"><span class="part-label">训练、推理共用</span><button class="node" type="button" data-node="ops" aria-pressed="false"><b>D</b><span><strong>15 类算子</strong><small>矩阵、卷积、检测、点云等</small></span></button></div>
+          <div class="part"><span class="part-label">执行方式：按用途选一套</span><button class="node" type="button" data-node="training" aria-pressed="false"><b>E</b><span><strong>训练 + 训练内 eval</strong><small>AMP、DDP/FSDP2、优化器</small></span></button><button class="node" type="button" data-node="inference" aria-pressed="false"><b>F</b><span><strong>独立推理</strong><small>推理 AMP、ONNX 导出</small></span></button></div>
+        </div>
+        <div class="arrow" aria-hidden="true">↓</div>
+        <button class="node" type="button" data-node="vendor" aria-pressed="false"><b>G</b><span><strong>当前厂商的显式实现</strong><small>NVIDIA / 沐曦 → 厂商 PyTorch、SDK 或专用扩展 → GPU</small></span></button>
+      </div>
+      <div class="selection" aria-live="polite"><p><strong id="architecture-name"></strong> <span id="architecture-detail"></span></p><a href="#code" id="architecture-source" class="small-link">在代码目录中查看 →</a></div>
+    </div>
+    <div class="principles">
+      <p><strong>为什么设备、算子、执行方式并列？</strong><br>它们是平台的三个组成部分。训练和推理都会用设备与算子，所以这些共用能力放在外面。</p>
+      <p><strong>训练内 eval 为什么还走训练后端？</strong><br>它复用正在训练的模型，验证结束后继续训练。独立推理才选择另一套执行接口。</p>
+    </div>
+    <p class="hint" style="margin-top:16px">基础加减、索引、拼接、reshape、归约和 autograd 仍由厂商 PyTorch 提供。</p>
+  </section>
+
+  <section id="code" aria-labelledby="code-title">
+    <div class="chapter"><span>02</span><h2 id="code-title">对着代码看：这些功能怎样接起来</h2></div>
+    <p>按下面的路线读一遍：从 UP 读取配置开始，走到厂商计算，再看训练、推理和环境。每一步都说明职责、实现方式和调用方，并附真实源码片段。</p>
+    <div class="category-list" id="reading-route" aria-label="推荐代码阅读路线"></div>
+    <div class="browser">
+      <aside class="sidebar" aria-label="代码目录">
+        <div class="sidebar-head"><strong>EXPLORER · 代码目录</strong><label for="file-search" class="hint">查找文件<input id="file-search" type="search" placeholder="例如 roi_align、fsdp" autocomplete="off"></label></div>
+        <div class="tree" id="file-tree"></div>
+      </aside>
+      <article class="code-view" aria-live="polite" aria-atomic="false">
+        <div class="breadcrumb" id="file-path"></div>
+        <div class="badge" id="file-component"></div>
+        <h3 id="file-title"></h3>
+        <p id="file-description"></p>
+        <div id="file-explanation"></div>
+        <a id="file-source" class="small-link" target="_blank" rel="noopener noreferrer">打开源码 ↗</a>
+      </article>
+    </div>
+    <div class="card" id="operators-diagram">
+      <h3>沿一个算子走一遍</h3>
+      <p class="hint">15 类采用同一结构：父类定接口，厂商文件显式绑定，兼容实现共用。</p>
+      <div class="category-list" id="category-list" aria-label="全部算子类别"></div>
+      <div class="fields">
+        <label for="operator-category">算子类别<select id="operator-category"></select></label>
+        <label for="operator-vendor">厂商<select id="operator-vendor"><option value="nvidia">NVIDIA</option><option value="metax">沐曦 C500</option></select></label>
+      </div>
+      <div class="chain" id="operator-chain" aria-live="polite"></div>
+      <p class="hint" id="operator-detail" style="margin-top:12px"></p>
+    </div>
+    <p>例如 UP ViT 的 Attention 结构仍在模型里；其中的矩阵与 softmax 调平台接口。<code>ops/attention/</code> 另外提供通用 MultiheadAttention 接口。</p>
+  </section>
+
+  <section id="usage" aria-labelledby="usage-title">
+    <div class="chapter"><span>03</span><h2 id="usage-title">最后使用：同一镜像，一条命令选厂商</h2></div>
+    <p>下面用 YOLOv5-S + COCO 2017。命令在 Linux Bash 中运行；宿主机需要 Docker 和对应显卡驱动，NVIDIA 还需 Container Toolkit。</p>
+    <div class="step"><b>1</b><div><h3>构建镜像</h3><pre><code>git clone --branch codex/up-platform-clean \
+  https://github.com/jingfengou/United-Perception.git
+cd United-Perception
+docker build -f docker/unified/Dockerfile -t up-unified:local .</code></pre><p class="hint">镜像内 <code>/opt/up/envs/nvidia</code> 和 <code>/opt/up/envs/metax</code> 分开安装 PyTorch、SDK 与扩展。</p></div></div>
+    <div class="step"><b>2</b><div><h3>设置数据和工作目录</h3><pre><code>export UP_DATA=/datasets/coco2017
+export UP_WORK=$HOME/up-demo
+export UP_GPU=0
+mkdir -p "$UP_WORK/images"
+
+sed 's|coco/|/data/|g' configs/det/yolov5/yolov5_small_silu.yaml \
+  > "$UP_WORK/model.yaml"
+cp configs/det/yolov5/anchors.json "$UP_WORK/anchors.json"
+cp "$UP_DATA/val2017/000000000139.jpg" "$UP_WORK/images/"</code></pre><p class="hint">COCO 目录包含 <code>train2017/</code>、<code>val2017/</code> 和 <code>annotations/</code>。</p></div></div>
+    <div class="step"><b>3</b><div><h3>选厂商，运行任务</h3><div class="card" id="runtime-diagram">
+      <div class="fields"><label for="runtime-vendor">当前服务器的显卡<select id="runtime-vendor"><option value="nvidia">NVIDIA</option><option value="metax">沐曦 C500</option></select></label><label for="runtime-mode">任务<select id="runtime-mode"><option value="train">训练</option><option value="eval">验证训练权重</option><option value="inference">独立图片推理</option></select></label></div>
+      <pre><code id="runtime-command"></code></pre>
+      <p class="hint" id="runtime-purpose" aria-live="polite"></p>
+      <div class="runtime-path" id="runtime-chain" aria-label="命令执行路径"></div>
+    </div><p>训练后再运行验证或推理。命令会读取当前厂商的 <code>ckpt_latest.pth</code>；重跑训练想从头开始时换一个输出目录。</p></div></div>
+    <p>安装细节与多卡参数见 <a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/docs/platform/QUICKSTART_UNIFIED.md">完整运行指南</a>；分片训练见 <a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/docs/platform/FSDP.md">FSDP2 指南</a>。</p>
+  </section>
+  <section id="extend" aria-labelledby="extend-title">
+    <div class="chapter"><span>04</span><h2 id="extend-title">怎样扩展：以新厂商 acme 为例</h2></div>
+    <p>新增厂商的工作集中在平台实现与运行环境。先准备厂商 PyTorch、SDK 和通信库；如果还没有 PyTorch 设备后端，先接通设备、张量、算子派发和 autograd。</p>
+    <div class="step"><b>1</b><div><h3>按父类生成要交付的文件</h3><pre><code>python tools/new_platform_vendor.py \
+  --vendor acme --device privateuseone --output acme_platform --reuse-torch</code></pre><p><code>acme</code> 和 <code>privateuseone</code> 替换为真实厂商、设备名。已确认兼容 Torch 公共 API 时使用 <code>--reuse-torch</code>。</p><pre><code>acme_platform/
+  __init__.py       组装设备、算子与当前用途，注册 build
+  device.py         厂商身份、SDK 检查与设备操作
+  training.py       AMP、多卡、优化器、验证、保存恢复
+  inference.py      推理 autocast 与导出
+  ops/              15 类算子，类别与上面的图一致</code></pre></div></div>
+    <div class="step"><b>2</b><div><h3>兼容的直接绑定，有差异的单独实现</h3><p>生成器已为常见 Torch 类别写好绑定。以 <code>ops/matrix.py</code> 中的一个函数为例，选择一种方式：</p><pre><code># 复用当前厂商的 PyTorch
+from up_platform.ops.matrix import torch_impl
+AcmeMatrixOps.linear = staticmethod(torch_impl.linear)
+
+# 若这个函数要使用厂商 SDK，替换这一项绑定
+from .. import vendor_kernels
+from up_platform.templates.sdk_linear import bind_sdk_linear
+AcmeMatrixOps.linear = staticmethod(bind_sdk_linear(vendor_kernels))</code></pre><p>使用 SDK 时，在插件根目录增加 <code>vendor_kernels.py</code>，提供 <code>linear_forward</code> 和 <code>linear_backward</code>。<code>linear</code> 函数与 <code>Linear</code> 层是两个入口；两者都受影响时分别适配。其余类别按父类签名逐项处理。</p></div></div>
+    <div class="step"><b>3</b><div><h3>让 UP 使用新厂商</h3><p>将生成的包安装到厂商环境，或把它的父目录加入 <code>PYTHONPATH</code>。生成器已写好注册，YAML 选择：</p><pre><code>runtime:
+  platform:
+    backend: acme
+    device: privateuseone
+    plugins: [acme_platform]
+    requirements: [matrix.linear, convolution.Conv2d]</code></pre><p>然后在该厂商环境启动 UP：</p><pre><code>DEFAULT_TASKS=cls:det python -m up train \
+  --config model.yaml --launch pytorch --ng 1</code></pre><p>要加入 <code>up_docker</code>，再补镜像安装步骤、环境 profile 和显卡设备挂载。现有 NVIDIA、沐曦实现可作为参考。</p></div></div>
+    <div class="step"><b>4</b><div><h3>检查接口，再测真实流程</h3><pre><code>python tools/platform_contracts.py
+python tools/check_platform_boundaries.py
+python -m pytest tests/platform -q</code></pre><p>软件检查之后，在目标卡上测算子前向、所需反向和状态，再跑训练、训练内 eval、保存恢复和独立推理；多卡功能再测通信与同步。</p></div></div>
+    <p>完整函数列表见 <a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/docs/platform/INTERFACES.md">接口定义</a>；逐步接入见 <a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/docs/platform/ADDING_VENDOR.md">厂商接入指南</a>；SDK 反向接线见 <a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/up_platform/templates/sdk_linear.py">Linear 示例</a>。昇腾、寒武纪当前提供接入模板。</p>
+  </section>
+  <noscript><p>启用 JavaScript 后，可点选目录、算子路径和运行命令。上面的设计与安装步骤可以直接阅读。</p></noscript>
+  <footer>继续查阅：<a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/docs/platform/INTERFACES.md">接口定义</a> · <a href="https://github.com/jingfengou/United-Perception/blob/codex/up-platform-clean/docs/platform/GPU_COVERAGE.md">实现与评测代码表</a> · <a href="https://github.com/jingfengou/United-Perception/tree/codex/up-platform-clean">项目源码</a></footer>
+</main>
+<script id="tutorial-data" type="application/json">{
+  "files": [
+    ".dockerignore",
+    ".gitattributes",
+    ".github/workflows/platform.yml",
+    "MANIFEST.in",
+    "docker/unified/Dockerfile",
+    "docker/unified/launch.py",
+    "docker/unified/prepare.py",
+    "docker/unified/probe.py",
+    "docker/unified/profiles.json",
+    "docker/unified/requirements.txt",
+    "pyproject.toml",
+    "setup.py",
+    "tests/platform/fixtures/call_sites.json",
+    "tests/platform/fixtures/gpu_verification.json",
+    "tests/platform/fixtures/interfaces.json",
+    "tests/platform/fixtures/upstream_inventory.json",
+    "tests/platform/fsdp_smoke.py",
+    "tests/platform/fsdp_up_runner.py",
+    "tests/platform/test_accuracy_numerics.py",
+    "tests/platform/test_accuracy_recipe.py",
+    "tests/platform/test_checkpoint_protocol.py",
+    "tests/platform/test_contracts.py",
+    "tests/platform/test_deterministic_vendor_summary.py",
+    "tests/platform/test_docker_launcher.py",
+    "tests/platform/test_documentation.py",
+    "tests/platform/test_fixed_steps.py",
+    "tests/platform/test_fsdp.py",
+    "tests/platform/test_full_accuracy_bind.py",
+    "tests/platform/test_full_accuracy_data.py",
+    "tests/platform/test_full_accuracy_recipe.py",
+    "tests/platform/test_full_accuracy_state.py",
+    "tests/platform/test_interface_audit.py",
+    "tests/platform/test_kitti_diagnostics.py",
+    "tests/platform/test_kitti_geometry.py",
+    "tests/platform/test_model_verify_audit.py",
+    "tests/platform/test_native_operator_probe.py",
+    "tests/platform/test_operator_diagnosis.py",
+    "tests/platform/test_optional_dependencies.py",
+    "tests/platform/test_platform_boundaries.py",
+    "tests/platform/test_platform_coverage.py",
+    "tests/platform/test_platform_operator_cases.py",
+    "tests/platform/test_prepare_coco.py",
+    "tests/platform/test_prepare_imagenet.py",
+    "tests/platform/test_public_import.py",
+    "tests/platform/test_repeat_evidence.py",
+    "tests/platform/test_roi_align_determinism.py",
+    "tests/platform/test_roi_benchmark.py",
+    "tests/platform/test_runtime.py",
+    "tests/platform/test_selection.py",
+    "tests/platform/test_torch_bindings.py",
+    "tests/platform/test_tutorial.py",
+    "tests/platform/test_vendor_diagnosis.py",
+    "tests/platform/test_vendor_launcher.py",
+    "tests/platform/test_vendor_template.py",
+    "tools/accuracy_data.py",
+    "tools/accuracy_detr.py",
+    "tools/accuracy_metrics.py",
+    "tools/accuracy_recipe.py",
+    "tools/accuracy_train.py",
+    "tools/audit_fixed_steps.py",
+    "tools/audit_model_verify.py",
+    "tools/audit_platform_collectives.py",
+    "tools/audit_platform_interfaces.py",
+    "tools/audit_platform_kitti_examples.py",
+    "tools/audit_platform_native_binaries.py",
+    "tools/audit_platform_optional.py",
+    "tools/audit_platform_publication.py",
+    "tools/benchmark_roi_align.py",
+    "tools/build_platform_extension.py",
+    "tools/capture_roi_align_cases.py",
+    "tools/check_platform_boundaries.py",
+    "tools/check_platform_docs.py",
+    "tools/check_platform_import.py",
+    "tools/collect_platform_evidence.py",
+    "tools/collect_vendor_diagnosis.py",
+    "tools/compare_native_traces.py",
+    "tools/compare_platform_exports.py",
+    "tools/compare_platform_kitti.py",
+    "tools/compare_platform_models.py",
+    "tools/compare_platform_native.py",
+    "tools/compare_platform_toolchains.py",
+    "tools/compare_roi_align_models.py",
+    "tools/compare_vendor_forward.py",
+    "tools/compare_vendor_prefix.py",
+    "tools/diagnose_platform_operator.py",
+    "tools/full_accuracy_bind.py",
+    "tools/full_accuracy_data.py",
+    "tools/full_accuracy_detr.py",
+    "tools/full_accuracy_recipe.py",
+    "tools/full_accuracy_train.py",
+    "tools/new_platform_vendor.py",
+    "tools/observe_vendor_prefix.py",
+    "tools/observe_vendor_writes.py",
+    "tools/package_native_repeat.py",
+    "tools/platform_call_sites.py",
+    "tools/platform_contracts.py",
+    "tools/platform_coverage.py",
+    "tools/platform_interface_fixtures.py",
+    "tools/platform_inventory.py",
+    "tools/platform_operator_cases.py",
+    "tools/prepare_coco2017.py",
+    "tools/prepare_imagenet_parquet.py",
+    "tools/prepare_platform_dependencies.py",
+    "tools/prepare_roi_align_cases.py",
+    "tools/probe_native_operators.py",
+    "tools/probe_platform_environment.py",
+    "tools/probe_platform_model_ops.py",
+    "tools/probe_psroi_layout.py",
+    "tools/probe_vendor_randomness.py",
+    "tools/probe_vendor_transfer.py",
+    "tools/probe_yolo_targets.py",
+    "tools/replay_vendor_leaf.py",
+    "tools/replay_vendor_writes.py",
+    "tools/run_accuracy_cohort.py",
+    "tools/run_native_repeat.py",
+    "tools/run_platform_validation.py",
+    "tools/summarize_accuracy_cohort.py",
+    "tools/summarize_checkpoint_protocol.py",
+    "tools/summarize_deterministic_vendors.py",
+    "tools/summarize_fixed_steps.py",
+    "tools/summarize_interface_audit.py",
+    "tools/summarize_native_repeat.py",
+    "tools/summarize_vendor_interfaces.py",
+    "tools/trace_native_training.py",
+    "tools/validate_platform_distributed.py",
+    "tools/validate_platform_kitti.py",
+    "tools/validate_platform_roi_align.py",
+    "tools/validate_platform_startup.py",
+    "tools/validate_unified_environment.py",
+    "tools/verify_checkpoint_protocol.py",
+    "up/apis/inference.py",
+    "up/commands/flops.py",
+    "up/commands/inference.py",
+    "up/commands/inference_video.py",
+    "up/commands/quant_deploy.py",
+    "up/commands/to_onnx.py",
+    "up/commands/train.py",
+    "up/extensions/ext.py",
+    "up/extensions/python/cross_focal_loss.py",
+    "up/extensions/python/deformable_conv.py",
+    "up/extensions/python/focal_loss.py",
+    "up/extensions/python/iou3d_nms_utils.py",
+    "up/extensions/python/iou_overlap.py",
+    "up/extensions/python/nms.py",
+    "up/extensions/python/psroi_align.py",
+    "up/extensions/python/psroi_pool.py",
+    "up/extensions/python/roi_align.py",
+    "up/extensions/python/roiaware_pool3d_utils.py",
+    "up/extensions/python/roipoint_pool3d_utils.py",
+    "up/models/backbones/convnext.py",
+    "up/models/backbones/cswin.py",
+    "up/models/backbones/efficientnet.py",
+    "up/models/backbones/mae_vit.py",
+    "up/models/backbones/mobilenet_v2.py",
+    "up/models/backbones/mobilenet_v3.py",
+    "up/models/backbones/moco_vit.py",
+    "up/models/backbones/regnet.py",
+    "up/models/backbones/resnet.py",
+    "up/models/backbones/resnet_D.py",
+    "up/models/backbones/swin_transformer.py",
+    "up/models/backbones/vision_transformer.py",
+    "up/models/model_helper.py",
+    "up/runner/base_runner.py",
+    "up/tasks/cls/data/auto_augmentation.py",
+    "up/tasks/cls/data/cls_transforms.py",
+    "up/tasks/cls/data/data_utils.py",
+    "up/tasks/cls/data/rand_augmentation.py",
+    "up/tasks/cls/models/heads/cls_head.py",
+    "up/tasks/cls/models/losses/cls_loss.py",
+    "up/tasks/cls/models/postprocess/cls_postprocess.py",
+    "up/tasks/det/data/datasets/det_transforms.py",
+    "up/tasks/det/data/metrics/group_evaluator.py",
+    "up/tasks/det/models/heads/bbox_head/bbox_head.py",
+    "up/tasks/det/models/heads/roi_head/retina_head.py",
+    "up/tasks/det/models/losses/entropy_loss.py",
+    "up/tasks/det/models/losses/focal_loss.py",
+    "up/tasks/det/models/losses/l1_loss.py",
+    "up/tasks/det/models/losses/smooth_l1_loss.py",
+    "up/tasks/det/models/necks/fpn.py",
+    "up/tasks/det/models/postprocess/bbox_post_process.py",
+    "up/tasks/det/models/postprocess/retina_post_process.py",
+    "up/tasks/det/models/postprocess/roi_supervisor.py",
+    "up/tasks/det/models/utils/anchor_generator.py",
+    "up/tasks/det/models/utils/bbox_helper.py",
+    "up/tasks/det/models/utils/matcher.py",
+    "up/tasks/det/plugins/cascade/models/head/bbox_head.py",
+    "up/tasks/det/plugins/condinst/models/head/condinst_head.py",
+    "up/tasks/det/plugins/condinst/models/postprocess/condinst_postprocess.py",
+    "up/tasks/det/plugins/condinst/models/postprocess/condinst_predictor.py",
+    "up/tasks/det/plugins/efl/models/losses/efl.py",
+    "up/tasks/det/plugins/efl/models/losses/eqfl.py",
+    "up/tasks/det/plugins/fcos/models/head/fcos_head.py",
+    "up/tasks/det/plugins/fcos/models/postprocess/fcos_postprocess.py",
+    "up/tasks/det/plugins/onenet/models/postprocess/onenet_postprocess.py",
+    "up/tasks/det/plugins/onenet/models/postprocess/onenet_supervisor.py",
+    "up/tasks/det/plugins/yolov5/data/transforms.py",
+    "up/tasks/det/plugins/yolov5/models/backbone/darknetv5.py",
+    "up/tasks/det/plugins/yolov5/models/components.py",
+    "up/tasks/det/plugins/yolov5/models/head/yolov5_head.py",
+    "up/tasks/det/plugins/yolov5/models/neck/yolov5_pan.py",
+    "up/tasks/det/plugins/yolov5/models/postprocess/roi_predictor.py",
+    "up/tasks/det/plugins/yolov5/models/postprocess/yolov5_post_process.py",
+    "up/tasks/det/plugins/yolov6/models/components.py",
+    "up/tasks/det/plugins/yolov6/models/head/effidehead.py",
+    "up/tasks/det/plugins/yolox/models/head/yolox_head.py",
+    "up/tasks/det/plugins/yolox/models/neck/pafpn.py",
+    "up/tasks/det/plugins/yolox/models/postprocess/roi_supervisor.py",
+    "up/tasks/det/plugins/yolox/models/postprocess/yolox_postprocess.py",
+    "up/tasks/det/plugins/yolox/models/preprocess/multiscale.py",
+    "up/tasks/det_3d/data/box_coder_utils.py",
+    "up/tasks/det_3d/data/data_reader.py",
+    "up/tasks/det_3d/data/data_utils.py",
+    "up/tasks/det_3d/data/dataset/transforms.py",
+    "up/tasks/det_3d/data/metrics/kitti_object_eval_python/kitti_common.py",
+    "up/tasks/det_3d/data/metrics/kitti_object_eval_python/rotate_iou.py",
+    "up/tasks/det_3d/models/backbones_2d/base_bev_backbone.py",
+    "up/tasks/det_3d/models/backbones_3d/map_to_bev.py",
+    "up/tasks/det_3d/models/backbones_3d/spconv_backbone.py",
+    "up/tasks/det_3d/models/backbones_3d/vfe/pillar_vfe.py",
+    "up/tasks/det_3d/models/heads/anchor_head.py",
+    "up/tasks/det_3d/models/heads/center_head.py",
+    "up/tasks/det_3d/models/losses/center_loss.py",
+    "up/tasks/det_3d/models/postprocess/anchor_head_postprocess/anchor_head_post_process.py",
+    "up/tasks/det_3d/models/postprocess/anchor_head_postprocess/anchor_head_predictor.py",
+    "up/tasks/det_3d/models/postprocess/anchor_head_postprocess/anchor_head_supervisor.py",
+    "up/tasks/det_3d/models/postprocess/center_head_postprocess/center_head_predictor.py",
+    "up/tasks/det_3d/models/utils/anchor_generator.py",
+    "up/tasks/det_3d/models/utils/anchor_generator_eagle.py",
+    "up/tasks/det_3d/runner/point_runner.py",
+    "up/tasks/distill/losses/ce_loss.py",
+    "up/tasks/distill/losses/kl_loss.py",
+    "up/tasks/distill/mimicker.py",
+    "up/tasks/distill/models/mimic_adapt.py",
+    "up/tasks/distill/runner/kd_runner.py",
+    "up/tasks/multitask/models/union_heads/union_fc_cls.py",
+    "up/tasks/multitask/models/union_heads/union_retina_cls.py",
+    "up/tasks/multitask/runner/multitask_runner.py",
+    "up/tasks/nas/bignas/controller/base_controller.py",
+    "up/tasks/nas/bignas/controller/utils/misc.py",
+    "up/tasks/nas/bignas/models/backbone/big_regnet.py",
+    "up/tasks/nas/bignas/models/backbone/big_resnet_basic.py",
+    "up/tasks/nas/bignas/models/heads/big_clshead.py",
+    "up/tasks/nas/bignas/models/heads/big_retinanetwithbn.py",
+    "up/tasks/nas/bignas/models/heads/big_roi_head.py",
+    "up/tasks/nas/bignas/models/necks/big_fpn.py",
+    "up/tasks/nas/bignas/models/ops/dynamic_blocks.py",
+    "up/tasks/nas/bignas/models/ops/dynamic_ops.py",
+    "up/tasks/nas/bignas/models/ops/dynamic_utils.py",
+    "up/tasks/nas/bignas/models/ops/normal_blocks.py",
+    "up/tasks/nas/bignas/runner/bignas_runner.py",
+    "up/tasks/nas/bignas/utils/saver_helper.py",
+    "up/tasks/nas/metax/commands/search.py",
+    "up/tasks/nas/metax/models/backbones/xmnet.py",
+    "up/tasks/nas/metax/models/decoder/deeplab.py",
+    "up/tasks/quant/deploy/quant_deploy.py",
+    "up/tasks/quant/runner/quant_runner.py",
+    "up/tasks/seg/models/components.py",
+    "up/tasks/seg/models/decoder/ocrnet.py",
+    "up/tasks/seg/models/decoder/segformer_decoder.py",
+    "up/tasks/seg/models/encoder/hrnet.py",
+    "up/tasks/seg/models/encoder/segformer_encoder.py",
+    "up/tasks/seg/models/losses/seg_loss.py",
+    "up/tasks/seg/utils/embed.py",
+    "up/tasks/sparse/runner/sparse_runner.py",
+    "up/tasks/ssl/models/losses/ssl_loss.py",
+    "up/tasks/ssl/wrapper/moco.py",
+    "up/tasks/ssl/wrapper/simclr.py",
+    "up/tasks/ssl/wrapper/simsiam.py",
+    "up/utils/env/dist_helper.py",
+    "up/utils/env/gene_env.py",
+    "up/utils/env/launch.py",
+    "up/utils/env/platform.py",
+    "up/utils/general/computation_calculator.py",
+    "up/utils/general/dc_manager.py",
+    "up/utils/general/hook_helper.py",
+    "up/utils/general/model_wrapper.py",
+    "up/utils/general/saver_helper.py",
+    "up/utils/general/toonnx_helper.py",
+    "up/utils/model/accuracy.py",
+    "up/utils/model/act_fn.py",
+    "up/utils/model/block_helper.py",
+    "up/utils/model/bn_helper.py",
+    "up/utils/model/normalize.py",
+    "up/utils/model/optimizer_helper.py",
+    "up/utils/model/pos_embed.py",
+    "up/utils/model/utils.py",
+    "up_docker",
+    "up_platform/__init__.py",
+    "up_platform/backends/__init__.py",
+    "up_platform/backends/ascend.py",
+    "up_platform/backends/cambricon.py",
+    "up_platform/backends/cpu.py",
+    "up_platform/backends/metax.py",
+    "up_platform/backends/nvidia.py",
+    "up_platform/backends/torch_device.py",
+    "up_platform/base.py",
+    "up_platform/contracts.py",
+    "up_platform/dependencies.py",
+    "up_platform/factory.py",
+    "up_platform/inference/__init__.py",
+    "up_platform/inference/base.py",
+    "up_platform/inference/cpu.py",
+    "up_platform/inference/metax.py",
+    "up_platform/inference/nvidia.py",
+    "up_platform/inference/torch_impl.py",
+    "up_platform/layers.py",
+    "up_platform/ops/__init__.py",
+    "up_platform/ops/_native/__init__.py",
+    "up_platform/ops/_native/build.py",
+    "up_platform/ops/_native/csrc/cross_focal_loss/cross_focal_loss.h",
+    "up_platform/ops/_native/csrc/cross_focal_loss/cross_focal_loss_cuda.cpp",
+    "up_platform/ops/_native/csrc/cross_focal_loss/cross_focal_loss_sigmoid_kernel.cu",
+    "up_platform/ops/_native/csrc/deform_conv/deform_conv.cpp",
+    "up_platform/ops/_native/csrc/deform_conv/deform_conv_cuda.cpp",
+    "up_platform/ops/_native/csrc/deform_conv/deform_conv_cuda_kernel.cu",
+    "up_platform/ops/_native/csrc/deform_conv/deformable_conv.h",
+    "up_platform/ops/_native/csrc/focal_loss/focal_loss.h",
+    "up_platform/ops/_native/csrc/focal_loss/focal_loss_cuda.cpp",
+    "up_platform/ops/_native/csrc/focal_loss/focal_loss_sigmoid_kernel.cu",
+    "up_platform/ops/_native/csrc/focal_loss/focal_loss_softmax_kernel.cu",
+    "up_platform/ops/_native/csrc/iou3d_nms/iou3d_cpu.cpp",
+    "up_platform/ops/_native/csrc/iou3d_nms/iou3d_cpu.h",
+    "up_platform/ops/_native/csrc/iou3d_nms/iou3d_nms.cpp",
+    "up_platform/ops/_native/csrc/iou3d_nms/iou3d_nms.h",
+    "up_platform/ops/_native/csrc/iou3d_nms/iou3d_nms_api.cpp",
+    "up_platform/ops/_native/csrc/iou3d_nms/iou3d_nms_kernel.cu",
+    "up_platform/ops/_native/csrc/iou_overlap/iou_overlap.cpp",
+    "up_platform/ops/_native/csrc/iou_overlap/iou_overlap.h",
+    "up_platform/ops/_native/csrc/iou_overlap/iou_overlap_kernel.cu",
+    "up_platform/ops/_native/csrc/kitti_iou/kitti_iou.cu",
+    "up_platform/ops/_native/csrc/nms/nms.h",
+    "up_platform/ops/_native/csrc/nms/nms_cuda.cpp",
+    "up_platform/ops/_native/csrc/nms/nms_kernel.cu",
+    "up_platform/ops/_native/csrc/psroi_align/psroi_align.h",
+    "up_platform/ops/_native/csrc/psroi_align/psroi_align_cuda.cpp",
+    "up_platform/ops/_native/csrc/psroi_align/psroi_align_kernel.cu",
+    "up_platform/ops/_native/csrc/psroi_pooling/psroi_pooling.cpp",
+    "up_platform/ops/_native/csrc/psroi_pooling/psroi_pooling.h",
+    "up_platform/ops/_native/csrc/psroi_pooling/psroi_pooling_cuda.cpp",
+    "up_platform/ops/_native/csrc/psroi_pooling/psroi_pooling_kernel.cu",
+    "up_platform/ops/_native/csrc/pybind.cpp",
+    "up_platform/ops/_native/csrc/roi_align/roi_align.cpp",
+    "up_platform/ops/_native/csrc/roi_align/roi_align.h",
+    "up_platform/ops/_native/csrc/roi_align/roi_align_cuda.cpp",
+    "up_platform/ops/_native/csrc/roi_align/roi_align_kernel.cu",
+    "up_platform/ops/_native/csrc/roiaware_pool3d/roiaware_pool3d.cpp",
+    "up_platform/ops/_native/csrc/roiaware_pool3d/roiaware_pool3d.h",
+    "up_platform/ops/_native/csrc/roiaware_pool3d/roiaware_pool3d_kernel.cu",
+    "up_platform/ops/_native/csrc/roipoint_pool3d/roipoint_pool3d.cpp",
+    "up_platform/ops/_native/csrc/roipoint_pool3d/roipoint_pool3d.h",
+    "up_platform/ops/_native/csrc/roipoint_pool3d/roipoint_pool3d_kernel.cu",
+    "up_platform/ops/_native/csrc/softer_nms/softer_nms.cpp",
+    "up_platform/ops/_native/csrc/softer_nms/softer_nms.h",
+    "up_platform/ops/_native/loader.py",
+    "up_platform/ops/activation/__init__.py",
+    "up_platform/ops/activation/ascend.py",
+    "up_platform/ops/activation/base.py",
+    "up_platform/ops/activation/cambricon.py",
+    "up_platform/ops/activation/cpu.py",
+    "up_platform/ops/activation/metax.py",
+    "up_platform/ops/activation/nvidia.py",
+    "up_platform/ops/activation/torch_impl.py",
+    "up_platform/ops/attention/__init__.py",
+    "up_platform/ops/attention/ascend.py",
+    "up_platform/ops/attention/base.py",
+    "up_platform/ops/attention/cambricon.py",
+    "up_platform/ops/attention/cpu.py",
+    "up_platform/ops/attention/metax.py",
+    "up_platform/ops/attention/nvidia.py",
+    "up_platform/ops/attention/torch_impl.py",
+    "up_platform/ops/communication/__init__.py",
+    "up_platform/ops/communication/ascend.py",
+    "up_platform/ops/communication/base.py",
+    "up_platform/ops/communication/cambricon.py",
+    "up_platform/ops/communication/cpu.py",
+    "up_platform/ops/communication/metax.py",
+    "up_platform/ops/communication/nvidia.py",
+    "up_platform/ops/communication/torch_impl.py",
+    "up_platform/ops/convolution/__init__.py",
+    "up_platform/ops/convolution/ascend.py",
+    "up_platform/ops/convolution/base.py",
+    "up_platform/ops/convolution/cambricon.py",
+    "up_platform/ops/convolution/cpu.py",
+    "up_platform/ops/convolution/metax.py",
+    "up_platform/ops/convolution/nvidia.py",
+    "up_platform/ops/convolution/torch_impl.py",
+    "up_platform/ops/deformable/__init__.py",
+    "up_platform/ops/deformable/_deformable_conv.py",
+    "up_platform/ops/deformable/ascend.py",
+    "up_platform/ops/deformable/base.py",
+    "up_platform/ops/deformable/cambricon.py",
+    "up_platform/ops/deformable/cpu.py",
+    "up_platform/ops/deformable/metax.py",
+    "up_platform/ops/deformable/nvidia.py",
+    "up_platform/ops/detection/__init__.py",
+    "up_platform/ops/detection/_iou_overlap.py",
+    "up_platform/ops/detection/_nms.py",
+    "up_platform/ops/detection/_psroi_align.py",
+    "up_platform/ops/detection/_psroi_pool.py",
+    "up_platform/ops/detection/_roi_align.py",
+    "up_platform/ops/detection/ascend.py",
+    "up_platform/ops/detection/base.py",
+    "up_platform/ops/detection/cambricon.py",
+    "up_platform/ops/detection/cpu.py",
+    "up_platform/ops/detection/metax.py",
+    "up_platform/ops/detection/nvidia.py",
+    "up_platform/ops/focal/__init__.py",
+    "up_platform/ops/focal/_cross_focal_loss.py",
+    "up_platform/ops/focal/_focal_loss.py",
+    "up_platform/ops/focal/ascend.py",
+    "up_platform/ops/focal/base.py",
+    "up_platform/ops/focal/cambricon.py",
+    "up_platform/ops/focal/cpu.py",
+    "up_platform/ops/focal/metax.py",
+    "up_platform/ops/focal/nvidia.py",
+    "up_platform/ops/loss/__init__.py",
+    "up_platform/ops/loss/ascend.py",
+    "up_platform/ops/loss/base.py",
+    "up_platform/ops/loss/cambricon.py",
+    "up_platform/ops/loss/cpu.py",
+    "up_platform/ops/loss/metax.py",
+    "up_platform/ops/loss/nvidia.py",
+    "up_platform/ops/loss/torch_impl.py",
+    "up_platform/ops/matrix/__init__.py",
+    "up_platform/ops/matrix/ascend.py",
+    "up_platform/ops/matrix/base.py",
+    "up_platform/ops/matrix/cambricon.py",
+    "up_platform/ops/matrix/cpu.py",
+    "up_platform/ops/matrix/metax.py",
+    "up_platform/ops/matrix/nvidia.py",
+    "up_platform/ops/matrix/torch_impl.py",
+    "up_platform/ops/normalization/__init__.py",
+    "up_platform/ops/normalization/ascend.py",
+    "up_platform/ops/normalization/base.py",
+    "up_platform/ops/normalization/cambricon.py",
+    "up_platform/ops/normalization/cpu.py",
+    "up_platform/ops/normalization/metax.py",
+    "up_platform/ops/normalization/nvidia.py",
+    "up_platform/ops/normalization/torch_impl.py",
+    "up_platform/ops/pointcloud/__init__.py",
+    "up_platform/ops/pointcloud/_iou3d_nms_utils.py",
+    "up_platform/ops/pointcloud/_kitti_gpu.py",
+    "up_platform/ops/pointcloud/_kitti_numba.py",
+    "up_platform/ops/pointcloud/_roiaware_pool3d_utils.py",
+    "up_platform/ops/pointcloud/_roipoint_pool3d_utils.py",
+    "up_platform/ops/pointcloud/ascend.py",
+    "up_platform/ops/pointcloud/base.py",
+    "up_platform/ops/pointcloud/cambricon.py",
+    "up_platform/ops/pointcloud/cpu.py",
+    "up_platform/ops/pointcloud/geometry.py",
+    "up_platform/ops/pointcloud/metax.py",
+    "up_platform/ops/pointcloud/nvidia.py",
+    "up_platform/ops/pooling/__init__.py",
+    "up_platform/ops/pooling/ascend.py",
+    "up_platform/ops/pooling/base.py",
+    "up_platform/ops/pooling/cambricon.py",
+    "up_platform/ops/pooling/cpu.py",
+    "up_platform/ops/pooling/metax.py",
+    "up_platform/ops/pooling/nvidia.py",
+    "up_platform/ops/pooling/torch_impl.py",
+    "up_platform/ops/pruning/__init__.py",
+    "up_platform/ops/pruning/ascend.py",
+    "up_platform/ops/pruning/base.py",
+    "up_platform/ops/pruning/cambricon.py",
+    "up_platform/ops/pruning/cpu.py",
+    "up_platform/ops/pruning/metax.py",
+    "up_platform/ops/pruning/nvidia.py",
+    "up_platform/ops/pruning/torch_impl.py",
+    "up_platform/ops/quantization/__init__.py",
+    "up_platform/ops/quantization/ascend.py",
+    "up_platform/ops/quantization/base.py",
+    "up_platform/ops/quantization/cambricon.py",
+    "up_platform/ops/quantization/cpu.py",
+    "up_platform/ops/quantization/metax.py",
+    "up_platform/ops/quantization/nvidia.py",
+    "up_platform/ops/quantization/torch_impl.py",
+    "up_platform/ops/sparse/__init__.py",
+    "up_platform/ops/sparse/ascend.py",
+    "up_platform/ops/sparse/base.py",
+    "up_platform/ops/sparse/cambricon.py",
+    "up_platform/ops/sparse/cpu.py",
+    "up_platform/ops/sparse/metax.py",
+    "up_platform/ops/sparse/nvidia.py",
+    "up_platform/ops/sparse/torch_impl.py",
+    "up_platform/templates/__init__.py",
+    "up_platform/templates/sdk_linear.py",
+    "up_platform/training/__init__.py",
+    "up_platform/training/base.py",
+    "up_platform/training/cpu.py",
+    "up_platform/training/fsdp.py",
+    "up_platform/training/metax.py",
+    "up_platform/training/nvidia.py",
+    "up_platform/training/torch_impl.py"
+  ],
+  "operators": {
+    "matrix": {
+      "label": "矩阵",
+      "functions": "Linear、matmul、mm、bmm、einsum",
+      "method": "Linear",
+      "api": "torch.nn.Linear",
+      "impl": "torch_impl.py",
+      "methods": [
+        "linear",
+        "matmul",
+        "mm",
+        "bmm",
+        "addmm",
+        "einsum",
+        "Linear"
+      ]
+    },
+    "convolution": {
+      "label": "卷积",
+      "functions": "Conv2d、反卷积",
+      "method": "Conv2d",
+      "api": "torch.nn.Conv2d",
+      "impl": "torch_impl.py",
+      "methods": [
+        "conv2d",
+        "conv_transpose2d",
+        "Conv2d",
+        "ConvTranspose2d"
+      ]
+    },
+    "attention": {
+      "label": "Attention",
+      "functions": "MultiheadAttention",
+      "method": "MultiheadAttention",
+      "api": "torch.nn.MultiheadAttention",
+      "impl": "torch_impl.py",
+      "methods": [
+        "MultiheadAttention"
+      ]
+    },
+    "normalization": {
+      "label": "归一化",
+      "functions": "BatchNorm、LayerNorm、SyncBN",
+      "method": "LayerNorm",
+      "api": "torch.nn.LayerNorm",
+      "impl": "torch_impl.py",
+      "methods": [
+        "batch_norm_module_forward",
+        "sync_batch_norm_forward",
+        "sync_batch_norm",
+        "batch_norm",
+        "layer_norm",
+        "group_norm",
+        "normalize",
+        "BatchNorm1d",
+        "BatchNorm2d",
+        "LayerNorm"
+      ]
+    },
+    "activation": {
+      "label": "激活",
+      "functions": "ReLU、SiLU、GELU、softmax、Dropout",
+      "method": "softmax",
+      "api": "torch.nn.functional.softmax",
+      "impl": "torch_impl.py",
+      "methods": [
+        "Hardswish",
+        "relu",
+        "relu6",
+        "hardtanh",
+        "gelu",
+        "silu",
+        "sigmoid",
+        "tanh",
+        "softmax",
+        "log_softmax",
+        "softplus",
+        "ReLU",
+        "ReLU6",
+        "GELU",
+        "SiLU",
+        "SELU",
+        "LeakyReLU",
+        "Sigmoid",
+        "Tanh",
+        "Softmax",
+        "Dropout",
+        "Dropout2d"
+      ]
+    },
+    "pooling": {
+      "label": "池化与插值",
+      "functions": "平均池化、最大池化、interpolate",
+      "method": "interpolate",
+      "api": "torch.nn.functional.interpolate",
+      "impl": "torch_impl.py",
+      "methods": [
+        "adaptive_avg_pool2d",
+        "max_pool2d",
+        "interpolate",
+        "pad",
+        "AdaptiveAvgPool2d",
+        "AvgPool2d",
+        "MaxPool2d",
+        "Upsample",
+        "UpsamplingBilinear2d",
+        "ZeroPad2d"
+      ]
+    },
+    "loss": {
+      "label": "损失",
+      "functions": "交叉熵、BCE、KL、L1",
+      "method": "binary_cross_entropy_with_logits",
+      "api": "torch.nn.functional.binary_cross_entropy_with_logits",
+      "impl": "torch_impl.py",
+      "methods": [
+        "binary_cross_entropy",
+        "binary_cross_entropy_with_logits",
+        "cross_entropy",
+        "kl_div",
+        "l1_loss",
+        "CrossEntropyLoss",
+        "BCEWithLogitsLoss",
+        "KLDivLoss",
+        "L1Loss",
+        "CosineSimilarity"
+      ]
+    },
+    "detection": {
+      "label": "检测",
+      "functions": "NMS、RoIAlign、PSRoI、IoU",
+      "method": "roi_align",
+      "api": "RoIAlignFunction：前向、反向与 ONNX 符号",
+      "impl": "_roi_align.py",
+      "methods": [
+        "roi_align",
+        "psroi_align",
+        "psroi_pool",
+        "naive_nms",
+        "softer_nms",
+        "iou_overlap"
+      ]
+    },
+    "deformable": {
+      "label": "可变形卷积",
+      "functions": "DeformConv、Modulated DeformConv",
+      "method": "deform_conv",
+      "api": "DeformableConvFunction：前向与反向",
+      "impl": "_deformable_conv.py",
+      "methods": [
+        "deform_conv"
+      ]
+    },
+    "focal": {
+      "label": "Focal Loss",
+      "functions": "sigmoid、softmax、cross focal",
+      "method": "sigmoid_focal_loss",
+      "api": "SigmoidFocalLossFunction：前向与反向",
+      "impl": "_focal_loss.py",
+      "methods": [
+        "sigmoid_focal_loss",
+        "softmax_focal_loss",
+        "cross_sigmoid_focal_loss"
+      ]
+    },
+    "pointcloud": {
+      "label": "点云",
+      "functions": "3D IoU、点归属、点云池化",
+      "method": "points_in_boxes_gpu",
+      "api": "points_in_boxes_gpu：GPU 点归属查询",
+      "impl": "_roiaware_pool3d_utils.py",
+      "methods": [
+        "rotate_iou_eval",
+        "points_in_boxes_cpu",
+        "points_in_boxes_gpu",
+        "roiaware_pool3d",
+        "roipoint_pool3d",
+        "boxes_bev_iou_cpu",
+        "boxes_iou_bev",
+        "boxes_iou3d",
+        "nms3d",
+        "nms3d_normal"
+      ]
+    },
+    "sparse": {
+      "label": "稀疏张量",
+      "functions": "稀疏卷积、张量构造、布局转换",
+      "method": "dense",
+      "api": "spconv 稀疏张量 → 稠密张量",
+      "impl": "torch_impl.py",
+      "methods": [
+        "voxelize_cpu",
+        "SubMConv3d",
+        "SparseConv3d",
+        "SparseInverseConv3d",
+        "SparseSequential",
+        "SparseConvTensor",
+        "replace_feature",
+        "features",
+        "dense",
+        "is_sparse_convolution",
+        "module_instance"
+      ]
+    },
+    "communication": {
+      "label": "通信",
+      "functions": "进程组、all_reduce、广播、同步",
+      "method": "all_reduce",
+      "api": "torch.distributed.all_reduce",
+      "impl": "torch_impl.py",
+      "methods": [
+        "is_available",
+        "is_initialized",
+        "get_rank",
+        "get_world_size",
+        "get_backend",
+        "world_group",
+        "sum_op",
+        "init_process_group",
+        "destroy_process_group",
+        "new_group",
+        "barrier",
+        "all_reduce",
+        "broadcast",
+        "all_gather",
+        "gather",
+        "all_gather_object",
+        "broadcast_object_list"
+      ]
+    },
+    "quantization": {
+      "label": "量化",
+      "functions": "MQBench 准备、校准、QAT、导出",
+      "method": "prepare",
+      "api": "MQBench prepare_by_platform",
+      "impl": "torch_impl.py",
+      "methods": [
+        "backend_types",
+        "module_type",
+        "prepare",
+        "enable_calibration",
+        "enable_quantization",
+        "reconstruct",
+        "convert_deploy"
+      ]
+    },
+    "pruning": {
+      "label": "剪枝",
+      "functions": "MSBench、稀疏掩码、调度器",
+      "method": "prepare",
+      "api": "MSBench prepare_sparse_model",
+      "impl": "torch_impl.py",
+      "methods": [
+        "set_iteration",
+        "last_prune_step",
+        "module_type",
+        "build_scheduler",
+        "prepare",
+        "prune",
+        "export",
+        "sparse_rate",
+        "set_lr_scheduler",
+        "init_optimizer"
+      ]
+    }
+  },
+  "notes": {
+    "up_platform": "平台层。把 UP 的硬件调用统一接到当前厂商实现。",
+    "up_platform/__init__.py": "导出 configure_platform、get_platform 和 register_backend，供 UP 使用。",
+    "up_platform/base.py": "定义设备父类和平台对象。平台持有 device、15 类 ops，以及当前用途的 execution。",
+    "up_platform/factory.py": "注册厂商、创建平台；get_platform() 取回当前平台。",
+    "up_platform/contracts.py": "记录接口的参数、输出、梯度和状态要求；缺少实现时给出具体错误。",
+    "up_platform/dependencies.py": "按需要加载可选库，检查依赖是否可用。",
+    "up_platform/layers.py": "统一构造 Conv2d、Linear 等层，返回厂商 PyTorch 的实际模块。",
+    "up_platform/backends": "装配区：选设备、15 类算子和训练或推理实现。",
+    "up_platform/backends/nvidia.py": "检查 NVIDIA Torch，组装 NVIDIA 设备、算子和当前用途。",
+    "up_platform/backends/metax.py": "检查沐曦 Torch，组装 C500 设备、算子和当前用途。",
+    "up_platform/backends/torch_device.py": "复用 PyTorch 设备 API：绑定、迁移、同步、显存、随机状态和卷积开关。",
+    "up_platform/backends/ascend.py": "昇腾接入模板：声明设备和实现要求。",
+    "up_platform/backends/cambricon.py": "寒武纪接入模板：声明设备和实现要求。",
+    "up_platform/backends/cpu.py": "供平台软件测试使用的 CPU 后端。",
+    "up_platform/ops": "按算子类别组织代码；每一类再分接口、厂商绑定和公共实现。",
+    "up_platform/ops/_native": "原 UP 的专用扩展源码、构建和加载入口；两家分别编译。",
+    "up_platform/ops/_native/build.py": "根据厂商选择编译工具链，生成本厂商的扩展二进制。",
+    "up_platform/ops/_native/loader.py": "按当前厂商加载 _nvidia_ops 或 _metax_ops。",
+    "up_platform/ops/_native/csrc": "从原 UP 移入的 C++/GPU 内核，以及 KITTI 旋转框 IoU 内核。",
+    "up_platform/training": "训练执行能力，训练中的 eval 也由这里处理。",
+    "up_platform/training/base.py": "训练父类：AMP、DDP/FSDP2、优化器、梯度裁剪、验证和权重状态。",
+    "up_platform/training/torch_impl.py": "兼容的 PyTorch 训练实现；validation() 暂时切换 eval，结束后恢复模式。",
+    "up_platform/training/fsdp.py": "FSDP2：参数分片、AMP、完整权重和优化器状态的保存恢复。",
+    "up_platform/inference": "独立推理的执行能力，与训练分开选择。",
+    "up_platform/inference/base.py": "推理父类：autocast 和 ONNX 导出。",
+    "up_platform/inference/torch_impl.py": "使用当前厂商 Torch 进行推理 autocast 和原有 ONNX 导出。",
+    "up_platform/templates": "新厂商示例，展示如何绑定 SDK 内核。",
+    "up_platform/templates/sdk_linear.py": "SDK Linear 示例：连起前向、反向和反向所需状态。",
+    "up": "原 UP 主体。这里改硬件调用入口，模型结构和训练配方继续由 UP 管理。",
+    "up/utils/env/platform.py": "把 UP 配置转成平台配置；连接训练、验证、推理和权重恢复。",
+    "up/runner/base_runner.py": "组织训练、验证和保存；向平台请求 AMP、DDP/FSDP2 等能力。",
+    "up/apis/inference.py": "组织图片推理：读权重、读图片、前向和后处理；初始化推理用途的平台。",
+    "up/models/backbones/vision_transformer.py": "保留 UP ViT 的 Attention 结构，将矩阵、激活等计算接到分类接口。",
+    "up/extensions": "保留原算子导入路径和 .apply() 入口，内部转发到平台。",
+    "docker": "安装和切换运行环境。",
+    "docker/unified": "一个镜像放两套独立 Python 与 SDK，由启动器选择。",
+    "docker/unified/Dockerfile": "构建两套厂商环境，并分别编译专用扩展。",
+    "docker/unified/prepare.py": "准备 Python 环境、SDK 和可写运行目录。",
+    "docker/unified/launch.py": "up-run 的实现：选择 Python 和库路径，再启动 UP。",
+    "docker/unified/profiles.json": "记录两家的 Python、SDK 和动态库目录。",
+    "docker/unified/probe.py": "检查所选环境的包、显卡和专用扩展。",
+    "docker/unified/requirements.txt": "通用镜像中两套环境都要安装的普通依赖。",
+    "up_docker": "宿主机启动脚本：选择厂商、挂载显卡和数据，再启动容器中的 UP。",
+    "setup.py": "安装 UP；只在明确指定厂商时编译扩展。",
+    "pyproject.toml": "声明 Python 构建入口和构建依赖。",
+    "MANIFEST.in": "确保源码包带上平台代码和扩展源码。",
+    ".dockerignore": "构建镜像时排除数据、权重和临时输出。",
+    ".gitattributes": "统一脚本等文件的 Git 换行规则。",
+    ".github": "自动检查和教程发布。",
+    ".github/workflows/platform.yml": "CI 检查安装、接口、文档和测试；通过后发布这份在线教程。",
+    "tools": "开发工具：生成接口和模板、检查调用边界、运行评测。日常使用从 up_docker 开始。",
+    "tests": "软件与真机评测代码。",
+    "tests/platform": "覆盖接口契约、厂商路由、前后向、状态、恢复和启动器。",
+    "tests/platform/fixtures": "测试用接口清单、调用索引和真机状态索引。",
+    "tools/accuracy_data.py": "核对 CIFAR-10/PennFudan 数据划分，绑定公共路径。",
+    "tools/accuracy_detr.py": "小数据对照使用的官方 DETR 适配器。",
+    "tools/accuracy_metrics.py": "从已保存的预测复算指标。",
+    "tools/accuracy_recipe.py": "小数据训练预算和配置。",
+    "tools/accuracy_train.py": "驱动一次小数据训练对照。",
+    "tools/audit_fixed_steps.py": "检查固定步数训练的指标、预测和文件。",
+    "tools/audit_model_verify.py": "读取并核对 model-verify 的指标单位。",
+    "tools/audit_platform_collectives.py": "双卡检查通信和 SyncBN。",
+    "tools/audit_platform_interfaces.py": "逐接口对照平台和直接 Torch 的结果。",
+    "tools/audit_platform_kitti_examples.py": "复现 KITTI 相同框 IoU 错误并对照几何参考。",
+    "tools/audit_platform_native_binaries.py": "用新旧各自的二进制对照专用算子。",
+    "tools/audit_platform_optional.py": "逐项检查量化、剪枝等可选工具链。",
+    "tools/audit_platform_publication.py": "核对发布索引对应的源码和结果文件。",
+    "tools/benchmark_roi_align.py": "使用同一批输入比较 RoIAlign 耗时。",
+    "tools/build_platform_extension.py": "在指定目录编译扩展并保存编译日志。",
+    "tools/capture_roi_align_cases.py": "从真实模型捕获 RoIAlign 反向输入。",
+    "tools/check_platform_boundaries.py": "检查上层是否绕过平台直接调用厂商接口。",
+    "tools/check_platform_docs.py": "检查教程、文档链接和 HTML 锚点。",
+    "tools/check_platform_import.py": "选择平台后检查实际 UP 注册入口。",
+    "tools/collect_platform_evidence.py": "索引评测文件，打包小型结果。",
+    "tools/collect_vendor_diagnosis.py": "打包诊断摘要并记录大张量的哈希。",
+    "tools/compare_native_traces.py": "比较重复运行的梯度轨迹。",
+    "tools/compare_platform_exports.py": "对照原版与新版的 ONNX 节点和属性。",
+    "tools/compare_platform_kitti.py": "对照 KITTI GPU 评估器与独立参考。",
+    "tools/compare_platform_models.py": "检查同厂商下新旧模型、损失和优化器的行为。",
+    "tools/compare_platform_native.py": "对照原 UP 算子与厂商显式绑定。",
+    "tools/compare_platform_toolchains.py": "实际执行可选工具链并对照直接调用。",
+    "tools/compare_roi_align_models.py": "在模型中对照 RoIAlign 改动前后的结果。",
+    "tools/compare_vendor_forward.py": "对照两家相同输入的前向张量。",
+    "tools/compare_vendor_prefix.py": "比较已捕获的训练前缀张量。",
+    "tools/diagnose_platform_operator.py": "沿 GPU 调用定位最先出现差异的操作。",
+    "tools/full_accuracy_bind.py": "核对完整数据的图片、标签和路径。",
+    "tools/full_accuracy_data.py": "提供完整 ImageNet/COCO 数据读取适配。",
+    "tools/full_accuracy_detr.py": "完整 COCO 对照使用的官方 DETR 适配器。",
+    "tools/full_accuracy_recipe.py": "集中定义完整数据对照的训练配置。",
+    "tools/full_accuracy_train.py": "运行可恢复的完整数据训练对照。",
+    "tools/new_platform_vendor.py": "根据当前父类生成新厂商接入模板。",
+    "tools/observe_vendor_prefix.py": "捕获真实训练前几步的前向和梯度。",
+    "tools/observe_vendor_writes.py": "观察 YOLO 的索引写入和随机调用。",
+    "tools/package_native_repeat.py": "核对并打包同源重复对照。",
+    "tools/platform_call_sites.py": "列出 UP 实际调用了哪些平台接口。",
+    "tools/platform_contracts.py": "从父类生成接口文档和机器可读清单。",
+    "tools/platform_coverage.py": "生成 GPU 接口、厂商实现和评测代码对照表。",
+    "tools/platform_interface_fixtures.py": "为通用接口生成独立测试输入。",
+    "tools/platform_inventory.py": "从原版 UP 审计硬件相关调用。",
+    "tools/platform_operator_cases.py": "捕获平台调用，并用公共输入重放。",
+    "tools/prepare_coco2017.py": "下载、校验并解包 COCO 2017。",
+    "tools/prepare_imagenet_parquet.py": "从现有 Parquet 还原 ImageNet 原编码图片。",
+    "tools/prepare_platform_dependencies.py": "为固定版本可选库处理导入和导出兼容。",
+    "tools/prepare_roi_align_cases.py": "整理 RoIAlign 公共输入和测试变体。",
+    "tools/probe_native_operators.py": "直接重复执行 Torch 底层操作，检查波动。",
+    "tools/probe_platform_environment.py": "只读检查所选环境和包版本。",
+    "tools/probe_platform_model_ops.py": "捕获三模型的平台算子，重放并跨厂商比较。",
+    "tools/probe_psroi_layout.py": "检查 PSRoIPool 的整数缓冲区和设备迁移布局。",
+    "tools/probe_vendor_randomness.py": "直接检查 Torch 随机数、Dropout 和重复写入。",
+    "tools/probe_vendor_transfer.py": "检查张量迁移时的设备布局变化。",
+    "tools/probe_yolo_targets.py": "观察 YOLO 目标写入的索引和结果。",
+    "tools/replay_vendor_leaf.py": "绕过 UP 重放已捕获的 Torch 前后向操作。",
+    "tools/replay_vendor_writes.py": "绕过 UP 重放 YOLO 重复索引写入。",
+    "tools/run_accuracy_cohort.py": "按计划依次启动小数据训练对照。",
+    "tools/run_native_repeat.py": "在同一张卡上执行同源重复和独立推理。",
+    "tools/run_platform_validation.py": "依次运行同厂商新旧兼容性检查。",
+    "tools/summarize_accuracy_cohort.py": "汇总小数据训练结果。",
+    "tools/summarize_checkpoint_protocol.py": "汇总同权重推理和恢复结果。",
+    "tools/summarize_deterministic_vendors.py": "汇总两家的确定性训练对照。",
+    "tools/summarize_fixed_steps.py": "检查固定步数轨迹，汇总新旧和跨厂商指标。",
+    "tools/summarize_interface_audit.py": "汇总逐接口数值和状态对照。",
+    "tools/summarize_vendor_interfaces.py": "复算逐接口结果，汇总原始运行与修正后的补测。",
+    "tools/summarize_native_repeat.py": "汇总同卡原生重复的全部运行。",
+    "tools/trace_native_training.py": "记录真实训练中的梯度和调用轨迹。",
+    "tools/validate_platform_distributed.py": "真机检查双卡通信、DDP、SyncBN、AMP 和恢复。",
+    "tools/validate_platform_kitti.py": "用独立几何参考检查修正后的 KITTI GPU IoU。",
+    "tools/validate_platform_roi_align.py": "对照 GPU RoIAlign 与独立反向参考。",
+    "tools/validate_platform_startup.py": "检查实际命令入口和模型默认层构造。",
+    "tools/validate_unified_environment.py": "检查所选环境的短程训练、验证、恢复和推理。",
+    "tools/verify_checkpoint_protocol.py": "使用同权重、真实数据检查推理和训练恢复。"
+  },
+  "lessons": {
+    "up_platform": {
+      "job": "给 UP 一个稳定的硬件入口。上层说要做什么，厂商实现决定怎样在显卡上执行。",
+      "how": "平台对象组合三部分：device 管设备，ops 放分类算子，execution 负责训练或推理。工厂按配置装配一次，后续调用复用这个对象。",
+      "use": "训练和推理命令先创建平台，再构建模型；模型通过 get_platform() 或 layers 调用。",
+      "links": [
+        "up_platform/base.py",
+        "up_platform/factory.py",
+        "up/utils/env/platform.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/base.py",
+          "start": 91,
+          "code": "        self._device = device\n        self._purpose = purpose\n        self._operations = MappingProxyType(dict(operations))\n        self._execution = execution"
+        }
+      ]
+    },
+    "up/utils/env/platform.py": {
+      "job": "把 UP 的 YAML / 命令行配置接到平台层。",
+      "how": "读取 runtime.platform，合并设备设置，调用 configure_platform。训练传 training，独立推理传 inference。",
+      "use": "UP 命令入口在导入和构建模型之前调用 configure_command。",
+      "links": [
+        "up_platform/factory.py",
+        "up/runner/base_runner.py",
+        "up/apis/inference.py"
+      ],
+      "snippets": [
+        {
+          "path": "up/utils/env/platform.py",
+          "start": 92,
+          "code": "def configure_from_up(config, *, purpose):\n    runtime = config.get('runtime', {})\n    selection = dict(runtime.get('platform', {}))\n    if 'device' in runtime:\n        selection.setdefault('device', runtime['device'])\n    if selection.get('device') == 'cpu':\n        selection.setdefault('backend', 'cpu')\n    return configure_platform(selection, purpose=purpose)"
+        }
+      ]
+    },
+    "up_platform/factory.py": {
+      "job": "根据厂商名找到构建函数，保存当前平台。",
+      "how": "内置注册表把 nvidia、metax 等名字对应到 build。插件也可注册自己的 build。创建后，get_platform() 返回同一平台对象。",
+      "use": "UP 配置连接层负责初始化；各个模型和兼容算子入口负责取用。",
+      "links": [
+        "up/utils/env/platform.py",
+        "up_platform/backends/metax.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/factory.py",
+          "start": 5,
+          "code": "_FACTORIES = {\n    \"nvidia\": \"up_platform.backends.nvidia:build\",\n    \"metax\": \"up_platform.backends.metax:build\",\n    \"ascend\": \"up_platform.backends.ascend:build\",\n    \"cambricon\": \"up_platform.backends.cambricon:build\",\n    \"cpu\": \"up_platform.backends.cpu:build\",\n}"
+        },
+        {
+          "path": "up_platform/factory.py",
+          "start": 64,
+          "code": "def get_platform():\n    if _context is None:\n        raise RuntimeError(\"Call configure_platform(..., purpose='training' or 'inference') before constructing a model\")\n    return _context"
+        }
+      ]
+    },
+    "up_platform/backends": {
+      "job": "把当前厂商的设备、算子和执行方式装在一起。",
+      "how": "NVIDIA 与沐曦各有一个 build。它检查所装 Torch 的厂商，再选各类别的厂商类，最后按 purpose 选择训练或推理实现。",
+      "use": "factory.py 找到并调用对应厂商的 build。",
+      "links": [
+        "up_platform/backends/nvidia.py",
+        "up_platform/backends/metax.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/backends/metax.py",
+          "start": 38,
+          "code": "    execution = getattr(import_module(\"up_platform.\" + purpose + \".metax\"), \"Metax\" + purpose.capitalize())(device)\n    return PlatformBackend(device, purpose, operations, execution)"
+        }
+      ]
+    },
+    "up_platform/backends/torch_device.py": {
+      "job": "统一设备查询、绑定、数据迁移、同步、显存和随机状态。",
+      "how": "父类定义接口，TorchDevice 调用当前厂商的 PyTorch 设备 API。厂商子类声明身份和设备类型；有差异的方法由子类覆盖。",
+      "use": "Runner 和数据准备通过 platform.device.move(...) 迁移模型或批次。NVIDIA 与沐曦都使用 cuda 设备名，厂商身份另用 nvidia / metax 区分。",
+      "links": [
+        "up_platform/base.py",
+        "up_platform/backends/nvidia.py",
+        "up_platform/backends/metax.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/backends/torch_device.py",
+          "start": 46,
+          "code": "    def move(self, value, device=None, non_blocking=False):\n        destination = self.device(device) if isinstance(device, int) else (device or self.device())\n        if isinstance(value, (torch.Tensor, torch.nn.Module)):\n            return value.to(device=destination, non_blocking=non_blocking)"
+        }
+      ]
+    },
+    "up_platform/layers.py": {
+      "job": "把模型里的常用层构造接到平台，例如 Conv2d、Linear、BatchNorm。",
+      "how": "layers.Conv2d 选择当前厂商的卷积接口，返回真实的 Torch 模块。模型后续直接使用这个模块，所以参数名称和初始化方式沿用原模块。",
+      "use": "ResNet、YOLO 等模型用 layers 构造层；ViT 的矩阵和 softmax 通过分类算子接口执行。",
+      "links": [
+        "up_platform/ops/convolution/nvidia.py",
+        "up_platform/ops/convolution/metax.py",
+        "up/models/backbones/vision_transformer.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/layers.py",
+          "start": 37,
+          "code": "def Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None):\n    return get_platform().category(\"convolution\").Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size, stride=stride, padding=padding, dilation=dilation, groups=groups, bias=bias, padding_mode=padding_mode, device=device, dtype=dtype)"
+        }
+      ]
+    },
+    "up_platform/ops": {
+      "job": "给矩阵、卷积、检测、点云等 15 类操作定义统一调用方式。",
+      "how": "每类 base.py 定签名和行为，厂商文件显式绑定实现。兼容项复用 torch_impl；专用算子接自有扩展。",
+      "use": "常用层在构造时选供应者；函数式操作在调用时进入相应类别。下方算子图可以逐类查看路径。",
+      "links": [
+        "up_platform/ops/convolution/base.py",
+        "up_platform/ops/convolution/metax.py",
+        "up_platform/ops/convolution/torch_impl.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/ops/convolution/metax.py",
+          "start": 6,
+          "code": "class MetaxConvolutionOps(ConvolutionOps):\n    dependencies = (\"torch\",)\n    conv2d = staticmethod(torch_impl.conv2d)\n    conv_transpose2d = staticmethod(torch_impl.conv_transpose2d)\n    Conv2d = staticmethod(torch_impl.Conv2d)\n    ConvTranspose2d = staticmethod(torch_impl.ConvTranspose2d)"
+        },
+        {
+          "path": "up_platform/ops/convolution/torch_impl.py",
+          "start": 5,
+          "code": "conv2d = F.conv2d\nconv_transpose2d = F.conv_transpose2d\nConv2d = torch.nn.Conv2d\nConvTranspose2d = torch.nn.ConvTranspose2d"
+        }
+      ]
+    },
+    "up_platform/ops/convolution": {
+      "job": "统一卷积函数和卷积层的入口。",
+      "how": "两家目前显式绑定同一份 torch_impl。它使用当前环境中的 torch.nn / functional：在 NVIDIA 环境执行 NVIDIA Torch，在沐曦环境执行沐曦 Torch。",
+      "use": "模型的 layers.Conv2d(...) 最终返回所选环境的 torch.nn.Conv2d。",
+      "links": [
+        "up_platform/layers.py",
+        "up_platform/ops/convolution/nvidia.py",
+        "up_platform/ops/convolution/metax.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/ops/convolution/metax.py",
+          "start": 6,
+          "code": "class MetaxConvolutionOps(ConvolutionOps):\n    dependencies = (\"torch\",)\n    conv2d = staticmethod(torch_impl.conv2d)\n    conv_transpose2d = staticmethod(torch_impl.conv_transpose2d)\n    Conv2d = staticmethod(torch_impl.Conv2d)\n    ConvTranspose2d = staticmethod(torch_impl.ConvTranspose2d)"
+        },
+        {
+          "path": "up_platform/ops/convolution/torch_impl.py",
+          "start": 5,
+          "code": "conv2d = F.conv2d\nconv_transpose2d = F.conv_transpose2d\nConv2d = torch.nn.Conv2d\nConvTranspose2d = torch.nn.ConvTranspose2d"
+        }
+      ]
+    },
+    "up_platform/ops/detection": {
+      "job": "把 NMS、RoIAlign 等 UP 专用算子接到各厂商。",
+      "how": "旧导入路径转发到平台，厂商绑定选择 RoIAlignFunction；它保存反向所需状态，并加载当前厂商的扩展。两家共用内核源码，分别编译二进制。",
+      "use": "Faster R-CNN 的 RoIAlignPool 继续使用原 .apply() 入口。",
+      "links": [
+        "up/extensions/python/roi_align.py",
+        "up_platform/ops/detection/metax.py",
+        "up_platform/ops/detection/_roi_align.py",
+        "up_platform/ops/_native/loader.py"
+      ],
+      "snippets": [
+        {
+          "path": "up/extensions/python/roi_align.py",
+          "start": 17,
+          "code": "    def apply(features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode):\n        return get_platform().category('detection').roi_align(features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode, aligned=ALIGNED_FLAG.aligned)"
+        },
+        {
+          "path": "up_platform/ops/detection/_roi_align.py",
+          "start": 18,
+          "code": "        self._roi_align = load_native(vendor).roi_align\n        self.aligned = aligned\n        self.save_for_backward(features, rois)"
+        }
+      ]
+    },
+    "up_platform/ops/_native": {
+      "job": "保存和编译原 UP 的专用 GPU 算子。",
+      "how": "build.py 使用所选厂商的编译工具链；loader.py 按厂商名加载 _nvidia_ops 或 _metax_ops。",
+      "use": "检测、Focal Loss、可变形卷积、点云等 Python 前后向封装调用这些扩展。",
+      "links": [
+        "up_platform/ops/_native/build.py",
+        "up_platform/ops/_native/loader.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/ops/_native/loader.py",
+          "start": 9,
+          "code": "def load_native(vendor):\n    if vendor not in (\"nvidia\", \"metax\"):\n        raise UnsupportedOperation(vendor, \"common\", \"native_extension\", \"No native extension registered\")\n    try:\n        return import_module(f\"up_platform.backends._{vendor}_ops\")"
+        }
+      ]
+    },
+    "up_platform/ops/sparse/metax.py": {
+      "job": "接入沐曦 spconv，并统一稀疏张量的输出布局。",
+      "how": "兼容操作复用公共实现；dense 把 N…C 转成 NC…；稀疏卷积类型识别绑定沐曦 SDK 的实际基类。",
+      "use": "点云模型继续通过 sparse 类别取得稀疏卷积和张量操作。",
+      "links": [
+        "up_platform/ops/sparse/base.py",
+        "up_platform/ops/sparse/torch_impl.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/ops/sparse/metax.py",
+          "start": 18,
+          "code": "    def dense(tensor, channels_first=True):\n        # MetaX spconv 2.1 returns N...C and has no channels_first keyword.\n        result = tensor.dense()\n        if channels_first:\n            result = result.permute(0, result.ndim - 1, *range(1, result.ndim - 1)).contiguous()\n        return result\n    @staticmethod"
+        },
+        {
+          "path": "up_platform/ops/sparse/metax.py",
+          "start": 25,
+          "code": "    def is_sparse_convolution(module):\n        return isinstance(module, dependency('spconv.pytorch.modules.macaconv').SparseConvolution)"
+        }
+      ]
+    },
+    "up_platform/training": {
+      "job": "给 UP 训练提供混合精度、多卡、优化器、裁剪、验证和状态恢复。",
+      "how": "TorchTraining 复用厂商 Torch 的 AMP / DDP / 优化器；FSDP2 单独处理分片与完整状态。训练步骤和学习率仍由 Runner 决定。",
+      "use": "BaseRunner 调用 platform.execution。训练内 eval 保存模块模式，进入 eval / no_grad，结束后恢复。",
+      "links": [
+        "up/runner/base_runner.py",
+        "up_platform/training/torch_impl.py",
+        "up_platform/training/fsdp.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/training/torch_impl.py",
+          "start": 52,
+          "code": "    def validation(self, module):\n        from .fsdp import validation\n        modes = tuple((child, child.training) for child in module.modules())\n        try:\n            module.eval()\n            with torch.no_grad(), validation(module):\n                yield module\n        finally:\n            for child, training in modes:\n                child.training = training\n\n    def fused_optimizer(self, name, params, **kwargs):"
+        }
+      ]
+    },
+    "up_platform/training/fsdp.py": {
+      "job": "为多卡训练提供 FSDP2 参数分片。",
+      "how": "先分片，再创建优化器；训练时处理分片梯度与 AMP 溢出同步，保存时收集完整模型和优化器状态，恢复后继续训练。",
+      "use": "在 YAML 选择 runtime.distributed.strategy: fsdp2；普通训练默认使用 DDP。",
+      "links": [
+        "up_platform/training/base.py",
+        "up/runner/base_runner.py",
+        "docs/platform/FSDP.md"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/training/torch_impl.py",
+          "start": 23,
+          "code": "    def wrap_fsdp(self, module, *, shard_modules=(), reshard_after_forward=True):\n        from .fsdp import wrap\n        return wrap(self.device, module, shard_modules=shard_modules,\n                    reshard_after_forward=reshard_after_forward)"
+        }
+      ]
+    },
+    "up_platform/inference": {
+      "job": "为独立图片推理和导出提供执行接口。",
+      "how": "推理入口选择 purpose=inference，共用设备和算子；推理后端提供 autocast 与 ONNX 导出。读图片、前向和后处理由 UP 组织。",
+      "use": "python -m up inference 或 up_docker <厂商> inference 进入这条路径。",
+      "links": [
+        "up/apis/inference.py",
+        "up_platform/inference/torch_impl.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/inference/torch_impl.py",
+          "start": 10,
+          "code": "    def autocast(self, enabled=True, dtype=None, cache_enabled=True):\n        return torch.amp.autocast(self.device.device_type, enabled=enabled, dtype=dtype, cache_enabled=cache_enabled)"
+        }
+      ]
+    },
+    "docker/unified": {
+      "job": "让两家 PyTorch、SDK 和扩展共存，按命令选择。",
+      "how": "两套独立 Python 环境放在同一镜像。launch.py 选择解释器，设置对应库路径与缓存，检查 Torch 厂商后启动新进程。",
+      "use": "up_docker 负责挂载设备和数据；容器内 up-run 选环境并补上 runtime.platform.backend。",
+      "links": [
+        "up_docker",
+        "docker/unified/launch.py",
+        "docker/unified/profiles.json"
+      ],
+      "snippets": [
+        {
+          "path": "docker/unified/launch.py",
+          "start": 84,
+          "code": "            command = [python, \"-m\", \"up\", args.command, *up_arguments(args.arguments, args.vendor)]\n    except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as error:\n        parser.exit(2, f\"up-run: {error}\\n\")\n    os.execve(python, command, env)"
+        }
+      ]
+    },
+    "tools": {
+      "job": "帮助开发者接厂商、查边界、测接口和定位差异。",
+      "how": "生成器读取父类签名写模板；检查工具扫描 UP 调用；评测工具比较前向、梯度、状态和模型流程。",
+      "use": "日常运行用 up_docker；开发新后端时使用这些工具和 tests/platform。",
+      "links": [
+        "tools/new_platform_vendor.py",
+        "tools/platform_contracts.py",
+        "tools/check_platform_boundaries.py",
+        "tools/audit_platform_interfaces.py",
+        "tests/platform"
+      ]
+    },
+    "up_platform/base.py": {
+      "job": "给 UP 一个稳定的硬件入口。上层说要做什么，厂商实现决定怎样在显卡上执行。",
+      "how": "平台对象组合三部分：device 管设备，ops 放分类算子，execution 负责训练或推理。工厂按配置装配一次，后续调用复用这个对象。",
+      "use": "训练和推理命令先创建平台，再构建模型；模型通过 get_platform() 或 layers 调用。",
+      "links": [
+        "up_platform/base.py",
+        "up_platform/factory.py",
+        "up/utils/env/platform.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/base.py",
+          "start": 91,
+          "code": "        self._device = device\n        self._purpose = purpose\n        self._operations = MappingProxyType(dict(operations))\n        self._execution = execution"
+        }
+      ]
+    },
+    "up_platform/backends/nvidia.py": {
+      "job": "把当前厂商的设备、算子和执行方式装在一起。",
+      "how": "NVIDIA 与沐曦各有一个 build。它检查所装 Torch 的厂商，再选各类别的厂商类，最后按 purpose 选择训练或推理实现。",
+      "use": "factory.py 找到并调用对应厂商的 build。",
+      "links": [
+        "up_platform/backends/nvidia.py",
+        "up_platform/backends/metax.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/backends/metax.py",
+          "start": 38,
+          "code": "    execution = getattr(import_module(\"up_platform.\" + purpose + \".metax\"), \"Metax\" + purpose.capitalize())(device)\n    return PlatformBackend(device, purpose, operations, execution)"
+        }
+      ]
+    },
+    "up_platform/backends/metax.py": {
+      "job": "把当前厂商的设备、算子和执行方式装在一起。",
+      "how": "NVIDIA 与沐曦各有一个 build。它检查所装 Torch 的厂商，再选各类别的厂商类，最后按 purpose 选择训练或推理实现。",
+      "use": "factory.py 找到并调用对应厂商的 build。",
+      "links": [
+        "up_platform/backends/nvidia.py",
+        "up_platform/backends/metax.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/backends/metax.py",
+          "start": 38,
+          "code": "    execution = getattr(import_module(\"up_platform.\" + purpose + \".metax\"), \"Metax\" + purpose.capitalize())(device)\n    return PlatformBackend(device, purpose, operations, execution)"
+        }
+      ]
+    },
+    "up_platform/training/torch_impl.py": {
+      "job": "给 UP 训练提供混合精度、多卡、优化器、裁剪、验证和状态恢复。",
+      "how": "TorchTraining 复用厂商 Torch 的 AMP / DDP / 优化器；FSDP2 单独处理分片与完整状态。训练步骤和学习率仍由 Runner 决定。",
+      "use": "BaseRunner 调用 platform.execution。训练内 eval 保存模块模式，进入 eval / no_grad，结束后恢复。",
+      "links": [
+        "up/runner/base_runner.py",
+        "up_platform/training/torch_impl.py",
+        "up_platform/training/fsdp.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/training/torch_impl.py",
+          "start": 52,
+          "code": "    def validation(self, module):\n        from .fsdp import validation\n        modes = tuple((child, child.training) for child in module.modules())\n        try:\n            module.eval()\n            with torch.no_grad(), validation(module):\n                yield module\n        finally:\n            for child, training in modes:\n                child.training = training\n\n    def fused_optimizer(self, name, params, **kwargs):"
+        }
+      ]
+    },
+    "up_platform/inference/torch_impl.py": {
+      "job": "为独立图片推理和导出提供执行接口。",
+      "how": "推理入口选择 purpose=inference，共用设备和算子；推理后端提供 autocast 与 ONNX 导出。读图片、前向和后处理由 UP 组织。",
+      "use": "python -m up inference 或 up_docker <厂商> inference 进入这条路径。",
+      "links": [
+        "up/apis/inference.py",
+        "up_platform/inference/torch_impl.py"
+      ],
+      "snippets": [
+        {
+          "path": "up_platform/inference/torch_impl.py",
+          "start": 10,
+          "code": "    def autocast(self, enabled=True, dtype=None, cache_enabled=True):\n        return torch.amp.autocast(self.device.device_type, enabled=enabled, dtype=dtype, cache_enabled=cache_enabled)"
+        }
+      ]
+    },
+    "docker/unified/launch.py": {
+      "job": "让两家 PyTorch、SDK 和扩展共存，按命令选择。",
+      "how": "两套独立 Python 环境放在同一镜像。launch.py 选择解释器，设置对应库路径与缓存，检查 Torch 厂商后启动新进程。",
+      "use": "up_docker 负责挂载设备和数据；容器内 up-run 选环境并补上 runtime.platform.backend。",
+      "links": [
+        "up_docker",
+        "docker/unified/launch.py",
+        "docker/unified/profiles.json"
+      ],
+      "snippets": [
+        {
+          "path": "docker/unified/launch.py",
+          "start": 84,
+          "code": "            command = [python, \"-m\", \"up\", args.command, *up_arguments(args.arguments, args.vendor)]\n    except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as error:\n        parser.exit(2, f\"up-run: {error}\\n\")\n    os.execve(python, command, env)"
+        }
+      ]
+    },
+    "up_docker": {
+      "job": "让两家 PyTorch、SDK 和扩展共存，按命令选择。",
+      "how": "两套独立 Python 环境放在同一镜像。launch.py 选择解释器，设置对应库路径与缓存，检查 Torch 厂商后启动新进程。",
+      "use": "up_docker 负责挂载设备和数据；容器内 up-run 选环境并补上 runtime.platform.backend。",
+      "links": [
+        "up_docker",
+        "docker/unified/launch.py",
+        "docker/unified/profiles.json"
+      ],
+      "snippets": [
+        {
+          "path": "docker/unified/launch.py",
+          "start": 84,
+          "code": "            command = [python, \"-m\", \"up\", args.command, *up_arguments(args.arguments, args.vendor)]\n    except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as error:\n        parser.exit(2, f\"up-run: {error}\\n\")\n    os.execve(python, command, env)"
+        }
+      ]
+    }
+  }
+}</script>
+<script>
+(() => {
+  'use strict';
+  const base = 'https://github.com/jingfengou/United-Perception/';
+  const branch = 'codex/up-platform-clean/';
+  const data = JSON.parse(document.getElementById('tutorial-data').textContent);
+  const byId = id => document.getElementById(id);
+  const vendors = {nvidia:'NVIDIA', metax:'沐曦 C500', ascend:'昇腾', cambricon:'寒武纪', cpu:'测试 CPU'};
+  const modules = {
+    up:['A · UP 接入','模型、数据和训练流程调用平台。','up'],
+    platform:['B · 统一入口','选厂商，创建并保存平台对象。','up_platform/factory.py'],
+    device:['C · 设备','绑定显卡，迁移张量，管理显存与随机状态。','up_platform/backends/torch_device.py'],
+    ops:['D · 分类算子','按类别定接口，各厂商显式实现或绑定。','up_platform/ops'],
+    training:['E · 训练','AMP、DDP/FSDP2、优化器、验证与保存恢复。','up_platform/training'],
+    inference:['F · 独立推理','推理 autocast 和 ONNX 导出。','up_platform/inference'],
+    vendor:['G · 厂商实现','兼容项共用代码，差异项在厂商文件覆盖。','up_platform/backends']
+  };
+  function component(path) {
+    if (path==='up'||path.startsWith('up/')) return 'up';
+    if (path.startsWith('up_platform/ops')) return 'ops';
+    if (path.startsWith('up_platform/training')) return 'training';
+    if (path.startsWith('up_platform/inference')) return 'inference';
+    if (path.endsWith('torch_device.py')) return 'device';
+    if (path.startsWith('up_platform/backends')) return 'vendor';
+    return 'platform';
+  }
+  function codeLink(path, label, folder=false) {
+    const a = document.createElement('a'); a.href = base+(folder?'tree/':'blob/')+branch+path;
+    a.textContent = label; a.target='_blank'; a.rel='noopener noreferrer'; return a;
+  }
+  function setModule(key) {
+    document.querySelectorAll('[data-node]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.node===key)));
+    byId('architecture-name').textContent=modules[key][0]; byId('architecture-detail').textContent=modules[key][1];
+    byId('architecture-source').dataset.path=modules[key][2];
+  }
+  document.querySelectorAll('[data-node]').forEach(b => b.addEventListener('click', () => setModule(b.dataset.node)));
+  byId('architecture-source').addEventListener('click', e => selectPath(e.currentTarget.dataset.path));
+  setModule('platform');
+
+  function describe(path) {
+    if (data.notes[path]) return data.notes[path];
+    const parts=path.split('/'), name=parts.at(-1), stem=name.replace(/\.[^.]+$/, '');
+    if (path.startsWith('up_platform/ops/') && data.operators[parts[2]]) {
+      const item=data.operators[parts[2]], label=item.label;
+      if (parts.length===3) return label+'接口：'+item.functions+'。';
+      if (name==='base.py') return '定义'+label+'接口的签名、返回值、反向和状态要求。';
+      if (name==='torch_impl.py') return '兼容厂商共用的'+label+'实现，调用当前环境的 Torch 或可选库。';
+      if (vendors[stem]) return vendors[stem]+(stem==='ascend'||stem==='cambricon'?' 的'+label+'接入模板。':' 的'+label+'显式入口；兼容方法绑定公共实现，差异方法在这里覆盖。');
+      if (name==='__init__.py') return label+'算子包入口。';
+      return label+'专用操作 '+stem.replace(/^_/,'')+'：连接实际前向、所需反向或底层内核。';
+    }
+    if (path.startsWith('up_platform/ops/_native/csrc/')) {
+      if (name==='pybind.cpp') return '将 C++/GPU 扩展函数暴露给 Python。';
+      if (name.endsWith('.h')) return '声明 '+parts[4]+' 的底层扩展接口。';
+      return parts[4]+' 的'+(name.endsWith('.cu')?' GPU 内核。':' C++ 绑定或辅助计算。');
+    }
+    if (path.startsWith('up_platform/training/')||path.startsWith('up_platform/inference/')) {
+      const label=parts[1]==='training'?'训练':'推理';
+      if (vendors[stem]) return vendors[stem]+' 的'+label+'入口，显式选用可复用实现。';
+    }
+    if (path.startsWith('up/extensions/')) return '原 UP '+stem+' 兼容入口，转发到平台对应算子。';
+    if (path.startsWith('up/')) {
+      if (path.includes('/evaluator/')) return '保留 UP 评估流程，将硬件计算接到平台；KITTI 几何修正在对应平台实现。';
+      if (path.includes('/runner/')) return '保留此 Runner 的业务流程，使用平台设备与训练能力。';
+      if (path.includes('/optimizer')) return '保留优化器配置和参数分组，交给平台构造。';
+      return '在原 '+stem+' 中把设备、层或专用操作接到平台接口。';
+    }
+    if (path.startsWith('tests/platform/fixtures/')) return '供接口、调用覆盖或数值测试使用的 '+stem+' 固定数据。';
+    if (path.startsWith('tests/platform/')) {
+      const target=stem.replace(/^test_/,'');
+      const subjects={tutorial:'教程目录与源码链接',documentation:'文档和 HTML 链接',contracts:'接口清单',selection:'厂商与用途选择',runtime:'设备和运行时',torch_bindings:'PyTorch 公共绑定',vendor_template:'新厂商模板和 SDK 前后向',fsdp:'FSDP2 与权重状态',fsdp_smoke:'真机双卡 FSDP2',fsdp_up_runner:'真实 UP Runner 的 FSDP2',platform_coverage:'GPU 接口代码表',platform_boundaries:'平台边界',public_import:'无 Torch 时的公共导入',vendor_launcher:'环境选择启动器',docker_launcher:'宿主机容器启动器',kitti_geometry:'KITTI 旋转框几何',roi_align_determinism:'RoIAlign 确定性反向',checkpoint_protocol:'权重恢复和推理协议',full_accuracy_state:'完整训练的采样和恢复状态',optional_dependencies:'可选依赖的加载',platform_operator_cases:'真实模型操作数捕获与重放',interface_audit:'逐接口对照工具',operator_diagnosis:'算子差异定位工具'};
+      const more={accuracy_numerics:'训练数值设置',accuracy_recipe:'小数据配方',deterministic_vendor_summary:'跨厂商确定性结果汇总',fixed_steps:'固定步数对照和指标',full_accuracy_bind:'数据身份与路径绑定',full_accuracy_data:'完整数据读取',full_accuracy_recipe:'完整数据配方',kitti_diagnostics:'KITTI 差异定位工具',model_verify_audit:'外部评测指标读取',native_operator_probe:'原生操作重放',prepare_coco:'COCO 下载与解包',prepare_imagenet:'ImageNet 无重编码还原',repeat_evidence:'重复运行的结果索引',roi_benchmark:'RoIAlign 性能比较工具',vendor_diagnosis:'跨厂商前向与梯度诊断'};
+      return '检查'+(subjects[target]||more[target]||target.replaceAll('_',' / '))+'。';
+    }
+    if (name==='__init__.py') return '声明 Python 包，按需开放本目录的入口。';
+    return '本目录的'+stem+'入口。';
+  }
+  const paths=new Set(data.files);
+  data.files.forEach(path => { const p=path.split('/'); for(let i=1;i<p.length;i++) paths.add(p.slice(0,i).join('/')); });
+  const folders=new Set([...paths].filter(p=>!data.files.includes(p)));
+  const elements=new Map();
+  function makeTree(parent,path='') {
+    const children=[...paths].filter(p=>p.startsWith(path?path+'/':'')&&p.split('/').length===(path?path.split('/').length+1:1));
+    const preferred=['up_platform','up','docker','up_docker','tools','tests','.github'];
+    children.sort((a,b)=> { if(!path){const ai=preferred.indexOf(a),bi=preferred.indexOf(b);if(ai>=0||bi>=0)return(ai<0?99:ai)-(bi<0?99:bi);} return Number(folders.has(b))-Number(folders.has(a))||a.localeCompare(b); });
+    children.forEach(child=> {
+      if(folders.has(child)) {
+        const d=document.createElement('details'), s=document.createElement('summary'), body=document.createElement('div');
+        s.textContent=child.split('/').at(-1)+'/'; s.dataset.path=child; body.className='children';
+        s.addEventListener('click',()=>showPath(child)); d.append(s,body); parent.append(d); elements.set(child,s); makeTree(body,child);
+        if(child==='up_platform')d.open=true;
+      } else {
+        const b=document.createElement('button'); b.type='button'; b.className='file'; b.dataset.path=child; b.textContent=child.split('/').at(-1);
+        b.addEventListener('click',()=>showPath(child)); parent.append(b); elements.set(child,b);
+      }
+    });
+  }
+  makeTree(byId('file-tree'));
+  function showLesson(parent,lesson) {
+    [['负责什么',lesson.job],['怎样实现',lesson.how],['谁在调用',lesson.use]].forEach(([title,text])=>{
+      const row=document.createElement('div'),heading=document.createElement('strong'),p=document.createElement('p');
+      row.className='lesson-row';heading.textContent=title;p.textContent=text;row.append(heading,p);parent.append(row);
+    });
+    for(const snippet of lesson.snippets||[]) {
+      const block=document.createElement('div');block.className='snippet';
+      const a=codeLink(snippet.path,'源码摘录 · '+snippet.path);a.href+='#L'+snippet.start;
+      block.append(a);addCode(block,snippet.code);parent.append(block);
+    }
+    const related=document.createElement('div');related.className='related';
+    for(const path of lesson.links||[]) related.append(codeLink(path,path,folders.has(path)));
+    parent.append(related);
+  }
+  function showPath(path) {
+    const isFolder=folders.has(path), name=path.split('/').at(-1), key=component(path);
+    elements.forEach((el,p)=>el.setAttribute('aria-current',String(p===path)));
+    byId('file-path').textContent=path; byId('file-title').textContent=name+(isFolder?'/':'');
+    byId('file-description').textContent=describe(path);
+    byId('file-component').textContent=path.startsWith('tools')||path.startsWith('tests')||path.startsWith('.github')?'配套工具与检查':path.startsWith('docker')||path==='up_docker'?'环境与启动':modules[key][0];
+    const link=codeLink(path,'打开源码 ↗',isFolder); byId('file-source').href=link.href;
+    const body=byId('file-explanation'); body.replaceChildren();
+    const cat=path.startsWith('up_platform/ops/')?path.split('/')[2]:null;
+    const lesson=data.lessons[path]||data.lessons['up_platform/ops/'+cat];
+    if(lesson) showLesson(body,lesson);
+    document.querySelectorAll('[data-lesson]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lesson===path)));
+    if(isFolder) {
+      const children=[...paths].filter(p=>p.startsWith(path+'/')&&p.split('/').length===path.split('/').length+1);
+      children.sort((a,b)=>Number(folders.has(b))-Number(folders.has(a))||a.localeCompare(b));
+      const list=document.createElement('ul'); list.className='file-list';
+      children.forEach(p=>{ const li=document.createElement('li'),b=document.createElement('button'),hint=document.createElement('span'); b.type='button';b.textContent=p.split('/').at(-1)+(folders.has(p)?'/':'');b.addEventListener('click',()=>selectPath(p));hint.textContent=describe(p);li.append(b,hint);list.append(li); });
+      if(lesson){const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='目录中的文件';details.append(summary,list);body.append(details);}else body.append(list);
+    }
+    if(path.startsWith('up_platform/ops/')&&data.operators[path.split('/')[2]]) {
+      const item=data.operators[path.split('/')[2]],details=document.createElement('details'),summary=document.createElement('summary'),p=document.createElement('p');summary.textContent='查看本类完整接口';p.className='hint';p.textContent=item.methods.join('、');details.append(summary,p);body.append(details);
+    }
+    setModule(key);
+  }
+  function addCode(parent,value) { const pre=document.createElement('pre'),code=document.createElement('code'); code.textContent=value;pre.append(code);parent.append(pre); }
+  function selectPath(path) {
+    const el=elements.get(path); if(!el)return;
+    let node=el.parentElement;while(node&&node!==byId('file-tree')){if(node.tagName==='DETAILS')node.open=true;node=node.parentElement;}
+    showPath(path);
+    const tree=byId('file-tree'); tree.scrollTop+=el.getBoundingClientRect().top-tree.getBoundingClientRect().top-tree.clientHeight/3;
+  }
+  byId('file-search').addEventListener('input',e=> {
+    const q=e.target.value.trim().toLowerCase();
+    elements.forEach((el,p)=>{if(folders.has(p)){el.parentElement.hidden=!!q&&![...paths].some(x=>x.startsWith(p+'/')&&x.toLowerCase().includes(q));if(q)el.parentElement.open=true;}else el.hidden=!!q&&!p.toLowerCase().includes(q);});
+  });
+  selectPath('up_platform');
+  [['1 · UP 配置','up/utils/env/platform.py'],['2 · 平台工厂','up_platform/factory.py'],['3 · 厂商装配','up_platform/backends'],['4 · 设备','up_platform/backends/torch_device.py'],['5 · 常用层','up_platform/layers.py'],['6 · 专用算子','up_platform/ops/detection'],['7 · 训练与 eval','up_platform/training'],['8 · 独立推理','up_platform/inference'],['9 · 环境切换','docker/unified']].forEach(([label,path])=>{
+    const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.lesson=path;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>selectPath(path));byId('reading-route').append(b);
+  });
+
+  const select=byId('operator-category');
+  Object.entries(data.operators).forEach(([cat,item])=> {
+    const o=document.createElement('option');o.value=cat;o.textContent=item.label+' · '+cat;select.append(o);
+    const b=document.createElement('button');b.type='button';b.textContent=item.label;b.addEventListener('click',()=>{select.value=cat;drawOperator();selectPath('up_platform/ops/'+cat);});byId('category-list').append(b);
+  });
+  function drawOperator() {
+    const cat=select.value,vendor=byId('operator-vendor').value,item=data.operators[cat],dir='up_platform/ops/'+cat+'/';
+    const native=['detection','deformable','focal','pointcloud'].includes(cat);
+    const impl=cat==='sparse'&&vendor==='metax'?'metax.py':item.impl;
+    const stages=[['UP 调用',`get_platform().category('${cat}').${item.method}(...)`,'up_platform/base.py'],['接口',item.method+'：'+item.functions,dir+'base.py'],['厂商入口',vendors[vendor]+' 的显式绑定',dir+vendor+'.py'],['具体计算',item.api,dir+impl]];
+    if(native)stages.push(['GPU 扩展','_'+vendor+'_ops：用本厂商工具链独立编译','up_platform/ops/_native/loader.py']);
+    const chain=byId('operator-chain');chain.replaceChildren();
+    stages.forEach(([label,text,path])=>{const row=document.createElement('div');row.className='chain-row';const name=document.createElement('span'),content=document.createElement('div'),code=document.createElement('code');name.textContent=label;code.textContent=text;content.append(code,codeLink(path,path));row.append(name,content);chain.append(row);});
+    byId('operator-detail').textContent=cat==='sparse'&&vendor==='metax'?'沐曦 dense() 在厂商文件中做输出布局转换。':native?'共用前后向代码和内核源码，二进制按厂商分别编译、加载。':['matrix','convolution','attention','normalization'].includes(cat)?'层在构造时选中当前厂商模块，后续 forward 直接执行它。':'兼容项共用 Python 实现，实际计算由当前厂商运行库执行。';
+  }
+  select.addEventListener('change',drawOperator);byId('operator-vendor').addEventListener('change',drawOperator);drawOperator();
+
+  function drawRuntime() {
+    const v=byId('runtime-vendor').value,mode=byId('runtime-mode').value,dir='outputs/'+v,purpose=mode==='inference'?'inference':'training';
+    const args=mode==='train'?['train',
+      '  --config model.yaml --launch pytorch --ng 1',
+      '  --opts saver.save_dir '+dir+'/checkpoints',
+      '         saver.results_dir '+dir+'/eval']:mode==='eval'?['eval',
+      '  --config model.yaml --launch pytorch --ng 1',
+      '  --opts saver.resume_model '+dir+'/checkpoints/ckpt_latest.pth',
+      '         saver.auto_resume False saver.save_dir '+dir+'/checkpoints',
+      '         saver.results_dir '+dir+'/eval']:['inference',
+      '  --config model.yaml --img_path images/',
+      '  --ckpt '+dir+'/checkpoints/ckpt_latest.pth --vis_dir '+dir+'/images',
+      '  --launch pytorch --ng 1'];
+    byId('runtime-command').textContent='./up_docker '+v+' check\n\n./up_docker '+v+' '+args.join(' \\\n');
+    byId('runtime-purpose').textContent=`purpose = ${purpose} · `+(mode==='train'?'按模型配置训练并保存。':mode==='eval'?'eval 对应 train --evaluate，使用训练后端读取权重并验证。':'使用独立推理后端，图片结果写到 '+dir+'/images。');
+    const chain=byId('runtime-chain');chain.replaceChildren();
+    [['up_docker','up_docker'],['Python: '+v,'docker/unified/launch.py'],['平台: '+v,'up_platform/backends/'+v+'.py'],[mode==='inference'?'独立推理':'训练 / 验证',mode==='inference'?'up/apis/inference.py':'up/runner/base_runner.py']].forEach(([label,path],i)=>{if(i)chain.append(' → ');chain.append(codeLink(path,label));});
+  }
+  byId('runtime-vendor').addEventListener('change',drawRuntime);byId('runtime-mode').addEventListener('change',drawRuntime);drawRuntime();
+  document.querySelectorAll('a[href^="https://"]').forEach(a=>{a.target='_blank';a.rel='noopener noreferrer';});
+})();
+</script>
+</body>
+</html>

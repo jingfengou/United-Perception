@@ -115,9 +115,20 @@ class ModelHelper(nn.Module):
         self.dtype = torch.float64
         return super(ModelHelper, self).double()
 
-    def cuda(self):
-        self.device = torch.device('cuda')
-        return super(ModelHelper, self).cuda()
+    def to(self, *args, **kwargs):
+        result = super(ModelHelper, self).to(*args, **kwargs)
+        device = kwargs.get('device')
+        if args and isinstance(args[0], (str, torch.device)):
+            device = args[0]
+        elif args and isinstance(args[0], torch.Tensor):
+            device = args[0].device
+        if device is not None:
+            self.device = torch.device(device)
+        return result
+
+    def cuda(self, device=None):
+        from up_platform import get_platform
+        return self.to(get_platform().device.device(device))
 
     def cpu(self):
         self.device = torch.device('cpu')
@@ -213,9 +224,11 @@ class ModelHelper(nn.Module):
             destination['model_cfg'] = self.model_cfg
         return destination
 
-    def load_state_dict(self, state_dict, strict=True):
+    def load_state_dict(self, state_dict, strict=True, assign=False):
         state_dict.pop('model_cfg', None)
-        super(ModelHelper, self).load_state_dict(state_dict, strict)
+        if assign:
+            return super(ModelHelper, self).load_state_dict(state_dict, strict, assign=True)
+        return super(ModelHelper, self).load_state_dict(state_dict, strict)
 
     @classmethod
     def from_checkpoint(cls, state_dict):
