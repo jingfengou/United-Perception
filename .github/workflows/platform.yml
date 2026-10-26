@@ -1,7 +1,7 @@
 name: Clean Platform
 on:
   push:
-    branches: [codex/up-platform-clean, codex/unified-vendor-image, codex/up-docker-launcher]
+    branches: [codex/up-platform-clean]
   pull_request:
 permissions:
   contents: read

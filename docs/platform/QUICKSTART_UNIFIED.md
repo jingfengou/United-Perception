@@ -9,7 +9,7 @@
 当前账号应有运行 Docker 的权限；需要 sudo 时使用 `sudo -E ./up_docker ...`，保留下文已导出的目录变量。
 
 ```bash
-git clone --branch codex/up-docker-launcher \
+git clone --branch codex/up-platform-clean \
   https://github.com/jingfengou/United-Perception.git
 cd United-Perception
 

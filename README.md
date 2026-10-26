@@ -5,7 +5,7 @@
 在原版 [United-Perception](https://github.com/ModelTC/United-Perception) 上重建的显式多厂商平台层。
 模型、数据和训练配方留在 `up/`，设备、算子和厂商差异集中在 `up_platform/`。
 
-**当前分支：`codex/up-docker-launcher`，在通用镜像基础上提供仓库启动脚本和完整使用示例。平台层仍处于阶段性验收。**
+**统一维护分支：`codex/up-platform-clean`，包含平台层、通用镜像、厂商启动脚本和完整使用示例。平台层仍处于阶段性验收。**
 NVIDIA 与沐曦已有真机记录；失败、缺口和复现步骤见 [验证报告](docs/platform/VALIDATION.md)。
 本仓库是 UP 的正式 fork，`main` 保留原版 UP；平台改造位于本分支。
 [旧实验仓库](https://github.com/jingfengou/United-Perception-Hardware) 的 `main`、Release 和历史证据保持原样。
@@ -75,7 +75,7 @@ PyTorch 已提供统一 API 和设备派发机制，平台层集中处理设备�
 基础镜像来自厂商，需要有拉取权限；镜像不包含宿主机内核驱动。
 
 ```bash
-git clone --branch codex/up-docker-launcher https://github.com/jingfengou/United-Perception.git
+git clone --branch codex/up-platform-clean https://github.com/jingfengou/United-Perception.git
 cd United-Perception
 docker build -f docker/unified/Dockerfile -t up-unified:local .
 ```

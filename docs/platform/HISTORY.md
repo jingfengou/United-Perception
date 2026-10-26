@@ -4,6 +4,19 @@
 `main` 保留上游 `52aaeb9ed27a490820696d7754d19f98cd6ecd11`，平台改造发布在 `codex/up-platform-clean`。
 [旧实验仓库](https://github.com/jingfengou/United-Perception-Hardware) 的分支、Release 和证据没有删除或强制改写。
 
+## 统一维护分支
+
+2026-10-26 起，平台层、通用镜像和宿主机启动脚本统一在 `codex/up-platform-clean` 维护，作为仓库默认入口。
+新增功能在此分支按责任拆分 commit。
+
+原 `codex/unified-vendor-image`、`codex/up-docker-launcher` 的提交已全部快进并入；清理分支名不改变提交历史或文件。
+合并前的功能节点仍可通过固定提交查看：
+
+- [通用镜像与两套隔离环境：9145d0a](https://github.com/jingfengou/United-Perception/tree/9145d0a6b00b93a82063899241f3acc201a5598d)
+- [启动脚本、完整示例与验证：cc2f3d9](https://github.com/jingfengou/United-Perception/tree/cc2f3d9a730e217b789b5209b50623027c5902f8)
+
+历史报告中的分支字段保留执行时的记录；其源码、提交和证据仍能在统一分支历史中追溯。`main` 继续保留原版 UP。
+
 ## 原子提交
 
 每个提交对应一个责任边界。先加入不影响 UP 入口的平台能力，再接入执行流程与各任务，最后发布证据和 CI。
