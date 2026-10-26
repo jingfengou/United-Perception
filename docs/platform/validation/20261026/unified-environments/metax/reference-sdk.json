@@ -1,0 +1,27 @@
+{
+  "torch": "2.10.0+metax3.8.1.0",
+  "torchvision": "0.25.0+metax3.8.1.0",
+  "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+  "files": {
+    "/opt/conda/lib/python3.12/site-packages/torch/__init__.py": {
+      "realpath": "/opt/conda/lib/python3.12/site-packages/torch/__init__.py",
+      "sha256": "1805776d64ebff61a24a4d00e11023ffc5ed5a7d622ff1bdce5aeff2efd19da6"
+    },
+    "/opt/conda/lib/python3.12/site-packages/torchvision/__init__.py": {
+      "realpath": "/opt/conda/lib/python3.12/site-packages/torchvision/__init__.py",
+      "sha256": "ee2c9f4110cf1203db48c42601607329ac1f19709fa91c152f8d95eb53437a73"
+    },
+    "/opt/maca/lib/libmcblas.so": {
+      "realpath": "/opt/maca-3.8.1/lib/libmcblas.so",
+      "sha256": "f1c047af7ee4246ecc72d21510f6f6c3cea685c97d0729ac20b4ec059e221fc7"
+    },
+    "/opt/maca/lib/libmcblasLt.so": {
+      "realpath": "/opt/maca-3.8.1/lib/libmcblasLt.so",
+      "sha256": "ddbe636bff1813ddde51dc0cda09790e7696db4311d4532a6196c5ac7bd1d800"
+    },
+    "/opt/maca/lib/libmcdnn.so": {
+      "realpath": "/opt/maca-3.8.1/lib/libmcdnn.so",
+      "sha256": "e5f05b451b982c4a3d8c89a08c331f8d50eab6742369bfe1953f139fb87909ee"
+    }
+  }
+}

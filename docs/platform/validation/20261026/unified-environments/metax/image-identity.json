@@ -1,0 +1,1367 @@
+{
+  "python": "3.12.11 | packaged by conda-forge | (main, Jun  4 2025, 14:45:31) [GCC 13.3.0]",
+  "files": {
+    "/opt/maca/lib/libmcblas.so": {
+      "realpath": "/opt/maca-3.8.1/lib/libmcblas.so",
+      "sha256": "f1c047af7ee4246ecc72d21510f6f6c3cea685c97d0729ac20b4ec059e221fc7"
+    },
+    "/opt/maca/lib/libmcblasLt.so": {
+      "realpath": "/opt/maca-3.8.1/lib/libmcblasLt.so",
+      "sha256": "ddbe636bff1813ddde51dc0cda09790e7696db4311d4532a6196c5ac7bd1d800"
+    },
+    "/opt/maca/lib/libmcdnn.so": {
+      "realpath": "/opt/maca-3.8.1/lib/libmcdnn.so",
+      "sha256": "e5f05b451b982c4a3d8c89a08c331f8d50eab6742369bfe1953f139fb87909ee"
+    },
+    "/opt/up/envs/nvidia/lib/python3.12/site-packages/up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so": {
+      "realpath": "/opt/up/envs/nvidia/lib/python3.12/site-packages/up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "6a236cdf4e915071afdbbcd6ad01beabdc090a71f9360e26a8e8ad88429f8b8e"
+    },
+    "/opt/up/envs/metax/lib/python3.12/site-packages/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so": {
+      "realpath": "/opt/up/envs/metax/lib/python3.12/site-packages/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "4bba557371d1471940a798b6d36e9d839bcc56d0ca12c1c9e7e6a0f48750db88"
+    }
+  },
+  "source_runtime_matches": {
+    "launch.py": "69dbe5c2a21108604636290937b552ab68e14b76d4823e4c886b7aceeda4d5c3",
+    "profiles.json": "9c3c19598936616284e688f58e89530f32f61a9ac505c0107674a63338988bc7",
+    "probe.py": "3e2304c771d029fa533172754b16fd4375c7635e30428ef499c184c35ab8cbd4"
+  },
+  "build_tools": [
+    {
+      "vendor": "metax",
+      "path": "/opt/up/envs/metax/bin/ninja",
+      "version": "1.11.1.git.kitware.jobserver-1",
+      "sha256": "94f5318756260447ffb88d0bc31b67dbc07119f1dc0c8dc2cb58ea575a471025"
+    },
+    {
+      "vendor": "nvidia",
+      "path": "/opt/up/envs/nvidia/bin/ninja",
+      "version": "1.11.1.git.kitware.jobserver-1",
+      "sha256": "94f5318756260447ffb88d0bc31b67dbc07119f1dc0c8dc2cb58ea575a471025"
+    }
+  ],
+  "packages": {
+    "nvidia": [
+      {
+        "name": "ccimport",
+        "version": "0.4.4"
+      },
+      {
+        "name": "certifi",
+        "version": "2026.6.17"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.4.1"
+      },
+      {
+        "name": "cloudpickle",
+        "version": "3.1.2"
+      },
+      {
+        "name": "contourpy",
+        "version": "1.3.3"
+      },
+      {
+        "name": "cuda-bindings",
+        "version": "12.9.4"
+      },
+      {
+        "name": "cuda-pathfinder",
+        "version": "1.6.0"
+      },
+      {
+        "name": "cumm-cu126",
+        "version": "0.7.11"
+      },
+      {
+        "name": "cycler",
+        "version": "0.12.1"
+      },
+      {
+        "name": "Cython",
+        "version": "3.3.0"
+      },
+      {
+        "name": "easydict",
+        "version": "1.13"
+      },
+      {
+        "name": "einops",
+        "version": "0.8.1"
+      },
+      {
+        "name": "filelock",
+        "version": "3.32.3"
+      },
+      {
+        "name": "fire",
+        "version": "0.7.1"
+      },
+      {
+        "name": "fonttools",
+        "version": "4.67.0"
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.7.0"
+      },
+      {
+        "name": "idna",
+        "version": "3.10"
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.6"
+      },
+      {
+        "name": "joblib",
+        "version": "1.6.0"
+      },
+      {
+        "name": "kiwisolver",
+        "version": "1.5.1"
+      },
+      {
+        "name": "lark",
+        "version": "1.3.1"
+      },
+      {
+        "name": "llvmlite",
+        "version": "0.42.0"
+      },
+      {
+        "name": "lvis",
+        "version": "0.5.3"
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.3"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.10.3"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "networkx",
+        "version": "3.6.1"
+      },
+      {
+        "name": "ninja",
+        "version": "1.11.1.4"
+      },
+      {
+        "name": "numba",
+        "version": "0.59.1"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "nvidia-cublas-cu12",
+        "version": "12.6.4.1"
+      },
+      {
+        "name": "nvidia-cuda-cupti-cu12",
+        "version": "12.6.80"
+      },
+      {
+        "name": "nvidia-cuda-nvrtc-cu12",
+        "version": "12.6.77"
+      },
+      {
+        "name": "nvidia-cuda-runtime-cu12",
+        "version": "12.6.77"
+      },
+      {
+        "name": "nvidia-cudnn-cu12",
+        "version": "9.10.2.21"
+      },
+      {
+        "name": "nvidia-cufft-cu12",
+        "version": "11.3.0.4"
+      },
+      {
+        "name": "nvidia-cufile-cu12",
+        "version": "1.11.1.6"
+      },
+      {
+        "name": "nvidia-curand-cu12",
+        "version": "10.3.7.77"
+      },
+      {
+        "name": "nvidia-cusolver-cu12",
+        "version": "11.7.1.2"
+      },
+      {
+        "name": "nvidia-cusparse-cu12",
+        "version": "12.5.4.2"
+      },
+      {
+        "name": "nvidia-cusparselt-cu12",
+        "version": "0.7.1"
+      },
+      {
+        "name": "nvidia-nccl-cu12",
+        "version": "2.27.5"
+      },
+      {
+        "name": "nvidia-nvjitlink-cu12",
+        "version": "12.6.85"
+      },
+      {
+        "name": "nvidia-nvshmem-cu12",
+        "version": "3.4.5"
+      },
+      {
+        "name": "nvidia-nvtx-cu12",
+        "version": "12.6.77"
+      },
+      {
+        "name": "onnx",
+        "version": "1.17.0"
+      },
+      {
+        "name": "opencv-python",
+        "version": "4.11.0.86"
+      },
+      {
+        "name": "packaging",
+        "version": "26.2"
+      },
+      {
+        "name": "pandas",
+        "version": "2.2.3"
+      },
+      {
+        "name": "pccm",
+        "version": "0.4.16"
+      },
+      {
+        "name": "pillow",
+        "version": "11.2.1"
+      },
+      {
+        "name": "pip",
+        "version": "25.0.1"
+      },
+      {
+        "name": "portalocker",
+        "version": "3.2.0"
+      },
+      {
+        "name": "prettytable",
+        "version": "3.16.0"
+      },
+      {
+        "name": "protobuf",
+        "version": "7.36.2"
+      },
+      {
+        "name": "psutil",
+        "version": "7.0.0"
+      },
+      {
+        "name": "pybind11",
+        "version": "3.0.1"
+      },
+      {
+        "name": "pycocotools",
+        "version": "2.0.10"
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.3.3"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "2.9.0.post0"
+      },
+      {
+        "name": "pytz",
+        "version": "2026.5"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3"
+      },
+      {
+        "name": "requests",
+        "version": "2.32.3"
+      },
+      {
+        "name": "scikit-learn",
+        "version": "1.6.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.16.0"
+      },
+      {
+        "name": "setuptools",
+        "version": "80.9.0"
+      },
+      {
+        "name": "six",
+        "version": "1.17.0"
+      },
+      {
+        "name": "spconv-cu126",
+        "version": "2.3.8"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "tensorboardX",
+        "version": "2.6.4"
+      },
+      {
+        "name": "termcolor",
+        "version": "3.1.0"
+      },
+      {
+        "name": "threadpoolctl",
+        "version": "3.7.0"
+      },
+      {
+        "name": "torch",
+        "version": "2.10.0+cu126"
+      },
+      {
+        "name": "torchvision",
+        "version": "0.25.0+cu126"
+      },
+      {
+        "name": "triton",
+        "version": "3.6.0"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0"
+      },
+      {
+        "name": "tzdata",
+        "version": "2026.5"
+      },
+      {
+        "name": "UP",
+        "version": "0.3.0"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.3.0"
+      },
+      {
+        "name": "wcwidth",
+        "version": "0.9.4"
+      },
+      {
+        "name": "wheel",
+        "version": "0.45.1"
+      }
+    ],
+    "metax": [
+      {
+        "name": "aiohappyeyeballs",
+        "version": "2.7.1"
+      },
+      {
+        "name": "aiohttp",
+        "version": "3.14.1"
+      },
+      {
+        "name": "aiosignal",
+        "version": "1.4.0"
+      },
+      {
+        "name": "annotated-doc",
+        "version": "0.0.4"
+      },
+      {
+        "name": "anyio",
+        "version": "4.14.1"
+      },
+      {
+        "name": "apex",
+        "version": "0.1+metax3.8.1.0"
+      },
+      {
+        "name": "archspec",
+        "version": "0.2.5"
+      },
+      {
+        "name": "attrs",
+        "version": "26.1.0"
+      },
+      {
+        "name": "backports.cached-property",
+        "version": "1.0.2"
+      },
+      {
+        "name": "blessings",
+        "version": "1.7"
+      },
+      {
+        "name": "block_sparse_attn",
+        "version": "0.0.2+metax3.8.1.0"
+      },
+      {
+        "name": "boltons",
+        "version": "24.0.0"
+      },
+      {
+        "name": "Brotli",
+        "version": "1.1.0"
+      },
+      {
+        "name": "cachebox",
+        "version": "5.2.3"
+      },
+      {
+        "name": "cachetools",
+        "version": "7.1.4"
+      },
+      {
+        "name": "causal_conv1d",
+        "version": "1.5.4+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "certifi",
+        "version": "2026.6.17"
+      },
+      {
+        "name": "cffi",
+        "version": "1.17.1"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.4.1"
+      },
+      {
+        "name": "click",
+        "version": "8.4.2"
+      },
+      {
+        "name": "cloudpickle",
+        "version": "3.1.2"
+      },
+      {
+        "name": "codecov",
+        "version": "2.1.13"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6"
+      },
+      {
+        "name": "coloredlogs",
+        "version": "15.0.1"
+      },
+      {
+        "name": "colour-runner",
+        "version": "0.1.1"
+      },
+      {
+        "name": "conda",
+        "version": "24.11.3"
+      },
+      {
+        "name": "conda-libmamba-solver",
+        "version": "24.9.0"
+      },
+      {
+        "name": "conda-package-handling",
+        "version": "2.4.0"
+      },
+      {
+        "name": "conda_package_streaming",
+        "version": "0.11.0"
+      },
+      {
+        "name": "contourpy",
+        "version": "1.3.3"
+      },
+      {
+        "name": "coverage",
+        "version": "7.15.0"
+      },
+      {
+        "name": "cycler",
+        "version": "0.12.1"
+      },
+      {
+        "name": "Cython",
+        "version": "3.3.0"
+      },
+      {
+        "name": "datasets",
+        "version": "5.0.0"
+      },
+      {
+        "name": "deepdiff",
+        "version": "9.1.0"
+      },
+      {
+        "name": "dill",
+        "version": "0.4.1"
+      },
+      {
+        "name": "distlib",
+        "version": "0.4.3"
+      },
+      {
+        "name": "distro",
+        "version": "1.9.0"
+      },
+      {
+        "name": "dropout_layer_norm",
+        "version": "0.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "easydict",
+        "version": "1.13"
+      },
+      {
+        "name": "einops",
+        "version": "0.8.1"
+      },
+      {
+        "name": "exceptiongroup",
+        "version": "1.3.0"
+      },
+      {
+        "name": "filelock",
+        "version": "3.29.7"
+      },
+      {
+        "name": "flash_attn",
+        "version": "2.6.3+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "flash-linear-attention",
+        "version": "0.5.0+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "flash_mla",
+        "version": "1.0.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "flash_moba",
+        "version": "2.0.0+metax3.8.1.0"
+      },
+      {
+        "name": "flash_prefill",
+        "version": "1.0+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "flashinfer",
+        "version": "0.2.6+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "fonttools",
+        "version": "4.67.0"
+      },
+      {
+        "name": "frozendict",
+        "version": "2.4.6"
+      },
+      {
+        "name": "frozenlist",
+        "version": "1.8.0"
+      },
+      {
+        "name": "fsspec",
+        "version": "2025.5.1"
+      },
+      {
+        "name": "fused_dense_lib",
+        "version": "2.6.3+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0"
+      },
+      {
+        "name": "h2",
+        "version": "4.1.0"
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.5.1"
+      },
+      {
+        "name": "hpack",
+        "version": "4.0.0"
+      },
+      {
+        "name": "hstu_attn",
+        "version": "1.0+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1"
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "1.23.0"
+      },
+      {
+        "name": "humanfriendly",
+        "version": "10.0"
+      },
+      {
+        "name": "hyperframe",
+        "version": "6.0.1"
+      },
+      {
+        "name": "idna",
+        "version": "3.10"
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.1.0"
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.6"
+      },
+      {
+        "name": "joblib",
+        "version": "1.6.0"
+      },
+      {
+        "name": "jsonpatch",
+        "version": "1.33"
+      },
+      {
+        "name": "jsonpointer",
+        "version": "3.0.0"
+      },
+      {
+        "name": "kiwisolver",
+        "version": "1.5.1"
+      },
+      {
+        "name": "libmambapy",
+        "version": "1.5.12"
+      },
+      {
+        "name": "llvmlite",
+        "version": "0.42.0"
+      },
+      {
+        "name": "lvis",
+        "version": "0.5.3"
+      },
+      {
+        "name": "maca-tile",
+        "version": "1.0.1+metax3.8.1.0"
+      },
+      {
+        "name": "mamba",
+        "version": "1.5.12"
+      },
+      {
+        "name": "mamba_ssm",
+        "version": "2.2.4+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.2.0"
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.2"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.10.3"
+      },
+      {
+        "name": "mctlassEx",
+        "version": "0.1.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2"
+      },
+      {
+        "name": "menuinst",
+        "version": "2.2.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "multidict",
+        "version": "6.7.1"
+      },
+      {
+        "name": "multiprocess",
+        "version": "0.70.19"
+      },
+      {
+        "name": "networkx",
+        "version": "3.5"
+      },
+      {
+        "name": "ninja",
+        "version": "1.11.1.4"
+      },
+      {
+        "name": "numba",
+        "version": "0.59.1"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "onnx",
+        "version": "1.17.0"
+      },
+      {
+        "name": "opencv-python",
+        "version": "4.11.0.86"
+      },
+      {
+        "name": "orderly-set",
+        "version": "5.5.0"
+      },
+      {
+        "name": "packaging",
+        "version": "26.2"
+      },
+      {
+        "name": "pandas",
+        "version": "2.2.3"
+      },
+      {
+        "name": "pillow",
+        "version": "11.2.1"
+      },
+      {
+        "name": "pip",
+        "version": "25.0.1"
+      },
+      {
+        "name": "platformdirs",
+        "version": "4.10.0"
+      },
+      {
+        "name": "pluggy",
+        "version": "1.6.0"
+      },
+      {
+        "name": "prettytable",
+        "version": "3.16.0"
+      },
+      {
+        "name": "propcache",
+        "version": "0.5.2"
+      },
+      {
+        "name": "protobuf",
+        "version": "7.36.2"
+      },
+      {
+        "name": "psutil",
+        "version": "7.0.0"
+      },
+      {
+        "name": "pyarrow",
+        "version": "25.0.0"
+      },
+      {
+        "name": "pycocotools",
+        "version": "2.0.10"
+      },
+      {
+        "name": "pycosat",
+        "version": "0.6.6"
+      },
+      {
+        "name": "pycparser",
+        "version": "2.22"
+      },
+      {
+        "name": "Pygments",
+        "version": "2.19.2"
+      },
+      {
+        "name": "pymxsml",
+        "version": "2.3.4"
+      },
+      {
+        "name": "pyparsing",
+        "version": "3.3.3"
+      },
+      {
+        "name": "pyproject-api",
+        "version": "1.10.1"
+      },
+      {
+        "name": "PySocks",
+        "version": "1.7.1"
+      },
+      {
+        "name": "pytest",
+        "version": "8.4.1"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "2.9.0.post0"
+      },
+      {
+        "name": "python-discovery",
+        "version": "1.4.4"
+      },
+      {
+        "name": "pytz",
+        "version": "2026.5"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3"
+      },
+      {
+        "name": "regex",
+        "version": "2026.7.10"
+      },
+      {
+        "name": "requests",
+        "version": "2.32.3"
+      },
+      {
+        "name": "rich",
+        "version": "15.0.0"
+      },
+      {
+        "name": "rootpath",
+        "version": "0.1.1"
+      },
+      {
+        "name": "rotary_emb",
+        "version": "0.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "ruamel.yaml",
+        "version": "0.18.10"
+      },
+      {
+        "name": "ruamel.yaml.clib",
+        "version": "0.2.8"
+      },
+      {
+        "name": "safetensors",
+        "version": "0.8.0"
+      },
+      {
+        "name": "sageattention",
+        "version": "2.0.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "scikit-learn",
+        "version": "1.6.1"
+      },
+      {
+        "name": "scipy",
+        "version": "1.16.0"
+      },
+      {
+        "name": "setuptools",
+        "version": "80.9.0"
+      },
+      {
+        "name": "shellingham",
+        "version": "1.5.4"
+      },
+      {
+        "name": "six",
+        "version": "1.17.0"
+      },
+      {
+        "name": "spargeattention",
+        "version": "2.0.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "spconv",
+        "version": "2.1.0+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "tensorboardX",
+        "version": "2.6.4"
+      },
+      {
+        "name": "termcolor",
+        "version": "3.3.0"
+      },
+      {
+        "name": "threadpoolctl",
+        "version": "3.7.0"
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.22.2"
+      },
+      {
+        "name": "tomli",
+        "version": "2.2.1"
+      },
+      {
+        "name": "tomli_w",
+        "version": "1.2.0"
+      },
+      {
+        "name": "torch",
+        "version": "2.10.0+metax3.8.1.0"
+      },
+      {
+        "name": "torchaudio",
+        "version": "2.4.1+metax3.8.1.0"
+      },
+      {
+        "name": "torchcodec",
+        "version": "0.6.0+metax3.8.1.0"
+      },
+      {
+        "name": "torchvision",
+        "version": "0.25.0+metax3.8.1.0"
+      },
+      {
+        "name": "tox",
+        "version": "4.56.4"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.67.1"
+      },
+      {
+        "name": "transformers",
+        "version": "5.13.0"
+      },
+      {
+        "name": "triton",
+        "version": "3.6.0+metax3.8.1.0"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.0"
+      },
+      {
+        "name": "typer",
+        "version": "0.26.8"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.14.0"
+      },
+      {
+        "name": "tzdata",
+        "version": "2026.5"
+      },
+      {
+        "name": "UP",
+        "version": "0.3.0"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.3.0"
+      },
+      {
+        "name": "virtualenv",
+        "version": "21.6.1"
+      },
+      {
+        "name": "wcwidth",
+        "version": "0.9.4"
+      },
+      {
+        "name": "wheel",
+        "version": "0.45.1"
+      },
+      {
+        "name": "xentropy_cuda_lib",
+        "version": "0.1+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "xformers",
+        "version": "0.0.22+metax3.8.1.0torch2.10"
+      },
+      {
+        "name": "xxhash",
+        "version": "3.8.1"
+      },
+      {
+        "name": "yarl",
+        "version": "1.24.2"
+      },
+      {
+        "name": "zstandard",
+        "version": "0.23.0"
+      }
+    ]
+  },
+  "offline_common_index": {
+    "numpy": {
+      "version": "1.26.4",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/numpy-1.26.4.dist-info",
+      "files": 788,
+      "wheel": "numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "d1250a367d758abd0badc032dc124821460ea347cd3a2f16023044053e18f542",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "scipy": {
+      "version": "1.16.0",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/scipy-1.16.0.dist-info",
+      "files": 1416,
+      "wheel": "scipy-1.16.0-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "f66fa66a22e174a235ce68def51199017cf99174238056c7f28c66eab10fd00c",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "easydict": {
+      "version": "1.13",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/easydict-1.13.dist-info",
+      "files": 5,
+      "wheel": "easydict-1.13-py3-none-any.whl",
+      "sha256": "52053c8de34f71ce8c1b806a9a260caf84d854b521bb896d444220d9012b2958",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "opencv-python": {
+      "version": "4.11.0.86",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/opencv_python-4.11.0.86.dist-info",
+      "files": 128,
+      "wheel": "opencv_python-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.whl",
+      "sha256": "6d49495e03bc1dcbc5e63e698d496d76d66cd84fce39db79c87f6b60a94fddf2",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "tensorboardx": {
+      "version": "2.6.4",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/tensorboardx-2.6.4.dist-info",
+      "files": 53,
+      "wheel": "tensorboardx-2.6.4-py3-none-any.whl",
+      "sha256": "370f055c93665506e5ed561752187ee26c788ce8736bb33112722951cc1c704c",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "matplotlib": {
+      "version": "3.10.3",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/matplotlib-3.10.3.dist-info",
+      "files": 593,
+      "wheel": "matplotlib-3.10.3-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "50cc3e4228586c47e2dc59c52a6431986a829b7d6bfc8769c1bb115a7f3810a6",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "pillow": {
+      "version": "11.2.1",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/pillow-11.2.1.dist-info",
+      "files": 133,
+      "wheel": "pillow-11.2.1-cp312-cp312-manylinux_2_28_x86_64.whl",
+      "sha256": "7d59db828552743fb5a3e7e082aede91e03682121696fab434d2ac364103bf8b",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "lvis": {
+      "version": "0.5.3",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/lvis-0.5.3.dist-info",
+      "files": 10,
+      "wheel": "lvis-0.5.3-py3-none-any.whl",
+      "sha256": "11d7887b55018c8505a5f776ce607d1a5ade4ddbae55d7243f4aab0a2552a481",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "prettytable": {
+      "version": "3.16.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/prettytable-3.16.0.dist-info",
+      "files": 9,
+      "wheel": "prettytable-3.16.0-py3-none-any.whl",
+      "sha256": "424916e22a2afd8b8db081594b4e92244db6636d36fb68d1649b591e9cb4249e",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "numba": {
+      "version": "0.59.1",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/numba-0.59.1.dist-info",
+      "files": 784,
+      "wheel": "numba-0.59.1-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "f9bb379ea250c133bb68a490c48cf6b7f884aab9219472456153a35fadd11126",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "psutil": {
+      "version": "7.0.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/psutil-7.0.0.dist-info",
+      "files": 34,
+      "wheel": "psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.whl",
+      "sha256": "135e85084855b9ccebc08765f2337f847873e328fd30c7a639c964ed2f6e7bd8",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "scikit-learn": {
+      "version": "1.6.1",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/scikit_learn-1.6.1.dist-info",
+      "files": 893,
+      "wheel": "scikit_learn-1.6.1-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "76b074adf61ec85d86eff60ee7ecd762778f44452769e182a5d2e6b2a1fede8f",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "onnx": {
+      "version": "1.17.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/onnx-1.17.0.dist-info",
+      "files": 6509,
+      "wheel": "onnx-1.17.0-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "c98ca0957990f22f095b6de8d1967f84068e9f3b7ccfac84e2de750890d976a2",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "einops": {
+      "version": "0.8.1",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/einops-0.8.1.dist-info",
+      "files": 30,
+      "wheel": "einops-0.8.1-py3-none-any.whl",
+      "sha256": "ddea0491b83886dd393df7ce42768b5aaa6191ce654a368508177113bb305674",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "pyyaml": {
+      "version": "6.0.3",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info",
+      "files": 23,
+      "wheel": "pyyaml-6.0.3-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "cdf57fe02c1d94925e2e38c1eceedb4ae6962368879a8615ce9b345b75b3e2ce",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "pandas": {
+      "version": "2.2.3",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/pandas-2.2.3.dist-info",
+      "files": 1508,
+      "wheel": "pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "fb94b640d071bbb4acd5789056169f78e719a84b3b913fd9713da3697a446aa2",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "pycocotools": {
+      "version": "2.0.10",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/pycocotools-2.0.10.dist-info",
+      "files": 8,
+      "wheel": "pycocotools-2.0.10-cp312-abi3-manylinux_2_17_x86_64.whl",
+      "sha256": "1fbc4004f6a93d9c0e458244ba72786b80bbfb755f4d470c7e1d8e33e28c6e31",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "setuptools": {
+      "version": "80.9.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/setuptools-80.9.0.dist-info",
+      "files": 469,
+      "wheel": "setuptools-80.9.0-py3-none-any.whl",
+      "sha256": "155f98e20de20565c1fee185395377fde3960c8a360bb3ee6513decd3f793adb",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "wheel": {
+      "version": "0.45.1",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/wheel-0.45.1.dist-info",
+      "files": 36,
+      "wheel": "wheel-0.45.1-py3-none-any.whl",
+      "sha256": "22151e90c74ab272e934ca7ad53b22b343182ca155fe5f497493f1b45f8b4b3d",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "ninja": {
+      "version": "1.11.1.4",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/ninja-1.11.1.4.dist-info",
+      "files": 11,
+      "wheel": "ninja-1.11.1.4-py3-none-manylinux_2_12_x86_64.whl",
+      "sha256": "d52bb87c81f82bbe96f55828563a41e2c036a264bb339485830c5a6ddb8eee4e",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "requests": {
+      "version": "2.32.3",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/requests-2.32.3.dist-info",
+      "files": 22,
+      "wheel": "requests-2.32.3-py3-none-any.whl",
+      "sha256": "8f808ba7c773bfa13ec249dfa3bed3d36589e3b2a4828aaa5b14d4706f9c3df0",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "packaging": {
+      "version": "26.2",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/packaging-26.2.dist-info",
+      "files": 26,
+      "wheel": "packaging-26.2-py3-none-any.whl",
+      "sha256": "664e944eab6e5fe52890c765362c3a52bdc63e8553caa0efb156173b64d8d873",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "protobuf": {
+      "version": "7.36.2",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/protobuf-7.36.2.dist-info",
+      "files": 62,
+      "wheel": "protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl",
+      "sha256": "7bb11191453791ac59508793aaeae38c4b6f4faff8c9a8b37654c4a3b9de4e12",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "contourpy": {
+      "version": "1.3.3",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/contourpy-1.3.3.dist-info",
+      "files": 23,
+      "wheel": "contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.whl",
+      "sha256": "f3beb0227b543acfe7dfb6cc63db4eec7385f0b500279cf0cded1a4832ab8313",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "cycler": {
+      "version": "0.12.1",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/cycler-0.12.1.dist-info",
+      "files": 6,
+      "wheel": "cycler-0.12.1-py3-none-any.whl",
+      "sha256": "575ca0e842aa7aa356f9c130949c37d559ceaceeb936e2df64acb7557afc54b3",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "fonttools": {
+      "version": "4.67.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/fonttools-4.67.0.dist-info",
+      "files": 362,
+      "wheel": "fonttools-4.67.0-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "25b63aea18221062788b9e8f0f9446cd2582ae06f2d2f24a13db7a69932584cb",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "kiwisolver": {
+      "version": "1.5.1",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/kiwisolver-1.5.1.dist-info",
+      "files": 9,
+      "wheel": "kiwisolver-1.5.1-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "f92548aa1f639d342f9d466cc33b152ab14abd9a4445f8f22ee834c7cbfeb782",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "pyparsing": {
+      "version": "3.3.3",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/pyparsing-3.3.3.dist-info",
+      "files": 22,
+      "wheel": "pyparsing-3.3.3-py3-none-any.whl",
+      "sha256": "c31b7415adf3183d62554e9a84a66c97392e515fb065744a12d081db18564205",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "python-dateutil": {
+      "version": "2.9.0.post0",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/python_dateutil-2.9.0.post0.dist-info",
+      "files": 24,
+      "wheel": "python_dateutil-2.9.0.post0-py3-none-any.whl",
+      "sha256": "07fe7dbcadfa3f5d8e6a055f2b8f1901252a23f8120c159121f14a62375c8ba3",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "cython": {
+      "version": "3.3.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/cython-3.3.0.dist-info",
+      "files": 338,
+      "wheel": "cython-3.3.0-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "3b517b53bdd4311672374612116c5d468848125e04a8992e214b41e8fea0853f",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "six": {
+      "version": "1.17.0",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/six-1.17.0.dist-info",
+      "files": 5,
+      "wheel": "six-1.17.0-py3-none-any.whl",
+      "sha256": "a65a4476b4177c7f85ee03a97a1fffdece92b655628af260b0cad6e278553ed7",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "wcwidth": {
+      "version": "0.9.4",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/wcwidth-0.9.4.dist-info",
+      "files": 55,
+      "wheel": "wcwidth-0.9.4-cp310-abi3-manylinux_2_17_x86_64.whl",
+      "sha256": "e41e8590b46c925482e9fc8bd51961d1f7a6fb664a7cb538b53f62ac40d89124",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "llvmlite": {
+      "version": "0.42.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/llvmlite-0.42.0.dist-info",
+      "files": 44,
+      "wheel": "llvmlite-0.42.0-cp312-cp312-manylinux_2_17_x86_64.whl",
+      "sha256": "012a5ad3b9139a30c26761229a91cc525c611c9e269621f882b38f2195ecd251",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "joblib": {
+      "version": "1.6.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/joblib-1.6.0.dist-info",
+      "files": 140,
+      "wheel": "joblib-1.6.0-py3-none-any.whl",
+      "sha256": "48dc51aa5fb20131a1532b62e1a43d27c575a12e72e15bd3586f7f50e42bbcdc",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "threadpoolctl": {
+      "version": "3.7.0",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/threadpoolctl-3.7.0.dist-info",
+      "files": 4,
+      "wheel": "threadpoolctl-3.7.0-py3-none-any.whl",
+      "sha256": "37696ecfea0aa2b4dd945ae49072526db8d323e7006868ffdd163bd0bab16519",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "pytz": {
+      "version": "2026.5",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/pytz-2026.5.dist-info",
+      "files": 615,
+      "wheel": "pytz-2026.5-py3-none-any.whl",
+      "sha256": "57713ebbfe40ecc2d0431157aaf05bc6a6e234f794dee2acf95fb592e81b56bd",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "tzdata": {
+      "version": "2026.5",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/tzdata-2026.5.dist-info",
+      "files": 632,
+      "wheel": "tzdata-2026.5-py3-none-any.whl",
+      "sha256": "9d880b57440c75b91ea35dd1c358474d7e4fbfac55b4e5c589135b177ad8e3d7",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "charset-normalizer": {
+      "version": "3.4.1",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/charset_normalizer-3.4.1.dist-info",
+      "files": 18,
+      "wheel": "charset_normalizer-3.4.1-py3-none-any.whl",
+      "sha256": "b9361659ffe6f707a79a928e36a64484e7239a0b2084e9451816ac6cd7cda9f2",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "idna": {
+      "version": "3.10",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/idna-3.10.dist-info",
+      "files": 12,
+      "wheel": "idna-3.10-py3-none-any.whl",
+      "sha256": "272696af19700a6d8f792c24997f164d25929f70778b540912f514c360ccb270",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "urllib3": {
+      "version": "2.3.0",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/urllib3-2.3.0.dist-info",
+      "files": 41,
+      "wheel": "urllib3-2.3.0-py3-none-any.whl",
+      "sha256": "5db4778e2b861bf27894e8eaabbd44ce895d8ce592f4944f370206f4430214cd",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "certifi": {
+      "version": "2026.6.17",
+      "source_metadata": "/opt/conda/lib/python3.12/site-packages/certifi-2026.6.17.dist-info",
+      "files": 9,
+      "wheel": "certifi-2026.6.17-py3-none-any.whl",
+      "sha256": "cf801c9c7766c66a84f2a9f8441dc41f6346e3d4f75f14b74fef4ea9e7659d34",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    },
+    "cloudpickle": {
+      "version": "3.1.2",
+      "source_metadata": "/opt/up/envs/metax/lib/python3.12/site-packages/cloudpickle-3.1.2.dist-info",
+      "files": 6,
+      "wheel": "cloudpickle-3.1.2-py3-none-any.whl",
+      "sha256": "a252ffa24de37f5e52b6c79c668e3b4f27b7e8d9fa81f7f450a8bddaf7f38bcc",
+      "scope": "Verified installed CPU package bytes; regenerated wheel RECORD and console entry points"
+    }
+  },
+  "image": {
+    "Id": "sha256:f1bb287ddc3a6e4db84245c3fa4989295bbff2a00f6626966cc0f421cd77c7c3",
+    "Size": 17614162041,
+    "Architecture": "amd64",
+    "Os": "linux"
+  },
+  "tag": "up-unified:20261026-ready"
+}

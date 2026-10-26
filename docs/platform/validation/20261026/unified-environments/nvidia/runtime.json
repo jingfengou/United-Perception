@@ -1,0 +1,143 @@
+{
+  "nvidia": {
+    "vendor": "nvidia",
+    "python": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/bin/python",
+    "torch": "2.10.0+cu126",
+    "torchvision": "0.25.0+cu126",
+    "torch_path": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/torch/__init__.py",
+    "device_executed": false,
+    "environment": {
+      "PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LD_LIBRARY_PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/host-driver/nvidia:/usr/local/nvidia/lib64:/usr/local/nvidia/lib",
+      "CUDA_HOME": "/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/cuda",
+      "MACA_PATH": null,
+      "TORCH_EXTENSIONS_DIR": "/tmp/up-cache-1000/nvidia/extensions"
+    },
+    "loaded_vendor_libraries": [
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublas.so.12",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublasLt.so.12",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn.so.9",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/torchvision.libs/libcudart.45e7f3ed.so.12",
+      "/usr/lib/x86_64-linux-gnu/libcuda.so.580.178.04"
+    ]
+  },
+  "metax": {
+    "vendor": "metax",
+    "python": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/metax/bin/python",
+    "torch": "2.10.0+metax3.8.1.0",
+    "torchvision": "0.25.0+metax3.8.1.0",
+    "torch_path": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/metax/lib/python3.12/site-packages/torch/__init__.py",
+    "device_executed": false,
+    "environment": {
+      "PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/metax/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/mxgpu_llvm/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/ompi/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/ucx/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/mxdriver/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LD_LIBRARY_PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/metax/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/mxshmem/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/ompi/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca/ucx/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/mxdriver/lib",
+      "CUDA_HOME": null,
+      "MACA_PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/maca",
+      "TORCH_EXTENSIONS_DIR": "/tmp/up-cache-1000/metax/extensions"
+    },
+    "loaded_vendor_libraries": [
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libToolsExt_cu.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmaca_mathlib_host.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcFlashAttn.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcToolsExt.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcanalyzer.so.1.10.0",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcblas.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcblasLt.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmccl.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmccompiler.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcdnn.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcfft.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmchotspot_host.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmchotspot_target.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcimage.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcjpeg.so.1.0.0",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcpti.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcrand.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcruntime.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmcsparse.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmctlassEx.so",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmxc-runtime64.so.1.3.0",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libmxkw.so.1.0.6",
+      "/data2/oujingfeng/up-unified-image-20261026/vendor-base/opt/maca-3.8.1/lib/libruntime_cu.so"
+    ]
+  },
+  "gpu": {
+    "vendor": "nvidia",
+    "python": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/bin/python",
+    "torch": "2.10.0+cu126",
+    "torchvision": "0.25.0+cu126",
+    "torch_path": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/torch/__init__.py",
+    "device_executed": true,
+    "environment": {
+      "PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/bin:/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LD_LIBRARY_PATH": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib:/data2/oujingfeng/up-unified-image-20261026/bundle/host-driver/nvidia:/usr/local/nvidia/lib64:/usr/local/nvidia/lib",
+      "CUDA_HOME": "/data2/oujingfeng/up-unified-image-20261026/bundle/sdk/cuda",
+      "MACA_PATH": null,
+      "TORCH_EXTENSIONS_DIR": "/tmp/up-cache-1000/nvidia/extensions"
+    },
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "output": [
+      [
+        14.0,
+        38.0,
+        62.0,
+        86.0
+      ],
+      [
+        38.0,
+        126.0,
+        214.0,
+        302.0
+      ],
+      [
+        62.0,
+        214.0,
+        366.0,
+        518.0
+      ],
+      [
+        86.0,
+        302.0,
+        518.0,
+        734.0
+      ]
+    ],
+    "gradient": [
+      [
+        48.0,
+        56.0,
+        64.0,
+        72.0
+      ],
+      [
+        48.0,
+        56.0,
+        64.0,
+        72.0
+      ],
+      [
+        48.0,
+        56.0,
+        64.0,
+        72.0
+      ],
+      [
+        48.0,
+        56.0,
+        64.0,
+        72.0
+      ]
+    ],
+    "extension": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so",
+    "extension_sha256": "6a236cdf4e915071afdbbcd6ad01beabdc090a71f9360e26a8e8ad88429f8b8e",
+    "loaded_vendor_libraries": [
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublas.so.12",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublasLt.so.12",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn.so.9",
+      "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/torchvision.libs/libcudart.45e7f3ed.so.12",
+      "/usr/lib/x86_64-linux-gnu/libcuda.so.580.178.04"
+    ]
+  }
+}

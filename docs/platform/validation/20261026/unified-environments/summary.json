@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-26",
+  "comparison": "Same UP code: previous environment vs selected universal environment, per vendor",
+  "source_base": "747c3d5b20b85c1861103f5880d07573d0283404",
+  "model_platform_configs_changed": false,
+  "scope": {
+    "model": "UP ResNet18",
+    "seed": 131,
+    "input": [
+      2,
+      3,
+      224,
+      224
+    ],
+    "updates": 2,
+    "model_precision": "FP32",
+    "rtol": 0.0001,
+    "atol": 1e-05,
+    "native_ops": [
+      "matrix forward/backward",
+      "NMS",
+      "RoIAlign forward/backward"
+    ],
+    "model_steps": [
+      "training",
+      "training validation with purpose/mode/state restoration",
+      "strict checkpoint weight restore",
+      "independent inference"
+    ],
+    "coverage": "Functional/environment regression; all-interface or dataset accuracy coverage is not asserted"
+  },
+  "hardware": {
+    "nvidia": {
+      "device": "RTX4090",
+      "mode": "directory",
+      "container_gpu_validated": false,
+      "actual_image_native_artifact_gpu_validated": true,
+      "temporary_environments_removed": true
+    },
+    "metax": {
+      "device": "C500",
+      "mode": "universal Docker image",
+      "container_gpu_validated": true
+    }
+  },
+  "controlled_comparison": {
+    "nvidia": {
+      "torch_deterministic": true,
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "training_tensor_fields": 257,
+      "inference_tensor_fields": 255,
+      "max_abs": 0.0,
+      "passed": true
+    },
+    "metax": {
+      "torch_deterministic": true,
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "MCDNN_USE_DETERMINISTIC_ALGO": "1",
+      "MCDNN_STABLE_RESULT_MOD": "1",
+      "training_tensor_fields": 257,
+      "inference_tensor_fields": 255,
+      "max_abs": 0.0,
+      "passed": true
+    }
+  },
+  "native_diagnostics": {
+    "nvidia_directory": {
+      "reference_repeat_max_abs": 2.06201171875,
+      "old_new_max_abs": 6.991455078125,
+      "tolerance_passed": false,
+      "artifact": "Earlier host-built directory wheel; final image wheel separately controlled-tested"
+    },
+    "metax_image": {
+      "reference_repeat_max_abs": 0.37506103515625,
+      "old_new_max_abs": 0.04058837890625,
+      "tolerance_passed": false
+    },
+    "metax_torch_deterministic_only": {
+      "reference_repeat_max_abs": 0.0146484375,
+      "old_new_max_abs": 0.588134765625,
+      "tolerance_passed": false
+    }
+  },
+  "common_checkpoint_native_inference": {
+    "nvidia_max_abs": 0.0,
+    "metax_max_abs": 0.0,
+    "passed": true
+  },
+  "launcher_contracts": {
+    "linux_nvidia": {
+      "tests": 4,
+      "passed": 4
+    },
+    "linux_image": {
+      "tests": 4,
+      "passed": 4
+    }
+  },
+  "image": {
+    "Id": "sha256:f1bb287ddc3a6e4db84245c3fa4989295bbff2a00f6626966cc0f421cd77c7c3",
+    "Size": 17614162041,
+    "Architecture": "amd64",
+    "Os": "linux",
+    "local_alias": "up-unified:local"
+  },
+  "sdk_library_hashes_match_reference": true,
+  "evidence_archives": {
+    "nvidia": {
+      "archive": "/data2/oujingfeng/up-unified-image-20261026/nvidia-final-evidence.tar.gz",
+      "bytes": 60795,
+      "sha256": "c2c0b752f6133912f741cbfcec548fe4986e8cff0f70b360fbb60cc1eff67f37"
+    },
+    "metax": {
+      "archive": "/home/oujingfeng/up-unified-image-20261026/metax-final-evidence.tar.gz",
+      "bytes": 112141,
+      "sha256": "8dc7326529c6a9e8c18a54836716729d6911331def1c07ad03a9778420737c49"
+    }
+  },
+  "preserved_preparation_failures": [
+    "network mirror/download attempts",
+    "temporary nested Dockerfile quoting",
+    "offline cache Python2 wheel tag",
+    "embedded source/runtime launcher drift",
+    "unselected optional 3D dependencies"
+  ],
+  "paused_tasks": "Previous dataset accuracy/multiple-seed cohorts were not resumed"
+}

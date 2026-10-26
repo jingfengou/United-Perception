@@ -1,0 +1,8 @@
+{
+  "public_wheel": "up-0.3.0-py3-none-any.whl",
+  "sha256": "628fcd33a1d2bad93af30f4426bd1d90f00a02fb3a77c11c72d4436d1948ab6a",
+  "up_python_modules": 408,
+  "legacy_facades": 11,
+  "torch_installed": false,
+  "model_platform_config_unchanged": true
+}

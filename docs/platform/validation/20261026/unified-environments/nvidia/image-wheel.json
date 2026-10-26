@@ -1,0 +1,7 @@
+{
+  "path": "/home/oujingfeng/up-unified-image-20261026/image-nvidia-wheel/up-0.3.0-cp312-cp312-linux_x86_64.whl",
+  "bytes": 1875606,
+  "sha256": "ced7b5fc9089448648aff9508a57035a79187caae1fce575260035c1748cdb42",
+  "source_image": "838c35f484a3",
+  "source": "Current universal-image build11, CUDA12.6 SM80/SM89; native artifact unchanged by entry-point/build-tool overlay"
+}

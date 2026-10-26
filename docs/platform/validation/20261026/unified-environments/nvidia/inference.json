@@ -1,0 +1,49 @@
+{
+  "vendor": "nvidia",
+  "phase": "inference",
+  "model": "UP ResNet18",
+  "steps": 0,
+  "seed": 131,
+  "input": [
+    2,
+    3,
+    224,
+    224
+  ],
+  "purpose": "inference",
+  "python": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/bin/python",
+  "torch": "2.10.0+cu126",
+  "torch_path": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/torch/__init__.py",
+  "device": "NVIDIA GeForce RTX 4090",
+  "extension": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so",
+  "extension_sha256": "6a236cdf4e915071afdbbcd6ad01beabdc090a71f9360e26a8e8ad88429f8b8e",
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "scope": "synthetic functional/environment regression, not dataset accuracy",
+  "deterministic": true,
+  "loaded_vendor_libraries": [
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublas.so.12",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cublas/lib/libcublasLt.so.12",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn.so.9",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_engines_precompiled.so.9",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_engines_runtime_compiled.so.9",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_graph.so.9",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_heuristic.so.9",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/nvidia/cudnn/lib/libcudnn_ops.so.9",
+    "/data2/oujingfeng/UP-current-validation-20261022/venv/lib/python3.12/site-packages/torchvision.libs/libcudart.45e7f3ed.so.12",
+    "/usr/lib/x86_64-linux-gnu/libcuda.so.580.178.04"
+  ],
+  "checkpoint_eval_comparison": {
+    "passed": true,
+    "tensors": 8,
+    "max_abs": 0.0,
+    "failures": []
+  },
+  "comparison": {
+    "passed": true,
+    "tensors": 255,
+    "max_abs": 0.0,
+    "failures": []
+  }
+}

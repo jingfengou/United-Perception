@@ -1,6 +1,7 @@
 # 环境与构建
 
 环境须同时满足 UP、厂商 Torch/SDK 及模型的可选工具链，不是只看 `torch.cuda.is_available()`。
+需要在同一镜像中选择 NVIDIA/沐曦环境，使用 [通用镜像与启动器](UNIFIED_ENVIRONMENTS.md)；下表保留原有真机对照环境记录。
 
 ## 本轮环境
 

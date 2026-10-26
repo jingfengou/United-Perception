@@ -1,0 +1,36 @@
+{
+  "vendor": "metax",
+  "phase": "inference",
+  "model": "UP ResNet18",
+  "steps": 0,
+  "seed": 131,
+  "input": [
+    2,
+    3,
+    224,
+    224
+  ],
+  "purpose": "inference",
+  "python": "/opt/up/envs/metax/bin/python",
+  "torch": "2.10.0+metax3.8.1.0",
+  "torch_path": "/opt/conda/lib/python3.12/site-packages/torch/__init__.py",
+  "device": "MetaX C500",
+  "extension": "/opt/up/envs/metax/lib/python3.12/site-packages/up_platform/backends/_metax_ops.cpython-312-x86_64-linux-gnu.so",
+  "extension_sha256": "4bba557371d1471940a798b6d36e9d839bcc56d0ca12c1c9e7e6a0f48750db88",
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "scope": "synthetic functional/environment regression, not dataset accuracy",
+  "deterministic": true,
+  "loaded_vendor_libraries": [
+    "/opt/maca-3.8.1/lib/libmcblas.so",
+    "/opt/maca-3.8.1/lib/libmcblasLt.so",
+    "/opt/maca-3.8.1/lib/libmcdnn.so",
+    "/opt/maca-3.8.1/lib/libmcruntime.so"
+  ],
+  "checkpoint_eval_comparison": {
+    "passed": true,
+    "tensors": 8,
+    "max_abs": 0.0,
+    "failures": []
+  }
+}

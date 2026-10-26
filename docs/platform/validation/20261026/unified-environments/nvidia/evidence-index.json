@@ -1,0 +1,622 @@
+{
+  "archive": "/data2/oujingfeng/up-unified-image-20261026/nvidia-final-evidence.tar.gz",
+  "bytes": 60795,
+  "sha256": "c2c0b752f6133912f741cbfcec548fe4986e8cff0f70b360fbb60cc1eff67f37",
+  "files": {
+    "profiles-fixed.json": {
+      "bytes": 831,
+      "sha256": "9c3c19598936616284e688f58e89530f32f61a9ac505c0107674a63338988bc7"
+    },
+    "OWNER.json": {
+      "bytes": 69,
+      "sha256": "38258342810f11d46cdc91506c718a7422162584ced7f3017e94788997ede77a"
+    },
+    "validate_02.py": {
+      "bytes": 2641,
+      "sha256": "7f92a761f09612d99d8ad73d0dcbaa68e8affc40d24dd08a0ca8ee94d07295e9"
+    },
+    "metax-directory-job.json": {
+      "bytes": 521,
+      "sha256": "d0e7f78a07488e68b2ad95ec28606f81bcaae5c33732a6995515ff2c55467ee6"
+    },
+    "build-nvidia-02.log": {
+      "bytes": 347,
+      "sha256": "4cbfb1869565490e2f9f77fc3298edd4420121e18519c6f566d77280f276fb13"
+    },
+    "build_nvidia_02.py": {
+      "bytes": 767,
+      "sha256": "9881cc9f1196e96d7e2c556eb7347d8a25c8e84f661597e154ce4639b48c97e2"
+    },
+    "repair_cached_wheel.py": {
+      "bytes": 1568,
+      "sha256": "726773dab05604f0f6a7b14dcac03f8ed7c1fe28077fb3a807423868c077d7d6"
+    },
+    "validate_01.py": {
+      "bytes": 2441,
+      "sha256": "7722f3a623c769fffcd16b946c7888cd1be9a52ad75794ed8722b4b59a7a7be6"
+    },
+    "metax-directory-controller.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation-05-controller.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "final-image-artifact-controller.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-nvidia-03-launch.json": {
+      "bytes": 84,
+      "sha256": "907353c4acd9acda8c347784f2546bee07d446d23a90ad8955c5df511fe531ee"
+    },
+    "validation-04-status.json": {
+      "bytes": 1021,
+      "sha256": "bab6116b852d5f57b6a6a8be58aed33186170a893ccfd2507d56c397a97bfb64"
+    },
+    "inference-diagnostic-03.log": {
+      "bytes": 1094,
+      "sha256": "6c7710cec49bd08ee13985b80b16bca1778c55f4d27d4d6ed4400a899ac2f181"
+    },
+    "prepare_metax_directory.py": {
+      "bytes": 2483,
+      "sha256": "1ecb4b73abf5e8c0864539c3a7cf9ab523884678e94425eaac433eafd0628d98"
+    },
+    "validation-01-controller.log": {
+      "bytes": 463,
+      "sha256": "19a0c6211aa8643259704de51f6f217c4674f74716e110397d59cdafc9c3fcad"
+    },
+    "nvidia-environment-READY.json": {
+      "bytes": 198,
+      "sha256": "41036724544f8dfb2d84aefb213b3ac437d08027d2cec9c25ed45f53f05fdc08"
+    },
+    "final-image-artifact-status.json": {
+      "bytes": 1554,
+      "sha256": "bf4869cc976f26500c93c215539d65eb88aa0a02ef30687444e7f191e81a4a63"
+    },
+    "validation-06-controller.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validation-05-status.json": {
+      "bytes": 5619,
+      "sha256": "c5d7c64aeeb6b6edf84288eefcd5036b7d77b18c80120011d6de6851f2fadd83"
+    },
+    "validation-03-launch.json": {
+      "bytes": 129,
+      "sha256": "e604fc0f7e8b5efe31450d9e8031f986e744bd857a8b92b452737babbf8e097e"
+    },
+    "inference_diagnostic_03.py": {
+      "bytes": 7091,
+      "sha256": "9ad44d11dc7bf60e6382fa462a7d89779af51343f56b155d93f930168527cc5c"
+    },
+    "validation-04-launch.json": {
+      "bytes": 133,
+      "sha256": "43a15c3330f1a78f4d02c761b0e72e02324399ec61613061220e738af7176cda"
+    },
+    "profiles-before-runtime-fix.json": {
+      "bytes": 856,
+      "sha256": "d62f555a99716c8958869e16b7994f2d9f82d81993646e0a7fab8ecee90e4663"
+    },
+    "final-image-artifact-READY.json": {
+      "bytes": 1752,
+      "sha256": "d56df31a955f94131dc1f01abbbc09eb2732446dd6762e72d82111ecce55519a"
+    },
+    "build-nvidia-02-launch.json": {
+      "bytes": 419,
+      "sha256": "2727807c832c4222bc26c8c222b203ba8bd26ad65618e547ff91c4fa4f84f543"
+    },
+    "validate_unified_environment.py": {
+      "bytes": 7842,
+      "sha256": "afa5a6268b5f6885729ced0bb002a6e976159e3ea3172d509cb3988d6e70a47f"
+    },
+    "validation-04-controller.log": {
+      "bytes": 462,
+      "sha256": "707b50c091eebad6116237337bb24a77b319553a1d3f314c807f03fad35e3565"
+    },
+    "validation-02-controller.log": {
+      "bytes": 464,
+      "sha256": "ced076600564240c70aa2c698be5e396a09d32b651b13cfc74b0af38bfb8dea0"
+    },
+    "validate_image_artifact.py": {
+      "bytes": 2133,
+      "sha256": "aa66a01c845cf26e2a9390b57a2193b8414d13ee1279161643cff04e2af36e3c"
+    },
+    "validate_05.py": {
+      "bytes": 3138,
+      "sha256": "c4c652a77f0ed4afbe445112d186afe44293d054e79a69dda3a1f9366e55df40"
+    },
+    "validation-01-launch.json": {
+      "bytes": 72,
+      "sha256": "4642d38c2d71d46f2c53cdae8adf6bc31fe4813cbd73dea5d9c6c2e06e7fcf1c"
+    },
+    "validate_03.py": {
+      "bytes": 2656,
+      "sha256": "4df8912a5ac126346e1a9b16ad022881f6765bbca6002ac79a4e113c0d2e36f3"
+    },
+    "metax-directory-launch.json": {
+      "bytes": 107,
+      "sha256": "ab1a34c2a80105c0a23b5a64c8f26bf55bcf5324a47ffa0f6863c72aaa678f7f"
+    },
+    "validation-05-READY.json": {
+      "bytes": 5685,
+      "sha256": "2fa7ed8c8b30594bf5131779bca35874c6ed6ac20d8034056d1438ab81322fed"
+    },
+    "validation-02-status.json": {
+      "bytes": 1250,
+      "sha256": "913180454033fcbc7a8a552105245ca18ebca502dc5cb047f1faa533db95e67f"
+    },
+    "validation-06-READY.json": {
+      "bytes": 3241,
+      "sha256": "90e197c80ad142010dcb50ecd4bb9ddfe57bdd95cdbece0b84d2a811364a2e51"
+    },
+    "reference-library-probe.json": {
+      "bytes": 2117,
+      "sha256": "bac2f189c8d748a1dd166bc79f1c798de9aacac8ad8273d03431665d6037195e"
+    },
+    "build-nvidia-03.log": {
+      "bytes": 310716,
+      "sha256": "a9a5e0827ec939aa9623c2f3aeb85df76d5ce4c47d25f940394377b1952fd833"
+    },
+    "validation-06-launch.json": {
+      "bytes": 115,
+      "sha256": "d8159947a8dcf28f0b65291611fe5cdbe381e0efc11ad84b2f14f31551920a64"
+    },
+    "validate_06.py": {
+      "bytes": 2501,
+      "sha256": "f6a3fbafd7aa394138644b58a52c7a119711d7d3e7078db38216b0cce92f0ec6"
+    },
+    "build_nvidia.py": {
+      "bytes": 736,
+      "sha256": "88f320365a588705731b527a96f0420cab31fd8fdfdbf572a81c926881362262"
+    },
+    "validation-06-status.json": {
+      "bytes": 3094,
+      "sha256": "1085c95e6253f75bef15dfae3b85823a8c05d226eecfa0358469ec0f7b7e70a9"
+    },
+    "validate_04.py": {
+      "bytes": 2640,
+      "sha256": "0a83e754672605fc3e866ef5569471f0117c85a3c79f16c4728622f710b7229d"
+    },
+    "validation-02-launch.json": {
+      "bytes": 280,
+      "sha256": "e4da1cb21271400aa3ad5476a0f32b03bc8ebc04b28dc6f14f5a26c52272e747"
+    },
+    "validation-05-launch.json": {
+      "bytes": 149,
+      "sha256": "ea117faaffe9c1dc2fa4d8387bfecbaca7f7b2413716988fea69af40054d82d8"
+    },
+    "final-image-artifact-launch.json": {
+      "bytes": 85,
+      "sha256": "c8a3ee6675c26c0ac46ac348d5f0643bba15a02712292ef8a910d2e17e18ded9"
+    },
+    "validation-03-controller.log": {
+      "bytes": 462,
+      "sha256": "21e31e8aeeff23e7c88bd971458d70125f9958c01467d06970aef420a1440e37"
+    },
+    "build-nvidia-launch.json": {
+      "bytes": 262,
+      "sha256": "cd62f99708f113bd168bea1ce5dc1348a96d6a4a5946a528b4e498b924419972"
+    },
+    "validate_environment_03.py": {
+      "bytes": 7327,
+      "sha256": "8e979014abc75b13b089dc29b5a6df5e566c7393e12dbd2c0704bcdc696ad975"
+    },
+    "launch.py": {
+      "bytes": 4332,
+      "sha256": "69dbe5c2a21108604636290937b552ab68e14b76d4823e4c886b7aceeda4d5c3"
+    },
+    "validation-03-status.json": {
+      "bytes": 1943,
+      "sha256": "54e5e33c130e7eb5a9759f3acb68fad7315d1be4c748061e17659a13503f7477"
+    },
+    "validation-01-status.json": {
+      "bytes": 787,
+      "sha256": "fe071ca5aca8d64d266c928bd57fa69d744bf7c5a61f1e7e443e1e439113fe65"
+    },
+    "metax-directory-import.log": {
+      "bytes": 662,
+      "sha256": "eb0cbdfb5722fc31a7d6b2566cdb221088a41615d19d6cd104787dc388488e28"
+    },
+    "build_nvidia_03.py": {
+      "bytes": 770,
+      "sha256": "7d5bbca87295f44095a6ab17edd68696ceeb2f87ebfcf03acc1cce91ccf9312a"
+    },
+    "build-nvidia.log": {
+      "bytes": 869,
+      "sha256": "54ea690484db33bbcd71c084671993842c5f0e7b6a7b4520b17abfc3450591af"
+    },
+    "test_vendor_launcher.py": {
+      "bytes": 5413,
+      "sha256": "817728be23df928f067e29a056b8cbe4e0e88fcddbe16524913df879560243c6"
+    },
+    "nvidia-directory-evidence-01.json": {
+      "bytes": 21888,
+      "sha256": "483849c0cce344f6140b01f1341b96c08b67df2bb140714838ea3b453b58fa61"
+    },
+    "results-06/nvidia-train-cli.log": {
+      "bytes": 1861,
+      "sha256": "11eba7ae048122b68a59b5d65febbdc7e6e51a4eb175682a282a2c89676e9091"
+    },
+    "results-06/linux-contracts.log": {
+      "bytes": 636,
+      "sha256": "940ec106c1b95241f992169c08f36265b8603c8d08265907b1b7904207a1d3c5"
+    },
+    "results-06/metax-inference-cli.log": {
+      "bytes": 1878,
+      "sha256": "a0999366793109718954cc9b64d3cbcc8f66fe587437f76e88c891b2dedb820d"
+    },
+    "results-06/nvidia-training.log": {
+      "bytes": 2386,
+      "sha256": "7d78018bd7488b2d47bd7ea1b840d0a47a037f39ee14475f7d2fe530d2501062"
+    },
+    "results-06/metax-no-device.log": {
+      "bytes": 4182,
+      "sha256": "198b3bcc65497077452ec85fc498e46c6077c6756c03b4297ab02f7b9db73058"
+    },
+    "results-06/allocation.json": {
+      "bytes": 127,
+      "sha256": "bf075350a6d394ee94351ca0406d6e308c627382df205b21bb50a2a8cad3b7a6"
+    },
+    "results-06/nvidia-gpu.log": {
+      "bytes": 2499,
+      "sha256": "84600f4bdf0c87de7580ce1b473f9923179523fa2ae3b60a44d7b5364ae081ac"
+    },
+    "results-06/nvidia-inference-cli.log": {
+      "bytes": 1388,
+      "sha256": "054f13192e7fb4d463904b7c83e439f94b08acb0b591ee15dcc6a039c748af9b"
+    },
+    "results-06/metax-train-cli.log": {
+      "bytes": 2414,
+      "sha256": "04da5eed83567e2007023bde38c9f8542b582a7029d27ded946d08a49ced0ab4"
+    },
+    "results-06/nvidia-no-device.log": {
+      "bytes": 1664,
+      "sha256": "47b8a2c6ad7228d7b75332bfb6d272a106fe6ddd8ffa0cc54175741279bb3730"
+    },
+    "results-06/nvidia-inference.log": {
+      "bytes": 2409,
+      "sha256": "97f9a9a8071f9c025fb99257fa7c128d6b0d45c5698121c4a051223cd2f44f33"
+    },
+    "results-02/reference-inference.log": {
+      "bytes": 515,
+      "sha256": "fc1eff4ec4521abed4fa92160f99db80a2e42260f6194379f5812dfa3132f69d"
+    },
+    "results-02/reference-training.log": {
+      "bytes": 922,
+      "sha256": "7be474549f7382127dda49e2834bd3726d10ecbb4bc24ebf7eec7ea1955afcef"
+    },
+    "results-02/linux-launcher-contracts.log": {
+      "bytes": 636,
+      "sha256": "ac9cc3c84196c66aeebd7077fa38899f17c9f65f7033ca3e32c2835635e6f7d6"
+    },
+    "results-02/allocation.json": {
+      "bytes": 162,
+      "sha256": "3b8ea63980c334771118e65a1d272b632b2e1c7a98efa1063e9337be535f1aab"
+    },
+    "results-02/probe.log": {
+      "bytes": 2499,
+      "sha256": "84600f4bdf0c87de7580ce1b473f9923179523fa2ae3b60a44d7b5364ae081ac"
+    },
+    "inference-diagnostic-03/result.json": {
+      "bytes": 1155,
+      "sha256": "578b105ba11356e341f08dfe839f2b9951f17edeaf7eaf4380bab68563aa8305"
+    },
+    "results-05/native-selected-common-inference.log": {
+      "bytes": 2410,
+      "sha256": "c2de7675657e03cd315c276c57d7888be1429bad13c65963563dc8f108a3fbc8"
+    },
+    "results-05/det-reference-training.log": {
+      "bytes": 2288,
+      "sha256": "b42862de08afe6a8a74ca2a587b4d81b25552dfa58dbe81f4dabc95b88c766bf"
+    },
+    "results-05/native-reference-repeat.log": {
+      "bytes": 4112,
+      "sha256": "3b75d662ff88325e92b64992132296b03c81abfb59c49745d66c7319b256c57c"
+    },
+    "results-05/det-reference-inference.log": {
+      "bytes": 2311,
+      "sha256": "c7c1f7f9f35f877a3785aa1aa48bd827eb574022ed6a1649a9f05f17e319e4fd"
+    },
+    "results-05/det-selected-inference.log": {
+      "bytes": 2409,
+      "sha256": "97f9a9a8071f9c025fb99257fa7c128d6b0d45c5698121c4a051223cd2f44f33"
+    },
+    "results-05/det-selected-training.log": {
+      "bytes": 2386,
+      "sha256": "731b4975d71f3e21de33c6e7ae76528cf0962f07ff0d1fd9a3e4eb49501814f6"
+    },
+    "results-05/det-reference-repeat-inference.log": {
+      "bytes": 2391,
+      "sha256": "59f07af76c50589b145301f202e5b1bdb8cfdbd6623b3911b9da3afb7808bdee"
+    },
+    "results-05/native-selected-own-inference.log": {
+      "bytes": 2330,
+      "sha256": "d90cdc479f787433232c8635e1d263bb9df8c74de12d0ce66186735f7da022b6"
+    },
+    "results-05/allocation.json": {
+      "bytes": 127,
+      "sha256": "bf075350a6d394ee94351ca0406d6e308c627382df205b21bb50a2a8cad3b7a6"
+    },
+    "results-05/det-reference-repeat-training.log": {
+      "bytes": 2368,
+      "sha256": "75de35938d5c60e9803d18e02d7dc86a8cad15f0557e2f717f2a1ff2c5120960"
+    },
+    "results-image-artifact-01/training.log": {
+      "bytes": 2386,
+      "sha256": "c9ff2c6135e23610eb8f1042bea217acc83bfa149ca57c7fe3fcad404d88f820"
+    },
+    "results-image-artifact-01/allocation.json": {
+      "bytes": 127,
+      "sha256": "bf075350a6d394ee94351ca0406d6e308c627382df205b21bb50a2a8cad3b7a6"
+    },
+    "results-image-artifact-01/inference.log": {
+      "bytes": 2409,
+      "sha256": "7f73c4c903344df8ee32b19b7ef9e6d26058ece4dd3e71fa0c4d1cc6ae5c8190"
+    },
+    "results-image-artifact-01/probe.log": {
+      "bytes": 2499,
+      "sha256": "e3597acacdc9235177442a7c511c7de7c551e1609a54138b29472c6e8b12c2b5"
+    },
+    "results-04/selected-training.log": {
+      "bytes": 5592,
+      "sha256": "71e5554706df05da30c1bba1a7201b6bd9ed8306394d925254b2ee2bbe994fef"
+    },
+    "results-04/linux-launcher-contracts.log": {
+      "bytes": 636,
+      "sha256": "35101bfabb186ecc080ca87f6ee810ac2d7f6336b0505f9b65d4db5722109454"
+    },
+    "results-04/allocation.json": {
+      "bytes": 162,
+      "sha256": "3b8ea63980c334771118e65a1d272b632b2e1c7a98efa1063e9337be535f1aab"
+    },
+    "results-04/probe.log": {
+      "bytes": 2499,
+      "sha256": "84600f4bdf0c87de7580ce1b473f9923179523fa2ae3b60a44d7b5364ae081ac"
+    },
+    "results-01/reference-training.log": {
+      "bytes": 387,
+      "sha256": "b04a5b20b7adfd764991514c677596ae771e725e4c225435b893af0a58a878a0"
+    },
+    "results-01/linux-launcher-contracts.log": {
+      "bytes": 636,
+      "sha256": "4bde0dbec86cf6e5df29d5650530e030569873a8fe6e53da639903ab1096bb01"
+    },
+    "results-01/allocation.json": {
+      "bytes": 162,
+      "sha256": "3b8ea63980c334771118e65a1d272b632b2e1c7a98efa1063e9337be535f1aab"
+    },
+    "results-01/probe.log": {
+      "bytes": 2516,
+      "sha256": "b5ae40cca394eb7d8c11e2d44a03e0c240ded93642f6feb2a0c7ec83d63433a3"
+    },
+    "results-03/reference-inference.log": {
+      "bytes": 945,
+      "sha256": "307439e9d1e033e1a1ff01419f29966d6951b58025f81f54548dbfb23a9ca9d5"
+    },
+    "results-03/reference-training.log": {
+      "bytes": 922,
+      "sha256": "111985526741b2f7a79270c897f39d07bdeed8603784be0d28ba052652ad6ebe"
+    },
+    "results-03/selected-training.log": {
+      "bytes": 2990,
+      "sha256": "9f4c8081a127c85a74ba958d7a1c2f160fe3401836abb330c07312c8517f3e13"
+    },
+    "results-03/linux-launcher-contracts.log": {
+      "bytes": 636,
+      "sha256": "dbc62876d057de2db97125925c0a151fa49ed11c7be25bbd04b25ebae6cf7547"
+    },
+    "results-03/allocation.json": {
+      "bytes": 162,
+      "sha256": "3b8ea63980c334771118e65a1d272b632b2e1c7a98efa1063e9337be535f1aab"
+    },
+    "results-03/probe.log": {
+      "bytes": 2499,
+      "sha256": "84600f4bdf0c87de7580ce1b473f9923179523fa2ae3b60a44d7b5364ae081ac"
+    },
+    "results-06/training/result.json": {
+      "bytes": 2360,
+      "sha256": "541bdc7086cbce48fd01375f9df8cad6d32cc1a397d015504ac9b348de451f40"
+    },
+    "results-06/inference/result.json": {
+      "bytes": 2478,
+      "sha256": "f4defd43e2d556d592ccb8df87eb115386f2c0d3e78086fe7c49a0460f0a378c"
+    },
+    "results-02/reference-training/result.json": {
+      "bytes": 822,
+      "sha256": "448141ee4f78b8ebc8725fce5a72778ef07fc618b7437027f8efd3bcf246a2e0"
+    },
+    "results-05/det-reference-training/result.json": {
+      "bytes": 2240,
+      "sha256": "c3b1749c1de81b5c5b5381b3a511250ca625cc3177596e01e8e6405cc146ac4a"
+    },
+    "results-05/det-reference-repeat-inference/result.json": {
+      "bytes": 2460,
+      "sha256": "a634a4cfcf6f2e794c063a138264508f9ebe766786758bf68675edfc8f67f22a"
+    },
+    "results-05/native-reference-repeat/result.json": {
+      "bytes": 4722,
+      "sha256": "eeb861913a38ab00d6c21235329612d36377ae4cd344220b02672d64c77ec5f3"
+    },
+    "results-05/native-selected-own-inference/result.json": {
+      "bytes": 2377,
+      "sha256": "905e4f727278234e3c6a58e428673604bdf14405d5035228bc7e9bf3f8a835d1"
+    },
+    "results-05/det-selected-inference/result.json": {
+      "bytes": 2478,
+      "sha256": "f4defd43e2d556d592ccb8df87eb115386f2c0d3e78086fe7c49a0460f0a378c"
+    },
+    "results-05/det-reference-inference/result.json": {
+      "bytes": 2358,
+      "sha256": "55554cd5704fac7aade40b260347a0e742b0f92f6cc25f05f5f2323ae5389067"
+    },
+    "results-05/native-selected-common-inference/result.json": {
+      "bytes": 2479,
+      "sha256": "a15bf28b41bae3de5bbcb15e652dbfb18e934507f4ffbe863e23520bba10acc1"
+    },
+    "results-05/det-selected-training/result.json": {
+      "bytes": 2360,
+      "sha256": "541bdc7086cbce48fd01375f9df8cad6d32cc1a397d015504ac9b348de451f40"
+    },
+    "results-05/det-reference-repeat-training/result.json": {
+      "bytes": 2342,
+      "sha256": "d77f0b28dfaea7d86ed1dc33d63001c94e8148e79db923a3e04f62909406a6c2"
+    },
+    "results-image-artifact-01/training/result.json": {
+      "bytes": 2360,
+      "sha256": "64385ac48333a270a0569c1f3271eeeaf593e1d49da9315977733e7bcc32c913"
+    },
+    "results-image-artifact-01/inference/result.json": {
+      "bytes": 2478,
+      "sha256": "1d339308761228413f5ba0701441f25c98d15c34534023c2a22979a664c910d7"
+    },
+    "results-04/selected-training/result.json": {
+      "bytes": 7140,
+      "sha256": "33abdb426f4cba9c7bf9d4f4229dda1fd0c1489691e3e052ffcc8ce4006e4536"
+    },
+    "results-03/reference-inference/result.json": {
+      "bytes": 940,
+      "sha256": "2c294ca9cb3dce5911eb6626c64ee5f65a4adadcc83b6a13959b6384860455cf"
+    },
+    "results-03/reference-training/result.json": {
+      "bytes": 822,
+      "sha256": "448141ee4f78b8ebc8725fce5a72778ef07fc618b7437027f8efd3bcf246a2e0"
+    },
+    "results-06/training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "7fd86b7e3250012d73f06ffd98a3fd9e914329e4160337f2f3a7d44e2a8dead8",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-06/training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "18daf5657beec296567247b63d0fe293dabca966b15046beed32a79afef71b49",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-06/inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "2790cc6bad29e9cda5c2fd5800a6d520d408870f02c635392075bc39e723f0ca",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-02/reference-training/tensors.pt": {
+      "bytes": 95101305,
+      "sha256": "9a1873d1f30a7f5f325aee785a9edb7a3293f7bea01eb5ebb0f4792542be88b1",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-02/reference-training/checkpoint.pt": {
+      "bytes": 95042643,
+      "sha256": "1b2c4540e0b50c47128170f075c9ba72c990b015a7cf371e4ee3d1cefdc23267",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-reference-training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "7fd86b7e3250012d73f06ffd98a3fd9e914329e4160337f2f3a7d44e2a8dead8",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-reference-training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "18daf5657beec296567247b63d0fe293dabca966b15046beed32a79afef71b49",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-reference-repeat-inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "2790cc6bad29e9cda5c2fd5800a6d520d408870f02c635392075bc39e723f0ca",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/native-reference-repeat/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "ba0ebcb071b55f9ca6091e4fe211b0443a609cff69108666a44bdd02db77d9a3",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/native-reference-repeat/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "a06a8694ba98d3f8270e0cc46978dc73aa21552a242ba3166e685c8971744d19",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/native-selected-own-inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "42e18e82cf40fb0ccd1efe5c8c02be4102bf5ac8984212d16b844edaba4e24e9",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-selected-inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "2790cc6bad29e9cda5c2fd5800a6d520d408870f02c635392075bc39e723f0ca",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-reference-inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "2790cc6bad29e9cda5c2fd5800a6d520d408870f02c635392075bc39e723f0ca",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/native-selected-common-inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "742e12ce8aa7fed9b0d0ae42cefa6828d609f738b00b94fb2998fd0eaaf9f2b0",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-selected-training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "7fd86b7e3250012d73f06ffd98a3fd9e914329e4160337f2f3a7d44e2a8dead8",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-selected-training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "18daf5657beec296567247b63d0fe293dabca966b15046beed32a79afef71b49",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-reference-repeat-training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "7fd86b7e3250012d73f06ffd98a3fd9e914329e4160337f2f3a7d44e2a8dead8",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-05/det-reference-repeat-training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "18daf5657beec296567247b63d0fe293dabca966b15046beed32a79afef71b49",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-image-artifact-01/training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "7fd86b7e3250012d73f06ffd98a3fd9e914329e4160337f2f3a7d44e2a8dead8",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-image-artifact-01/training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "18daf5657beec296567247b63d0fe293dabca966b15046beed32a79afef71b49",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-image-artifact-01/inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "2790cc6bad29e9cda5c2fd5800a6d520d408870f02c635392075bc39e723f0ca",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-04/selected-training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "8e494b39be94c2e4544d289554c7586e78dcecf6a9c003e62c2953c2c318d184",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-04/selected-training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "d062847efb049bcb3b0b7ade4fba45e00786e74aec09b9a21d90a8c367dfd2aa",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-03/reference-inference/tensors.pt": {
+      "bytes": 95100225,
+      "sha256": "742e12ce8aa7fed9b0d0ae42cefa6828d609f738b00b94fb2998fd0eaaf9f2b0",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-03/reference-training/tensors.pt": {
+      "bytes": 95100733,
+      "sha256": "e7e7cd166c05f4a73078746d66a4907f1deda37c7ce20402682e53b01a210585",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "results-03/reference-training/checkpoint.pt": {
+      "bytes": 95042065,
+      "sha256": "c8ffcbb52dea621a934bdcc679c41ed84750813339c539e716f47926b9891646",
+      "storage": "remote raw evidence retained after environment cleanup"
+    },
+    "image-nvidia-wheel/up-0.3.0-cp312-cp312-linux_x86_64.whl": {
+      "bytes": 1875606,
+      "sha256": "ced7b5fc9089448648aff9508a57035a79187caae1fce575260035c1748cdb42",
+      "storage": "remote raw evidence retained after environment cleanup"
+    }
+  }
+}

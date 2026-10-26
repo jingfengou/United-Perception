@@ -5,7 +5,7 @@
 在原版 [United-Perception](https://github.com/ModelTC/United-Perception) 上重建的显式多厂商平台层。
 模型、数据和训练配方留在 `up/`，设备、算子和厂商差异集中在 `up_platform/`。
 
-**当前分支：`codex/up-platform-clean`。阶段性实现，尚未达到“两家完整适配”验收。**
+**当前分支：`codex/unified-vendor-image`，基于 `codex/up-platform-clean` 增加通用镜像和环境启动器。平台层仍处于阶段性验收。**
 NVIDIA 与沐曦已有真机记录；失败、缺口和复现步骤见 [验证报告](docs/platform/VALIDATION.md)。
 本仓库是 UP 的正式 fork，`main` 保留原版 UP；平台改造位于本分支。
 [旧实验仓库](https://github.com/jingfengou/United-Perception-Hardware) 的 `main`、Release 和历史证据保持原样。
@@ -57,10 +57,10 @@ PyTorch 已提供统一 API 和设备派发机制，平台层集中处理设备�
 
 ## 安装与环境切换
 
-**每个厂商独立一套环境，运行时同时选择环境和 UP 后端。** PyTorch、TorchVision、SDK、通信库和专用扩展分别安装；模型配置、数据和权重可以共用。
-只修改 `runtime.platform.backend` 不会切换 Python 或安装另一家的 PyTorch。
+**一个镜像，内含 NVIDIA 和沐曦两套隔离环境，用 `up-run nvidia ...` 或 `up-run metax ...` 选择。**
+启动器同时选择 Python、SDK 路径、专用扩展和 UP 后端；切换会启动新进程，不需要反复安装 PyTorch。
 
-推荐每家使用一个厂商开发容器。下表是已有真机记录中的版本，完整依赖见 [环境说明](docs/platform/ENVIRONMENT.md)。
+两套环境分别保存 PyTorch、TorchVision、编译产物和缓存，模型、配置、数据和权重可以共用。版本与构建细节见 [通用镜像说明](docs/platform/UNIFIED_ENVIRONMENTS.md)。
 
 | 厂商 | PyTorch / TorchVision | 工具链与扩展 | UP 后端 |
 | --- | --- | --- | --- |
@@ -69,53 +69,47 @@ PyTorch 已提供统一 API 和设备派发机制，平台层集中处理设备�
 
 ### 首次安装
 
-1. 在对应显卡的服务器上，按 [NVIDIA 容器说明](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) 或 [沐曦开发镜像说明](https://developer.metax-tech.com/softnova/docker) 准备宿主机驱动、容器设备映射及匹配的 **PyTorch 开发镜像**。编译专用扩展还需要镜像中的编译器与头文件。
-2. 两家分别使用独立容器和可写源码目录，分别保存虚拟环境、编译目录及输出。数据和初始权重可以只读挂载共用。不要在同一个环境中反复覆盖两家的 Torch，也不要共用 `build/` 或 `.so`。
-3. 进入某家容器后执行下面的安装。这里的 `python` 必须是镜像自带的厂商 Python；目录 `/workspace` 需可写。
+宿主机先安装对应显卡驱动。NVIDIA 还需 [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)；沐曦设备映射按 [厂商开发镜像说明](https://developer.metax-tech.com/softnova/docker) 配置。
+基础镜像来自厂商，需要有拉取权限；镜像不包含宿主机内核驱动。
 
 ```bash
-# 在 NVIDIA 或沐曦自己的容器内执行；继承该镜像已有的厂商包
-python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
-python -m venv --system-site-packages /workspace/up-env
-source /workspace/up-env/bin/activate
-
-git clone --branch codex/up-platform-clean https://github.com/jingfengou/United-Perception.git /workspace/UP
-cd /workspace/UP
-
-# 固定当前厂商的 Torch / TorchVision，安装普通依赖时禁止换成其他版本
-python -c "from importlib.metadata import version; print('\n'.join(p + '==' + version(p) for p in ('torch', 'torchvision')))" > /workspace/up-vendor-constraints.txt
-python -m pip install -c /workspace/up-vendor-constraints.txt -r docs/platform/requirements-common.txt
-python -m pip install --no-deps -e .
+git clone --branch codex/unified-vendor-image https://github.com/jingfengou/United-Perception.git
+cd United-Perception
+docker build -f docker/unified/Dockerfile -t up-unified:local .
 ```
 
-随后只编译当前厂商的扩展：NVIDIA 执行 `UP_BUILD_BACKEND=nvidia python setup.py build_ext --inplace`，沐曦执行 `UP_BUILD_BACKEND=metax python setup.py build_ext --inplace`。
-公共依赖清单只是基础子集；所用模型的 spconv、MQBench、MSBench 等按 [环境说明](docs/platform/ENVIRONMENT.md) 另行准备，并保留匹配的厂商版本。
-安装其他 Python 依赖时也带上 `-c /workspace/up-vendor-constraints.txt`；有冲突先处理依赖版本，不去掉约束覆盖厂商 Torch。
-原版 `requirements.txt` 是历史清单，不适合直接用于这里的 Python 3.12 环境。
+构建时分别安装依赖、编译 `_nvidia_ops` 和 `_metax_ops`，无需 GPU。默认 NVIDIA 扩展面向 SM80/SM89，其他型号用构建参数指定架构。
+原版 `requirements.txt` 是历史清单，不适合直接覆盖镜像环境。量化、剪枝等模型可选依赖仍按 [环境说明](docs/platform/ENVIRONMENT.md) 准备，缺失 SDK 不会被替代实现掩盖。
 
 ### 使用时切换
 
-下面假设两家容器已经启动，分别命名为 `up-nvidia`、`up-metax`，且均已完成上述安装。名称是示例，可替换成自己的容器名。
-在对应服务器上执行；配置里的数据、权重和输出路径也须在该容器中可访问。
+先检查当前服务器的设备、PyTorch、动态库和专用扩展：
 
 ```bash
-# 用 NVIDIA 环境和 nvidia 后端启动同一份配方
-docker exec -it -w /workspace/UP up-nvidia /workspace/up-env/bin/python -m up train \
-  --config configs/cls/resnet/res18.yaml --launch pytorch --ng 1 \
-  --opts runtime.platform.backend nvidia
+# NVIDIA 服务器，示例选择第 0 张卡
+docker run --rm --gpus device=0 up-unified:local nvidia check
 
-# 用沐曦环境和 metax 后端启动
-docker exec -it -w /workspace/UP up-metax /workspace/up-env/bin/python -m up train \
-  --config configs/cls/resnet/res18.yaml --launch pytorch --ng 1 \
-  --opts runtime.platform.backend metax
+# 沐曦服务器，示例选择第 0 张卡
+docker run --rm --device=/dev/dri --device=/dev/mxcd --group-add video \
+  -e CUDA_VISIBLE_DEVICES=0 up-unified:local metax check
 ```
 
-需要交互操作时用 `docker exec -it up-metax bash` 进入容器，再执行 `source /workspace/up-env/bin/activate`。
-独立推理同样选择对应容器，把上面 `train` 后的参数换成下节的 `inference` 命令。
-两家卡在不同服务器时，先连接对应服务器；这些命令不会自动跨服务器调度。
+准备好自己的 `model.yaml`、数据和权重后，一条命令启动 UP，例如：
 
-不用 Docker 也可以：为每家创建独立 Conda/venv，并用该环境的 Python 启动 UP，同时传入匹配的后端。SDK 的库路径和环境变量也须按厂商设置。
-厂商、用途在一个 UP 进程内固定；切换厂商需要启动新进程。当前提供的是这些现成环境的启动方法，尚无仓库专属的统一环境切换器。
+```bash
+docker run --rm --gpus device=0 --shm-size=8g -e DEFAULT_TASKS=cls:det -v "$PWD":/work -w /work \
+  up-unified:local nvidia train --config model.yaml --launch pytorch --ng 1
+```
+
+在沐曦服务器上，将设备参数换成上面的沐曦参数，厂商选 `metax`。训练内验证使用 `train --evaluate`；独立推理使用 `inference`，其余 UP 参数见下节。
+这里用 `DEFAULT_TASKS=cls:det` 加载分类和二维检测模块。点云等任务需选择对应模块，并按 [环境说明](docs/platform/ENVIRONMENT.md) 补齐该任务依赖；启动器不替用户猜测模型类型。
+启动器自动补上 `runtime.platform.backend`，与用户指定的后端冲突时会报错。两家卡在不同服务器时，在各自服务器加载同一镜像；启动器不负责跨服务器调度。
+
+已有厂商容器或 Conda/venv 也可继续使用下节的原生 UP 命令。临时目录环境可使用同一启动器，安装布局和验证范围见 [通用镜像说明](docs/platform/UNIFIED_ENVIRONMENTS.md)。
+
+**真机结果：** 4090 目录环境和 C500 通用镜像均完成 ResNet18 的两步训练、训练内 eval、权重恢复和独立推理。
+同权重推理最大差均为 0；在各自相同确定性设置下，旧/新环境训练对照最大差也为 0。C500 需额外显式设置两项原生 DNN 控制，默认 native 的既有波动已记录，见 [结果与复现设置](docs/platform/UNIFIED_ENVIRONMENTS.md#验证)。
+4090 的临时两套环境已清理，原有环境保留。
 
 普通安装不探测 GPU、不编译扩展。无 PyTorch/CUDA 时可以导入 `up_platform` 公共接口；运行 UP 模型仍需完整环境。
 
@@ -133,6 +127,7 @@ runtime:
 配置好原版配方的数据和权重路径后，继续使用 UP 命令：
 
 ```bash
+export DEFAULT_TASKS=cls:det
 python -m up train --config configs/cls/resnet/res18.yaml --launch pytorch --ng 1 \
   --opts runtime.platform.backend metax
 

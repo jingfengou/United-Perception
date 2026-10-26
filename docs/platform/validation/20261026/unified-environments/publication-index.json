@@ -1,0 +1,142 @@
+{
+  "nvidia-cleanup.json": {
+    "bytes": 2354,
+    "sha256": "57461fc446f03b0450c09eb950404522f0356e1495586bc2f53e50f10089817f"
+  },
+  "software.json": {
+    "bytes": 252,
+    "sha256": "986f9b631722018a1b9117f2305de722ad06f655b8fb5dd941ab21351f52d818"
+  },
+  "source-files.json": {
+    "bytes": 1867,
+    "sha256": "1d13fd59f43d439d02f1d526d780dff1aa4638380c3e07efc7162eb517a86fb7"
+  },
+  "summary.json": {
+    "bytes": 3719,
+    "sha256": "c19f8f301d82b9b795eac8faa5e47890fb8c7c9315d48546f99fb445038b48e0"
+  },
+  "metax\\cleanup.json": {
+    "bytes": 768,
+    "sha256": "6a1ed13ed1ec5eb05e5c221acd5c487ebf4a87e72dd14cc3ed0ba1fa7fcea099"
+  },
+  "metax\\evidence-index.json": {
+    "bytes": 28961,
+    "sha256": "adb7f748746af6b1930621f68e7f647392dfbedd21245ef1b557fbd74e07d675"
+  },
+  "metax\\image-identity.json": {
+    "bytes": 38473,
+    "sha256": "23a29adef955b8a060c6964044a5372a9485c69d10e82f6eb1bd1477efe30974"
+  },
+  "metax\\launcher-tests.txt": {
+    "bytes": 636,
+    "sha256": "7e0c41d68f34037b1974c36a4941affb308e55b81d1dd8bbf9d6c6447ebc10c2"
+  },
+  "metax\\native-common-inference.json": {
+    "bytes": 1137,
+    "sha256": "8c9c8909172971192ec7510d712ddc4e99910066bb2a68592bd262e1edf26e01"
+  },
+  "metax\\native-completed.json": {
+    "bytes": 12290,
+    "sha256": "bf8ad8ac73834bfc2975cf8f62931b5587067f4b57a9f6dbdb3fd3912a0526a1"
+  },
+  "metax\\native-reference-repeat.json": {
+    "bytes": 5389,
+    "sha256": "1e494a40042cf3c8a8fed24a3af315e0f80ad3aa7c9978f11b1f8fe07b5b8f11"
+  },
+  "metax\\native-selected-inference.json": {
+    "bytes": 1035,
+    "sha256": "fb144670e3d6d3d88597527eb2566a5118fce721c22a4686e325eff5577799ce"
+  },
+  "metax\\native-selected-training.json": {
+    "bytes": 2909,
+    "sha256": "36941d525c6918a2af47328207bd69d79f3f11b6d1af762fd3091af75fbdfbc5"
+  },
+  "metax\\reference-sdk.json": {
+    "bytes": 1213,
+    "sha256": "1f1c88ef8ddd2439a7defa845d771ed544687a55235d1100e521deee63a66099"
+  },
+  "metax\\runtime.json": {
+    "bytes": 6085,
+    "sha256": "18234c8236322a0d92cb7f7595124ee8827a6b63c04050fe217459027378ba9d"
+  },
+  "metax\\sdk-common-inference.json": {
+    "bytes": 1136,
+    "sha256": "4790e404f3ad6feb785c84200b7103108f6af5de580bd1195144f8a51c9b2a3e"
+  },
+  "metax\\sdk-completed.json": {
+    "bytes": 5928,
+    "sha256": "ff47ffb97c90043db2b9ce8bee30a09afc3321e6a310f5d00877f2f2ce37075b"
+  },
+  "metax\\sdk-controls.json": {
+    "bytes": 107,
+    "sha256": "1460c604790b02d689a27c9ba3cc49b8d354696f12310fbb443ec844ddf31b3e"
+  },
+  "metax\\sdk-inference.json": {
+    "bytes": 1034,
+    "sha256": "280c93432dace8995c93980eb34ffe3f766300e64627deedb999544b2c060ebe"
+  },
+  "metax\\sdk-reference-repeat.json": {
+    "bytes": 1066,
+    "sha256": "8557d8c321f76f92c3b3a382d65c18c18c4ba7bb9e0f57d357d7fc58034fcb6e"
+  },
+  "metax\\sdk-training.json": {
+    "bytes": 1018,
+    "sha256": "fa9770e873ccde3851291bcc5b7fbed9720f22ba415dc990ee03ba09ecd6594e"
+  },
+  "metax\\torch-deterministic-reference-repeat.json": {
+    "bytes": 1351,
+    "sha256": "36179182fcfd6f4b2b0013f3d0eb0a74b3c560ec43445087073b1d96a77e54b1"
+  },
+  "metax\\torch-deterministic-selected-training.json": {
+    "bytes": 5346,
+    "sha256": "d19ba31f39c3b19a0e42be344835a054e8cf581ba44c859ec8df8a9195faef3e"
+  },
+  "nvidia\\deterministic-reference-repeat.json": {
+    "bytes": 2342,
+    "sha256": "d77f0b28dfaea7d86ed1dc33d63001c94e8148e79db923a3e04f62909406a6c2"
+  },
+  "nvidia\\directory-completed.json": {
+    "bytes": 3241,
+    "sha256": "90e197c80ad142010dcb50ecd4bb9ddfe57bdd95cdbece0b84d2a811364a2e51"
+  },
+  "nvidia\\evidence-index.json": {
+    "bytes": 24895,
+    "sha256": "fce8a30fcb98d0207e0c65d27025d6ce0ab508660624e411faf7445489d2d145"
+  },
+  "nvidia\\image-artifact-completed.json": {
+    "bytes": 1752,
+    "sha256": "d56df31a955f94131dc1f01abbbc09eb2732446dd6762e72d82111ecce55519a"
+  },
+  "nvidia\\image-wheel.json": {
+    "bytes": 377,
+    "sha256": "0fe4b49baa07e187d316b54814c71332dab7295d7343ac7bddb69676fbd94c93"
+  },
+  "nvidia\\inference.json": {
+    "bytes": 2478,
+    "sha256": "1d339308761228413f5ba0701441f25c98d15c34534023c2a22979a664c910d7"
+  },
+  "nvidia\\launcher-tests.txt": {
+    "bytes": 636,
+    "sha256": "940ec106c1b95241f992169c08f36265b8603c8d08265907b1b7904207a1d3c5"
+  },
+  "nvidia\\native-common-inference.json": {
+    "bytes": 2479,
+    "sha256": "a15bf28b41bae3de5bbcb15e652dbfb18e934507f4ffbe863e23520bba10acc1"
+  },
+  "nvidia\\native-reference-repeat.json": {
+    "bytes": 4722,
+    "sha256": "eeb861913a38ab00d6c21235329612d36377ae4cd344220b02672d64c77ec5f3"
+  },
+  "nvidia\\native-selected-training.json": {
+    "bytes": 7140,
+    "sha256": "33abdb426f4cba9c7bf9d4f4229dda1fd0c1489691e3e052ffcc8ce4006e4536"
+  },
+  "nvidia\\runtime.json": {
+    "bytes": 8241,
+    "sha256": "580de2af38ab942cc553fc9c8a45e6a94fdadbc6eb3d86ea4fadec6fd4d49a60"
+  },
+  "nvidia\\training.json": {
+    "bytes": 2360,
+    "sha256": "64385ac48333a270a0569c1f3271eeeaf593e1d49da9315977733e7bcc32c913"
+  }
+}

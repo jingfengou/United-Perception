@@ -1,0 +1,9 @@
+test_add_opts_and_reject_ambiguous_syntax (test_vendor_launcher.VendorLauncherTests.test_add_opts_and_reject_ambiguous_syntax) ... ok
+test_dispatch_in_a_fresh_vendor_process (test_vendor_launcher.VendorLauncherTests.test_dispatch_in_a_fresh_vendor_process) ... ok
+test_preserve_opts_and_reject_vendor_conflict (test_vendor_launcher.VendorLauncherTests.test_preserve_opts_and_reject_vendor_conflict) ... ok
+test_sdk_and_python_pollution_is_removed (test_vendor_launcher.VendorLauncherTests.test_sdk_and_python_pollution_is_removed) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.304s
+
+OK

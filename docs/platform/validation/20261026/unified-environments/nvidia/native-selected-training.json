@@ -1,0 +1,246 @@
+{
+  "vendor": "nvidia",
+  "phase": "training",
+  "model": "UP ResNet18",
+  "steps": 2,
+  "seed": 131,
+  "input": [
+    2,
+    3,
+    224,
+    224
+  ],
+  "purpose": "training",
+  "python": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/bin/python",
+  "torch": "2.10.0+cu126",
+  "torch_path": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/torch/__init__.py",
+  "device": "NVIDIA GeForce RTX 4090",
+  "extension": "/data2/oujingfeng/up-unified-image-20261026/bundle/envs/nvidia/lib/python3.12/site-packages/up_platform/backends/_nvidia_ops.cpython-312-x86_64-linux-gnu.so",
+  "extension_sha256": "72d7ec511e8adb5169d61b6051c052ea282ccd1a92b716acd7739c88fb8d8dad",
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "scope": "synthetic functional/environment regression, not dataset accuracy",
+  "comparison": {
+    "passed": false,
+    "tensors": 257,
+    "max_abs": 6.991455078125,
+    "failures": [
+      {
+        "tensor": "/eval/deploy_output_node",
+        "max_abs": 6.991455078125
+      },
+      {
+        "tensor": "/eval/features/0",
+        "max_abs": 1.994496464729309
+      },
+      {
+        "tensor": "/eval/logits",
+        "max_abs": 6.991455078125
+      },
+      {
+        "tensor": "/eval/scores",
+        "max_abs": 7.337331771850586e-05
+      },
+      {
+        "tensor": "/final/backbone.layer0.0.weight",
+        "max_abs": 0.0007667168974876404
+      },
+      {
+        "tensor": "/final/backbone.layer0.1.bias",
+        "max_abs": 9.77981835603714e-05
+      },
+      {
+        "tensor": "/final/backbone.layer0.1.weight",
+        "max_abs": 0.0002834796905517578
+      },
+      {
+        "tensor": "/final/backbone.layer1.0.bn1.bias",
+        "max_abs": 0.0002328529953956604
+      },
+      {
+        "tensor": "/final/backbone.layer1.0.bn1.weight",
+        "max_abs": 0.0001964569091796875
+      },
+      {
+        "tensor": "/final/backbone.layer1.0.bn2.bias",
+        "max_abs": 8.640997111797333e-05
+      },
+      {
+        "tensor": "/final/backbone.layer1.0.bn2.weight",
+        "max_abs": 0.00017201900482177734
+      },
+      {
+        "tensor": "/final/backbone.layer1.0.conv1.weight",
+        "max_abs": 0.0004450865089893341
+      },
+      {
+        "tensor": "/final/backbone.layer1.0.conv2.weight",
+        "max_abs": 0.00034868624061346054
+      },
+      {
+        "tensor": "/final/backbone.layer1.1.bn1.bias",
+        "max_abs": 0.00011787842959165573
+      },
+      {
+        "tensor": "/final/backbone.layer1.1.bn1.weight",
+        "max_abs": 0.0001519322395324707
+      },
+      {
+        "tensor": "/final/backbone.layer1.1.bn2.bias",
+        "max_abs": 7.532237214036286e-05
+      },
+      {
+        "tensor": "/final/backbone.layer1.1.bn2.weight",
+        "max_abs": 0.00017648935317993164
+      },
+      {
+        "tensor": "/final/backbone.layer1.1.conv1.weight",
+        "max_abs": 0.00027831457555294037
+      },
+      {
+        "tensor": "/final/backbone.layer1.1.conv2.weight",
+        "max_abs": 0.00026134029030799866
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.bn1.bias",
+        "max_abs": 9.213644079864025e-05
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.bn1.weight",
+        "max_abs": 0.00012940168380737305
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.bn2.bias",
+        "max_abs": 9.696395136415958e-05
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.bn2.weight",
+        "max_abs": 0.00021731853485107422
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.conv1.weight",
+        "max_abs": 0.0002304317895323038
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.conv2.weight",
+        "max_abs": 0.0004032440483570099
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.downsample.0.weight",
+        "max_abs": 0.00033819302916526794
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.downsample.1.bias",
+        "max_abs": 9.696395136415958e-05
+      },
+      {
+        "tensor": "/final/backbone.layer2.0.downsample.1.weight",
+        "max_abs": 0.00020766258239746094
+      },
+      {
+        "tensor": "/final/backbone.layer2.1.bn1.bias",
+        "max_abs": 0.0001055109896697104
+      },
+      {
+        "tensor": "/final/backbone.layer2.1.bn2.bias",
+        "max_abs": 6.139487959444523e-05
+      },
+      {
+        "tensor": "/final/backbone.layer2.1.conv1.weight",
+        "max_abs": 0.00019749626517295837
+      },
+      {
+        "tensor": "/final/backbone.layer2.1.conv2.weight",
+        "max_abs": 0.00018491968512535095
+      },
+      {
+        "tensor": "/final/backbone.layer3.0.bn1.bias",
+        "max_abs": 4.866579547524452e-05
+      },
+      {
+        "tensor": "/final/backbone.layer3.0.bn2.bias",
+        "max_abs": 5.399668589234352e-05
+      },
+      {
+        "tensor": "/final/backbone.layer3.0.conv1.weight",
+        "max_abs": 0.0002018301747739315
+      },
+      {
+        "tensor": "/final/backbone.layer3.0.conv2.weight",
+        "max_abs": 0.000235116109251976
+      },
+      {
+        "tensor": "/final/backbone.layer3.0.downsample.0.weight",
+        "max_abs": 0.00014354288578033447
+      },
+      {
+        "tensor": "/final/backbone.layer3.0.downsample.1.bias",
+        "max_abs": 5.399668589234352e-05
+      },
+      {
+        "tensor": "/final/backbone.layer3.1.bn1.bias",
+        "max_abs": 5.5731507018208504e-05
+      },
+      {
+        "tensor": "/final/backbone.layer3.1.bn2.bias",
+        "max_abs": 3.87718464480713e-05
+      },
+      {
+        "tensor": "/final/backbone.layer3.1.conv1.weight",
+        "max_abs": 0.00019314885139465332
+      },
+      {
+        "tensor": "/final/backbone.layer3.1.conv2.weight",
+        "max_abs": 0.00022886693477630615
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.bn1.bias",
+        "max_abs": 3.677594941109419e-05
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.bn2.bias",
+        "max_abs": 0.0002496573142707348
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.conv1.weight",
+        "max_abs": 0.00014009885489940643
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.conv2.weight",
+        "max_abs": 0.0011546704918146133
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.downsample.0.weight",
+        "max_abs": 0.0008934196084737778
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.downsample.1.bias",
+        "max_abs": 0.0002496573142707348
+      },
+      {
+        "tensor": "/final/backbone.layer4.0.downsample.1.weight",
+        "max_abs": 0.0002853870391845703
+      },
+      {
+        "tensor": "/final/backbone.layer4.1.bn1.bias",
+        "max_abs": 2.6148452889174223e-05
+      },
+      {
+        "tensor": "/final/backbone.layer4.1.bn2.bias",
+        "max_abs": 0.0002542638685554266
+      },
+      {
+        "tensor": "/final/backbone.layer4.1.bn2.weight",
+        "max_abs": 0.000380098819732666
+      },
+      {
+        "tensor": "/final/backbone.layer4.1.conv1.weight",
+        "max_abs": 0.0001352299004793167
+      },
+      {
+        "tensor": "/final/backbone.layer4.1.conv2.weight",
+        "max_abs": 0.0009387857280671597
+      }
+    ]
+  }
+}

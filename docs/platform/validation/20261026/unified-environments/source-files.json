@@ -1,0 +1,38 @@
+{
+  "docker\\unified\\Dockerfile": {
+    "sha256": "ad15f31b9a444cd9ed670ae8912ecb65f3f51f07750558459a5b8c0c380683c4",
+    "lf_sha256": "ad15f31b9a444cd9ed670ae8912ecb65f3f51f07750558459a5b8c0c380683c4"
+  },
+  "docker\\unified\\launch.py": {
+    "sha256": "69dbe5c2a21108604636290937b552ab68e14b76d4823e4c886b7aceeda4d5c3",
+    "lf_sha256": "69dbe5c2a21108604636290937b552ab68e14b76d4823e4c886b7aceeda4d5c3"
+  },
+  "docker\\unified\\prepare.py": {
+    "sha256": "3d365a49f2cdec721b5584305a8e1feb0633e023d52c8e8245f68df31218ce31",
+    "lf_sha256": "3d365a49f2cdec721b5584305a8e1feb0633e023d52c8e8245f68df31218ce31"
+  },
+  "docker\\unified\\probe.py": {
+    "sha256": "3e2304c771d029fa533172754b16fd4375c7635e30428ef499c184c35ab8cbd4",
+    "lf_sha256": "3e2304c771d029fa533172754b16fd4375c7635e30428ef499c184c35ab8cbd4"
+  },
+  "docker\\unified\\profiles.json": {
+    "sha256": "9c3c19598936616284e688f58e89530f32f61a9ac505c0107674a63338988bc7",
+    "lf_sha256": "9c3c19598936616284e688f58e89530f32f61a9ac505c0107674a63338988bc7"
+  },
+  "docker\\unified\\requirements.txt": {
+    "sha256": "79f884ef283c9ace2db88c25e478bc9f239665ee7ccf68c2bd78d66460bc27d0",
+    "lf_sha256": "79f884ef283c9ace2db88c25e478bc9f239665ee7ccf68c2bd78d66460bc27d0"
+  },
+  "setup.py": {
+    "sha256": "4e42be86589679fc94f98eae11bd1ac9c0bec45cca8ce7b2e84ed21d08ca9a07",
+    "lf_sha256": "4e42be86589679fc94f98eae11bd1ac9c0bec45cca8ce7b2e84ed21d08ca9a07"
+  },
+  "tools\\validate_unified_environment.py": {
+    "sha256": "afa5a6268b5f6885729ced0bb002a6e976159e3ea3172d509cb3988d6e70a47f",
+    "lf_sha256": "afa5a6268b5f6885729ced0bb002a6e976159e3ea3172d509cb3988d6e70a47f"
+  },
+  "tests\\platform\\test_vendor_launcher.py": {
+    "sha256": "817728be23df928f067e29a056b8cbe4e0e88fcddbe16524913df879560243c6",
+    "lf_sha256": "817728be23df928f067e29a056b8cbe4e0e88fcddbe16524913df879560243c6"
+  }
+}
