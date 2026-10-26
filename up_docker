@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Host-side launcher. Python/SDK/backend selection remains in the image's up-run.
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: ./up_docker <nvidia|metax> <train|eval|inference|check|python> [UP arguments...]
+
+  train       UP training
+  eval        UP train --evaluate (uses the training platform)
+  inference   Independent UP inference
+  check       Check the selected packages and GPU; --no-device checks packages only
+  python      Run the selected environment's Python
+
+Environment:
+  UP_WORK       Host work directory mounted at /work (default: current directory)
+  UP_DATA       Optional host dataset directory mounted read-only at /data
+  UP_GPU        Physical GPU index or comma-separated indices (default: 0)
+  UP_IMAGE      Image name (default: up-unified:local)
+  DEFAULT_TASKS UP task modules (default: cls:det; other tasks need their dependencies)
+
+Example:
+  UP_WORK=$HOME/up-demo UP_DATA=/datasets/coco2017 ./up_docker metax train \
+    --config model.yaml --launch pytorch --ng 1
+
+Use --launch pytorch --ng N for local UP train/eval/inference commands.
+EOF
+}
+
+fail() { printf 'up_docker: %s\n' "$*" >&2; exit 2; }
+
+if [[ ${1:-} == --help || ${1:-} == -h ]]; then
+  usage
+  exit 0
+fi
+[[ $# -ge 2 ]] || { usage >&2; exit 2; }
+vendor=$1
+action=$2
+shift 2
+
+case "$vendor" in nvidia|metax) ;; *) fail "Unknown vendor: $vendor" ;; esac
+command_args=()
+case "$action" in
+  eval) command_args=(train --evaluate) ;;
+  train|inference|check|python) command_args=("$action") ;;
+  *) fail "Unknown command: $action" ;;
+esac
+
+gpu=${UP_GPU:-0}
+[[ $gpu =~ ^[0-9]+(,[0-9]+)*$ ]] || fail 'UP_GPU must contain GPU indices, for example 0 or 0,1'
+[[ -d ${UP_WORK:-$PWD} ]] || fail 'UP_WORK must be an existing directory'
+work=$(cd -- "${UP_WORK:-$PWD}" && pwd -P)
+mounts=(--mount "type=bind,src=$work,dst=/work")
+if [[ -n ${UP_DATA:-} ]]; then
+  [[ -d $UP_DATA ]] || fail 'UP_DATA must be an existing directory'
+  data=$(cd -- "$UP_DATA" && pwd -P)
+  mounts+=(--mount "type=bind,src=$data,dst=/data,readonly")
+fi
+
+if [[ $vendor == nvidia ]]; then
+  # Docker parses --gpus as CSV; quote the device field when it contains commas.
+  if [[ $gpu == *,* ]]; then gpu_args=(--gpus "\"device=$gpu\""); else gpu_args=(--gpus "device=$gpu"); fi
+else
+  gpu_args=(--device=/dev/dri --device=/dev/mxcd --group-add video -e "CUDA_VISIBLE_DEVICES=$gpu")
+fi
+
+env_args=(-e "DEFAULT_TASKS=${DEFAULT_TASKS:-cls:det}")
+# Preserve explicit reproducibility controls; never enable them by default.
+for name in PYTHONHASHSEED CUBLAS_WORKSPACE_CONFIG; do
+  if [[ -v $name ]]; then env_args+=(-e "$name"); fi
+done
+if [[ $vendor == metax ]]; then
+  for name in MCDNN_USE_DETERMINISTIC_ALGO MCDNN_STABLE_RESULT_MOD; do
+    if [[ -v $name ]]; then env_args+=(-e "$name"); fi
+  done
+fi
+
+command -v docker >/dev/null || { printf 'up_docker: Docker is not installed or not on PATH\n' >&2; exit 127; }
+exec docker run --rm --init --shm-size=8g \
+  "${gpu_args[@]}" "${env_args[@]}" "${mounts[@]}" -w /work \
+  "${UP_IMAGE:-up-unified:local}" "$vendor" "${command_args[@]}" "$@"
