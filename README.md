@@ -50,6 +50,11 @@ NVIDIA 与沐曦已有真机记录；失败、缺口和复现步骤见 [验证�
 15 类算子是：**矩阵、卷积、注意力、归一化、激活、池化/插值、损失、检测、可变形卷积、Focal 损失、点云、稀疏、通信、量化、剪枝**。
 训练中的 eval 和 `train --evaluate` 使用训练适配；独立推理使用推理适配。详见[架构说明](docs/platform/ARCHITECTURE_20261025.md)。
 
+**基础操作仍由厂商 PyTorch 负责。** 加减乘除、`cat/stack`、`sum/mean`、随机数和 autograd 等继续直接调用 PyTorch，按输入张量或指定设备调用相应实现，没有逐个包装进 `up_platform`。
+PyTorch 已提供统一 API 和设备派发机制，平台层集中处理设备控制、厂商差异和专用算子，减少重复维护。
+[LightX2V 的 RoPE](https://github.com/ModelTC/LightX2V/blob/19c19614b067f1746ac24350dfd097e1c0b48591/lightx2v_train/lightx2v_train/runtime/ops/rope.py#L17) 也直接使用 `cat/stack/reshape`，[训练损失](https://github.com/ModelTC/LightX2V/blob/19c19614b067f1746ac24350dfd097e1c0b48591/lightx2v_train/lightx2v_train/model_zoo/capability_adapters/common.py#L345-L368) 直接使用随机数、张量运算和归约。
+新增厂商须同时提供这些基础 PyTorch 能力；某项不兼容时，再将该项纳入平台适配与测试。没有厂商 PyTorch 设备后端时，先完成[设备桥接](docs/platform/ADDING_VENDOR.md#没有-pytorch-设备后端时)。
+
 ## 安装
 
 先进入匹配显卡、驱动的厂商 PyTorch 环境。沐曦必须保留厂商版 PyTorch，不能用 NVIDIA wheel 覆盖。
