@@ -9,11 +9,10 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from up.utils.general.log_helper import default_logger as logger
 from up.utils.general.hook_helper import build_hooks
 from up.utils.env.gene_env import set_random_seed, to_device
-from up.utils.env.dist_helper import barrier, gather_pk, env, DistModule, reduce_gradients
+from up.utils.env.dist_helper import barrier, gather_pk, env
 from up.data.metrics.base_evaluator import Metric
 from up.utils.general.cfg_helper import merge_opts_into_cfg, format_cfg
 from up.utils.env.gene_env import get_env_info, print_network
-from up.utils.general.fp16_helper import register_float_module
 from up.utils.model.normalize import is_bn
 from up.utils.general.registry_factory import (
     SAVER_REGISTRY,
@@ -22,13 +21,11 @@ from up.utils.general.registry_factory import (
     DATA_BUILDER_REGISTY,
     OPTIMIZER_REGISTRY,
     LR_SCHEDULER_REGISTY,
-    MODEL_HELPER_REGISTRY,
-    TOONNX_REGISTRY
+    MODEL_HELPER_REGISTRY
 )
 from up.utils.general.global_flag import (
     ALIGNED_FLAG,
     ITER_BASE_FLAG,
-    DIST_BACKEND,
     FP16_FLAG
 )
 from up.utils.env.analysis_utils import get_memory_info
@@ -40,7 +37,6 @@ __all__ = ['BaseRunner']
 class BaseRunner(object):
     def __init__(self, config, work_dir='./', training=True):
         self.args = config.get('args', {})
-        self.backend = self.args.get('backend', 'dist')
         self.work_dir = work_dir
         self._progress = None
         self._eta = None
@@ -64,12 +60,7 @@ class BaseRunner(object):
 
     def prepare_fp16(self):
         if self.config['runtime'].get('fp16', False):
-            if self.backend == 'dist':
-                self.scaler = torch.cuda.amp.GradScaler(enabled=True)
-            else:
-                register_float_module(self.config['runtime']['fp16'].get('keep_batchnorm_fp32', True))
-                loss_scale = self.config['runtime']['fp16'].get('scale_factor', 'dynamic')
-                self.config['trainer']['optimizer']['kwargs']['loss_scale'] = loss_scale
+            self.scaler = torch.cuda.amp.GradScaler(enabled=True)
             self.fp16 = True
             FP16_FLAG.fp16 = True
 
@@ -109,23 +100,9 @@ class BaseRunner(object):
         if not self.args.get('no_running_config', False):
             logger.info('Running with config:\n{}'.format(format_cfg(self.config)))
 
-    def update_optimizer_cfg(self, cfg_optimizer):
-        if not self.fp16:
-            return cfg_optimizer
-        if self.backend == 'dist':
-            return cfg_optimizer
-        elif self.backend == 'linklink':
-            if cfg_optimizer['type'] == 'SGD':
-                cfg_optimizer['type'] = 'FusedFP16SGD'
-            if cfg_optimizer['type'] == 'AdamW':
-                cfg_optimizer['type'] = 'FusedFP16AdamW'
-            return cfg_optimizer
-        else:
-            raise NotImplementedError
 
     def build_optimizer(self, cfg_optimizer):
         register_type = cfg_optimizer.pop('register_type', 'base')
-        cfg_optimizer = self.update_optimizer_cfg(cfg_optimizer)
         optimizer_ins = OPTIMIZER_REGISTRY[register_type](cfg_optimizer, self.model)
         return optimizer_ins.build_optimizer()
 
@@ -218,7 +195,6 @@ class BaseRunner(object):
             ALIGNED_FLAG.offset = 0
         if self.iter_base:
             ITER_BASE_FLAG.flag = True
-        self.backend = DIST_BACKEND.backend
 
     def build_env(self):
         self.build_global_flags()
@@ -233,10 +209,7 @@ class BaseRunner(object):
         self.model.load(ckpt['model'])
         if self.training:
             if self.fp16:
-                if self.backend == 'dist':
-                    self.resume_fp16(ckpt)
-                else:
-                    self.optimizer.reload()
+                self.resume_fp16(ckpt)
             if 'optimizer' in ckpt:
                 start_epoch = ckpt['epoch']
                 self.optimizer.load_state_dict(ckpt['optimizer'])
@@ -333,11 +306,8 @@ class BaseRunner(object):
 
     def prepare_dist_model(self):
         if env.distributed:
-            if self.backend == 'dist':
-                logger.info('using ddp')
-                self.model = DDP(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
-            else:
-                self.model = DistModule(self.model, not self.args.get('asynchronize', False))
+            logger.info('using ddp')
+            self.model = DDP(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
 
         if self.training:
             self.start_iter = self.lr_scheduler.last_iter
@@ -371,6 +341,7 @@ class BaseRunner(object):
             self.update()
             if self.ema is not None:
                 self.ema.step(self.model, curr_step=iter_idx)
+            self.lr_scheduler.step()
             if self.is_test(iter_idx):
                 if iter_idx == self.start_iter:
                     continue
@@ -387,7 +358,6 @@ class BaseRunner(object):
             else:
                 if self.is_save(iter_idx):
                     self.save()
-            self.lr_scheduler.step()
         self._hooks('after_train')
 
     @torch.no_grad()
@@ -509,21 +479,9 @@ class BaseRunner(object):
         self.set_cur_eval_iter()
         return metrics
 
-    @torch.no_grad()
-    def to_onnx(self, save_prefix='model', input_size=None, input_channel=3):
-        model = self.ema.model if self.ema is not None else self.model
-        toonnx_type = self.config.pop('toonnx_type', 'base')
-        toonnx_ins = TOONNX_REGISTRY[toonnx_type](self.config,
-                                                  save_prefix,
-                                                  input_size,
-                                                  model,
-                                                  input_channel)
-        toonnx_ins.process()
 
     def batch2device(self, batch):
         model_dtype = torch.float32
-        if self.fp16 and self.backend == 'linklink':
-            model_dtype = self.model.dtype
         if batch['image'].device != torch.device('cuda') or batch['image'].dtype != model_dtype:
             batch = to_device(batch, device=torch.device('cuda'), dtype=model_dtype)
         return batch
@@ -640,8 +598,6 @@ class BaseRunner(object):
             self.model = self.model.cuda()
         if self.config['runtime']['special_bn_init']:
             self.special_bn_init()
-        if self.fp16 and self.backend == 'linklink':
-            self.model = self.model.half()
         logger.info(print_network(self.model))
 
     def build_fake_model(self):
@@ -665,8 +621,6 @@ class BaseRunner(object):
             model = model_helper_ins(net_cfg, **model_helper_kwargs)
             if self.device == 'cuda':
                 model = model.cuda()
-            if self.fp16 and self.backend == 'linklink':
-                model = model.half()
             if self.config['runtime']['special_bn_init']:
                 for m in model.modules():
                     if is_bn(m):
@@ -713,7 +667,7 @@ class BaseRunner(object):
             'model': model_dict,
             'lr_scheduler': self.lr_scheduler.state_dict()
         }
-        if self.fp16 and self.backend == 'dist':
+        if self.fp16:
             dump_dict.update(self.get_fp16_dump_dict())
         if self.ema is not None:
             dump_dict['ema'] = self.ema.state_dict()
@@ -725,7 +679,7 @@ class BaseRunner(object):
         return self.model(batch)
 
     def forward(self, batch, return_output=False):
-        if self.backend == 'dist' and self.fp16:
+        if self.fp16:
             with torch.cuda.amp.autocast(enabled=True):
                 output = self.forward_model(batch)
         else:
@@ -740,28 +694,15 @@ class BaseRunner(object):
 
     def backward(self, loss):
         self.model.zero_grad()
-        if self.backend == 'dist':
-            if self.fp16:
-                self.scaler.scale(loss).backward()
-            else:
-                loss.backward()
-        elif self.backend == 'linklink':
-            loss = loss / env.world_size
-            if self.fp16:
-                self.optimizer.backward(loss)
-            else:
-                loss.backward()
-            self._hooks('before_allreduce', self.cur_iter)
-            reduce_gradients(self.model, not self.args['asynchronize'],
-                             self.args.get('allow_dead_parameter', False))
-            self._hooks('after_allreduce', self.cur_iter)
+        if self.fp16:
+            self.scaler.scale(loss).backward()
         else:
-            raise NotImplementedError
+            loss.backward()
         self._hooks('after_backward', self.cur_iter, loss)
         return loss
 
     def update(self):
-        if self.backend == 'dist' and self.fp16:
+        if self.fp16:
             self.scaler.step(self.optimizer)
             self.scaler.update()
         else:

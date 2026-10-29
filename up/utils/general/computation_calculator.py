@@ -263,5 +263,5 @@ register_hooks = {
     FrozenBatchNorm2d: count_bn,
     nn.MaxPool2d: count_zero,
     nn.CrossEntropyLoss: count_zero,
-    GroupSyncBatchNorm: count_bn
+    PyTorchSyncBN: count_bn
 }

@@ -176,8 +176,6 @@ class BaseInference(object):
                 'flipped': False
             })
 
-        if self.task_type == 'seg':
-            data['gt_semantic_seg'] = img
         data = self.transformer(data)
         scale_factor = data.get('scale_factor', 1)
 
@@ -217,8 +215,6 @@ class BaseInference(object):
                 self.vis(output)
             elif(self.task_type == 'cls'):
                 self.vis_cls(output)
-            elif(self.task_type == 'seg'):
-                self.vis_seg(output)
             else:
                 raise Exception('Unsupported type of task')
 
@@ -251,25 +247,6 @@ class BaseInference(object):
             draw = ImageDraw.Draw(img)
             draw.text((100, 100), pred, (255, 255, 255))
             draw = ImageDraw.Draw(img)
-            logger.info('visualizing {}'.format(filename))
-            output_name = os.path.basename(filename)
-            output_name = os.path.join(self.vis_dir, '{}'.format(output_name))
-            img.save(output_name)
-
-    def vis_seg(self, outputs):
-        image_info = outputs['image_info']
-        batch_size = len(image_info)
-        blob_preds = outputs['blob_pred']
-        for b_ix in range(batch_size):
-            filename = os.path.basename(image_info[b_ix][-1])
-            preds = blob_preds[b_ix]
-            pred = preds.reshape(1, preds.shape[0], preds.shape[1], preds.shape[2])
-            pred = pred.max(1)[1]
-            pred = self.tensor2numpy(pred)[0]
-            pred = pred * 255 / self.num_classes
-            pred = cv2.applyColorMap(cv2.convertScaleAbs(pred), cv2.COLORMAP_JET)
-            img = Image.fromarray(np.uint8(pred))
-            img = img.convert("RGB")
             logger.info('visualizing {}'.format(filename))
             output_name = os.path.basename(filename)
             output_name = os.path.join(self.vis_dir, '{}'.format(output_name))

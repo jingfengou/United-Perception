@@ -1,4 +1,2 @@
-from .coco_dataset import CocoDataset  # noqa
-from .lvis_dataset import LvisDataset, LvisV1Dataset  # noqa
-from .custom_dataset import CustomDataset, RankCustomDataset  # noqa
+from .coco_dataset import CocoDataset  # noqa: F401
 from .det_transforms import *  # noqa

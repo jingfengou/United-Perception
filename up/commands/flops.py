@@ -11,7 +11,6 @@ from up.utils.general.cfg_helper import format_cfg
 from up.utils.general.registry_factory import SUBCOMMAND_REGISTRY, MODEL_HELPER_REGISTRY
 from up.utils.general.log_helper import default_logger as logger
 from up.utils.general.computation_calculator import flops_cal, clever_format
-from up.utils.general.user_analysis_helper import send_info
 
 
 __all__ = ['Flops']
@@ -50,7 +49,6 @@ def main(args):
     assert (os.path.exists(args.config))
     cfg = load_yaml(args.config, args.cfg_type)
 
-    send_info(cfg, func='flops')
     # Just for compatiable with older setting
     logger.info("Running with config:\n{}".format(format_cfg(cfg)))
 

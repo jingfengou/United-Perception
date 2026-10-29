@@ -21,29 +21,6 @@ def build_cls_instance(module, cfg):
     return cls(**cfg['kwargs'])
 
 
-def fused_sgd_reload(self):
-    """When the model weights updates, e.g. load pre-train weights, the params stored in FusedFP16SGD
-    will be out-of-date, so we need to reload the new weights.
-    Remember call optimizer.reload whenever model's weights updated in fp16 training!
-    """
-    # first, rollback master param to model params in  param_groups
-    for i, param_group in enumerate(self.param_groups):
-        fp16_params_this_group = copy.copy(self.fp16_groups[i])
-        fp32_params_this_group = copy.copy(self.fp32_groups[i])
-        fp32_from_fp16_params_this_group = copy.copy(self.fp32_from_fp16_groups[i])
-        for j, param in enumerate(param_group['params']):
-            if param.requires_grad:
-                if len(fp32_params_this_group) > 0 and fp32_params_this_group[0] is param:
-                    fp32_params_this_group.pop(0)
-                else:
-                    master_param = fp32_from_fp16_params_this_group.pop(0)
-                    model_param = fp16_params_this_group.pop(0)
-                    param_group['params'][j] = model_param
-                    if master_param in self.state:
-                        self.state[model_param] = self.state.pop(master_param)
-    self._promote_fp16_params()
-
-
 @OPTIMIZER_REGISTRY.register('base')
 class BaseOptimizer(object):
     def __init__(self, cfg_optim, model):
@@ -132,16 +109,7 @@ class BaseOptimizer(object):
 
     def get_optimizer(self, cfg_optim):
         optim_type = cfg_optim['type']
-        if optim_type == 'FusedFP16SGD' or optim_type == 'FusedFP16AdamW' or optim_type == 'FusedZeroFP16AdamW':
-            from spring import linklink
-            if optim_type == 'FusedFP16SGD':
-                linklink.optim.FusedFP16SGD.reload = fused_sgd_reload
-            if optim_type == 'FusedFP16AdamW':
-                linklink.optim.FusedFP16AdamW.reload = fused_sgd_reload
-            if optim_type == 'FusedZeroFP16AdamW':
-                linklink.optim.FusedZeroFP16AdamW.reload = fused_sgd_reload
-            optimizer = build_cls_instance(linklink.optim, cfg_optim)
-        elif optim_type == 'LARS' or optim_type == 'LAMB':
+        if optim_type == 'LARS' or optim_type == 'LAMB':
             optimizer = build_cls_instance(optim, cfg_optim)
         else:
             optimizer = build_cls_instance(torch.optim, cfg_optim)

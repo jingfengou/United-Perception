@@ -6,6 +6,7 @@
 from datetime import timedelta
 from ..general.log_helper import default_logger as logger
 
+import os
 import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
@@ -37,6 +38,11 @@ def launch(
                        Can be set to auto to automatically select a free port on localhost
         args (tuple): arguments passed to main_func
     """
+    if 'RANK' in os.environ:
+        torch.cuda.set_device(int(os.environ['LOCAL_RANK']))
+        dist.init_process_group(backend=backend, init_method='env://', timeout=timeout)
+        main_func(args)
+        return
     world_size = num_machines * num_gpus_per_machine
     if world_size > 1:
         # https://github.com/pytorch/pytorch/pull/14391
