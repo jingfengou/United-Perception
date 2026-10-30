@@ -1,2 +1,2 @@
-recursive-include up_platform/ops/_native/csrc *.cpp *.cu *.h
+recursive-include up/extensions/csrc *.cpp *.cu *.h
 include up/tasks/det/plugins/detr/official/LICENSE

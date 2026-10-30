@@ -1,1 +1,7 @@
-from up_platform.ops._native._C import *  # noqa: F401,F403
+try:
+    from ._C import * # noqa
+except: # noqa
+    try:
+        from up_extensions._C import * # noqa
+    except: # noqa
+        pass

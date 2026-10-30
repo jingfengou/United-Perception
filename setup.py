@@ -27,6 +27,10 @@ def _find_cuda_home():
 torch.utils.cpp_extension.CUDA_HOME = _find_cuda_home()
 CUDA_HOME = torch.utils.cpp_extension.CUDA_HOME
 
+CORE_DIR = 'up'
+EXT_DIR = 'extensions'
+
+
 def read_requirements():
     reqs = []
     with open('requirements.txt', 'r') as fin:
@@ -44,7 +48,7 @@ def recursive_glob(base_dir, pattern):
 
 def get_extensions():
     this_dir = os.path.dirname(os.path.abspath(__file__))
-    sources_dir = os.path.join(this_dir, "up_platform", "ops", "_native", "csrc")
+    sources_dir = os.path.join(this_dir, CORE_DIR, EXT_DIR, "csrc")
 
     source_cpu = recursive_glob(sources_dir, "*.cpp")
     source_cuda = recursive_glob(sources_dir, "*.cu")
@@ -74,7 +78,7 @@ def get_extensions():
 
     ext_modules = [
         extension(
-            "up_platform.ops._native._C",
+            f"{CORE_DIR}.{EXT_DIR}._C",
             sources,
             include_dirs=include_dirs,
             define_macros=define_macros,

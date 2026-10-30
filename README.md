@@ -23,7 +23,6 @@ YOLOX's shared YOLOv5 building blocks and augmentation helpers remain as depende
 Use Linux with an NVIDIA GPU, a CUDA toolkit and a compatible C++ compiler.
 Install PyTorch and torchvision for that environment first. The retained legacy dependencies
 are used with Python 3.7, PyTorch 1.13.1 and torchvision 0.14.1.
-Build environments are installed separately for each target machine.
 
 ```bash
 git clone --branch codex/up-four-models-ddp-20261029 https://github.com/jingfengou/United-Perception.git
@@ -33,9 +32,8 @@ bash easy_setup.sh
 python -m up --help
 ```
 
-Native sources live in `up_platform/ops/_native/csrc` and build into
-`up_platform.ops._native._C`. The existing Python operator API remains under `up.extensions`.
-PyTorch's standard layers and tensor operations are called directly.
+Native C++/CUDA sources and their Python APIs keep UP's original layout:
+`up/extensions/csrc` builds into `up.extensions._C`.
 
 ## Training and evaluation
 
