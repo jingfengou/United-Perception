@@ -24,7 +24,6 @@ from up.utils.env.analysis_utils import get_memory_info, split_node
 from .log_helper import MetricLogger, SmoothedValue
 from .log_helper import default_logger as logger
 from .global_flag import (
-    DIST_BACKEND,
     FP16_FLAG
 )
 
@@ -704,13 +703,7 @@ class GradClipper(Hook):
         # the grad in mixed precision is scaled, need unscale first
         if FP16_FLAG.fp16:
             optimizer = self.runner_ref().get_optimizer()
-            if DIST_BACKEND.backend == 'dist':
-                self.runner_ref().scaler.unscale_(optimizer)
-            elif DIST_BACKEND.backend == 'linklink':
-                if self.mode in [self._AVG, self._MAVG]:
-                    raise ValueError('linklink fp16 only support grad cliping with pre_defined value!')
-                optimizer.clip_grad_norm_(self.max_norm, self.norm_type)
-                return
+            self.runner_ref().scaler.unscale_(optimizer)
 
         model = self.runner_ref().get_model()
         parameters = [p for p in model.parameters() if p.requires_grad and p.grad is not None]

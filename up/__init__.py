@@ -1,11 +1,4 @@
-try:
-    from spring_analytics.instrument_agent import InstrumentAgent
-    Agent = InstrumentAgent()
-    Agent.instrument_torch_model_lineage()
-except Exception:
-    pass
 # flake8: noqa F401
-import onnx
 import os
 import sys
 import importlib

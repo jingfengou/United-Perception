@@ -6,6 +6,7 @@
 from datetime import timedelta
 from ..general.log_helper import default_logger as logger
 
+import os
 import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
@@ -25,7 +26,8 @@ def launch(
     dist_url='auto',
     args=(),
     timeout=DEFAULT_TIMEOUT,
-    start_method='fork'
+    start_method='spawn',
+    execution_backend='pytorch'
 ):
     """
     Args:
@@ -37,17 +39,25 @@ def launch(
                        Can be set to auto to automatically select a free port on localhost
         args (tuple): arguments passed to main_func
     """
+    if execution_backend == 'pytorch':
+        if num_gpus_per_machine != 1 or int(os.environ.get('WORLD_SIZE', '1')) != 1:
+            raise ValueError('Use --backend ddp for more than one process/GPU.')
+        torch.cuda.set_device(0)
+        main_func(args)
+        return
+    if 'RANK' in os.environ:
+        torch.cuda.set_device(int(os.environ['LOCAL_RANK']))
+        dist.init_process_group(backend=backend, init_method='env://', timeout=timeout)
+        main_func(args)
+        return
     world_size = num_machines * num_gpus_per_machine
+    if dist_url == 'auto':
+        assert num_machines == 1, 'dist_url=auto cannot work with distributed training.'
+        port = dist_helper.find_free_port()
+        dist_url = f'tcp://127.0.0.1:{port}'
     if world_size > 1:
         # https://github.com/pytorch/pytorch/pull/14391
         # TODO prctl in spawned processes
-
-        if dist_url == "auto":
-            assert (
-                num_machines == 1
-            ), "dist_url=auto cannot work with distributed training."
-            port = dist_helper.find_free_port()
-            dist_url = f"tcp://127.0.0.1:{port}"
 
         mp.start_processes(
             _distributed_worker,
@@ -65,7 +75,8 @@ def launch(
             start_method=start_method,
         )
     else:
-        main_func(*(args,))
+        _distributed_worker(0, main_func, world_size, num_gpus_per_machine,
+                            machine_rank, backend, dist_url, args, timeout)
 
 
 def _distributed_worker(
@@ -83,6 +94,7 @@ def _distributed_worker(
         torch.cuda.is_available()
     ), "cuda is not available. Please check your installation."
     global_rank = machine_rank * num_gpus_per_machine + local_rank
+    torch.cuda.set_device(local_rank)
     logger.info("Rank {} initialization finished.".format(global_rank))
     try:
         dist.init_process_group(
@@ -113,5 +125,4 @@ def _distributed_worker(
     dist_helper.barrier()
 
     assert num_gpus_per_machine <= torch.cuda.device_count()
-    torch.cuda.set_device(local_rank)
     main_func(args)

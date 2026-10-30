@@ -1,0 +1,2 @@
+recursive-include up/extensions/csrc *.cpp *.cu *.h
+include up/tasks/det/plugins/detr/official/LICENSE

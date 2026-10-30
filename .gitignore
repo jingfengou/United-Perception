@@ -23,3 +23,8 @@ build
 .vscode/
 *_build
 .env
+*.egg-info/
+dist/
+log/
+checkpoints/
+results_dir/

@@ -1,18 +1,10 @@
-#!/bin/bash
-
-ROOT=../
-T=`date +%m%d%H%M`
-export ROOT=$ROOT
-cfg=$1
-export PYTHONPATH=$ROOT:$PYTHONPATH
-CPUS_PER_TASK=${CPUS_PER_TASK:-4}
-jobname=inference
-
-srun -N$1 --gres=gpu:$2 -p $3 --job-name=$jobname --cpus-per-task=2 \
-python -m up inference \
-  --ng=$2 \
-  --launch=pytorch \
-  --config=$cfg \
-  -i=imgs \
-  -c=ckpt \
-  2>&1 | tee log.inference.$T.$(basename $cfg)
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export ROOT
+export PYTHONPATH="${ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
+config="${1:?Usage: inference.sh CONFIG IMAGES CHECKPOINT [OPTIONS]}"
+images="${2:?Usage: inference.sh CONFIG IMAGES CHECKPOINT [OPTIONS]}"
+checkpoint="${3:?Usage: inference.sh CONFIG IMAGES CHECKPOINT [OPTIONS]}"
+shift 3
+exec python -m up inference --config "$config" --img_path "$images" --ckpt "$checkpoint" "$@"
