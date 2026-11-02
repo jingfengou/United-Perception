@@ -1,5 +1,7 @@
 # Standard Library
 import os
+import sys
+import datetime
 import functools
 
 # Import from third library
@@ -7,7 +9,9 @@ import torch
 import torch.distributed as dist
 import torch.nn as nn
 import pickle
+import numpy as np
 from collections import OrderedDict
+from up.utils.general.global_flag import DIST_BACKEND
 
 MASTER_RANK = 0
 _LOCAL_PROCESS_GROUP = None
@@ -16,25 +20,37 @@ _LOCAL_PROCESS_GROUP = None
 def allreduce(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    return dist.all_reduce(*args, **kwargs)
+    if DIST_BACKEND.backend == 'dist':
+        return dist.all_reduce(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def broadcast(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    return dist.broadcast(*args, **kwargs)
+    if DIST_BACKEND.backend == 'dist':
+        return dist.broadcast(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def allgather(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    return dist.all_gather(*args, **kwargs)
+    if DIST_BACKEND.backend == 'dist':
+        return dist.all_gather(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def gather(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    return dist.gather(*args, **kwargs)
+    if DIST_BACKEND.backend == 'dist':
+        return dist.gather(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def get_dist_rank(*args, **kwargs):
@@ -45,12 +61,32 @@ def get_dist_rank(*args, **kwargs):
     return dist.get_rank(*args, **kwargs)
 
 
+
+
 def get_dist_world_size(*args, **kwargs):
     if not dist.is_available():
         return 1
     if not dist.is_initialized():
         return 1
     return dist.get_world_size(*args, **kwargs)
+
+
+
+
+def get_rank_from_env():
+    rank_cands = ['SLURM_PROCID', 'MV2_COMM_WORLD_RANK', 'OMPI_COMM_WORLD_RANK']
+    for rank_name in rank_cands:
+        if rank_name in os.environ:
+            return int(os.environ[rank_name])
+    return None
+
+
+def get_world_size_from_env():
+    ws_cands = ['SLURM_NTASKS', 'MV2_COMM_WORLD_SIZE', 'OMPI_COMM_WORLD_SIZE']
+    for ws_name in ws_cands:
+        if ws_name in os.environ:
+            return int(os.environ[ws_name])
+    return None
 
 
 def dist_barrier(*args, **kwargs):
@@ -64,28 +100,47 @@ def dist_barrier(*args, **kwargs):
     dist.barrier(*args, **kwargs)
 
 
+
+
 def barrier(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    dist_barrier(*args, **kwargs)
+    if DIST_BACKEND.backend == 'dist':
+        dist_barrier(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def get_rank(*args, **kwargs):
-    return get_dist_rank(*args, **kwargs)
+    # rank = get_rank_from_env()
+    # if rank is not None:
+    #     return rank
+    if DIST_BACKEND.backend == 'dist':
+        return get_dist_rank(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def get_world_size(*args, **kwargs):
-    return get_dist_world_size(*args, **kwargs)
+    # world_size = get_world_size_from_env()
+    # if world_size is not None:
+    #     return world_size
+    if DIST_BACKEND.backend == 'dist':
+        return get_dist_world_size(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 def get_local_rank(*args, **kwargs):
-    if 'LOCAL_RANK' in os.environ:
-        return int(os.environ['LOCAL_RANK'])
-    return torch.cuda.current_device()
+    rank = get_rank(*args, **kwargs)
+    return rank % torch.cuda.device_count()
 
 
 def all_reduce(*args, **kwargs):
-    return dist.all_reduce(*args, **kwargs)
+    if DIST_BACKEND.backend == 'dist':
+        return dist.all_reduce(*args, **kwargs)
+    else:
+        raise NotImplementedError
 
 
 class DistEnv(object):
@@ -115,6 +170,12 @@ class DistEnv(object):
 env = DistEnv()
 
 
+
+
+
+
+
+
 # TODO support free port
 def find_free_port():
     import socket
@@ -124,22 +185,108 @@ def find_free_port():
         return str(s.getsockname()[1])
 
 
+def dist_init_slurm(backend='nccl', port='13333'):
+    proc_id = int(os.environ['SLURM_PROCID'])
+    ntasks = int(os.environ['SLURM_NTASKS'])
+    node_list = os.environ['SLURM_NODELIST']
+    if '[' in node_list:
+        beg = node_list.find('[')
+        pos1 = node_list.find('-', beg)
+        if pos1 < 0:
+            pos1 = 1000
+        pos2 = node_list.find(',', beg)
+        if pos2 < 0:
+            pos2 = 1000
+        node_list = node_list[:min(pos1, pos2)].replace('[', '')
+    addr = node_list[8:].replace('-', '.')
+    os.environ['MASTER_PORT'] = str(port)
+    os.environ['MASTER_ADDR'] = addr
+    os.environ['WORLD_SIZE'] = str(ntasks)
+    os.environ['RANK'] = str(proc_id)
+    if backend == 'nccl':
+        dist.init_process_group(backend='nccl')
+    else:
+        dist.init_process_group(backend='gloo', rank=proc_id, world_size=ntasks)
+    rank = dist.get_rank()
+    device = rank % torch.cuda.device_count()
+    torch.cuda.set_device(device)
+
+
+def dist_init_mpi(backend='nccl',
+                  addr='localhost',
+                  port="13333",
+                  rank=None,
+                  world_size=None):
+    r"""
+    Overview:
+        Init the distributed training setting
+    """
+    assert backend in ['nccl', 'gloo'], backend
+    os.environ['MASTER_ADDR'] = addr or os.environ.get('MASTER_ADDR', addr)
+    os.environ['MASTER_PORT'] = str(port) or os.environ.get('MASTER_PORT', str(port))
+
+    if rank is None:
+        local_id = os.environ.ge(os.environ.get('OMPI_COMM_WORLD_RANK', None))
+        if local_id is None:
+            raise RuntimeError("please indicate rank explicitly in dist_init method")
+        else:
+            rank = int(local_id)
+    if world_size is None:
+        ntasks = os.environ.get(os.environ.get('OMPI_COMM_WORLD_SIZE', None))
+        if ntasks is None:
+            raise RuntimeError("please indicate world_size explicitly in dist_init method")
+        else:
+            world_size = int(ntasks)
+
+    dist.init_process_group(backend=backend, rank=rank, world_size=world_size)
+    rank = dist.get_rank()
+    device = rank % torch.cuda.device_count()
+    torch.cuda.set_device(device)
+
+
+def setup_distributed_dist(port, launch):
+    if launch == 'slurm':
+        device = get_rank() % torch.cuda.device_count()
+        torch.cuda.set_device(device)
+        dist_init_slurm(port=port)
+    else:
+        dist_init_mpi(port=port)
+        device = get_rank() % torch.cuda.device_count()
+        torch.cuda.set_device(device)
+
+
+
+
+def setup_distributed(port=33334, launch='slurm', backend='dist'):
+    if backend == 'dist':
+        setup_distributed_dist(port, launch)
+    rank = get_rank()
+    world_size = get_world_size()
+    print('rank:{} world_size(gpus):{}'.format(rank, world_size))
+    sys.stdout.flush()
+    return rank, world_size
+
+
 @functools.lru_cache()
 def _get_global_gloo_group():
     """
     Return a process group based on gloo backend, containing all the ranks
     The result is cached.
     """
-    if dist.get_backend() == "nccl":
-        return dist.new_group(backend="gloo")
+    if DIST_BACKEND.backend == 'dist':
+        if dist.get_backend() == "nccl":
+            return dist.new_group(backend="gloo")
+        else:
+            return dist.group.WORLD
     else:
-        return dist.group.WORLD
+        raise NotImplementedError
 
 
 def _serialize_to_tensor(data, group):
-    backend = dist.get_backend(group)
-    assert backend in ["gloo", "nccl"]
-    device = torch.device("cpu" if backend == "gloo" else "cuda")
+    if DIST_BACKEND.backend == 'dist':
+        backend = dist.get_backend(group)
+        assert backend in ["gloo", "nccl"]
+        device = torch.device("cpu" if backend == "gloo" else "cuda")
 
     buffer = pickle.dumps(data)
     if len(buffer) > 1024 ** 3:
@@ -161,7 +308,8 @@ def _pad_to_largest_tensor(tensor, group):
         list[int]: size of the tensor, on each rank
         Tensor: padded tensor that has the max size
     """
-    world_size = get_world_size(group=group)
+    if DIST_BACKEND.backend == 'dist':
+        world_size = get_world_size(group=group)
     assert (
         world_size >= 1
     ), "comm.gather/all_gather must be called from ranks within the given group!"
@@ -170,7 +318,8 @@ def _pad_to_largest_tensor(tensor, group):
         torch.zeros([1], dtype=torch.int64, device=tensor.device)
         for _ in range(world_size)
     ]
-    allgather(size_list, local_size, group=group)
+    if DIST_BACKEND.backend == 'dist':
+        allgather(size_list, local_size, group=group)
     size_list = [int(size.item()) for size in size_list]
 
     max_size = max(size_list)
@@ -197,10 +346,11 @@ def all_gather(data, group=None):
     """
     if get_world_size() == 1:
         return [data]
-    if group is None:
-        group = _get_global_gloo_group()
-    if get_world_size(group) == 1:
-        return [data]
+    if DIST_BACKEND.backend == 'dist':
+        if group is None:
+            group = _get_global_gloo_group()
+        if get_world_size(group) == 1:
+            return [data]
 
     tensor = _serialize_to_tensor(data, group)
 
@@ -212,7 +362,8 @@ def all_gather(data, group=None):
         torch.empty((max_size,), dtype=torch.uint8, device=tensor.device)
         for _ in size_list
     ]
-    allgather(tensor_list, tensor, group=group)
+    if DIST_BACKEND.backend == 'dist':
+        allgather(tensor_list, tensor, group=group)
 
     data_list = []
     for size, tensor in zip(size_list, tensor_list):
@@ -236,11 +387,12 @@ def gather_pk(data, dst=0, group=None):
     """
     if get_world_size() == 1:
         return [data]
-    if group is None:
-        group = _get_global_gloo_group()
-    if get_world_size(group=group) == 1:
-        return [data]
-    rank = get_rank(group=group)
+    if DIST_BACKEND.backend == 'dist':
+        if group is None:
+            group = _get_global_gloo_group()
+        if get_world_size(group=group) == 1:
+            return [data]
+        rank = get_rank(group=group)
 
     tensor = _serialize_to_tensor(data, group)
     size_list, tensor = _pad_to_largest_tensor(tensor, group)
@@ -252,20 +404,28 @@ def gather_pk(data, dst=0, group=None):
             torch.empty((max_size,), dtype=torch.uint8, device=tensor.device)
             for _ in size_list
         ]
-        gather(tensor, tensor_list, dst=dst, group=group)
+        if DIST_BACKEND.backend == 'dist':
+            gather(tensor, tensor_list, dst=dst, group=group)
         data_list = []
         for size, tensor in zip(size_list, tensor_list):
             buffer = tensor.cpu().numpy().tobytes()[:size]
             data_list.append(pickle.loads(buffer))
         return data_list
     else:
-        gather(tensor, [], dst=dst, group=group)
+        if DIST_BACKEND.backend == 'dist':
+            gather(tensor, [], dst=dst, group=group)
         return []
 
 
 def finalize():
-    if dist.is_available() and dist.is_initialized():
-        dist.destroy_process_group()
+    try:
+        if DIST_BACKEND.backend == 'dist':
+            if get_world_size() > 1:
+                dist.destroy_process_group()
+        else:
+            raise NotImplementedError
+    except: # noqa
+        pass
 
 
 def pyobj2tensor(pyobj, device="cuda"):
@@ -294,7 +454,8 @@ def all_reduce_dict(py_dict, op="sum", group=None):
     # all reduce logic across different devices.
     py_key = list(py_dict.keys())
     py_key_tensor = pyobj2tensor(py_key)
-    broadcast(py_key_tensor, src=MASTER_RANK)
+    if DIST_BACKEND.backend == 'dist':
+        broadcast(py_key_tensor, src=MASTER_RANK)
     py_key = tensor2pyobj(py_key_tensor)
 
     tensor_shapes = [py_dict[k].shape for k in py_key]
@@ -330,6 +491,54 @@ def all_reduce_norm(module):
     states = get_async_norm_states(module)
     states = all_reduce_dict(states, op="mean")
     module.load_state_dict(states, strict=False)
+
+
+def run_shell(cmd):
+    with os.popen(cmd, 'r') as fin:
+        text = fin.read()
+    return text
+
+
+def gpu_check():
+    import logging
+    logger = logging.getLogger('global')
+
+    try:
+        local_rank = get_local_rank()
+    except RuntimeError:
+        logger.warning('not using linklink, skip gpu check')
+        return True
+    logger.info('Prepare for gpu check')
+    succ_flag = True
+    if local_rank == 0:
+        nodename = run_shell('hostname')
+        if not os.path.exists('/mnt/lustre/share/gpu_burn'):
+            logger.warning('gpu-burn tool not found, skip gpu check, please contact @yufengwei or @wangyiru')
+            return
+        test_info = run_shell(
+            'bash -c "cd /mnt/lustre/share/gpu_burn; CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./gpu_burn 60"')
+
+        nodename = nodename.replace('\n', '')
+        test_result = nodename
+        err_idx = -1
+        for idx, line in enumerate(test_info.split('\n')):
+            if "OK" in line:
+                test_result += line
+            elif "FAULTY" in line:
+                test_result += line
+                err_idx = idx
+                succ_flag = False
+        print(test_result)
+        print(nodename + "\tPass = " + str(succ_flag))
+        if not succ_flag:
+            user = run_shell('echo $USER').strip()
+            f = open('/mnt/lustre/%s/gpu_err.txt' % user, 'a')
+            f.write('%s %s GPU%d error\n' % (datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'), nodename, err_idx))
+            f.close()
+            assert succ_flag, nodename + " GPU test Failed! Contact DCP for help."
+    barrier()
+    logger.info('all gpu check passed')
+    return
 
 
 def broadcast_object(obj, group=None):

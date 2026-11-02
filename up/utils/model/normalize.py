@@ -2,12 +2,16 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from up.utils.general.global_flag import DIST_BACKEND
+from up.utils.general.log_helper import default_logger as logger
 
 from up.utils.model.bn_helper import (
     CaffeFrozenBatchNorm2d,
     FrozenBatchNorm2d,
     GroupNorm,
     PyTorchSyncBN,
+    TaskBatchNorm2d,
+    TorchSyncTaskBatchNorm2d,
 )
 
 _norm_cfg = {
@@ -16,9 +20,27 @@ _norm_cfg = {
     'caffe_freeze_bn': ('bn', CaffeFrozenBatchNorm2d),
     'gn': ('gn', GroupNorm),
     'pt_sync_bn': ('bn', PyTorchSyncBN),
+    'task_solo_bn': ('bn', TaskBatchNorm2d),
     'sync_bn': ('bn', PyTorchSyncBN),
+    'task_sync_bn': ('bn', TorchSyncTaskBatchNorm2d),
+    'torch_task_sync_bn': ('bn', TorchSyncTaskBatchNorm2d),
     'ln': ('ln', torch.nn.LayerNorm)
 }
+
+try:
+    from mqbench.nn.modules import FrozenBatchNorm2d as MqbenchFrozenBatchNorm2d
+    _norm_cfg.update({'mqbench_freeze_bn': ('bn', MqbenchFrozenBatchNorm2d)})
+except Exception as err:
+    logger.warning(f"import error {err}; If you need Mqbench to quantize model, \
+     you should add Mqbench to this project. Or just ignore this error.")
+
+try:
+    from msbench.nn.modules import FrozenBatchNorm2d as MsbenchFrozenBatchNorm2d
+    _norm_cfg.update({'msbench_freeze_bn': ('bn', MsbenchFrozenBatchNorm2d)})
+except Exception as err:
+    logger.warning(f"import error {err}; If you need Msbench to prune model, \
+    you should add Msbench to this project. Or just ignore this error.")
+
 
 def is_bn(m):
     if isinstance(m, torch.nn.BatchNorm2d):
@@ -28,6 +50,8 @@ def is_bn(m):
     if isinstance(m, CaffeFrozenBatchNorm2d):
         return True
     if isinstance(m, PyTorchSyncBN):
+        return True
+    if isinstance(m, TaskBatchNorm2d):
         return True
     if isinstance(m, torch.nn.LayerNorm):
         return True
@@ -43,6 +67,16 @@ def build_norm_layer(num_features, cfg, postfix='', layer_instance=True):
     if layer_type not in _norm_cfg:
         raise KeyError('Unrecognized norm type {}'.format(layer_type))
     else:
+        if 'task_sync_bn' in layer_type:
+            if DIST_BACKEND.backend == 'dist':
+                layer_type = 'torch_task_sync_bn'
+            else:
+                raise NotImplementedError
+        elif 'sync_bn' in layer_type:
+            if DIST_BACKEND.backend == 'dist':
+                layer_type = 'pt_sync_bn'
+            else:
+                raise NotImplementedError
         abbr, norm_layer = _norm_cfg[layer_type]
         if norm_layer is None:
             raise NotImplementedError

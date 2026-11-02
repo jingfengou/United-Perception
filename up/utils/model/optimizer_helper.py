@@ -21,6 +21,8 @@ def build_cls_instance(module, cfg):
     return cls(**cfg['kwargs'])
 
 
+
+
 @OPTIMIZER_REGISTRY.register('base')
 class BaseOptimizer(object):
     def __init__(self, cfg_optim, model):

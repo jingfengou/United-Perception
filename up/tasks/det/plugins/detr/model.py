@@ -20,8 +20,9 @@ class DetrForUP(nn.Module):
     class after the foreground classes. Images must use top-left alignment.
     """
 
-    def __init__(self, num_classes=81, num_queries=100, aux_loss=True):
+    def __init__(self, num_classes=81, num_queries=100, aux_loss=True, aligned=True):
         super().__init__()
+        self.offset = 0 if aligned else 1
         body = resnet50(pretrained=False, norm_layer=FrozenBatchNorm2d)
         backbone = BackboneBase(body, train_backbone=True, num_channels=2048,
                                 return_interm_layers=False)
@@ -72,8 +73,8 @@ class DetrForUP(nn.Module):
             scale = info[2]
             sh, sw = scale if isinstance(scale, (tuple, list)) else (scale, scale)
             boxes = result['boxes'].clone()
-            boxes[:, 2] -= ALIGNED_FLAG.offset * sw
-            boxes[:, 3] -= ALIGNED_FLAG.offset * sh
+            boxes[:, 2] -= self.offset * sw
+            boxes[:, 3] -= self.offset * sh
             rows.append(torch.cat((boxes.new_full((len(boxes), 1), index), boxes,
                                    result['scores'][:, None], (result['labels'] + 1).to(boxes)[:, None]), dim=1))
         return {'dt_bboxes': torch.cat(rows, dim=0)}
