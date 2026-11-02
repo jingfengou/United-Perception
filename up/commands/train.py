@@ -51,11 +51,6 @@ class Train(Subcommand):
             action='store_true',
             help='Whether to use cudnn backend or not. Please disable cudnn when running on V100'
         )
-        sub_parser.add_argument(
-            '--allow_dead_parameter',
-            action='store_true',
-            help='dead parameter (defined in model but not used in forward pass) is allowed'
-        )
         sub_parser.add_argument('--config',
                                 dest='config',
                                 required=True,
@@ -65,10 +60,6 @@ class Train(Subcommand):
                                 type=int,
                                 default=20,
                                 help='display intervel')
-        sub_parser.add_argument('--async',
-                                dest='asynchronize',
-                                action='store_true',
-                                help='whether to use asynchronize mode(linklink)')
         sub_parser.add_argument('--ng', '--num_gpus_per_machine',
                                 dest='num_gpus_per_machine',
                                 type=int,
@@ -118,11 +109,9 @@ def main(args):
     cfg['args'] = {
         'ddp': args.backend == 'dist',
         'config_path': args.config,
-        'asynchronize': args.asynchronize,
         'nocudnn': args.nocudnn,
         'display': args.display,
         'no_running_config': args.no_running_config,
-        'allow_dead_parameter': args.allow_dead_parameter,
         'opts': args.opts
     }
     train_phase = args.phase
@@ -139,17 +128,6 @@ def main(args):
     runner_cfg['kwargs']['training'] = training
     runner = RUNNER_REGISTRY.get(runner_cfg['type'])(cfg, **runner_cfg['kwargs'])
     train_func = {"train": runner.train, "eval": runner.evaluate}
-    if runner_cfg['type'] == 'bignas':
-        train_func = {
-            "train_supnet": runner.train,
-            "sample_flops": runner.sample_multiple_subnet_flops,
-            "sample_accuracy":
-                runner.sample_multiple_subnet_accuracy,
-            "evaluate_subnet": runner.evaluate_subnet,
-            "finetune_subnet": runner.finetune_subnet,
-            "sample_subnet": runner.sample_subnet_weight
-        }
-        assert train_phase in train_func, f"{train_phase} is not supported"
 
     train_func[train_phase]()
     finalize()

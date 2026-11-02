@@ -1,7 +1,8 @@
-onnx<=1.6.0  # nart 0.2.4 incompatible with onnx 1.7.0
+# 保留原版依赖声明；“暂未使用”指 YOLOX/ResNet/ViT/DETR 的 train/inference 路径，pip 仍会安装这些库。
+onnx<=1.6.0  # nart 0.2.4 incompatible with onnx 1.7.0；暂未使用：原版 ONNX 模型导出/转换任务。
 prettytable
 scipy==1.1.0
-coverage==5.0.3
+coverage==5.0.3  # 暂未使用：测试覆盖率统计工具，不属于具体模型的训练/推理依赖。
 pycocotools-fix
 pandas>=0.25.1
 easydict>=1.9
@@ -10,9 +11,9 @@ Cython>=0.29.2,<0.29.15
 tensorboardX==1.8.0
 matplotlib==3.3.3
 pillow==6.2.1
-lvis
-SharedArray
-numba==0.48.0
+lvis  # 暂未使用：LVIS 数据集加载与评估（二维目标检测，非某个模型专用）。
+SharedArray  # 暂未使用：原 det_3d 数据工具 sa_create 的共享内存数组。
+numba==0.48.0  # 暂未使用：原 3D 检测评估的 JIT 加速，包括 KITTI 旋转框 IoU 计算。
 psutil==5.9.0
 scikit-learn==0.21.3
-open3d==0.9.0
+open3d==0.9.0  # 暂未使用：原 3D 检测点云读取，KittiReader 使用它读取 PCD 文件。
