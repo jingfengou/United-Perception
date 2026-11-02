@@ -42,6 +42,7 @@ def filter_by_size(boxes, min_size, start_index=0):
 @allow_empty_tensor(2)
 @to_float32
 def bbox_iou_overlaps(b1, b2, aligned=False):
+    # 非 NVIDIA 的非对齐 GPU 框走同设备 Torch 实现，其余情况保留原分支。
     if get_runtime().platform != 'nvidia' and b1.device.type != 'cpu' and not aligned:
         return box_overlap(b1, b2)
     if not b1.is_cuda or aligned:
@@ -132,6 +133,7 @@ def generalized_box_iou(boxes1, boxes2):
 
 @allow_empty_tensor(2)
 def bbox_iof_overlaps(b1, b2):
+    # IoF 的分母仍是第一组框面积，不能直接拿 IoU 结果替代。
     if get_runtime().platform != 'nvidia' and b1.device.type != 'cpu':
         return box_overlap(b1, b2, mode='IoF')
     if not b1.is_cuda:

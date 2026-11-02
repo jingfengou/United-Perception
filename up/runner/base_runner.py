@@ -48,6 +48,7 @@ class BaseRunner(object):
         self._temporaries = defaultdict(float)
         config = copy.deepcopy(config)
         self.config = self.upgrade_config(config)
+        # Runner 只持有已选运行时，训练、验证和输入迁移都从这里取得设备能力。
         self.runtime = setup_runtime(self.config)
         self.set_default_cfg()
         self.iter_base = self.config['runtime']['iter_base']
@@ -65,6 +66,7 @@ class BaseRunner(object):
     def prepare_fp16(self):
         if self.config['runtime'].get('fp16', False):
             if self.backend == 'dist':
+                # 损失缩放规则保持 PyTorch AMP 语义，选择与当前设备匹配的实现。
                 self.scaler = self.runtime.amp.GradScaler(enabled=True)
             self.fp16 = True
             FP16_FLAG.fp16 = True
@@ -322,6 +324,7 @@ class BaseRunner(object):
     def prepare_dist_model(self):
         if env.distributed:
             if self.backend == 'dist':
+                # 单进程直接执行模型，多进程的梯度同步交给 PyTorch DDP。
                 logger.info('using ddp')
                 self.model = DDP(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
 
@@ -497,6 +500,7 @@ class BaseRunner(object):
 
 
     def batch2device(self, batch):
+        # 使用进程绑定的实际设备迁移整批数据，不再硬编码 cuda。
         model_dtype = torch.float32
         if batch['image'].device != self.device or batch['image'].dtype != model_dtype:
             batch = to_device(batch, device=self.device, dtype=model_dtype)

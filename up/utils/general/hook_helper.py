@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 import torch
+# 日志显存统计和缓存清理也走当前厂商设备 API，不改变 Hook 的触发时机。
 from up.runtime import get_runtime
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_

@@ -25,6 +25,7 @@ class BaseInference(object):
         opts = self.args.get('opts', [])
         config = merge_opts_into_cfg(opts, config)
         self.config = config
+        # Python API 直接调用也先初始化运行时，模型和输入随后迁移到同一设备。
         self.runtime = setup_runtime(config)
         self.class_names = visualizer.get('class_names', None)
         self.work_dir = work_dir

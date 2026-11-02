@@ -7,6 +7,7 @@ def rand_bbox(size, lam):
     W = size[2]
     H = size[3]
     cut_rat = np.sqrt(1. - lam)
+    # 用内建 int 替代已移除的 np.int，保留 CutMix 裁剪尺寸的截断规则。
     cut_w = int(W * cut_rat)
     cut_h = int(H * cut_rat)
 

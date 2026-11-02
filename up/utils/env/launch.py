@@ -38,6 +38,7 @@ def launch(
         args (tuple): arguments passed to main_func
     """
     runtime = setup_runtime({'runtime': {'platform': getattr(args, 'platform', 'nvidia')}})
+    # 用户未覆盖通信后端时，使用所选设备对应的 NCCL/HCCL/CNCL。
     backend = backend or runtime.dist_backend
     world_size = num_machines * num_gpus_per_machine
     if world_size > 1:
@@ -67,6 +68,7 @@ def launch(
             start_method=start_method,
         )
     else:
+        # 单卡没有 DDP 包装，但仍需绑定设备，以便模型和临时张量使用同一张卡。
         runtime.set_device(0)
         main_func(*(args,))
 
@@ -83,6 +85,7 @@ def _distributed_worker(
     timeout=DEFAULT_TIMEOUT,
 ):
     runtime = setup_runtime({'runtime': {'platform': getattr(args, 'platform', 'nvidia')}})
+    # 每个子进程先绑定 local_rank，再初始化通信组，避免各 rank 默认占用第 0 张卡。
     assert num_gpus_per_machine <= runtime.module.device_count()
     runtime.set_device(local_rank)
     global_rank = machine_rank * num_gpus_per_machine + local_rank

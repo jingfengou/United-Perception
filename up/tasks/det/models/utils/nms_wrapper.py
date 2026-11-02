@@ -1,3 +1,4 @@
+# 保留原调用名，集中由平台决定使用 TorchVision 还是同设备 Torch 实现。
 from up.platform.ops import nms as t_nms
 
 

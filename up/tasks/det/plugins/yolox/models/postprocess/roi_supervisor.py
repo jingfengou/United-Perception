@@ -69,6 +69,7 @@ class OTASupervisor(object):
                     num_fg, gt_matched_classes, pred_ious_this_matching, matched_gt_inds, fg_mask, expanded_strides = \
                         self.matcher.match(gts, preds, points, num_points_per_level, strides, img_size=img_size)
                 except RuntimeError as error:
+                    # 仅沿用原有的 OOM→CPU 匹配分支，其他厂商运行错误必须原样暴露。
                     if 'out of memory' not in str(error).lower():
                         raise
                     logger.info(
@@ -190,6 +191,7 @@ class OTAMatcher(object):
         del pair_wise_cls_loss, cost, pair_wise_ious, pair_wise_ious_loss
 
         if mode == "cpu":
+            # OOM 匹配结果回到预测所在设备，不能固定回到 NVIDIA 的 cuda。
             gt_matched_classes = gt_matched_classes.to(preds.device)
             fg_mask = fg_mask.to(preds.device)
             pred_ious_this_matching = pred_ious_this_matching.to(preds.device)

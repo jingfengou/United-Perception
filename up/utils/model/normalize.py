@@ -14,6 +14,7 @@ from up.utils.model.bn_helper import (
     TorchSyncTaskBatchNorm2d,
 )
 
+# 保留配置中的 sync_bn 名称，实际实现明确映射到 PyTorch SyncBatchNorm。
 _norm_cfg = {
     'solo_bn': ('bn', torch.nn.BatchNorm2d),
     'freeze_bn': ('bn', FrozenBatchNorm2d),

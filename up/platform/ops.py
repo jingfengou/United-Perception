@@ -5,6 +5,7 @@ from up.runtime import get_runtime
 
 
 def box_overlap(b1, b2, mode='IoU'):
+    # 保持 UP 原扩展的闭区间坐标语义；与下方 NMS 使用的连续坐标分开处理。
     # Match csrc/iou_overlap exactly: inclusive coordinates and denominator >= 1.
     area1 = ((b1[:, 2:4] - b1[:, :2]) + 1).prod(dim=1)
     area2 = ((b2[:, 2:4] - b2[:, :2]) + 1).prod(dim=1)
@@ -16,6 +17,7 @@ def box_overlap(b1, b2, mode='IoU'):
 
 
 def nms(boxes, scores, threshold):
+    # NVIDIA 沿用 TorchVision；其他厂商在输入设备上使用普通 Tensor 运算完成筛选。
     if get_runtime().platform == 'nvidia':
         from torchvision.ops import nms as torchvision_nms
         return torchvision_nms(boxes, scores, threshold)
@@ -38,6 +40,7 @@ def nms(boxes, scores, threshold):
 
 
 def sigmoid_focal_loss(input, target, normalizer, gamma, alpha, num_channels, reduction):
+    # 为不能加载 NVIDIA 扩展的平台提供可自动求导的 Torch 实现，输出仍按 UP 约定。
     # UP labels: background=0, foreground=1..C, ignored=-1.
     classes = torch.arange(1, num_channels + 1, device=input.device)
     positive = (target[:, None] == classes).to(input.dtype)

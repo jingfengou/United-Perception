@@ -195,6 +195,7 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
             - target (LongTenosor): [[M, N]]
         """
         # assert reduction != 'none', 'Not Supported none reduction yet'
+        # NVIDIA 保留原专用内核，其他厂商使用可微 Torch 实现；标签/归一化由同一调用方传入。
         focal = SigmoidFocalLossFunction.apply if get_runtime().platform == 'nvidia' else sigmoid_focal_loss
         input = input.reshape(target.numel(), -1)
         target = target.reshape(-1).int()

@@ -117,9 +117,11 @@ def main(args):
 
 def _main(args):
     DIST_BACKEND.backend = args.backend
+    # 独立推理和训练读取同一项 runtime.platform，设备选择不散落在模型中。
     runtime = setup_runtime(load_yaml(args.config, args.cfg_type), args.opts)
     args.platform = runtime.platform
     if runtime.platform != 'nvidia':
+        # spawn 子进程会重新导入所选厂商设备扩展。
         args.fork_method = 'spawn'
     if args.launch == 'pytorch':
         launch(main, args.num_gpus_per_machine, args.num_machines, args=args, start_method=args.fork_method)

@@ -9,11 +9,13 @@ class _LazyExtension:
         self.name = name
 
     def __getattr__(self, name):
+        # 只在真正使用专用算子时加载原二进制，普通分类模型导入 UP 不会触发加载。
         if get_runtime().platform != 'nvidia':
             raise NotImplementedError('{} requires UP\'s NVIDIA extension'.format(self.name))
         try:
             extension = importlib.import_module('up.extensions._C')
         except ModuleNotFoundError as error:
+            # 兼容扩展的两种历史安装路径；内部依赖缺失则继续抛出原错误。
             if error.name != 'up.extensions._C':
                 raise
             extension = importlib.import_module('up_extensions._C')

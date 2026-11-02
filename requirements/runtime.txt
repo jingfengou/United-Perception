@@ -1,5 +1,6 @@
 # Application dependencies for modern, vendor-provided PyTorch environments.
 # Install the matching torch/torchvision/vendor extension from the vendor first.
+# 这里只安装应用依赖；厂商 Torch/SDK 由各自环境提供，不在这里自动切换。
 numpy>=1.23,<2
 scipy>=1.9,<2
 prettytable

@@ -107,6 +107,7 @@ def main(args):
     if args.test_gpu:
         gpu_check()
     cfg = load_yaml(args.config, args.cfg_type)
+    # dist 选择 PyTorch 执行路径，只有实际 world_size > 1 时 Runner 才包装 DDP。
     cfg['args'] = {
         'ddp': args.backend == 'dist',
         'config_path': args.config,
@@ -129,6 +130,7 @@ def main(args):
     runner_cfg['kwargs']['training'] = training
     runner = RUNNER_REGISTRY.get(runner_cfg['type'])(cfg, **runner_cfg['kwargs'])
     train_func = {"train": runner.train, "eval": runner.evaluate}
+    # 训练内验证和 --evaluate 共用同一 Runner 和设备选择。
 
     train_func[train_phase]()
     finalize()
@@ -136,9 +138,11 @@ def main(args):
 
 def _main(args):
     DIST_BACKEND.backend = args.backend
+    # 先合并 --opts 选定厂商，再把相同选择交给启动器和各个工作进程。
     runtime = setup_runtime(load_yaml(args.config, args.cfg_type), args.opts)
     args.platform = runtime.platform
     if runtime.platform != 'nvidia':
+        # 非 NVIDIA SDK 使用新解释器进程初始化，避免继承父进程的设备状态。
         args.fork_method = 'spawn'
     if args.launch == 'pytorch':
         launch(main, args.num_gpus_per_machine, args.num_machines, args=args, start_method=args.fork_method)

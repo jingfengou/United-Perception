@@ -12,6 +12,7 @@ def binary_accuracy(output, target, thresh=0.5, ignore_index=-1):
     target = target.view(-1)
     keep = torch.nonzero(target != ignore_index).squeeze()
     if keep.dim() <= 0:
+        # 无有效标签时保留原来的零结果，并继承预测的设备和类型。
         return [output.new_zeros(1)]
     assert (keep.dim() == 1)
     target = target[keep]

@@ -30,6 +30,7 @@ class Multiscale(nn.Module):
 
     def get_target_size(self, input):
         _, _, h, w = input['image'].size()
+        # 各 rank 用图像所在设备收发尺寸，保留原来的随机缩放与广播流程。
         tensor = torch.empty(2, dtype=torch.int64, device=input['image'].device)
         if env.is_master():
             size = random.randint(*self.random_size)

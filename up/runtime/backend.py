@@ -4,6 +4,8 @@ import importlib
 import torch
 
 
+# 每项依次指定设备 API、通信后端、注册设备所需的扩展；厂商 Torch 须在启动前安装好。
+# NVIDIA 和沐曦虽然都使用 cuda 名称，实际由各自环境中的 Torch/SDK 执行。
 _PLATFORMS = {
     'nvidia': ('cuda', 'nccl', None),
     'ascend_npu': ('npu', 'hccl', 'torch_npu'),
@@ -20,6 +22,7 @@ class RuntimeBackend:
         self.platform = platform
         self.device_type, self.dist_backend, extension = _PLATFORMS[platform]
         if extension is not None:
+            # 先导入 torch_npu/torch_mlu 注册设备，之后才能取得 torch.npu/torch.mlu。
             importlib.import_module(extension)
         self.module = getattr(torch, self.device_type)
 
@@ -29,6 +32,7 @@ class RuntimeBackend:
 
     @property
     def amp(self):
+        # AMP 使用当前设备自己的实现，模型和优化器仍按原来的 PyTorch 流程工作。
         return self.module.amp
 
     def set_device(self, local_rank):
@@ -40,6 +44,7 @@ class RuntimeBackend:
 
 
 def setup_runtime(config, opts=None):
+    # 必须在创建工作进程/通信组之前解析厂商，训练和推理入口共用这一步。
     # Resolve the same --opts overrides as the runner, before creating workers/groups.
     if opts:
         from up.utils.general.cfg_helper import merge_opts_into_cfg
@@ -47,6 +52,7 @@ def setup_runtime(config, opts=None):
     platform = config.get('runtime', {}).get('platform', 'nvidia')
     global _runtime
     if _runtime is None or _runtime.platform != platform:
+        # 缓存已解析的运行时，后续设备查询无需反复导入 SDK。
         _runtime = RuntimeBackend(platform)
     return _runtime
 

@@ -19,6 +19,7 @@ class LabelSmoothCELoss(_Loss):
 
     def forward(self, input, label):
         if label.dim() == 1:
+            # zeros_like 已继承预测的设备和类型，不再额外强制迁移到 cuda。
             one_hot = torch.zeros_like(input)
             one_hot.fill_(self.v)
             y = label.to(torch.long).view(-1, 1)

@@ -21,6 +21,7 @@ def l1_loss(input, target, scale_type='linear', reduction='none', normalizer=Non
         raise NotImplementedError
     loss = torch.abs(input - target)
     if code_weights is not None:
+        # 权重使用输入的 device/dtype，构造损失对象时无需预先绑定某种显卡。
         loss = loss * code_weights.to(input).view(1, 1, -1)
     loss = _reduce(loss, reduction=reduction, normalizer=normalizer)
     return loss

@@ -1,3 +1,4 @@
+# 这里只保留数据类型转换工具，AMP 的启停和 GradScaler 由 Runner 管理。
 # Standard Library
 from collections.abc import Iterable, Mapping
 import numpy as np

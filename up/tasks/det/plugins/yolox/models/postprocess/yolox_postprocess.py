@@ -172,6 +172,7 @@ class YoloxPostProcess(nn.Module):
             else:
                 l1_loss = ori_loc_preds.sum()
         else:
+            # 关闭 L1 分支时仍返回同设备、同类型的零标量，方便与其余损失相加。
             l1_loss = cls_pred.new_tensor(0.0)
         return {
             self.prefix + '.cls_loss': cls_loss,

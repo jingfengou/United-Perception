@@ -110,6 +110,7 @@ class BaseOptimizer(object):
         return param_groups
 
     def get_optimizer(self, cfg_optim):
+        # 保留原参数分组；LARS/LAMB 用 UP 实现，其余从 torch.optim 构造。
         optim_type = cfg_optim['type']
         if optim_type == 'LARS' or optim_type == 'LAMB':
             optimizer = build_cls_instance(optim, cfg_optim)

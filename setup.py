@@ -25,6 +25,7 @@ def _find_cuda_home():
 # remember to overwrite PyTorch auto-detected cuda home which
 # may not be our expected
 BUILD_PLATFORM = os.environ.get('UP_BUILD_PLATFORM', 'nvidia')
+# 构建选择和运行配置分开：非 NVIDIA 环境跳过原 CUDA 扩展，不替换厂商 Torch。
 if BUILD_PLATFORM not in ('nvidia', 'ascend_npu', 'cambricon_mlu', 'metax_cuda'):
     raise ValueError('Unknown UP_BUILD_PLATFORM: {}'.format(BUILD_PLATFORM))
 if BUILD_PLATFORM == 'nvidia':
@@ -51,6 +52,7 @@ def recursive_glob(base_dir, pattern):
 
 
 def get_extensions():
+    # C++/CUDA 源码仍保留；这一分支只为 NVIDIA 编译，其他平台使用已接入的 Torch 路径。
     if BUILD_PLATFORM != 'nvidia':
         return []
     this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -103,6 +105,7 @@ setup(
     author_email="",
     python_requires='>=3.6',
     packages=find_packages(),
+    # 保留随官方 DETR 源码一同分发的许可文件。
     package_data={'up.tasks.det.plugins.detr.official': ['LICENSE']},
     classifiers=(
         'Development Status :: 3 - Alpha',

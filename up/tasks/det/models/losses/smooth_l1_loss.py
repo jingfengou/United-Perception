@@ -14,6 +14,7 @@ def smooth_l1_loss(input, target, sigma, reduction='none', normalizer=None, code
     beta = 1. / (sigma**2)
     diff = torch.abs(input - target)
     if code_weights is not None:
+        # 常量权重随本次输入迁移，保留原平滑 L1 公式及权重广播方式。
         diff = diff * code_weights.to(input).view(1, 1, -1)
     cond = diff < beta
     loss = torch.where(cond, 0.5 * diff**2 / beta, diff - 0.5 * beta)

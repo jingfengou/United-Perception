@@ -1,4 +1,5 @@
 import torch
+# 动态重计算只查询当前设备的显存/RNG/同步接口，原有分桶和模块选择策略不变。
 from up.runtime import get_runtime
 import math
 import time

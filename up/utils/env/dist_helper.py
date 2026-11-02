@@ -55,6 +55,7 @@ def gather(*args, **kwargs):
 
 
 def get_dist_rank(*args, **kwargs):
+    # 未初始化通信组的普通单进程仍按 rank=0、world_size=1 工作。
     if not dist.is_available():
         return 0
     if not dist.is_initialized():
@@ -275,6 +276,7 @@ def _get_global_gloo_group():
 
 
 def _serialize_to_tensor(data, group):
+    # 对象通信仍先 pickle；用 int32 承载每个字节，以兼容厂商集合通信的数据类型。
     if DIST_BACKEND.backend == 'dist':
         backend = dist.get_backend(group)
         device = torch.device("cpu") if backend == "gloo" else get_runtime().device
@@ -432,6 +434,7 @@ def pyobj2tensor(pyobj, device=None):
 
 def tensor2pyobj(tensor):
     """deserialize tensor to picklable python object"""
+    # 反序列化前恢复字节宽度，避免把 int32 的填充字节写进 pickle 数据。
     return pickle.loads(tensor.cpu().to(torch.uint8).numpy().tobytes())
 
 

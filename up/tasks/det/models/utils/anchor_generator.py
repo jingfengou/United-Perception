@@ -278,6 +278,7 @@ class PointAnchorGenerator(AnchorGenerator):
         l_b = [center - step, center + step]
         r_b = [center + step, center + step]
         if self.dense_points == 4:
+            # 坐标直接建在调用方传入的设备上，数值和点的排列顺序沿用原实现。
             points = torch.tensor([l_t, r_t, l_b, r_b], dtype=torch.float32, device=device)
         elif self.dense_points == 5:
             points = torch.tensor([l_t, r_t, [center, center], l_b, r_b], dtype=torch.float32, device=device)

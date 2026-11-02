@@ -27,6 +27,7 @@ def get_env_info():
 
 
 def set_random_seed(seed, rank_init=False):
+    # 保留原种子与 rank 的组合规则，只把设备 RNG 入口切换到当前厂商。
     if not rank_init:
         random.seed(seed)
         np.random.seed(seed ** 2)
