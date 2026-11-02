@@ -706,11 +706,6 @@ class GradClipper(Hook):
             optimizer = self.runner_ref().get_optimizer()
             if DIST_BACKEND.backend == 'dist':
                 self.runner_ref().scaler.unscale_(optimizer)
-            elif DIST_BACKEND.backend == 'linklink':
-                if self.mode in [self._AVG, self._MAVG]:
-                    raise ValueError('linklink fp16 only support grad cliping with pre_defined value!')
-                optimizer.clip_grad_norm_(self.max_norm, self.norm_type)
-                return
 
         model = self.runner_ref().get_model()
         parameters = [p for p in model.parameters() if p.requires_grad and p.grad is not None]
