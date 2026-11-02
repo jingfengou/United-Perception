@@ -12,10 +12,6 @@ import pickle
 import numpy as np
 from collections import OrderedDict
 from up.utils.general.global_flag import DIST_BACKEND
-try:
-    import spring.linklink as link
-except:   # noqa
-    link = None
 
 MASTER_RANK = 0
 _LOCAL_PROCESS_GROUP = None
@@ -24,9 +20,7 @@ _LOCAL_PROCESS_GROUP = None
 def allreduce(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.allreduce(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.all_reduce(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -35,9 +29,7 @@ def allreduce(*args, **kwargs):
 def broadcast(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.broadcast(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.broadcast(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -46,9 +38,7 @@ def broadcast(*args, **kwargs):
 def allgather(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.allgather(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.all_gather(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -57,9 +47,7 @@ def allgather(*args, **kwargs):
 def gather(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.gather(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.gather(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -73,12 +61,6 @@ def get_dist_rank(*args, **kwargs):
     return dist.get_rank(*args, **kwargs)
 
 
-def get_link_rank(*args, **kwargs):
-    if link is None:
-        return 0
-    if not link.is_initialized():
-        return 0
-    return link.get_rank(*args, **kwargs)
 
 
 def get_dist_world_size(*args, **kwargs):
@@ -89,12 +71,6 @@ def get_dist_world_size(*args, **kwargs):
     return dist.get_world_size(*args, **kwargs)
 
 
-def get_link_world_size(*args, **kwargs):
-    if link is None:
-        return 1
-    if not link.is_initialized():
-        return 1
-    return link.get_world_size(*args, **kwargs)
 
 
 def get_rank_from_env():
@@ -124,18 +100,12 @@ def dist_barrier(*args, **kwargs):
     dist.barrier(*args, **kwargs)
 
 
-def link_barrier(*args, **kwargs):
-    if link is None:
-        return
-    return link.barrier(*args, **kwargs)
 
 
 def barrier(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        link_barrier(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         dist_barrier(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -145,9 +115,7 @@ def get_rank(*args, **kwargs):
     # rank = get_rank_from_env()
     # if rank is not None:
     #     return rank
-    if DIST_BACKEND.backend == 'linklink':
-        return get_link_rank(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return get_dist_rank(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -157,9 +125,7 @@ def get_world_size(*args, **kwargs):
     # world_size = get_world_size_from_env()
     # if world_size is not None:
     #     return world_size
-    if DIST_BACKEND.backend == 'linklink':
-        return get_link_world_size(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return get_dist_world_size(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -171,9 +137,7 @@ def get_local_rank(*args, **kwargs):
 
 
 def all_reduce(*args, **kwargs):
-    if DIST_BACKEND.backend == 'linklink':
-        return link.allreduce(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.all_reduce(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -206,61 +170,10 @@ class DistEnv(object):
 env = DistEnv()
 
 
-def simple_group_split(world_size, rank, num_groups):
-    groups = []
-    rank_list = np.split(np.arange(world_size), num_groups)
-    rank_list = [list(map(int, x)) for x in rank_list]
-    for i in range(num_groups):
-        groups.append(link.new_group(rank_list[i]))
-    group_size = world_size // num_groups
-    return groups[rank // group_size]
 
 
-def DistModule(model, sync=True):
-    def _register_hooks(self):
-        for i, (name, p) in enumerate(self.named_parameters()):
-            if p.requires_grad:
-                p_tmp = p.expand_as(p)
-                grad_acc = p_tmp.grad_fn.next_functions[0][0]
-                grad_acc.register_hook(self._make_hook(name, p, i))
-                self._grad_accs.append(grad_acc)
-
-    def _make_hook(name, p, i):
-        def hook(*ignore):
-            link.allreduce_async(name, p.grad.data)
-        return hook
-
-    def broadcast_params(model):
-        for name, p in model.state_dict().items():
-            link.broadcast(p, MASTER_RANK)
-
-    broadcast_params(model)
-    if not sync:
-        model._grad_accs = []
-        model._register_hooks = _register_hooks
-        model._make_hook = _make_hook
-        model._register_hooks(model)
-    return model
 
 
-def reduce_gradients(model, sync=True, allow_dead_parameter=False):
-    if sync:
-        for name, param in model.named_parameters():
-            if param.requires_grad and param.grad is not None:
-                try:
-                    link.allreduce(param.grad.data)
-                except AttributeError as e:
-                    warning = (f"The AttributeError above was probably caused by {name}.grad being None "
-                               f"but the gradient w.r.t {name} is required. "
-                               f"Please check your model to make sure that {name} is always used in your "
-                               "forward pass if it is learnable, otherwise, set it's requrires_grad flag to False. "
-                               "Another temporary workaround, you may add 'and param.grad is not None' to "
-                               "the conditional above only if you know exactly the grad is needless.")
-                    if not allow_dead_parameter:
-                        raise AttributeError('This line is not an error, just warning: ' + warning) from e
-    else:
-        # reduce all grdients asynchronously, faster
-        link.synchronize()
 
 
 # TODO support free port
@@ -342,16 +255,11 @@ def setup_distributed_dist(port, launch):
         torch.cuda.set_device(device)
 
 
-def setup_distributed_link(port, launch):
-    link.initialize()
-    torch.cuda.set_device(link.get_local_rank())
 
 
 def setup_distributed(port=33334, launch='slurm', backend='dist'):
     if backend == 'dist':
         setup_distributed_dist(port, launch)
-    else:
-        setup_distributed_link(port, launch)
     rank = get_rank()
     world_size = get_world_size()
     print('rank:{} world_size(gpus):{}'.format(rank, world_size))
@@ -370,11 +278,6 @@ def _get_global_gloo_group():
             return dist.new_group(backend="gloo")
         else:
             return dist.group.WORLD
-    elif DIST_BACKEND.backend == 'linklink':
-        if link.get_backend() == "nccl":
-            return link.new_group(backend="gloo")
-        else:
-            return link.group.WORLD
     else:
         raise NotImplementedError
 
@@ -384,8 +287,6 @@ def _serialize_to_tensor(data, group):
         backend = dist.get_backend(group)
         assert backend in ["gloo", "nccl"]
         device = torch.device("cpu" if backend == "gloo" else "cuda")
-    else:
-        device = torch.device("cpu")
 
     buffer = pickle.dumps(data)
     if len(buffer) > 1024 ** 3:
@@ -409,8 +310,6 @@ def _pad_to_largest_tensor(tensor, group):
     """
     if DIST_BACKEND.backend == 'dist':
         world_size = get_world_size(group=group)
-    else:
-        world_size = get_world_size()
     assert (
         world_size >= 1
     ), "comm.gather/all_gather must be called from ranks within the given group!"
@@ -421,8 +320,6 @@ def _pad_to_largest_tensor(tensor, group):
     ]
     if DIST_BACKEND.backend == 'dist':
         allgather(size_list, local_size, group=group)
-    else:
-        allgather(size_list, local_size)
     size_list = [int(size.item()) for size in size_list]
 
     max_size = max(size_list)
@@ -467,8 +364,6 @@ def all_gather(data, group=None):
     ]
     if DIST_BACKEND.backend == 'dist':
         allgather(tensor_list, tensor, group=group)
-    else:
-        allgather(tensor_list, tensor)
 
     data_list = []
     for size, tensor in zip(size_list, tensor_list):
@@ -498,8 +393,6 @@ def gather_pk(data, dst=0, group=None):
         if get_world_size(group=group) == 1:
             return [data]
         rank = get_rank(group=group)
-    else:
-        rank = get_rank()
 
     tensor = _serialize_to_tensor(data, group)
     size_list, tensor = _pad_to_largest_tensor(tensor, group)
@@ -513,8 +406,6 @@ def gather_pk(data, dst=0, group=None):
         ]
         if DIST_BACKEND.backend == 'dist':
             gather(tensor, tensor_list, dst=dst, group=group)
-        else:
-            gather(tensor_list, tensor, dst)
         data_list = []
         for size, tensor in zip(size_list, tensor_list):
             buffer = tensor.cpu().numpy().tobytes()[:size]
@@ -523,8 +414,6 @@ def gather_pk(data, dst=0, group=None):
     else:
         if DIST_BACKEND.backend == 'dist':
             gather(tensor, [], dst=dst, group=group)
-        else:
-            gather([], tensor, dst)
         return []
 
 
@@ -533,8 +422,6 @@ def finalize():
         if DIST_BACKEND.backend == 'dist':
             if get_world_size() > 1:
                 dist.destroy_process_group()
-        elif DIST_BACKEND.backend == 'linklink':
-            link.finalize()
         else:
             raise NotImplementedError
     except: # noqa
@@ -569,8 +456,6 @@ def all_reduce_dict(py_dict, op="sum", group=None):
     py_key_tensor = pyobj2tensor(py_key)
     if DIST_BACKEND.backend == 'dist':
         broadcast(py_key_tensor, src=MASTER_RANK)
-    else:
-        broadcast(py_key_tensor, MASTER_RANK)
     py_key = tensor2pyobj(py_key_tensor)
 
     tensor_shapes = [py_dict[k].shape for k in py_key]

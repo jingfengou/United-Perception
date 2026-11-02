@@ -4,7 +4,7 @@ Written by Shaoshuai Shi
 All Rights Reserved 2019-2020.
 """
 import torch
-from up.tasks.det_3d.data.data_utils import check_numpy_to_torch
+from .box_utils import check_numpy_to_torch
 from ..ext import iou3d_nms as iou3d_nms_cuda
 
 

@@ -97,6 +97,7 @@ setup(
     author_email="",
     python_requires='>=3.6',
     packages=find_packages(),
+    package_data={'up.tasks.det.plugins.detr.official': ['LICENSE']},
     classifiers=(
         'Development Status :: 3 - Alpha',
         "Programming Language :: Python :: 3",

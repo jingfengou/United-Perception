@@ -34,6 +34,7 @@ class Inference(Subcommand):
             help='method to fork subprocess, especially for dataloader')
         sub_parser.add_argument('--backend',
                                 dest='backend',
+                                choices=['dist'],
                                 type=str,
                                 default='dist',
                                 help='model backend')

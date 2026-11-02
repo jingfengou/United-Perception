@@ -11,8 +11,6 @@ from up.utils.model.bn_helper import (
     GroupNorm,
     PyTorchSyncBN,
     TaskBatchNorm2d,
-    GroupSyncBatchNorm,
-    SyncTaskBatchNorm2d,
     TorchSyncTaskBatchNorm2d,
 )
 
@@ -23,9 +21,8 @@ _norm_cfg = {
     'gn': ('gn', GroupNorm),
     'pt_sync_bn': ('bn', PyTorchSyncBN),
     'task_solo_bn': ('bn', TaskBatchNorm2d),
-    'link_sync_bn': ('bn', GroupSyncBatchNorm),
-    'sync_bn': ('bn', GroupSyncBatchNorm),
-    'task_sync_bn': ('bn', SyncTaskBatchNorm2d),
+    'sync_bn': ('bn', PyTorchSyncBN),
+    'task_sync_bn': ('bn', TorchSyncTaskBatchNorm2d),
     'torch_task_sync_bn': ('bn', TorchSyncTaskBatchNorm2d),
     'ln': ('ln', torch.nn.LayerNorm)
 }
@@ -54,11 +51,7 @@ def is_bn(m):
         return True
     if isinstance(m, PyTorchSyncBN):
         return True
-    if isinstance(m, GroupSyncBatchNorm):
-        return True
     if isinstance(m, TaskBatchNorm2d):
-        return True
-    if isinstance(m, SyncTaskBatchNorm2d):
         return True
     if isinstance(m, torch.nn.LayerNorm):
         return True
@@ -75,17 +68,13 @@ def build_norm_layer(num_features, cfg, postfix='', layer_instance=True):
         raise KeyError('Unrecognized norm type {}'.format(layer_type))
     else:
         if 'task_sync_bn' in layer_type:
-            if DIST_BACKEND.backend == 'linklink':
-                layer_type = 'task_sync_bn'
-            elif DIST_BACKEND.backend == 'dist':
+            if DIST_BACKEND.backend == 'dist':
                 layer_type = 'torch_task_sync_bn'
             else:
                 raise NotImplementedError
         elif 'sync_bn' in layer_type:
             if DIST_BACKEND.backend == 'dist':
                 layer_type = 'pt_sync_bn'
-            elif DIST_BACKEND.backend == 'linklink':
-                layer_type = 'link_sync_bn'
             else:
                 raise NotImplementedError
         abbr, norm_layer = _norm_cfg[layer_type]
