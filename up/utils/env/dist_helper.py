@@ -54,6 +54,7 @@ def gather(*args, **kwargs):
 
 
 def get_dist_rank(*args, **kwargs):
+    # 普通单进程不要求初始化通信组，rank/world_size 按单卡语义返回 0/1。
     if not dist.is_available():
         return 0
     if not dist.is_initialized():
@@ -64,6 +65,7 @@ def get_dist_rank(*args, **kwargs):
 
 
 def get_dist_world_size(*args, **kwargs):
+    # Runner 用这个值区分直接执行模型与多进程 DDP。
     if not dist.is_available():
         return 1
     if not dist.is_initialized():

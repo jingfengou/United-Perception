@@ -1,3 +1,4 @@
+# 从原 3D 任务抽出的纯几何工具，保留扩展入口时无需导入整套 3D 任务注册代码。
 import numpy as np
 import torch
 

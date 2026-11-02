@@ -50,6 +50,7 @@ class GroupNorm(torch.nn.GroupNorm):
 
 
 class PyTorchSyncBN(torch.nn.SyncBatchNorm):
+    # 只适配 UP 的分组参数；统计量计算和跨卡同步由 PyTorch 实现。
     def __init__(self, num_features, group_size=None, **kwargs):
         super(PyTorchSyncBN, self).__init__(
             num_features,

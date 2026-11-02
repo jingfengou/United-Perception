@@ -4,6 +4,7 @@ Written by Shaoshuai Shi
 All Rights Reserved 2019-2020.
 """
 import torch
+# 工具函数移到扩展本地，C++/CUDA 算子和原调用签名保持原样。
 from .box_utils import check_numpy_to_torch
 from ..ext import iou3d_nms as iou3d_nms_cuda
 

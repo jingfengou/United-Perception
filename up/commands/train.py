@@ -106,6 +106,7 @@ def main(args):
     if args.test_gpu:
         gpu_check()
     cfg = load_yaml(args.config, args.cfg_type)
+    # dist 表示采用 PyTorch 路径；是否包装 DDP 还要由 Runner 检查实际 world_size。
     cfg['args'] = {
         'ddp': args.backend == 'dist',
         'config_path': args.config,
@@ -128,6 +129,7 @@ def main(args):
     runner_cfg['kwargs']['training'] = training
     runner = RUNNER_REGISTRY.get(runner_cfg['type'])(cfg, **runner_cfg['kwargs'])
     train_func = {"train": runner.train, "eval": runner.evaluate}
+    # --evaluate 使用同一 Runner 的验证流程，不再保留 NAS 子网等训练分支。
 
     train_func[train_phase]()
     finalize()

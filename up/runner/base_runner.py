@@ -61,6 +61,7 @@ class BaseRunner(object):
             print("node memory info after build", node_info)
 
     def prepare_fp16(self):
+        # 混合精度统一使用 PyTorch AMP，损失缩放与优化器状态不再依赖旧 SDK。
         if self.config['runtime'].get('fp16', False):
             if self.backend == 'dist':
                 self.scaler = torch.cuda.amp.GradScaler(enabled=True)
@@ -320,6 +321,7 @@ class BaseRunner(object):
     def prepare_dist_model(self):
         if env.distributed:
             if self.backend == 'dist':
+                # 仅多进程训练包装 DDP；单进程直接使用原模型，不手工 all-reduce 梯度。
                 logger.info('using ddp')
                 self.model = DDP(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
 

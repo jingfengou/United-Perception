@@ -1,5 +1,6 @@
 import torch.nn as nn
 from torch.autograd import Function
+# 原点云扩展仍保留，几何辅助函数改为本地导入以解除对已裁剪任务的依赖。
 from .box_utils import enlarge_box3d
 from ..ext import roipoint_pool3d as roipoint_pool3d_cuda
 

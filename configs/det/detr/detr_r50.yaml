@@ -1,6 +1,8 @@
+# UP 按 80 个 COCO 前景类 + 1 个背景类配置，DETR 适配器负责转换标签。
 num_classes: &num_classes 81
 runtime:
   task_names: det
+  # DETR 使用连续坐标，和适配器中的边框端点转换保持一致。
   aligned: true
 
 resize: &resize

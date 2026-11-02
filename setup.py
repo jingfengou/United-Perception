@@ -97,6 +97,7 @@ setup(
     author_email="",
     python_requires='>=3.6',
     packages=find_packages(),
+    # 官方 DETR 源码随包发布时，同时保留其许可文件。
     package_data={'up.tasks.det.plugins.detr.official': ['LICENSE']},
     classifiers=(
         'Development Status :: 3 - Alpha',

@@ -16,6 +16,7 @@ import matplotlib
 __version__ = "0.3.0"  # Available for other modules to import
 
 # import for register
+# 导入保留模块以完成注册；命令和模型的裁剪范围由各级 __init__.py 控制。
 
 from .commands import *
 from .runner import *

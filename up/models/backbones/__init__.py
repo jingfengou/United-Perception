@@ -1,3 +1,4 @@
+# 公共 backbone 注册保留 ResNet/ViT；YOLOX 的专属 backbone 由对应插件注册。
 from .resnet import (resnet101,  # noqa
                      resnet152,
                      resnet18,
