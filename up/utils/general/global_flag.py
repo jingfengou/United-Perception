@@ -31,15 +31,10 @@ class Mosaic_p():
         self.flag = True
 
 
-class DistBackend():
-    def __init__(self):
-        # self.backend = 'linklink'
-        self.backend = 'dist'
 
 
 ITER_BASE_FLAG = IterBase()
 FP16_FLAG = Fp16Flag()
 ALIGNED_FLAG = Aligned()
-DIST_BACKEND = DistBackend()
 QUANT_FLAG = QuantFlag()
 DEPLOY_FLAG = QuantFlag()

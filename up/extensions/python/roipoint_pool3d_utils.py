@@ -1,6 +1,6 @@
 import torch.nn as nn
 from torch.autograd import Function
-from up.tasks.det_3d.data.box_utils import enlarge_box3d
+from .box_utils import enlarge_box3d
 from ..ext import roipoint_pool3d as roipoint_pool3d_cuda
 
 

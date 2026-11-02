@@ -13,6 +13,8 @@ from up.utils.general.log_helper import default_logger as logger
 from up.utils.general.registry_factory import MODEL_HELPER_REGISTRY, BATCHING_REGISTRY, IMAGE_READER_REGISTRY
 from up.utils.general.registry_factory import INFERENCER_REGISTRY, SAVER_REGISTRY, VISUALIZER_REGISTRY
 from up.utils.general.user_analysis_helper import get_task_from_cfg
+from up.utils.env.dist_helper import env
+from up.utils.general.global_flag import ALIGNED_FLAG
 
 __all__ = ['BaseInference']
 
@@ -24,6 +26,8 @@ class BaseInference(object):
         opts = self.args.get('opts', [])
         config = merge_opts_into_cfg(opts, config)
         self.config = config
+        ALIGNED_FLAG.aligned = config.get('runtime', {}).get('aligned', False)
+        ALIGNED_FLAG.offset = 0 if ALIGNED_FLAG.aligned else 1
         self.class_names = visualizer.get('class_names', None)
         self.work_dir = work_dir
         self.vis_dir = self.args['vis_dir']
@@ -176,8 +180,6 @@ class BaseInference(object):
                 'flipped': False
             })
 
-        if self.task_type == 'seg':
-            data['gt_semantic_seg'] = img
         data = self.transformer(data)
         scale_factor = data.get('scale_factor', 1)
 
@@ -204,10 +206,10 @@ class BaseInference(object):
 
     def predict(self):
         if os.path.isdir(self.image_path):
-            list_imgs = self.iterate_image(self.image_path)
+            list_imgs = sorted(self.iterate_image(self.image_path))
         else:
             list_imgs = [self.image_path]
-        for img_idx, filename in enumerate(list_imgs):
+        for img_idx, filename in enumerate(list_imgs[env.rank::env.world_size]):
             logger.info('predicting {}:{}'.format(img_idx, filename))
             batch = self.fetch([filename])
             with torch.no_grad():
@@ -217,8 +219,6 @@ class BaseInference(object):
                 self.vis(output)
             elif(self.task_type == 'cls'):
                 self.vis_cls(output)
-            elif(self.task_type == 'seg'):
-                self.vis_seg(output)
             else:
                 raise Exception('Unsupported type of task')
 
@@ -251,25 +251,6 @@ class BaseInference(object):
             draw = ImageDraw.Draw(img)
             draw.text((100, 100), pred, (255, 255, 255))
             draw = ImageDraw.Draw(img)
-            logger.info('visualizing {}'.format(filename))
-            output_name = os.path.basename(filename)
-            output_name = os.path.join(self.vis_dir, '{}'.format(output_name))
-            img.save(output_name)
-
-    def vis_seg(self, outputs):
-        image_info = outputs['image_info']
-        batch_size = len(image_info)
-        blob_preds = outputs['blob_pred']
-        for b_ix in range(batch_size):
-            filename = os.path.basename(image_info[b_ix][-1])
-            preds = blob_preds[b_ix]
-            pred = preds.reshape(1, preds.shape[0], preds.shape[1], preds.shape[2])
-            pred = pred.max(1)[1]
-            pred = self.tensor2numpy(pred)[0]
-            pred = pred * 255 / self.num_classes
-            pred = cv2.applyColorMap(cv2.convertScaleAbs(pred), cv2.COLORMAP_JET)
-            img = Image.fromarray(np.uint8(pred))
-            img = img.convert("RGB")
             logger.info('visualizing {}'.format(filename))
             output_name = os.path.basename(filename)
             output_name = os.path.join(self.vis_dir, '{}'.format(output_name))
