@@ -10,6 +10,7 @@ import torch.multiprocessing as mp
 from up.utils.env.dist_helper import setup_distributed, finalize, gpu_check
 from up.utils.general.yaml_loader import load_yaml  # IncludeLoader
 from up.utils.env.launch import launch
+from up.runtime import setup_runtime
 from up.utils.general.user_analysis_helper import send_info
 
 # Import from local
@@ -135,6 +136,10 @@ def main(args):
 
 def _main(args):
     DIST_BACKEND.backend = args.backend
+    runtime = setup_runtime(load_yaml(args.config, args.cfg_type), args.opts)
+    args.platform = runtime.platform
+    if runtime.platform != 'nvidia':
+        args.fork_method = 'spawn'
     if args.launch == 'pytorch':
         launch(main, args.num_gpus_per_machine, args.num_machines, args=args, start_method=args.fork_method)
     else:

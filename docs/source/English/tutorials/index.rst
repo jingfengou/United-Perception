@@ -18,4 +18,5 @@ The tutorials guide users to configure and use UP modules, and implement their o
    guide/fp16
    guide/quant
    guide/environment
+   guide/platforms
    guide/sparse

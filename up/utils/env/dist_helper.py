@@ -12,6 +12,7 @@ import pickle
 import numpy as np
 from collections import OrderedDict
 from up.utils.general.global_flag import DIST_BACKEND
+from up.runtime import get_runtime
 
 MASTER_RANK = 0
 _LOCAL_PROCESS_GROUP = None
@@ -132,8 +133,7 @@ def get_world_size(*args, **kwargs):
 
 
 def get_local_rank(*args, **kwargs):
-    rank = get_rank(*args, **kwargs)
-    return rank % torch.cuda.device_count()
+    return get_runtime().module.current_device()
 
 
 def all_reduce(*args, **kwargs):
@@ -185,7 +185,9 @@ def find_free_port():
         return str(s.getsockname()[1])
 
 
-def dist_init_slurm(backend='nccl', port='13333'):
+def dist_init_slurm(backend=None, port='13333'):
+    runtime = get_runtime()
+    backend = backend or runtime.dist_backend
     proc_id = int(os.environ['SLURM_PROCID'])
     ntasks = int(os.environ['SLURM_NTASKS'])
     node_list = os.environ['SLURM_NODELIST']
@@ -203,16 +205,11 @@ def dist_init_slurm(backend='nccl', port='13333'):
     os.environ['MASTER_ADDR'] = addr
     os.environ['WORLD_SIZE'] = str(ntasks)
     os.environ['RANK'] = str(proc_id)
-    if backend == 'nccl':
-        dist.init_process_group(backend='nccl')
-    else:
-        dist.init_process_group(backend='gloo', rank=proc_id, world_size=ntasks)
-    rank = dist.get_rank()
-    device = rank % torch.cuda.device_count()
-    torch.cuda.set_device(device)
+    runtime.set_device(int(os.environ.get('SLURM_LOCALID', proc_id % runtime.module.device_count())))
+    dist.init_process_group(backend=backend, rank=proc_id, world_size=ntasks)
 
 
-def dist_init_mpi(backend='nccl',
+def dist_init_mpi(backend=None,
                   addr='localhost',
                   port="13333",
                   rank=None,
@@ -221,38 +218,33 @@ def dist_init_mpi(backend='nccl',
     Overview:
         Init the distributed training setting
     """
-    assert backend in ['nccl', 'gloo'], backend
+    runtime = get_runtime()
+    backend = backend or runtime.dist_backend
     os.environ['MASTER_ADDR'] = addr or os.environ.get('MASTER_ADDR', addr)
     os.environ['MASTER_PORT'] = str(port) or os.environ.get('MASTER_PORT', str(port))
 
     if rank is None:
-        local_id = os.environ.ge(os.environ.get('OMPI_COMM_WORLD_RANK', None))
+        local_id = os.environ.get('OMPI_COMM_WORLD_RANK')
         if local_id is None:
             raise RuntimeError("please indicate rank explicitly in dist_init method")
         else:
             rank = int(local_id)
     if world_size is None:
-        ntasks = os.environ.get(os.environ.get('OMPI_COMM_WORLD_SIZE', None))
+        ntasks = os.environ.get('OMPI_COMM_WORLD_SIZE')
         if ntasks is None:
             raise RuntimeError("please indicate world_size explicitly in dist_init method")
         else:
             world_size = int(ntasks)
 
+    runtime.set_device(int(os.environ.get('OMPI_COMM_WORLD_LOCAL_RANK', rank % runtime.module.device_count())))
     dist.init_process_group(backend=backend, rank=rank, world_size=world_size)
-    rank = dist.get_rank()
-    device = rank % torch.cuda.device_count()
-    torch.cuda.set_device(device)
 
 
 def setup_distributed_dist(port, launch):
     if launch == 'slurm':
-        device = get_rank() % torch.cuda.device_count()
-        torch.cuda.set_device(device)
         dist_init_slurm(port=port)
     else:
         dist_init_mpi(port=port)
-        device = get_rank() % torch.cuda.device_count()
-        torch.cuda.set_device(device)
 
 
 
@@ -274,7 +266,7 @@ def _get_global_gloo_group():
     The result is cached.
     """
     if DIST_BACKEND.backend == 'dist':
-        if dist.get_backend() == "nccl":
+        if dist.get_backend() != "gloo":
             return dist.new_group(backend="gloo")
         else:
             return dist.group.WORLD
@@ -285,8 +277,7 @@ def _get_global_gloo_group():
 def _serialize_to_tensor(data, group):
     if DIST_BACKEND.backend == 'dist':
         backend = dist.get_backend(group)
-        assert backend in ["gloo", "nccl"]
-        device = torch.device("cpu" if backend == "gloo" else "cuda")
+        device = torch.device("cpu") if backend == "gloo" else get_runtime().device
 
     buffer = pickle.dumps(data)
     if len(buffer) > 1024 ** 3:
@@ -298,7 +289,7 @@ def _serialize_to_tensor(data, group):
             )
         )
     storage = torch.ByteStorage.from_buffer(buffer)
-    tensor = torch.ByteTensor(storage).to(device=device)
+    tensor = torch.ByteTensor(storage).to(device=device, dtype=torch.int32)
     return tensor
 
 
@@ -328,7 +319,7 @@ def _pad_to_largest_tensor(tensor, group):
     # gathering tensors of different shapes
     if local_size != max_size:
         padding = torch.zeros(
-            (max_size - local_size,), dtype=torch.uint8, device=tensor.device
+            (max_size - local_size,), dtype=tensor.dtype, device=tensor.device
         )
         tensor = torch.cat((tensor, padding), dim=0)
     return size_list, tensor
@@ -359,7 +350,7 @@ def all_gather(data, group=None):
 
     # receiving Tensor from all ranks
     tensor_list = [
-        torch.empty((max_size,), dtype=torch.uint8, device=tensor.device)
+        torch.empty((max_size,), dtype=tensor.dtype, device=tensor.device)
         for _ in size_list
     ]
     if DIST_BACKEND.backend == 'dist':
@@ -367,7 +358,7 @@ def all_gather(data, group=None):
 
     data_list = []
     for size, tensor in zip(size_list, tensor_list):
-        buffer = tensor.cpu().numpy().tobytes()[:size]
+        buffer = tensor.cpu().to(torch.uint8).numpy().tobytes()[:size]
         data_list.append(pickle.loads(buffer))
 
     return data_list
@@ -394,6 +385,11 @@ def gather_pk(data, dst=0, group=None):
             return [data]
         rank = get_rank(group=group)
 
+    # HCCL/CNCL do not provide the CPU-gather implementation used by Gloo.
+    if dist.get_backend(group) != 'gloo':
+        result = all_gather(data, group=group)
+        return result if rank == dst else []
+
     tensor = _serialize_to_tensor(data, group)
     size_list, tensor = _pad_to_largest_tensor(tensor, group)
 
@@ -401,14 +397,14 @@ def gather_pk(data, dst=0, group=None):
     if rank == dst:
         max_size = max(size_list)
         tensor_list = [
-            torch.empty((max_size,), dtype=torch.uint8, device=tensor.device)
+            torch.empty((max_size,), dtype=tensor.dtype, device=tensor.device)
             for _ in size_list
         ]
         if DIST_BACKEND.backend == 'dist':
             gather(tensor, tensor_list, dst=dst, group=group)
         data_list = []
         for size, tensor in zip(size_list, tensor_list):
-            buffer = tensor.cpu().numpy().tobytes()[:size]
+            buffer = tensor.cpu().to(torch.uint8).numpy().tobytes()[:size]
             data_list.append(pickle.loads(buffer))
         return data_list
     else:
@@ -428,15 +424,15 @@ def finalize():
         pass
 
 
-def pyobj2tensor(pyobj, device="cuda"):
+def pyobj2tensor(pyobj, device=None):
     """serialize picklable python object to tensor"""
     storage = torch.ByteStorage.from_buffer(pickle.dumps(pyobj))
-    return torch.ByteTensor(storage).to(device=device)
+    return torch.ByteTensor(storage).to(device=device or get_runtime().device, dtype=torch.int32)
 
 
 def tensor2pyobj(tensor):
     """deserialize tensor to picklable python object"""
-    return pickle.loads(tensor.cpu().numpy().tobytes())
+    return pickle.loads(tensor.cpu().to(torch.uint8).numpy().tobytes())
 
 
 def all_reduce_dict(py_dict, op="sum", group=None):
@@ -547,13 +543,13 @@ def broadcast_object(obj, group=None):
     if get_world_size() <= 1:
         return obj
 
-    serialized_tensor = _serialize_to_tensor(obj, group=None).cuda()
-    numel = torch.IntTensor([serialized_tensor.numel()]).cuda()
-    broadcast(numel, MASTER_RANK)
+    serialized_tensor = _serialize_to_tensor(obj, group=group)
+    numel = torch.tensor([serialized_tensor.numel()], dtype=torch.int64, device=serialized_tensor.device)
+    broadcast(numel, MASTER_RANK, group=group)
     # serialized_tensor from storage is not resizable
     serialized_tensor = serialized_tensor.clone()
-    serialized_tensor.resize_(numel)
-    broadcast(serialized_tensor, MASTER_RANK)
-    serialized_bytes = serialized_tensor.cpu().numpy().tobytes()
+    serialized_tensor.resize_(int(numel.item()))
+    broadcast(serialized_tensor, MASTER_RANK, group=group)
+    serialized_bytes = serialized_tensor.cpu().to(torch.uint8).numpy().tobytes()
     deserialized_obj = pickle.loads(serialized_bytes)
     return deserialized_obj

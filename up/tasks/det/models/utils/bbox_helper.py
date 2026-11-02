@@ -5,6 +5,8 @@ import time
 # Import from third library
 import numpy as np
 import torch
+from up.runtime import get_runtime
+from up.platform.ops import box_overlap
 
 from up.utils.general.global_flag import ALIGNED_FLAG
 from up.extensions import gpu_iou_overlap
@@ -40,6 +42,8 @@ def filter_by_size(boxes, min_size, start_index=0):
 @allow_empty_tensor(2)
 @to_float32
 def bbox_iou_overlaps(b1, b2, aligned=False):
+    if get_runtime().platform != 'nvidia' and b1.device.type != 'cpu' and not aligned:
+        return box_overlap(b1, b2)
     if not b1.is_cuda or aligned:
         return vanilla_bbox_iou_overlaps(b1, b2, aligned)
 
@@ -128,6 +132,8 @@ def generalized_box_iou(boxes1, boxes2):
 
 @allow_empty_tensor(2)
 def bbox_iof_overlaps(b1, b2):
+    if get_runtime().platform != 'nvidia' and b1.device.type != 'cpu':
+        return box_overlap(b1, b2, mode='IoF')
     if not b1.is_cuda:
         return vanilla_bbox_iof_overlaps(b1, b2)
     global GPU_MEMORY

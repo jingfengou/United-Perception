@@ -43,7 +43,7 @@ class BCE_LOSS(_Loss):
     def forward(self, input, label):
         C = input.size(1) if self.bias else 1
         if label.dim() == 1:
-            one_hot = torch.zeros_like(input).cuda()
+            one_hot = torch.zeros_like(input)
             label = label.reshape(one_hot.shape[0], 1)
             one_hot.scatter_(1, label, 1)
             loss = self.bce_loss(input, one_hot)

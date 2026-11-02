@@ -24,7 +24,11 @@ def _find_cuda_home():
 
 # remember to overwrite PyTorch auto-detected cuda home which
 # may not be our expected
-torch.utils.cpp_extension.CUDA_HOME = _find_cuda_home()
+BUILD_PLATFORM = os.environ.get('UP_BUILD_PLATFORM', 'nvidia')
+if BUILD_PLATFORM not in ('nvidia', 'ascend_npu', 'cambricon_mlu', 'metax_cuda'):
+    raise ValueError('Unknown UP_BUILD_PLATFORM: {}'.format(BUILD_PLATFORM))
+if BUILD_PLATFORM == 'nvidia':
+    torch.utils.cpp_extension.CUDA_HOME = _find_cuda_home()
 CUDA_HOME = torch.utils.cpp_extension.CUDA_HOME
 
 CORE_DIR = 'up'
@@ -47,6 +51,8 @@ def recursive_glob(base_dir, pattern):
 
 
 def get_extensions():
+    if BUILD_PLATFORM != 'nvidia':
+        return []
     this_dir = os.path.dirname(os.path.abspath(__file__))
     sources_dir = os.path.join(this_dir, CORE_DIR, EXT_DIR, "csrc")
 

@@ -172,7 +172,7 @@ class YoloxPostProcess(nn.Module):
             else:
                 l1_loss = ori_loc_preds.sum()
         else:
-            l1_loss = torch.tensor(0.0).cuda()
+            l1_loss = cls_pred.new_tensor(0.0)
         return {
             self.prefix + '.cls_loss': cls_loss,
             self.prefix + '.loc_loss': loc_loss,

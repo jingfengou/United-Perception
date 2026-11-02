@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 import torch
+from up.runtime import get_runtime
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
 
@@ -275,7 +276,7 @@ class TrainEvalLogger(Hook):
                 lr=runner.lr_scheduler.get_lr()[0],
                 eta=eta_string,
                 timer=self.train_timers,
-                memory=torch.cuda.max_memory_allocated() / 1024.0 / 1024.0,
+                memory=get_runtime().module.max_memory_allocated() / 1024.0 / 1024.0,
             ))
         output, loss_str = self.get_loss(self.output)
         del self.output
@@ -307,7 +308,7 @@ class TrainEvalLogger(Hook):
                 "{timers}",
             ]).format(
                 progress=min(cur_iter / test_len * 100, 100),
-                memory=torch.cuda.max_memory_allocated() / 1024.0 / 1024.0,
+                memory=get_runtime().module.max_memory_allocated() / 1024.0 / 1024.0,
                 cur_iter=cur_iter,
                 test_len=test_len,
                 eta=eta_string,
@@ -939,8 +940,8 @@ class GPUMemoryEmpty(Hook):
 
     def after_update(self, cur_iter):
         if cur_iter % self.freq == 0 and cur_iter > 0:
-            torch.cuda.empty_cache()
-            torch.cuda.memory.reset_peak_memory_stats()
+            get_runtime().module.empty_cache()
+            get_runtime().module.reset_peak_memory_stats()
 
 
 @HOOK_REGISTRY.register('memory_checkpoint')

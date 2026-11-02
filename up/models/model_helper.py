@@ -119,6 +119,13 @@ class ModelHelper(nn.Module):
         self.device = torch.device('cuda')
         return super(ModelHelper, self).cuda()
 
+    def to(self, *args, **kwargs):
+        model = super(ModelHelper, self).to(*args, **kwargs)
+        parameter = next(self.parameters(), None)
+        if parameter is not None:
+            self.device, self.dtype = parameter.device, parameter.dtype
+        return model
+
     def cpu(self):
         self.device = torch.device('cpu')
         return super(ModelHelper, self).cpu()

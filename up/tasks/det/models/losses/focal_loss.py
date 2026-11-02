@@ -2,6 +2,8 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
+from up.runtime import get_runtime
+from up.platform.ops import sigmoid_focal_loss
 
 from .entropy_loss import GeneralizedCrossEntropyLoss
 from up.utils.general.registry_factory import LOSSES_REGISTRY
@@ -193,6 +195,7 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
             - target (LongTenosor): [[M, N]]
         """
         # assert reduction != 'none', 'Not Supported none reduction yet'
+        focal = SigmoidFocalLossFunction.apply if get_runtime().platform == 'nvidia' else sigmoid_focal_loss
         input = input.reshape(target.numel(), -1)
         target = target.reshape(-1).int()
         normalizer = 1.0 if normalizer is None else normalizer
@@ -201,7 +204,7 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
             normalizer = dynamic_normalizer(input, target, self.alpha, self.gamma)
         if weights is not None:
             if weights.shape.__len__() == 2 or (weights.shape.__len__() == 1 and target.shape.__len__() == 2):
-                loss = SigmoidFocalLossFunction.apply(
+                loss = focal(
                     input,
                     target,
                     normalizer,
@@ -214,7 +217,7 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
                 loss = loss * weights
                 return _reduce(loss, reduction='sum')
 
-        loss = SigmoidFocalLossFunction.apply(
+        loss = focal(
             input, target, normalizer, self.gamma, self.alpha, self.num_channels, reduction)
         return loss
 
@@ -264,7 +267,7 @@ class TorchSigmoidFocalLoss(GeneralizedCrossEntropyLoss):
         # N * C
         N, C = input.size()
         onehot_target = input.new_zeros(N, C + 1)
-        onehot_target[torch.arange(N), target] = 1
+        onehot_target[torch.arange(N, device=input.device), target] = 1
         return onehot_target[:, 1:]
 
     def forward(self, input, target, reduction, normalizer=None):

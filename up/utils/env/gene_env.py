@@ -2,6 +2,7 @@ import random
 import numpy as np
 import uuid
 import torch
+from up.runtime import get_runtime
 from torch.utils.collect_env import get_pretty_env_info
 from .dist_helper import env
 from collections.abc import Mapping
@@ -30,13 +31,13 @@ def set_random_seed(seed, rank_init=False):
         random.seed(seed)
         np.random.seed(seed ** 2)
         torch.manual_seed(seed ** 3)
-        torch.cuda.manual_seed(seed ** 4)
+        get_runtime().module.manual_seed(seed ** 4)
     else:
         seed_add = env.rank
         random.seed(seed + seed_add)
         np.random.seed(seed + seed_add)
         torch.manual_seed(seed + seed_add)
-        torch.cuda.manual_seed(seed + seed_add)
+        get_runtime().module.manual_seed(seed + seed_add)
 
 
 def to_device(input, device="cuda", dtype=None):

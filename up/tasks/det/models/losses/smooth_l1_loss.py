@@ -14,7 +14,7 @@ def smooth_l1_loss(input, target, sigma, reduction='none', normalizer=None, code
     beta = 1. / (sigma**2)
     diff = torch.abs(input - target)
     if code_weights is not None:
-        diff = diff * code_weights.view(1, 1, -1)
+        diff = diff * code_weights.to(input).view(1, 1, -1)
     cond = diff < beta
     loss = torch.where(cond, 0.5 * diff**2 / beta, diff - 0.5 * beta)
     if weights is not None:
@@ -42,7 +42,7 @@ class SmoothL1Loss(BaseLoss):
         self.code_weights = None
         if code_weights is not None:
             self.code_weights = np.array(code_weights, dtype=np.float32)
-            self.code_weights = torch.from_numpy(self.code_weights).cuda()
+            self.code_weights = torch.from_numpy(self.code_weights)
         else:
             self.code_weights = None
 

@@ -1,4 +1,4 @@
-from torchvision.ops import nms as t_nms
+from up.platform.ops import nms as t_nms
 
 
 def nms(cls_rois, nms_cfg={}):
