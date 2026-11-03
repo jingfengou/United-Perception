@@ -1,0 +1,1622 @@
+{
+  "reference_commit": "1208bfd9c3aeef3921db8ade83f7dbf85f583e5d",
+  "vendors": {
+    "metax_cuda": {
+      "name": "沐曦 C500",
+      "device": "cuda",
+      "plugin": "厂商 Torch",
+      "communication": "mcCL 的 NCCL 兼容 API"
+    },
+    "cambricon_mlu": {
+      "name": "寒武纪 MLU590",
+      "device": "mlu",
+      "plugin": "torch_mlu",
+      "communication": "CNCL"
+    },
+    "ascend_npu": {
+      "name": "昇腾 910B",
+      "device": "npu",
+      "plugin": "torch_npu",
+      "communication": "HCCL"
+    }
+  },
+  "services": [
+    {
+      "id": "device.is_available",
+      "section": "设备服务",
+      "signature": "is_available()",
+      "output": "bool",
+      "meaning": "当前设备和运行库能否使用；不把“导入成功”当卡可用。",
+      "nvidia": "torch.cuda.is_available",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.device_count",
+      "section": "设备服务",
+      "signature": "device_count()",
+      "output": "int",
+      "meaning": "当前进程可见设备数，遵守可见卡设置。",
+      "nvidia": "torch.cuda.device_count",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.current_device",
+      "section": "设备服务",
+      "signature": "current_device()",
+      "output": "int",
+      "meaning": "当前进程绑定的逻辑卡号。",
+      "nvidia": "torch.cuda.current_device",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.set_device",
+      "section": "设备服务",
+      "signature": "set_device(index)",
+      "output": "None",
+      "meaning": "绑定本 rank 的设备；不改其他 rank 的卡。",
+      "nvidia": "torch.cuda.set_device",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.get_device_properties",
+      "section": "设备服务",
+      "signature": "get_device_properties(index)",
+      "output": "对象，含 total_memory:int",
+      "meaning": "显存总量按 byte 返回；不要返回 MB。",
+      "nvidia": "torch.cuda.get_device_properties",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.memory_allocated",
+      "section": "设备服务",
+      "signature": "memory_allocated(device=None)",
+      "output": "int，byte",
+      "meaning": "当前 allocator 已分配显存，支持查询指定设备。",
+      "nvidia": "torch.cuda.memory_allocated",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/memory.py"
+    },
+    {
+      "id": "device.max_memory_allocated",
+      "section": "设备服务",
+      "signature": "max_memory_allocated(device=None)",
+      "output": "int，byte",
+      "meaning": "自最近重置以来的显存峰值。",
+      "nvidia": "torch.cuda.max_memory_allocated",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/memory.py"
+    },
+    {
+      "id": "device.reset_peak_memory_stats",
+      "section": "设备服务",
+      "signature": "reset_peak_memory_stats(device=None)",
+      "output": "None",
+      "meaning": "重置峰值统计，不释放正在使用的张量。",
+      "nvidia": "torch.cuda.reset_peak_memory_stats",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/memory.py"
+    },
+    {
+      "id": "device.empty_cache",
+      "section": "设备服务",
+      "signature": "empty_cache()",
+      "output": "None",
+      "meaning": "释放 allocator 可释放缓存，不删除活跃 Tensor。",
+      "nvidia": "torch.cuda.empty_cache",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/memory.py"
+    },
+    {
+      "id": "device.synchronize",
+      "section": "设备服务",
+      "signature": "synchronize(device=None)",
+      "output": "None",
+      "meaning": "等待指定/当前设备的工作完成。",
+      "nvidia": "torch.cuda.synchronize",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.manual_seed",
+      "section": "设备服务",
+      "signature": "manual_seed(seed)",
+      "output": "None",
+      "meaning": "按 UP 原种子规则设置当前设备 RNG。",
+      "nvidia": "torch.cuda.manual_seed",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.get_rng_state",
+      "section": "设备服务",
+      "signature": "get_rng_state(device=None)",
+      "output": "可保存的状态对象",
+      "meaning": "取出当前设备 RNG 状态，用于 checkpoint/重计算。",
+      "nvidia": "torch.cuda.get_rng_state",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "device.set_rng_state",
+      "section": "设备服务",
+      "signature": "set_rng_state(state, device=None)",
+      "output": "None",
+      "meaning": "恢复同厂商兼容版本保存的 RNG 状态。",
+      "nvidia": "torch.cuda.set_rng_state",
+      "reference": "https://docs.pytorch.org/docs/2.10/cuda.html",
+      "target": "RuntimeBackend.module；API 不兼容才在 up/platform/{vendor}/device.py 写适配器",
+      "action": "现有映射已接入；复用厂商设备 API 并逐项验证",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/cuda/__init__.py"
+    },
+    {
+      "id": "amp.autocast",
+      "section": "AMP",
+      "signature": "autocast(enabled=True)",
+      "output": "上下文管理器",
+      "meaning": "前向按厂商 AMP 策略选 dtype；退出时恢复上下文。原匹配中的 enabled=False 仍强制该段关闭 AMP。",
+      "nvidia": "torch.cuda.amp.autocast",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/autocast_mode.py"
+    },
+    {
+      "id": "amp.GradScaler",
+      "section": "AMP",
+      "signature": "GradScaler(enabled=True)",
+      "output": "scaler 对象",
+      "meaning": "创建缩放器；当前 UP 使用 enabled 参数，不要求复制所有版本的额外参数。",
+      "nvidia": "torch.cuda.amp.GradScaler",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "amp.scale",
+      "section": "AMP",
+      "signature": "scale(loss)",
+      "output": "Tensor，保留计算图",
+      "meaning": "缩放 loss，允许随后 .backward()。",
+      "nvidia": "scaler.scale",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "amp.unscale_",
+      "section": "AMP",
+      "signature": "unscale_(optimizer)",
+      "output": "None",
+      "meaning": "按需在梯度裁剪前原地还原梯度；同一步不能重复还原。",
+      "nvidia": "scaler.unscale_",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "amp.step",
+      "section": "AMP",
+      "signature": "step(optimizer)",
+      "output": "原 optimizer.step 的返回/跳过时 None",
+      "meaning": "检查溢出，正常才更新参数；不改优化算法或参数组。",
+      "nvidia": "scaler.step",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "amp.update",
+      "section": "AMP",
+      "signature": "update()",
+      "output": "None",
+      "meaning": "按原规则更新下一步 scale。",
+      "nvidia": "scaler.update",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "amp.state_dict",
+      "section": "AMP",
+      "signature": "state_dict()",
+      "output": "dict",
+      "meaning": "保存 scale 和相关计数。",
+      "nvidia": "scaler.state_dict",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "amp.load_state_dict",
+      "section": "AMP",
+      "signature": "load_state_dict(state_dict)",
+      "output": "None",
+      "meaning": "恢复训练，不重置已保存的缩放状态。",
+      "nvidia": "scaler.load_state_dict",
+      "reference": "https://docs.pytorch.org/docs/2.10/notes/amp_examples.html",
+      "target": "RuntimeBackend.amp；工厂返回厂商 AMP，名字/行为不兼容才写适配器",
+      "action": "复用并验证缩放、溢出跳步、状态恢复",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/amp/grad_scaler.py"
+    },
+    {
+      "id": "comm.init_process_group",
+      "section": "通信/分布式",
+      "signature": "init_process_group(backend, rank, world_size, init_method=None, timeout=None)",
+      "output": "初始化默认组",
+      "meaning": "列出 UP 使用的参数；未指定 timeout 时沿用匹配 Torch 的默认值。先绑设备，再初始化厂商组。",
+      "nvidia": "torch.distributed.init_process_group",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.new_group",
+      "section": "通信/分布式",
+      "signature": "new_group(ranks=None, backend=None)",
+      "output": "ProcessGroup",
+      "meaning": "支持 UP 的局部 rank 分组；对象通信保留 Gloo CPU 组。",
+      "nvidia": "torch.distributed.new_group",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.all_reduce",
+      "section": "通信/分布式",
+      "signature": "all_reduce(tensor, op=SUM, group=None, async_op=False)",
+      "output": "None / Work",
+      "meaning": "原地归约，维持 op、dtype、组和异步句柄语义。",
+      "nvidia": "torch.distributed.all_reduce",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.broadcast",
+      "section": "通信/分布式",
+      "signature": "broadcast(tensor, src, group=None, async_op=False)",
+      "output": "None / Work",
+      "meaning": "从指定 rank 广播，原地更新接收 Tensor。",
+      "nvidia": "torch.distributed.broadcast",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.all_gather",
+      "section": "通信/分布式",
+      "signature": "all_gather(tensor_list, tensor, group=None, async_op=False)",
+      "output": "None / Work",
+      "meaning": "按 rank 顺序收集；保留列表内容和 dtype。",
+      "nvidia": "torch.distributed.all_gather",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.gather",
+      "section": "通信/分布式",
+      "signature": "gather(tensor, gather_list=None, dst=0, group=None, async_op=False)",
+      "output": "None / Work",
+      "meaning": "只在目标 rank 填充 gather_list。",
+      "nvidia": "torch.distributed.gather",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.barrier",
+      "section": "通信/分布式",
+      "signature": "barrier(group=None, async_op=False)",
+      "output": "None / Work",
+      "meaning": "只同步目标组。",
+      "nvidia": "torch.distributed.barrier",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.destroy_process_group",
+      "section": "通信/分布式",
+      "signature": "destroy_process_group(group=None)",
+      "output": "None",
+      "meaning": "正常退出并释放本任务的通信资源。",
+      "nvidia": "torch.distributed.destroy_process_group",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/distributed/distributed_c10d.py"
+    },
+    {
+      "id": "comm.DistributedDataParallel",
+      "section": "通信/分布式",
+      "signature": "DistributedDataParallel(module, device_ids=None, find_unused_parameters=False, broadcast_buffers=True)",
+      "output": "Module",
+      "meaning": "列出 UP 的主要参数，完整签名沿用匹配 Torch；核多 rank 梯度同步、unused 参数和恢复。",
+      "nvidia": "torch.nn.parallel.DistributedDataParallel",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/nn/parallel/distributed.py"
+    },
+    {
+      "id": "comm.SyncBatchNorm.forward",
+      "section": "通信/分布式",
+      "signature": "SyncBatchNorm.forward(input)",
+      "output": "Tensor，与输入布局一致",
+      "meaning": "训练跨 rank 同步统计并提供反向；eval 不更新统计。核 UP 的 TaskSyncBN 所用 PyTorch 私有 SyncBatchNorm.apply 版本兼容性。",
+      "nvidia": "torch.nn.SyncBatchNorm.forward / torch.nn.modules._functions.SyncBatchNorm.apply",
+      "reference": "https://docs.pytorch.org/docs/2.10/distributed.html",
+      "target": "RuntimeBackend.dist_backend + up/utils/env/{launch,dist_helper}.py；SyncBN 见 up/utils/model/bn_helper.py",
+      "action": "复用厂商通信插件；有缺口则在平台侧接入同语义实现，双卡验收",
+      "nvidia_source": "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/nn/modules/batchnorm.py"
+    },
+    {
+      "id": "runtime.memory_available",
+      "section": "平台策略",
+      "signature": "memory_available(device, needed_memory, reserve_bytes=536870912)",
+      "output": "bool",
+      "meaning": "按 byte 比较 total_memory - memory_allocated - reserve_bytes；保留原 UP 的显存估计和比较规则。",
+      "nvidia": "RuntimeBackend.memory_available → torch.cuda.get_device_properties / memory_allocated",
+      "reference": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/runtime/backend.py#L51",
+      "target": "RuntimeBackend.memory_available；底层名称不兼容时写厂商 device.py 适配器",
+      "action": "共享策略已实现，验证设备属性和 allocator 口径",
+      "nvidia_source": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/runtime/backend.py#L51"
+    },
+    {
+      "id": "runtime.configure_dnn",
+      "section": "计算库策略",
+      "signature": "configure_dnn(options=None, legacy_nocudnn=None)",
+      "output": "None；未支持项抛 NotImplementedError",
+      "meaning": "options 允许 enabled/benchmark/deterministic/allow_tf32 的 bool；只接真实有效的厂商控制项。None 保留当前默认；legacy_nocudnn 处理原 CLI。",
+      "nvidia": "RuntimeBackend.configure_dnn → torch.backends.cudnn",
+      "reference": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/runtime/backend.py#L59",
+      "target": "RuntimeBackend.configure_dnn；有厂商差异时由 device.py 提供策略实现",
+      "action": "C500 核 mcDNN 兼容开关；MLU/NPU 只实现有效 CNNL/CANN 控制项，未支持的明确报错",
+      "nvidia_source": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/runtime/backend.py#L59"
+    }
+  ],
+  "operations": [
+    {
+      "id": "roi_align",
+      "title": "RoIAlign 区域特征采样",
+      "file": "roi_align.py",
+      "symbol": "RoIAlignFunction",
+      "extra": "aligned",
+      "bindings": [
+        "roi_align.forward_avg_cuda",
+        "roi_align.backward_avg_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/roi_align/roi_align_cuda.cpp",
+          "symbol": "roi_align_avg_forward_cuda",
+          "sha256": "2f01c3bbc8f446b9842c3a4da9ada93d19b38d963114994fa0a189dcb29cecf2",
+          "line": 5,
+          "signature": "roi_align_avg_forward_cuda(bool aligned, int aligned_height, int aligned_width, float spatial_scale, int sampling_ratio, Tensor features, Tensor rois, Tensor output)",
+          "snippet": "int roi_align_avg_forward_cuda(bool aligned, int aligned_height, int aligned_width,\n        float spatial_scale, int sampling_ratio,\n        Tensor features, Tensor rois, Tensor output)\n{\n    // Grab the input tensor\n    CHECK_INPUT(features);\n    CHECK_INPUT(rois);\n    CHECK_INPUT(output);\n    // Number of ROIs\n    int num_rois = rois.size(0);\n    int size_rois = rois.size(1);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roi_align/roi_align_cuda.cpp#L5"
+        },
+        {
+          "path": "up/extensions/csrc/roi_align/roi_align_cuda.cpp",
+          "symbol": "roi_align_avg_backward_cuda",
+          "sha256": "2f01c3bbc8f446b9842c3a4da9ada93d19b38d963114994fa0a189dcb29cecf2",
+          "line": 39,
+          "signature": "roi_align_avg_backward_cuda(bool aligned, int aligned_height, int aligned_width, float spatial_scale, int sampling_ratio, Tensor top_grad, Tensor rois, Tensor bottom_grad)",
+          "snippet": "int roi_align_avg_backward_cuda(bool aligned, int aligned_height, int aligned_width,\n        float spatial_scale, int sampling_ratio,\n        Tensor top_grad, Tensor rois, Tensor bottom_grad)\n{\n    // Grab the input tensor\n    CHECK_INPUT(top_grad);\n    CHECK_INPUT(rois);\n    CHECK_INPUT(bottom_grad);\n\n\n    // Number of ROIs",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roi_align/roi_align_cuda.cpp#L39"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/roi_align/roi_align_kernel.cu",
+          "symbol": "roi_align_kernel.cu",
+          "sha256": "433c8fb2969a19b56bd722efe996449ef506d0fa7d946d73564e60388c993c80",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roi_align/roi_align_kernel.cu#L1"
+        }
+      ],
+      "inputs": "features[N,C,H,W]；rois[K,5]=[batch_idx,x1,y1,x2,y2]；pooled_h/pooled_w 为输出尺寸；spatial_scale 为坐标缩放；sampling_ratio 为采样数；pooled_mode=\"AVG\"；aligned 为原 ALIGNED_FLAG.aligned。",
+      "output": "Tensor[K,C,pooled_h,pooled_w]；与 features 同设备、同浮点 dtype。",
+      "backward": "对 features 求梯度；rois 和标量参数返回 None。保存 rois、特征尺寸和采样参数。",
+      "details": "输入按原包装转为 contiguous，rois 转成 features.dtype。空输出直接返回零尺寸 Tensor。MAX 的 Python 分支存在，但原 pybind 未导出 MAX 内核；本轮不要求补 MAX。",
+      "scope": "有原生包装；当前瘦身模型未见直接调用，使用 RoI 模型时接入。",
+      "public_signature": "RoIAlignFunction.apply(features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode)",
+      "vendor_signature": "roi_align(features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode, *, aligned)",
+      "signature_args": "features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode, *, aligned",
+      "python": [
+        {
+          "path": "up/extensions/python/roi_align.py",
+          "symbol": "RoIAlignFunction.forward",
+          "sha256": "f27faf925244f6e467ccd61810de1b1cecd577b1e3cc7d59366ca389c880e8b2",
+          "line": 30,
+          "signature": "RoIAlignFunction.forward(self, features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode)",
+          "snippet": "    def forward(self, features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode):\n        self.save_for_backward(features, rois)\n        self.pooled_h = pooled_h\n        self.pooled_w = pooled_w\n        self.spatial_scale = spatial_scale\n        self.sampling_ratio = sampling_ratio\n        self.pooled_mode = pooled_mode\n\n        batch_size, num_channels, data_height, data_width = features.size()\n        num_rois = rois.size(0)\n\n        output = features.new(num_rois, num_channels, pooled_h, pooled_w).zero_()\n        assert features.is_contiguous() and rois.is_contiguous()\n        if output.numel() == 0:\n            return output\n\n        forward_fn = roi_align.forward_avg_cuda\n        if pooled_mode == 'MAX':\n            forward_fn = roi_align.forward_max_cuda\n        if not features.is_cuda:\n            logger.warning(\n                '---CPU version of RoIAlignPooling is a dummpy function, which is used to support tocaffe')\n            forward_fn = roi_align.forward_cpu\n",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roi_align.py#L30"
+        },
+        {
+          "path": "up/extensions/python/roi_align.py",
+          "symbol": "RoIAlignFunction.backward",
+          "sha256": "f27faf925244f6e467ccd61810de1b1cecd577b1e3cc7d59366ca389c880e8b2",
+          "line": 58,
+          "signature": "RoIAlignFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        grad_output = grad_output.data\n        feature, rois = self.saved_tensors\n\n        batch_size, num_channels, data_height, data_width = feature.shape\n        grad_input = feature.new(batch_size, num_channels, data_height, data_width).zero_()\n        if grad_output.data.numel() == 0:\n            return grad_input, None, None, None, None, None, None\n        if not grad_output.is_contiguous():\n            grad_output = grad_output.contiguous()\n        assert(grad_output.is_contiguous())\n        assert(rois.is_contiguous())\n\n        if self.pooled_mode == 'AVG':\n            backward_fn = roi_align.backward_avg_cuda\n            backward_fn(\n                ALIGNED_FLAG.aligned, self.pooled_h, self.pooled_w, self.spatial_scale,\n                self.sampling_ratio, grad_output, rois, grad_input)\n        elif self.pooled_mode == 'MAX':\n            backward_fn = roi_align.backward_max_cuda\n            backward_fn(\n                ALIGNED_FLAG.aligned, self.pooled_h, self.pooled_w, self.spatial_scale,\n                self.sampling_ratio, grad_output, rois, grad_input, feature)\n        else:",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roi_align.py#L58"
+        },
+        {
+          "path": "up/extensions/python/roi_align.py",
+          "symbol": "RoIAlignFunction.symbolic",
+          "sha256": "f27faf925244f6e467ccd61810de1b1cecd577b1e3cc7d59366ca389c880e8b2",
+          "line": 18,
+          "signature": "RoIAlignFunction.symbolic(g, features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode)",
+          "snippet": "    def symbolic(g, features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode):\n        return g.op(\n            \"RoiAlign\",\n            features,\n            rois,\n            spatial_scale_f=spatial_scale,\n            pooled_width_i=pooled_w,\n            pooled_height_i=pooled_h,\n            pooled_mode_s=pooled_mode,\n            sample_num_i=sampling_ratio)",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roi_align.py#L18"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.roi_align.forward_avg_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 36,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L36"
+        },
+        {
+          "symbol": "up.extensions._C.roi_align.backward_avg_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 37,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L37"
+        }
+      ]
+    },
+    {
+      "id": "psroi_align",
+      "title": "PSRoIAlign 位置敏感采样",
+      "file": "psroi_align.py",
+      "symbol": "PSRoIAlignFunction",
+      "bindings": [
+        "psroi_align.forward_cuda",
+        "psroi_align.backward_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/psroi_align/psroi_align_cuda.cpp",
+          "symbol": "psroi_align_forward_cuda",
+          "sha256": "7d56c185f9fe992d68f5dc674c80c76a4c4e0b85c6cf392ea6da18539046c810",
+          "line": 5,
+          "signature": "psroi_align_forward_cuda(int pooled_height, int pooled_width, int output_dim, float spatial_scale, int sampling_ratio, Tensor features, Tensor rois, Tensor output, Tensor mapping_channel)",
+          "snippet": "int psroi_align_forward_cuda(int pooled_height,\n                               int pooled_width,\n                               int output_dim,\n                               float spatial_scale,\n                               int sampling_ratio,\n                               Tensor features,\n                               Tensor rois,\n                               Tensor output,\n                               Tensor mapping_channel)\n{\n    // Grab the input tensor",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/psroi_align/psroi_align_cuda.cpp#L5"
+        },
+        {
+          "path": "up/extensions/csrc/psroi_align/psroi_align_cuda.cpp",
+          "symbol": "psroi_align_backward_cuda",
+          "sha256": "7d56c185f9fe992d68f5dc674c80c76a4c4e0b85c6cf392ea6da18539046c810",
+          "line": 47,
+          "signature": "psroi_align_backward_cuda(int pooled_height, int pooled_width, int output_dim, float spatial_scale, int sampling_ratio, Tensor top_grad, Tensor rois, Tensor bottom_grad, Tensor mapping_channel)",
+          "snippet": "int psroi_align_backward_cuda(int pooled_height,\n                                int pooled_width,\n                                int output_dim,\n                                float spatial_scale,\n                                int sampling_ratio,\n                                Tensor top_grad,\n                                Tensor rois,\n                                Tensor bottom_grad,\n                                Tensor mapping_channel)\n{\n    // Grab the input tensor",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/psroi_align/psroi_align_cuda.cpp#L47"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/psroi_align/psroi_align_kernel.cu",
+          "symbol": "psroi_align_kernel.cu",
+          "sha256": "8cccdfe4bb0750bcea7386ea5764e9feeffca1cda7a981ff3d908d3b604d1191",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/psroi_align/psroi_align_kernel.cu#L1"
+        }
+      ],
+      "inputs": "features[N,C,H,W]；rois[K,5]；group_size、spatial_scale、output_dim、sampling_ratio。外层按通道数计算 output_dim。",
+      "output": "Tensor[K,output_dim,group_size,group_size]，同特征设备/dtype；内部 mapping_channel 为 int32、同设备。",
+      "backward": "只对 features 求梯度；保存 rois、mapping_channel、输入尺寸和采样参数。",
+      "details": "保持位置到通道的映射，不替换成普通 RoIAlign。原包装没有专门的零 ROI 分支，空输入行为需与 NVIDIA 参考实测对齐。",
+      "scope": "有原生包装；按所选 RoI 配置接入。",
+      "public_signature": "PSRoIAlignFunction.apply(features, rois, group_size, spatial_scale, output_dim, sampling_ratio)",
+      "vendor_signature": "psroi_align(features, rois, group_size, spatial_scale, output_dim, sampling_ratio)",
+      "signature_args": "features, rois, group_size, spatial_scale, output_dim, sampling_ratio",
+      "python": [
+        {
+          "path": "up/extensions/python/psroi_align.py",
+          "symbol": "PSRoIAlignFunction.forward",
+          "sha256": "f91441f3407352df0fd40b5e048a1a763911e0115478166f0aa96c92bd690bc7",
+          "line": 20,
+          "signature": "PSRoIAlignFunction.forward(self, features, rois, group_size, spatial_scale, output_dim, sampling_ratio)",
+          "snippet": "    def forward(self, features, rois, group_size, spatial_scale, output_dim, sampling_ratio):\n        self.save_for_backward(features, rois)\n        self.group_size = group_size\n        self.spatial_scale = spatial_scale\n        self.output_dim = output_dim\n        self.sampling_ratio = sampling_ratio\n\n        batch_size, num_channels, data_height, data_width = features.size()\n        num_rois = rois.shape[0]\n        output = features.new(num_rois, self.output_dim, self.group_size, self.group_size).zero_()\n        mapping_channel = torch.cuda.IntTensor(\n            num_rois, self.output_dim, self.group_size, self.group_size).zero_()\n\n        forward_fn = psroi_align.forward_cuda\n        if not features.is_cuda:\n            logger.warning(\n                '---CPU version of PSRoIAligning is a dummpy function, which is used to support tocaffe')\n            forward_fn = psroi_align.forward_cpu\n\n        forward_fn(\n            self.group_size, self.group_size, self.output_dim,\n            self.spatial_scale, self.sampling_ratio, features, rois, output, mapping_channel)\n\n        self.mapping_channel = mapping_channel",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/psroi_align.py#L20"
+        },
+        {
+          "path": "up/extensions/python/psroi_align.py",
+          "symbol": "PSRoIAlignFunction.backward",
+          "sha256": "f91441f3407352df0fd40b5e048a1a763911e0115478166f0aa96c92bd690bc7",
+          "line": 47,
+          "signature": "PSRoIAlignFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        grad_output = grad_output.data\n\n        feature, rois = self.saved_tensors\n        assert grad_output.is_cuda\n\n        batch_size, num_channels, data_height, data_width = feature.shape\n        grad_input = grad_output.new(batch_size, num_channels, data_height, data_width).zero_()\n        psroi_align.backward_cuda(\n            self.group_size, self.group_size, self.output_dim,\n            self.spatial_scale, self.sampling_ratio, grad_output, rois, grad_input, self.mapping_channel)\n        return grad_input, None, None, None, None, None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/psroi_align.py#L47"
+        },
+        {
+          "path": "up/extensions/python/psroi_align.py",
+          "symbol": "PSRoIAlignFunction.symbolic",
+          "sha256": "f91441f3407352df0fd40b5e048a1a763911e0115478166f0aa96c92bd690bc7",
+          "line": 9,
+          "signature": "PSRoIAlignFunction.symbolic(g, features, rois, group_size, spatial_scale, output_dim, sampling_ratio)",
+          "snippet": "    def symbolic(g, features, rois, group_size, spatial_scale, output_dim, sampling_ratio):\n        return g.op(\n            \"PSRoiAlign\",\n            features,\n            rois,\n            output_dim_i=output_dim,\n            group_size_i=group_size,\n            spatial_scale_f=spatial_scale,\n            sample_num_i=sampling_ratio)",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/psroi_align.py#L9"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.psroi_align.forward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 45,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L45"
+        },
+        {
+          "symbol": "up.extensions._C.psroi_align.backward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 46,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L46"
+        }
+      ]
+    },
+    {
+      "id": "psroi_pool",
+      "title": "PSRoIPool 位置敏感池化",
+      "file": "psroi_pool.py",
+      "symbol": "PSRoIPoolFunction",
+      "bindings": [
+        "psroi_pooling.forward_cuda",
+        "psroi_pooling.backward_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/psroi_pooling/psroi_pooling_cuda.cpp",
+          "symbol": "psroi_pooling_forward_cuda",
+          "sha256": "a29da79af9932ec6be270c1122c84c63c5ad534ccf03d5f447520f78b5417785",
+          "line": 5,
+          "signature": "psroi_pooling_forward_cuda(int pooled_height, int pooled_width, int output_dim, float spatial_scale, Tensor features, Tensor rois, Tensor output, Tensor mapping_channel)",
+          "snippet": "int psroi_pooling_forward_cuda(int pooled_height,\n                               int pooled_width,\n                               int output_dim,\n                               float spatial_scale,\n                               Tensor features,\n                               Tensor rois,\n                               Tensor output,\n                               Tensor mapping_channel)\n{\n    // Grab the input tensor\n    CHECK_INPUT(features);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/psroi_pooling/psroi_pooling_cuda.cpp#L5"
+        },
+        {
+          "path": "up/extensions/csrc/psroi_pooling/psroi_pooling_cuda.cpp",
+          "symbol": "psroi_pooling_backward_cuda",
+          "sha256": "a29da79af9932ec6be270c1122c84c63c5ad534ccf03d5f447520f78b5417785",
+          "line": 46,
+          "signature": "psroi_pooling_backward_cuda(int pooled_height, int pooled_width, int output_dim, float spatial_scale, Tensor top_grad, Tensor rois, Tensor bottom_grad, Tensor mapping_channel)",
+          "snippet": "int psroi_pooling_backward_cuda(int pooled_height,\n                                int pooled_width,\n                                int output_dim,\n                                float spatial_scale,\n                                Tensor top_grad,\n                                Tensor rois,\n                                Tensor bottom_grad,\n                                Tensor mapping_channel)\n{\n    // Grab the input tensor\n    CHECK_INPUT(top_grad);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/psroi_pooling/psroi_pooling_cuda.cpp#L46"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/psroi_pooling/psroi_pooling_kernel.cu",
+          "symbol": "psroi_pooling_kernel.cu",
+          "sha256": "a956d490e01d258f95f2e133c39ce7870b80da45e4c98f74bda6a34d9edc27ad",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/psroi_pooling/psroi_pooling_kernel.cu#L1"
+        }
+      ],
+      "inputs": "features[N,C,H,W]；rois[K,5]；group_size、spatial_scale、output_dim。",
+      "output": "Tensor[K,output_dim,group_size,group_size]，同设备/dtype；内部 mapping_channel 为 int32。",
+      "backward": "只对 features 求梯度；保存 rois、mapping_channel 和输入尺寸。",
+      "details": "按原池化 bin 边界、取整和位置通道映射实现；与 PSRoIAlign 分开。空输入先测 NVIDIA 参考。",
+      "scope": "有原生包装；按所选 RoI 配置接入。",
+      "public_signature": "PSRoIPoolFunction.apply(features, rois, group_size, spatial_scale, output_dim)",
+      "vendor_signature": "psroi_pool(features, rois, group_size, spatial_scale, output_dim)",
+      "signature_args": "features, rois, group_size, spatial_scale, output_dim",
+      "python": [
+        {
+          "path": "up/extensions/python/psroi_pool.py",
+          "symbol": "PSRoIPoolFunction.forward",
+          "sha256": "8c495e6ddcd092071644decafa037ae2e56273d7adcaf36399e8bb2e9ce1dfe5",
+          "line": 25,
+          "signature": "PSRoIPoolFunction.forward(self, features, rois, group_size, spatial_scale, output_dim)",
+          "snippet": "    def forward(self, features, rois, group_size, spatial_scale, output_dim):\n        self.save_for_backward(features, rois)\n        self.group_size = group_size\n        self.spatial_scale = spatial_scale\n        self.output_dim = output_dim\n\n        batch_size, num_channels, data_height, data_width = features.size()\n        num_rois = rois.shape[0]\n        output = features.new(num_rois, self.output_dim, self.group_size, self.group_size).zero_()\n        mapping_channel = torch.IntTensor(\n            num_rois, self.output_dim, self.group_size, self.group_size).zero_()\n\n        forward_fn = psroi_pooling.forward_cuda\n        if not features.is_cuda:\n            logger.warning(\n                '---CPU version of PSRoIPooling is a dummpy function, which is used to support tocaffe')\n            forward_fn = psroi_pooling.forward_cpu\n        else:\n            mapping_channel = mapping_channel.cuda()\n\n        forward_fn(\n            self.group_size, self.group_size, self.output_dim,\n            self.spatial_scale, features, rois, output, mapping_channel)\n",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/psroi_pool.py#L25"
+        },
+        {
+          "path": "up/extensions/python/psroi_pool.py",
+          "symbol": "PSRoIPoolFunction.backward",
+          "sha256": "8c495e6ddcd092071644decafa037ae2e56273d7adcaf36399e8bb2e9ce1dfe5",
+          "line": 53,
+          "signature": "PSRoIPoolFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        grad_output = grad_output.data\n\n        feature, rois = self.saved_tensors\n        assert grad_output.is_cuda\n\n        batch_size, num_channels, data_height, data_width = feature.shape\n        grad_input = grad_output.new(batch_size, num_channels, data_height, data_width).zero_()\n        psroi_pooling.backward_cuda(\n            self.group_size, self.group_size, self.output_dim,\n            self.spatial_scale, grad_output, rois, grad_input, self.mapping_channel)\n        return grad_input, None, None, None, None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/psroi_pool.py#L53"
+        },
+        {
+          "path": "up/extensions/python/psroi_pool.py",
+          "symbol": "PSRoIPoolFunction.symbolic",
+          "sha256": "8c495e6ddcd092071644decafa037ae2e56273d7adcaf36399e8bb2e9ce1dfe5",
+          "line": 15,
+          "signature": "PSRoIPoolFunction.symbolic(g, features, rois, group_size, spatial_scale, output_dim)",
+          "snippet": "    def symbolic(g, features, rois, group_size, spatial_scale, output_dim):\n        return g.op(\n            \"PSRoiPool\",\n            features,\n            rois,\n            output_dim_i=output_dim,\n            group_size_i=group_size,\n            spatial_scale_f=spatial_scale)",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/psroi_pool.py#L15"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.psroi_pooling.forward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 52,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L52"
+        },
+        {
+          "symbol": "up.extensions._C.psroi_pooling.backward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 53,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L53"
+        }
+      ]
+    },
+    {
+      "id": "deform_conv",
+      "title": "DeformConv V1 可变形卷积",
+      "file": "deformable_conv.py",
+      "symbol": "DeformableConvFunction",
+      "bindings": [
+        "deform_conv_v1.forward_cuda",
+        "deform_conv_v1.backward_input_cuda",
+        "deform_conv_v1.backward_parameters_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/deform_conv/deform_conv_cuda.cpp",
+          "symbol": "deform_conv_forward_cuda",
+          "sha256": "920303bde9172cf3909c8be9276ac371137a7d1d31d8262a16222743bdebc317",
+          "line": 7,
+          "signature": "deform_conv_forward_cuda(Tensor input, Tensor weight, Tensor offset, Tensor output, Tensor columns, Tensor ones, int kH, int kW, int dH, int dW, int padH, int padW, int dilationH, int dilationW, int groups, int deformable_group)",
+          "snippet": "int deform_conv_forward_cuda(Tensor input, Tensor weight,\n                             Tensor offset, Tensor output,\n                             Tensor columns, Tensor ones, int kH,\n                             int kW, int dH, int dW, int padH, int padW,\n                             int dilationH, int dilationW, int groups,\n                             int deformable_group) {\n\n  input = input.contiguous();\n  offset = offset.contiguous();\n  weight = weight.contiguous();\n  output = output.contiguous();",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/deform_conv/deform_conv_cuda.cpp#L7"
+        },
+        {
+          "path": "up/extensions/csrc/deform_conv/deform_conv_cuda.cpp",
+          "symbol": "deform_conv_backward_input_cuda",
+          "sha256": "920303bde9172cf3909c8be9276ac371137a7d1d31d8262a16222743bdebc317",
+          "line": 93,
+          "signature": "deform_conv_backward_input_cuda( Tensor input, Tensor offset, Tensor gradOutput, Tensor gradInput, Tensor gradOffset, Tensor weight, Tensor columns, int kH, int kW, int dH, int dW, int padH, int padW, int dilationH, int dilationW, int groups, int deformable_group)",
+          "snippet": "int deform_conv_backward_input_cuda(\n    Tensor input, Tensor offset, Tensor gradOutput,\n    Tensor gradInput, Tensor gradOffset, Tensor weight,\n    Tensor columns, int kH, int kW, int dH, int dW, int padH, int padW,\n    int dilationH, int dilationW, int groups, int deformable_group) {\n\n  input = input.contiguous();\n  offset = offset.contiguous();\n  gradInput = gradInput.contiguous();\n  gradOutput = gradOutput.contiguous();\n  gradOffset = gradOffset.contiguous();",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/deform_conv/deform_conv_cuda.cpp#L93"
+        },
+        {
+          "path": "up/extensions/csrc/deform_conv/deform_conv_cuda.cpp",
+          "symbol": "deform_conv_backward_parameters_cuda",
+          "sha256": "920303bde9172cf3909c8be9276ac371137a7d1d31d8262a16222743bdebc317",
+          "line": 179,
+          "signature": "deform_conv_backward_parameters_cuda( Tensor input, Tensor offset, Tensor gradOutput, Tensor gradWeight, /*Tensor gradBias, */ Tensor columns, Tensor ones, int kH, int kW, int dH, int dW, int padH, int padW, int dilationH, int dilationW, int groups, int deformable_group, float scale)",
+          "snippet": "int deform_conv_backward_parameters_cuda(\n    Tensor input, Tensor offset, Tensor gradOutput,\n    Tensor gradWeight, /*Tensor gradBias, */\n    Tensor columns, Tensor ones, int kH, int kW, int dH, int dW,\n    int padH, int padW, int dilationH, int dilationW, int groups, int deformable_group,\n    float scale) {\n\n  input = input.contiguous();\n  offset = offset.contiguous();\n  gradOutput = gradOutput.contiguous();\n  gradWeight = gradWeight.contiguous();",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/deform_conv/deform_conv_cuda.cpp#L179"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/deform_conv/deform_conv_cuda_kernel.cu",
+          "symbol": "deform_conv_cuda_kernel.cu",
+          "sha256": "5d51eb0fb14633ada749db0711944184d286261fc749a83514eed741c99edc15",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/deform_conv/deform_conv_cuda_kernel.cu#L1"
+        }
+      ],
+      "inputs": "input[N,Cin,H,W]、offset[N,2*deformable_groups*kh*kw,Hout,Wout]、weight[Cout,Cin/groups,kh,kw]；out_channels、kernel_size、stride、pad、dilations、groups、deformable_groups，二维参数沿用原 tuple。",
+      "output": "Tensor[N,Cout,Hout,Wout]；Hout/Wout 按原 _output_size 公式；无 bias 参数。",
+      "backward": "按 needs_input_grad 提供 input、offset、weight 三者梯度；保存必要 columns/ones 等缓冲区或厂商等效状态。",
+      "details": "这是 DCNv1，不是增加 modulation mask 的 DCNv2。保留参数键、采样顺序、groups 与 deformable_groups；小输入仍按原公式报错。",
+      "scope": "瘦身版保留 DCN 调用；配置使用 DCN 时需要。",
+      "public_signature": "DeformableConvFunction.apply(input, offset, weight, out_channels, kernel_size, stride, pad, dilations, groups, deformable_groups)",
+      "vendor_signature": "deform_conv(input, offset, weight, out_channels, kernel_size, stride, pad, dilations, groups, deformable_groups)",
+      "signature_args": "input, offset, weight, out_channels, kernel_size, stride, pad, dilations, groups, deformable_groups",
+      "python": [
+        {
+          "path": "up/extensions/python/deformable_conv.py",
+          "symbol": "DeformableConvFunction.forward",
+          "sha256": "a4a3aaae6dda867516195675ea19813b9ac120d5ad347a4528a02a906e5723f1",
+          "line": 31,
+          "signature": "DeformableConvFunction.forward(self, input, offset, weight, out_channels, kernel_size, stride, pad, dilations, groups, deformable_groups)",
+          "snippet": "    def forward(self, input, offset, weight, out_channels,\n                kernel_size, stride, pad, dilations, groups, deformable_groups):\n        if input is not None and input.dim() != 4:\n            raise ValueError(\"Expected 4D tensor as input, got {}D tensor instead.\".format(input.dim()))\n\n        self.save_for_backward(input, offset, weight)\n\n        self.stride = stride\n        self.padding = pad\n        self.dilation = dilations\n        self.groups = groups\n        self.deformable_groups = deformable_groups\n\n        output = input.new(*DeformableConvFunction._output_size(\n            input, weight, self.stride, self.padding, self.dilation))\n\n        self.bufs_ = [\n            input.new(input.size(1) * weight.size(3) * weight.size(2), output.size(2), output.size(3)).zero_(),\n            input.new(output.size(2), output.size(3)).fill_(1)\n        ]  # columns, ones\n\n        forward_fn = deform_conv_v1.forward_cuda\n        if not input.is_cuda:\n            logger.warning(",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/deformable_conv.py#L31"
+        },
+        {
+          "path": "up/extensions/python/deformable_conv.py",
+          "symbol": "DeformableConvFunction.backward",
+          "sha256": "a4a3aaae6dda867516195675ea19813b9ac120d5ad347a4528a02a906e5723f1",
+          "line": 69,
+          "signature": "DeformableConvFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        input, offset, weight = self.saved_tensors\n\n        grad_input = None\n        grad_offset = None\n        grad_weight = None\n\n        if not grad_output.is_cuda:\n            raise NotImplementedError\n        else:\n            grad_output = grad_output.contiguous()\n            if self.needs_input_grad[0] or self.needs_input_grad[1]:\n                grad_input = input.new(*input.size()).zero_()\n                grad_offset = offset.new(*offset.size()).zero_()\n\n                deform_conv_v1.backward_input_cuda(\n                    input, offset, grad_output, grad_input, grad_offset, weight, self.bufs_[0],\n                    weight.size(2), weight.size(3), self.stride[0], self.stride[1],\n                    self.padding[0], self.padding[1], self.dilation[0],\n                    self.dilation[1], self.groups, self.deformable_groups)\n\n            if self.needs_input_grad[2]:\n                grad_weight = weight.new(*weight.size()).zero_()\n                deform_conv_v1.backward_parameters_cuda(",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/deformable_conv.py#L69"
+        },
+        {
+          "path": "up/extensions/python/deformable_conv.py",
+          "symbol": "DeformableConvFunction.symbolic",
+          "sha256": "a4a3aaae6dda867516195675ea19813b9ac120d5ad347a4528a02a906e5723f1",
+          "line": 21,
+          "signature": "DeformableConvFunction.symbolic(g, input, offset, weight, out_channels, kernel_size, stride, pad, dilations, groups, deformable_groups)",
+          "snippet": "    def symbolic(g, input, offset, weight, out_channels,\n                 kernel_size, stride, pad, dilations, groups, deformable_groups):\n\n        assert input.type().sizes()[2] is not None, \"Input Error: Only 4D input Tensors Supported\"\n        assert input.type().sizes()[3] is not None, \"Input Error: Only 4D input Tensors Supported\"\n        return g.op(\"DeformConv\", input, offset, weight, out_channels_i=out_channels,\n                    kernel_size_i=kernel_size, stride_i=stride, pad_i=pad, dilations_i=dilations,\n                    groups_i=groups, deformable_groups_i=deformable_groups)",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/deformable_conv.py#L21"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.deform_conv_v1.forward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 26,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L26"
+        },
+        {
+          "symbol": "up.extensions._C.deform_conv_v1.backward_input_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 23,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L23"
+        },
+        {
+          "symbol": "up.extensions._C.deform_conv_v1.backward_parameters_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 20,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L20"
+        }
+      ]
+    },
+    {
+      "id": "naive_nms",
+      "title": "UP Native NMS",
+      "file": "nms.py",
+      "symbol": "naive_nms",
+      "extra": "offset",
+      "bindings": [
+        "naive_nms.gpu_nms"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/nms/nms_cuda.cpp",
+          "symbol": "gpu_nms",
+          "sha256": "4692f65a0acb176f1bc1c70f105b756b903b98c46ac569f484db5afdcadac997",
+          "line": 19,
+          "signature": "gpu_nms(Tensor keep, Tensor num_out, Tensor boxes, float nms_overlap_thresh, int offset)",
+          "snippet": "int gpu_nms(Tensor keep, Tensor num_out, Tensor boxes, float nms_overlap_thresh, int offset) {\n  keep = keep.contiguous();\n  boxes = boxes.contiguous();\n  auto options_gpu =\n  at::TensorOptions()\n    .dtype(at::kLong)\n    .layout(at::kStrided)\n    .device({at::kCUDA})\n    .requires_grad(false);\n  auto options_cpu =\n  at::TensorOptions()",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/nms/nms_cuda.cpp#L19"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/nms/nms_kernel.cu",
+          "symbol": "nms_kernel.cu",
+          "sha256": "5bf439469c7b565cb90ce00c7a57d5b9b24bc836f454459c5cebd6cb479aed42",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/nms/nms_kernel.cu#L1"
+        }
+      ],
+      "inputs": "dets[N,5]=[x1,y1,x2,y2,score]，按调用方约定降序排列；thresh 为 IoU 阈值；offset 为原 ALIGNED_FLAG.offset（0/1）。",
+      "output": "保留索引 Tensor[K]，int64，返回输入 dets 所在设备。",
+      "backward": "无梯度要求。",
+      "details": "保留 > 阈值判断、坐标 offset 和索引顺序。原实现包含 CPU 位掩码筛选；这不是要求新增 CPU 模型代算。与连续坐标的 TorchVision NMS 路线分开。",
+      "scope": "原扩展 API 保留；当前常用 NMS 路线另有共享 Torch 实现。",
+      "public_signature": "naive_nms(dets, thresh)",
+      "vendor_signature": "naive_nms(dets, thresh, *, offset)",
+      "signature_args": "dets, thresh, *, offset",
+      "python": [
+        {
+          "path": "up/extensions/python/nms.py",
+          "symbol": "naive_nms",
+          "sha256": "d61d8517156692a8d06a7797c64264c5bd924ea47ecb9450bcfedc83c960c2d2",
+          "line": 9,
+          "signature": "naive_nms(dets, thresh)",
+          "snippet": "def naive_nms(dets, thresh):\n    assert dets.shape[1] == 5\n    num_dets = dets.shape[0]\n    if torch.is_tensor(num_dets):\n        num_dets = num_dets.item()\n    keep = torch.LongTensor(num_dets)\n    num_out = torch.LongTensor(1)\n    if dets.device.type == 'cuda':\n        nms.gpu_nms(keep, num_out, dets.float(), thresh, ALIGNED_FLAG.offset)\n    else:\n        x1 = dets[:, 0]\n        y1 = dets[:, 1]\n        x2 = dets[:, 2]\n        y2 = dets[:, 3]\n        areas = (x2 - x1 + ALIGNED_FLAG.offset) * (y2 - y1 + ALIGNED_FLAG.offset)\n        order = torch.from_numpy(np.arange(dets.shape[0])).long()\n        nms.cpu_nms(keep, num_out, dets.float(), order, areas, thresh, ALIGNED_FLAG.offset)\n    return keep[:num_out[0]].contiguous().to(device=dets.device)",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/nms.py#L9"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.naive_nms.gpu_nms",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 59,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L59"
+        }
+      ]
+    },
+    {
+      "id": "sigmoid_focal",
+      "title": "Sigmoid Focal Loss",
+      "file": "focal_loss.py",
+      "symbol": "SigmoidFocalLossFunction",
+      "bindings": [
+        "focal_loss.sigmoid_forward_cuda",
+        "focal_loss.sigmoid_backward_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/focal_loss/focal_loss_cuda.cpp",
+          "symbol": "focal_loss_sigmoid_forward_cuda",
+          "sha256": "09d29e186581cc696419b200749e1795f64c7223cf459f965117fc3107edc850",
+          "line": 5,
+          "signature": "focal_loss_sigmoid_forward_cuda( int N, Tensor logits, Tensor targets, float weight_pos, float gamma, float alpha, int num_classes, Tensor losses)",
+          "snippet": "int focal_loss_sigmoid_forward_cuda(\n                           int N,\n                           Tensor logits,\n                           Tensor targets,\n                           float weight_pos,\n                           float gamma, \n                           float alpha,\n                           int num_classes,\n                           Tensor losses){\n    // Grab the input tensor\n    CHECK_INPUT(logits);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/focal_loss/focal_loss_cuda.cpp#L5"
+        },
+        {
+          "path": "up/extensions/csrc/focal_loss/focal_loss_cuda.cpp",
+          "symbol": "focal_loss_sigmoid_backward_cuda",
+          "sha256": "09d29e186581cc696419b200749e1795f64c7223cf459f965117fc3107edc850",
+          "line": 26,
+          "signature": "focal_loss_sigmoid_backward_cuda( int N, Tensor logits, Tensor targets, Tensor dX_data, float weight_pos, float gamma, float alpha, int num_classes)",
+          "snippet": "int focal_loss_sigmoid_backward_cuda(\n                           int N,\n                           Tensor  logits,\n                           Tensor targets,\n                           Tensor  dX_data,\n                           float weight_pos,\n                           float gamma,\n                           float alpha,\n                           int num_classes){\n    // Grab the input tensor\n    CHECK_INPUT(logits);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/focal_loss/focal_loss_cuda.cpp#L26"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/focal_loss/focal_loss_sigmoid_kernel.cu",
+          "symbol": "focal_loss_sigmoid_kernel.cu",
+          "sha256": "9fa4c90de6ff6114df888f2a819a7d88c33793aa902ccb775aba69f06a37a205",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/focal_loss/focal_loss_sigmoid_kernel.cu#L1"
+        }
+      ],
+      "inputs": "preds[N,C] 为 logits；targets[N] 为 int32；背景0、前景1..C、忽略-1；weight_pos 为单元素 normalizer Tensor；gamma、alpha、num_classes=C、reduction。",
+      "output": "reduction=\"none\" 返回 [N,C]，其他值返回 [1] 的求和结果；原 Python 包装输出 float32。",
+      "backward": "只对 preds 求梯度，乘上传入 grad_output；targets/weight_pos/标量无梯度。",
+      "details": "分母 max(weight_pos,1)。已有 up.platform.ops.sigmoid_focal_loss 可复用，但原生公开入口、极值、dtype 和 reduction 需对照验收。",
+      "scope": "检测 Focal 配置可触发；已有部分共享实现。",
+      "shared": "up.platform.ops.sigmoid_focal_loss",
+      "public_signature": "SigmoidFocalLossFunction.apply(preds, targets, weight_pos, gamma, alpha, num_classes, reduction)",
+      "vendor_signature": "sigmoid_focal(preds, targets, weight_pos, gamma, alpha, num_classes, reduction)",
+      "signature_args": "preds, targets, weight_pos, gamma, alpha, num_classes, reduction",
+      "python": [
+        {
+          "path": "up/extensions/python/focal_loss.py",
+          "symbol": "SigmoidFocalLossFunction.forward",
+          "sha256": "7a88601d0028e35bb0622f8f8ca93898f3e857b11a33a61c695aacbe7a0038d1",
+          "line": 11,
+          "signature": "SigmoidFocalLossFunction.forward(self, preds, targets, weight_pos, gamma, alpha, num_classes, reduction)",
+          "snippet": "    def forward(self, preds, targets, weight_pos, gamma, alpha, num_classes, reduction):\n        \"\"\"\n        Arguments:\n            preds: [batch * h * w * num_anchors, num_classes]\n            targets: [batch * h * w * num_anchors]\n            weight_pos: scalar tensor of normalizer\n        \"\"\"\n        self.save_for_backward(preds, targets, weight_pos)\n        weight_pos = weight_pos.cpu().item()\n        self.gamma = gamma\n        self.alpha = alpha\n        self.num_classes = num_classes\n\n        preds_size = preds.size()\n        targets_size = targets.size()\n        assert(preds_size[0] == targets_size[0]), f'{preds_size} vs {targets_size}'\n        assert(preds_size[1] == self.num_classes), f'{preds_size} vs {self.num_classes}'\n\n        losses = preds.new(preds_size[0], preds_size[1]).zero_()\n        N = preds_size[0] * preds_size[1]\n\n        assert(losses.is_contiguous())\n        assert(preds.is_contiguous())\n        assert(targets.is_contiguous())",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/focal_loss.py#L11"
+        },
+        {
+          "path": "up/extensions/python/focal_loss.py",
+          "symbol": "SigmoidFocalLossFunction.backward",
+          "sha256": "7a88601d0028e35bb0622f8f8ca93898f3e857b11a33a61c695aacbe7a0038d1",
+          "line": 53,
+          "signature": "SigmoidFocalLossFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        # grad_output: 1.0 / num_of_gpus\n        preds, targets, weight_pos = self.saved_tensors\n        preds_size = preds.size()\n        grad_input = preds.new(preds_size[0], preds_size[1]).zero_()\n        N = preds_size[0] * preds_size[1]\n\n        assert(preds.is_contiguous())\n        assert(targets.is_contiguous())\n        assert(grad_input.is_contiguous())\n        assert(preds.is_cuda and targets.is_cuda and grad_input.is_cuda)\n\n        focal_loss.sigmoid_backward_cuda(\n            N,\n            preds,\n            targets,\n            grad_input,\n            weight_pos.cpu().item(),\n            self.gamma,\n            self.alpha,\n            self.num_classes)\n\n        grad_input = grad_input * grad_output\n        return grad_input, None, None, None, None, None, None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/focal_loss.py#L53"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.focal_loss.sigmoid_forward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 65,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L65"
+        },
+        {
+          "symbol": "up.extensions._C.focal_loss.sigmoid_backward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 68,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L68"
+        }
+      ]
+    },
+    {
+      "id": "softmax_focal",
+      "title": "Softmax Focal Loss",
+      "file": "focal_loss.py",
+      "symbol": "SoftmaxFocalLossFunction",
+      "bindings": [
+        "focal_loss.softmax_forward_cuda",
+        "focal_loss.softmax_backward_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/focal_loss/focal_loss_cuda.cpp",
+          "symbol": "focal_loss_softmax_forward_cuda",
+          "sha256": "09d29e186581cc696419b200749e1795f64c7223cf459f965117fc3107edc850",
+          "line": 47,
+          "signature": "focal_loss_softmax_forward_cuda( int N, Tensor logits, Tensor targets, float weight_pos, float gamma, float alpha, int num_classes, Tensor losses, Tensor priors)",
+          "snippet": "int focal_loss_softmax_forward_cuda(\n                           int N,\n                           Tensor logits,\n                           Tensor targets,\n                           float weight_pos,\n                           float gamma, \n                           float alpha,\n                           int num_classes,\n                           Tensor losses,\n                           Tensor priors){\n    // Grab the input tensor",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/focal_loss/focal_loss_cuda.cpp#L47"
+        },
+        {
+          "path": "up/extensions/csrc/focal_loss/focal_loss_cuda.cpp",
+          "symbol": "focal_loss_softmax_backward_cuda",
+          "sha256": "09d29e186581cc696419b200749e1795f64c7223cf459f965117fc3107edc850",
+          "line": 70,
+          "signature": "focal_loss_softmax_backward_cuda( int N, Tensor logits, Tensor targets, Tensor dX_data, float weight_pos, float gamma, float alpha, int num_classes, Tensor priors, Tensor buff)",
+          "snippet": "int focal_loss_softmax_backward_cuda(\n                           int N,\n                           Tensor logits,\n                           Tensor targets,\n                           Tensor dX_data,\n                           float weight_pos,\n                           float gamma,\n                           float alpha,\n                           int num_classes,\n                           Tensor priors,\n                           Tensor buff){",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/focal_loss/focal_loss_cuda.cpp#L70"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/focal_loss/focal_loss_softmax_kernel.cu",
+          "symbol": "focal_loss_softmax_kernel.cu",
+          "sha256": "1fc753d08f3424325e099bb11212d987c738d51b449df2ca2d51c361cd8279c8",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/focal_loss/focal_loss_softmax_kernel.cu#L1"
+        }
+      ],
+      "inputs": "preds[N,C] logits；targets[N] int32，类别0是背景、负值忽略；weight_pos、gamma、alpha、num_classes=C。",
+      "output": "float32 Tensor[1]，求和 loss；该接口没有 reduction 参数。",
+      "backward": "只对 preds 求梯度；保存 softmax priors、targets、normalizer，原实现还用 [N] 缓冲区。",
+      "details": "先做逐行稳定 softmax；背景与前景使用不同 alpha 权重；分母 max(weight_pos,1)。不能用 Sigmoid Focal 替代。",
+      "scope": "原包装/损失配置保留，选择 Softmax Focal 时接入。",
+      "public_signature": "SoftmaxFocalLossFunction.apply(preds, targets, weight_pos, gamma, alpha, num_classes)",
+      "vendor_signature": "softmax_focal(preds, targets, weight_pos, gamma, alpha, num_classes)",
+      "signature_args": "preds, targets, weight_pos, gamma, alpha, num_classes",
+      "python": [
+        {
+          "path": "up/extensions/python/focal_loss.py",
+          "symbol": "SoftmaxFocalLossFunction.forward",
+          "sha256": "7a88601d0028e35bb0622f8f8ca93898f3e857b11a33a61c695aacbe7a0038d1",
+          "line": 82,
+          "signature": "SoftmaxFocalLossFunction.forward(self, preds, targets, weight_pos, gamma, alpha, num_classes)",
+          "snippet": "    def forward(self, preds, targets, weight_pos, gamma, alpha, num_classes):\n        \"\"\"\n        Arguments:\n            preds: [batch * h * w * num_anchors, num_classes]\n            targets: [batch * h * w * num_anchors]\n        \"\"\"\n        self.gamma = gamma\n        self.alpha = alpha\n        self.num_classes = num_classes\n\n        preds_size = preds.size()\n        targets_size = targets.size()\n\n        assert(preds_size[0] == targets_size[0])\n        assert(preds_size[1] == self.num_classes)\n\n        losses = preds.new(preds_size[0]).zero_()\n        priors = preds.new(preds_size[0], preds_size[1]).zero_()\n\n        N = preds_size[0] * preds_size[1]\n\n        assert(losses.is_contiguous())\n        assert(preds.is_contiguous())\n        assert(targets.is_contiguous())",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/focal_loss.py#L82"
+        },
+        {
+          "path": "up/extensions/python/focal_loss.py",
+          "symbol": "SoftmaxFocalLossFunction.backward",
+          "sha256": "7a88601d0028e35bb0622f8f8ca93898f3e857b11a33a61c695aacbe7a0038d1",
+          "line": 124,
+          "signature": "SoftmaxFocalLossFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        # grad_output: 1.0 / num_of_gpus\n        preds, targets, weight_pos, priors = self.saved_tensors\n        preds_size = preds.size()\n        grad_input = preds.new(preds_size[0], preds_size[1]).zero_()\n        buff = preds.new(preds_size[0]).zero_()\n        N = preds_size[0] * preds_size[1]\n\n        assert(preds.is_contiguous())\n        assert(targets.is_contiguous())\n        assert(grad_input.is_contiguous())\n        assert(buff.is_contiguous())\n        assert(preds.is_cuda and targets.is_cuda and grad_input.is_cuda and buff.is_cuda)\n\n        focal_loss.softmax_backward_cuda(\n            N,\n            preds,\n            targets,\n            grad_input,\n            weight_pos.cpu().item(),\n            self.gamma,\n            self.alpha,\n            self.num_classes,\n            priors,",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/focal_loss.py#L124"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.focal_loss.softmax_forward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 71,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L71"
+        },
+        {
+          "symbol": "up.extensions._C.focal_loss.softmax_backward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 74,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L74"
+        }
+      ]
+    },
+    {
+      "id": "cross_focal",
+      "title": "Cross Sigmoid Focal Loss",
+      "file": "cross_focal_loss.py",
+      "symbol": "CrossSigmoidFocalLossFunction",
+      "bindings": [
+        "cross_focal_loss.cross_sigmoid_forward_cuda",
+        "cross_focal_loss.cross_sigmoid_backward_cuda"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/cross_focal_loss/cross_focal_loss_cuda.cpp",
+          "symbol": "cross_focal_loss_sigmoid_forward_cuda",
+          "sha256": "8ab14ca7a496e5b78aad870b041be9e5855002306cca2147f502511a285485c5",
+          "line": 6,
+          "signature": "cross_focal_loss_sigmoid_forward_cuda( int N, Tensor logits, Tensor targets, float weight_pos, float gamma, float alpha, int num_classes, Tensor losses, Tensor neg_map)",
+          "snippet": "int cross_focal_loss_sigmoid_forward_cuda(\n    int N,\n    Tensor logits,\n    Tensor targets,\n    float weight_pos,\n    float gamma,\n    float alpha,\n    int num_classes,\n    Tensor losses,\n    Tensor neg_map)\n{",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/cross_focal_loss/cross_focal_loss_cuda.cpp#L6"
+        },
+        {
+          "path": "up/extensions/csrc/cross_focal_loss/cross_focal_loss_cuda.cpp",
+          "symbol": "cross_focal_loss_sigmoid_backward_cuda",
+          "sha256": "8ab14ca7a496e5b78aad870b041be9e5855002306cca2147f502511a285485c5",
+          "line": 30,
+          "signature": "cross_focal_loss_sigmoid_backward_cuda( int N, Tensor logits, Tensor targets, Tensor dX_data, float weight_pos, float gamma, float alpha, int num_classes, Tensor neg_map)",
+          "snippet": "int cross_focal_loss_sigmoid_backward_cuda(\n    int N,\n    Tensor logits,\n    Tensor targets,\n    Tensor dX_data,\n    float weight_pos,\n    float gamma,\n    float alpha,\n    int num_classes,\n    Tensor neg_map)\n{",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/cross_focal_loss/cross_focal_loss_cuda.cpp#L30"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/cross_focal_loss/cross_focal_loss_sigmoid_kernel.cu",
+          "symbol": "cross_focal_loss_sigmoid_kernel.cu",
+          "sha256": "6e2131716df5b8acf7292ade7477c7b15784f1ea6ab6f7d0fb1c3617bfda9f52",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/cross_focal_loss/cross_focal_loss_sigmoid_kernel.cu#L1"
+        }
+      ],
+      "inputs": "preds/targets/weight_pos/gamma/alpha/num_classes 同 Sigmoid Focal；另有 gt_class_to_avoid：int32 打包类别屏蔽表，格式按 kernel 的 neg_map 解码；保留 reduction 参数。",
+      "output": "原实现实际始终返回 float32 Tensor[1]：reduction 分支位于提前 return 之后，当前不可达。",
+      "backward": "只对 preds 求梯度；保存 targets、normalizer 和屏蔽表。",
+      "details": "照原 neg_map 规则屏蔽对应负类项。此次交付保持原实际输出；如修 reduction 行为，另列语义修复。",
+      "scope": "原包装/损失配置保留，选择 Cross Focal 时接入。",
+      "public_signature": "CrossSigmoidFocalLossFunction.apply(preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction)",
+      "vendor_signature": "cross_focal(preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction)",
+      "signature_args": "preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction",
+      "python": [
+        {
+          "path": "up/extensions/python/cross_focal_loss.py",
+          "symbol": "CrossSigmoidFocalLossFunction.forward",
+          "sha256": "551da2aa5828194d186155c1cdbddb971aed9fb24381bf6303b4d2b990142a9b",
+          "line": 12,
+          "signature": "CrossSigmoidFocalLossFunction.forward(self, preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction)",
+          "snippet": "    def forward(self, preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction):\n        \"\"\"\n        Arguments:\n            preds: [batch * h * w * num_anchors, num_classes]\n            targets: [batch * h * w * num_anchors]\n            weight_pos: Scalar Tensor of normalizer\n        \"\"\"\n        self.gamma = gamma\n        self.alpha = alpha\n        self.num_classes = num_classes\n        self.gt_class_to_avoid = gt_class_to_avoid\n\n        preds_size = preds.size()\n        targets_size = targets.size()\n        assert (preds_size[0] == targets_size[0])\n        assert (preds_size[1] == self.num_classes)\n\n        losses = preds.new(preds_size[0], preds_size[1]).zero_()\n        N = preds_size[0] * preds_size[1]\n\n        assert (losses.is_contiguous())\n        assert (preds.is_contiguous())\n        assert (targets.is_contiguous())\n        assert (preds.is_cuda and targets.is_cuda)",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/cross_focal_loss.py#L12"
+        },
+        {
+          "path": "up/extensions/python/cross_focal_loss.py",
+          "symbol": "CrossSigmoidFocalLossFunction.backward",
+          "sha256": "551da2aa5828194d186155c1cdbddb971aed9fb24381bf6303b4d2b990142a9b",
+          "line": 54,
+          "signature": "CrossSigmoidFocalLossFunction.backward(self, grad_output)",
+          "snippet": "    def backward(self, grad_output):\n        # grad_output: 1.0 / num_of_gpus\n        preds, targets, weight_pos, gt_class_to_avoid = self.saved_tensors\n        preds_size = preds.size()\n        grad_input = preds.new(preds_size[0], preds_size[1]).zero_()\n        N = preds_size[0] * preds_size[1]\n\n        assert (preds.is_contiguous())\n        assert (targets.is_contiguous())\n        assert (grad_input.is_contiguous())\n        assert (preds.is_cuda and targets.is_cuda and grad_input.is_cuda)\n        cross_focal_loss.cross_sigmoid_backward_cuda(\n            N,\n            preds,\n            targets,\n            grad_input,\n            weight_pos.cpu().item(),\n            self.gamma,\n            self.alpha,\n            self.num_classes,\n            gt_class_to_avoid)\n\n        grad_input = grad_input * grad_output\n        return grad_input, None, None, None, None, None, None, None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/cross_focal_loss.py#L54"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.cross_focal_loss.cross_sigmoid_forward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 80,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L80"
+        },
+        {
+          "symbol": "up.extensions._C.cross_focal_loss.cross_sigmoid_backward_cuda",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 83,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L83"
+        }
+      ]
+    },
+    {
+      "id": "overlap",
+      "title": "二维框 IoU / IoF / IoS",
+      "file": "iou_overlap.py",
+      "symbol": "gpu_iou_overlap",
+      "bindings": [
+        "overlaps.iou"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/iou_overlap/iou_overlap.cpp",
+          "symbol": "gpu_iou_overlaps",
+          "sha256": "958bc8bee4129a0f71cdf9b91ccfb92ba3b92830cabd8b29adb0dbc00a612a1e",
+          "line": 5,
+          "signature": "gpu_iou_overlaps(Tensor bboxes1, Tensor bboxes2, Tensor output, const int mode)",
+          "snippet": "void gpu_iou_overlaps(Tensor bboxes1, Tensor bboxes2, Tensor output, const int mode){\n    // Grad the input tensor\n    CHECK_INPUT(bboxes1);\n    CHECK_INPUT(bboxes2);\n    CHECK_INPUT(output);\n\n    // Number of boxes\n    int num_bbox1 = bboxes1.size(0);\n    int num_bbox2 = bboxes2.size(0);\n    int size_bbox1 = bboxes1.size(1);\n    int size_bbox2 = bboxes2.size(1);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou_overlap/iou_overlap.cpp#L5"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/iou_overlap/iou_overlap_kernel.cu",
+          "symbol": "iou_overlap_kernel.cu",
+          "sha256": "3190116d60e3940db48985aff9514a4d509573b252f4b7d07368b8b4b9f580c1",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou_overlap/iou_overlap_kernel.cu#L1"
+        }
+      ],
+      "inputs": "b1[N,>=4]、b2[M,>=4]，只取前4列 x1/y1/x2/y2；mode=\"IoU\" / \"IoF\" / \"IoS\"。",
+      "output": "非空输入返回 [N,M]，同 b1 设备/dtype；任一输入为空时原接口返回 [0]，不是 [N,M]。",
+      "backward": "原扩展没有注册几何反向；不用给该匹配/评估入口新增梯度。",
+      "details": "+1 闭区间；IoU 分母为并集，IoF 为第一组面积，IoS 为第二组面积；各分母至少1。共享 box_overlap 目前只覆盖 IoU/IoF，不能把 IoS 传给它冒充实现。",
+      "scope": "瘦身检测匹配使用 IoU/IoF；已有部分共享实现。",
+      "shared": "up.platform.ops.box_overlap",
+      "public_signature": "gpu_iou_overlap(b1, b2, mode='IoU')",
+      "vendor_signature": "overlap(b1, b2, mode='IoU')",
+      "signature_args": "b1, b2, mode='IoU'",
+      "python": [
+        {
+          "path": "up/extensions/python/iou_overlap.py",
+          "symbol": "gpu_iou_overlap",
+          "sha256": "ef32e48f36a7081f758b041dc54671c4bc790d1e5911d6db0772ff9fae67e9fe",
+          "line": 5,
+          "signature": "gpu_iou_overlap(b1, b2, mode='IoU')",
+          "snippet": "def gpu_iou_overlap(b1, b2, mode='IoU'):\n    \"\"\"compute IoU/IoF/IoS between b1 and b2\n    Args:\n        b1: Tensor, [N, >=4]\n        b2: Tensor, [M, >=4]\n        mode: str, {IoU, IoF, IoS} Intersection over Union/First/Second area\n    \"\"\"\n    if b1.numel() == 0 or b2.numel() == 0:\n        return b1.new_zeros((0,))\n\n    flag = {'IoU': 0, 'IoF': 1, 'IoS': 2}[mode]\n\n    assert b1.shape[1] >= 4 and b2.shape[1] >= 4\n    assert b1.is_cuda and b2.is_cuda\n\n    b1 = b1[:, :4].contiguous()\n    b2 = b2[:, :4].contiguous()\n    ious = b1.new_zeros((b1.shape[0], b2.shape[0]))\n    overlaps.iou(b1, b2, ious, flag)\n    return ious",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/iou_overlap.py#L5"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.overlaps.iou",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 90,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L90"
+        }
+      ]
+    },
+    {
+      "id": "bev_iou",
+      "title": "旋转框 BEV IoU",
+      "file": "iou3d_nms_utils.py",
+      "symbol": "boxes_iou_bev",
+      "bindings": [
+        "iou3d_nms.boxes_iou_bev_gpu"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms.cpp",
+          "symbol": "boxes_iou_bev_gpu",
+          "sha256": "72face378aa8d84cac0cd174130de7f397bffdecbc7f586ebf6897e71f03faa3",
+          "line": 70,
+          "signature": "boxes_iou_bev_gpu(at::Tensor boxes_a, at::Tensor boxes_b, at::Tensor ans_iou)",
+          "snippet": "int boxes_iou_bev_gpu(at::Tensor boxes_a, at::Tensor boxes_b, at::Tensor ans_iou){\n    // params boxes_a: (N, 7) [x, y, z, dx, dy, dz, heading]\n    // params boxes_b: (M, 7) [x, y, z, dx, dy, dz, heading]\n    // params ans_overlap: (N, M)\n    CHECK_INPUT(boxes_a);\n    CHECK_INPUT(boxes_b);\n    CHECK_INPUT(ans_iou);\n\n    int num_a = boxes_a.size(0);\n    int num_b = boxes_b.size(0);\n",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms.cpp#L70"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu",
+          "symbol": "iou3d_nms_kernel.cu",
+          "sha256": "6815b8ef6935a1e75bc0972635d9eb5dcc83c305dc6745fb9ce6018323d168a0",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu#L1"
+        }
+      ],
+      "inputs": "boxes_a[N,7]、boxes_b[M,7]，float32；[x,y,z,dx,dy,dz,heading]，heading 为原旋转约定。",
+      "output": "float32 Tensor[N,M]，应分配在输入设备，去掉原硬编码默认 CUDA 卡。",
+      "backward": "原 BEV 扩展无注册反向。",
+      "details": "保持旋转方向、框中心/尺寸、几何边界与分母规则；空输入先运行 NVIDIA 参考确认。",
+      "scope": "点云模型已从瘦身任务移除，包装保留；恢复点云任务时接入。",
+      "public_signature": "boxes_iou_bev(boxes_a, boxes_b)",
+      "vendor_signature": "bev_iou(boxes_a, boxes_b)",
+      "signature_args": "boxes_a, boxes_b",
+      "python": [
+        {
+          "path": "up/extensions/python/iou3d_nms_utils.py",
+          "symbol": "boxes_iou_bev",
+          "sha256": "d916e9150172c1956f1322b95603c6c176c0dc5605638227f9ec926e0e1e0e46",
+          "line": 31,
+          "signature": "boxes_iou_bev(boxes_a, boxes_b)",
+          "snippet": "def boxes_iou_bev(boxes_a, boxes_b):\n    \"\"\"\n    Args:\n        boxes_a: (N, 7) [x, y, z, dx, dy, dz, heading]\n        boxes_b: (M, 7) [x, y, z, dx, dy, dz, heading]\n\n    Returns:\n        ans_iou: (N, M)\n    \"\"\"\n    assert boxes_a.shape[1] == boxes_b.shape[1] == 7\n    ans_iou = torch.cuda.FloatTensor(torch.Size((boxes_a.shape[0], boxes_b.shape[0]))).zero_()\n\n    iou3d_nms_cuda.boxes_iou_bev_gpu(boxes_a.contiguous(), boxes_b.contiguous(), ans_iou)\n\n    return ans_iou",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/iou3d_nms_utils.py#L31"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.iou3d_nms.boxes_iou_bev_gpu",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 123,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L123"
+        }
+      ]
+    },
+    {
+      "id": "iou3d",
+      "title": "三维框 IoU",
+      "file": "iou3d_nms_utils.py",
+      "symbol": "boxes_iou3d_gpu",
+      "bindings": [
+        "iou3d_nms.boxes_overlap_bev_gpu"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms.cpp",
+          "symbol": "boxes_overlap_bev_gpu",
+          "sha256": "72face378aa8d84cac0cd174130de7f397bffdecbc7f586ebf6897e71f03faa3",
+          "line": 49,
+          "signature": "boxes_overlap_bev_gpu(at::Tensor boxes_a, at::Tensor boxes_b, at::Tensor ans_overlap)",
+          "snippet": "int boxes_overlap_bev_gpu(at::Tensor boxes_a, at::Tensor boxes_b, at::Tensor ans_overlap){\n    // params boxes_a: (N, 7) [x, y, z, dx, dy, dz, heading]\n    // params boxes_b: (M, 7) [x, y, z, dx, dy, dz, heading]\n    // params ans_overlap: (N, M)\n\n    CHECK_INPUT(boxes_a);\n    CHECK_INPUT(boxes_b);\n    CHECK_INPUT(ans_overlap);\n\n    int num_a = boxes_a.size(0);\n    int num_b = boxes_b.size(0);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms.cpp#L49"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu",
+          "symbol": "iou3d_nms_kernel.cu",
+          "sha256": "6815b8ef6935a1e75bc0972635d9eb5dcc83c305dc6745fb9ce6018323d168a0",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu#L1"
+        }
+      ],
+      "inputs": "boxes_a[N,7]、boxes_b[M,7]，float32；同 BEV 框格式。",
+      "output": "float32 Tensor[N,M]；BEV 交集面积 × 高度交集 / max(体积并集,1e-6)。",
+      "backward": "无完整自定义几何反向。原 BEV 缓冲区不求导，但外围高度/体积 Torch 计算可产生部分梯度；保持该图结构，不直接换成具有不同完整梯度的厂商 IoU3D。",
+      "details": "保留当前 Python 高度/体积组合，只替换 BEV overlap 内核最稳妥。主要用于 no_grad 匹配/评估；若训练配置需要梯度，单测原图行为。",
+      "scope": "点云可选包装，按需接入。",
+      "public_signature": "boxes_iou3d_gpu(boxes_a, boxes_b)",
+      "vendor_signature": "iou3d(boxes_a, boxes_b)",
+      "signature_args": "boxes_a, boxes_b",
+      "python": [
+        {
+          "path": "up/extensions/python/iou3d_nms_utils.py",
+          "symbol": "boxes_iou3d_gpu",
+          "sha256": "d916e9150172c1956f1322b95603c6c176c0dc5605638227f9ec926e0e1e0e46",
+          "line": 48,
+          "signature": "boxes_iou3d_gpu(boxes_a, boxes_b)",
+          "snippet": "def boxes_iou3d_gpu(boxes_a, boxes_b):\n    \"\"\"\n    Args:\n        boxes_a: (N, 7) [x, y, z, dx, dy, dz, heading]\n        boxes_b: (M, 7) [x, y, z, dx, dy, dz, heading]\n\n    Returns:\n        ans_iou: (N, M)\n    \"\"\"\n    assert boxes_a.shape[1] == boxes_b.shape[1] == 7\n\n    # height overlap\n    boxes_a_height_max = (boxes_a[:, 2] + boxes_a[:, 5] / 2).view(-1, 1)\n    boxes_a_height_min = (boxes_a[:, 2] - boxes_a[:, 5] / 2).view(-1, 1)\n    boxes_b_height_max = (boxes_b[:, 2] + boxes_b[:, 5] / 2).view(1, -1)\n    boxes_b_height_min = (boxes_b[:, 2] - boxes_b[:, 5] / 2).view(1, -1)\n\n    # bev overlap\n    overlaps_bev = torch.cuda.FloatTensor(torch.Size((boxes_a.shape[0], boxes_b.shape[0]))).zero_()  # (N, M)\n    iou3d_nms_cuda.boxes_overlap_bev_gpu(boxes_a.contiguous(), boxes_b.contiguous(), overlaps_bev)\n    max_of_min = torch.max(boxes_a_height_min, boxes_b_height_min)\n    min_of_max = torch.min(boxes_a_height_max, boxes_b_height_max)\n    overlaps_h = torch.clamp(min_of_max - max_of_min, min=0)\n",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/iou3d_nms_utils.py#L48"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.iou3d_nms.boxes_overlap_bev_gpu",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 122,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L122"
+        }
+      ]
+    },
+    {
+      "id": "nms3d",
+      "title": "旋转 3D NMS",
+      "file": "iou3d_nms_utils.py",
+      "symbol": "nms_gpu",
+      "bindings": [
+        "iou3d_nms.nms_gpu"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms.cpp",
+          "symbol": "nms_gpu",
+          "sha256": "72face378aa8d84cac0cd174130de7f397bffdecbc7f586ebf6897e71f03faa3",
+          "line": 90,
+          "signature": "nms_gpu(at::Tensor boxes, at::Tensor keep, float nms_overlap_thresh)",
+          "snippet": "int nms_gpu(at::Tensor boxes, at::Tensor keep, float nms_overlap_thresh){\n    // params boxes: (N, 7) [x, y, z, dx, dy, dz, heading]\n    // params keep: (N)\n    CHECK_INPUT(boxes);\n    CHECK_CONTIGUOUS(keep);\n\n    int boxes_num = boxes.size(0);\n    const float * boxes_data = boxes.data<float>();\n    long * keep_data = keep.data<long>();\n\n    const int col_blocks = DIVUP(boxes_num, THREADS_PER_BLOCK_NMS);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms.cpp#L90"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu",
+          "symbol": "iou3d_nms_kernel.cu",
+          "sha256": "6815b8ef6935a1e75bc0972635d9eb5dcc83c305dc6745fb9ce6018323d168a0",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu#L1"
+        }
+      ],
+      "inputs": "boxes[N,7] float32、scores[N]、thresh、pre_maxsize=None；**kwargs 原函数不使用。",
+      "output": "(indices[K], None)，indices 为输入设备上的 int64；必须映射回原输入索引。",
+      "backward": "无梯度要求。",
+      "details": "先按 scores 降序，再按 pre_maxsize 截断；保持旋转框重叠和排序规则，输出的 None 不能删。",
+      "scope": "点云可选包装，按需接入。",
+      "public_signature": "nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs)",
+      "vendor_signature": "nms3d(boxes, scores, thresh, pre_maxsize=None, **kwargs)",
+      "signature_args": "boxes, scores, thresh, pre_maxsize=None, **kwargs",
+      "python": [
+        {
+          "path": "up/extensions/python/iou3d_nms_utils.py",
+          "symbol": "nms_gpu",
+          "sha256": "d916e9150172c1956f1322b95603c6c176c0dc5605638227f9ec926e0e1e0e46",
+          "line": 82,
+          "signature": "nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs)",
+          "snippet": "def nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs):\n    \"\"\"\n    :param boxes: (N, 7) [x, y, z, dx, dy, dz, heading]\n    :param scores: (N)\n    :param thresh:\n    :return:\n    \"\"\"\n    assert boxes.shape[1] == 7\n    order = scores.sort(0, descending=True)[1]\n    if pre_maxsize is not None:\n        order = order[:pre_maxsize]\n\n    boxes = boxes[order].contiguous()\n    keep = torch.LongTensor(boxes.size(0))\n    num_out = iou3d_nms_cuda.nms_gpu(boxes, keep, thresh)\n    return order[keep[:num_out].cuda()].contiguous(), None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/iou3d_nms_utils.py#L82"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.iou3d_nms.nms_gpu",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 124,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L124"
+        }
+      ]
+    },
+    {
+      "id": "nms3d_normal",
+      "title": "普通 3D NMS",
+      "file": "iou3d_nms_utils.py",
+      "symbol": "nms_normal_gpu",
+      "bindings": [
+        "iou3d_nms.nms_normal_gpu"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms.cpp",
+          "symbol": "nms_normal_gpu",
+          "sha256": "72face378aa8d84cac0cd174130de7f397bffdecbc7f586ebf6897e71f03faa3",
+          "line": 139,
+          "signature": "nms_normal_gpu(at::Tensor boxes, at::Tensor keep, float nms_overlap_thresh)",
+          "snippet": "int nms_normal_gpu(at::Tensor boxes, at::Tensor keep, float nms_overlap_thresh){\n    // params boxes: (N, 7) [x, y, z, dx, dy, dz, heading]\n    // params keep: (N)\n\n    CHECK_INPUT(boxes);\n    CHECK_CONTIGUOUS(keep);\n\n    int boxes_num = boxes.size(0);\n    const float * boxes_data = boxes.data<float>();\n    long * keep_data = keep.data<long>();\n",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms.cpp#L139"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu",
+          "symbol": "iou3d_nms_kernel.cu",
+          "sha256": "6815b8ef6935a1e75bc0972635d9eb5dcc83c305dc6745fb9ce6018323d168a0",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/iou3d_nms/iou3d_nms_kernel.cu#L1"
+        }
+      ],
+      "inputs": "boxes[N,7] float32、scores[N]、thresh；**kwargs 原函数不使用。",
+      "output": "(indices[K], None)，indices 为输入设备上的 int64。",
+      "backward": "无梯度要求。",
+      "details": "按该 kernel 的轴对齐重叠规则实现，不复用旋转 NMS 的角度计算。",
+      "scope": "点云可选包装，按需接入。",
+      "public_signature": "nms_normal_gpu(boxes, scores, thresh, **kwargs)",
+      "vendor_signature": "nms3d_normal(boxes, scores, thresh, **kwargs)",
+      "signature_args": "boxes, scores, thresh, **kwargs",
+      "python": [
+        {
+          "path": "up/extensions/python/iou3d_nms_utils.py",
+          "symbol": "nms_normal_gpu",
+          "sha256": "d916e9150172c1956f1322b95603c6c176c0dc5605638227f9ec926e0e1e0e46",
+          "line": 100,
+          "signature": "nms_normal_gpu(boxes, scores, thresh, **kwargs)",
+          "snippet": "def nms_normal_gpu(boxes, scores, thresh, **kwargs):\n    \"\"\"\n    :param boxes: (N, 7) [x, y, z, dx, dy, dz, heading]\n    :param scores: (N)\n    :param thresh:\n    :return:\n    \"\"\"\n    assert boxes.shape[1] == 7\n    order = scores.sort(0, descending=True)[1]\n\n    boxes = boxes[order].contiguous()\n\n    keep = torch.LongTensor(boxes.size(0))\n    num_out = iou3d_nms_cuda.nms_normal_gpu(boxes, keep, thresh)\n    return order[keep[:num_out].cuda()].contiguous(), None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/iou3d_nms_utils.py#L100"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.iou3d_nms.nms_normal_gpu",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 125,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L125"
+        }
+      ]
+    },
+    {
+      "id": "points_in_boxes",
+      "title": "点属于哪个三维框",
+      "file": "roiaware_pool3d_utils.py",
+      "symbol": "points_in_boxes_gpu",
+      "bindings": [
+        "roiaware_pool3d.points_in_boxes_gpu"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/roiaware_pool3d/roiaware_pool3d.cpp",
+          "symbol": "points_in_boxes_gpu",
+          "sha256": "b4f21b545791d12626a4dce8de4d87e5afcb52cf186017bd5d81de7173fd84db",
+          "line": 98,
+          "signature": "points_in_boxes_gpu(at::Tensor boxes_tensor, at::Tensor pts_tensor, at::Tensor box_idx_of_points_tensor)",
+          "snippet": "int points_in_boxes_gpu(at::Tensor boxes_tensor, at::Tensor pts_tensor, at::Tensor box_idx_of_points_tensor){\n    // params boxes: (B, N, 7) [x, y, z, dx, dy, dz, heading] (x, y, z) is the box center\n    // params pts: (B, npoints, 3) [x, y, z]\n    // params boxes_idx_of_points: (B, npoints), default -1\n\n//    CHECK_INPUT(boxes_tensor);\n//    CHECK_INPUT(pts_tensor);\n//    CHECK_INPUT(box_idx_of_points_tensor);\n\n    int batch_size = boxes_tensor.size(0);\n    int boxes_num = boxes_tensor.size(1);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roiaware_pool3d/roiaware_pool3d.cpp#L98"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/roiaware_pool3d/roiaware_pool3d_kernel.cu",
+          "symbol": "roiaware_pool3d_kernel.cu",
+          "sha256": "d34013f84a0094dd9ae814e0cf1e5bceb7d808bfcc1248a1832f334a96a1808e",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roiaware_pool3d/roiaware_pool3d_kernel.cu#L1"
+        }
+      ],
+      "inputs": "points[B,M,3]、boxes[B,T,7]，float32、contiguous，batch 数一致。",
+      "output": "int32 Tensor[B,M]，同设备；未命中为 -1。",
+      "backward": "无梯度要求。",
+      "details": "保持边界判断、旋转坐标转换、多个框命中时原 kernel 的选择顺序。",
+      "scope": "点云可选包装，按需接入。",
+      "public_signature": "points_in_boxes_gpu(points, boxes)",
+      "vendor_signature": "points_in_boxes(points, boxes)",
+      "signature_args": "points, boxes",
+      "python": [
+        {
+          "path": "up/extensions/python/roiaware_pool3d_utils.py",
+          "symbol": "points_in_boxes_gpu",
+          "sha256": "7efc4a04e2bc388aad2e786a1210ad568746ed10b154c3d4bea8ec91e221867a",
+          "line": 34,
+          "signature": "points_in_boxes_gpu(points, boxes)",
+          "snippet": "def points_in_boxes_gpu(points, boxes):\n    \"\"\"\n    :param points: (B, M, 3)\n    :param boxes: (B, T, 7), num_valid_boxes <= T\n    :return box_idxs_of_pts: (B, M), default background = -1\n    \"\"\"\n    assert boxes.shape[0] == points.shape[0]\n    assert boxes.shape[2] == 7 and points.shape[2] == 3\n    batch_size, num_points, _ = points.shape\n\n    box_idxs_of_pts = points.new_zeros((batch_size, num_points), dtype=torch.int).fill_(-1)\n    roiaware_pool3d_cuda.points_in_boxes_gpu(boxes.contiguous(), points.contiguous(), box_idxs_of_pts)\n\n    return box_idxs_of_pts",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roiaware_pool3d_utils.py#L34"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.roiaware_pool3d.points_in_boxes_gpu",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 111,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L111"
+        }
+      ]
+    },
+    {
+      "id": "roiaware",
+      "title": "RoIAwarePool3d 体素池化",
+      "file": "roiaware_pool3d_utils.py",
+      "symbol": "RoIAwarePool3dFunction",
+      "bindings": [
+        "roiaware_pool3d.forward",
+        "roiaware_pool3d.backward"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/roiaware_pool3d/roiaware_pool3d.cpp",
+          "symbol": "roiaware_pool3d_gpu",
+          "sha256": "b4f21b545791d12626a4dce8de4d87e5afcb52cf186017bd5d81de7173fd84db",
+          "line": 29,
+          "signature": "roiaware_pool3d_gpu(at::Tensor rois, at::Tensor pts, at::Tensor pts_feature, at::Tensor argmax, at::Tensor pts_idx_of_voxels, at::Tensor pooled_features, int pool_method)",
+          "snippet": "int roiaware_pool3d_gpu(at::Tensor rois, at::Tensor pts, at::Tensor pts_feature, at::Tensor argmax,\n    at::Tensor pts_idx_of_voxels, at::Tensor pooled_features, int pool_method){\n    // params rois: (N, 7) [x, y, z, dx, dy, dz, heading] (x, y, z) is the box center\n    // params pts: (npoints, 3) [x, y, z]\n    // params pts_feature: (npoints, C)\n    // params argmax: (N, out_x, out_y, out_z, C)\n    // params pts_idx_of_voxels: (N, out_x, out_y, out_z, max_pts_each_voxel)\n    // params pooled_features: (N, out_x, out_y, out_z, C)\n    // params pool_method: 0: max_pool 1: avg_pool\n\n//    CHECK_INPUT(rois);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roiaware_pool3d/roiaware_pool3d.cpp#L29"
+        },
+        {
+          "path": "up/extensions/csrc/roiaware_pool3d/roiaware_pool3d.cpp",
+          "symbol": "roiaware_pool3d_gpu_backward",
+          "sha256": "b4f21b545791d12626a4dce8de4d87e5afcb52cf186017bd5d81de7173fd84db",
+          "line": 68,
+          "signature": "roiaware_pool3d_gpu_backward(at::Tensor pts_idx_of_voxels, at::Tensor argmax, at::Tensor grad_out, at::Tensor grad_in, int pool_method)",
+          "snippet": "int roiaware_pool3d_gpu_backward(at::Tensor pts_idx_of_voxels, at::Tensor argmax, at::Tensor grad_out, at::Tensor grad_in, int pool_method){\n    // params pts_idx_of_voxels: (N, out_x, out_y, out_z, max_pts_each_voxel)\n    // params argmax: (N, out_x, out_y, out_z, C)\n    // params grad_out: (N, out_x, out_y, out_z, C)\n    // params grad_in: (npoints, C), return value\n    // params pool_method: 0: max_pool 1: avg_pool\n\n//    CHECK_INPUT(pts_idx_of_voxels);\n//    CHECK_INPUT(argmax);\n//    CHECK_INPUT(grad_out);\n//    CHECK_INPUT(grad_in);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roiaware_pool3d/roiaware_pool3d.cpp#L68"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/roiaware_pool3d/roiaware_pool3d_kernel.cu",
+          "symbol": "roiaware_pool3d_kernel.cu",
+          "sha256": "d34013f84a0094dd9ae814e0cf1e5bceb7d808bfcc1248a1832f334a96a1808e",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roiaware_pool3d/roiaware_pool3d_kernel.cu#L1"
+        }
+      ],
+      "inputs": "rois[N,7]、pts[P,3]、pts_feature[P,C] float32；out_size 为 int 或 (x,y,z)；max_pts_each_voxel；pool_method=\"max\" / \"avg\"。",
+      "output": "float32 Tensor[N,out_x,out_y,out_z,C]，同设备。",
+      "backward": "只对 pts_feature 返回 [P,C] 梯度；保存 int32 点索引、argmax、pool_method 和输入尺寸。",
+      "details": "保留体素坐标、每体素最大点数、max/avg 的空体素与截断规则。",
+      "scope": "点云可选包装，按需接入。",
+      "public_signature": "RoIAwarePool3dFunction.apply(rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method)",
+      "vendor_signature": "roiaware(rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method)",
+      "signature_args": "rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method",
+      "python": [
+        {
+          "path": "up/extensions/python/roiaware_pool3d_utils.py",
+          "symbol": "RoIAwarePool3dFunction.forward",
+          "sha256": "7efc4a04e2bc388aad2e786a1210ad568746ed10b154c3d4bea8ec91e221867a",
+          "line": 63,
+          "signature": "RoIAwarePool3dFunction.forward(ctx, rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method)",
+          "snippet": "    def forward(ctx, rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method):\n        \"\"\"\n        Args:\n            ctx:\n            rois: (N, 7) [x, y, z, dx, dy, dz, heading] (x, y, z) is the box center\n            pts: (npoints, 3)\n            pts_feature: (npoints, C)\n            out_size: int or tuple, like 7 or (7, 7, 7)\n            max_pts_each_voxel:\n            pool_method: 'max' or 'avg'\n\n        Returns:\n            pooled_features: (N, out_x, out_y, out_z, C)\n        \"\"\"\n        assert rois.shape[1] == 7 and pts.shape[1] == 3\n        if isinstance(out_size, int):\n            out_x = out_y = out_z = out_size\n        else:\n            assert len(out_size) == 3\n            for k in range(3):\n                assert isinstance(out_size[k], int)\n            out_x, out_y, out_z = out_size\n\n        num_rois = rois.shape[0]",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roiaware_pool3d_utils.py#L63"
+        },
+        {
+          "path": "up/extensions/python/roiaware_pool3d_utils.py",
+          "symbol": "RoIAwarePool3dFunction.backward",
+          "sha256": "7efc4a04e2bc388aad2e786a1210ad568746ed10b154c3d4bea8ec91e221867a",
+          "line": 102,
+          "signature": "RoIAwarePool3dFunction.backward(ctx, grad_out)",
+          "snippet": "    def backward(ctx, grad_out):\n        \"\"\"\n        :param grad_out: (N, out_x, out_y, out_z, C)\n        :return:\n            grad_in: (npoints, C)\n        \"\"\"\n        pts_idx_of_voxels, argmax, pool_method, num_pts, num_channels = ctx.roiaware_pool3d_for_backward\n\n        grad_in = grad_out.new_zeros((num_pts, num_channels))\n        roiaware_pool3d_cuda.backward(pts_idx_of_voxels, argmax, grad_out.contiguous(), grad_in, pool_method)\n\n        return None, None, grad_in, None, None, None",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roiaware_pool3d_utils.py#L102"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.roiaware_pool3d.forward",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 109,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L109"
+        },
+        {
+          "symbol": "up.extensions._C.roiaware_pool3d.backward",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 110,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L110"
+        }
+      ]
+    },
+    {
+      "id": "roipoint",
+      "title": "RoIPointPool3d 区域点采样",
+      "file": "roipoint_pool3d_utils.py",
+      "symbol": "RoIPointPool3dFunction",
+      "bindings": [
+        "roipoint_pool3d.forward"
+      ],
+      "cpp": [
+        {
+          "path": "up/extensions/csrc/roipoint_pool3d/roipoint_pool3d.cpp",
+          "symbol": "roipool3d_gpu",
+          "sha256": "22058149888e8b126f7dd4652ccdc393ff1de96f428fa8938ffaa17747d4a4a7",
+          "line": 23,
+          "signature": "roipool3d_gpu(at::Tensor xyz, at::Tensor boxes3d, at::Tensor pts_feature, at::Tensor pooled_features, at::Tensor pooled_empty_flag)",
+          "snippet": "int roipool3d_gpu(at::Tensor xyz, at::Tensor boxes3d, at::Tensor pts_feature, at::Tensor pooled_features, at::Tensor pooled_empty_flag){\n    // params xyz: (B, N, 3)\n    // params boxes3d: (B, M, 7)\n    // params pts_feature: (B, N, C)\n    // params pooled_features: (B, M, 512, 3+C)\n    // params pooled_empty_flag: (B, M)\n    CHECK_INPUT(xyz);\n    CHECK_INPUT(boxes3d);\n    CHECK_INPUT(pts_feature);\n    CHECK_INPUT(pooled_features);\n    CHECK_INPUT(pooled_empty_flag);",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roipoint_pool3d/roipoint_pool3d.cpp#L23"
+        }
+      ],
+      "cuda": [
+        {
+          "path": "up/extensions/csrc/roipoint_pool3d/roipoint_pool3d_kernel.cu",
+          "symbol": "roipoint_pool3d_kernel.cu",
+          "sha256": "a8b0b99d4140ba3e14c979f8f4debd0265caa8ed0cece50b83c481398d0a7e54",
+          "line": 1,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/roipoint_pool3d/roipoint_pool3d_kernel.cu#L1"
+        }
+      ],
+      "inputs": "points[B,N,3]、point_features[B,N,C]、boxes3d[B,M,7] float32；pool_extra_width；num_sampled_points=512。",
+      "output": "(pooled[B,M,S,3+C], empty_flag[B,M])；S 为采样数；pooled float32，empty_flag int32，同设备。",
+      "backward": "原版 backward 未实现；不要宣称该操作支持训练反向，需要反向时明确报不支持。",
+      "details": "先按原 enlarge_box3d 扩框；保留点顺序、不足采样数时的重复策略和空框标志。",
+      "scope": "点云可选包装，按需接入。",
+      "public_signature": "RoIPointPool3dFunction.apply(points, point_features, boxes3d, pool_extra_width, num_sampled_points=512)",
+      "vendor_signature": "roipoint(points, point_features, boxes3d, pool_extra_width, num_sampled_points=512)",
+      "signature_args": "points, point_features, boxes3d, pool_extra_width, num_sampled_points=512",
+      "python": [
+        {
+          "path": "up/extensions/python/roipoint_pool3d_utils.py",
+          "symbol": "RoIPointPool3dFunction.forward",
+          "sha256": "79ee879c796ee210603357fa33d448aaadfd689cd26f9f443cd505e718ab0138",
+          "line": 32,
+          "signature": "RoIPointPool3dFunction.forward(ctx, points, point_features, boxes3d, pool_extra_width, num_sampled_points=512)",
+          "snippet": "    def forward(ctx, points, point_features, boxes3d, pool_extra_width, num_sampled_points=512):\n        \"\"\"\n        Args:\n            ctx:\n            points: (B, N, 3)\n            point_features: (B, N, C)\n            boxes3d: (B, num_boxes, 7), [x, y, z, dx, dy, dz, heading]\n            pool_extra_width:\n            num_sampled_points:\n\n        Returns:\n            pooled_features: (B, num_boxes, 512, 3 + C)\n            pooled_empty_flag: (B, num_boxes)\n        \"\"\"\n        assert points.shape.__len__() == 3 and points.shape[2] == 3\n        batch_size, boxes_num, feature_len = points.shape[0], boxes3d.shape[1], point_features.shape[2]\n        pooled_boxes3d = enlarge_box3d(boxes3d.view(-1, 7), pool_extra_width).view(batch_size, -1, 7)\n\n        pooled_features = point_features.new_zeros((batch_size, boxes_num, num_sampled_points, 3 + feature_len))\n        pooled_empty_flag = point_features.new_zeros((batch_size, boxes_num)).int()\n\n        roipoint_pool3d_cuda.forward(\n            points.contiguous(), pooled_boxes3d.contiguous(),\n            point_features.contiguous(), pooled_features, pooled_empty_flag",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roipoint_pool3d_utils.py#L32"
+        },
+        {
+          "path": "up/extensions/python/roipoint_pool3d_utils.py",
+          "symbol": "RoIPointPool3dFunction.backward",
+          "sha256": "79ee879c796ee210603357fa33d448aaadfd689cd26f9f443cd505e718ab0138",
+          "line": 61,
+          "signature": "RoIPointPool3dFunction.backward(ctx, grad_out)",
+          "snippet": "    def backward(ctx, grad_out):\n        raise NotImplementedError",
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roipoint_pool3d_utils.py#L61"
+        }
+      ],
+      "pybind": [
+        {
+          "symbol": "up.extensions._C.roipoint_pool3d.forward",
+          "path": "up/extensions/csrc/pybind.cpp",
+          "line": 117,
+          "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/csrc/pybind.cpp#L117"
+        }
+      ]
+    }
+  ],
+  "shared": [
+    {
+      "signature": "box_overlap(b1, b2, mode=\"IoU\")",
+      "ref": {
+        "path": "up/platform/ops.py",
+        "symbol": "box_overlap",
+        "sha256": "c27f3722f8f56c4c444418884b54ab0e63cb6b21f2caeb6689e53dd10f3bd605",
+        "line": 7,
+        "signature": "box_overlap(b1, b2, mode='IoU')",
+        "snippet": "def box_overlap(b1, b2, mode='IoU'):\n    # 保持 UP 原扩展的闭区间坐标语义；与下方 NMS 使用的连续坐标分开处理。\n    # Match csrc/iou_overlap exactly: inclusive coordinates and denominator >= 1.\n    area1 = ((b1[:, 2:4] - b1[:, :2]) + 1).prod(dim=1)\n    area2 = ((b2[:, 2:4] - b2[:, :2]) + 1).prod(dim=1)\n    lt = torch.maximum(b1[:, None, :2], b2[:, :2])\n    rb = torch.minimum(b1[:, None, 2:4], b2[:, 2:4])\n    intersection = (rb - lt + 1).clamp(min=0).prod(dim=2)\n    denominator = area1[:, None] + area2 - intersection if mode == 'IoU' else area1[:, None]\n    return intersection / denominator.clamp(min=1)",
+        "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/platform/ops.py#L7"
+      }
+    },
+    {
+      "signature": "nms(boxes, scores, threshold)",
+      "ref": {
+        "path": "up/platform/ops.py",
+        "symbol": "nms",
+        "sha256": "c27f3722f8f56c4c444418884b54ab0e63cb6b21f2caeb6689e53dd10f3bd605",
+        "line": 19,
+        "signature": "nms(boxes, scores, threshold)",
+        "snippet": "def nms(boxes, scores, threshold):\n    # NVIDIA 沿用 TorchVision；其他厂商在输入设备上使用普通 Tensor 运算完成筛选。\n    if get_runtime().platform == 'nvidia':\n        from torchvision.ops import nms as torchvision_nms\n        return torchvision_nms(boxes, scores, threshold)\n\n    # Same-device reference path. No CUDA binary or implicit CPU fallback.\n    order = scores.argsort(descending=True)\n    area = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])\n    keep = []\n    while order.numel():\n        index = order[0]\n        keep.append(index)\n        remaining = order[1:]\n        lt = torch.maximum(boxes[index, :2], boxes[remaining, :2])\n        rb = torch.minimum(boxes[index, 2:], boxes[remaining, 2:])\n        wh = (rb - lt).clamp(min=0)\n        intersection = wh[:, 0] * wh[:, 1]\n        iou = intersection / (area[index] + area[remaining] - intersection)\n        order = remaining[~(iou > threshold)]\n    return torch.stack(keep) if keep else order",
+        "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/platform/ops.py#L19"
+      }
+    },
+    {
+      "signature": "sigmoid_focal_loss(input, target, normalizer, gamma, alpha, num_channels, reduction)",
+      "ref": {
+        "path": "up/platform/ops.py",
+        "symbol": "sigmoid_focal_loss",
+        "sha256": "c27f3722f8f56c4c444418884b54ab0e63cb6b21f2caeb6689e53dd10f3bd605",
+        "line": 42,
+        "signature": "sigmoid_focal_loss(input, target, normalizer, gamma, alpha, num_channels, reduction)",
+        "snippet": "def sigmoid_focal_loss(input, target, normalizer, gamma, alpha, num_channels, reduction):\n    # 为不能加载 NVIDIA 扩展的平台提供可自动求导的 Torch 实现，输出仍按 UP 约定。\n    # UP labels: background=0, foreground=1..C, ignored=-1.\n    classes = torch.arange(1, num_channels + 1, device=input.device)\n    positive = (target[:, None] == classes).to(input.dtype)\n    probability = input.sigmoid()\n    ce = F.binary_cross_entropy_with_logits(input, positive, reduction='none')\n    pt = probability * positive + (1 - probability) * (1 - positive)\n    alpha_t = alpha * positive + (1 - alpha) * (1 - positive)\n    loss = ce * (1 - pt).pow(gamma) * alpha_t\n    loss = loss * (target[:, None] != -1).to(input.dtype) / normalizer.clamp(min=1)\n    return loss if reduction == 'none' else loss.sum().reshape(1)",
+        "url": "https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/platform/ops.py#L42"
+      }
+    }
+  ]
+}

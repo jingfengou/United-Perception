@@ -30,6 +30,8 @@ def main():
     data['software_tests'] = args.software_tests
     data['assignment_counts'] = {v: dict(collections.Counter(f['vendors'][v]['action']
                                   for f in audit['families'])) for v in ('metax', 'cambricon', 'ascend')}
+    contract_file = ROOT / 'docs/platform/vendor-api-contracts.json'
+    data['implementation_spec'] = json.loads(contract_file.read_text(encoding='utf-8'))
     data['examples'] = {
         'yaml': 'runtime:\n  platform: metax_cuda\n\n# nvidia / metax_cuda / cambricon_mlu / ascend_npu',
         'install': '# 保留环境中的厂商 Torch，先装应用依赖\npython -m pip install -r requirements/runtime.txt\n\n'

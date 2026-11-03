@@ -2,6 +2,8 @@
 
 先打开 [GPU 核查 HTML](GPU_PORTABILITY.html)。页面可按厂商、原版/瘦身版、函数名和处理方式筛选；展开条目可看到源码、签名、依据和验收要求。
 
+**交给厂商负责人请用 [逐函数实现任务单](VENDOR_IMPLEMENTATION.md)**：包含 33 项设备/AMP/通信/策略接入检查、16 个完整 GPU 操作接口、输入输出、所需反向，以及 NVIDIA 的 Python → C++ → CUDA 参考链。可直接复制[接口模板](templates/native_ops.py)，并下载各厂商 CSV 任务表。
+
 ## 哪些放进类里
 
 `up/runtime/backend.py::RuntimeBackend` 集中处理设备、显存、同步、RNG、AMP 入口、通信后端和计算库策略。厂商设备 API 兼容时直接复用；不兼容时在这里增加厂商分支或子类，并在 `setup_runtime()` 的工厂位置选择它。
