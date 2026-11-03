@@ -119,6 +119,14 @@ class ModelHelper(nn.Module):
         self.device = torch.device('cuda')
         return super(ModelHelper, self).cuda()
 
+    def to(self, *args, **kwargs):
+        # .to() 后同步 UP 缓存的 device/dtype，防止内部新建张量仍使用旧 cuda 信息。
+        model = super(ModelHelper, self).to(*args, **kwargs)
+        parameter = next(self.parameters(), None)
+        if parameter is not None:
+            self.device, self.dtype = parameter.device, parameter.dtype
+        return model
+
     def cpu(self):
         self.device = torch.device('cpu')
         return super(ModelHelper, self).cpu()

@@ -1,8 +1,9 @@
+from up.runtime import get_runtime
 # Import from local
 from ..ext import overlaps
 
 
-def gpu_iou_overlap(b1, b2, mode='IoU'):
+def _nvidia_gpu_iou_overlap(b1, b2, mode='IoU'):
     """compute IoU/IoF/IoS between b1 and b2
     Args:
         b1: Tensor, [N, >=4]
@@ -22,3 +23,7 @@ def gpu_iou_overlap(b1, b2, mode='IoU'):
     ious = b1.new_zeros((b1.shape[0], b2.shape[0]))
     overlaps.iou(b1, b2, ious, flag)
     return ious
+
+
+def gpu_iou_overlap(b1, b2, mode='IoU'):
+    return get_runtime().native_ops.overlap(b1, b2, mode)

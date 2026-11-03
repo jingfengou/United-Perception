@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 # Import from third library
 import torch
 from torch.autograd import Function
@@ -13,6 +14,11 @@ from ..ext import roi_align
 
 
 class RoIAlignFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.roi_align(*args, aligned=ALIGNED_FLAG.aligned)
+
 
     @staticmethod
     def symbolic(g, features, rois, pooled_h, pooled_w, spatial_scale, sampling_ratio, pooled_mode):

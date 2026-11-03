@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 # Import from pod
 # Import from third library
 import torch
@@ -10,6 +11,11 @@ from ..ext import psroi_pooling
 
 
 class PSRoIPoolFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.psroi_pool(*args)
+
 
     @staticmethod
     def symbolic(g, features, rois, group_size, spatial_scale, output_dim):

@@ -193,6 +193,8 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
             - target (LongTenosor): [[M, N]]
         """
         # assert reduction != 'none', 'Not Supported none reduction yet'
+        # NVIDIA 保留原专用内核，其他厂商使用可微 Torch 实现；标签/归一化由同一调用方传入。
+        focal = SigmoidFocalLossFunction.apply
         input = input.reshape(target.numel(), -1)
         target = target.reshape(-1).int()
         normalizer = 1.0 if normalizer is None else normalizer
@@ -201,7 +203,7 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
             normalizer = dynamic_normalizer(input, target, self.alpha, self.gamma)
         if weights is not None:
             if weights.shape.__len__() == 2 or (weights.shape.__len__() == 1 and target.shape.__len__() == 2):
-                loss = SigmoidFocalLossFunction.apply(
+                loss = focal(
                     input,
                     target,
                     normalizer,
@@ -214,7 +216,7 @@ class SigmoidFocalLoss(GeneralizedCrossEntropyLoss):
                 loss = loss * weights
                 return _reduce(loss, reduction='sum')
 
-        loss = SigmoidFocalLossFunction.apply(
+        loss = focal(
             input, target, normalizer, self.gamma, self.alpha, self.num_channels, reduction)
         return loss
 
@@ -264,7 +266,7 @@ class TorchSigmoidFocalLoss(GeneralizedCrossEntropyLoss):
         # N * C
         N, C = input.size()
         onehot_target = input.new_zeros(N, C + 1)
-        onehot_target[torch.arange(N), target] = 1
+        onehot_target[torch.arange(N, device=input.device), target] = 1
         return onehot_target[:, 1:]
 
     def forward(self, input, target, reduction, normalizer=None):
@@ -344,7 +346,7 @@ class CrossSigmoidFocalLoss(SigmoidFocalLoss):
         if gt_class_to_avoid is None:
             # if gt_class_to avoid is not provided, we set -2 for no neg label to avoid.
             gt_class_to_avoid = [[-2]] * self.num_channels
-        self.gt_class_to_avoid = self._convert2tensor(gt_class_to_avoid)
+        self.register_buffer('gt_class_to_avoid', self._convert2tensor(gt_class_to_avoid), persistent=False)
         self.neg_targets = neg_targets
         assert ignore_index == -1, 'only -1 is allowed for ignore index'
 
@@ -357,7 +359,7 @@ class CrossSigmoidFocalLoss(SigmoidFocalLoss):
             data.append(cls + 1)
             data.extend(neg)
         data = np.require(data, dtype=np.int32)
-        data = torch.from_numpy(data).cuda()
+        data = torch.from_numpy(data)
         return data
 
     def forward(self, input, target, reduction, normalizer=None):

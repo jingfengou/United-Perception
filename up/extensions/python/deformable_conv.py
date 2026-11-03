@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 # Standard Library
 import math
 
@@ -16,6 +17,11 @@ from ..ext import deform_conv_v1
 
 
 class DeformableConvFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.deform_conv(*args)
+
 
     @staticmethod
     def symbolic(g, input, offset, weight, out_channels,

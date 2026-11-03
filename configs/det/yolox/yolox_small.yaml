@@ -1,10 +1,14 @@
 num_classes: &num_classes 81
 runtime:
+  platform: nvidia
   aligned: true
   async_norm: true
   special_bn_init: true
   rank_init: true
   task_names: det
+export:
+  input_size: [3, 640, 640]
+  opset: 17
 mosaic: &mosaic
   type: mosaic
   kwargs:

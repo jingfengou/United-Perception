@@ -1,7 +1,4 @@
+# 瘦身版只公开训练/验证和独立推理，避免导入已移除任务的命令依赖。
 from .train import Train  # noqa
 from .inference import Inference # noqa
-from .eval import Eval # noqa
-from .quant_deploy import QuantDeploy # noqa
-from .flops import Flops # noqa
-from .inference_video import Inference_video # noqa
-from .to_onnx import ToOnnx # noqa 
+from .to_onnx import ToOnnx  # noqa

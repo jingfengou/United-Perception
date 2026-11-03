@@ -2,6 +2,7 @@ import random
 import numpy as np
 import uuid
 import torch
+from up.runtime import get_runtime
 from torch.utils.collect_env import get_pretty_env_info
 from .dist_helper import env
 from collections.abc import Mapping
@@ -26,38 +27,43 @@ def get_env_info():
 
 
 def set_random_seed(seed, rank_init=False):
+    # 保留原种子与 rank 的组合规则，只把设备 RNG 入口切换到当前厂商。
     if not rank_init:
         random.seed(seed)
         np.random.seed(seed ** 2)
         torch.manual_seed(seed ** 3)
-        torch.cuda.manual_seed(seed ** 4)
+        get_runtime().module.manual_seed(seed ** 4)
     else:
         seed_add = env.rank
         random.seed(seed + seed_add)
         np.random.seed(seed + seed_add)
         torch.manual_seed(seed + seed_add)
-        torch.cuda.manual_seed(seed + seed_add)
+        get_runtime().module.manual_seed(seed + seed_add)
 
 
-def to_device(input, device="cuda", dtype=None):
-    """Transfer data between devidces"""
+def to_device(input, device=None, dtype=None):
+    """Move every Tensor, including labels when the image is already on device.
 
-    if 'image' in input:
-        input['image'] = input['image'].to(dtype=dtype)
+    Only image tensors change dtype. File names, dimensions and other Python
+    metadata stay unchanged; named tuples keep their type. Do not mutate batches.
+    """
+    if device is None:
+        device = get_runtime().device
 
-    def transfer(x):
+    def transfer(x, image=False):
         if torch.is_tensor(x):
-            return x.to(device=device)
+            return x.to(device=device, dtype=dtype if image else x.dtype)
         elif isinstance(x, list):
-            return [transfer(_) for _ in x]
+            return [transfer(_, image) for _ in x]
+        elif isinstance(x, tuple):
+            values = [transfer(_, image) for _ in x]
+            return type(x)(*values) if hasattr(x, '_fields') else tuple(values)
         elif isinstance(x, Mapping):
-            if 'image' in x:
-                x['image'] = x['image'].to(dtype=dtype)
-            return type(x)({k: transfer(v) for k, v in x.items()})
+            return type(x)({k: transfer(v, k == 'image') for k, v in x.items()})
         else:
             return x
 
-    return {k: transfer(v) for k, v in input.items()}
+    return transfer(input)
 
 
 def patterns_match(patterns, string):

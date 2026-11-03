@@ -1,4 +1,6 @@
 import torch.optim
+from up.runtime import setup_runtime
+from up.runtime.state import evaluation_mode
 import time
 import os
 import copy
@@ -9,11 +11,10 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from up.utils.general.log_helper import default_logger as logger
 from up.utils.general.hook_helper import build_hooks
 from up.utils.env.gene_env import set_random_seed, to_device
-from up.utils.env.dist_helper import barrier, gather_pk, env, DistModule, reduce_gradients
+from up.utils.env.dist_helper import barrier, gather_pk, env
 from up.data.metrics.base_evaluator import Metric
-from up.utils.general.cfg_helper import merge_opts_into_cfg, format_cfg
+from up.utils.general.cfg_helper import merge_opts_into_cfg, format_cfg, validate_model_coordinates
 from up.utils.env.gene_env import get_env_info, print_network
-from up.utils.general.fp16_helper import register_float_module
 from up.utils.model.normalize import is_bn
 from up.utils.general.registry_factory import (
     SAVER_REGISTRY,
@@ -23,7 +24,6 @@ from up.utils.general.registry_factory import (
     OPTIMIZER_REGISTRY,
     LR_SCHEDULER_REGISTY,
     MODEL_HELPER_REGISTRY,
-    TOONNX_REGISTRY
 )
 from up.utils.general.global_flag import (
     ALIGNED_FLAG,
@@ -49,9 +49,12 @@ class BaseRunner(object):
         self._temporaries = defaultdict(float)
         config = copy.deepcopy(config)
         self.config = self.upgrade_config(config)
+        validate_model_coordinates(self.config)
+        # Runner 只持有已选运行时，训练、验证和输入迁移都从这里取得设备能力。
+        self.runtime = setup_runtime(self.config)
         self.set_default_cfg()
         self.iter_base = self.config['runtime']['iter_base']
-        self.device = self.config['runtime']['device']
+        self.device = self.runtime.device
         self.aligned = self.config['runtime']['aligned']
         self.fp16 = False
         node_info, node_list = get_memory_info(get_total=True)
@@ -65,11 +68,8 @@ class BaseRunner(object):
     def prepare_fp16(self):
         if self.config['runtime'].get('fp16', False):
             if self.backend == 'dist':
-                self.scaler = torch.cuda.amp.GradScaler(enabled=True)
-            else:
-                register_float_module(self.config['runtime']['fp16'].get('keep_batchnorm_fp32', True))
-                loss_scale = self.config['runtime']['fp16'].get('scale_factor', 'dynamic')
-                self.config['trainer']['optimizer']['kwargs']['loss_scale'] = loss_scale
+                # 损失缩放规则保持 PyTorch AMP 语义，选择与当前设备匹配的实现。
+                self.scaler = self.runtime.amp.GradScaler(enabled=True)
             self.fp16 = True
             FP16_FLAG.fp16 = True
 
@@ -83,7 +83,7 @@ class BaseRunner(object):
         self.config['runtime']['random_seed'] = self.config['runtime'].setdefault('random_seed', 131)
         self.config['runtime']['aligned'] = self.config['runtime'].setdefault('aligned', False)
         self.config['runtime']['iter_base'] = self.config['runtime'].setdefault('iter_base', False)
-        self.config['runtime']['device'] = self.config['runtime'].setdefault('device', 'cuda')
+        self.config['runtime']['device'] = self.config['runtime'].setdefault('device', self.runtime.device_type)
         self.config['runtime']['async_norm'] = self.config['runtime'].setdefault('async_norm', False)
         self.config['runtime']['special_bn_init'] = self.config['runtime'].setdefault('special_bn_init', False)
         model_helper_cfg = self.config['runtime'].get('model_helper', {})
@@ -113,12 +113,6 @@ class BaseRunner(object):
         if not self.fp16:
             return cfg_optimizer
         if self.backend == 'dist':
-            return cfg_optimizer
-        elif self.backend == 'linklink':
-            if cfg_optimizer['type'] == 'SGD':
-                cfg_optimizer['type'] = 'FusedFP16SGD'
-            if cfg_optimizer['type'] == 'AdamW':
-                cfg_optimizer['type'] = 'FusedFP16AdamW'
             return cfg_optimizer
         else:
             raise NotImplementedError
@@ -213,19 +207,21 @@ class BaseRunner(object):
         return new_cfg_hooks
 
     def build_global_flags(self):
-        if self.aligned:
-            ALIGNED_FLAG.aligned = True
-            ALIGNED_FLAG.offset = 0
-        if self.iter_base:
-            ITER_BASE_FLAG.flag = True
+        ALIGNED_FLAG.aligned = self.aligned
+        ALIGNED_FLAG.offset = 0 if self.aligned else 1
+        ITER_BASE_FLAG.flag = self.iter_base
         self.backend = DIST_BACKEND.backend
 
     def build_env(self):
+        expected = self.config['runtime'].get('expected_world_size')
+        if expected is not None and env.world_size != expected:
+            raise ValueError('This recipe requires {} processes; launched {}'.format(expected, env.world_size))
         self.build_global_flags()
         rank_init = self.config['runtime']['rank_init']
         random_seed = self.config['runtime']['random_seed']
         set_random_seed(random_seed, rank_init)
-        torch.backends.cudnn.enabled = not self.args.get('nocudnn', False)
+        self.runtime.configure_dnn(self.config['runtime'].get('dnn'),
+                                   legacy_nocudnn=self.args.get('nocudnn', False))
         logger.info(f'world size:{env.world_size}')
 
     def resume_model(self):
@@ -235,8 +231,6 @@ class BaseRunner(object):
             if self.fp16:
                 if self.backend == 'dist':
                     self.resume_fp16(ckpt)
-                else:
-                    self.optimizer.reload()
             if 'optimizer' in ckpt:
                 start_epoch = ckpt['epoch']
                 self.optimizer.load_state_dict(ckpt['optimizer'])
@@ -334,10 +328,9 @@ class BaseRunner(object):
     def prepare_dist_model(self):
         if env.distributed:
             if self.backend == 'dist':
+                # 单进程直接执行模型，多进程的梯度同步交给 PyTorch DDP。
                 logger.info('using ddp')
                 self.model = DDP(self.model, device_ids=[env.local_rank], broadcast_buffers=False)
-            else:
-                self.model = DistModule(self.model, not self.args.get('asynchronize', False))
 
         if self.training:
             self.start_iter = self.lr_scheduler.last_iter
@@ -363,7 +356,7 @@ class BaseRunner(object):
 
     def train(self):
         self._hooks('before_train')
-        self.model.cuda().train()
+        self.model.to(self.device).train()
         for iter_idx in range(self.start_iter, self.max_iter):
             batch = self.get_batch('train')
             loss = self.forward_train(batch)
@@ -381,7 +374,6 @@ class BaseRunner(object):
                     if self.ema is not None:
                         all_reduce_norm(self.ema.model)
                 self.evaluate()
-                self.model.train()
             if self.only_save_latest:
                 self.save_epoch_ckpt(iter_idx)
             else:
@@ -392,7 +384,7 @@ class BaseRunner(object):
 
     @torch.no_grad()
     def _inference(self):
-        self.model.cuda().eval()
+        self.model.to(self.device).eval()
         test_loader = self.data_loaders['test']
         all_results_list = []
         test_resume = ((hasattr(test_loader.dataset, 'test_resume')) and (test_loader.dataset.test_resume is True))
@@ -491,6 +483,11 @@ class BaseRunner(object):
 
     @torch.no_grad()
     def evaluate(self):
+        ema_model = self.ema.model if getattr(self, 'ema', None) is not None else None
+        with evaluation_mode(self.model, ema_model):
+            return self._evaluate()
+
+    def _evaluate(self):
         res_file, all_device_results_list = self.inference()
         if env.is_master():
             logger.info("begin evaluate")
@@ -509,24 +506,11 @@ class BaseRunner(object):
         self.set_cur_eval_iter()
         return metrics
 
-    @torch.no_grad()
-    def to_onnx(self, save_prefix='model', input_size=None, input_channel=3):
-        model = self.ema.model if self.ema is not None else self.model
-        toonnx_type = self.config.pop('toonnx_type', 'base')
-        toonnx_ins = TOONNX_REGISTRY[toonnx_type](self.config,
-                                                  save_prefix,
-                                                  input_size,
-                                                  model,
-                                                  input_channel)
-        toonnx_ins.process()
 
     def batch2device(self, batch):
+        # 使用进程绑定的实际设备迁移整批数据，不再硬编码 cuda。
         model_dtype = torch.float32
-        if self.fp16 and self.backend == 'linklink':
-            model_dtype = self.model.dtype
-        if batch['image'].device != torch.device('cuda') or batch['image'].dtype != model_dtype:
-            batch = to_device(batch, device=torch.device('cuda'), dtype=model_dtype)
-        return batch
+        return to_device(batch, device=self.device, dtype=model_dtype)
 
     def get_batch(self, batch_type='train'):
         if batch_type == 'train':
@@ -636,13 +620,19 @@ class BaseRunner(object):
         model_helper_kwargs = self.config['runtime']['model_helper']['kwargs']
         model_helper_ins = MODEL_HELPER_REGISTRY[model_helper_type]
         self.model = model_helper_ins(self.config['net'], **model_helper_kwargs)
-        if self.device == 'cuda':
-            self.model = self.model.cuda()
+        self.model = self.model.to(self.device)
         if self.config['runtime']['special_bn_init']:
             self.special_bn_init()
-        if self.fp16 and self.backend == 'linklink':
-            self.model = self.model.half()
         logger.info(print_network(self.model))
+
+    @torch.no_grad()
+    def to_onnx(self, save_prefix='model', input_size=None, input_channel=3):
+        # Retain the original Python entry as well as the to_onnx CLI.
+        from up.utils.general.registry_factory import TOONNX_REGISTRY
+        model = self.ema.model if self.ema is not None else self.model
+        model = model.module if isinstance(model, DDP) else model
+        exporter = TOONNX_REGISTRY[self.config.get('toonnx_type', 'base')]
+        return exporter(self.config, save_prefix, input_size, model, input_channel).process()
 
     def build_fake_model(self):
         '''
@@ -663,10 +653,7 @@ class BaseRunner(object):
             model_helper_kwargs = self.config['runtime']['model_helper']['kwargs']
             model_helper_ins = MODEL_HELPER_REGISTRY[model_helper_type]
             model = model_helper_ins(net_cfg, **model_helper_kwargs)
-            if self.device == 'cuda':
-                model = model.cuda()
-            if self.fp16 and self.backend == 'linklink':
-                model = model.half()
+            model = model.to(self.device)
             if self.config['runtime']['special_bn_init']:
                 for m in model.modules():
                     if is_bn(m):
@@ -726,7 +713,7 @@ class BaseRunner(object):
 
     def forward(self, batch, return_output=False):
         if self.backend == 'dist' and self.fp16:
-            with torch.cuda.amp.autocast(enabled=True):
+            with self.runtime.amp.autocast(enabled=True):
                 output = self.forward_model(batch)
         else:
             output = self.forward_model(batch)
@@ -745,16 +732,6 @@ class BaseRunner(object):
                 self.scaler.scale(loss).backward()
             else:
                 loss.backward()
-        elif self.backend == 'linklink':
-            loss = loss / env.world_size
-            if self.fp16:
-                self.optimizer.backward(loss)
-            else:
-                loss.backward()
-            self._hooks('before_allreduce', self.cur_iter)
-            reduce_gradients(self.model, not self.args['asynchronize'],
-                             self.args.get('allow_dead_parameter', False))
-            self._hooks('after_allreduce', self.cur_iter)
         else:
             raise NotImplementedError
         self._hooks('after_backward', self.cur_iter, loss)

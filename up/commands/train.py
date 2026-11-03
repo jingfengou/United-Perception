@@ -10,6 +10,7 @@ import torch.multiprocessing as mp
 from up.utils.env.dist_helper import setup_distributed, finalize, gpu_check
 from up.utils.general.yaml_loader import load_yaml  # IncludeLoader
 from up.utils.env.launch import launch
+from up.runtime import setup_runtime
 from up.utils.general.user_analysis_helper import send_info
 
 # Import from local
@@ -37,24 +38,20 @@ class Train(Subcommand):
             '--fork-method',
             dest='fork_method',
             type=str,
-            default='fork',
+            default='spawn',
             choices=['spawn', 'fork'],
             help='method to fork subprocess, especially for dataloader')
         sub_parser.add_argument('--backend',
                                 dest='backend',
                                 type=str,
                                 default='dist',
+                                choices=['dist'],
                                 help='model backend')
         sub_parser.add_argument(
             '--nocudnn',
             dest='nocudnn',
             action='store_true',
             help='Whether to use cudnn backend or not. Please disable cudnn when running on V100'
-        )
-        sub_parser.add_argument(
-            '--allow_dead_parameter',
-            action='store_true',
-            help='dead parameter (defined in model but not used in forward pass) is allowed'
         )
         sub_parser.add_argument('--config',
                                 dest='config',
@@ -65,14 +62,10 @@ class Train(Subcommand):
                                 type=int,
                                 default=20,
                                 help='display intervel')
-        sub_parser.add_argument('--async',
-                                dest='asynchronize',
-                                action='store_true',
-                                help='whether to use asynchronize mode(linklink)')
         sub_parser.add_argument('--ng', '--num_gpus_per_machine',
                                 dest='num_gpus_per_machine',
                                 type=int,
-                                default=8,
+                                default=1,
                                 help='num_gpus_per_machine')
         sub_parser.add_argument('--nm', '--num_machines',
                                 dest='num_machines',
@@ -82,7 +75,7 @@ class Train(Subcommand):
         sub_parser.add_argument('--launch',
                                 dest='launch',
                                 type=str,
-                                default='slurm',
+                                default='pytorch',
                                 help='launch backend')
         sub_parser.add_argument('--port',
                                 dest='port',
@@ -115,14 +108,13 @@ def main(args):
     if args.test_gpu:
         gpu_check()
     cfg = load_yaml(args.config, args.cfg_type)
+    # dist 选择 PyTorch 执行路径，只有实际 world_size > 1 时 Runner 才包装 DDP。
     cfg['args'] = {
         'ddp': args.backend == 'dist',
         'config_path': args.config,
-        'asynchronize': args.asynchronize,
         'nocudnn': args.nocudnn,
         'display': args.display,
         'no_running_config': args.no_running_config,
-        'allow_dead_parameter': args.allow_dead_parameter,
         'opts': args.opts
     }
     train_phase = args.phase
@@ -139,17 +131,7 @@ def main(args):
     runner_cfg['kwargs']['training'] = training
     runner = RUNNER_REGISTRY.get(runner_cfg['type'])(cfg, **runner_cfg['kwargs'])
     train_func = {"train": runner.train, "eval": runner.evaluate}
-    if runner_cfg['type'] == 'bignas':
-        train_func = {
-            "train_supnet": runner.train,
-            "sample_flops": runner.sample_multiple_subnet_flops,
-            "sample_accuracy":
-                runner.sample_multiple_subnet_accuracy,
-            "evaluate_subnet": runner.evaluate_subnet,
-            "finetune_subnet": runner.finetune_subnet,
-            "sample_subnet": runner.sample_subnet_weight
-        }
-        assert train_phase in train_func, f"{train_phase} is not supported"
+    # 训练内验证和 --evaluate 共用同一 Runner 和设备选择。
 
     train_func[train_phase]()
     finalize()
@@ -157,6 +139,13 @@ def main(args):
 
 def _main(args):
     DIST_BACKEND.backend = args.backend
+    # 先合并 --opts 选定厂商，再把相同选择交给启动器和各个工作进程。
+    runtime = setup_runtime(load_yaml(args.config, args.cfg_type), args.opts, purpose='training')
+    args.purpose = 'training'
+    args.platform = runtime.platform
+    if runtime.platform != 'nvidia':
+        # 非 NVIDIA SDK 使用新解释器进程初始化，避免继承父进程的设备状态。
+        args.fork_method = 'spawn'
     if args.launch == 'pytorch':
         launch(main, args.num_gpus_per_machine, args.num_machines, args=args, start_method=args.fork_method)
     else:

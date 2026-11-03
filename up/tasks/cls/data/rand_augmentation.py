@@ -84,7 +84,8 @@ def SolarizeIncreasing(img, v):  # [0, 256]
 
 
 def SolarizeAdd(img, addition=0, threshold=128):
-    img_np = np.array(img).astype(np.int)
+    # 仅兼容新 NumPy 的类型名称，原有像素加法和阈值变换不变。
+    img_np = np.array(img).astype(int)
     img_np = img_np + addition
     img_np = np.clip(img_np, 0, 255)
     img_np = img_np.astype(np.uint8)

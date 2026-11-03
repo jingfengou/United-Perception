@@ -77,6 +77,12 @@ class YoloxPostProcess(nn.Module):
         return mlvl_permuted_preds, mlvl_shapes
 
     def forward(self, input):
+        if getattr(self, 'deploy', False):
+            # Export the original head's three raw tensors per pyramid level.
+            # Decoding and NMS remain outside ONNX, as in the original exporter.
+            return {f'blobs_{level}_{kind}': value
+                    for level, preds in enumerate(input['preds'])
+                    for kind, value in zip(('cls', 'box', 'obj'), preds)}
         features = input['features']
         strides = input['strides']
         mlvl_preds = input['preds']
@@ -172,7 +178,8 @@ class YoloxPostProcess(nn.Module):
             else:
                 l1_loss = ori_loc_preds.sum()
         else:
-            l1_loss = torch.tensor(0.0).cuda()
+            # Preserve the original FP32 zero, but allocate on the model device.
+            l1_loss = torch.zeros((), dtype=torch.float32, device=loc_pred.device)
         return {
             self.prefix + '.cls_loss': cls_loss,
             self.prefix + '.loc_loss': loc_loss,

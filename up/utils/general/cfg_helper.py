@@ -3,6 +3,17 @@ import copy
 import json
 import re
 
+
+def validate_model_coordinates(cfg):
+    """External detection models consume continuous boxes unless stated otherwise."""
+    aligned = cfg.get('runtime', {}).get('aligned', False)
+    for module in cfg.get('net', []):
+        kind = module.get('type')
+        if kind == 'yolo11s' and not aligned:
+            raise ValueError('YOLO11s requires runtime.aligned=true (continuous coordinates)')
+        if kind == 'detr' and module.get('kwargs', {}).get('aligned', True) != aligned:
+            raise ValueError('DETR aligned argument must match runtime.aligned')
+
 from .log_helper import default_logger as logger
 
 

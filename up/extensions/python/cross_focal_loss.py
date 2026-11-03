@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 # Import from third library
 import torch
 from torch.autograd import Function
@@ -7,6 +8,11 @@ from ..ext import cross_focal_loss
 
 
 class CrossSigmoidFocalLossFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.cross_focal(*args)
+
 
     @staticmethod
     def forward(self, preds, targets, weight_pos, gamma, alpha, num_classes, gt_class_to_avoid, reduction):

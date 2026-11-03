@@ -1,18 +1,5 @@
-#!/bin/bash
-
-ROOT=../
-T=`date +%m%d%H%M`
-export ROOT=$ROOT
-cfg=$1
-export PYTHONPATH=$ROOT:$PYTHONPATH
-CPUS_PER_TASK=${CPUS_PER_TASK:-4}
-jobname=inference
-
-srun -N$1 --gres=gpu:$2 -p $3 --job-name=$jobname --cpus-per-task=2 \
-python -m up inference \
-  --ng=$2 \
-  --launch=pytorch \
-  --config=$cfg \
-  -i=imgs \
-  -c=ckpt \
-  2>&1 | tee log.inference.$T.$(basename $cfg)
+#!/usr/bin/env bash
+set -euo pipefail
+if [ "$#" -lt 3 ]; then echo "Usage: bash scripts/inference.sh CONFIG CHECKPOINT IMAGE_OR_DIR [--opts KEY VALUE ...]" >&2; exit 2; fi
+config=$1; checkpoint=$2; images=$3; shift 3
+exec python -m up inference --ng 1 --launch pytorch --config "$config" --ckpt "$checkpoint" --img_path "$images" "$@"

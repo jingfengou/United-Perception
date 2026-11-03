@@ -1,3 +1,1 @@
-from .data import * # noqa
-from .models import * # noqa
-from .utils import * # noqa
+"""Only original shared components required by YOLOX; no YOLOv5 model entry."""

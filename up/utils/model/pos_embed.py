@@ -55,7 +55,8 @@ def get_1d_sincos_pos_embed_from_grid(embed_dim, pos):
     out: (M, D)
     """
     assert embed_dim % 2 == 0
-    omega = np.arange(embed_dim // 2, dtype=np.float)
+    # float 是原 np.float 别名的等价写法，位置编码频率和计算精度沿用原实现。
+    omega = np.arange(embed_dim // 2, dtype=float)
     omega /= embed_dim / 2.
     omega = 1. / 10000**omega  # (D/2,)
 

@@ -88,10 +88,9 @@ class Saver(object):
 
     @staticmethod
     def load_checkpoint(ckpt_path, convert=False):
+        # 检查点先加载到 CPU 存储，再由模型 .to() 迁移，避免还原时绑定旧厂商设备。
         # assert os.path.exists(ckpt_path), f'No such file: {ckpt_path}'
-        device = torch.cuda.current_device()
-        # ckpt_dict = torch.load(ckpt_path, map_location=lambda storage, loc: storage.cuda(device))
-        ckpt_dict = PetrelHelper.load(ckpt_path, map_location=lambda storage, loc: storage.cuda(device))
+        ckpt_dict = PetrelHelper.load(ckpt_path, map_location='cpu')
         return Saver.process_checkpoint(ckpt_dict, convert)
 
     @staticmethod

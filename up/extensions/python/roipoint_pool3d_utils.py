@@ -1,6 +1,8 @@
+from up.runtime import get_runtime
 import torch.nn as nn
 from torch.autograd import Function
-from up.tasks.det_3d.data.box_utils import enlarge_box3d
+# 原点云扩展仍保留，几何辅助函数改为本地导入以解除对已裁剪任务的依赖。
+from .box_utils import enlarge_box3d
 from ..ext import roipoint_pool3d as roipoint_pool3d_cuda
 
 
@@ -27,6 +29,11 @@ class RoIPointPool3d(nn.Module):
 
 
 class RoIPointPool3dFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.roipoint(*args)
+
     @staticmethod
     def forward(ctx, points, point_features, boxes3d, pool_extra_width, num_sampled_points=512):
         """

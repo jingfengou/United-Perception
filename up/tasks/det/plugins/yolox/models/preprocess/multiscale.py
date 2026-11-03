@@ -30,7 +30,8 @@ class Multiscale(nn.Module):
 
     def get_target_size(self, input):
         _, _, h, w = input['image'].size()
-        tensor = torch.LongTensor(2).cuda()
+        # Size broadcast follows the input device, including NPU/MLU backends.
+        tensor = torch.empty(2, dtype=torch.long, device=input['image'].device)
         if env.is_master():
             size = random.randint(*self.random_size)
             scale = float(size * self.scale_step) / max(h, w)

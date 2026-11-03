@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 import torch
+# 日志显存统计和缓存清理也走当前厂商设备 API，不改变 Hook 的触发时机。
+from up.runtime import get_runtime
 import torch.nn as nn
 from torch.nn.utils import clip_grad_norm_
 
@@ -275,7 +277,7 @@ class TrainEvalLogger(Hook):
                 lr=runner.lr_scheduler.get_lr()[0],
                 eta=eta_string,
                 timer=self.train_timers,
-                memory=torch.cuda.max_memory_allocated() / 1024.0 / 1024.0,
+                memory=get_runtime().module.max_memory_allocated() / 1024.0 / 1024.0,
             ))
         output, loss_str = self.get_loss(self.output)
         del self.output
@@ -307,7 +309,7 @@ class TrainEvalLogger(Hook):
                 "{timers}",
             ]).format(
                 progress=min(cur_iter / test_len * 100, 100),
-                memory=torch.cuda.max_memory_allocated() / 1024.0 / 1024.0,
+                memory=get_runtime().module.max_memory_allocated() / 1024.0 / 1024.0,
                 cur_iter=cur_iter,
                 test_len=test_len,
                 eta=eta_string,
@@ -706,11 +708,6 @@ class GradClipper(Hook):
             optimizer = self.runner_ref().get_optimizer()
             if DIST_BACKEND.backend == 'dist':
                 self.runner_ref().scaler.unscale_(optimizer)
-            elif DIST_BACKEND.backend == 'linklink':
-                if self.mode in [self._AVG, self._MAVG]:
-                    raise ValueError('linklink fp16 only support grad cliping with pre_defined value!')
-                optimizer.clip_grad_norm_(self.max_norm, self.norm_type)
-                return
 
         model = self.runner_ref().get_model()
         parameters = [p for p in model.parameters() if p.requires_grad and p.grad is not None]
@@ -944,8 +941,8 @@ class GPUMemoryEmpty(Hook):
 
     def after_update(self, cur_iter):
         if cur_iter % self.freq == 0 and cur_iter > 0:
-            torch.cuda.empty_cache()
-            torch.cuda.memory.reset_peak_memory_stats()
+            get_runtime().module.empty_cache()
+            get_runtime().module.reset_peak_memory_stats()
 
 
 @HOOK_REGISTRY.register('memory_checkpoint')

@@ -1,106 +1,35 @@
-# Standard Library
-import glob
+"""Python install by default; build original NVIDIA kernels only on request."""
 import os
-import subprocess
-import io
+from pathlib import Path
 import re
-
-# Import from third library
-import torch
-from setuptools import setup, find_packages
-from torch.utils.cpp_extension import CppExtension, CUDAExtension
-
-with io.open("up/__init__.py", "rt", encoding="utf8") as f:
-    __version__ = re.search(r'__version__ = "(\D*)(.*?)"', f.read(), re.M).group(2)
+from setuptools import find_packages, setup
 
 
-def _find_cuda_home():
-    # guess rule 3 of torch.utils.cpp_extension
-    nvcc = subprocess.check_output(['which', 'nvcc']).decode().rstrip('\r\n')
-    cuda_home = os.path.dirname(os.path.dirname(nvcc))
-    print(f'find cuda home:{cuda_home}')
-    return cuda_home
+def extensions():
+    platform = os.environ.get('UP_BUILD_PLATFORM', 'none')
+    if platform == 'none':
+        return [], {}
+    if platform != 'nvidia':
+        raise ValueError('UP_BUILD_PLATFORM accepts none or nvidia; vendor SDKs build separately')
+    # Import build tools only for an explicit native build; no GPU probe.
+    from torch.utils.cpp_extension import BuildExtension, CUDAExtension, CUDA_HOME
+    if CUDA_HOME is None:
+        raise RuntimeError('NVIDIA build needs a CUDA toolkit and matching NVIDIA PyTorch')
+    source = Path(__file__).parent / 'up' / 'extensions' / 'csrc'
+    files = sorted(str(p) for pattern in ('*.cpp', '*.cu') for p in source.rglob(pattern))
+    module = CUDAExtension('up.extensions._C', files, include_dirs=[str(source)],
+                           define_macros=[('WITH_CUDA', None)],
+                           extra_compile_args={'cxx': [], 'nvcc': [
+                               '-DCUDA_HAS_FP16=1', '-D__CUDA_NO_HALF_OPERATORS__',
+                               '-D__CUDA_NO_HALF_CONVERSIONS__', '-D__CUDA_NO_HALF2_OPERATORS__']})
+    return [module], {'build_ext': BuildExtension}
 
 
-# remember to overwrite PyTorch auto-detected cuda home which
-# may not be our expected
-torch.utils.cpp_extension.CUDA_HOME = _find_cuda_home()
-CUDA_HOME = torch.utils.cpp_extension.CUDA_HOME
-
-CORE_DIR = 'up'
-EXT_DIR = 'extensions'
-
-
-def read_requirements():
-    reqs = []
-    with open('requirements.txt', 'r') as fin:
-        for line in fin.readlines():
-            reqs.append(line.strip())
-    return reqs
-
-
-def recursive_glob(base_dir, pattern):
-    files = []
-    for root, subdirs, subfiles in os.walk(base_dir):
-        files += glob.glob(os.path.join(root, pattern))
-    return files
-
-
-def get_extensions():
-    this_dir = os.path.dirname(os.path.abspath(__file__))
-    sources_dir = os.path.join(this_dir, CORE_DIR, EXT_DIR, "csrc")
-
-    source_cpu = recursive_glob(sources_dir, "*.cpp")
-    source_cuda = recursive_glob(sources_dir, "*.cu")
-
-    sources = source_cpu
-    extension = CppExtension
-
-    extra_compile_args = {"cxx": []}
-    define_macros = []
-    assert torch.cuda.is_available() and CUDA_HOME is not None
-
-    if torch.cuda.is_available() and CUDA_HOME is not None:
-        extension = CUDAExtension
-        sources += source_cuda
-        define_macros += [("WITH_CUDA", None)]
-        extra_compile_args["nvcc"] = [
-            "-DCUDA_HAS_FP16=1",
-            "-D__CUDA_NO_HALF_OPERATORS__",
-            "-D__CUDA_NO_HALF_CONVERSIONS__",
-            "-D__CUDA_NO_HALF2_OPERATORS__",
-        ]
-
-    # sources = [os.path.join(extensions_dir, s) for s in sources]
-    print(f'sources:{sources}')
-
-    include_dirs = [sources_dir]
-
-    ext_modules = [
-        extension(
-            f"{CORE_DIR}.{EXT_DIR}._C",
-            sources,
-            include_dirs=include_dirs,
-            define_macros=define_macros,
-            extra_compile_args=extra_compile_args,
-        )
-    ]
-
-    return ext_modules
-
-
-setup(
-    name="UP",
-    version=__version__,
-    author="Model ToolChain",
-    description="United Perception",
-    author_email="",
-    python_requires='>=3.6',
-    packages=find_packages(),
-    classifiers=(
-        'Development Status :: 3 - Alpha',
-        "Programming Language :: Python :: 3",
-        "Operating System :: POSIX :: Linux"),
-    ext_modules=get_extensions(),
-    cmdclass={"build_ext": torch.utils.cpp_extension.BuildExtension},
-)
+ext_modules, cmdclass = extensions()
+version = re.search(r'__version__ = "(.*?)"', Path('up/__init__.py').read_text(encoding='utf-8')).group(1)
+setup(name='UP', version=version, packages=find_packages(), python_requires='>=3.10',
+      description='UP with config-selected accelerator runtimes and five model entries',
+      ext_modules=ext_modules, cmdclass=cmdclass, include_package_data=True,
+      package_data={'up.tasks.det.plugins.detr.official': ['LICENSE']},
+      extras_require={'yolo11': ['ultralytics==8.3.225'],
+                      'onnx': ['onnx>=1.16,<2', 'onnxruntime>=1.18,<2']})

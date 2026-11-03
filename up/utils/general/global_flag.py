@@ -33,7 +33,6 @@ class Mosaic_p():
 
 class DistBackend():
     def __init__(self):
-        # self.backend = 'linklink'
         self.backend = 'dist'
 
 

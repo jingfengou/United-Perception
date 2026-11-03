@@ -6,10 +6,10 @@
 from datetime import timedelta
 from ..general.log_helper import default_logger as logger
 
-import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
 from up.utils.env import dist_helper as dist_helper
+from up.runtime import setup_runtime
 
 __all__ = ["launch"]
 
@@ -21,7 +21,7 @@ def launch(
     num_gpus_per_machine,
     num_machines=1,
     machine_rank=0,
-    backend="nccl",
+    backend=None,
     dist_url='auto',
     args=(),
     timeout=DEFAULT_TIMEOUT,
@@ -37,6 +37,10 @@ def launch(
                        Can be set to auto to automatically select a free port on localhost
         args (tuple): arguments passed to main_func
     """
+    runtime = setup_runtime({'runtime': {'platform': getattr(args, 'platform', 'nvidia')}},
+                            purpose=getattr(args, 'purpose', 'training'))
+    # 用户未覆盖通信后端时，使用所选设备对应的 NCCL/HCCL/CNCL。
+    backend = backend or runtime.dist_backend
     world_size = num_machines * num_gpus_per_machine
     if world_size > 1:
         # https://github.com/pytorch/pytorch/pull/14391
@@ -65,6 +69,8 @@ def launch(
             start_method=start_method,
         )
     else:
+        # 单卡没有 DDP 包装，但仍需绑定设备，以便模型和临时张量使用同一张卡。
+        runtime.set_device(0)
         main_func(*(args,))
 
 
@@ -79,9 +85,11 @@ def _distributed_worker(
     args,
     timeout=DEFAULT_TIMEOUT,
 ):
-    assert (
-        torch.cuda.is_available()
-    ), "cuda is not available. Please check your installation."
+    runtime = setup_runtime({'runtime': {'platform': getattr(args, 'platform', 'nvidia')}},
+                            purpose=getattr(args, 'purpose', 'training'))
+    # 每个子进程先绑定 local_rank，再初始化通信组，避免各 rank 默认占用第 0 张卡。
+    assert num_gpus_per_machine <= runtime.module.device_count()
+    runtime.set_device(local_rank)
     global_rank = machine_rank * num_gpus_per_machine + local_rank
     logger.info("Rank {} initialization finished.".format(global_rank))
     try:
@@ -112,6 +120,4 @@ def _distributed_worker(
 
     dist_helper.barrier()
 
-    assert num_gpus_per_machine <= torch.cuda.device_count()
-    torch.cuda.set_device(local_rank)
     main_func(args)

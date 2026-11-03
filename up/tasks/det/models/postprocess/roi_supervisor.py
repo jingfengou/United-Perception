@@ -1,4 +1,5 @@
 import torch
+from up.runtime import get_runtime
 from up.tasks.det.models.utils.box_sampler import build_roi_sampler
 from up.tasks.det.models.utils.matcher import build_matcher
 from up.utils.general.fp16_helper import to_float32
@@ -439,13 +440,16 @@ class RetinaOTASupervisor(object):
                         self.matcher.match(gts, preds, anchor_points, all_anchors,
                                            num_anchors_per_level, strides, img_size=img_size,
                                            use_centerness_score=self.use_centerness)
-                except RuntimeError:
+                except RuntimeError as error:
+                    # Do not disguise an unsupported vendor operator as an OOM.
+                    if 'out of memory' not in str(error).lower():
+                        raise
                     logger.info(
                         "OOM RuntimeError is raised due to the huge memory cost during label assignment. \
                            CPU mode is applied in this batch. If you want to avoid this issue, \
                            try to reduce the batch size or image size."
                     )
-                    torch.cuda.empty_cache()
+                    get_runtime().module.empty_cache()
                     num_fg, gt_matched_classes, matched_gt_inds, fg_mask = \
                         self.matcher.match(gts, preds, anchor_points, all_anchors,
                                            num_anchors_per_level, strides, img_size=img_size, mode='cpu',

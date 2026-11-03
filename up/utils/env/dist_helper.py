@@ -12,10 +12,7 @@ import pickle
 import numpy as np
 from collections import OrderedDict
 from up.utils.general.global_flag import DIST_BACKEND
-try:
-    import spring.linklink as link
-except:   # noqa
-    link = None
+from up.runtime import get_runtime
 
 MASTER_RANK = 0
 _LOCAL_PROCESS_GROUP = None
@@ -24,9 +21,7 @@ _LOCAL_PROCESS_GROUP = None
 def allreduce(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.allreduce(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.all_reduce(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -35,9 +30,7 @@ def allreduce(*args, **kwargs):
 def broadcast(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.broadcast(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.broadcast(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -46,9 +39,7 @@ def broadcast(*args, **kwargs):
 def allgather(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.allgather(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.all_gather(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -57,15 +48,14 @@ def allgather(*args, **kwargs):
 def gather(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        return link.gather(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.gather(*args, **kwargs)
     else:
         raise NotImplementedError
 
 
 def get_dist_rank(*args, **kwargs):
+    # 未初始化通信组的普通单进程仍按 rank=0、world_size=1 工作。
     if not dist.is_available():
         return 0
     if not dist.is_initialized():
@@ -73,12 +63,6 @@ def get_dist_rank(*args, **kwargs):
     return dist.get_rank(*args, **kwargs)
 
 
-def get_link_rank(*args, **kwargs):
-    if link is None:
-        return 0
-    if not link.is_initialized():
-        return 0
-    return link.get_rank(*args, **kwargs)
 
 
 def get_dist_world_size(*args, **kwargs):
@@ -89,12 +73,6 @@ def get_dist_world_size(*args, **kwargs):
     return dist.get_world_size(*args, **kwargs)
 
 
-def get_link_world_size(*args, **kwargs):
-    if link is None:
-        return 1
-    if not link.is_initialized():
-        return 1
-    return link.get_world_size(*args, **kwargs)
 
 
 def get_rank_from_env():
@@ -124,18 +102,12 @@ def dist_barrier(*args, **kwargs):
     dist.barrier(*args, **kwargs)
 
 
-def link_barrier(*args, **kwargs):
-    if link is None:
-        return
-    return link.barrier(*args, **kwargs)
 
 
 def barrier(*args, **kwargs):
     if get_world_size() <= 1:
         return
-    if DIST_BACKEND.backend == 'linklink':
-        link_barrier(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         dist_barrier(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -145,9 +117,7 @@ def get_rank(*args, **kwargs):
     # rank = get_rank_from_env()
     # if rank is not None:
     #     return rank
-    if DIST_BACKEND.backend == 'linklink':
-        return get_link_rank(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return get_dist_rank(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -157,23 +127,18 @@ def get_world_size(*args, **kwargs):
     # world_size = get_world_size_from_env()
     # if world_size is not None:
     #     return world_size
-    if DIST_BACKEND.backend == 'linklink':
-        return get_link_world_size(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return get_dist_world_size(*args, **kwargs)
     else:
         raise NotImplementedError
 
 
 def get_local_rank(*args, **kwargs):
-    rank = get_rank(*args, **kwargs)
-    return rank % torch.cuda.device_count()
+    return get_runtime().module.current_device()
 
 
 def all_reduce(*args, **kwargs):
-    if DIST_BACKEND.backend == 'linklink':
-        return link.allreduce(*args, **kwargs)
-    elif DIST_BACKEND.backend == 'dist':
+    if DIST_BACKEND.backend == 'dist':
         return dist.all_reduce(*args, **kwargs)
     else:
         raise NotImplementedError
@@ -206,61 +171,10 @@ class DistEnv(object):
 env = DistEnv()
 
 
-def simple_group_split(world_size, rank, num_groups):
-    groups = []
-    rank_list = np.split(np.arange(world_size), num_groups)
-    rank_list = [list(map(int, x)) for x in rank_list]
-    for i in range(num_groups):
-        groups.append(link.new_group(rank_list[i]))
-    group_size = world_size // num_groups
-    return groups[rank // group_size]
 
 
-def DistModule(model, sync=True):
-    def _register_hooks(self):
-        for i, (name, p) in enumerate(self.named_parameters()):
-            if p.requires_grad:
-                p_tmp = p.expand_as(p)
-                grad_acc = p_tmp.grad_fn.next_functions[0][0]
-                grad_acc.register_hook(self._make_hook(name, p, i))
-                self._grad_accs.append(grad_acc)
-
-    def _make_hook(name, p, i):
-        def hook(*ignore):
-            link.allreduce_async(name, p.grad.data)
-        return hook
-
-    def broadcast_params(model):
-        for name, p in model.state_dict().items():
-            link.broadcast(p, MASTER_RANK)
-
-    broadcast_params(model)
-    if not sync:
-        model._grad_accs = []
-        model._register_hooks = _register_hooks
-        model._make_hook = _make_hook
-        model._register_hooks(model)
-    return model
 
 
-def reduce_gradients(model, sync=True, allow_dead_parameter=False):
-    if sync:
-        for name, param in model.named_parameters():
-            if param.requires_grad and param.grad is not None:
-                try:
-                    link.allreduce(param.grad.data)
-                except AttributeError as e:
-                    warning = (f"The AttributeError above was probably caused by {name}.grad being None "
-                               f"but the gradient w.r.t {name} is required. "
-                               f"Please check your model to make sure that {name} is always used in your "
-                               "forward pass if it is learnable, otherwise, set it's requrires_grad flag to False. "
-                               "Another temporary workaround, you may add 'and param.grad is not None' to "
-                               "the conditional above only if you know exactly the grad is needless.")
-                    if not allow_dead_parameter:
-                        raise AttributeError('This line is not an error, just warning: ' + warning) from e
-    else:
-        # reduce all grdients asynchronously, faster
-        link.synchronize()
 
 
 # TODO support free port
@@ -272,7 +186,9 @@ def find_free_port():
         return str(s.getsockname()[1])
 
 
-def dist_init_slurm(backend='nccl', port='13333'):
+def dist_init_slurm(backend=None, port='13333'):
+    runtime = get_runtime()
+    backend = backend or runtime.dist_backend
     proc_id = int(os.environ['SLURM_PROCID'])
     ntasks = int(os.environ['SLURM_NTASKS'])
     node_list = os.environ['SLURM_NODELIST']
@@ -290,16 +206,11 @@ def dist_init_slurm(backend='nccl', port='13333'):
     os.environ['MASTER_ADDR'] = addr
     os.environ['WORLD_SIZE'] = str(ntasks)
     os.environ['RANK'] = str(proc_id)
-    if backend == 'nccl':
-        dist.init_process_group(backend='nccl')
-    else:
-        dist.init_process_group(backend='gloo', rank=proc_id, world_size=ntasks)
-    rank = dist.get_rank()
-    device = rank % torch.cuda.device_count()
-    torch.cuda.set_device(device)
+    runtime.set_device(int(os.environ.get('SLURM_LOCALID', proc_id % runtime.module.device_count())))
+    dist.init_process_group(backend=backend, rank=proc_id, world_size=ntasks)
 
 
-def dist_init_mpi(backend='nccl',
+def dist_init_mpi(backend=None,
                   addr='localhost',
                   port="13333",
                   rank=None,
@@ -308,50 +219,40 @@ def dist_init_mpi(backend='nccl',
     Overview:
         Init the distributed training setting
     """
-    assert backend in ['nccl', 'gloo'], backend
+    runtime = get_runtime()
+    backend = backend or runtime.dist_backend
     os.environ['MASTER_ADDR'] = addr or os.environ.get('MASTER_ADDR', addr)
     os.environ['MASTER_PORT'] = str(port) or os.environ.get('MASTER_PORT', str(port))
 
     if rank is None:
-        local_id = os.environ.ge(os.environ.get('OMPI_COMM_WORLD_RANK', None))
+        local_id = os.environ.get('OMPI_COMM_WORLD_RANK')
         if local_id is None:
             raise RuntimeError("please indicate rank explicitly in dist_init method")
         else:
             rank = int(local_id)
     if world_size is None:
-        ntasks = os.environ.get(os.environ.get('OMPI_COMM_WORLD_SIZE', None))
+        ntasks = os.environ.get('OMPI_COMM_WORLD_SIZE')
         if ntasks is None:
             raise RuntimeError("please indicate world_size explicitly in dist_init method")
         else:
             world_size = int(ntasks)
 
+    runtime.set_device(int(os.environ.get('OMPI_COMM_WORLD_LOCAL_RANK', rank % runtime.module.device_count())))
     dist.init_process_group(backend=backend, rank=rank, world_size=world_size)
-    rank = dist.get_rank()
-    device = rank % torch.cuda.device_count()
-    torch.cuda.set_device(device)
 
 
 def setup_distributed_dist(port, launch):
     if launch == 'slurm':
-        device = get_rank() % torch.cuda.device_count()
-        torch.cuda.set_device(device)
         dist_init_slurm(port=port)
     else:
         dist_init_mpi(port=port)
-        device = get_rank() % torch.cuda.device_count()
-        torch.cuda.set_device(device)
 
 
-def setup_distributed_link(port, launch):
-    link.initialize()
-    torch.cuda.set_device(link.get_local_rank())
 
 
 def setup_distributed(port=33334, launch='slurm', backend='dist'):
     if backend == 'dist':
         setup_distributed_dist(port, launch)
-    else:
-        setup_distributed_link(port, launch)
     rank = get_rank()
     world_size = get_world_size()
     print('rank:{} world_size(gpus):{}'.format(rank, world_size))
@@ -366,26 +267,19 @@ def _get_global_gloo_group():
     The result is cached.
     """
     if DIST_BACKEND.backend == 'dist':
-        if dist.get_backend() == "nccl":
+        if dist.get_backend() != "gloo":
             return dist.new_group(backend="gloo")
         else:
             return dist.group.WORLD
-    elif DIST_BACKEND.backend == 'linklink':
-        if link.get_backend() == "nccl":
-            return link.new_group(backend="gloo")
-        else:
-            return link.group.WORLD
     else:
         raise NotImplementedError
 
 
 def _serialize_to_tensor(data, group):
+    # 对象通信仍先 pickle；用 int32 承载每个字节，以兼容厂商集合通信的数据类型。
     if DIST_BACKEND.backend == 'dist':
         backend = dist.get_backend(group)
-        assert backend in ["gloo", "nccl"]
-        device = torch.device("cpu" if backend == "gloo" else "cuda")
-    else:
-        device = torch.device("cpu")
+        device = torch.device("cpu") if backend == "gloo" else get_runtime().device
 
     buffer = pickle.dumps(data)
     if len(buffer) > 1024 ** 3:
@@ -397,7 +291,7 @@ def _serialize_to_tensor(data, group):
             )
         )
     storage = torch.ByteStorage.from_buffer(buffer)
-    tensor = torch.ByteTensor(storage).to(device=device)
+    tensor = torch.ByteTensor(storage).to(device=device, dtype=torch.int32)
     return tensor
 
 
@@ -409,8 +303,6 @@ def _pad_to_largest_tensor(tensor, group):
     """
     if DIST_BACKEND.backend == 'dist':
         world_size = get_world_size(group=group)
-    else:
-        world_size = get_world_size()
     assert (
         world_size >= 1
     ), "comm.gather/all_gather must be called from ranks within the given group!"
@@ -421,8 +313,6 @@ def _pad_to_largest_tensor(tensor, group):
     ]
     if DIST_BACKEND.backend == 'dist':
         allgather(size_list, local_size, group=group)
-    else:
-        allgather(size_list, local_size)
     size_list = [int(size.item()) for size in size_list]
 
     max_size = max(size_list)
@@ -431,7 +321,7 @@ def _pad_to_largest_tensor(tensor, group):
     # gathering tensors of different shapes
     if local_size != max_size:
         padding = torch.zeros(
-            (max_size - local_size,), dtype=torch.uint8, device=tensor.device
+            (max_size - local_size,), dtype=tensor.dtype, device=tensor.device
         )
         tensor = torch.cat((tensor, padding), dim=0)
     return size_list, tensor
@@ -462,17 +352,15 @@ def all_gather(data, group=None):
 
     # receiving Tensor from all ranks
     tensor_list = [
-        torch.empty((max_size,), dtype=torch.uint8, device=tensor.device)
+        torch.empty((max_size,), dtype=tensor.dtype, device=tensor.device)
         for _ in size_list
     ]
     if DIST_BACKEND.backend == 'dist':
         allgather(tensor_list, tensor, group=group)
-    else:
-        allgather(tensor_list, tensor)
 
     data_list = []
     for size, tensor in zip(size_list, tensor_list):
-        buffer = tensor.cpu().numpy().tobytes()[:size]
+        buffer = tensor.cpu().to(torch.uint8).numpy().tobytes()[:size]
         data_list.append(pickle.loads(buffer))
 
     return data_list
@@ -498,8 +386,11 @@ def gather_pk(data, dst=0, group=None):
         if get_world_size(group=group) == 1:
             return [data]
         rank = get_rank(group=group)
-    else:
-        rank = get_rank()
+
+    # HCCL/CNCL do not provide the CPU-gather implementation used by Gloo.
+    if dist.get_backend(group) != 'gloo':
+        result = all_gather(data, group=group)
+        return result if rank == dst else []
 
     tensor = _serialize_to_tensor(data, group)
     size_list, tensor = _pad_to_largest_tensor(tensor, group)
@@ -508,23 +399,19 @@ def gather_pk(data, dst=0, group=None):
     if rank == dst:
         max_size = max(size_list)
         tensor_list = [
-            torch.empty((max_size,), dtype=torch.uint8, device=tensor.device)
+            torch.empty((max_size,), dtype=tensor.dtype, device=tensor.device)
             for _ in size_list
         ]
         if DIST_BACKEND.backend == 'dist':
             gather(tensor, tensor_list, dst=dst, group=group)
-        else:
-            gather(tensor_list, tensor, dst)
         data_list = []
         for size, tensor in zip(size_list, tensor_list):
-            buffer = tensor.cpu().numpy().tobytes()[:size]
+            buffer = tensor.cpu().to(torch.uint8).numpy().tobytes()[:size]
             data_list.append(pickle.loads(buffer))
         return data_list
     else:
         if DIST_BACKEND.backend == 'dist':
             gather(tensor, [], dst=dst, group=group)
-        else:
-            gather([], tensor, dst)
         return []
 
 
@@ -533,23 +420,22 @@ def finalize():
         if DIST_BACKEND.backend == 'dist':
             if get_world_size() > 1:
                 dist.destroy_process_group()
-        elif DIST_BACKEND.backend == 'linklink':
-            link.finalize()
         else:
             raise NotImplementedError
     except: # noqa
         pass
 
 
-def pyobj2tensor(pyobj, device="cuda"):
+def pyobj2tensor(pyobj, device=None):
     """serialize picklable python object to tensor"""
     storage = torch.ByteStorage.from_buffer(pickle.dumps(pyobj))
-    return torch.ByteTensor(storage).to(device=device)
+    return torch.ByteTensor(storage).to(device=device or get_runtime().device, dtype=torch.int32)
 
 
 def tensor2pyobj(tensor):
     """deserialize tensor to picklable python object"""
-    return pickle.loads(tensor.cpu().numpy().tobytes())
+    # 反序列化前恢复字节宽度，避免把 int32 的填充字节写进 pickle 数据。
+    return pickle.loads(tensor.cpu().to(torch.uint8).numpy().tobytes())
 
 
 def all_reduce_dict(py_dict, op="sum", group=None):
@@ -569,8 +455,6 @@ def all_reduce_dict(py_dict, op="sum", group=None):
     py_key_tensor = pyobj2tensor(py_key)
     if DIST_BACKEND.backend == 'dist':
         broadcast(py_key_tensor, src=MASTER_RANK)
-    else:
-        broadcast(py_key_tensor, MASTER_RANK)
     py_key = tensor2pyobj(py_key_tensor)
 
     tensor_shapes = [py_dict[k].shape for k in py_key]
@@ -621,7 +505,7 @@ def gpu_check():
     try:
         local_rank = get_local_rank()
     except RuntimeError:
-        logger.warning('not using linklink, skip gpu check')
+        logger.warning('Use the device runtime readiness check before distributed training')
         return True
     logger.info('Prepare for gpu check')
     succ_flag = True
@@ -662,13 +546,13 @@ def broadcast_object(obj, group=None):
     if get_world_size() <= 1:
         return obj
 
-    serialized_tensor = _serialize_to_tensor(obj, group=None).cuda()
-    numel = torch.IntTensor([serialized_tensor.numel()]).cuda()
-    broadcast(numel, MASTER_RANK)
+    serialized_tensor = _serialize_to_tensor(obj, group=group)
+    numel = torch.tensor([serialized_tensor.numel()], dtype=torch.int64, device=serialized_tensor.device)
+    broadcast(numel, MASTER_RANK, group=group)
     # serialized_tensor from storage is not resizable
     serialized_tensor = serialized_tensor.clone()
-    serialized_tensor.resize_(numel)
-    broadcast(serialized_tensor, MASTER_RANK)
-    serialized_bytes = serialized_tensor.cpu().numpy().tobytes()
+    serialized_tensor.resize_(int(numel.item()))
+    broadcast(serialized_tensor, MASTER_RANK, group=group)
+    serialized_bytes = serialized_tensor.cpu().to(torch.uint8).numpy().tobytes()
     deserialized_obj = pickle.loads(serialized_bytes)
     return deserialized_obj

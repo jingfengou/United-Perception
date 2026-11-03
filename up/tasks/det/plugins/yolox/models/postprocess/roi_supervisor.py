@@ -1,6 +1,7 @@
 # Import from third library
 import torch
 import torch.nn.functional as F
+from up.runtime import get_runtime
 from up.tasks.det.models.utils.matcher import build_matcher
 from up.utils.general.registry_factory import MATCHER_REGISTRY, ROI_SUPERVISOR_REGISTRY
 from up.tasks.det.models.utils.bbox_helper import bbox_iou_overlaps
@@ -67,13 +68,15 @@ class OTASupervisor(object):
                     img_size = input['image_info'][b_ix][:2]
                     num_fg, gt_matched_classes, pred_ious_this_matching, matched_gt_inds, fg_mask, expanded_strides = \
                         self.matcher.match(gts, preds, points, num_points_per_level, strides, img_size=img_size)
-                except RuntimeError:
+                except torch.OutOfMemoryError:
                     logger.info(
                         "OOM RuntimeError is raised due to the huge memory cost during label assignment. \
                            CPU mode is applied in this batch. If you want to avoid this issue, \
                            try to reduce the batch size or image size."
                     )
-                    torch.cuda.empty_cache()
+                    # Retain the original, logged OOM path; other SDK failures
+                    # must propagate instead of silently running on CPU.
+                    get_runtime().module.empty_cache()
                     num_fg, gt_matched_classes, pred_ious_this_matching, matched_gt_inds, fg_mask, expanded_strides = \
                         self.matcher.match(gts, preds, points, num_points_per_level, strides,
                                            img_size=img_size, mode='cpu')
@@ -155,7 +158,7 @@ class OTAMatcher(object):
             y2 = preds[:, 1] + preds[:, 3] / 2
             return torch.stack([x1, y1, x2, y2], -1)
 
-        with torch.cuda.amp.autocast(enabled=False):
+        with get_runtime().amp.autocast(enabled=False):
             decoded_preds_box = decode_ota_box(preds_box.float())
 
             pair_wise_ious = bbox_iou_overlaps(
@@ -187,11 +190,12 @@ class OTAMatcher(object):
         del pair_wise_cls_loss, cost, pair_wise_ious, pair_wise_ious_loss
 
         if mode == "cpu":
-            gt_matched_classes = gt_matched_classes.cuda()
-            fg_mask = fg_mask.cuda()
-            pred_ious_this_matching = pred_ious_this_matching.cuda()
-            matched_gt_inds = matched_gt_inds.cuda()
-            expanded_strides = expanded_strides.cuda()
+            # Results return to the prediction device, never the default CUDA card.
+            gt_matched_classes = gt_matched_classes.to(preds.device)
+            fg_mask = fg_mask.to(preds.device)
+            pred_ious_this_matching = pred_ious_this_matching.to(preds.device)
+            matched_gt_inds = matched_gt_inds.to(preds.device)
+            expanded_strides = expanded_strides.to(preds.device)
 
         return num_fg, gt_matched_classes, pred_ious_this_matching, matched_gt_inds, fg_mask, expanded_strides
 

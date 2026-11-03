@@ -174,7 +174,7 @@ IncludeLoader.add_constructor('!include', IncludeLoader.include)
 
 
 def load_yaml(path, cfg_type='up'):
-    with open(path, "r")as f:
+    with open(path, 'r', encoding='utf-8') as f:
         yaml_data = yaml.load(f, IncludeLoader)
     if cfg_type == 'pod':
         logger.warning("auto convert pod config -> UP config !!!")

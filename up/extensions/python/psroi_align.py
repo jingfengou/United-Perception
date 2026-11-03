@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 import torch
 from torch.autograd import Function
 from up.utils.general.log_helper import default_logger as logger
@@ -5,6 +6,11 @@ from ..ext import psroi_align
 
 
 class PSRoIAlignFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.psroi_align(*args)
+
     @staticmethod
     def symbolic(g, features, rois, group_size, spatial_scale, output_dim, sampling_ratio):
         return g.op(

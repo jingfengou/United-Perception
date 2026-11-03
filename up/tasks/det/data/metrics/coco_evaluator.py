@@ -101,7 +101,15 @@ class CocoEvaluator(Evaluator):
         #     self.gt_loaded = True
         self.gts = COCO(self.gt_file)
         dts = self.load_dts(res_file, res)
-        dts = self.gts.loadRes(dts)
+        if dts:
+            dts = self.gts.loadRes(dts)
+        else:
+            # pycocotools.loadRes reads result[0]. An untrained detector can
+            # legitimately predict no boxes; evaluate a real empty result set.
+            dts = COCO()
+            dts.dataset = {'images': self.gts.dataset['images'],
+                           'categories': self.gts.dataset['categories'], 'annotations': []}
+            dts.createIndex()
 
         metrics = Metric({})
         for itype, class_agnostic in zip(self.iou_types, self.use_cats):

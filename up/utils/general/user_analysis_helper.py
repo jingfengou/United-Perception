@@ -1,8 +1,3 @@
-try:
-    from spring_aux.analytics.io import send_async as send
-except Exception as err:
-    print(err)
-
 from up.utils.env.dist_helper import env
 from up import __version__
 
@@ -156,22 +151,6 @@ def get_predictor_from_cfg(cfg):
     return predictor_info
 
 
-def send_info(cfg=None, func=''):
-    if cfg is not None:
-        try:
-            UPINFO['network'] = get_network_from_cfg(cfg)
-            UPINFO['task'] = get_task_from_cfg(cfg)
-            UPINFO['func'] = func
-            UPINFO.update(get_subnetwork_from_cfg(cfg))
-            UPINFO.update(get_lossinfo_from_cfg(cfg))
-            UPINFO.update(get_datasetinfo_from_cfg(cfg))
-            UPINFO.update(get_supervisor_from_cfg(cfg))
-            UPINFO.update(get_predictor_from_cfg(cfg))
-            UPINFO.update(get_trainerinfo_from_cfg(cfg))
-        except:  # noqa
-            pass
-    if env.is_master():
-        try:
-            send(UPINFO)
-        except:  # noqa
-            pass
+def send_info(cfg, func='train'):
+    """Retained call signature; no internal telemetry is sent."""
+    return None

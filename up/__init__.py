@@ -1,11 +1,4 @@
-try:
-    from spring_analytics.instrument_agent import InstrumentAgent
-    Agent = InstrumentAgent()
-    Agent.instrument_torch_model_lineage()
-except Exception:
-    pass
 # flake8: noqa F401
-import onnx
 import os
 import sys
 import importlib
@@ -17,6 +10,7 @@ import matplotlib
 __version__ = "0.3.0"  # Available for other modules to import
 
 # import for register
+# 导入保留模块以完成注册；命令和模型的裁剪范围由各级 __init__.py 控制。
 
 from .commands import *
 from .runner import *

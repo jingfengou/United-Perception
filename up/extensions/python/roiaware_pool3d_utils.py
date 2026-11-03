@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 import torch
 import torch.nn as nn
 from torch.autograd import Function
@@ -31,7 +32,7 @@ def points_in_boxes_cpu(points, boxes):
     return point_indices.numpy() if is_numpy else point_indices
 
 
-def points_in_boxes_gpu(points, boxes):
+def _nvidia_points_in_boxes_gpu(points, boxes):
     """
     :param points: (B, M, 3)
     :param boxes: (B, T, 7), num_valid_boxes <= T
@@ -59,6 +60,11 @@ class RoIAwarePool3d(nn.Module):
 
 
 class RoIAwarePool3dFunction(Function):
+    @classmethod
+    def apply(cls, *args):
+        # Route before Function.forward so vendor Torch retains its autograd graph.
+        return get_runtime().native_ops.roiaware(*args)
+
     @staticmethod
     def forward(ctx, rois, pts, pts_feature, out_size, max_pts_each_voxel, pool_method):
         """
@@ -115,3 +121,7 @@ class RoIAwarePool3dFunction(Function):
 
 if __name__ == '__main__':
     pass
+
+
+def points_in_boxes_gpu(points, boxes):
+    return get_runtime().native_ops.points_in_boxes(points, boxes)

@@ -2,13 +2,15 @@ import os
 import cv2
 import numpy as np
 import torch
+from up.runtime import setup_runtime
+from up.utils.general.global_flag import ALIGNED_FLAG
 from torch.nn.modules.utils import _pair
 from easydict import EasyDict
 from PIL import Image, ImageDraw
 
 from up.data.datasets.transforms import build_transformer
 from up.data.data_utils import get_image_size
-from up.utils.general.cfg_helper import merge_opts_into_cfg
+from up.utils.general.cfg_helper import merge_opts_into_cfg, validate_model_coordinates
 from up.utils.general.log_helper import default_logger as logger
 from up.utils.general.registry_factory import MODEL_HELPER_REGISTRY, BATCHING_REGISTRY, IMAGE_READER_REGISTRY
 from up.utils.general.registry_factory import INFERENCER_REGISTRY, SAVER_REGISTRY, VISUALIZER_REGISTRY
@@ -24,9 +26,16 @@ class BaseInference(object):
         opts = self.args.get('opts', [])
         config = merge_opts_into_cfg(opts, config)
         self.config = config
+        validate_model_coordinates(config)
+        # Python API 直接调用也先初始化运行时，模型和输入随后迁移到同一设备。
+        self.runtime = setup_runtime(config, purpose='inference')
+        ALIGNED_FLAG.aligned = config.get('runtime', {}).get('aligned', False)
+        ALIGNED_FLAG.offset = 0 if ALIGNED_FLAG.aligned else 1
+        self.runtime.configure_dnn(config.get('runtime', {}).get('dnn'))
         self.class_names = visualizer.get('class_names', None)
         self.work_dir = work_dir
         self.vis_dir = self.args['vis_dir']
+        os.makedirs(self.vis_dir, exist_ok=True)
         self.ckpt = self.args['ckpt']
         self.image_path = self.args['image_path']
         self.task_type = get_task_from_cfg(config)
@@ -84,7 +93,7 @@ class BaseInference(object):
         model_helper_cfg = self.config['runtime'].get('model_helper', {})
         model_helper_cfg['type'] = model_helper_cfg.get('type', 'base')
         model_helper_cfg['kwargs'] = model_helper_cfg.get('kwargs', {'cfg': self.config['net']})
-        self.detector = MODEL_HELPER_REGISTRY.build(model_helper_cfg).cuda().eval()
+        self.detector = MODEL_HELPER_REGISTRY.build(model_helper_cfg).to(self.runtime.device).eval()
 
     def build_data(self):
         data_cfg = self.config['dataset']
@@ -186,7 +195,7 @@ class BaseInference(object):
         pad_w, pad_h = data.get('dw', 0), data.get('dh', 0)
         data.image_info = [new_image_h, new_image_w, scale_factor,
                            image_h, image_w, data.flipped, pad_w, pad_h, filename]
-        data.image = data.image.cuda()
+        data.image = data.image.to(self.runtime.device)
         return data
 
     def fetch(self, filename_list):

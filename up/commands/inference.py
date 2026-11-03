@@ -13,6 +13,7 @@ from up.utils.general.registry_factory import SUBCOMMAND_REGISTRY, INFERENCER_RE
 from up.utils.general.user_analysis_helper import send_info
 from up.utils.general.global_flag import DIST_BACKEND
 from up.utils.env.launch import launch
+from up.runtime import setup_runtime
 from up.utils.env.dist_helper import setup_distributed, finalize
 from up.utils.general.log_helper import default_logger as logger
 
@@ -29,18 +30,19 @@ class Inference(Subcommand):
             '--fork-method',
             dest='fork_method',
             type=str,
-            default='fork',
+            default='spawn',
             choices=['spawn', 'fork'],
             help='method to fork subprocess, especially for dataloader')
         sub_parser.add_argument('--backend',
                                 dest='backend',
                                 type=str,
                                 default='dist',
+                                choices=['dist'],
                                 help='model backend')
         sub_parser.add_argument('--ng', '--num_gpus_per_machine',
                                 dest='num_gpus_per_machine',
                                 type=int,
-                                default=8,
+                                default=1,
                                 help='num_gpus_per_machine')
         sub_parser.add_argument('--nm', '--num_machines',
                                 dest='num_machines',
@@ -50,7 +52,7 @@ class Inference(Subcommand):
         sub_parser.add_argument('--launch',
                                 dest='launch',
                                 type=str,
-                                default='slurm',
+                                default='pytorch',
                                 help='launch backend')
         sub_parser.add_argument('--port',
                                 dest='port',
@@ -116,6 +118,13 @@ def main(args):
 
 def _main(args):
     DIST_BACKEND.backend = args.backend
+    # 独立推理和训练读取同一项 runtime.platform，设备选择不散落在模型中。
+    runtime = setup_runtime(load_yaml(args.config, args.cfg_type), args.opts, purpose='inference')
+    args.purpose = 'inference'
+    args.platform = runtime.platform
+    if runtime.platform != 'nvidia':
+        # spawn 子进程会重新导入所选厂商设备扩展。
+        args.fork_method = 'spawn'
     if args.launch == 'pytorch':
         launch(main, args.num_gpus_per_machine, args.num_machines, args=args, start_method=args.fork_method)
     else:

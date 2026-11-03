@@ -5,11 +5,11 @@ import time
 # Import from third library
 import numpy as np
 import torch
+from up.runtime import get_runtime
 
 from up.utils.general.global_flag import ALIGNED_FLAG
 from up.extensions import gpu_iou_overlap
 
-GPU_MEMORY = None
 
 
 def allow_empty_tensor(num=1, empty_shape=(0, 4)):
@@ -40,27 +40,18 @@ def filter_by_size(boxes, min_size, start_index=0):
 @allow_empty_tensor(2)
 @to_float32
 def bbox_iou_overlaps(b1, b2, aligned=False):
-    if not b1.is_cuda or aligned:
+    if b1.device.type == 'cpu' or aligned:
         return vanilla_bbox_iou_overlaps(b1, b2, aligned)
-
-    global GPU_MEMORY
-    gbytes = 1024.0**3
-    if GPU_MEMORY is None:
-        GPU_MEMORY = torch.cuda.get_device_properties(b1.device.index).total_memory
-    alloated_memory = torch.cuda.memory_allocated()
-    spare_memory = 0.5 * gbytes
-    available_memory = GPU_MEMORY - alloated_memory - spare_memory
+    runtime = get_runtime()
     size = b1.shape[0] * b2.shape[0]
-    needed_memory = 2 * size * 4
-
-    if needed_memory < available_memory:
-        ious = gpu_iou_overlap(b1, b2, mode='IoU')
-    else:
-        ious = vanilla_bbox_iou_overlaps(b1.cpu(), b2.cpu())
-        res_memory = size * 4
-        if res_memory < available_memory:
-            ious = ious.to(b1.device)
-    return ious
+    if runtime.memory_available(b1.device, 2 * size * 4):
+        return gpu_iou_overlap(b1, b2, mode='IoU')
+    # Preserve UP's existing low-memory branch, rather than using missing SDKs
+    # as a reason to move model computation to CPU. This branch is explicit.
+    import warnings
+    warnings.warn('UP bbox overlap uses its legacy CPU low-memory branch', RuntimeWarning)
+    result = vanilla_bbox_iou_overlaps(b1.cpu(), b2.cpu())
+    return result.to(b1.device) if runtime.memory_available(b1.device, size * 4) else result
 
 
 @allow_empty_tensor(2)
@@ -128,26 +119,18 @@ def generalized_box_iou(boxes1, boxes2):
 
 @allow_empty_tensor(2)
 def bbox_iof_overlaps(b1, b2):
-    if not b1.is_cuda:
+    if b1.device.type == 'cpu':
         return vanilla_bbox_iof_overlaps(b1, b2)
-    global GPU_MEMORY
-    gbytes = 1024.0**3
-    if GPU_MEMORY is None:
-        GPU_MEMORY = torch.cuda.get_device_properties(b1.device.index).total_memory
-    alloated_memory = torch.cuda.memory_allocated()
-    spare_memory = 0.5 * gbytes
-    available_memory = GPU_MEMORY - alloated_memory - spare_memory
+    runtime = get_runtime()
     size = b1.shape[0] * b2.shape[0]
-    needed_memory = 2 * size * 4
-
-    if needed_memory < available_memory:
-        ious = gpu_iou_overlap(b1, b2, mode='IoF')
-    else:
-        ious = vanilla_bbox_iof_overlaps(b1.cpu(), b2.cpu())
-        res_memory = size * 4
-        if res_memory < available_memory:
-            ious = ious.to(b1.device)
-    return ious
+    if runtime.memory_available(b1.device, 2 * size * 4):
+        return gpu_iou_overlap(b1, b2, mode='IoF')
+    # Preserve UP's existing low-memory branch, rather than using missing SDKs
+    # as a reason to move model computation to CPU. This branch is explicit.
+    import warnings
+    warnings.warn('UP bbox overlap uses its legacy CPU low-memory branch', RuntimeWarning)
+    result = vanilla_bbox_iof_overlaps(b1.cpu(), b2.cpu())
+    return result.to(b1.device) if runtime.memory_available(b1.device, size * 4) else result
 
 
 @allow_empty_tensor(2)
@@ -467,15 +450,15 @@ def test_iou(iou_fn, a, b):
     for i in range(n):
         iou = iou_fn(a, b)
     del iou
-    torch.cuda.synchronize()
+    get_runtime().module.synchronize()
     e = time.time()
     t = e - s
-    memory = torch.cuda.max_memory_allocated() / 1024.0 / 1024.0 / 1024
+    memory = get_runtime().module.max_memory_allocated() / 1024.0 / 1024.0 / 1024
     return t, memory
 
 
 def rand_bbox(n):
-    box = torch.randn(n, 4).cuda() * 10
+    box = torch.randn(n, 4, device=get_runtime().device) * 10
     x1 = torch.min(box[:, 0], box[:, 2])
     x2 = torch.max(box[:, 0], box[:, 2])
     y1 = torch.min(box[:, 1], box[:, 3])

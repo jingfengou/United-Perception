@@ -1,10 +1,12 @@
+from up.runtime import get_runtime
 """
 3D IoU Calculation and Rotated NMS
 Written by Shaoshuai Shi
 All Rights Reserved 2019-2020.
 """
 import torch
-from up.tasks.det_3d.data.data_utils import check_numpy_to_torch
+# 工具函数移到扩展本地，C++/CUDA 算子和原调用签名保持原样。
+from .box_utils import check_numpy_to_torch
 from ..ext import iou3d_nms as iou3d_nms_cuda
 
 
@@ -27,7 +29,7 @@ def boxes_bev_iou_cpu(boxes_a, boxes_b):
     return ans_iou.numpy() if is_numpy else ans_iou
 
 
-def boxes_iou_bev(boxes_a, boxes_b):
+def _nvidia_boxes_iou_bev(boxes_a, boxes_b):
     """
     Args:
         boxes_a: (N, 7) [x, y, z, dx, dy, dz, heading]
@@ -44,7 +46,7 @@ def boxes_iou_bev(boxes_a, boxes_b):
     return ans_iou
 
 
-def boxes_iou3d_gpu(boxes_a, boxes_b):
+def _nvidia_boxes_iou3d_gpu(boxes_a, boxes_b):
     """
     Args:
         boxes_a: (N, 7) [x, y, z, dx, dy, dz, heading]
@@ -78,7 +80,7 @@ def boxes_iou3d_gpu(boxes_a, boxes_b):
     return iou3d
 
 
-def nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs):
+def _nvidia_nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs):
     """
     :param boxes: (N, 7) [x, y, z, dx, dy, dz, heading]
     :param scores: (N)
@@ -96,7 +98,7 @@ def nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs):
     return order[keep[:num_out].cuda()].contiguous(), None
 
 
-def nms_normal_gpu(boxes, scores, thresh, **kwargs):
+def _nvidia_nms_normal_gpu(boxes, scores, thresh, **kwargs):
     """
     :param boxes: (N, 7) [x, y, z, dx, dy, dz, heading]
     :param scores: (N)
@@ -111,3 +113,19 @@ def nms_normal_gpu(boxes, scores, thresh, **kwargs):
     keep = torch.LongTensor(boxes.size(0))
     num_out = iou3d_nms_cuda.nms_normal_gpu(boxes, keep, thresh)
     return order[keep[:num_out].cuda()].contiguous(), None
+
+
+def boxes_iou_bev(boxes_a, boxes_b):
+    return get_runtime().native_ops.bev_iou(boxes_a, boxes_b)
+
+
+def boxes_iou3d_gpu(boxes_a, boxes_b):
+    return get_runtime().native_ops.iou3d(boxes_a, boxes_b)
+
+
+def nms_gpu(boxes, scores, thresh, pre_maxsize=None, **kwargs):
+    return get_runtime().native_ops.nms3d(boxes, scores, thresh, pre_maxsize, **kwargs)
+
+
+def nms_normal_gpu(boxes, scores, thresh, **kwargs):
+    return get_runtime().native_ops.nms3d_normal(boxes, scores, thresh, **kwargs)

@@ -1,3 +1,4 @@
+from up.runtime import get_runtime
 # Import from third library
 import numpy as np
 import torch
@@ -6,7 +7,7 @@ from ..ext import softer_nms as softer_nms_c
 from up.utils.general.global_flag import ALIGNED_FLAG
 
 
-def naive_nms(dets, thresh):
+def _nvidia_naive_nms(dets, thresh):
     assert dets.shape[1] == 5
     num_dets = dets.shape[0]
     if torch.is_tensor(num_dets):
@@ -49,3 +50,7 @@ def softer_nms(dets, thresh=0.0001, sigma=0.5, iou_thresh=0.3, iou_method='linea
     dets = dets[keep]
     keep = inds[keep]
     return dets.to(device=device), keep.to(device=device)
+
+
+def naive_nms(dets, thresh):
+    return get_runtime().native_ops.naive_nms(dets, thresh, offset=ALIGNED_FLAG.offset)

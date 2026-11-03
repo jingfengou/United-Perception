@@ -146,3 +146,7 @@ net:
       kwargs:
         smooth_ratio: 0.1
         num_classes: *num_classes
+
+export:
+  input_size: [3, 224, 224]
+  opset: 17

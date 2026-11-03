@@ -1,4 +1,6 @@
 import torch
+# 动态重计算只查询当前设备的显存/RNG/同步接口，原有分桶和模块选择策略不变。
+from up.runtime import get_runtime
 import math
 import time
 import random
@@ -19,7 +21,7 @@ def format_size(tensor_size):
 
 def store_rng_state():
     torch_rng_state = torch.get_rng_state()
-    torch_cuda_rng_state = torch.cuda.get_rng_state()
+    torch_cuda_rng_state = get_runtime().module.get_rng_state()
     np_rng_state = np.random.get_state()
     rd_rng_state = random.getstate()
 
@@ -53,12 +55,12 @@ def dc_cast_forward(module_m, name, manager):
     old_forward = module_m.forward
 
     def profile_function(func, *args, **kwargs):
-        prev_allocated = torch.cuda.memory_allocated()
-        torch.cuda.synchronize()
+        prev_allocated = get_runtime().module.memory_allocated()
+        get_runtime().module.synchronize()
         prev_time = time.time()
         ret = func(*args, **kwargs)
-        torch.cuda.synchronize()
-        data = time.time() - prev_time, torch.cuda.memory_allocated() - prev_allocated
+        get_runtime().module.synchronize()
+        data = time.time() - prev_time, get_runtime().module.memory_allocated() - prev_allocated
         return DataStorage(*data), ret
 
     def forward(*args, **kwargs):
@@ -173,7 +175,7 @@ def restore_rng_state(torch_rng_state=None, torch_cuda_rng_state=None, np_rng_st
     if torch_rng_state is not None:
         torch.set_rng_state(torch_rng_state)
     if torch_cuda_rng_state is not None:
-        torch.cuda.set_rng_state(torch_cuda_rng_state)
+        get_runtime().module.set_rng_state(torch_cuda_rng_state)
     if np_rng_state is not None:
         np.random.set_state(np_rng_state)
     if rd_rng_state is not None:
@@ -384,7 +386,7 @@ class DynamicCheckpointManager(object):
 
     def before_forward(self):
         self.iters += 1
-        self.checkpoint_reduce_memory = -torch.cuda.memory_allocated()
+        self.checkpoint_reduce_memory = -get_runtime().module.memory_allocated()
 
         if self.iters == self.warmup_iters + 1:
             self.fit_memory_consume()
@@ -400,8 +402,8 @@ class DynamicCheckpointManager(object):
                 self.debug_info(reduce_memory)
 
         if self.is_warmup:
-            torch.cuda.empty_cache()
-            torch.cuda.memory.reset_peak_memory_stats()
+            get_runtime().module.empty_cache()
+            get_runtime().module.reset_peak_memory_stats()
 
     @property
     def is_warmup(self):
@@ -415,7 +417,7 @@ class DynamicCheckpointManager(object):
         input_size = np.sqrt(self.input_size)
         logger.info(f"input size (sqrt): {input_size:.2f}")
         logger.info(f"memory threshold: {self.max_memory / (1024 ** 2):.2f} MB")
-        logger.info(f"current memory usage: {torch.cuda.memory_allocated() / (1024 ** 2):.2f} MB")
+        logger.info(f"current memory usage: {get_runtime().module.memory_allocated() / (1024 ** 2):.2f} MB")
         logger.info(f"predict model memory: {predict_model_memory:.2f} MB")
         logger.info(f"predict model memory(round input): {predict_model_round_memory:.2f} MB")
         logger.info(f"reduce memory: {reduce_memory / (1024 ** 2):.2f} MB")
@@ -436,7 +438,7 @@ class DynamicCheckpointManager(object):
             if round_input_size in self.cached_strategy:
                 local_checkpoint_module, reduce_memory = self.cached_strategy[round_input_size]
             else:
-                available_memory = self.max_memory - torch.cuda.memory_allocated()
+                available_memory = self.max_memory - get_runtime().module.memory_allocated()
                 reduce_memory = self.model_memory_predict(round_input_size) - available_memory
                 if reduce_memory > 0:
                     local_checkpoint_module = self.strategy.get_checkpoint_module(round_input_size, reduce_memory)
@@ -464,7 +466,7 @@ class DynamicCheckpointManager(object):
 
     def after_update(self):
         if self.is_warmup and self.iters >= 1:
-            self.collect_model_memory(torch.cuda.max_memory_allocated() + self.checkpoint_reduce_memory)
+            self.collect_model_memory(get_runtime().module.max_memory_allocated() + self.checkpoint_reduce_memory)
 
     def fit_memory_consume(self):
         name2data = {}  # {"module" : {"x": [], "y": []}}

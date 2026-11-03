@@ -1,4 +1,5 @@
-from torchvision.ops import nms as t_nms
+# 保留原调用名，集中由平台决定使用 TorchVision 还是同设备 Torch 实现。
+from up.platform.ops import nms as t_nms
 
 
 def nms(cls_rois, nms_cfg={}):

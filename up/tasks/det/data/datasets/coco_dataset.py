@@ -385,7 +385,7 @@ class CocoDataset(BaseDataset):
         masks = self.tensor2numpy(output.get('dt_masks', None))
         image_ids = output['image_id']
         if len(bboxes) == 0:
-            return
+            return []
 
         dump_results = []
         for b_ix in range(len(image_info)):
