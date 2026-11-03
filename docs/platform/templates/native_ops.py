@@ -189,4 +189,3 @@ class NativeOpsTemplate:
         NVIDIA: https://github.com/jingfengou/United-Perception/blob/1208bfd9c3aeef3921db8ade83f7dbf85f583e5d/up/extensions/python/roipoint_pool3d_utils.py#L32
         """
         return self._missing("roipoint")
-

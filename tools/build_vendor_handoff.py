@@ -193,7 +193,7 @@ def template(spec):
                   '        反向: '+op['backward'], '        '+op['details'],
                   '        NVIDIA: '+op['python'][0]['url'], '        """',
                   '        return self._missing("{}")'.format(op['id']), '']
-    return '\n'.join(lines) + '\n'
+    return '\n'.join(lines).rstrip() + '\n'
 
 
 def document(spec):
