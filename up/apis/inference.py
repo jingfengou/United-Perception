@@ -27,6 +27,7 @@ class BaseInference(object):
         self.config = config
         # Python API 直接调用也先初始化运行时，模型和输入随后迁移到同一设备。
         self.runtime = setup_runtime(config)
+        self.runtime.configure_dnn(config.get('runtime', {}).get('dnn'))
         self.class_names = visualizer.get('class_names', None)
         self.work_dir = work_dir
         self.vis_dir = self.args['vis_dir']

@@ -217,7 +217,8 @@ class BaseRunner(object):
         rank_init = self.config['runtime']['rank_init']
         random_seed = self.config['runtime']['random_seed']
         set_random_seed(random_seed, rank_init)
-        torch.backends.cudnn.enabled = not self.args.get('nocudnn', False)
+        self.runtime.configure_dnn(self.config['runtime'].get('dnn'),
+                                   legacy_nocudnn=self.args.get('nocudnn', False))
         logger.info(f'world size:{env.world_size}')
 
     def resume_model(self):
